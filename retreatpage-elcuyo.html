@@ -402,10 +402,9 @@ main { padding-top: 0; }
 .retreat-includes__tab:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
 
 /* --- Rooms pricing -----------------------------------------------------
-   Hotel strip on top (rendered once), then the tiers as rows. Tiers are rows
-   rather than columns because a plan comparison is read down a price list,
-   and rows survive going from one tier to six without the layout changing
-   shape. */
+   Tiers as blocks, not columns: a price list is read downward, and a block
+   holds its shape from one tier to six, which columns would not. Each block
+   carries the tier's rooms across every hotel of the retreat. */
 .rooms {
   display: flex;
   flex-direction: column;
@@ -427,60 +426,22 @@ main { padding-top: 0; }
   width: 100%;
   max-width: 912px;   /* lines up with the gallery in Accommodations above */
 }
-.rooms__eyebrow {
-  margin: 0 0 24px;
-  font-family: var(--font-body);
-  font-size: 14px;
-  line-height: 16px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--sea-blue-200);
-  text-align: center;
-}
-/* Column count comes from the data, so one hotel is not stretched across a
-   three-up grid; --cols is set inline by the render. */
-.rooms__hotels {
-  display: grid;
-  grid-template-columns: repeat(var(--cols, 1), minmax(0, 1fr));
-  gap: 32px;
-  margin-bottom: 56px;
-}
-.rooms__hotels--single .rooms__hotel { max-width: 560px; margin-inline: auto; }
-.rooms__hotel { width: 100%; }
-.rooms__hotel img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
-  border-radius: 0;
-  cursor: zoom-in;
-}
-.rooms__hotel-name {
-  margin: 12px 0 0;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 24px;
-  color: var(--sea-blue);
-  text-align: center;
-}
 
+/* One tier per block: the heading line carries name and price, and the strip
+   of rooms below shows the same tier as it exists in each hotel. */
 .rooms__tier {
-  display: grid;
-  grid-template-columns: 160px minmax(0, 1fr) max-content;
-  column-gap: 32px;
-  align-items: center;
-  padding: 24px 0;
+  padding: 32px 0;
   border-bottom: 1px solid var(--stone-300);
 }
 .rooms__tier:first-child { border-top: 1px solid var(--stone-300); }
-.rooms__tier img {
-  display: block;
-  width: 160px;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border-radius: 0;
-  cursor: zoom-in;
+
+/* baseline, not center: the tier name and the price read as one line of type
+   even though the price is the taller of the two. */
+.rooms__tier-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  column-gap: 32px;
+  align-items: baseline;
 }
 .rooms__tier-name {
   margin: 0;
@@ -523,28 +484,63 @@ main { padding-top: 0; }
   text-align: right;
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
-  .rooms__hotels { grid-template-columns: repeat(min(var(--cols, 1), 2), minmax(0, 1fr)); }
-  .rooms__tier { grid-template-columns: 140px minmax(0, 1fr) max-content; }
-  .rooms__tier img { width: 140px; }
+.rooms__rooms {
+  display: flex;
+  gap: 24px;
+  margin-top: 20px;
+}
+.rooms__room { margin: 0; }
+.rooms__room img {
+  display: block;
+  width: 200px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 0;
+  cursor: zoom-in;
+}
+/* A lone room is not part of a set, so it gets a little more presence and
+   simply sits at the left rather than stretching. */
+.rooms__rooms--single .rooms__room img { width: 240px; }
+.rooms__room figcaption {
+  margin-top: 8px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 16px;
+  color: var(--sea-blue-200);
 }
 
-/* Mobile: the row stops being a row. Reading order becomes photo, name,
-   description, price — and the price moves to the left edge, because a
-   right-aligned number in a single stacked column reads as detached from
-   the room it belongs to. */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .rooms__rooms { gap: 20px; flex-wrap: wrap; }
+  .rooms__room img { width: 168px; }
+  .rooms__rooms--single .rooms__room img { width: 200px; }
+}
+
+/* Mobile: the heading line stops being a line, and the room strip becomes a
+   snap-scrolling rail. At 70% of the width the next card peeks in, which is
+   what tells the reader there is more to swipe — with a single room there is
+   nothing to reveal, so that one fills the width instead of implying a
+   second card that does not exist. */
 @media (max-width: 767px) {
   .rooms { padding: 0 16px 56px; }
-  .rooms__hotels { grid-template-columns: minmax(0, 1fr); }
-  .rooms__tier {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-    padding: 24px 0;
+  .rooms__tier-head { display: block; }
+  .rooms__price { text-align: left; margin-top: 4px; }
+  .rooms__price-unit { text-align: left; }
+
+  .rooms__rooms {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    scrollbar-width: none;
   }
-  .rooms__tier img { width: 100%; aspect-ratio: 3 / 2; }
-  .rooms__price, .rooms__price-unit { text-align: left; }
+  .rooms__rooms::-webkit-scrollbar { display: none; }
+  .rooms__room {
+    flex: 0 0 auto;
+    width: 70%;
+    scroll-snap-align: start;
+  }
+  .rooms__rooms--single .rooms__room { width: 100%; }
+  .rooms__room img,
+  .rooms__rooms--single .rooms__room img { width: 100%; }
 }
 
 /* --- Lightbox ----------------------------------------------------------
@@ -1720,8 +1716,6 @@ html.has-lightbox { overflow: hidden; }
   <section class="rooms">
     <h2 class="rooms__title">Rooms pricing</h2>
     <div class="rooms__inner">
-      <p class="rooms__eyebrow">Where you&rsquo;ll stay</p>
-      <div class="rooms__hotels" id="rooms-hotels"></div>
       <div class="rooms__table" id="rooms-table"></div>
     </div>
   </section>
@@ -2034,43 +2028,47 @@ html.has-lightbox { overflow: hidden; }
   })();
 
   /* Rooms pricing --------------------------------------------------------
-     Data first, render second: hotels and tiers are the only things that
-     change per retreat, so swapping this object is the whole edit. Runs
-     after the lightbox so dlg.openGallery exists. */
+     Data first, render second. A tier holds one room per hotel, in the same
+     order as HOTELS, so a retreat with three houses shows the same tier three
+     times side by side. Swapping these two arrays is the whole per-retreat
+     edit. Runs after the lightbox so dlg.openGallery exists. */
   (function () {
-    var HOTELS = [
+    var HOTELS = ['Utopia Guesthouse & Yoga Studio'];
+
+    /* PLACEHOLDER prices, copy and photos. Room counts follow the
+       Accommodations text (five private queens, three shared twins); the
+       images reuse hotel photos because no per-room shots exist in the repo
+       yet. Each room carries its own gallery for the lightbox. */
+    var TIERS = [
       {
-        name: 'Utopia Guesthouse & Yoga Studio',
-        images: [
-          'images/Hotel-Utopia-Template-1824x1120x2_1-912x560.jpg',
-          'images/Hotel-Utopia-Template-1824x1120x2_10-912x560.jpg',
-          'images/Hotel-Utopia-Template-1824x1120x2_13-912x560.jpg',
-          'images/Hotel-Utopia-Template-1824x1120x2_14-912x560.jpg',
-          'images/Hotel-Utopia-Template-1824x1120x2_16-912x560.jpg',
-          'images/Hotel-Utopia-Template-1824x1120x2_15-912x560.jpg',
-          'images/Hotel-Utopia-Template-1824x1120x2_12-912x560.jpg',
-          'images/Hotel-Utopia-Template-1824x1120x2_6-912x560.jpg',
-          'images/Hotel-Utopia-Template-1824x1120x2_7-912x560.jpg',
-          'images/Hotel-Utopia-Template-1824x1120x2_8-912x560.jpg',
-          'images/Hotel-Utopia-Template-1824x1120x2_9-912x560.jpg'
-        ]
+        name: 'Private Room \u2014 Queen, Ocean View',
+        desc: 'Upstairs, queen bed and a private balcony facing the sea.',
+        priceUSD: 2450,
+        rooms: [ { hotel: HOTELS[0], image: 'images/Hotel-Utopia-Template-1824x1120x2_7-912x560.jpg', gallery: ['images/Hotel-Utopia-Template-1824x1120x2_7-912x560.jpg', 'images/Hotel-Utopia-Template-1824x1120x2_10-912x560.jpg', 'images/Hotel-Utopia-Template-1824x1120x2_13-912x560.jpg'] } ]
+      },
+      {
+        name: 'Private Room \u2014 Queen, Garden View',
+        desc: 'Queen bed opening onto the garden porch, a step from the studio.',
+        priceUSD: 2250,
+        rooms: [ { hotel: HOTELS[0], image: 'images/Hotel-Utopia-Template-1824x1120x2_8-912x560.jpg', gallery: ['images/Hotel-Utopia-Template-1824x1120x2_8-912x560.jpg', 'images/Hotel-Utopia-Template-1824x1120x2_14-912x560.jpg', 'images/Hotel-Utopia-Template-1824x1120x2_16-912x560.jpg'] } ]
+      },
+      {
+        name: 'Shared Room \u2014 Twin, Double',
+        desc: 'Two twin beds shared with one other guest, garden side.',
+        priceUSD: 1850,
+        rooms: [ { hotel: HOTELS[0], image: 'images/Hotel-Utopia-Template-1824x1120x2_9-912x560.jpg', gallery: ['images/Hotel-Utopia-Template-1824x1120x2_9-912x560.jpg', 'images/Hotel-Utopia-Template-1824x1120x2_15-912x560.jpg', 'images/Hotel-Utopia-Template-1824x1120x2_12-912x560.jpg'] } ]
+      },
+      {
+        name: 'Shared Room \u2014 Twin, Triple',
+        desc: 'Three twin beds, the most social corner of the house.',
+        priceUSD: 1650,
+        rooms: [ { hotel: HOTELS[0], image: 'images/Hotel-Utopia-Template-1824x1120x2_6-912x560.jpg', gallery: ['images/Hotel-Utopia-Template-1824x1120x2_6-912x560.jpg', 'images/Hotel-Utopia-Template-1824x1120x2_1-912x560.jpg', 'images/Hotel-Utopia-Template-1824x1120x2_10-912x560.jpg'] } ]
       }
     ];
 
-    /* PLACEHOLDER prices and copy — the room counts follow the Accommodations
-       text (five private queens, three shared twins). The thumbnails reuse
-       hotel photos because no per-room images exist in the repo yet. */
-    var TIERS = [
-      { name: 'Private Room — Queen, Ocean View', desc: 'Upstairs, queen bed and a private balcony facing the sea.', priceUSD: 2450, image: 'images/Hotel-Utopia-Template-1824x1120x2_7-912x560.jpg' },
-      { name: 'Private Room — Queen, Garden View', desc: 'Queen bed opening onto the garden porch, a step from the studio.', priceUSD: 2250, image: 'images/Hotel-Utopia-Template-1824x1120x2_8-912x560.jpg' },
-      { name: 'Shared Room — Twin, Double', desc: 'Two twin beds shared with one other guest, garden side.', priceUSD: 1850, image: 'images/Hotel-Utopia-Template-1824x1120x2_9-912x560.jpg' },
-      { name: 'Shared Room — Twin, Triple', desc: 'Three twin beds, the most social corner of the house.', priceUSD: 1650, image: 'images/Hotel-Utopia-Template-1824x1120x2_6-912x560.jpg' }
-    ];
-
-    var hotelsEl = document.getElementById('rooms-hotels');
     var tableEl = document.getElementById('rooms-table');
     var dlg = document.querySelector('.lightbox');
-    if (!hotelsEl || !tableEl) return;
+    if (!tableEl) return;
 
     function el(tag, cls, text) {
       var n = document.createElement(tag);
@@ -2078,47 +2076,42 @@ html.has-lightbox { overflow: hidden; }
       if (text != null) n.textContent = text;
       return n;
     }
-    function openGallery(list, start) {
-      if (dlg && dlg.openGallery) dlg.openGallery(list, start);
-    }
 
-    // hotel strip
-    hotelsEl.style.setProperty('--cols', Math.min(HOTELS.length, 3));
-    hotelsEl.classList.toggle('rooms__hotels--single', HOTELS.length === 1);
-    HOTELS.forEach(function (hotel) {
-      var card = el('div', 'rooms__hotel');
-      var img = el('img');
-      img.src = hotel.images[0];
-      img.alt = hotel.name;
-      img.loading = 'lazy';
-      img.addEventListener('click', function () { openGallery(hotel.images, 0); });
-      card.appendChild(img);
-      card.appendChild(el('p', 'rooms__hotel-name', hotel.name));
-      hotelsEl.appendChild(card);
-    });
-
-    // tier rows
     TIERS.forEach(function (tier) {
-      var row = el('div', 'rooms__tier');
+      var block = el('div', 'rooms__tier');
 
-      var img = el('img');
-      img.src = tier.image;
-      img.alt = tier.name;
-      img.loading = 'lazy';
-      img.addEventListener('click', function () { openGallery([tier.image], 0); });
-      row.appendChild(img);
-
+      var head = el('div', 'rooms__tier-head');
       var text = el('div', 'rooms__tier-text');
       text.appendChild(el('h3', 'rooms__tier-name', tier.name));
       text.appendChild(el('p', 'rooms__tier-desc', tier.desc));
-      row.appendChild(text);
+      head.appendChild(text);
 
       var price = el('div', 'rooms__price');
       price.appendChild(el('p', 'rooms__price-amount', tier.priceUSD.toLocaleString('en-US') + ' USD'));
       price.appendChild(el('p', 'rooms__price-unit', 'per person'));
-      row.appendChild(price);
+      head.appendChild(price);
+      block.appendChild(head);
 
-      tableEl.appendChild(row);
+      var rooms = tier.rooms || [];
+      var strip = el('div', 'rooms__rooms');
+      if (rooms.length === 1) strip.classList.add('rooms__rooms--single');
+
+      rooms.forEach(function (room) {
+        var fig = el('figure', 'rooms__room');
+        var img = el('img');
+        img.src = room.image;
+        img.alt = tier.name + ' \u2014 ' + room.hotel;
+        img.loading = 'lazy';
+        img.addEventListener('click', function () {
+          if (dlg && dlg.openGallery) dlg.openGallery(room.gallery && room.gallery.length ? room.gallery : [room.image], 0);
+        });
+        fig.appendChild(img);
+        fig.appendChild(el('figcaption', null, room.hotel));
+        strip.appendChild(fig);
+      });
+
+      block.appendChild(strip);
+      tableEl.appendChild(block);
     });
   })();
 
