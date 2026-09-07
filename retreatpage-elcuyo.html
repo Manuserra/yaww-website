@@ -418,7 +418,17 @@ main { padding-top: 0; }
   background: transparent;
   overflow: hidden;
 }
-.lightbox::backdrop { background: rgba(247, 242, 240, 0.92); }   /* stone, not black */
+/* Stone, not black. Without blur it has to stay fairly opaque or the text
+   behind competes with the photo; where blur is supported the defocus does
+   that separating work, so the veil can drop and the page stays legible as
+   context without ever pulling the eye. */
+.lightbox::backdrop { background: rgba(247, 242, 240, 0.88); }
+@supports (backdrop-filter: blur(1px)) {
+  .lightbox::backdrop {
+    background: rgba(247, 242, 240, 0.62);
+    backdrop-filter: blur(16px) saturate(1.1);
+  }
+}
 .lightbox__frame {
   height: 100%;
   display: flex;
@@ -429,13 +439,25 @@ main { padding-top: 0; }
   padding: 24px;
   box-sizing: border-box;
 }
+/* Grows with the viewport, with a ceiling. The source files are 912×560, so
+   1280 is a 1.4× upscale — about as far as a photograph stretches before it
+   starts to look soft. Past that the lightbox would be showing invented
+   pixels, which reads as worse quality, not as a bigger picture. If the
+   1824×1120 originals ever get exported, raising --lightbox-max is the only
+   change needed. */
 .lightbox__img {
   display: block;
-  max-width: min(1200px, 100%);
-  max-height: 78vh;
-  object-fit: contain;
+  /* The width is computed, not merely capped — max-width alone can only
+     shrink an image, never enlarge it, which is why the photo first opened
+     at its natural size. Three limits compete and the smallest wins: the
+     viewport's width, the height budget converted through the photo's own
+     ratio, and the upscale ceiling. The last two come from JS, so any
+     gallery works without hardcoding a ratio here. */
+  width: min(92vw, var(--lightbox-max, 1280px), calc(84vh * var(--lb-ratio, 3 / 2)));
+  height: auto;
+  max-height: 84vh;
   /* the overlay is light, so a pale photo edge would dissolve into it */
-  box-shadow: 0 8px 40px rgba(71, 87, 100, 0.22);
+  box-shadow: 0 12px 48px rgba(71, 87, 100, 0.26);
 }
 .lightbox__count {
   font-family: var(--font-body);
@@ -1761,12 +1783,28 @@ html.has-lightbox { overflow: hidden; }
     var count = dlg.querySelector('.lightbox__count');
     var photos = [], index = 0, source = null, active = false;
 
+    /* Feeds the CSS two numbers per photo: its aspect ratio, and how far it
+       may be enlarged. 1.4x its own pixels is about where a photograph starts
+       to look soft — past that the lightbox is inventing detail, which reads
+       as worse quality rather than as a bigger picture. Tying the ceiling to
+       the file means better originals automatically display bigger. */
+    function fit(w, h) {
+      if (!w || !h) return;
+      dlg.style.setProperty('--lb-ratio', w + ' / ' + h);
+      dlg.style.setProperty('--lightbox-max', Math.round(w * 1.4) + 'px');
+    }
+
     function show(i) {
       index = (i + photos.length) % photos.length;
-      img.src = photos[index].src;
-      img.alt = photos[index].alt;
+      var photo = photos[index];
+      img.src = photo.src;
+      img.alt = photo.alt;
+      fit(photo.naturalWidth, photo.naturalHeight);   // already loaded in the slider
       count.textContent = (index + 1) + ' / ' + photos.length;
     }
+
+    // fallback for a thumbnail that had not finished loading yet
+    img.addEventListener('load', function () { fit(img.naturalWidth, img.naturalHeight); });
 
     /* Cleanup is a function, not just a 'close' listener, and it is
        idempotent: our own close paths run it immediately instead of waiting
