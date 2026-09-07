@@ -401,6 +401,84 @@ main { padding-top: 0; }
 }
 .retreat-includes__tab:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
 
+/* --- Lightbox ----------------------------------------------------------
+   Built on <dialog>, not a hand-rolled overlay: the browser gives the focus
+   trap, Esc to close, inertness of the page behind and focus restored to the
+   thumbnail on close — all the parts that are easy to get wrong by hand.
+   Opt-in per gallery via [data-lightbox], so enabling it elsewhere is one
+   attribute. */
+.lightbox {
+  border: 0;
+  padding: 0;
+  margin: auto;
+  max-width: none;
+  max-height: none;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  overflow: hidden;
+}
+.lightbox::backdrop { background: rgba(247, 242, 240, 0.92); }   /* stone, not black */
+.lightbox__frame {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px;
+  box-sizing: border-box;
+}
+.lightbox__img {
+  display: block;
+  max-width: min(1200px, 100%);
+  max-height: 78vh;
+  object-fit: contain;
+  /* the overlay is light, so a pale photo edge would dissolve into it */
+  box-shadow: 0 8px 40px rgba(71, 87, 100, 0.22);
+}
+.lightbox__count {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.48px;
+  color: var(--sea-blue-200);
+  font-variant-numeric: tabular-nums;
+}
+/* Controls invert against the light backdrop: dark on stone, the opposite
+   of the white chips that sit on top of the photos. */
+.lightbox__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--stone-100);
+  color: var(--sea-blue);
+  box-shadow: 0 1px 6px rgba(71, 87, 100, 0.18);
+  cursor: pointer;
+}
+.lightbox__btn svg { width: 22px; height: 22px; display: block; }
+.lightbox__btn--prev { left: 24px; }
+.lightbox__btn--next { right: 24px; }
+.lightbox__btn--close { top: 24px; right: 24px; transform: none; }
+.lightbox__btn:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
+@media (max-width: 600px) {
+  .lightbox__btn { width: 40px; height: 40px; }
+  .lightbox__btn--prev { left: 8px; }
+  .lightbox__btn--next { right: 8px; }
+  .lightbox__btn--close { right: 8px; top: 8px; }
+}
+/* the page must not scroll behind an open dialog */
+html.has-lightbox { overflow: hidden; }
+/* only galleries that opt in look clickable */
+.photo-slider[data-lightbox] .photo-slider__slide img { cursor: zoom-in; }
+
 /* --- Accommodations ----------------------------------------------------
    Sits directly under the itinerary and shares its stone ground, so the two
    read as one block: no top padding here, the itinerary's 56 closes the gap. */
@@ -492,8 +570,8 @@ main { padding-top: 0; }
   display: flex;
   flex-direction: column;
   gap: 24px;
-  width: 594px;
-  max-width: 100%;   /* the designed measure, but never wider than the screen */
+  width: 745px;      /* same measure as About, so both read as one column */
+  max-width: 100%;   /* but never wider than the screen */
 }
 .retreat-accom__text p {
   margin: 0;
@@ -1421,7 +1499,7 @@ main { padding-top: 0; }
     </div>
 
     <div class="retreat-accom__panel" id="accom-utopia" role="tabpanel">
-      <div class="photo-slider retreat-accom__slider" role="group" aria-roledescription="carousel" aria-label="Utopia Guesthouse photos">
+      <div class="photo-slider retreat-accom__slider" data-lightbox role="group" aria-roledescription="carousel" aria-label="Utopia Guesthouse photos">
         <div class="photo-slider__track">
             <div class="photo-slider__slide"><img src="images/Hotel-Utopia-Template-1824x1120x2_1-912x560.jpg" alt="Utopia Guesthouse &amp; Yoga Studio, El Cuyo" loading="lazy"></div>
             <div class="photo-slider__slide"><img src="images/Hotel-Utopia-Template-1824x1120x2_10-912x560.jpg" alt="" loading="lazy"></div>
@@ -1465,6 +1543,22 @@ main { padding-top: 0; }
       </div>
     </div>
   </section>
+
+  <dialog class="lightbox" aria-label="Photo viewer">
+    <div class="lightbox__frame">
+      <img class="lightbox__img" alt="">
+      <p class="lightbox__count" aria-live="polite"></p>
+      <button class="lightbox__btn lightbox__btn--prev" aria-label="Previous photo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="lightbox__btn lightbox__btn--next" aria-label="Next photo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+      <button class="lightbox__btn lightbox__btn--close" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </dialog>
 
 </main>
 
@@ -1653,7 +1747,77 @@ main { padding-top: 0; }
     measure();
   })();
 
-  // Itinerary: photo sliders (one instance per day)
+  /* Lightbox ------------------------------------------------------------
+     One dialog serves every gallery marked [data-lightbox]. <dialog> does
+     the hard parts natively (focus trap, Esc, page inert, focus returned to
+     the thumbnail), so this only has to swap the src and keep the index.
+     On close the underlying slider is moved to whatever photo was last
+     viewed, so the user never loses their place. */
+  (function () {
+    var dlg = document.querySelector('.lightbox');
+    if (!dlg || !dlg.showModal) return;   // no <dialog>: images simply stay static
+
+    var img = dlg.querySelector('.lightbox__img');
+    var count = dlg.querySelector('.lightbox__count');
+    var photos = [], index = 0, source = null, active = false;
+
+    function show(i) {
+      index = (i + photos.length) % photos.length;
+      img.src = photos[index].src;
+      img.alt = photos[index].alt;
+      count.textContent = (index + 1) + ' / ' + photos.length;
+    }
+
+    /* Cleanup is a function, not just a 'close' listener, and it is
+       idempotent: our own close paths run it immediately instead of waiting
+       for the event, and the listener still catches the closes the browser
+       does on its own (Esc). Whichever happens first wins; the second is a
+       no-op. */
+    function teardown() {
+      if (!active) return;
+      active = false;
+      document.documentElement.classList.remove('has-lightbox');
+      if (source && source.goTo) source.goTo(index);
+      img.removeAttribute('src');
+      source = null;
+    }
+    function dismiss() { dlg.close(); teardown(); }
+
+    document.querySelectorAll('.photo-slider[data-lightbox]').forEach(function (slider) {
+      var imgs = Array.prototype.slice.call(slider.querySelectorAll('.photo-slider__slide img'));
+      imgs.forEach(function (el, i) {
+        el.addEventListener('click', function () {
+          source = slider;
+          photos = imgs;
+          show(i);
+          active = true;
+          document.documentElement.classList.add('has-lightbox');
+          dlg.showModal();
+        });
+      });
+    });
+
+    dlg.querySelector('.lightbox__btn--prev').addEventListener('click', function () { show(index - 1); });
+    dlg.querySelector('.lightbox__btn--next').addEventListener('click', function () { show(index + 1); });
+    dlg.querySelector('.lightbox__btn--close').addEventListener('click', dismiss);
+
+    dlg.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); show(index + 1); }
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); show(index - 1); }
+    });
+
+    /* Clicking the backdrop closes. The dialog fills the viewport, so the
+       test is whether the click landed outside the photo itself. */
+    dlg.addEventListener('click', function (e) {
+      if (e.target.closest('.lightbox__btn') || e.target === img) return;
+      dismiss();
+    });
+
+    dlg.addEventListener('close', teardown);    // Esc, or any browser-driven close
+    dlg.addEventListener('cancel', teardown);
+  })();
+
+  // Photo sliders (itinerary days + the accommodations gallery)
   document.querySelectorAll('.photo-slider').forEach(function (slider) {
     var track = slider.querySelector('.photo-slider__track');
     var slides = slider.querySelectorAll('.photo-slider__slide');
@@ -1670,6 +1834,10 @@ main { padding-top: 0; }
     slider.querySelector('.photo-slider__arrow--prev').addEventListener('click', function () { goTo(index - 1); });
     slider.querySelector('.photo-slider__arrow--next').addEventListener('click', function () { goTo(index + 1); });
     dots.forEach(function (dot, di) { dot.addEventListener('click', function () { goTo(di); }); });
+
+    // exposed so the lightbox can hand the slider back on whatever photo the
+    // viewer was last looking at
+    slider.goTo = goTo;
   });
 </script>
 
