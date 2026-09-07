@@ -401,6 +401,111 @@ main { padding-top: 0; }
 }
 .retreat-includes__tab:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
 
+/* --- Accommodations ----------------------------------------------------
+   Sits directly under the itinerary and shares its stone ground, so the two
+   read as one block: no top padding here, the itinerary's 56 closes the gap. */
+.retreat-accom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 0 24px;
+  background: var(--stone);
+}
+.retreat-accom__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+  color: var(--sea-blue);
+  text-align: center;
+}
+/* Same tab component as Includes, with two changes for this context: no
+   full-width hairline (the design shows only the active underline), and the
+   width hugs instead of sitting at 216 — hotel names are far longer than
+   "What Includes" and would be clipped. Wraps and centres, so a retreat with
+   three hotels needs no new rule. */
+.retreat-accom__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.retreat-accom__tab {
+  position: relative;
+  min-width: 216px;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 24px;
+  letter-spacing: 0.48px;
+  text-transform: uppercase;
+  color: var(--sea-blue-100);
+}
+.retreat-accom__tab.is-active { color: var(--sea-blue); }
+.retreat-accom__tab.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background: var(--sea-blue);
+}
+.retreat-accom__tab:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
+
+.retreat-accom__panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  width: 100%;
+  padding-bottom: 56px;
+}
+/* 912 × 560 as designed; below ~960 the viewport is narrower than that, so
+   it becomes fluid on the same 57:35 ratio rather than overflowing. */
+.retreat-accom__slider {
+  width: 100%;
+  max-width: 912px;
+  aspect-ratio: 57 / 35;
+}
+.retreat-accom__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+.retreat-accom__name {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+  color: var(--sea-blue);
+  text-align: center;
+}
+.retreat-accom__text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 594px;
+  max-width: 100%;   /* the designed measure, but never wider than the screen */
+}
+.retreat-accom__text p {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue);
+  text-align: justify;
+}
+
 /* Panels stack in the same grid cell so the card's height is always driven
    by whichever panel has more content (here, "What Includes") — switching
    tabs never resizes the card. Inactive panel stays in flow (visibility,
@@ -627,27 +732,33 @@ main { padding-top: 0; }
    the ratio rather than staying pinned at 408, so the photo keeps its full
    composition instead of cropping in. */
 .retreat-itinerary__slider {
-  position: relative;
   flex: 0 3 672px;
   height: auto;
   aspect-ratio: 672 / 408;
   margin-left: calc(var(--day-gap) - var(--marker-gap));
+}
+/* Photo slider — shared by the itinerary days and the accommodations
+   gallery. Only the box (size, flex, ratio) belongs to each module; the
+   track, slides, arrows and dots live here and the JS binds to .photo-slider,
+   so a new gallery is markup only. */
+.photo-slider {
+  position: relative;
   overflow: hidden;
   background: var(--stone-200);
 }
-.retreat-itinerary__slider-track {
+.photo-slider__track {
   display: flex;
   width: 100%;
   height: 100%;
   transition: transform .4s ease;
 }
-.retreat-itinerary__slider-slide { flex: none; width: 100%; height: 100%; }
-.retreat-itinerary__slider-slide img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.photo-slider__slide { flex: none; width: 100%; height: 100%; }
+.photo-slider__slide img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 /* Arrows/dots: solid stone-100 chips (same tone as the .card__badge pill
    elsewhere) — guarantees contrast against any photo without a dark
    gradient overlay. */
-.retreat-itinerary__slider-arrow {
+.photo-slider__arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -664,21 +775,21 @@ main { padding-top: 0; }
   cursor: pointer;
   opacity: 1;   /* touch/no-hover devices: always visible, see media query below */
 }
-.retreat-itinerary__slider-arrow--prev { left: 12px; }
-.retreat-itinerary__slider-arrow--next { right: 12px; }
-.retreat-itinerary__slider-arrow svg { width: 18px; height: 18px; display: block; }
-.retreat-itinerary__slider-arrow:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
+.photo-slider__arrow--prev { left: 12px; }
+.photo-slider__arrow--next { right: 12px; }
+.photo-slider__arrow svg { width: 18px; height: 18px; display: block; }
+.photo-slider__arrow:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
 
 /* Arrows reveal on hover only on devices that actually have hover (mouse/
    trackpad) — on touch there's no hover state to reveal them, so they'd be
    permanently unreachable if hidden by default there. */
 @media (hover: hover) and (pointer: fine) {
-  .retreat-itinerary__slider-arrow {
+  .photo-slider__arrow {
     opacity: 0;
     transition: opacity 0.2s ease;
   }
-  .retreat-itinerary__slider:hover .retreat-itinerary__slider-arrow,
-  .retreat-itinerary__slider-arrow:focus-visible {
+  .photo-slider:hover .photo-slider__arrow,
+  .photo-slider__arrow:focus-visible {
     opacity: 1;
   }
 }
@@ -686,7 +797,7 @@ main { padding-top: 0; }
 /* Dots: always visible (ref: Pinterest's carousel) — translucent white +
    a soft dark drop-shadow contrasts on its own against any photo, so no
    solid pill/chip backing is needed. */
-.retreat-itinerary__slider-dots {
+.photo-slider__dots {
   position: absolute;
   left: 50%;
   bottom: 14px;
@@ -695,7 +806,7 @@ main { padding-top: 0; }
   align-items: center;
   gap: 6px;
 }
-.retreat-itinerary__slider-dot {
+.photo-slider__dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
@@ -706,8 +817,8 @@ main { padding-top: 0; }
   cursor: pointer;
   transition: all 150ms ease-out;
 }
-.retreat-itinerary__slider-dot.is-active { background: rgba(255, 255, 255, 0.95); width: 8px; height: 8px; }
-.retreat-itinerary__slider-dot:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
+.photo-slider__dot.is-active { background: rgba(255, 255, 255, 0.95); width: 8px; height: 8px; }
+.photo-slider__dot:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
 
 /* Itinerary — 768…1199: the 768 frame. The row becomes indicator + a single
    content column (label + bullets, then the photo), the timeline line moves
@@ -723,6 +834,9 @@ main { padding-top: 0; }
    designed 28:17 photo and the bullets both handle as drawn. */
 @media (max-width: 946px) {
   .retreat-itinerary { padding: 56px 16px; }
+  /* matches the itinerary's side margin at this width, so the page keeps a
+     single gutter down its whole length */
+  .retreat-accom { padding: 0 16px; }
 
   .retreat-itinerary__day {
     align-items: flex-start;
@@ -783,6 +897,13 @@ main { padding-top: 0; }
      geometry, one less box: 4px of offset + an 8px dot = the 12px slot, and
      the dot's centre lands on 8 — the middle of the label's 16px line. */
   .retreat-itinerary__dot { margin-top: 4px; }   /* size follows --rail-w */
+
+  /* Accommodations on a phone. The tab label is a full hotel name, so it
+     stops being a nowrap 216px chip and is allowed to wrap. And the copy
+     drops out of justified: at ~50 characters a line, justification without
+     hyphenation opens rivers of white space between words. */
+  .retreat-accom__tab { min-width: 0; padding: 12px 8px; }
+  .retreat-accom__text p { text-align: left; }
   .retreat-itinerary__label { line-height: 16px; }
   .retreat-itinerary__slider { aspect-ratio: 81 / 49; }   /* 448 × 271 at 480 */
 }
@@ -1035,26 +1156,26 @@ main { padding-top: 0; }
               </ul>
             </div>
 
-            <div class="retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 1 photos">
-              <div class="retreat-itinerary__slider-track">
-                <div class="retreat-itinerary__slider-slide"><img src="images/day1-1.jpg" alt="Day 1 — El Cuyo retreat" loading="lazy"></div>
-                <div class="retreat-itinerary__slider-slide"><img src="images/day1-2.jpg" alt="" loading="lazy"></div>
-                <div class="retreat-itinerary__slider-slide"><img src="images/day1-3.jpg" alt="" loading="lazy"></div>
-                <div class="retreat-itinerary__slider-slide"><img src="images/day1-4.jpg" alt="" loading="lazy"></div>
-                <div class="retreat-itinerary__slider-slide"><img src="images/day1-5.jpg" alt="" loading="lazy"></div>
+            <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 1 photos">
+              <div class="photo-slider__track">
+                <div class="photo-slider__slide"><img src="images/day1-1.jpg" alt="Day 1 — El Cuyo retreat" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day1-2.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day1-3.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day1-4.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day1-5.jpg" alt="" loading="lazy"></div>
               </div>
-              <button class="retreat-itinerary__slider-arrow retreat-itinerary__slider-arrow--prev" aria-label="Previous photo">
+              <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
               </button>
-              <button class="retreat-itinerary__slider-arrow retreat-itinerary__slider-arrow--next" aria-label="Next photo">
+              <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
               </button>
-              <div class="retreat-itinerary__slider-dots">
-                <button class="retreat-itinerary__slider-dot is-active" aria-label="Photo 1"></button>
-                <button class="retreat-itinerary__slider-dot" aria-label="Photo 2"></button>
-                <button class="retreat-itinerary__slider-dot" aria-label="Photo 3"></button>
-                <button class="retreat-itinerary__slider-dot" aria-label="Photo 4"></button>
-                <button class="retreat-itinerary__slider-dot" aria-label="Photo 5"></button>
+              <div class="photo-slider__dots">
+                <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
+                <button class="photo-slider__dot" aria-label="Photo 2"></button>
+                <button class="photo-slider__dot" aria-label="Photo 3"></button>
+                <button class="photo-slider__dot" aria-label="Photo 4"></button>
+                <button class="photo-slider__dot" aria-label="Photo 5"></button>
               </div>
             </div>
           </div>
@@ -1083,26 +1204,26 @@ main { padding-top: 0; }
               </ul>
             </div>
 
-            <div class="retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 2 photos">
-              <div class="retreat-itinerary__slider-track">
-                <div class="retreat-itinerary__slider-slide"><img src="images/day2-1.jpg" alt="Day 2 — El Cuyo retreat" loading="lazy"></div>
-                <div class="retreat-itinerary__slider-slide"><img src="images/day2-2.jpg" alt="" loading="lazy"></div>
-                <div class="retreat-itinerary__slider-slide"><img src="images/day2-3.jpg" alt="" loading="lazy"></div>
-                <div class="retreat-itinerary__slider-slide"><img src="images/day2-4.jpg" alt="" loading="lazy"></div>
-                <div class="retreat-itinerary__slider-slide"><img src="images/day2-5.jpg" alt="" loading="lazy"></div>
+            <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 2 photos">
+              <div class="photo-slider__track">
+                <div class="photo-slider__slide"><img src="images/day2-1.jpg" alt="Day 2 — El Cuyo retreat" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day2-2.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day2-3.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day2-4.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day2-5.jpg" alt="" loading="lazy"></div>
               </div>
-              <button class="retreat-itinerary__slider-arrow retreat-itinerary__slider-arrow--prev" aria-label="Previous photo">
+              <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
               </button>
-              <button class="retreat-itinerary__slider-arrow retreat-itinerary__slider-arrow--next" aria-label="Next photo">
+              <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
               </button>
-              <div class="retreat-itinerary__slider-dots">
-                <button class="retreat-itinerary__slider-dot is-active" aria-label="Photo 1"></button>
-                <button class="retreat-itinerary__slider-dot" aria-label="Photo 2"></button>
-                <button class="retreat-itinerary__slider-dot" aria-label="Photo 3"></button>
-                <button class="retreat-itinerary__slider-dot" aria-label="Photo 4"></button>
-                <button class="retreat-itinerary__slider-dot" aria-label="Photo 5"></button>
+              <div class="photo-slider__dots">
+                <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
+                <button class="photo-slider__dot" aria-label="Photo 2"></button>
+                <button class="photo-slider__dot" aria-label="Photo 3"></button>
+                <button class="photo-slider__dot" aria-label="Photo 4"></button>
+                <button class="photo-slider__dot" aria-label="Photo 5"></button>
               </div>
             </div>
           </div>
@@ -1127,26 +1248,26 @@ main { padding-top: 0; }
               </ul>
             </div>
 
-            <div class="retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 3 photos">
-              <div class="retreat-itinerary__slider-track">
-                <div class="retreat-itinerary__slider-slide"><img src="images/day3-1.jpg" alt="Day 3 — El Cuyo retreat" loading="lazy"></div>
-                <div class="retreat-itinerary__slider-slide"><img src="images/day3-2.jpg" alt="" loading="lazy"></div>
-                <div class="retreat-itinerary__slider-slide"><img src="images/day3-3.jpg" alt="" loading="lazy"></div>
-                <div class="retreat-itinerary__slider-slide"><img src="images/day3-4.jpg" alt="" loading="lazy"></div>
-                <div class="retreat-itinerary__slider-slide"><img src="images/day3-5.jpg" alt="" loading="lazy"></div>
+            <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 3 photos">
+              <div class="photo-slider__track">
+                <div class="photo-slider__slide"><img src="images/day3-1.jpg" alt="Day 3 — El Cuyo retreat" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day3-2.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day3-3.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day3-4.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day3-5.jpg" alt="" loading="lazy"></div>
               </div>
-              <button class="retreat-itinerary__slider-arrow retreat-itinerary__slider-arrow--prev" aria-label="Previous photo">
+              <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
               </button>
-              <button class="retreat-itinerary__slider-arrow retreat-itinerary__slider-arrow--next" aria-label="Next photo">
+              <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
               </button>
-              <div class="retreat-itinerary__slider-dots">
-                <button class="retreat-itinerary__slider-dot is-active" aria-label="Photo 1"></button>
-                <button class="retreat-itinerary__slider-dot" aria-label="Photo 2"></button>
-                <button class="retreat-itinerary__slider-dot" aria-label="Photo 3"></button>
-                <button class="retreat-itinerary__slider-dot" aria-label="Photo 4"></button>
-                <button class="retreat-itinerary__slider-dot" aria-label="Photo 5"></button>
+              <div class="photo-slider__dots">
+                <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
+                <button class="photo-slider__dot" aria-label="Photo 2"></button>
+                <button class="photo-slider__dot" aria-label="Photo 3"></button>
+                <button class="photo-slider__dot" aria-label="Photo 4"></button>
+                <button class="photo-slider__dot" aria-label="Photo 5"></button>
               </div>
             </div>
           </div>
@@ -1173,26 +1294,26 @@ main { padding-top: 0; }
               </ul>
             </div>
 
-            <div class="retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 4 photos">
-              <div class="retreat-itinerary__slider-track">
-                <div class="retreat-itinerary__slider-slide"><img src="images/day4-1.jpg" alt="Day 4 — El Cuyo retreat" loading="lazy"></div>
-                <div class="retreat-itinerary__slider-slide"><img src="images/day4-2.jpg" alt="" loading="lazy"></div>
-                <div class="retreat-itinerary__slider-slide"><img src="images/day4-3.jpg" alt="" loading="lazy"></div>
-                <div class="retreat-itinerary__slider-slide"><img src="images/day4-4.jpg" alt="" loading="lazy"></div>
-                <div class="retreat-itinerary__slider-slide"><img src="images/day4-5.jpg" alt="" loading="lazy"></div>
+            <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 4 photos">
+              <div class="photo-slider__track">
+                <div class="photo-slider__slide"><img src="images/day4-1.jpg" alt="Day 4 — El Cuyo retreat" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day4-2.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day4-3.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day4-4.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day4-5.jpg" alt="" loading="lazy"></div>
               </div>
-              <button class="retreat-itinerary__slider-arrow retreat-itinerary__slider-arrow--prev" aria-label="Previous photo">
+              <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
               </button>
-              <button class="retreat-itinerary__slider-arrow retreat-itinerary__slider-arrow--next" aria-label="Next photo">
+              <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
               </button>
-              <div class="retreat-itinerary__slider-dots">
-                <button class="retreat-itinerary__slider-dot is-active" aria-label="Photo 1"></button>
-                <button class="retreat-itinerary__slider-dot" aria-label="Photo 2"></button>
-                <button class="retreat-itinerary__slider-dot" aria-label="Photo 3"></button>
-                <button class="retreat-itinerary__slider-dot" aria-label="Photo 4"></button>
-                <button class="retreat-itinerary__slider-dot" aria-label="Photo 5"></button>
+              <div class="photo-slider__dots">
+                <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
+                <button class="photo-slider__dot" aria-label="Photo 2"></button>
+                <button class="photo-slider__dot" aria-label="Photo 3"></button>
+                <button class="photo-slider__dot" aria-label="Photo 4"></button>
+                <button class="photo-slider__dot" aria-label="Photo 5"></button>
               </div>
             </div>
           </div>
@@ -1218,26 +1339,26 @@ main { padding-top: 0; }
               </ul>
             </div>
 
-            <div class="retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 5 photos">
-              <div class="retreat-itinerary__slider-track">
-                <div class="retreat-itinerary__slider-slide"><img src="images/day5-1.jpg" alt="Day 5 — El Cuyo retreat" loading="lazy"></div>
-                <div class="retreat-itinerary__slider-slide"><img src="images/day5-2.jpg" alt="" loading="lazy"></div>
-                <div class="retreat-itinerary__slider-slide"><img src="images/day5-3.jpg" alt="" loading="lazy"></div>
-                <div class="retreat-itinerary__slider-slide"><img src="images/day5-4.jpg" alt="" loading="lazy"></div>
-                <div class="retreat-itinerary__slider-slide"><img src="images/day5-5.jpg" alt="" loading="lazy"></div>
+            <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 5 photos">
+              <div class="photo-slider__track">
+                <div class="photo-slider__slide"><img src="images/day5-1.jpg" alt="Day 5 — El Cuyo retreat" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day5-2.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day5-3.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day5-4.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day5-5.jpg" alt="" loading="lazy"></div>
               </div>
-              <button class="retreat-itinerary__slider-arrow retreat-itinerary__slider-arrow--prev" aria-label="Previous photo">
+              <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
               </button>
-              <button class="retreat-itinerary__slider-arrow retreat-itinerary__slider-arrow--next" aria-label="Next photo">
+              <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
               </button>
-              <div class="retreat-itinerary__slider-dots">
-                <button class="retreat-itinerary__slider-dot is-active" aria-label="Photo 1"></button>
-                <button class="retreat-itinerary__slider-dot" aria-label="Photo 2"></button>
-                <button class="retreat-itinerary__slider-dot" aria-label="Photo 3"></button>
-                <button class="retreat-itinerary__slider-dot" aria-label="Photo 4"></button>
-                <button class="retreat-itinerary__slider-dot" aria-label="Photo 5"></button>
+              <div class="photo-slider__dots">
+                <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
+                <button class="photo-slider__dot" aria-label="Photo 2"></button>
+                <button class="photo-slider__dot" aria-label="Photo 3"></button>
+                <button class="photo-slider__dot" aria-label="Photo 4"></button>
+                <button class="photo-slider__dot" aria-label="Photo 5"></button>
               </div>
             </div>
           </div>
@@ -1260,32 +1381,88 @@ main { padding-top: 0; }
               </ul>
             </div>
 
-            <div class="retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 6 photos">
-              <div class="retreat-itinerary__slider-track">
-                <div class="retreat-itinerary__slider-slide"><img src="images/day6-1.jpg" alt="Day 6 — El Cuyo retreat" loading="lazy"></div>
-                <div class="retreat-itinerary__slider-slide"><img src="images/day6-2.jpg" alt="" loading="lazy"></div>
-                <div class="retreat-itinerary__slider-slide"><img src="images/day6-3.jpg" alt="" loading="lazy"></div>
-                <div class="retreat-itinerary__slider-slide"><img src="images/day6-4.jpg" alt="" loading="lazy"></div>
-                <div class="retreat-itinerary__slider-slide"><img src="images/day6-5.jpg" alt="" loading="lazy"></div>
+            <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 6 photos">
+              <div class="photo-slider__track">
+                <div class="photo-slider__slide"><img src="images/day6-1.jpg" alt="Day 6 — El Cuyo retreat" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day6-2.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day6-3.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day6-4.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day6-5.jpg" alt="" loading="lazy"></div>
               </div>
-              <button class="retreat-itinerary__slider-arrow retreat-itinerary__slider-arrow--prev" aria-label="Previous photo">
+              <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
               </button>
-              <button class="retreat-itinerary__slider-arrow retreat-itinerary__slider-arrow--next" aria-label="Next photo">
+              <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
               </button>
-              <div class="retreat-itinerary__slider-dots">
-                <button class="retreat-itinerary__slider-dot is-active" aria-label="Photo 1"></button>
-                <button class="retreat-itinerary__slider-dot" aria-label="Photo 2"></button>
-                <button class="retreat-itinerary__slider-dot" aria-label="Photo 3"></button>
-                <button class="retreat-itinerary__slider-dot" aria-label="Photo 4"></button>
-                <button class="retreat-itinerary__slider-dot" aria-label="Photo 5"></button>
+              <div class="photo-slider__dots">
+                <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
+                <button class="photo-slider__dot" aria-label="Photo 2"></button>
+                <button class="photo-slider__dot" aria-label="Photo 3"></button>
+                <button class="photo-slider__dot" aria-label="Photo 4"></button>
+                <button class="photo-slider__dot" aria-label="Photo 5"></button>
               </div>
             </div>
           </div>
         </li>
 
       </ol>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       ACCOMMODATIONS (hotel tabs + gallery)
+       ========================================================= -->
+  <section class="retreat-accom">
+    <h2 class="retreat-accom__title">Accommodations</h2>
+
+    <div class="retreat-accom__tabs" role="tablist" aria-label="Accommodations">
+      <button class="retreat-accom__tab is-active" role="tab" aria-selected="true" data-panel="utopia">Utopia Guesthouse &amp; Yoga Studio</button>
+    </div>
+
+    <div class="retreat-accom__panel" id="accom-utopia" role="tabpanel">
+      <div class="photo-slider retreat-accom__slider" role="group" aria-roledescription="carousel" aria-label="Utopia Guesthouse photos">
+        <div class="photo-slider__track">
+            <div class="photo-slider__slide"><img src="images/Hotel-Utopia-Template-1824x1120x2_1-912x560.jpg" alt="Utopia Guesthouse &amp; Yoga Studio, El Cuyo" loading="lazy"></div>
+            <div class="photo-slider__slide"><img src="images/Hotel-Utopia-Template-1824x1120x2_10-912x560.jpg" alt="" loading="lazy"></div>
+            <div class="photo-slider__slide"><img src="images/Hotel-Utopia-Template-1824x1120x2_13-912x560.jpg" alt="" loading="lazy"></div>
+            <div class="photo-slider__slide"><img src="images/Hotel-Utopia-Template-1824x1120x2_14-912x560.jpg" alt="" loading="lazy"></div>
+            <div class="photo-slider__slide"><img src="images/Hotel-Utopia-Template-1824x1120x2_16-912x560.jpg" alt="" loading="lazy"></div>
+            <div class="photo-slider__slide"><img src="images/Hotel-Utopia-Template-1824x1120x2_15-912x560.jpg" alt="" loading="lazy"></div>
+            <div class="photo-slider__slide"><img src="images/Hotel-Utopia-Template-1824x1120x2_12-912x560.jpg" alt="" loading="lazy"></div>
+            <div class="photo-slider__slide"><img src="images/Hotel-Utopia-Template-1824x1120x2_6-912x560.jpg" alt="" loading="lazy"></div>
+            <div class="photo-slider__slide"><img src="images/Hotel-Utopia-Template-1824x1120x2_7-912x560.jpg" alt="" loading="lazy"></div>
+            <div class="photo-slider__slide"><img src="images/Hotel-Utopia-Template-1824x1120x2_8-912x560.jpg" alt="" loading="lazy"></div>
+            <div class="photo-slider__slide"><img src="images/Hotel-Utopia-Template-1824x1120x2_9-912x560.jpg" alt="" loading="lazy"></div>
+        </div>
+        <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+        <div class="photo-slider__dots">
+            <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
+            <button class="photo-slider__dot" aria-label="Photo 2"></button>
+            <button class="photo-slider__dot" aria-label="Photo 3"></button>
+            <button class="photo-slider__dot" aria-label="Photo 4"></button>
+            <button class="photo-slider__dot" aria-label="Photo 5"></button>
+            <button class="photo-slider__dot" aria-label="Photo 6"></button>
+            <button class="photo-slider__dot" aria-label="Photo 7"></button>
+            <button class="photo-slider__dot" aria-label="Photo 8"></button>
+            <button class="photo-slider__dot" aria-label="Photo 9"></button>
+            <button class="photo-slider__dot" aria-label="Photo 10"></button>
+            <button class="photo-slider__dot" aria-label="Photo 11"></button>
+        </div>
+      </div>
+
+      <div class="retreat-accom__copy">
+        <h3 class="retreat-accom__name">Utopia Guesthouse &amp; Yoga Studio</h3>
+        <div class="retreat-accom__text">
+          <p>Tucked along the quiet beaches of El Cuyo, Utopia Guesthouse &amp; Yoga Studio is a tranquil seaside home created to host retreat groups in an intimate, soulful setting. The house features eight bedrooms &mdash; five private with queen beds and three shared with twin beds &mdash; all simple and cozy, dressed in soft neutrals and natural textures sourced locally.</p>
+          <p>The shared living and dining areas flow between indoor and open-air spaces, with porches on both the garden and beach sides of the house. Three full bathrooms, a double-sink wash area, and an outdoor shower by the sea offer a relaxed, communal rhythm. From the second-floor terrace, our yoga studio opens to sweeping ocean views &mdash; a serene space to greet each sunrise. Mats, blankets, straps, and blocks are provided, inviting every practice to unfold with ease and presence.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1477,10 +1654,10 @@ main { padding-top: 0; }
   })();
 
   // Itinerary: photo sliders (one instance per day)
-  document.querySelectorAll('.retreat-itinerary__slider').forEach(function (slider) {
-    var track = slider.querySelector('.retreat-itinerary__slider-track');
-    var slides = slider.querySelectorAll('.retreat-itinerary__slider-slide');
-    var dots = slider.querySelectorAll('.retreat-itinerary__slider-dot');
+  document.querySelectorAll('.photo-slider').forEach(function (slider) {
+    var track = slider.querySelector('.photo-slider__track');
+    var slides = slider.querySelectorAll('.photo-slider__slide');
+    var dots = slider.querySelectorAll('.photo-slider__dot');
     var total = slides.length;
     var index = 0;
 
@@ -1490,8 +1667,8 @@ main { padding-top: 0; }
       dots.forEach(function (d, di) { d.classList.toggle('is-active', di === index); });
     }
 
-    slider.querySelector('.retreat-itinerary__slider-arrow--prev').addEventListener('click', function () { goTo(index - 1); });
-    slider.querySelector('.retreat-itinerary__slider-arrow--next').addEventListener('click', function () { goTo(index + 1); });
+    slider.querySelector('.photo-slider__arrow--prev').addEventListener('click', function () { goTo(index - 1); });
+    slider.querySelector('.photo-slider__arrow--next').addEventListener('click', function () { goTo(index + 1); });
     dots.forEach(function (dot, di) { dot.addEventListener('click', function () { goTo(di); }); });
   });
 </script>
