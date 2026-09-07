@@ -733,8 +733,14 @@ function groupKeyAndOrder(list){
    the retreat name, so every El Cuyo card links — in whichever tab it is
    rendered — and adding another venue later is one line here. */
 function pageFor(r){
-  return r.loc === "El Cuyo, Mexico" ? "retreatpage-elcuyo.html" : "";
+  return PAGES[r.loc] || "";
 }
+/* Locations that have a detail page built. Keyed by location rather than by
+   retreat name: every retreat at that venue links to the same page. */
+var PAGES = {
+  "El Cuyo, Mexico":          "retreatpage-elcuyo.html",
+  "Reykjav\u00edk & Vik, Iceland": "retreatpage-iceland.html"
+};
 /* Wraps a card/row in a real <a> when there is somewhere to go: keyboard
    focus, middle-click and "open in new tab" all come for free, which a
    click handler on a div would not give. */
