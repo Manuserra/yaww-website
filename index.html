@@ -244,7 +244,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   position: relative;
   display: flex;
   justify-content: center;      /* 3×216 = 648, centered */
-  align-items: flex-end;
+  /* Same 55px as the nav row above, and the tabs stretch to fill it so the
+     labels stay optically centred instead of sinking to the bottom edge. */
+  min-height: 55px;
+  align-items: stretch;
 }
 .tabs {
   display: flex;
@@ -406,8 +409,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   white-space: nowrap;
 }
 /* Scarcity and sold out both read as normal, active state — solid dark, no new hue. */
+/* Brand primary on the secondary stone — 6.72:1 */
 .card__flag--scarce,
-.card__flag--soldout { background: var(--sea-blue-500); color: var(--stone-100); }
+.card__flag--soldout { background: var(--sea-blue); color: var(--stone); }
 
 .card__body {
   padding-top: 16px;               /* Figma: image -> title 16 */
