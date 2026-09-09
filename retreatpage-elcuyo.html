@@ -856,6 +856,132 @@ main { padding-top: 0; }
   .extras__name { font-size: 20px; line-height: 28px; }
 }
 
+/* --- Gallery -----------------------------------------------------------
+   A full-bleed strip that scrolls sideways. Every photo is the same width
+   and they differ in height, all hung on one horizontal centre line — the
+   uneven top and bottom edges are what stop a row of photographs from
+   reading as a spreadsheet.
+
+   The arrows sit above the strip rather than on it. Because the photos run
+   past both edges of the viewport there is no margin left to park a control
+   in, and floating them over the images would cover the one thing the
+   control exists to reveal. Centred under the title they read as belonging
+   to the section, not to whichever photo they happen to land on.
+
+   It is a real scroll container, not a transform track: trackpad and touch
+   swiping come free, and the arrows just drive scrollLeft. */
+.gallery {
+  padding: 56px 0;
+  background: var(--stone);
+  overflow: hidden;   /* the strip's own overhang must not scroll the page */
+}
+.gallery__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.gallery__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+  color: var(--sea-blue);
+  text-align: center;
+}
+.gallery__nav { display: flex; gap: 12px; }
+.gallery__arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--stone-400);
+  color: var(--sea-blue);
+  cursor: pointer;
+  transition: background-color .18s ease, border-color .18s ease,
+              color .18s ease, opacity .18s ease;
+}
+.gallery__arrow svg { width: 14px; height: 14px; display: block; }
+@media (hover: hover) and (pointer: fine) {
+  .gallery__arrow:not(:disabled):hover {
+    background: var(--sea-blue);
+    border-color: var(--sea-blue);
+    color: var(--stone);
+  }
+}
+/* Disabled rather than hidden: a control that vanishes at the end of the
+   strip makes the other one jump sideways. */
+.gallery__arrow:disabled { opacity: .35; cursor: default; }
+.gallery__arrow:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
+
+/* The side padding is what centres the opening pair (2 slides + gap) in the
+   viewport while still letting the third peek in — the composition in the
+   Figma frame. It never drops below the page's own 24px gutter. */
+.gallery__track {
+  --slide-w: clamp(280px, 44vw, 528px);
+  --gap: 48px;
+  --edge: max(24px, calc((100% - (var(--slide-w) * 2 + var(--gap))) / 2));
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  padding-inline: var(--edge);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  /* Snap to the left slot, not to a slide's centre. The composition here is
+     a pair with the next one peeking, and centring a single slide destroys
+     it — a flick would leave one photo mid-frame with two half photos beside
+     it. Aligning to start against the same edge padding means every resting
+     position is the composition the frame was drawn at. Proximity, not
+     mandatory, so someone deliberately scanning the strip is not dragged to
+     the nearest slot on every pause. */
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: var(--edge);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.gallery__track::-webkit-scrollbar { display: none; }
+
+/* --r is the crop this photo is composed at, --o the fade the script writes
+   as the slide is clipped by an edge. Both have defaults so the strip is
+   still correct with JS off. */
+.gallery__slide {
+  margin: 0;          /* <figure> ships with 1em 40px, which would set the gap */
+  flex: none;
+  width: var(--slide-w);
+  aspect-ratio: var(--r, 28 / 17);
+  scroll-snap-align: start;
+  background: var(--stone-200);
+  opacity: var(--o, 1);
+  transition: opacity .3s ease;
+}
+.gallery__slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: zoom-in;
+}
+
+@media (max-width: 1024px) {
+  .gallery__track { --gap: 24px; }
+}
+/* One photo at a time below 768, with the next one showing enough of itself
+   to say the strip continues. */
+@media (max-width: 767px) {
+  .gallery { padding: 56px 0; }
+  .gallery__track { --slide-w: 78vw; --gap: 16px; --edge: 16px; }
+  .gallery__head { margin-bottom: 32px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gallery__slide { transition: none; }
+}
+
 /* The active-tab indicator is one element per bar that slides, rather than a
    rule drawn under whichever tab is active. 320ms is the top of the band
    that still reads as immediate; paired with a strong ease-out it leaves
@@ -2026,6 +2152,46 @@ html.has-lightbox { overflow: hidden; }
     <div class="extras__panels"></div>
   </section>
 
+
+  <!-- =========================================================
+       GALLERY
+       Static markup on purpose: these ten photographs and the crop each one
+       is composed at are an editorial decision, not data, and writing them
+       out means the strip is laid out before the script runs.
+
+       --r is that crop. The source files are all 1.65 landscape, so a square
+       slide is a real crop — only photos whose subject is vertical and
+       centred (a doorway, a street, a handstand) are given one. The
+       panorama and the wide horizons keep 28/17, which is their own ratio,
+       untouched. The lightbox shows the full uncropped frame either way.
+       ========================================================= -->
+  <section class="gallery">
+    <div class="gallery__head">
+      <h2 class="gallery__title">Gallery</h2>
+      <div class="gallery__nav">
+        <button class="gallery__arrow gallery__arrow--prev" aria-label="Previous photos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="gallery__arrow gallery__arrow--next" aria-label="More photos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="gallery__track" role="group" aria-roledescription="carousel" aria-label="Photos from El Cuyo">
+      <figure class="gallery__slide" style="--r: 28/17"><img src="images/day1-3.jpg" alt="The beach at El Cuyo in the late afternoon" loading="lazy"></figure>
+      <figure class="gallery__slide" style="--r: 1/1"><img src="images/day3-1.jpg" alt="Morning light in a doorway at the guesthouse" loading="lazy"></figure>
+      <figure class="gallery__slide" style="--r: 28/17"><img src="images/extra1-3.jpg" alt="The pink lagoons of Las Coloradas" loading="lazy"></figure>
+      <figure class="gallery__slide" style="--r: 5/4"><img src="images/day4-1.jpg" alt="A painted street in the colonial centre of Valladolid" loading="lazy"></figure>
+      <figure class="gallery__slide" style="--r: 28/17"><img src="images/Hotel-Utopia-Template-1824x1120x2_1-912x560.jpg" alt="Utopia Guesthouse seen from the beach" loading="lazy"></figure>
+      <figure class="gallery__slide" style="--r: 1/1"><img src="images/day6-1.jpg" alt="A handstand on the sand at sunrise" loading="lazy"></figure>
+      <figure class="gallery__slide" style="--r: 28/17"><img src="images/day2-5.jpg" alt="Sunrise over the water on the Yucatán coast" loading="lazy"></figure>
+      <figure class="gallery__slide" style="--r: 5/4"><img src="images/day5-1.jpg" alt="Palms around the pool at the guesthouse" loading="lazy"></figure>
+      <figure class="gallery__slide" style="--r: 1/1"><img src="images/day3-4.jpg" alt="A table laid for lunch" loading="lazy"></figure>
+      <figure class="gallery__slide" style="--r: 28/17"><img src="images/extra3-1.jpg" alt="The convent at Izamal" loading="lazy"></figure>
+    </div>
+  </section>
+
   <dialog class="lightbox" aria-label="Photo viewer">
     <div class="lightbox__frame">
       <img class="lightbox__img" alt="">
@@ -2761,6 +2927,86 @@ html.has-lightbox { overflow: hidden; }
     // viewer was last looking at
     slider.goTo = goTo;
   });
+
+  /* Gallery --------------------------------------------------------------
+     Three jobs: fade whatever the edges are cutting, drive the arrows, and
+     hand a click to the lightbox.
+
+     The fade is measured, not guessed at — how much of each slide the
+     scrollport is actually showing. Squaring that fraction is the whole
+     design of it: a photo stays dim until it is nearly whole and then
+     resolves quickly, so the strip has a clear centre of attention and the
+     cropped edges read as "there is more this way" instead of as content
+     you are meant to be reading. A linear falloff leaves the edges too
+     present and the row goes flat.
+
+     Runs last, so dlg.openGallery already exists. */
+  (function () {
+    var track = document.querySelector('.gallery__track');
+    if (!track) return;
+
+    var slides = Array.prototype.slice.call(track.querySelectorAll('.gallery__slide'));
+    var imgs = slides.map(function (s) { return s.querySelector('img'); });
+    var prev = document.querySelector('.gallery__arrow--prev');
+    var next = document.querySelector('.gallery__arrow--next');
+    var dlg = document.querySelector('.lightbox');
+    if (!slides.length) return;
+
+    var queued = false;
+    function paint() {
+      queued = false;
+      var port = track.getBoundingClientRect();
+      slides.forEach(function (s) {
+        var b = s.getBoundingClientRect();
+        if (!b.width) return;
+        var shown = Math.min(b.right, port.right) - Math.max(b.left, port.left);
+        var t = Math.max(0, Math.min(1, shown / b.width));
+        s.style.setProperty('--o', (0.28 + 0.72 * t * t).toFixed(3));
+      });
+      // 1px of slack: sub-pixel scroll positions never land exactly on the end
+      var end = track.scrollWidth - track.clientWidth;
+      prev.disabled = track.scrollLeft <= 1;
+      next.disabled = track.scrollLeft >= end - 1;
+    }
+    function schedule() {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(paint);
+    }
+
+    track.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    // held in a variable so it is not collected while the section is alive
+    var ro = null;
+    if (window.ResizeObserver) { ro = new ResizeObserver(schedule); ro.observe(track); }
+    // the slides are aspect-ratio boxes, so layout is right before the photos
+    // arrive; this only corrects for a font/scrollbar shift
+    imgs.forEach(function (im) { im.addEventListener('load', schedule); });
+
+    /* One slide plus one gap per press. Paging by the full viewport would
+       skip past photos the reader has only half seen, which is exactly the
+       ones the fade is inviting them towards. */
+    function step(dir) {
+      var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      track.scrollBy({
+        left: dir * (slides[0].getBoundingClientRect().width + gap),
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+      });
+    }
+    prev.addEventListener('click', function () { step(-1); });
+    next.addEventListener('click', function () { step(1); });
+
+    /* The crop is the strip's composition; the lightbox is the photograph.
+       It sizes itself from naturalWidth/Height, so opening a square slide
+       gives back the full landscape frame it was cut from. */
+    if (dlg && dlg.openGallery) {
+      imgs.forEach(function (im, i) {
+        im.addEventListener('click', function () { dlg.openGallery(imgs, i); });
+      });
+    }
+
+    paint();
+  })();
 </script>
 
 </body>
