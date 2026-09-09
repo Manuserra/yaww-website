@@ -629,13 +629,13 @@ main { padding-top: 0; }
   border-radius: 2px;
   overflow: hidden;
 }
+/* The card's photo is a slider, so the box sets the ratio and the shared
+   component fills it. */
 .rooms__media {
-  display: block;
   width: 100%;
   aspect-ratio: 4 / 3;
-  object-fit: cover;
-  cursor: zoom-in;
 }
+.rooms__media .photo-slider__slide img { cursor: zoom-in; }
 .rooms__body {
   display: flex;
   flex-direction: column;
@@ -2329,8 +2329,45 @@ html.has-lightbox { overflow: hidden; }
       return n;
     }
 
-    function open(gallery, start) {
-      if (dlg && dlg.openGallery && gallery.length) dlg.openGallery(gallery, start);
+    var ARROW_PREV = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>';
+    var ARROW_NEXT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>';
+
+    /* The card's photo is the same .photo-slider used by the itinerary and the
+       accommodations gallery, so arrows, dots and keyboard behaviour come from
+       the shared component. It is built here rather than left to the
+       [data-lightbox] hook because this module renders after the lightbox has
+       already scanned the page; each slide opens the tier's full set at its
+       own index instead. */
+    function mediaSlider(list, label, onOpen) {
+      var sl = el('div', 'photo-slider rooms__media');
+      sl.setAttribute('role', 'group');
+      sl.setAttribute('aria-roledescription', 'carousel');
+      sl.setAttribute('aria-label', label + ' photos');
+      sl.innerHTML =
+        '<div class="photo-slider__track">' +
+          list.map(function (src, i) {
+            return '<div class="photo-slider__slide"><img src="' + src + '" alt="' +
+                   (i === 0 ? label : '') + '" loading="lazy"></div>';
+          }).join('') +
+        '</div>' +
+        '<button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">' + ARROW_PREV + '</button>' +
+        '<button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">' + ARROW_NEXT + '</button>' +
+        '<div class="photo-slider__dots">' +
+          list.map(function (_, i) {
+            return '<button class="photo-slider__dot' + (i === 0 ? ' is-active' : '') +
+                   '" aria-label="Photo ' + (i + 1) + '"></button>';
+          }).join('') +
+        '</div>';
+      sl.querySelectorAll('.photo-slider__slide img').forEach(function (img, i) {
+        img.addEventListener('click', function () { onOpen(list, i); });
+      });
+      return sl;
+    }
+
+    /* `back` is the card's own slider: on close the lightbox leaves it on
+       whatever photo was last viewed, the same as the itinerary sliders. */
+    function open(gallery, start, back) {
+      if (dlg && dlg.openGallery && gallery.length) dlg.openGallery(gallery, start, back);
     }
 
     TIERS.forEach(function (tier) {
@@ -2347,13 +2384,10 @@ html.has-lightbox { overflow: hidden; }
         return at;
       });
 
+      var cardSlider = null;
       if (gallery.length) {
-        var media = el('img', 'rooms__media');
-        media.src = gallery[0];
-        media.alt = tier.name;
-        media.loading = 'lazy';
-        media.addEventListener('click', function () { open(gallery, 0); });
-        card.appendChild(media);
+        cardSlider = mediaSlider(gallery, tier.name, function (list, i) { open(list, i, cardSlider); });
+        card.appendChild(cardSlider);
       }
 
       var body = el('div', 'rooms__body');
@@ -2375,7 +2409,7 @@ html.has-lightbox { overflow: hidden; }
           thumb.src = hotel.gallery[0];
           thumb.alt = hotel.name + ' — ' + tier.name;
           thumb.loading = 'lazy';
-          thumb.addEventListener('click', function () { open(gallery, offsets[hi]); });
+          thumb.addEventListener('click', function () { open(gallery, offsets[hi], cardSlider); });
           row.appendChild(thumb);
         }
 
