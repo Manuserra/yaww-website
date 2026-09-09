@@ -940,13 +940,34 @@ main { padding-top: 0; }
   background: var(--stone);
   overflow: hidden;   /* the strip's own overhang must not scroll the page */
 }
+/* Heading, then a short paragraph, then the controls. "Gallery" was a label
+   for the component rather than a name for what the reader is looking at —
+   it told them a carousel was present, which they could already see. This
+   section is the last thing before they decide, and by now they have had
+   every practical fact on the page; what it owes them is the place itself.
+   So the heading answers their question instead of naming the furniture,
+   and the paragraph says what the photographs actually are. */
 .gallery__head {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
   margin-bottom: 40px;
+  padding-inline: 24px;
 }
+/* Narrower than the page's other prose: centred text is harder to track
+   line to line, so the measure has to come in to compensate. */
+.gallery__intro {
+  margin: 0;
+  max-width: 640px;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue);
+}
+.gallery__nav { margin-top: 16px; }
 .gallery__title {
   margin: 0;
   font-family: var(--font-heading);
@@ -1076,7 +1097,7 @@ main { padding-top: 0; }
 @media (max-width: 767px) {
   .gallery { padding: 56px 0; }
   .gallery__track { --slide-w: 78vw; --gap: 16px; --gutter: 16px; --shown: 1; }
-  .gallery__head { margin-bottom: 32px; }
+  .gallery__head { margin-bottom: 32px; padding-inline: 16px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .gallery__rail, .gallery__slide { transition: none; }
@@ -1808,7 +1829,7 @@ html.has-lightbox { overflow: hidden; }
         <li><a href="index.html">Retreats</a></li>
         <li><a href="#">Locations</a></li>
         <li><a href="#">About</a></li>
-        <li><a href="#">Blog</a></li>
+        <li><a href="#">Journal</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
     </div>
@@ -2320,7 +2341,8 @@ html.has-lightbox { overflow: hidden; }
        ========================================================= -->
   <section class="gallery">
     <div class="gallery__head">
-      <h2 class="gallery__title">Gallery</h2>
+      <h2 class="gallery__title">Where you&rsquo;ll be</h2>
+      <p class="gallery__intro">A fishing town at the end of a long road, with flamingos in the lagoon and almost nobody on the beach. The photographs are from past retreats: the rooms, the cenotes, and the long slow middle of the day.</p>
       <div class="gallery__nav">
         <button class="gallery__arrow gallery__arrow--prev" aria-label="Previous photos">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
