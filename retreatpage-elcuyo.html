@@ -857,10 +857,9 @@ main { padding-top: 0; }
 }
 
 /* --- Gallery -----------------------------------------------------------
-   A full-bleed strip that scrolls sideways. Every photo is the same width
-   and they differ in height, all hung on one horizontal centre line — the
-   uneven top and bottom edges are what stop a row of photographs from
-   reading as a spreadsheet.
+   A full-bleed strip. Every photo is the same width and they differ in
+   height, all hung on one horizontal centre line — the uneven top and bottom
+   edges are what stop a row of photographs from reading as a spreadsheet.
 
    The arrows sit above the strip rather than on it. Because the photos run
    past both edges of the viewport there is no margin left to park a control
@@ -868,8 +867,9 @@ main { padding-top: 0; }
    control exists to reveal. Centred under the title they read as belonging
    to the section, not to whichever photo they happen to land on.
 
-   It is a real scroll container, not a transform track: trackpad and touch
-   swiping come free, and the arrows just drive scrollLeft. */
+   A transform rail inside a clipped viewport, not a scroll container: the
+   arrows are the only way through, and the movement is a transition this
+   file owns rather than the browser's native smooth scroll. */
 .gallery {
   padding: 56px 0;
   background: var(--stone);
@@ -921,51 +921,57 @@ main { padding-top: 0; }
    ends to run out of — there is always a photograph bleeding off both
    edges, at any viewport width.
 
-   --edge is only where the first photo rests: the pair plus its gap centred
-   in the viewport, which is the Figma composition. The script measures it
-   and writes it back as a px value; the declaration here is the no-JS
-   fallback and the value snapping reads. It never goes below the page's own
-   gutter. */
+   --edge is where the resting photo sits: the pair plus its gap centred in
+   the viewport above 768, a single photo centred below it. The script
+   measures it and writes it back as a px value; the declaration here is the
+   no-JS fallback. It never goes below the page's own gutter. */
 .gallery__track {
   --slide-w: clamp(280px, 44vw, 528px);
   --gap: 48px;
   --gutter: 24px;
   --edge: max(var(--gutter), calc((100% - (var(--slide-w) * 2 + var(--gap))) / 2));
+  overflow: hidden;
+}
+
+/* 500ms is the reference's own pace and it is the point of the module: long
+   enough that the strip glides rather than snaps, which is the difference
+   between a photo essay and a control. Plain `ease` — symmetric, no
+   overshoot, nothing calling attention to itself. */
+.gallery__rail {
   display: flex;
   align-items: center;
   gap: var(--gap);
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  /* Slides align to the left slot against the same offset the script rests
-     at, so a snap lands on the pair from the Figma frame; centring a single
-     slide here would break the pair. Below 768 only one photo fits and the
-     alignment changes to centre — see the media query.
-
-     Proximity, not mandatory: the arrows land on an exact slide position on
-     their own (the script scrolls to a slide, not by a distance), so snapping
-     has nothing to correct for them, and someone scanning the strip by hand
-     is not dragged to the nearest slot on every pause. Mandatory is reserved
-     for the phone, where resting between two photos is genuinely unreadable. */
-  scroll-snap-type: x proximity;
-  scroll-padding-inline: var(--edge);
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  transition: transform .5s ease;
+  will-change: transform;
 }
-.gallery__track::-webkit-scrollbar { display: none; }
+/* The loop jump: one set backwards onto an identical photo. It must not be
+   animated or it would rewind the whole strip in front of the reader. */
+.gallery__rail.is-jumping { transition: none; }
 
-/* --r is the crop this photo is composed at, --o the fade the script writes
-   as the slide is clipped by an edge. Both have defaults so the strip is
-   still correct with JS off. */
+/* --r is the crop this photo is composed at.
+
+   Opacity is two states, never a ramp: a photo is either whole or it is
+   being cut by an edge. Fading it in proportion to how much is showing
+   sounds more refined and is worse — a sliver brightens as it travels
+   towards the middle, so the same photo reads at three different weights on
+   its way in and the strip never settles.
+
+   The delay is the detail worth copying. The photo moves for 300ms carrying
+   the opacity it already had, and only in the last 200ms does it resolve —
+   landing exactly as the movement ends. Cross-fading from the first frame
+   makes the change feel like it is fighting the travel; waiting makes the
+   two read as one gesture. */
 .gallery__slide {
   margin: 0;          /* <figure> ships with 1em 40px, which would set the gap */
   flex: none;
   width: var(--slide-w);
   aspect-ratio: var(--r, 28 / 17);
-  scroll-snap-align: start;
   background: var(--stone-200);
-  opacity: var(--o, 1);
-  transition: opacity .3s ease;
+  opacity: .4;
+  transition: opacity .2s ease .3s;
 }
+.gallery__slide.is-whole { opacity: 1; }
+.is-jumping .gallery__slide { transition: none; }
 .gallery__slide img {
   display: block;
   width: 100%;
@@ -979,25 +985,16 @@ main { padding-top: 0; }
 }
 /* One photo at a time below 768 — and always the middle one, with a sliver
    of the photo on either side. A phone shows too little for a reader to work
-   out what they are looking at from two halves, so the strip must never rest
-   on the join: the slide it stops on is the subject, and the slivers are
-   only there to say the strip keeps going both ways. Alignment moves to
-   centre and the snap offset drops to zero, since centre means centre of the
-   viewport. */
+   out what they are looking at from two halves, so the strip never rests on
+   the join: the photo it stops on is the subject, and the slivers are only
+   there to say the strip keeps going both ways. */
 @media (max-width: 767px) {
   .gallery { padding: 56px 0; }
-  .gallery__track {
-    --slide-w: 78vw;
-    --gap: 16px;
-    --gutter: 16px;
-    scroll-padding-inline: 0;
-    scroll-snap-type: x mandatory;
-  }
-  .gallery__slide { scroll-snap-align: center; }
+  .gallery__track { --slide-w: 78vw; --gap: 16px; --gutter: 16px; }
   .gallery__head { margin-bottom: 32px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .gallery__slide { transition: none; }
+  .gallery__rail, .gallery__slide { transition: none; }
 }
 
 /* The active-tab indicator is one element per bar that slides, rather than a
@@ -2197,16 +2194,18 @@ html.has-lightbox { overflow: hidden; }
     </div>
 
     <div class="gallery__track" role="group" aria-roledescription="carousel" aria-label="Photos from El Cuyo">
-      <figure class="gallery__slide" style="--r: 28/17"><img src="images/day1-3.jpg" alt="The beach at El Cuyo in the late afternoon" loading="lazy"></figure>
-      <figure class="gallery__slide" style="--r: 1/1"><img src="images/day3-1.jpg" alt="Morning light in a doorway at the guesthouse" loading="lazy"></figure>
-      <figure class="gallery__slide" style="--r: 28/17"><img src="images/extra1-3.jpg" alt="The pink lagoons of Las Coloradas" loading="lazy"></figure>
-      <figure class="gallery__slide" style="--r: 5/4"><img src="images/day4-1.jpg" alt="A painted street in the colonial centre of Valladolid" loading="lazy"></figure>
-      <figure class="gallery__slide" style="--r: 28/17"><img src="images/Hotel-Utopia-Template-1824x1120x2_1-912x560.jpg" alt="Utopia Guesthouse seen from the beach" loading="lazy"></figure>
-      <figure class="gallery__slide" style="--r: 1/1"><img src="images/day6-1.jpg" alt="A handstand on the sand at sunrise" loading="lazy"></figure>
-      <figure class="gallery__slide" style="--r: 28/17"><img src="images/day2-5.jpg" alt="Sunrise over the water on the Yucatán coast" loading="lazy"></figure>
-      <figure class="gallery__slide" style="--r: 5/4"><img src="images/day5-1.jpg" alt="Palms around the pool at the guesthouse" loading="lazy"></figure>
-      <figure class="gallery__slide" style="--r: 1/1"><img src="images/day3-4.jpg" alt="A table laid for lunch" loading="lazy"></figure>
-      <figure class="gallery__slide" style="--r: 28/17"><img src="images/extra3-1.jpg" alt="The convent at Izamal" loading="lazy"></figure>
+      <div class="gallery__rail">
+        <figure class="gallery__slide" style="--r: 28/17"><img src="images/day1-3.jpg" alt="The beach at El Cuyo in the late afternoon" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 1/1"><img src="images/day3-1.jpg" alt="Morning light in a doorway at the guesthouse" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 28/17"><img src="images/extra1-3.jpg" alt="The pink lagoons of Las Coloradas" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 5/4"><img src="images/day4-1.jpg" alt="A painted street in the colonial centre of Valladolid" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 28/17"><img src="images/Hotel-Utopia-Template-1824x1120x2_1-912x560.jpg" alt="Utopia Guesthouse seen from the beach" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 1/1"><img src="images/day6-1.jpg" alt="A handstand on the sand at sunrise" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 28/17"><img src="images/day2-5.jpg" alt="Sunrise over the water on the Yucatán coast" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 5/4"><img src="images/day5-1.jpg" alt="Palms around the pool at the guesthouse" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 1/1"><img src="images/day3-4.jpg" alt="A table laid for lunch" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 28/17"><img src="images/extra3-1.jpg" alt="The convent at Izamal" loading="lazy"></figure>
+      </div>
     </div>
   </section>
 
@@ -2947,44 +2946,26 @@ html.has-lightbox { overflow: hidden; }
   });
 
   /* Gallery --------------------------------------------------------------
-     An endless strip. Three copies of the set are laid end to end, the
-     viewer is parked in the middle one, and the position is moved back by
-     exactly one set whenever they wander into an outer copy. The jump lands
-     on an identical photo at an identical offset, so there is nothing to
-     see: no first slide, no last slide, and never a bare margin at either
-     edge however wide the window gets.
+     An endless strip driven only by its arrows. Three copies of the set are
+     laid end to end on a rail, the reader is parked in the middle one, and
+     the rail is moved back by exactly one set whenever a press carries them
+     into an outer copy. The jump lands on an identical photo at an identical
+     offset, so there is nothing to see: no first photo, no last photo, and
+     never a bare margin at either edge however wide the window gets.
 
-     Two rules keep that loop out of the browser's way, and both were learnt
-     the hard way:
-
-     1. The arrows scroll to a slide, never by a distance. A distance has to
-        be re-derived from widths and gaps on every press and any rounding in
-        it accumulates; an absolute target computed from the slide's own
-        offsetLeft cannot drift, and it is always exactly a snap position, so
-        snapping has nothing to fight.
-
-     2. Nothing ever rewrites scrollLeft while a smooth scroll is running.
-        The recentring happens *before* the animation starts, and otherwise
-        only once scrolling has stopped. Moving the scroll position out from
-        under an in-flight animation is what made the strip refuse to
-        advance: the browser re-targets the animation it was already running
-        and the press appears to do nothing.
-
-     The remaining jobs are fading whatever the edges are cutting, and handing
-     a click to the lightbox. The fade is measured, not guessed at: how much
-     of each slide the scrollport is actually showing. Squaring that fraction
-     is the whole design of it — a photo stays dim until it is nearly whole
-     and then resolves quickly, so the strip has a clear centre of attention
-     and the cropped edges read as "there is more this way" instead of as
-     content you are meant to be reading. A linear falloff leaves the edges
-     too present and the row goes flat.
+     Everything visible is a function of one number — which photo the strip
+     is resting on. The rail's transform and each photo's opacity are both
+     derived from it, so the two can never disagree, and a press is just
+     `at += 1` followed by a re-render. There is no scroll position to keep
+     in sync and nothing for the browser's own scrolling to fight.
 
      Runs last, so dlg.openGallery already exists. */
   (function () {
     var track = document.querySelector('.gallery__track');
-    if (!track) return;
+    var rail = document.querySelector('.gallery__rail');
+    if (!track || !rail) return;
 
-    var originals = Array.prototype.slice.call(track.querySelectorAll('.gallery__slide'));
+    var originals = Array.prototype.slice.call(rail.querySelectorAll('.gallery__slide'));
     var n = originals.length;
     if (!n) return;
 
@@ -3004,25 +2985,19 @@ html.has-lightbox { overflow: hidden; }
         c.setAttribute('aria-hidden', 'true');
         frag.appendChild(c);
       });
-      if (before) track.insertBefore(frag, originals[0]);
-      else track.appendChild(frag);
+      if (before) rail.insertBefore(frag, originals[0]);
+      else rail.appendChild(frag);
     }
     copy(true);
     copy(false);
 
-    var slides = Array.prototype.slice.call(track.querySelectorAll('.gallery__slide'));
-    var setW = 0;
-    var at = n;        // which slide the strip is resting on, into `slides`
+    var slides = Array.prototype.slice.call(rail.querySelectorAll('.gallery__slide'));
+    var at = n;          // the photo the strip is resting on, into `slides`
+    var moving = false;  // a press is mid-flight; ignore further presses
 
-    function gap() { return parseFloat(getComputedStyle(track).columnGap) || 0; }
+    function gap() { return parseFloat(getComputedStyle(rail).columnGap) || 0; }
 
-    /* Read from the stylesheet rather than repeating the breakpoint here, so
-       the layout decision stays in one place. */
-    function centred() {
-      return getComputedStyle(slides[0]).scrollSnapAlign.indexOf('center') === 0;
-    }
-
-    /* Where the strip comes to rest: whatever group of photos the width can
+    /* Where the resting photo sits: whatever group of photos the width can
        hold, centred. Above 768 that group is the pair from the Figma frame.
        Below it the pair cannot fit, so the group becomes a single photo and
        the same arithmetic centres it — which is what leaves the matching
@@ -3035,109 +3010,100 @@ html.has-lightbox { overflow: hidden; }
       return Math.max(gutter, (w - (pair <= w ? pair : sw)) / 2);
     }
 
-    // The scroll position that puts slide k where it belongs. This is also
-    // exactly its snap position under either alignment.
-    function positionOf(k) {
-      var s = slides[k];
-      return centred()
-        ? s.offsetLeft + s.offsetWidth / 2 - track.clientWidth / 2
-        : s.offsetLeft - edge();
-    }
+    // Distance along the rail to slide k. Measured off the DOM rather than
+    // computed from widths and gaps, so it stays right whatever the
+    // breakpoints do to either and nothing can accumulate.
+    function along(k) { return slides[k].offsetLeft - slides[0].offsetLeft; }
 
-    function nearest() {
-      var x = track.scrollLeft, best = at, bd = Infinity;
+    /* One render. The transform puts the resting photo at --edge, and every
+       photo is then whole or not purely as a matter of where it landed —
+       two states, decided once per press, never a ramp. */
+    function render() {
+      var e = edge();
+      var w = track.clientWidth;
+      var sw = slides[0].getBoundingClientRect().width;
+      var x = e - along(at);
+      rail.style.transform = 'translate3d(' + x + 'px, 0, 0)';
       for (var k = 0; k < slides.length; k++) {
-        var d = Math.abs(positionOf(k) - x);
-        if (d < bd) { bd = d; best = k; }
+        var left = x + along(k);
+        // half a pixel of slack: --edge is fractional at most widths
+        slides[k].classList.toggle('is-whole', left >= -0.5 && left + sw <= w + 0.5);
       }
-      return best;
     }
 
-    /* Bring the resting slide back into the middle copy. Instant and silent:
-       the photo under it is identical, so only the index really moves. */
+    // Repaint with no transition anywhere, for the loop jump and the first
+    // paint. The reflow between is what makes the browser take the silent
+    // frame before animations are allowed again.
+    function silently(fn) {
+      rail.classList.add('is-jumping');
+      fn();
+      void rail.offsetWidth;
+      rail.classList.remove('is-jumping');
+    }
+
+    /* Bring the resting photo back into the middle copy. The photo under it
+       is identical and it moves by exactly one set, so only the index really
+       changes. */
     function normalise() {
       if (at >= n && at < n * 2) return;
       at = n + ((at % n) + n) % n;
-      track.scrollLeft = positionOf(at);
+      silently(render);
     }
 
-    function recentre() {
-      var keep = ((at % n) + n) % n;   // a resize should not lose your place
-      setW = slides[n].offsetLeft - slides[0].offsetLeft;
-      track.style.setProperty('--edge', edge() + 'px');
-      at = n + keep;
-      track.scrollLeft = positionOf(at);
-    }
-
-    var queued = false;
-    function paint() {
-      queued = false;
-      var port = track.getBoundingClientRect();
-      slides.forEach(function (s) {
-        var b = s.getBoundingClientRect();
-        if (!b.width) return;
-        var shown = Math.min(b.right, port.right) - Math.max(b.left, port.left);
-        var t = Math.max(0, Math.min(1, shown / b.width));
-        s.style.setProperty('--o', (0.28 + 0.72 * t * t).toFixed(3));
-      });
-    }
-    function schedule() {
-      if (queued) return;
-      queued = true;
-      requestAnimationFrame(paint);
-    }
-
-    /* Free scrolling — a swipe or a trackpad — is left completely alone
-       while it is happening, and only put back in the middle copy once it
-       has stopped. A set is far wider than any viewport, so there is always
-       more strip than a single gesture can consume. */
-    var idle = null;
-    track.addEventListener('scroll', function () {
-      schedule();
-      clearTimeout(idle);
-      idle = setTimeout(function () {
-        at = nearest();
-        normalise();
-      }, 150);
-    }, { passive: true });
-
-    /* Re-centre only when the width really changed. A ResizeObserver also
-       fires for things that must not move the strip. */
     var lastW = 0;
     function relayout() {
-      if (track.clientWidth !== lastW) {
-        lastW = track.clientWidth;
-        recentre();
-      }
-      schedule();
+      if (track.clientWidth === lastW) return;
+      lastW = track.clientWidth;
+      silently(render);
     }
+
+    /* One photo per press. Paging by the full viewport would skip past
+       photos the reader has only half seen, which is exactly the ones the
+       dimming is inviting them towards.
+
+       The press is refused while one is already running. Queueing them would
+       let a reader outrun the 500ms and land the strip somewhere no frame
+       was ever composed for. */
+    var timer = null;
+    function settle() {
+      if (!moving) return;
+      moving = false;
+      normalise();
+    }
+    function step(dir) {
+      if (moving) return;
+      normalise();          // always start with a whole set of runway ahead
+      at += dir;
+      moving = true;
+      render();
+      /* transitionend is the normal release. This is the one that has to
+         exist anyway: with reduced motion there is no transition to end, and
+         a background tab may never fire one. Without it a single press would
+         lock the strip for good. */
+      clearTimeout(timer);
+      timer = setTimeout(settle, 700);
+    }
+    prev.addEventListener('click', function () { step(-1); });
+    next.addEventListener('click', function () { step(1); });
+
+    /* The rail is the only thing whose transform transitions, but the slides
+       transition opacity, so filter — otherwise the last photo to finish
+       fading would release the lock a little late. */
+    rail.addEventListener('transitionend', function (e) {
+      if (e.target !== rail || e.propertyName !== 'transform') return;
+      clearTimeout(timer);
+      settle();
+    });
+
     window.addEventListener('resize', relayout);
     // held in a variable so it is not collected while the section is alive
     var ro = null;
     if (window.ResizeObserver) { ro = new ResizeObserver(relayout); ro.observe(track); }
     // the slides are aspect-ratio boxes, so layout is right before the photos
     // arrive; this only corrects for a font or scrollbar shift
-    slides.forEach(function (s) { s.querySelector('img').addEventListener('load', schedule); });
-
-    /* One photo per press. Paging by the full viewport would skip past photos
-       the reader has only half seen, which is exactly the ones the fade is
-       inviting them towards.
-
-       normalise() first: the index is pulled back into the middle copy while
-       the strip is still, so the animation that follows always has a whole
-       set of runway ahead of it and never has to be interrupted. */
-    function step(dir) {
-      clearTimeout(idle);
-      at = nearest();
-      normalise();
-      at += dir;
-      track.scrollTo({
-        left: positionOf(at),
-        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
-      });
-    }
-    prev.addEventListener('click', function () { step(-1); });
-    next.addEventListener('click', function () { step(1); });
+    slides.forEach(function (s) {
+      s.querySelector('img').addEventListener('load', function () { silently(render); });
+    });
 
     /* The crop is the strip's composition; the lightbox is the photograph.
        It sizes itself from naturalWidth/Height, so opening a square slide
@@ -3150,7 +3116,8 @@ html.has-lightbox { overflow: hidden; }
       });
     }
 
-    relayout();
+    lastW = track.clientWidth;
+    silently(render);
   })();
 </script>
 
