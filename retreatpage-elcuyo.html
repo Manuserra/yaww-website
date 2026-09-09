@@ -936,14 +936,17 @@ main { padding-top: 0; }
   gap: var(--gap);
   overflow-x: auto;
   overscroll-behavior-x: contain;
-  /* Mandatory, so the strip can never come to rest between two states. Every
-     stopping point is a composition someone designed; there is no half-way.
+  /* Slides align to the left slot against the same offset the script rests
+     at, so a snap lands on the pair from the Figma frame; centring a single
+     slide here would break the pair. Below 768 only one photo fits and the
+     alignment changes to centre — see the media query.
 
-     Above 768 that composition is the pair from the Figma frame, so slides
-     align to the left slot against the same offset the script rests at —
-     centring a single slide there would break the pair. Below 768 only one
-     photo fits and the alignment changes to centre; see the media query. */
-  scroll-snap-type: x mandatory;
+     Proximity, not mandatory: the arrows land on an exact slide position on
+     their own (the script scrolls to a slide, not by a distance), so snapping
+     has nothing to correct for them, and someone scanning the strip by hand
+     is not dragged to the nearest slot on every pause. Mandatory is reserved
+     for the phone, where resting between two photos is genuinely unreadable. */
+  scroll-snap-type: x proximity;
   scroll-padding-inline: var(--edge);
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -988,6 +991,7 @@ main { padding-top: 0; }
     --gap: 16px;
     --gutter: 16px;
     scroll-padding-inline: 0;
+    scroll-snap-type: x mandatory;
   }
   .gallery__slide { scroll-snap-align: center; }
   .gallery__head { margin-bottom: 32px; }
@@ -2944,23 +2948,36 @@ html.has-lightbox { overflow: hidden; }
 
   /* Gallery --------------------------------------------------------------
      An endless strip. Three copies of the set are laid end to end, the
-     viewer is parked in the middle one, and scrollLeft is moved back by
-     exactly one set whenever they cross into an outer copy. The jump lands
+     viewer is parked in the middle one, and the position is moved back by
+     exactly one set whenever they wander into an outer copy. The jump lands
      on an identical photo at an identical offset, so there is nothing to
      see: no first slide, no last slide, and never a bare margin at either
      edge however wide the window gets.
 
-     A set is far wider than any viewport, so the wrap has a whole set of
-     slack on each side and can never be reached mid-gesture.
+     Two rules keep that loop out of the browser's way, and both were learnt
+     the hard way:
 
-     The other two jobs are fading whatever the edges are cutting, and
-     handing a click to the lightbox. The fade is measured, not guessed at:
-     how much of each slide the scrollport is actually showing. Squaring
-     that fraction is the whole design of it — a photo stays dim until it is
-     nearly whole and then resolves quickly, so the strip has a clear centre
-     of attention and the cropped edges read as "there is more this way"
-     instead of as content you are meant to be reading. A linear falloff
-     leaves the edges too present and the row goes flat.
+     1. The arrows scroll to a slide, never by a distance. A distance has to
+        be re-derived from widths and gaps on every press and any rounding in
+        it accumulates; an absolute target computed from the slide's own
+        offsetLeft cannot drift, and it is always exactly a snap position, so
+        snapping has nothing to fight.
+
+     2. Nothing ever rewrites scrollLeft while a smooth scroll is running.
+        The recentring happens *before* the animation starts, and otherwise
+        only once scrolling has stopped. Moving the scroll position out from
+        under an in-flight animation is what made the strip refuse to
+        advance: the browser re-targets the animation it was already running
+        and the press appears to do nothing.
+
+     The remaining jobs are fading whatever the edges are cutting, and handing
+     a click to the lightbox. The fade is measured, not guessed at: how much
+     of each slide the scrollport is actually showing. Squaring that fraction
+     is the whole design of it — a photo stays dim until it is nearly whole
+     and then resolves quickly, so the strip has a clear centre of attention
+     and the cropped edges read as "there is more this way" instead of as
+     content you are meant to be reading. A linear falloff leaves the edges
+     too present and the row goes flat.
 
      Runs last, so dlg.openGallery already exists. */
   (function () {
@@ -2995,8 +3012,15 @@ html.has-lightbox { overflow: hidden; }
 
     var slides = Array.prototype.slice.call(track.querySelectorAll('.gallery__slide'));
     var setW = 0;
+    var at = n;        // which slide the strip is resting on, into `slides`
 
     function gap() { return parseFloat(getComputedStyle(track).columnGap) || 0; }
+
+    /* Read from the stylesheet rather than repeating the breakpoint here, so
+       the layout decision stays in one place. */
+    function centred() {
+      return getComputedStyle(slides[0]).scrollSnapAlign.indexOf('center') === 0;
+    }
 
     /* Where the strip comes to rest: whatever group of photos the width can
        hold, centred. Above 768 that group is the pair from the Figma frame.
@@ -3011,26 +3035,43 @@ html.has-lightbox { overflow: hidden; }
       return Math.max(gutter, (w - (pair <= w ? pair : sw)) / 2);
     }
 
-    /* Measured off the DOM rather than computed from widths and gaps, so it
-       stays right whatever the breakpoints do to either. */
-    function recentre() {
-      var e = edge();
-      setW = slides[n].offsetLeft - slides[0].offsetLeft;
-      track.style.setProperty('--edge', e + 'px');
-      track.scrollLeft = setW - e;
+    // The scroll position that puts slide k where it belongs. This is also
+    // exactly its snap position under either alignment.
+    function positionOf(k) {
+      var s = slides[k];
+      return centred()
+        ? s.offsetLeft + s.offsetWidth / 2 - track.clientWidth / 2
+        : s.offsetLeft - edge();
     }
 
-    function wrap() {
-      if (!setW) return;
-      var x = track.scrollLeft;
-      if (x < setW * 0.5) track.scrollLeft = x + setW;
-      else if (x > setW * 1.5) track.scrollLeft = x - setW;
+    function nearest() {
+      var x = track.scrollLeft, best = at, bd = Infinity;
+      for (var k = 0; k < slides.length; k++) {
+        var d = Math.abs(positionOf(k) - x);
+        if (d < bd) { bd = d; best = k; }
+      }
+      return best;
+    }
+
+    /* Bring the resting slide back into the middle copy. Instant and silent:
+       the photo under it is identical, so only the index really moves. */
+    function normalise() {
+      if (at >= n && at < n * 2) return;
+      at = n + ((at % n) + n) % n;
+      track.scrollLeft = positionOf(at);
+    }
+
+    function recentre() {
+      var keep = ((at % n) + n) % n;   // a resize should not lose your place
+      setW = slides[n].offsetLeft - slides[0].offsetLeft;
+      track.style.setProperty('--edge', edge() + 'px');
+      at = n + keep;
+      track.scrollLeft = positionOf(at);
     }
 
     var queued = false;
     function paint() {
       queued = false;
-      wrap();
       var port = track.getBoundingClientRect();
       slides.forEach(function (s) {
         var b = s.getBoundingClientRect();
@@ -3046,10 +3087,22 @@ html.has-lightbox { overflow: hidden; }
       requestAnimationFrame(paint);
     }
 
-    track.addEventListener('scroll', schedule, { passive: true });
+    /* Free scrolling — a swipe or a trackpad — is left completely alone
+       while it is happening, and only put back in the middle copy once it
+       has stopped. A set is far wider than any viewport, so there is always
+       more strip than a single gesture can consume. */
+    var idle = null;
+    track.addEventListener('scroll', function () {
+      schedule();
+      clearTimeout(idle);
+      idle = setTimeout(function () {
+        at = nearest();
+        normalise();
+      }, 150);
+    }, { passive: true });
 
     /* Re-centre only when the width really changed. A ResizeObserver also
-       fires for things that must not throw the reader back to the start. */
+       fires for things that must not move the strip. */
     var lastW = 0;
     function relayout() {
       if (track.clientWidth !== lastW) {
@@ -3066,12 +3119,20 @@ html.has-lightbox { overflow: hidden; }
     // arrive; this only corrects for a font or scrollbar shift
     slides.forEach(function (s) { s.querySelector('img').addEventListener('load', schedule); });
 
-    /* One photo plus one gap per press. Paging by the full viewport would
-       skip past photos the reader has only half seen, which is exactly the
-       ones the fade is inviting them towards. */
+    /* One photo per press. Paging by the full viewport would skip past photos
+       the reader has only half seen, which is exactly the ones the fade is
+       inviting them towards.
+
+       normalise() first: the index is pulled back into the middle copy while
+       the strip is still, so the animation that follows always has a whole
+       set of runway ahead of it and never has to be interrupted. */
     function step(dir) {
-      track.scrollBy({
-        left: dir * (originals[0].getBoundingClientRect().width + gap()),
+      clearTimeout(idle);
+      at = nearest();
+      normalise();
+      at += dir;
+      track.scrollTo({
+        left: positionOf(at),
         behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
       });
     }
