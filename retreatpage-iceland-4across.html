@@ -767,13 +767,34 @@ main { padding-top: 0; }
   background: var(--stone);
   overflow: hidden;   /* the strip's own overhang must not scroll the page */
 }
+/* Heading, then a short paragraph, then the controls. "Gallery" was a label
+   for the component rather than a name for what the reader is looking at —
+   it told them a carousel was present, which they could already see. This
+   section is the last thing before they decide, and by now they have had
+   every practical fact on the page; what it owes them is the place itself.
+   So the heading answers their question instead of naming the furniture,
+   and the paragraph says what the photographs actually are. */
 .gallery__head {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
   margin-bottom: 40px;
+  padding-inline: 24px;
 }
+/* Narrower than the page's other prose: centred text is harder to track
+   line to line, so the measure has to come in to compensate. */
+.gallery__intro {
+  margin: 0;
+  max-width: 640px;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue);
+}
+.gallery__nav { margin-top: 16px; }
 .gallery__title {
   margin: 0;
   font-family: var(--font-heading);
@@ -892,6 +913,51 @@ main { padding-top: 0; }
   -webkit-user-select: none;
 }
 
+/* Progress -------------------------------------------------------------
+   A hairline with a thicker mark riding on it. The mark's width is the share
+   of the whole set the window is showing — measured against the strip, not
+   counted in photos, so the slivers at both edges count exactly as much as
+   they are actually visible.
+
+   It is a readout, not a control: the arrows are the control. So it is thin
+   enough to ignore and precise enough to be worth a glance, and it takes no
+   pointer events and no place in the accessibility tree.
+
+   528 is one photograph at the desktop composition — the line under the
+   strip is the width of one of the things above it. */
+.gallery__progress {
+  position: relative;
+  width: min(528px, calc(100% - 48px));
+  height: 2px;
+  margin: 48px auto 0;
+  pointer-events: none;
+}
+.gallery__progress::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 50%;
+  height: 1px;
+  transform: translateY(-50%);
+  background: #9A9A9A;
+}
+/* Same clock and curve as the rail, so the mark and the photographs read as
+   one movement rather than two things that happen to start together. */
+.gallery__progress-bar {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--stone-600);
+  transform: translate(0, -50%);
+  transition: transform .5s ease, width .5s ease;
+}
+.gallery__progress.is-jumping .gallery__progress-bar { transition: none; }
+@media (prefers-reduced-motion: reduce) {
+  .gallery__progress-bar { transition: none; }
+}
+
 /* EVALUATION: 4 photos whole instead of two.
 
    The reason to try it is the interaction, not the layout. A press always
@@ -900,7 +966,7 @@ main { padding-top: 0; }
    frame changes weight at once, and it reads as a block flipping rather
    than a strip travelling. Showing six makes it two of six.
 
-   The cost is the photographs, which go from 528 wide to 264 — exactly half, and a quarter of the area. That is the trade to judge with your eyes.
+   The cost is the photographs, which go from 528 wide to 264 — exactly half, and a quarter of the area.
 
    Only the desktop case moves; below 1200 this is untouched. */
 @media (min-width: 1200px) {
@@ -920,7 +986,7 @@ main { padding-top: 0; }
 @media (max-width: 767px) {
   .gallery { padding: 56px 0; }
   .gallery__track { --slide-w: 78vw; --gap: 16px; --gutter: 16px; --shown: 1; }
-  .gallery__head { margin-bottom: 32px; }
+  .gallery__head { margin-bottom: 32px; padding-inline: 16px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .gallery__rail, .gallery__slide { transition: none; }
@@ -1669,7 +1735,7 @@ html.has-lightbox { overflow: hidden; }
         <li><a href="index.html">Retreats</a></li>
         <li><a href="#">Locations</a></li>
         <li><a href="#">About</a></li>
-        <li><a href="#">Blog</a></li>
+        <li><a href="#">Journal</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
     </div>
@@ -2218,7 +2284,8 @@ html.has-lightbox { overflow: hidden; }
        ========================================================= -->
   <section class="gallery">
     <div class="gallery__head">
-      <h2 class="gallery__title">Gallery</h2>
+      <h2 class="gallery__title">Where you&rsquo;ll be</h2>
+      <p class="gallery__intro">Reykjav&iacute;k for the first days, then south to Vik, where the beaches are black and the waterfalls come straight off the road. The photographs are from past retreats: the ice, the horses, and the sky on the nights it decides to perform.</p>
       <div class="gallery__nav">
         <button class="gallery__arrow gallery__arrow--prev" aria-label="Previous photos">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
@@ -2242,6 +2309,10 @@ html.has-lightbox { overflow: hidden; }
         <figure class="gallery__slide" style="--r: 1/1"><img src="images/iceland/hotel3-1.jpg" alt="A turf house with its grass roof" loading="lazy"></figure>
         <figure class="gallery__slide" style="--r: 28/17"><img src="images/iceland/day3-1.jpg" alt="Kirkjufell and its waterfall" loading="lazy"></figure>
       </div>
+    </div>
+
+    <div class="gallery__progress" aria-hidden="true">
+      <span class="gallery__progress-bar"></span>
     </div>
   </section>
 
@@ -2986,8 +3057,35 @@ html.has-lightbox { overflow: hidden; }
         // half a pixel of slack: --edge is fractional at most widths
         slides[k].classList.toggle('is-whole', left >= -0.5 && left + sw <= w + 0.5);
       }
+      drawProgress();
     }
     function render() { paint(edge() - along(at)); }
+
+    /* Progress ----------------------------------------------------------
+       Width is the share of the set the window shows, measured off the two
+       real numbers rather than counted in photos. Position maps the ten
+       photos across the travel the mark has, so the first sits flush left
+       and the last flush right. */
+    var progress = document.querySelector('.gallery__progress');
+    var bar = progress && progress.querySelector('.gallery__progress-bar');
+    var lastIdx = null;
+    function drawProgress() {
+      if (!bar) return;
+      var railW = progress.clientWidth;
+      if (!railW || !setSize()) return;
+      var idx = ((at % n) + n) % n;
+      var w = Math.min(1, track.clientWidth / setSize()) * railW;
+      var x = n > 1 ? (idx / (n - 1)) * (railW - w) : 0;
+      /* Coming back to the first photo is a jump, not a journey. Sliding the
+         mark the whole way back would say the strip travelled backwards,
+         which is the opposite of what the press did. */
+      var wrapped = lastIdx !== null && Math.abs(idx - lastIdx) > 1;
+      if (wrapped) progress.classList.add('is-jumping');
+      bar.style.width = w + 'px';
+      bar.style.transform = 'translate(' + x + 'px, -50%)';
+      if (wrapped) { void bar.offsetWidth; progress.classList.remove('is-jumping'); }
+      lastIdx = idx;
+    }
 
     // Repaint with no transition anywhere, for the loop jump and the first
     // paint. The reflow between is what makes the browser take the silent
