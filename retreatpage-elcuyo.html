@@ -383,8 +383,12 @@ main { padding-top: 0; }
   position: relative;
   overflow: hidden;   /* clips the oversized parallax bg layer */
   display: flex;
-  height: 759px;
-  padding: 56px 24px;
+  /* The band used to be pinned to the Figma frame's 759px with the card
+     centred, which meant the padding was never what you actually saw: the
+     gap was just the leftover space, and it changed with the length of the
+     list — 67px on a ten-item card, 19px on a thirteen-item one. Height now
+     follows the content so the 48px is real and identical on every page. */
+  padding: 48px 24px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -1207,7 +1211,6 @@ html.has-lightbox { overflow: hidden; }
      fixed 216px each to sharing the available width evenly. Still keeps
      the section's own side margin here — edge-to-edge only kicks in at
      the narrower phone breakpoint below. */
-  .retreat-includes { height: auto; padding: 40px 24px; }
   .retreat-includes__card { width: 100%; padding: 24px; }
 }
 
