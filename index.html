@@ -424,9 +424,52 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* List view (simplified — pending exact spec) */
 .list { display: flex; flex-direction: column; }
+/* --- Availability ------------------------------------------------------
+   Three states, two visual weights. "Filling up" and "Almost full" are
+   invitations — they get filled chips that pull the eye, the hotter one
+   darker. "Waitlist" is the opposite: the retreat is closed, so it reads as
+   quiet information and must not compete with the ones you can still book. */
+.avail {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.44px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 63px;
+  white-space: nowrap;
+}
+.avail--warm   { background: var(--sea-blue-100); color: var(--stone-100); }
+.avail--hot    { background: var(--sea-blue);     color: var(--stone-100); }
+.avail--closed { background: transparent; color: var(--sea-blue-200); border: 1px solid var(--stone-400); }
+
+/* On a card it sits opposite the tier badge, over the image. */
+.card__avail { position: absolute; top: 16px; right: 16px; }
+
+/* In a row: the tier under the name, the chip at the end of the line. */
+.r-tier {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.44px;
+  text-transform: uppercase;
+  color: var(--sea-blue-200);
+}
+.r-avail { justify-self: end; }
+
 .list-row {
   display: grid;
-  grid-template-columns: 2.2fr 1.4fr 1.6fr 1.4fr;
+  /* Each row is its own grid, so a max-content last column collapses to 0
+     on the rows without a chip and shifts every other column by ~48px.
+     A fixed slot (the widest chip is 104) keeps all rows on one set of
+     columns whether or not they carry availability. */
+  grid-template-columns: 2.2fr 1.4fr 1.6fr 1.4fr 104px;
   gap: 24px;
   align-items: center;
   padding: 20px 0;
@@ -441,7 +484,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 @media (max-width: 1024px) {
   .retreats-hero { padding: 72px 24px 48px; }
   .grid { grid-template-columns: repeat(2, 1fr); gap: 40px 24px; }
-  .list-row { grid-template-columns: 1.6fr 1.2fr; }
+  /* On a phone "can I still book it" beats "where is it": the location
+     is one tap away, the chip is the reason to tap. */
+  .list-row { grid-template-columns: minmax(0, 1fr) 104px; }
+  .list-row .r-loc { display: none; }
   .list-row .r-date, .list-row .r-teacher { display: none; }
   .view-toggle--desktop { display: none; }
   .view-toggle--compact {
@@ -656,29 +702,29 @@ const RETREATS = [
   {name:"The Paris-Champagne Experience", loc:"Paris & Champagne, France", country:"France", date:"August 30 – September 5, 2026", season:"Summer, 2026", teacher:"Amy Appel", tier:"signature", hue:30},
   {name:"Beach Escape Retreat", loc:"El Cuyo, Mexico", country:"Mexico", date:"September 4 – 8, 2026", season:"Summer, 2026", teacher:"Renata Centi", tier:"deep", hue:182},
   {name:"A French Journey · A Yoga & Embodiment Retreat", loc:"Paris & Champagne, France", country:"France", date:"September 6 – 12, 2026", season:"Summer, 2026", teacher:"Dawn Thie", tier:"deep", hue:96},
-  {name:"Sea, Sun & Slow Living Retreat", loc:"Santorini, Greece", country:"Greece", date:"September 13 – 19, 2026", season:"Summer, 2026", teacher:"Genevieve Morin", tier:"signature", hue:205},
-  {name:"Sea, Sun & Slow Living Retreat", loc:"Santorini, Greece", country:"Greece", date:"September 20 – 26, 2026", season:"Summer, 2026", teacher:"Genevieve Morin", tier:"deep", hue:212},
-  {name:"Majestic Sardinia", loc:"Sardinia, Italy", country:"Italy", date:"September 4 – 8, 2026", season:"Summer, 2026", teacher:"Renata Centi", tier:"signature", hue:194},
+  {name:"Sea, Sun & Slow Living Retreat", loc:"Santorini, Greece", country:"Greece", date:"September 13 – 19, 2026", season:"Summer, 2026", teacher:"Genevieve Morin", tier:"signature", hue:205, avail:"filling"},
+  {name:"Sea, Sun & Slow Living Retreat", loc:"Santorini, Greece", country:"Greece", date:"September 20 – 26, 2026", season:"Summer, 2026", teacher:"Genevieve Morin", tier:"deep", hue:212, avail:"filling"},
+  {name:"Majestic Sardinia", loc:"Sardinia, Italy", country:"Italy", date:"September 4 – 8, 2026", season:"Summer, 2026", teacher:"Renata Centi", tier:"signature", hue:194, avail:"almost"},
 
   // Fall 2026
-  {name:"Majestic Sardinia", loc:"Sardinia, Italy", country:"Italy", date:"September 27 – October 3, 2026", season:"Fall, 2026", teacher:"Melanie Cordover", tier:"deep", hue:150},
-  {name:"Majestic Sardinia", loc:"Sardinia, Italy", country:"Italy", date:"September 27 – October 3, 2026", season:"Fall, 2026", teacher:"Sue Berger", tier:"signature", hue:158},
-  {name:"Between Fire & Ice", loc:"Reykjavík & Vik, Iceland", country:"Iceland", date:"September 6 – 12, 2026", season:"Fall, 2026", teacher:"Dawn Thie", tier:"signature", hue:200},
+  {name:"Majestic Sardinia", loc:"Sardinia, Italy", country:"Italy", date:"September 27 – October 3, 2026", season:"Fall, 2026", teacher:"Melanie Cordover", tier:"deep", hue:150, avail:"almost"},
+  {name:"Majestic Sardinia", loc:"Sardinia, Italy", country:"Italy", date:"September 27 – October 3, 2026", season:"Fall, 2026", teacher:"Sue Berger", tier:"signature", hue:158, avail:"almost"},
+  {name:"Between Fire & Ice", loc:"Reykjavík & Vik, Iceland", country:"Iceland", date:"September 6 – 12, 2026", season:"Fall, 2026", teacher:"Dawn Thie", tier:"signature", hue:200, avail:"almost"},
   {name:"Beach Escape Retreat", loc:"El Cuyo, Mexico", country:"Mexico", date:"October 21 – 25, 2026", season:"Fall, 2026", teacher:"Renata Centi", tier:"deep", hue:186},
-  {name:"Day of the Dead", loc:"Oaxaca, Mexico", country:"Mexico", date:"October 28 – November 24, 2026", season:"Fall, 2026", teacher:"Alicia Delaney", tier:"deep", hue:36},
+  {name:"Day of the Dead", loc:"Oaxaca, Mexico", country:"Mexico", date:"October 28 – November 24, 2026", season:"Fall, 2026", teacher:"Alicia Delaney", tier:"deep", hue:36, avail:"waitlist"},
   {name:"Mesmerized in Morocco", loc:"Marrakesh & Essaouira, Morocco", country:"Morocco", date:"September 4 – 8, 2026", season:"Fall, 2026", teacher:"Renata Centi", tier:"signature", hue:24},
 
   // Winter 2026 / 2027
-  {name:"Treasures of Thailand", loc:"Chiang Mai & Koh Yao Noi, Thailand", country:"Thailand", date:"December 1 – 10, 2026", season:"Winter, 2026 / 2027", teacher:"Amy Sennett-Starner", tier:"deep", hue:162},
+  {name:"Treasures of Thailand", loc:"Chiang Mai & Koh Yao Noi, Thailand", country:"Thailand", date:"December 1 – 10, 2026", season:"Winter, 2026 / 2027", teacher:"Amy Sennett-Starner", tier:"deep", hue:162, avail:"filling"},
   {name:"Inner Glow Retreat", loc:"El Cuyo, Mexico", country:"Mexico", date:"December 1 – 6, 2026", season:"Winter, 2026 / 2027", teacher:"Alicia Delaney", tier:"deep", hue:20},
   {name:"An Embodied Pause", loc:"El Cuyo, Mexico", country:"Mexico", date:"December 6 – 11, 2026", season:"Winter, 2026 / 2027", teacher:"Carie Cook", tier:"deep", hue:210},
-  {name:"Breath Body Soul Retreat", loc:"El Cuyo, Mexico", country:"Mexico", date:"January 24 – 29, 2027", season:"Winter, 2026 / 2027", teacher:"Sue Berger", tier:"deep", hue:190},
+  {name:"Breath Body Soul Retreat", loc:"El Cuyo, Mexico", country:"Mexico", date:"January 24 – 29, 2027", season:"Winter, 2026 / 2027", teacher:"Sue Berger", tier:"deep", hue:190, avail:"almost"},
   {name:"Radiance Retreat", loc:"El Cuyo, Mexico", country:"Mexico", date:"February 2 – 7, 2027", season:"Winter, 2026 / 2027", teacher:"Alicia Delaney", tier:"deep", hue:45},
 
   // Spring 2027
   {name:"Somatic Yoga & Hiking Retreat", loc:"Lisboa & Costa Vicentina, Portugal", country:"Portugal", date:"May 9 – 16, 2027", season:"Spring, 2027", teacher:"Karah Charette", tier:"signature", hue:120},
   {name:"Inner Landscape Retreat", loc:"Lisboa & Costa Vicentina, Portugal", country:"Portugal", date:"May 16 – 23, 2027", season:"Spring, 2027", teacher:"Dawn Thie", tier:"deep", hue:40},
-  {name:"Balkan Beauty Yoga Retreat", loc:"Bay of Kotor, Montenegro", country:"Montenegro", date:"May 15 – 21, 2027", season:"Spring, 2027", teacher:"Sherry Sidoti", tier:"signature", hue:150},
+  {name:"Balkan Beauty Yoga Retreat", loc:"Bay of Kotor, Montenegro", country:"Montenegro", date:"May 15 – 21, 2027", season:"Spring, 2027", teacher:"Sherry Sidoti", tier:"signature", hue:150, avail:"waitlist"},
   {name:"Yoga and Reflections Retreat", loc:"Camino de Santiago, Spain", country:"Spain", date:"April 18 – 27, 2027", season:"Spring, 2027", teacher:"Jenniferlyn Chiemingo", tier:"deep", hue:35},
 
   // Fall 2027
@@ -711,6 +757,19 @@ function updateCollectionIntro(){
 }
 
 function badgeLabel(tier){ return tier === "signature" ? "Signature Collection" : "Deep Dives"; }
+
+/* Availability. Two visual levels on purpose: scarcity is an invitation and
+   pulls the eye, a closed retreat is information and must not shout. */
+var AVAIL = {
+  filling:  { label: "Filling up",   level: "warm" },
+  almost:   { label: "Almost full",  level: "hot"  },
+  waitlist: { label: "Waitlist",     level: "closed" }
+};
+function availHTML(r, extra){
+  var a = AVAIL[r.avail];
+  if (!a) return "";
+  return '<span class="avail avail--' + a.level + (extra ? " " + extra : "") + '">' + a.label + '</span>';
+}
 function media(hue){
   return "background: linear-gradient(155deg, hsl(" + hue + " 32% 80%), hsl(" + hue + " 26% 60%));";
 }
@@ -754,6 +813,7 @@ function cardHTML(r){
     '<article class="card">' +
       '<div class="card__media" style="' + media(r.hue) + '">' +
         '<span class="card__badge">' + badgeLabel(r.tier) + '</span>' +
+        availHTML(r, 'card__avail') +
       '</div>' +
       '<div class="card__body">' +
         '<div class="card__title">' + r.name + '</div>' +
@@ -768,10 +828,13 @@ function cardHTML(r){
 function rowHTML(r){
   return linkWrap(r,
     '<div class="list-row">' +
-      '<div class="r-name">' + r.name + '</div>' +
+      '<div class="r-name">' + r.name +
+        '<span class="r-tier">' + badgeLabel(r.tier) + '</span>' +
+      '</div>' +
       '<div class="r-loc">' + r.loc + '</div>' +
       '<div class="r-date">' + r.date + '</div>' +
       '<div class="r-teacher">with ' + r.teacher + '</div>' +
+      '<div class="r-avail">' + availHTML(r) + '</div>' +
     '</div>'
   );
 }
