@@ -859,11 +859,17 @@ main { padding-top: 0; }
    towards the middle, so the same photo reads at three different weights on
    its way in and the strip never settles.
 
-   The delay is the detail worth copying. The photo moves for 300ms carrying
-   the opacity it already had, and only in the last 200ms does it resolve —
-   landing exactly as the movement ends. Cross-fading from the first frame
-   makes the change feel like it is fighting the travel; waiting makes the
-   two read as one gesture. */
+   The reference delays this fade — it moves for 300ms carrying the opacity
+   it had and resolves in the last 200ms. Copying that here was wrong, and
+   the reason is that the two galleries change different photos. In theirs
+   the photo that lights up is already whole and standing still; the fade is
+   the only thing happening to it, so making it wait reads as poise. In ours
+   the photo that lights up is the one arriving from the edge. Delaying it
+   piles the whole change onto the instant it clears the viewport, so the
+   photo lands and flashes in the same frame.
+
+   Same clock as the movement instead, and no delay: the photo brightens as
+   it arrives, which is one gesture rather than two events. */
 .gallery__slide {
   margin: 0;          /* <figure> ships with 1em 40px, which would set the gap */
   flex: none;
@@ -871,7 +877,7 @@ main { padding-top: 0; }
   aspect-ratio: var(--r, 28 / 17);
   background: var(--stone-200);
   opacity: .4;
-  transition: opacity .2s ease .3s;
+  transition: opacity .5s ease;
 }
 .gallery__slide.is-whole { opacity: 1; }
 .is-jumping .gallery__slide { transition: none; }
@@ -2952,12 +2958,11 @@ html.has-lightbox { overflow: hidden; }
       return m ? parseFloat(m[1]) : edge() - along(at);
     }
 
-    /* One render. The transform puts the resting photo at --edge, and every
-       photo is then whole or not purely as a matter of where it landed —
-       two states, decided once per move, never a ramp. */
-    function render() {
-      var e = edge(), w = track.clientWidth, sw = slideW();
-      var x = e - along(at);
+    /* One frame of the strip. Both halves of it — where the rail sits and
+       which photos are whole — come out of the same number, so they cannot
+       disagree. Two states, decided per frame, never a ramp. */
+    function paint(x) {
+      var w = track.clientWidth, sw = slideW();
       setX(x);
       for (var k = 0; k < slides.length; k++) {
         var left = x + along(k);
@@ -2965,6 +2970,7 @@ html.has-lightbox { overflow: hidden; }
         slides[k].classList.toggle('is-whole', left >= -0.5 && left + sw <= w + 0.5);
       }
     }
+    function render() { paint(edge() - along(at)); }
 
     // Repaint with no transition anywhere, for the loop jump and the first
     // paint. The reflow between is what makes the browser take the silent
@@ -2986,7 +2992,16 @@ html.has-lightbox { overflow: hidden; }
       var x = currentX();
       var forward = at < n;
       at += forward ? n : -n;
-      silently(function () { setX(x + (forward ? -setSize() : setSize())); });
+      var shifted = x + (forward ? -setSize() : setSize());
+      /* Repaint, not just re-position. Shifting the rail by one set hands
+         every slot over to a different element — the photo standing in it is
+         identical and has not moved, but the element carrying `is-whole` is
+         now off screen and the one that replaced it is not marked. Leaving
+         the classes to the next render made all of them change at once with
+         the fade running, so the entire strip dropped to .4 together on the
+         way round. It is a relabelling, not a state change, and it belongs
+         inside the silent frame with the transform. */
+      silently(function () { paint(shifted); });
     }
 
     var lastW = 0;
