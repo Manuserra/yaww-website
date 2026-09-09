@@ -828,14 +828,14 @@ main { padding-top: 0; }
   gap: var(--gap);
   overflow-x: auto;
   overscroll-behavior-x: contain;
-  /* Snap to the left slot, not to a slide's centre. The composition here is
-     a pair with the next one peeking, and centring a single slide destroys
-     it — a flick would leave one photo mid-frame with two half photos beside
-     it. Aligning to start against the same edge padding means every resting
-     position is the composition the frame was drawn at. Proximity, not
-     mandatory, so someone deliberately scanning the strip is not dragged to
-     the nearest slot on every pause. */
-  scroll-snap-type: x proximity;
+  /* Mandatory, so the strip can never come to rest between two states. Every
+     stopping point is a composition someone designed; there is no half-way.
+
+     Above 768 that composition is the pair from the Figma frame, so slides
+     align to the left slot against the same offset the script rests at —
+     centring a single slide there would break the pair. Below 768 only one
+     photo fits and the alignment changes to centre; see the media query. */
+  scroll-snap-type: x mandatory;
   scroll-padding-inline: var(--edge);
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -866,11 +866,22 @@ main { padding-top: 0; }
 @media (max-width: 1024px) {
   .gallery__track { --gap: 24px; }
 }
-/* One photo at a time below 768, with the next one showing enough of itself
-   to say the strip continues. */
+/* One photo at a time below 768 — and always the middle one, with a sliver
+   of the photo on either side. A phone shows too little for a reader to work
+   out what they are looking at from two halves, so the strip must never rest
+   on the join: the slide it stops on is the subject, and the slivers are
+   only there to say the strip keeps going both ways. Alignment moves to
+   centre and the snap offset drops to zero, since centre means centre of the
+   viewport. */
 @media (max-width: 767px) {
   .gallery { padding: 56px 0; }
-  .gallery__track { --slide-w: 78vw; --gap: 16px; --gutter: 16px; }
+  .gallery__track {
+    --slide-w: 78vw;
+    --gap: 16px;
+    --gutter: 16px;
+    scroll-padding-inline: 0;
+  }
+  .gallery__slide { scroll-snap-align: center; }
   .gallery__head { margin-bottom: 32px; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -2899,13 +2910,17 @@ html.has-lightbox { overflow: hidden; }
 
     function gap() { return parseFloat(getComputedStyle(track).columnGap) || 0; }
 
-    /* Where the first photo rests: the pair plus its gap centred in the
-       viewport, never tighter than the page gutter. Below 768 the pair does
-       not fit and this falls through to the gutter on its own. */
+    /* Where the strip comes to rest: whatever group of photos the width can
+       hold, centred. Above 768 that group is the pair from the Figma frame.
+       Below it the pair cannot fit, so the group becomes a single photo and
+       the same arithmetic centres it — which is what leaves the matching
+       sliver of a neighbour on each side rather than one fat margin. */
     function edge() {
       var sw = originals[0].getBoundingClientRect().width;
       var gutter = parseFloat(getComputedStyle(track).getPropertyValue('--gutter')) || 24;
-      return Math.max(gutter, (track.clientWidth - (sw * 2 + gap())) / 2);
+      var w = track.clientWidth;
+      var pair = sw * 2 + gap();
+      return Math.max(gutter, (w - (pair <= w ? pair : sw)) / 2);
     }
 
     /* Measured off the DOM rather than computed from widths and gaps, so it
