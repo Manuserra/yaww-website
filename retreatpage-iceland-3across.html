@@ -932,7 +932,12 @@ main { padding-top: 0; }
   margin: 48px auto 0;
   pointer-events: none;
 }
-/* Both sit on one baseline and the mark grows upward from it, rather than
+/* The same two greys as the itinerary rail: stone-300 for the part not yet
+   travelled, stone-600 for where you are. Two timelines on the same page
+   saying the same thing should say it in the same colours, and the grey
+   this started with belonged to no palette at all.
+
+   Both sit on one baseline and the mark grows upward from it, rather than
    the two being centred on each other. Centred, the extra pixel splits above
    and below and the hairline appears to pass through the mark; sharing a
    floor makes the mark read as thickening of the same line. */
@@ -942,7 +947,7 @@ main { padding-top: 0; }
   inset-inline: 0;
   bottom: 0;
   height: 1px;
-  background: #9A9A9A;
+  background: var(--stone-300);
 }
 /* Same clock and curve as the rail, so the mark and the photographs read as
    one movement rather than two things that happen to start together. */
