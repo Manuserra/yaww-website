@@ -856,6 +856,71 @@ main { padding-top: 0; }
   .extras__name { font-size: 20px; line-height: 28px; }
 }
 
+/* --- Travel tips -------------------------------------------------------
+   A single column of text, centred, capped at 758 and nothing else. The
+   module is only ever read top to bottom, so anything that split it into
+   columns or cards would be inventing structure the content does not have.
+
+   The rhythm is one 24px line throughout: bullets sit line to line and a
+   heading sits line to line with its own first bullet, so a group reads as
+   one block of text rather than a label with a list under it. The only break
+   in the grid is a single 24px line between groups, which is what separates
+   them — the same amount of space, used once, doing all the work. */
+.tips {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 56px 24px;
+  background: var(--stone);
+}
+.tips__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+  color: var(--sea-blue);
+  text-align: center;
+}
+.tips__body {
+  width: 100%;
+  max-width: 758px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+/* Weight alone marks the heading: at this size a step up in scale would
+   start to compete with the section title two lines above it. */
+.tips__heading {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue);
+}
+.tips__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue);
+}
+/* Same bullet as the itinerary: hung outside the text so a wrapped line
+   returns to the words, not under the dot. */
+.tips__list li { position: relative; padding-left: 20px; }
+.tips__list li::before { content: "\2022"; position: absolute; left: 4px; }
+
+@media (max-width: 767px) {
+  .tips { padding: 56px 16px; }
+}
+
 /* --- Gallery -----------------------------------------------------------
    A full-bleed strip. Every photo is the same width and they differ in
    height, all hung on one horizontal centre line — the uneven top and bottom
@@ -2187,6 +2252,59 @@ html.has-lightbox { overflow: hidden; }
     <div class="extras__panels"></div>
   </section>
 
+
+
+
+  <!-- =========================================================
+       TRAVEL TIPS
+       Plain prose, no data layer: every line here is specific to this
+       retreat and none of it repeats a shape the page renders elsewhere.
+       ========================================================= -->
+  <section class="tips">
+    <h2 class="tips__title">Travel Tips</h2>
+    <div class="tips__body">
+      <div class="tips__group">
+        <h3 class="tips__heading">Arrival &amp; Time Zone</h3>
+        <ul class="tips__list">
+          <li>Fly into Cancun International Airport (CUN).</li>
+          <li>Cancun is one hour ahead of El Cuyo&mdash;double-check time zones when booking flights.</li>
+        </ul>
+      </div>
+
+      <div class="tips__group">
+        <h3 class="tips__heading">Getting to El Cuyo</h3>
+        <ul class="tips__list">
+          <li>Private Transfer: Direct ride from the airport (2.5 hours). We can arrange this for you.</li>
+          <li>Bus + Taxi (Budget Option): Take an ADO bus to Tizimin, then a taxi to El Cuyo (~$50 USD).</li>
+          <li>Local Bus: The slowest option but available if needed.</li>
+        </ul>
+      </div>
+
+      <div class="tips__group">
+        <h3 class="tips__heading">Money &amp; Payments</h3>
+        <ul class="tips__list">
+          <li>No ATMs in El Cuyo &ndash; bring Mexican Pesos with you.</li>
+          <li>Some places accept credit cards, but cash is preferred.</li>
+        </ul>
+      </div>
+
+      <div class="tips__group">
+        <h3 class="tips__heading">Internet &amp; Connectivity</h3>
+        <ul class="tips__list">
+          <li>WiFi is unreliable and may cut out at times.</li>
+          <li>If you need a strong connection, let us know in advance.</li>
+        </ul>
+      </div>
+
+      <div class="tips__group">
+        <h3 class="tips__heading">Shops &amp; Essentials</h3>
+        <ul class="tips__list">
+          <li>No large stores in El Cuyo&mdash;bring everything you might need.</li>
+          <li>Few pharmacies available, but for specific medications, you&rsquo;d need to travel 1.5 hours to Tizim&iacute;n.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
   <!-- =========================================================
        GALLERY
