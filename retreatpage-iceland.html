@@ -449,10 +449,125 @@ main { padding-top: 0; }
   color: var(--sea-blue);
   text-align: center;
 }
+/* --- How to book (sticky rail) -----------------------------------------
+   The section becomes the site's 12-column grid: 4 columns for the rail,
+   8 for the cards. With the desktop tokens (72px column, 48px gutter) that
+   is 432 + 48 + 912 = 1392, so the cards keep exactly the 912 they had and
+   stay aligned with the gallery further up the page.
+
+   The rail is sticky because choosing a room is a comparison task: you
+   scroll the options several times, and the terms of the purchase should
+   not scroll away while you do. */
 .rooms__inner {
   width: 100%;
-  max-width: 912px;   /* lines up with the gallery in Accommodations above */
+  max-width: 1392px;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 48px;
 }
+.rooms__grid  { grid-column: 5 / span 8; grid-row: 1; }
+/* Placed by grid rather than by DOM order: the cards come first in the
+   markup, so stacked on a phone you meet the options before the terms, and
+   the CTA is never asked for before there is anything to choose. */
+.rooms__aside {
+  grid-column: 1 / span 4;
+  grid-row: 1;
+  align-self: start;
+  position: sticky;
+  top: 162px;                              /* 138px sticky header + 24 */
+  max-height: calc(100vh - 186px);         /* header + 24 top + 24 bottom */
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+.rooms__aside-title {
+  margin: 0 0 20px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  color: var(--sea-blue);
+}
+.rooms__steps {
+  counter-reset: step;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.rooms__steps li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 34px;
+}
+.rooms__steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--stone-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--sea-blue-200);
+}
+.rooms__steps strong {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--sea-blue);
+}
+.rooms__steps span {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--sea-blue-200);
+}
+/* The question every solo traveller has before picking a shared room. */
+.rooms__aside-note {
+  margin: 20px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--stone-300);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--sea-blue-200);
+}
+.rooms__aside-fine {
+  margin: 12px 0 0;
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--sea-blue-100);
+}
+
+@media (max-width: 1024px) {
+  /* Below the desktop grid the rail stops being a rail: two card columns
+     plus a 4-column aside would leave neither enough room. */
+  .rooms__inner { grid-template-columns: minmax(0, 1fr); }
+  .rooms__grid  { grid-column: 1; grid-row: auto; }
+  .rooms__aside {
+    grid-column: 1;
+    grid-row: auto;
+    position: static;
+    max-height: none;
+    overflow: visible;
+    margin-top: 48px;
+    max-width: 560px;
+  }
+}
+
 
 .rooms__grid {
   display: grid;
@@ -569,7 +684,8 @@ main { padding-top: 0; }
    the grid, and four identical buttons would only add noise to it. */
 .rooms__cta {
   display: block;
-  margin: 48px auto 0;
+  width: 100%;
+  margin: 24px 0 0;
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 20px;
@@ -1804,7 +1920,30 @@ html.has-lightbox { overflow: hidden; }
     <h2 class="rooms__title">Rooms pricing</h2>
     <div class="rooms__inner">
       <div class="rooms__grid" id="rooms-grid"></div>
-      <button class="rooms__cta" type="button">Reserve your space</button>
+
+      <aside class="rooms__aside" aria-labelledby="how-to-book">
+        <h3 class="rooms__aside-title" id="how-to-book">How to book</h3>
+        <ol class="rooms__steps">
+          <li>
+            <strong>Choose your room</strong>
+            <span>Every price is per person, in USD.</span>
+          </li>
+          <li>
+            <strong>Secure your space</strong>
+            <span>A $1,000 deposit per person holds your place. It comes off your total &mdash; it is not an extra.</span>
+          </li>
+          <li>
+            <strong>Pay the balance later</strong>
+            <span>The rest is due 90 days before the retreat.</span>
+          </li>
+        </ol>
+        <!-- TODO: add the refund policy line here once confirmed. Left out on
+             purpose rather than guessed: whether the deposit is refundable is
+             material to the decision and must not be invented. -->
+        <p class="rooms__aside-note">Sharing a room? Book together with your roommate. If you don&rsquo;t have one we&rsquo;ll pair you when we can &mdash; and if nobody is available, we&rsquo;ll move you to a private room.</p>
+        <button class="rooms__cta" type="button">Reserve your space</button>
+        <p class="rooms__aside-fine">Bookings and payments are handled through WeTravel.</p>
+      </aside>
     </div>
   </section>
 
