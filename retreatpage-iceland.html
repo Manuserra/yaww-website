@@ -33,6 +33,11 @@
   --stone-400:       #C6BFB9;
   --stone-500:       #A6A29E;
   --stone-600:       #877C71;
+  /* Ramp extended past the JSON: 600 is the darkest sand there and it
+     only reaches 3.67:1 on --stone, under the 4.5:1 text needs. These
+     two keep the same 30deg hue and carry the secondary button. */
+  --stone-700:       #665C52;   /* 5.88:1 on --stone */
+  --stone-800:       #524A42;   /* 7.83:1 */
 
   /* --- Semantic --- */
   --page-bg:         var(--stone);
@@ -263,15 +268,17 @@ main { padding-top: 0; }
 .btn--primary:hover  { background: var(--sea-blue-400); border-color: var(--sea-blue-400); }
 .btn--primary:active  { background: var(--sea-blue-500); border-color: var(--sea-blue-500); }
 
+/* Sand, not blue: the secondary belongs to the secondary family. It needs
+   --stone-700 rather than the ramp's darkest 600, which lands at 3.67:1. */
 .btn--secondary {
   background: transparent;
-  border-color: var(--sea-blue);
-  color: var(--sea-blue);
+  border-color: var(--stone-700);
+  color: var(--stone-700);
 }
 /* Fills in on hover, so the pair swap roles under the cursor and the
    feedback is unmistakable without any new colour entering the palette. */
-.btn--secondary:hover  { background: var(--sea-blue); color: var(--stone); }
-.btn--secondary:active { background: var(--sea-blue-500); border-color: var(--sea-blue-500); color: var(--stone); }
+.btn--secondary:hover  { background: var(--stone-700); border-color: var(--stone-700); color: var(--stone); }
+.btn--secondary:active { background: var(--stone-800); border-color: var(--stone-800); color: var(--stone); }
 
 @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
 
