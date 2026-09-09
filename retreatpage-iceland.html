@@ -2201,93 +2201,55 @@ html.has-lightbox { overflow: hidden; }
      is the whole per-retreat edit. Runs after the lightbox so
      dlg.openGallery exists. */
   (function () {
-    /* Prices and room types come from the retreat's own page. The turf
-       guesthouse is a single shared night for the whole group, so it carries
-       the same individual-bed row in every tier. Only four room photos are
-       published, so the rest reuse hotel shots. */
+    /* The three options the retreat actually sells, with the prices from
+       its own page. Both private tiers are the same king room — only the
+       occupancy and the price differ. Every tier shares the turf house row,
+       because that single night is one common space for the whole group and
+       has no private version. */
     var TIERS = [
       {
-        name: 'King Deluxe',
-        priceUSD: 6995,
+        name: 'Private \u2014 Single',
+        priceUSD: 11295,
         hotels: [
-          {
-            name: 'Northern Light Inn',
-            attrs: { bed: 'King', bath: 'Private', view: 'Lava fields' },
-            gallery: ['images/iceland/room-nli-king.jpg', 'images/iceland/hotel1-2.jpg', 'images/iceland/hotel1-3.jpg']
-          },
-          {
-            name: 'Fosshotel Glacier Lagoon',
-            attrs: { bed: 'King', bath: 'Private', view: 'Mountain' },
-            gallery: ['images/iceland/room-foss-king.jpg', 'images/iceland/hotel2-2.jpg', 'images/iceland/hotel2-3.jpg']
-          },
-          {
-            name: 'Turf Guesthouse & Horse Farm',
+          { name: 'Northern Light Inn',
+            attrs: { bed: 'King', bath: 'En-suite', view: 'Lava fields' },
+            gallery: ['images/iceland/room-nli-king.jpg', 'images/iceland/hotel1-2.jpg', 'images/iceland/hotel1-3.jpg'] },
+          { name: 'Fosshotel Glacier Lagoon',
+            attrs: { bed: 'King', bath: 'En-suite', view: 'Mountain' },
+            gallery: ['images/iceland/room-foss-king.jpg', 'images/iceland/hotel2-2.jpg', 'images/iceland/hotel2-3.jpg'] },
+          { name: 'Turf Guesthouse & Horse Farm',
             attrs: { bed: 'Individual', bath: 'Shared' },
-            gallery: ['images/iceland/hotel3-2.jpg', 'images/iceland/hotel3-6.jpg', 'images/iceland/hotel3-7.jpg']
-          }
+            gallery: ['images/iceland/hotel3-6.jpg', 'images/iceland/hotel3-1.jpg', 'images/iceland/hotel3-4.jpg'] }
         ]
       },
       {
-        name: 'Twin Deluxe',
-        priceUSD: 5995,
+        name: 'Private \u2014 Shared bed',
+        priceUSD: 9865,
         hotels: [
-          {
-            name: 'Northern Light Inn',
-            attrs: { bed: 'Twin', bath: 'Private', view: 'Volcanic' },
-            gallery: ['images/iceland/room-nli-twin.jpg', 'images/iceland/hotel1-4.jpg', 'images/iceland/hotel1-5.jpg']
-          },
-          {
-            name: 'Fosshotel Glacier Lagoon',
-            attrs: { bed: 'Twin', bath: 'Private', view: 'Sea' },
-            gallery: ['images/iceland/room-foss-king.jpg', 'images/iceland/hotel2-4.jpg', 'images/iceland/hotel2-5.jpg']
-          },
-          {
-            name: 'Turf Guesthouse & Horse Farm',
+          { name: 'Northern Light Inn',
+            attrs: { bed: 'King', bath: 'En-suite', view: 'Lava fields' },
+            gallery: ['images/iceland/room-nli-king.jpg', 'images/iceland/hotel1-2.jpg', 'images/iceland/hotel1-3.jpg'] },
+          { name: 'Fosshotel Glacier Lagoon',
+            attrs: { bed: 'King', bath: 'En-suite', view: 'Mountain' },
+            gallery: ['images/iceland/room-foss-king.jpg', 'images/iceland/hotel2-2.jpg', 'images/iceland/hotel2-3.jpg'] },
+          { name: 'Turf Guesthouse & Horse Farm',
             attrs: { bed: 'Individual', bath: 'Shared' },
-            gallery: ['images/iceland/hotel3-3.jpg', 'images/iceland/hotel3-6.jpg', 'images/iceland/hotel3-8.jpg']
-          }
+            gallery: ['images/iceland/hotel3-6.jpg', 'images/iceland/hotel3-1.jpg', 'images/iceland/hotel3-4.jpg'] }
         ]
       },
       {
-        name: 'Double Shared',
-        priceUSD: 5995,
+        name: 'Shared Double',
+        priceUSD: 10265,
         hotels: [
-          {
-            name: 'Northern Light Inn',
-            attrs: { bed: 'Twin', bath: 'Shared' },
-            gallery: ['images/iceland/hotel1-6.jpg', 'images/iceland/hotel1-7.jpg', 'images/iceland/hotel1-8.jpg']
-          },
-          {
-            name: 'Fosshotel Glacier Lagoon',
-            attrs: { bed: 'Twin', bath: 'Private', view: 'Mountain' },
-            gallery: ['images/iceland/room-foss-triple.jpg', 'images/iceland/hotel2-6.jpg', 'images/iceland/hotel2-7.jpg']
-          },
-          {
-            name: 'Turf Guesthouse & Horse Farm',
+          { name: 'Northern Light Inn',
+            attrs: { bed: 'Twin', bath: 'En-suite' },
+            gallery: ['images/iceland/room-nli-twin.jpg', 'images/iceland/hotel1-2.jpg', 'images/iceland/hotel1-3.jpg'] },
+          { name: 'Fosshotel Glacier Lagoon',
+            attrs: { bed: 'Twin', bath: 'En-suite', view: 'Sea' },
+            gallery: ['images/iceland/room-foss-triple.jpg', 'images/iceland/hotel2-4.jpg', 'images/iceland/hotel2-5.jpg'] },
+          { name: 'Turf Guesthouse & Horse Farm',
             attrs: { bed: 'Individual', bath: 'Shared' },
-            gallery: ['images/iceland/hotel3-4.jpg', 'images/iceland/hotel3-5.jpg', 'images/iceland/hotel3-7.jpg']
-          }
-        ]
-      },
-      {
-        name: 'Triple Shared',
-        priceUSD: 5995,
-        hotels: [
-          {
-            name: 'Northern Light Inn',
-            attrs: { bed: 'Twin', bath: 'Shared' },
-            gallery: ['images/iceland/hotel1-8.jpg', 'images/iceland/hotel1-2.jpg', 'images/iceland/hotel1-3.jpg']
-          },
-          {
-            name: 'Fosshotel Glacier Lagoon',
-            attrs: { bed: 'Twin', bath: 'Private' },
-            gallery: ['images/iceland/room-foss-triple.jpg', 'images/iceland/hotel2-8.jpg', 'images/iceland/hotel2-2.jpg']
-          },
-          {
-            name: 'Turf Guesthouse & Horse Farm',
-            attrs: { bed: 'Individual', bath: 'Shared' },
-            gallery: ['images/iceland/hotel3-5.jpg', 'images/iceland/hotel3-6.jpg', 'images/iceland/hotel3-8.jpg']
-          }
+            gallery: ['images/iceland/hotel3-6.jpg', 'images/iceland/hotel3-1.jpg', 'images/iceland/hotel3-4.jpg'] }
         ]
       }
     ];
