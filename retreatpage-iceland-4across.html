@@ -928,19 +928,18 @@ main { padding-top: 0; }
 .gallery__progress {
   position: relative;
   width: min(528px, calc(100% - 48px));
-  height: 2px;
+  height: 1px;
   margin: 48px auto 0;
   pointer-events: none;
 }
 /* The same two greys as the itinerary rail: stone-300 for the part not yet
    travelled, stone-600 for where you are. Two timelines on the same page
-   saying the same thing should say it in the same colours, and the grey
-   this started with belonged to no palette at all.
+   saying the same thing should say it in the same colours.
 
-   Both sit on one baseline and the mark grows upward from it, rather than
-   the two being centred on each other. Centred, the extra pixel splits above
-   and below and the hairline appears to pass through the mark; sharing a
-   floor makes the mark read as thickening of the same line. */
+   Both are one pixel and both sit on the same baseline, so there is no mark
+   riding on a track — there is one line, and the part you are looking at is
+   darker. Tone carries the whole distinction, which is as quiet as this can
+   be while still being readable. */
 .gallery__progress::before {
   content: "";
   position: absolute;
@@ -956,7 +955,7 @@ main { padding-top: 0; }
   bottom: 0;
   left: 0;
   width: 0;
-  height: 2px;
+  height: 1px;
   background: var(--stone-600);
   transform: translateX(0);
   transition: transform .5s ease, width .5s ease;
