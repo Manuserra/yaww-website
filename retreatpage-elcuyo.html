@@ -264,20 +264,16 @@ main { padding-top: 0; }
 .btn--primary:hover  { background: var(--sea-blue-400); border-color: var(--sea-blue-400); }
 .btn--primary:active  { background: var(--sea-blue-500); border-color: var(--sea-blue-500); }
 
-/* Sand, using only the published ramp. No sand in it is dark enough to be
-   text — 600, the darkest, reaches 3.67:1 against the 4.5:1 a label needs —
-   so sand does the two jobs it can do at these values: the border, where
-   3:1 is the bar and 600 clears it, and the fill that appears on hover. The
-   ink stays sea-blue so the label is always legible. */
+/* Same stone-600 as the itinerary progress line: sand ink and border on the
+   page ground, and on hover the whole button becomes that line's colour with
+   the label in the page's sand. */
 .btn--secondary {
   background: transparent;
   border-color: var(--stone-600);
-  color: var(--sea-blue);
+  color: var(--stone-600);
 }
-/* Fills in on hover, so the pair swap roles under the cursor and the
-   feedback is unmistakable without any new colour entering the palette. */
-.btn--secondary:hover  { background: var(--stone-400); color: var(--sea-blue-400); }
-.btn--secondary:active { background: var(--stone-500); color: var(--sea-blue-500); }
+.btn--secondary:hover,
+.btn--secondary:active { background: var(--stone-600); border-color: var(--stone-600); color: var(--stone); }
 
 @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
 
