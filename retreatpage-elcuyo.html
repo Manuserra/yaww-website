@@ -1086,6 +1086,51 @@ main { padding-top: 0; }
   -webkit-user-select: none;
 }
 
+/* Progress -------------------------------------------------------------
+   A hairline with a thicker mark riding on it. The mark's width is the share
+   of the whole set the window is showing — measured against the strip, not
+   counted in photos, so the slivers at both edges count exactly as much as
+   they are actually visible.
+
+   It is a readout, not a control: the arrows are the control. So it is thin
+   enough to ignore and precise enough to be worth a glance, and it takes no
+   pointer events and no place in the accessibility tree.
+
+   528 is one photograph at the desktop composition — the line under the
+   strip is the width of one of the things above it. */
+.gallery__progress {
+  position: relative;
+  width: min(528px, calc(100% - 48px));
+  height: 2px;
+  margin: 48px auto 0;
+  pointer-events: none;
+}
+.gallery__progress::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 50%;
+  height: 1px;
+  transform: translateY(-50%);
+  background: #9A9A9A;
+}
+/* Same clock and curve as the rail, so the mark and the photographs read as
+   one movement rather than two things that happen to start together. */
+.gallery__progress-bar {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--stone-600);
+  transform: translate(0, -50%);
+  transition: transform .5s ease, width .5s ease;
+}
+.gallery__progress.is-jumping .gallery__progress-bar { transition: none; }
+@media (prefers-reduced-motion: reduce) {
+  .gallery__progress-bar { transition: none; }
+}
+
 @media (max-width: 1024px) {
   .gallery__track { --gap: 24px; }
 }
@@ -2367,6 +2412,10 @@ html.has-lightbox { overflow: hidden; }
         <figure class="gallery__slide" style="--r: 28/17"><img src="images/extra3-1.jpg" alt="The convent at Izamal" loading="lazy"></figure>
       </div>
     </div>
+
+    <div class="gallery__progress" aria-hidden="true">
+      <span class="gallery__progress-bar"></span>
+    </div>
   </section>
 
   <dialog class="lightbox" aria-label="Photo viewer">
@@ -3197,8 +3246,35 @@ html.has-lightbox { overflow: hidden; }
         // half a pixel of slack: --edge is fractional at most widths
         slides[k].classList.toggle('is-whole', left >= -0.5 && left + sw <= w + 0.5);
       }
+      drawProgress();
     }
     function render() { paint(edge() - along(at)); }
+
+    /* Progress ----------------------------------------------------------
+       Width is the share of the set the window shows, measured off the two
+       real numbers rather than counted in photos. Position maps the ten
+       photos across the travel the mark has, so the first sits flush left
+       and the last flush right. */
+    var progress = document.querySelector('.gallery__progress');
+    var bar = progress && progress.querySelector('.gallery__progress-bar');
+    var lastIdx = null;
+    function drawProgress() {
+      if (!bar) return;
+      var railW = progress.clientWidth;
+      if (!railW || !setSize()) return;
+      var idx = ((at % n) + n) % n;
+      var w = Math.min(1, track.clientWidth / setSize()) * railW;
+      var x = n > 1 ? (idx / (n - 1)) * (railW - w) : 0;
+      /* Coming back to the first photo is a jump, not a journey. Sliding the
+         mark the whole way back would say the strip travelled backwards,
+         which is the opposite of what the press did. */
+      var wrapped = lastIdx !== null && Math.abs(idx - lastIdx) > 1;
+      if (wrapped) progress.classList.add('is-jumping');
+      bar.style.width = w + 'px';
+      bar.style.transform = 'translate(' + x + 'px, -50%)';
+      if (wrapped) { void bar.offsetWidth; progress.classList.remove('is-jumping'); }
+      lastIdx = idx;
+    }
 
     // Repaint with no transition anywhere, for the loop jump and the first
     // paint. The reflow between is what makes the browser take the silent
