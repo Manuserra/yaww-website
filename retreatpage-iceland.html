@@ -367,6 +367,7 @@ main { padding-top: 0; }
    hairline ends exactly where the tabs end instead of running past them,
    and the active tab's 2px indicator sits on that hairline. */
 .tabs {
+  position: relative;   /* the sliding indicator measures against this bar */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -745,6 +746,39 @@ main { padding-top: 0; }
   .rooms__card--stacked .rooms__price-amount,
   .rooms__card--stacked .rooms__price-unit { text-align: left; }
   .rooms__card--stacked .rooms__price { margin-top: 4px; }
+}
+
+/* The active-tab indicator is one element per bar that slides, rather than a
+   rule drawn under whichever tab is active. 320ms is the top of the band
+   that still reads as immediate; paired with a strong ease-out it leaves
+   decisively and settles softly, which is the pace this brand wants without
+   crossing into sluggish. */
+.tabs__indicator,
+.tabbar__indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--sea-blue);
+  transform: translate(0, 0);
+  pointer-events: none;
+}
+/* The transition is carried by a class the bar puts on for a click and takes
+   off for a resize, rather than by toggling an inline transition around the
+   write — turning it off and on inside one tick does not reliably produce a
+   jump, and the indicator ends up animating from a stale position. */
+.is-sliding-ready .tabs__indicator,
+.is-sliding-ready .tabbar__indicator {
+  transition: transform .32s cubic-bezier(.32, .72, 0, 1),
+              width     .32s cubic-bezier(.32, .72, 0, 1);
+}
+/* the per-tab rule steps aside once a sliding one exists */
+.is-sliding .tabs__item.is-active::after,
+.is-sliding .tab.is-active::after { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .is-sliding-ready .tabs__indicator,
+  .is-sliding-ready .tabbar__indicator { transition: none; }
 }
 
 /* --- Lightbox ----------------------------------------------------------
@@ -2543,6 +2577,61 @@ html.has-lightbox { overflow: hidden; }
 
       card.appendChild(body);
       gridEl.appendChild(card);
+    });
+  })();
+
+  /* Tabs: sliding indicator ----------------------------------------------
+     Runs last, so every tab bar the modules render already exists. It reads
+     the clicked tab's own box, so it does not care which module owns the
+     is-active class. */
+  (function () {
+    var BARS = [
+      { bar: '.tabs', item: '.tabs__item', cls: 'tabs__indicator' },
+      { bar: '.tabbar .container', item: '.tab', cls: 'tabbar__indicator' }
+    ];
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    BARS.forEach(function (kind) {
+      document.querySelectorAll(kind.bar).forEach(function (bar) {
+        var tabs = bar.querySelectorAll(kind.item);
+        if (!tabs.length) return;
+
+        var ind = document.createElement('span');
+        ind.className = kind.cls;
+        ind.setAttribute('aria-hidden', 'true');
+        bar.appendChild(ind);
+        bar.classList.add('is-sliding');
+
+        function move(tab, animate) {
+          if (!tab) return;
+          bar.classList.toggle('is-sliding-ready', !!animate);
+          ind.style.width = tab.offsetWidth + 'px';
+          /* -1 so the bar sits astride the hairline, exactly where the old
+             per-tab rule sat at bottom:-1px */
+          ind.style.transform = 'translate(' + tab.offsetLeft + 'px, ' +
+                                (tab.offsetTop + tab.offsetHeight - 1) + 'px)';
+        }
+        function active() { return bar.querySelector(kind.item + '.is-active'); }
+
+        move(active(), false);
+        bar.addEventListener('click', function (e) {
+          var t = e.target.closest(kind.item);
+          if (t && bar.contains(t)) move(t, !reduce);
+        });
+        /* Observe the bar, not the window: the tabs can rewrap or change
+           width without the viewport doing anything, and a resize listener
+           misses exactly those cases. Held in a variable so it cannot be
+           collected. */
+        var ro = window.ResizeObserver
+          ? new ResizeObserver(function () { move(active(), false); })
+          : null;
+        if (ro) ro.observe(bar);
+        window.addEventListener('resize', function () { move(active(), false); });
+        // web fonts change tab widths after first paint
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(function () { move(active(), false); });
+        }
+      });
     });
   })();
 
