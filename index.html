@@ -286,6 +286,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   display: flex;
 }
 .tab {
+  cursor: pointer;
   position: relative;
   width: 216px;                     /* Figma inspect */
   padding: 12px 24px;
@@ -301,6 +302,23 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   color: var(--sea-blue-100);
   white-space: nowrap;
 }
+/* Hover on an unselected tab. Only the label moves, deepening to the same
+   sea-blue the selected one carries — the affordance is "this is where you
+   are going", which the sliding indicator then completes. Faster than the
+   indicator's 320ms: a colour arriving under the cursor should feel like a
+   response, while travel across the bar is a journey.
+   Scoped to real pointers so a tap on a phone does not leave a tab looking
+   half-selected after the finger lifts. */
+@media (hover: hover) and (pointer: fine) {
+  .tabs__item:not(.is-active):hover,
+  .tab:not(.is-active):hover { color: var(--sea-blue); }
+}
+.tabs__item,
+.tab { transition: color .18s ease; }
+@media (prefers-reduced-motion: reduce) {
+  .tabs__item, .tab { transition: none; }
+}
+
 .tab.is-active { color: var(--sea-blue); }
 .tab.is-active::after {
   content: "";

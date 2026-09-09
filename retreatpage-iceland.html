@@ -781,6 +781,23 @@ main { padding-top: 0; }
   .is-sliding-ready .tabbar__indicator { transition: none; }
 }
 
+/* Hover on an unselected tab. Only the label moves, deepening to the same
+   sea-blue the selected one carries — the affordance is "this is where you
+   are going", which the sliding indicator then completes. Faster than the
+   indicator's 320ms: a colour arriving under the cursor should feel like a
+   response, while travel across the bar is a journey.
+   Scoped to real pointers so a tap on a phone does not leave a tab looking
+   half-selected after the finger lifts. */
+@media (hover: hover) and (pointer: fine) {
+  .tabs__item:not(.is-active):hover,
+  .tab:not(.is-active):hover { color: var(--sea-blue); }
+}
+.tabs__item,
+.tab { transition: color .18s ease; }
+@media (prefers-reduced-motion: reduce) {
+  .tabs__item, .tab { transition: none; }
+}
+
 /* --- Lightbox ----------------------------------------------------------
    Built on <dialog>, not a hand-rolled overlay: the browser gives the focus
    trap, Esc to close, inertness of the page behind and focus restored to the
@@ -1526,7 +1543,7 @@ html.has-lightbox { overflow: hidden; }
        ABOUT TEACHER (node 115-42277)
        ========================================================= -->
   <section class="retreat-teacher">
-    <h2 class="retreat-teacher__title">About the yoga with Jenniferlyn</h2>
+    <h2 class="retreat-teacher__title">Yoga with Jenniferlyn Chiemingo</h2>
     <div class="retreat-teacher__row">
       <div class="retreat-teacher__photo" role="img" aria-label="Jenniferlyn Chiemingo"></div>
       <div class="retreat-teacher__text">
