@@ -401,9 +401,10 @@ main { padding-top: 0; }
 .retreat-includes__tab:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
 
 /* --- Rooms pricing -----------------------------------------------------
-   Tiers as blocks, not columns: a price list is read downward, and a block
-   holds its shape from one tier to six, which columns would not. Each block
-   carries the tier's rooms across every hotel of the retreat. */
+   One card per tier, in a two-up grid. A card is self-contained — photo,
+   name, price, and the hotels that offer that tier — so the module reads
+   the same with one tier or six, and a tier gains a hotel without any
+   column maths. */
 .rooms {
   display: flex;
   flex-direction: column;
@@ -426,56 +427,66 @@ main { padding-top: 0; }
   max-width: 912px;   /* lines up with the gallery in Accommodations above */
 }
 
-/* One tier per block: the heading line carries name and price, and the strip
-   of rooms below shows the same tier as it exists in each hotel. */
-.rooms__tier {
-  padding: 32px 0;
-  border-bottom: 1px solid var(--stone-300);
-}
-.rooms__tier:first-child { border-top: 1px solid var(--stone-300); }
-
-/* baseline, not center: the tier name and the price read as one line of type
-   even though the price is the taller of the two. */
-.rooms__tier-head {
+.rooms__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) max-content;
-  column-gap: 32px;
-  align-items: baseline;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px 32px;
+}
+
+.rooms__card {
+  display: flex;
+  flex-direction: column;
+  background: var(--stone-100);
+  border: 1px solid var(--stone-300);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.rooms__media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  cursor: zoom-in;
+}
+.rooms__body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+}
+
+/* flex-start, not baseline: the price is a two-line stack, and its first
+   line should sit level with the tier name rather than its last. */
+.rooms__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
 }
 .rooms__tier-name {
   margin: 0;
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 20px;
+  line-height: 28px;
   color: var(--sea-blue);
 }
-.rooms__tier-desc {
-  margin: 4px 0 0;
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 24px;
-  color: var(--sea-blue-200);
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.rooms__price { text-align: right; }
-/* Full sea-blue, not a muted grey: the price is what the row is for. */
+.rooms__price { flex: 0 0 auto; }
+/* Full sea-blue, not a muted grey: the price is what the card is for. */
 .rooms__price-amount {
   margin: 0;
   font-family: var(--font-body);
   font-weight: 600;
-  font-size: 22px;
+  font-size: 20px;
   line-height: 28px;
   color: var(--sea-blue);
+  text-align: right;
   white-space: nowrap;
 }
 .rooms__price-unit {
   margin: 0;
   font-family: var(--font-body);
-  font-size: 12px;
+  font-size: 11px;
   line-height: 16px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -483,63 +494,88 @@ main { padding-top: 0; }
   text-align: right;
 }
 
-.rooms__rooms {
+/* Rules between hotels only, never above the first or below the last: the
+   card's own border already closes the list at both ends. A tier with a
+   single hotel therefore draws no rule at all. */
+.rooms__hotels { display: flex; flex-direction: column; }
+.rooms__hotel {
   display: flex;
-  gap: 24px;
-  margin-top: 20px;
+  align-items: center;
+  gap: 12px;
+  padding-block: 12px;
 }
-.rooms__room { margin: 0; }
-.rooms__room img {
-  display: block;
-  width: 200px;
-  aspect-ratio: 4 / 3;
+.rooms__hotel + .rooms__hotel { border-top: 1px solid var(--stone-300); }
+.rooms__thumb {
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
   object-fit: cover;
-  border-radius: 0;
   cursor: zoom-in;
 }
-/* A lone room is not part of a set, so it gets a little more presence and
-   simply sits at the left rather than stretching. */
-.rooms__rooms--single .rooms__room img { width: 240px; }
-.rooms__room figcaption {
-  margin-top: 8px;
+.rooms__hotel-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.rooms__hotel-name {
+  margin: 0;
   font-family: var(--font-body);
-  font-size: 13px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--sea-blue);
+}
+.rooms__chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.rooms__chip {
+  font-family: var(--font-body);
+  font-size: 12px;
   line-height: 16px;
   color: var(--sea-blue-200);
+  padding: 4px 10px;
+  border: 1px solid var(--stone-300);
+  border-radius: 63px;
+  white-space: nowrap;
 }
+
+/* One CTA for the module, not one per card: the choice of tier is made in
+   the grid, and four identical buttons would only add noise to it. */
+.rooms__cta {
+  display: block;
+  margin: 48px auto 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 16px 40px;
+  color: var(--sea-blue);
+  background: transparent;
+  border: 1px solid var(--sea-blue);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.rooms__cta:hover { background: var(--sea-blue); color: var(--stone-100); }
+.rooms__cta:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-  .rooms__rooms { gap: 20px; flex-wrap: wrap; }
-  .rooms__room img { width: 168px; }
-  .rooms__rooms--single .rooms__room img { width: 200px; }
+  .rooms__grid { gap: 32px 24px; }
 }
 
-/* Mobile: the heading line stops being a line, and the room strip becomes a
-   snap-scrolling rail. At 70% of the width the next card peeks in, which is
-   what tells the reader there is more to swipe — with a single room there is
-   nothing to reveal, so that one fills the width instead of implying a
-   second card that does not exist. */
+/* Mobile: one column, and a squatter photo so a card still fits its price
+   and hotel list on screen together. */
 @media (max-width: 767px) {
   .rooms { padding: 0 16px 56px; }
-  .rooms__tier-head { display: block; }
-  .rooms__price { text-align: left; margin-top: 4px; }
-  .rooms__price-unit { text-align: left; }
-
-  .rooms__rooms {
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 16px;
-    scrollbar-width: none;
-  }
-  .rooms__rooms::-webkit-scrollbar { display: none; }
-  .rooms__room {
-    flex: 0 0 auto;
-    width: 70%;
-    scroll-snap-align: start;
-  }
-  .rooms__rooms--single .rooms__room { width: 100%; }
-  .rooms__room img,
-  .rooms__rooms--single .rooms__room img { width: 100%; }
+  .rooms__grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .rooms__media { aspect-ratio: 3 / 2; }
+  .rooms__body { padding: 20px; }
+  /* Only a genuinely long name drops the price beneath it; the class is set
+     in JS, since CSS cannot ask how long a string is. */
+  .rooms__card--stacked .rooms__head { display: block; }
+  .rooms__card--stacked .rooms__price-amount,
+  .rooms__card--stacked .rooms__price-unit { text-align: left; }
+  .rooms__card--stacked .rooms__price { margin-top: 4px; }
 }
 
 /* --- Lightbox ----------------------------------------------------------
@@ -1772,7 +1808,8 @@ html.has-lightbox { overflow: hidden; }
   <section class="rooms">
     <h2 class="rooms__title">Rooms pricing</h2>
     <div class="rooms__inner">
-      <div class="rooms__table" id="rooms-table"></div>
+      <div class="rooms__grid" id="rooms-grid"></div>
+      <button class="rooms__cta" type="button">Reserve your space</button>
     </div>
   </section>
 
@@ -2162,63 +2199,112 @@ html.has-lightbox { overflow: hidden; }
   })();
 
   /* Rooms pricing --------------------------------------------------------
-     Data first, render second. A tier holds one room per hotel, in the same
-     order as HOTELS, so a retreat with three houses shows the same tier three
-     times side by side. Swapping these two arrays is the whole per-retreat
-     edit. Runs after the lightbox so dlg.openGallery exists. */
+     Data first, render second. A tier is priced once, per person, and lists
+     the hotels that offer it; the tier's lightbox gallery is every hotel's
+     photos end to end, so a reader who opens one hotel can keep going
+     through the rest of that tier without closing anything. Swapping TIERS
+     is the whole per-retreat edit. Runs after the lightbox so
+     dlg.openGallery exists. */
   (function () {
-    var HOTELS = ['Northern Light Inn', 'Fosshotel Glacier Lagoon', 'Turf Guesthouse & Horse Farm (Hella)'];
-
-    /* PLACEHOLDER prices, copy and photos. Room counts follow the
-       Accommodations text (five private queens, three shared twins); the
-       images reuse hotel photos because no per-room shots exist in the repo
-       yet. Each room carries its own gallery for the lightbox. */
+    /* Prices and room types come from the retreat's own page. The turf
+       guesthouse is a single shared night for the whole group, so it carries
+       the same individual-bed row in every tier. Only four room photos are
+       published, so the rest reuse hotel shots. */
     var TIERS = [
       {
         name: 'King Deluxe',
-        desc: 'Spacious room with one king bed and private bathroom, in soft tones and Nordic d\u00e9cor.',
         priceUSD: 6995,
-        rooms: [
-          { hotel: HOTELS[0], image: 'images/iceland/room-nli-king.jpg', gallery: ['images/iceland/room-nli-king.jpg', 'images/iceland/hotel1-2.jpg', 'images/iceland/hotel1-3.jpg'] },
-          { hotel: HOTELS[1], image: 'images/iceland/room-foss-king.jpg', gallery: ['images/iceland/room-foss-king.jpg', 'images/iceland/hotel2-2.jpg', 'images/iceland/hotel2-3.jpg'] },
-          { hotel: HOTELS[2], image: 'images/iceland/hotel3-2.jpg', gallery: ['images/iceland/hotel3-2.jpg', 'images/iceland/hotel3-6.jpg', 'images/iceland/hotel3-7.jpg'] }
+        hotels: [
+          {
+            name: 'Northern Light Inn',
+            attrs: { bed: 'King', bath: 'Private', view: 'Lava fields' },
+            gallery: ['images/iceland/room-nli-king.jpg', 'images/iceland/hotel1-2.jpg', 'images/iceland/hotel1-3.jpg']
+          },
+          {
+            name: 'Fosshotel Glacier Lagoon',
+            attrs: { bed: 'King', bath: 'Private', view: 'Mountain' },
+            gallery: ['images/iceland/room-foss-king.jpg', 'images/iceland/hotel2-2.jpg', 'images/iceland/hotel2-3.jpg']
+          },
+          {
+            name: 'Turf Guesthouse & Horse Farm (Hella)',
+            attrs: { bed: 'Individual', bath: 'Shared' },
+            gallery: ['images/iceland/hotel3-2.jpg', 'images/iceland/hotel3-6.jpg', 'images/iceland/hotel3-7.jpg']
+          }
         ]
       },
       {
         name: 'Twin Deluxe',
-        desc: 'Two separate twin beds, ideal for shared occupancy, with private bathroom and volcanic views.',
         priceUSD: 5995,
-        rooms: [
-          { hotel: HOTELS[0], image: 'images/iceland/room-nli-twin.jpg', gallery: ['images/iceland/room-nli-twin.jpg', 'images/iceland/hotel1-2.jpg', 'images/iceland/hotel1-3.jpg'] },
-          { hotel: HOTELS[1], image: 'images/iceland/room-foss-king.jpg', gallery: ['images/iceland/room-foss-king.jpg', 'images/iceland/hotel2-2.jpg', 'images/iceland/hotel2-3.jpg'] },
-          { hotel: HOTELS[2], image: 'images/iceland/hotel3-3.jpg', gallery: ['images/iceland/hotel3-3.jpg', 'images/iceland/hotel3-6.jpg', 'images/iceland/hotel3-7.jpg'] }
+        hotels: [
+          {
+            name: 'Northern Light Inn',
+            attrs: { bed: 'Twin', bath: 'Private', view: 'Volcanic' },
+            gallery: ['images/iceland/room-nli-twin.jpg', 'images/iceland/hotel1-4.jpg', 'images/iceland/hotel1-5.jpg']
+          },
+          {
+            name: 'Fosshotel Glacier Lagoon',
+            attrs: { bed: 'Twin', bath: 'Private', view: 'Sea' },
+            gallery: ['images/iceland/room-foss-king.jpg', 'images/iceland/hotel2-4.jpg', 'images/iceland/hotel2-5.jpg']
+          },
+          {
+            name: 'Turf Guesthouse & Horse Farm (Hella)',
+            attrs: { bed: 'Individual', bath: 'Shared' },
+            gallery: ['images/iceland/hotel3-3.jpg', 'images/iceland/hotel3-6.jpg', 'images/iceland/hotel3-8.jpg']
+          }
         ]
       },
       {
         name: 'Double Shared',
-        desc: 'Two individual beds in a shared setup, bright and comfortable for guests sharing the retreat.',
         priceUSD: 5995,
-        rooms: [
-          { hotel: HOTELS[0], image: 'images/iceland/hotel1-4.jpg', gallery: ['images/iceland/hotel1-4.jpg', 'images/iceland/hotel1-2.jpg', 'images/iceland/hotel1-3.jpg'] },
-          { hotel: HOTELS[1], image: 'images/iceland/room-foss-triple.jpg', gallery: ['images/iceland/room-foss-triple.jpg', 'images/iceland/hotel2-2.jpg', 'images/iceland/hotel2-3.jpg'] },
-          { hotel: HOTELS[2], image: 'images/iceland/hotel3-4.jpg', gallery: ['images/iceland/hotel3-4.jpg', 'images/iceland/hotel3-6.jpg', 'images/iceland/hotel3-7.jpg'] }
+        hotels: [
+          {
+            name: 'Northern Light Inn',
+            attrs: { bed: 'Twin', bath: 'Shared' },
+            gallery: ['images/iceland/hotel1-6.jpg', 'images/iceland/hotel1-7.jpg', 'images/iceland/hotel1-8.jpg']
+          },
+          {
+            name: 'Fosshotel Glacier Lagoon',
+            attrs: { bed: 'Twin', bath: 'Private', view: 'Mountain' },
+            gallery: ['images/iceland/room-foss-triple.jpg', 'images/iceland/hotel2-6.jpg', 'images/iceland/hotel2-7.jpg']
+          },
+          {
+            name: 'Turf Guesthouse & Horse Farm (Hella)',
+            attrs: { bed: 'Individual', bath: 'Shared' },
+            gallery: ['images/iceland/hotel3-4.jpg', 'images/iceland/hotel3-5.jpg', 'images/iceland/hotel3-7.jpg']
+          }
         ]
       },
       {
         name: 'Triple Shared',
-        desc: 'Three individual beds in warm Nordic design \u2014 the most affordable way to travel with us.',
         priceUSD: 5995,
-        rooms: [
-          { hotel: HOTELS[0], image: 'images/iceland/hotel1-6.jpg', gallery: ['images/iceland/hotel1-6.jpg', 'images/iceland/hotel1-2.jpg', 'images/iceland/hotel1-3.jpg'] },
-          { hotel: HOTELS[1], image: 'images/iceland/room-foss-triple.jpg', gallery: ['images/iceland/room-foss-triple.jpg', 'images/iceland/hotel2-2.jpg', 'images/iceland/hotel2-3.jpg'] },
-          { hotel: HOTELS[2], image: 'images/iceland/hotel3-5.jpg', gallery: ['images/iceland/hotel3-5.jpg', 'images/iceland/hotel3-6.jpg', 'images/iceland/hotel3-7.jpg'] }
+        hotels: [
+          {
+            name: 'Northern Light Inn',
+            attrs: { bed: 'Twin', bath: 'Shared' },
+            gallery: ['images/iceland/hotel1-8.jpg', 'images/iceland/hotel1-2.jpg', 'images/iceland/hotel1-3.jpg']
+          },
+          {
+            name: 'Fosshotel Glacier Lagoon',
+            attrs: { bed: 'Twin', bath: 'Private' },
+            gallery: ['images/iceland/room-foss-triple.jpg', 'images/iceland/hotel2-8.jpg', 'images/iceland/hotel2-2.jpg']
+          },
+          {
+            name: 'Turf Guesthouse & Horse Farm (Hella)',
+            attrs: { bed: 'Individual', bath: 'Shared' },
+            gallery: ['images/iceland/hotel3-5.jpg', 'images/iceland/hotel3-6.jpg', 'images/iceland/hotel3-8.jpg']
+          }
         ]
       }
     ];
 
-    var tableEl = document.getElementById('rooms-table');
+    /* A name past this many characters is the one that cannot share a line
+       with the price on a narrow screen. Purely a mobile concern; the class
+       it sets is only honoured under 767px. */
+    var LONG_NAME = 34;
+
+    var gridEl = document.getElementById('rooms-grid');
     var dlg = document.querySelector('.lightbox');
-    if (!tableEl) return;
+    if (!gridEl) return;
 
     function el(tag, cls, text) {
       var n = document.createElement(tag);
@@ -2227,41 +2313,78 @@ html.has-lightbox { overflow: hidden; }
       return n;
     }
 
+    function open(gallery, start) {
+      if (dlg && dlg.openGallery && gallery.length) dlg.openGallery(gallery, start);
+    }
+
     TIERS.forEach(function (tier) {
-      var block = el('div', 'rooms__tier');
+      var hotels = tier.hotels || [];
+      var card = el('article', 'rooms__card');
+      if (tier.name.length > LONG_NAME) card.classList.add('rooms__card--stacked');
 
-      var head = el('div', 'rooms__tier-head');
-      var text = el('div', 'rooms__tier-text');
-      text.appendChild(el('h3', 'rooms__tier-name', tier.name));
-      text.appendChild(el('p', 'rooms__tier-desc', tier.desc));
-      head.appendChild(text);
+      /* The tier's gallery, flat, plus the index each hotel starts at — so a
+         thumbnail can open the shared gallery already on its own photos. */
+      var gallery = [];
+      var offsets = hotels.map(function (hotel) {
+        var at = gallery.length;
+        gallery = gallery.concat(hotel.gallery || []);
+        return at;
+      });
 
+      if (gallery.length) {
+        var media = el('img', 'rooms__media');
+        media.src = gallery[0];
+        media.alt = tier.name;
+        media.loading = 'lazy';
+        media.addEventListener('click', function () { open(gallery, 0); });
+        card.appendChild(media);
+      }
+
+      var body = el('div', 'rooms__body');
+
+      var head = el('div', 'rooms__head');
+      head.appendChild(el('h3', 'rooms__tier-name', tier.name));
       var price = el('div', 'rooms__price');
       price.appendChild(el('p', 'rooms__price-amount', tier.priceUSD.toLocaleString('en-US') + ' USD'));
       price.appendChild(el('p', 'rooms__price-unit', 'per person'));
       head.appendChild(price);
-      block.appendChild(head);
+      body.appendChild(head);
 
-      var rooms = tier.rooms || [];
-      var strip = el('div', 'rooms__rooms');
-      if (rooms.length === 1) strip.classList.add('rooms__rooms--single');
+      var list = el('div', 'rooms__hotels');
+      hotels.forEach(function (hotel, hi) {
+        var row = el('div', 'rooms__hotel');
 
-      rooms.forEach(function (room) {
-        var fig = el('figure', 'rooms__room');
-        var img = el('img');
-        img.src = room.image;
-        img.alt = tier.name + ' \u2014 ' + room.hotel;
-        img.loading = 'lazy';
-        img.addEventListener('click', function () {
-          if (dlg && dlg.openGallery) dlg.openGallery(room.gallery && room.gallery.length ? room.gallery : [room.image], 0);
-        });
-        fig.appendChild(img);
-        fig.appendChild(el('figcaption', null, room.hotel));
-        strip.appendChild(fig);
+        if (hotel.gallery && hotel.gallery.length) {
+          var thumb = el('img', 'rooms__thumb');
+          thumb.src = hotel.gallery[0];
+          thumb.alt = hotel.name + ' — ' + tier.name;
+          thumb.loading = 'lazy';
+          thumb.addEventListener('click', function () { open(gallery, offsets[hi]); });
+          row.appendChild(thumb);
+        }
+
+        var text = el('div', 'rooms__hotel-text');
+        text.appendChild(el('p', 'rooms__hotel-name', hotel.name));
+
+        var attrs = hotel.attrs || {};
+        var chips = [
+          attrs.bed && attrs.bed + ' bed',
+          attrs.bath && attrs.bath + ' bath',
+          attrs.view && attrs.view + ' view'
+        ].filter(Boolean);
+        if (chips.length) {
+          var chipRow = el('div', 'rooms__chips');
+          chips.forEach(function (label) { chipRow.appendChild(el('span', 'rooms__chip', label)); });
+          text.appendChild(chipRow);
+        }
+
+        row.appendChild(text);
+        list.appendChild(row);
       });
+      body.appendChild(list);
 
-      block.appendChild(strip);
-      tableEl.appendChild(block);
+      card.appendChild(body);
+      gridEl.appendChild(card);
     });
   })();
 
