@@ -324,6 +324,60 @@ main { padding-top: 0; }
 }
 .retreat-teacher__text p { margin: 0; }
 
+/* --- Tabs (shared component) -------------------------------------------
+   Includes and Accommodations were two near-identical copies of this, and
+   the listing page uses the same pattern. The bar HUGS its tabs, so the
+   hairline ends exactly where the tabs end instead of running past them,
+   and the active tab's 2px indicator sits on that hairline. */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+  border-bottom: 1px solid var(--stone-400);
+}
+.tabs__item {
+  position: relative;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 24px;
+  letter-spacing: 0.48px;
+  text-transform: uppercase;
+  color: var(--sea-blue-100);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.tabs__item.is-active { color: var(--sea-blue); }
+.tabs__item.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 2px;
+  background: var(--sea-blue);
+}
+.tabs__item:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
+
+/* Two equal slots: the labels are short and never change (Includes). */
+.tabs--fixed .tabs__item { width: 216px; gap: 16px; white-space: nowrap; }
+/* Labels are names of arbitrary length (Accommodations), so the tabs hug
+   their text and the row wraps instead of clipping. */
+.tabs--hug { gap: 10px; }
+.tabs--hug .tabs__item { min-width: 216px; }
+
+@media (max-width: 767px) {
+  .tabs--fixed { width: 100%; }
+  .tabs--fixed .tabs__item { width: auto; flex: 1 1 0; padding: 12px 8px; }
+}
+@media (max-width: 480px) {
+  .tabs--hug .tabs__item { min-width: 0; padding: 12px 8px; }
+}
+
 /* --- Includes (node "Includes" · 1440x759 bg photo + white card) ------- */
 .retreat-includes {
   position: relative;
@@ -370,37 +424,6 @@ main { padding-top: 0; }
   color: var(--sea-blue);
   text-align: center;
 }
-.retreat-includes__tabs {
-  display: flex;
-  border-bottom: 1px solid var(--stone-400);   /* full-width hairline; per-tab indicator below */
-}
-.retreat-includes__tab {
-  position: relative;
-  width: 216px;
-  padding: 12px 24px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 16px;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 24px;
-  letter-spacing: 0.48px;
-  text-transform: uppercase;
-  color: var(--sea-blue-100);
-  white-space: nowrap;
-}
-.retreat-includes__tab.is-active { color: var(--sea-blue); }
-.retreat-includes__tab.is-active::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; bottom: -1px;
-  height: 2px;
-  background: var(--sea-blue);
-}
-.retreat-includes__tab:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
-
 /* --- Rooms pricing -----------------------------------------------------
    One card per tier, in a two-up grid. A card is self-contained — photo,
    name, price, and the hotels that offer that tier — so the module reads
@@ -706,40 +729,6 @@ html.has-lightbox { overflow: hidden; }
    width hugs instead of sitting at 216 — hotel names are far longer than
    "What Includes" and would be clipped. Wraps and centres, so a retreat with
    three hotels needs no new rule. */
-.retreat-accom__tabs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-  max-width: 912px;   /* the hairline lines up with the gallery below it */
-  border-bottom: 1px solid var(--stone-400);
-}
-.retreat-accom__tab {
-  position: relative;
-  min-width: 216px;
-  padding: 12px 24px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 24px;
-  letter-spacing: 0.48px;
-  text-transform: uppercase;
-  color: var(--sea-blue-100);
-}
-.retreat-accom__tab.is-active { color: var(--sea-blue); }
-.retreat-accom__tab.is-active::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; bottom: -1px;
-  height: 2px;
-  background: var(--sea-blue);
-}
-.retreat-accom__tab:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
-
 /* The section is a centred flex column, so this wrapper would otherwise
    shrink to its widest child (the 745px copy) and take the slider with it. */
 .retreat-accom__panels { width: 100%; }
@@ -1191,7 +1180,6 @@ html.has-lightbox { overflow: hidden; }
      stops being a nowrap 216px chip and is allowed to wrap. And the copy
      drops out of justified: at ~50 characters a line, justification without
      hyphenation opens rivers of white space between words. */
-  .retreat-accom__tab { min-width: 0; padding: 12px 8px; }
   .retreat-accom__text p { text-align: left; }
   .retreat-itinerary__label { line-height: 16px; }
   .retreat-itinerary__slider { aspect-ratio: 81 / 49; }   /* 448 × 271 at 480 */
@@ -1221,8 +1209,6 @@ html.has-lightbox { overflow: hidden; }
      the narrower phone breakpoint below. */
   .retreat-includes { height: auto; padding: 40px 24px; }
   .retreat-includes__card { width: 100%; padding: 24px; }
-  .retreat-includes__tabs { width: 100%; }
-  .retreat-includes__tab { width: auto; flex: 1 1 0; padding: 12px 8px; }
 }
 
 /* Hero image crop: a DIFFERENT, narrower breakpoint than the 767px nav/layout
@@ -1380,9 +1366,9 @@ html.has-lightbox { overflow: hidden; }
     <div class="retreat-includes__card">
       <h2 class="retreat-includes__title">Includes</h2>
 
-      <div class="retreat-includes__tabs" role="tablist" aria-label="Includes">
-        <button class="retreat-includes__tab is-active" data-panel="includes" role="tab" aria-selected="true">What Includes</button>
-        <button class="retreat-includes__tab" data-panel="not-included" role="tab" aria-selected="false">What&rsquo;s Not Included</button>
+      <div class="tabs tabs--fixed retreat-includes__tabs" role="tablist" aria-label="Includes">
+        <button class="tabs__item retreat-includes__tab is-active" data-panel="includes" role="tab" aria-selected="true">What Includes</button>
+        <button class="tabs__item retreat-includes__tab" data-panel="not-included" role="tab" aria-selected="false">What&rsquo;s Not Included</button>
       </div>
 
       <div class="retreat-includes__panels">
@@ -1704,7 +1690,7 @@ html.has-lightbox { overflow: hidden; }
        ========================================================= -->
   <section class="retreat-accom">
     <h2 class="retreat-accom__title">Accommodations</h2>
-    <div class="retreat-accom__tabs" role="tablist" aria-label="Accommodations"></div>
+    <div class="tabs tabs--hug retreat-accom__tabs" role="tablist" aria-label="Accommodations"></div>
     <div class="retreat-accom__panels"></div>
   </section>
 
@@ -1949,7 +1935,7 @@ html.has-lightbox { overflow: hidden; }
       var id = 'accom-' + i;
 
       var tab = document.createElement('button');
-      tab.className = 'retreat-accom__tab' + (i === 0 ? ' is-active' : '');
+      tab.className = 'tabs__item retreat-accom__tab' + (i === 0 ? ' is-active' : '');
       tab.setAttribute('role', 'tab');
       tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
       tab.setAttribute('aria-controls', id);
