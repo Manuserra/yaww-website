@@ -748,6 +748,97 @@ main { padding-top: 0; }
   .rooms__card--stacked .rooms__price { margin-top: 4px; }
 }
 
+/* --- Optional Extras ---------------------------------------------------
+   Tabs pick the extra; the panel is text on the left, gallery on the right.
+   On the 12-column grid that is 5 + 7: 552 + 48 + 792 = 1392, the same
+   content width the rest of the page uses. */
+.extras {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 56px 24px;
+  background: var(--stone);
+}
+.extras__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+  color: var(--sea-blue);
+  text-align: center;
+}
+.extras__panels { width: 100%; max-width: 1392px; }
+/* Same reason as the accommodations panels: the panel's own display would
+   beat the user agent's [hidden] and every extra would render at once. */
+.extras__panel[hidden] { display: none; }
+.extras__panel {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 48px;
+  align-items: start;
+  margin-top: 16px;   /* 40 from the section gap + 16 = the 56 in the spec */
+}
+.extras__text { grid-column: 1 / span 5; }
+.extras__media { grid-column: 6 / span 7; }
+.extras__name {
+  margin: 0 0 24px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--sea-blue);
+}
+.extras__desc {
+  margin: 0 0 24px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue);
+}
+/* Same price treatment as the room cards, laid on one line because the
+   column is wide enough to carry it. */
+.extras__price {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.extras__price-amount {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+  color: var(--sea-blue);
+  white-space: nowrap;
+}
+.extras__price-unit {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sea-blue-200);
+}
+/* The source photos are 1378x833, so the box keeps their ratio and nothing
+   is cropped. */
+.extras__slider { width: 100%; aspect-ratio: 28 / 17; }
+.extras__slider .photo-slider__slide img { cursor: zoom-in; }
+
+@media (max-width: 1024px) {
+  .extras__panel { grid-template-columns: minmax(0, 1fr); row-gap: 32px; }
+  /* Photo first on a narrow screen: it is what tells you what the extra is. */
+  .extras__media { grid-column: 1; grid-row: 1; }
+  .extras__text  { grid-column: 1; grid-row: 2; }
+}
+@media (max-width: 767px) {
+  .extras { padding: 56px 16px; }
+  .extras__name { font-size: 20px; line-height: 28px; }
+}
+
 /* --- Lightbox ----------------------------------------------------------
    Built on <dialog>, not a hand-rolled overlay: the browser gives the focus
    trap, Esc to close, inertness of the page behind and focus restored to the
@@ -1875,6 +1966,16 @@ html.has-lightbox { overflow: hidden; }
     </div>
   </section>
 
+
+  <!-- =========================================================
+       OPTIONAL EXTRAS (tabs + gallery) — rendered from JS
+       ========================================================= -->
+  <section class="extras">
+    <h2 class="extras__title">Optional Extras</h2>
+    <div class="tabs tabs--hug extras__tabs" role="tablist" aria-label="Optional extras"></div>
+    <div class="extras__panels"></div>
+  </section>
+
   <dialog class="lightbox" aria-label="Photo viewer">
     <div class="lightbox__frame">
       <img class="lightbox__img" alt="">
@@ -2145,6 +2246,100 @@ html.has-lightbox { overflow: hidden; }
           b.setAttribute('aria-selected', on ? 'true' : 'false');
         });
         panelsEl.querySelectorAll('.retreat-accom__panel').forEach(function (pn, pi) { pn.hidden = pi !== i; });
+      });
+    });
+  })();
+
+  /* Optional Extras -------------------------------------------------------
+     One tab per extra, each with its own gallery, copy and price. Runs
+     before the lightbox so its sliders get the [data-lightbox] hook, and
+     before the slider loop so arrows and dots get wired. */
+  (function () {
+    var EXTRAS = [
+      {
+        name: 'Excursion to Las Coloradas',
+        desc: 'Excursion to Las Coloradas to see flamingos and pink lagoons; dip in a secluded beach &amp; lunch at a local fish joint.',
+        price: '155 USD', unit: 'per person',
+        gallery: ['images/extra1-1.jpg', 'images/extra1-2.jpg', 'images/extra1-3.jpg']
+      },
+      {
+        name: 'Kayaking in Nature',
+        desc: 'Excursion to our local nature preserve to kayak amongst the mangroves and lily pads. A true nature bath experience.',
+        price: '85 USD', unit: 'per person',
+        gallery: ['images/extra2-1.jpg', 'images/extra2-2.jpg']
+      },
+      {
+        name: 'Yucatan Peninsula day trip',
+        desc: 'Yucatan Peninsula day trip: Ruins of Ek Balam, cenote swim, lunch &amp; colonial city of Valladolid. *Minimum participation of 4 guests to host the excursion.',
+        price: '195 USD', unit: 'per person',
+        gallery: ['images/extra3-1.jpg', 'images/extra3-2.jpg', 'images/extra3-3.jpg']
+      },
+      {
+        name: 'Massages',
+        desc: 'Additional 75 minute massages.',
+        price: '140 USD', unit: 'each',
+        gallery: ['images/extra4-1.jpg', 'images/extra4-2.jpg']
+      }
+    ];
+
+    var tabsEl = document.querySelector('.extras__tabs');
+    var panelsEl = document.querySelector('.extras__panels');
+    if (!tabsEl || !panelsEl) return;
+
+    var PREV = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>';
+    var NEXT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>';
+
+    EXTRAS.forEach(function (x, i) {
+      var id = 'extra-' + i;
+
+      var tab = document.createElement('button');
+      tab.className = 'tabs__item extras__tab' + (i === 0 ? ' is-active' : '');
+      tab.type = 'button';
+      tab.setAttribute('role', 'tab');
+      tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+      tab.setAttribute('aria-controls', id);
+      tab.textContent = x.name;
+      tabsEl.appendChild(tab);
+
+      var panel = document.createElement('div');
+      panel.className = 'extras__panel';
+      panel.id = id;
+      panel.setAttribute('role', 'tabpanel');
+      if (i !== 0) panel.hidden = true;
+      panel.innerHTML =
+        '<div class="extras__text">' +
+          '<h3 class="extras__name">' + x.name + '</h3>' +
+          '<p class="extras__desc">' + x.desc + '</p>' +
+          '<p class="extras__price">' +
+            '<span class="extras__price-amount">' + x.price + '</span>' +
+            '<span class="extras__price-unit">' + x.unit + '</span>' +
+          '</p>' +
+        '</div>' +
+        '<div class="extras__media">' +
+          '<div class="photo-slider extras__slider" data-lightbox role="group" aria-roledescription="carousel" aria-label="' + x.name + ' photos">' +
+            '<div class="photo-slider__track">' +
+              x.gallery.map(function (src, n) {
+                return '<div class="photo-slider__slide"><img src="' + src + '" alt="' + (n === 0 ? x.name : '') + '" loading="lazy"></div>';
+              }).join('') +
+            '</div>' +
+            '<button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">' + PREV + '</button>' +
+            '<button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">' + NEXT + '</button>' +
+            '<div class="photo-slider__dots">' +
+              x.gallery.map(function (_, n) {
+                return '<button class="photo-slider__dot' + (n === 0 ? ' is-active' : '') + '" aria-label="Photo ' + (n + 1) + '"></button>';
+              }).join('') +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      panelsEl.appendChild(panel);
+
+      tab.addEventListener('click', function () {
+        tabsEl.querySelectorAll('.extras__tab').forEach(function (b, bi) {
+          var on = bi === i;
+          b.classList.toggle('is-active', on);
+          b.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        panelsEl.querySelectorAll('.extras__panel').forEach(function (p, pi) { p.hidden = pi !== i; });
       });
     });
   })();
