@@ -711,6 +711,9 @@ html.has-lightbox { overflow: hidden; }
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
+  width: 100%;
+  max-width: 912px;   /* the hairline lines up with the gallery below it */
+  border-bottom: 1px solid var(--stone-400);
 }
 .retreat-accom__tab {
   position: relative;
@@ -731,7 +734,7 @@ html.has-lightbox { overflow: hidden; }
 .retreat-accom__tab.is-active::after {
   content: "";
   position: absolute;
-  left: 0; right: 0; bottom: 0;
+  left: 0; right: 0; bottom: -1px;
   height: 2px;
   background: var(--sea-blue);
 }
@@ -740,6 +743,9 @@ html.has-lightbox { overflow: hidden; }
 /* The section is a centred flex column, so this wrapper would otherwise
    shrink to its widest child (the 745px copy) and take the slider with it. */
 .retreat-accom__panels { width: 100%; }
+/* Without this the panel's own display wins over the user agent's
+   [hidden]{display:none} and every hotel renders at once. */
+.retreat-accom__panel[hidden] { display: none; }
 .retreat-accom__panel {
   display: flex;
   flex-direction: column;
