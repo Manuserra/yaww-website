@@ -1105,25 +1105,28 @@ main { padding-top: 0; }
   margin: 48px auto 0;
   pointer-events: none;
 }
+/* Both sit on one baseline and the mark grows upward from it, rather than
+   the two being centred on each other. Centred, the extra pixel splits above
+   and below and the hairline appears to pass through the mark; sharing a
+   floor makes the mark read as thickening of the same line. */
 .gallery__progress::before {
   content: "";
   position: absolute;
   inset-inline: 0;
-  top: 50%;
+  bottom: 0;
   height: 1px;
-  transform: translateY(-50%);
   background: #9A9A9A;
 }
 /* Same clock and curve as the rail, so the mark and the photographs read as
    one movement rather than two things that happen to start together. */
 .gallery__progress-bar {
   position: absolute;
-  top: 50%;
+  bottom: 0;
   left: 0;
   width: 0;
   height: 2px;
   background: var(--stone-600);
-  transform: translate(0, -50%);
+  transform: translateX(0);
   transition: transform .5s ease, width .5s ease;
 }
 .gallery__progress.is-jumping .gallery__progress-bar { transition: none; }
@@ -3267,11 +3270,13 @@ html.has-lightbox { overflow: hidden; }
       var x = n > 1 ? (idx / (n - 1)) * (railW - w) : 0;
       /* Coming back to the first photo is a jump, not a journey. Sliding the
          mark the whole way back would say the strip travelled backwards,
-         which is the opposite of what the press did. */
-      var wrapped = lastIdx !== null && Math.abs(idx - lastIdx) > 1;
+         which is the opposite of what the press did. The first draw counts
+         as one too: the mark should already be its size when the section
+         arrives, not grow into it. */
+      var wrapped = lastIdx === null || Math.abs(idx - lastIdx) > 1;
       if (wrapped) progress.classList.add('is-jumping');
       bar.style.width = w + 'px';
-      bar.style.transform = 'translate(' + x + 'px, -50%)';
+      bar.style.transform = 'translateX(' + x + 'px)';
       if (wrapped) { void bar.offsetWidth; progress.classList.remove('is-jumping'); }
       lastIdx = idx;
     }
