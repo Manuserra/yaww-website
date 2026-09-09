@@ -220,24 +220,61 @@ main { padding-top: 0; }
 }
 
 /* Frame 429: CTA buttons */
+.retreat-hero__ctas .btn { width: 286px; }
 .retreat-hero__ctas { display: flex; align-items: center; gap: 16px; }
-.retreat-btn {
+/* --- Button (shared component) -----------------------------------------
+   One pair for the whole site: filled primary, outlined secondary. Size and
+   width are layout, not identity, so each context sets its own — the hero
+   pins 286px, the booking rail goes full width.
+
+   The secondary used to be stone-400 text on the stone ground: 1.63:1,
+   against the 4.5:1 WCAG asks for at this size. It was legible as a shape
+   and almost not as words. It now carries the same sea-blue as the primary,
+   which measures 6.7:1, and the border does the work of telling the two
+   apart instead of the text being faded. */
+.btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  width: 286px;
-  height: 56px;
-  padding: 16px;
+  min-height: 56px;
+  padding: 16px 32px;
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 14px;
   line-height: 24px;
-  letter-spacing: 0.56px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  border-radius: 0;
+  cursor: pointer;
+  /* colour only — nothing that shifts layout or moves under the cursor */
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease;
 }
-.retreat-btn--primary { background: var(--sea-blue); color: var(--stone); }
-.retreat-btn--secondary { background: var(--stone); border: 1px solid var(--stone-400); color: var(--stone-400); }
-.retreat-btn:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
+.btn:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
+
+.btn--primary {
+  background: var(--sea-blue);
+  border-color: var(--sea-blue);
+  color: var(--stone);
+}
+/* Deepens rather than lightens: a filled button that pales on hover reads as
+   going disabled. */
+.btn--primary:hover  { background: var(--sea-blue-400); border-color: var(--sea-blue-400); }
+.btn--primary:active  { background: var(--sea-blue-500); border-color: var(--sea-blue-500); }
+
+.btn--secondary {
+  background: transparent;
+  border-color: var(--sea-blue);
+  color: var(--sea-blue);
+}
+/* Fills in on hover, so the pair swap roles under the cursor and the
+   feedback is unmistakable without any new colour entering the palette. */
+.btn--secondary:hover  { background: var(--sea-blue); color: var(--stone); }
+.btn--secondary:active { background: var(--sea-blue-500); border-color: var(--sea-blue-500); color: var(--stone); }
+
+@media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+
 
 /* --- About ------------------------------------------------ */
 .retreat-about {
@@ -544,6 +581,13 @@ main { padding-top: 0; }
   line-height: 22px;
   color: var(--sea-blue-200);
 }
+.rooms__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+.rooms__actions .btn { width: 100%; }
 .rooms__aside-fine {
   margin: 12px 0 0;
   font-family: var(--font-body);
@@ -682,25 +726,6 @@ main { padding-top: 0; }
 
 /* One CTA for the module, not one per card: the choice of tier is made in
    the grid, and four identical buttons would only add noise to it. */
-.rooms__cta {
-  display: block;
-  width: 100%;
-  margin: 24px 0 0;
-  font-family: var(--font-body);
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 16px 40px;
-  color: var(--sea-blue);
-  background: transparent;
-  border: 1px solid var(--sea-blue);
-  border-radius: 2px;
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-.rooms__cta:hover { background: var(--sea-blue); color: var(--stone-100); }
-.rooms__cta:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
 
 @media (min-width: 768px) and (max-width: 1024px) {
   .rooms__grid { gap: 32px 24px; }
@@ -1309,7 +1334,7 @@ html.has-lightbox { overflow: hidden; }
   .retreat-hero__title { font-size: 24px; line-height: 32px; }
   .retreat-hero__location { font-size: 18px; line-height: 24px; }
   .retreat-hero__ctas { flex-direction: column; width: 100%; }
-  .retreat-btn { width: 100%; }
+  .retreat-hero__ctas .btn { width: 100%; }
   .retreat-teacher__row { flex-direction: column; width: 100%; max-width: 884px; gap: 24px; }
   .retreat-teacher__photo {
     width: 100%;
@@ -1444,8 +1469,8 @@ html.has-lightbox { overflow: hidden; }
     </div>
 
     <div class="retreat-hero__ctas">
-      <button class="retreat-btn retreat-btn--primary">BOOK NOW</button>
-      <button class="retreat-btn retreat-btn--secondary">I WANT MORE INFO</button>
+      <button class="btn btn--primary" type="button">Book now</button>
+      <button class="btn btn--secondary" type="button">I want more info</button>
     </div>
   </section>
 
@@ -1941,8 +1966,10 @@ html.has-lightbox { overflow: hidden; }
              purpose rather than guessed: whether the deposit is refundable is
              material to the decision and must not be invented. -->
         <p class="rooms__aside-note">Sharing a room? Book together with your roommate. If you don&rsquo;t have one we&rsquo;ll pair you when we can &mdash; and if nobody is available, we&rsquo;ll move you to a private room.</p>
-        <button class="rooms__cta" type="button">Reserve your space</button>
-        <p class="rooms__aside-fine">Bookings and payments are handled through WeTravel.</p>
+        <div class="rooms__actions">
+          <button class="btn btn--primary" type="button">Reserve your space</button>
+          <button class="btn btn--secondary" type="button">I want more info</button>
+        </div>
       </aside>
     </div>
   </section>
