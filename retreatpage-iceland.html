@@ -801,28 +801,31 @@ main { padding-top: 0; }
 }
 .gallery__arrow svg { width: 14px; height: 14px; display: block; }
 @media (hover: hover) and (pointer: fine) {
-  .gallery__arrow:not(:disabled):hover {
+  .gallery__arrow:hover {
     background: var(--sea-blue);
     border-color: var(--sea-blue);
     color: var(--stone);
   }
 }
-/* Disabled rather than hidden: a control that vanishes at the end of the
-   strip makes the other one jump sideways. */
-.gallery__arrow:disabled { opacity: .35; cursor: default; }
 .gallery__arrow:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
 
-/* The side padding is what centres the opening pair (2 slides + gap) in the
-   viewport while still letting the third peek in — the composition in the
-   Figma frame. It never drops below the page's own 24px gutter. */
+/* The strip is endless (see the script), so it has no ends to pad and no
+   ends to run out of — there is always a photograph bleeding off both
+   edges, at any viewport width.
+
+   --edge is only where the first photo rests: the pair plus its gap centred
+   in the viewport, which is the Figma composition. The script measures it
+   and writes it back as a px value; the declaration here is the no-JS
+   fallback and the value snapping reads. It never goes below the page's own
+   gutter. */
 .gallery__track {
   --slide-w: clamp(280px, 44vw, 528px);
   --gap: 48px;
-  --edge: max(24px, calc((100% - (var(--slide-w) * 2 + var(--gap))) / 2));
+  --gutter: 24px;
+  --edge: max(var(--gutter), calc((100% - (var(--slide-w) * 2 + var(--gap))) / 2));
   display: flex;
   align-items: center;
   gap: var(--gap);
-  padding-inline: var(--edge);
   overflow-x: auto;
   overscroll-behavior-x: contain;
   /* Snap to the left slot, not to a slide's centre. The composition here is
@@ -867,7 +870,7 @@ main { padding-top: 0; }
    to say the strip continues. */
 @media (max-width: 767px) {
   .gallery { padding: 56px 0; }
-  .gallery__track { --slide-w: 78vw; --gap: 16px; --edge: 16px; }
+  .gallery__track { --slide-w: 78vw; --gap: 16px; --gutter: 16px; }
   .gallery__head { margin-bottom: 32px; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -2841,32 +2844,90 @@ html.has-lightbox { overflow: hidden; }
   });
 
   /* Gallery --------------------------------------------------------------
-     Three jobs: fade whatever the edges are cutting, drive the arrows, and
-     hand a click to the lightbox.
+     An endless strip. Three copies of the set are laid end to end, the
+     viewer is parked in the middle one, and scrollLeft is moved back by
+     exactly one set whenever they cross into an outer copy. The jump lands
+     on an identical photo at an identical offset, so there is nothing to
+     see: no first slide, no last slide, and never a bare margin at either
+     edge however wide the window gets.
 
-     The fade is measured, not guessed at — how much of each slide the
-     scrollport is actually showing. Squaring that fraction is the whole
-     design of it: a photo stays dim until it is nearly whole and then
-     resolves quickly, so the strip has a clear centre of attention and the
-     cropped edges read as "there is more this way" instead of as content
-     you are meant to be reading. A linear falloff leaves the edges too
-     present and the row goes flat.
+     A set is far wider than any viewport, so the wrap has a whole set of
+     slack on each side and can never be reached mid-gesture.
+
+     The other two jobs are fading whatever the edges are cutting, and
+     handing a click to the lightbox. The fade is measured, not guessed at:
+     how much of each slide the scrollport is actually showing. Squaring
+     that fraction is the whole design of it — a photo stays dim until it is
+     nearly whole and then resolves quickly, so the strip has a clear centre
+     of attention and the cropped edges read as "there is more this way"
+     instead of as content you are meant to be reading. A linear falloff
+     leaves the edges too present and the row goes flat.
 
      Runs last, so dlg.openGallery already exists. */
   (function () {
     var track = document.querySelector('.gallery__track');
     if (!track) return;
 
-    var slides = Array.prototype.slice.call(track.querySelectorAll('.gallery__slide'));
-    var imgs = slides.map(function (s) { return s.querySelector('img'); });
+    var originals = Array.prototype.slice.call(track.querySelectorAll('.gallery__slide'));
+    var n = originals.length;
+    if (!n) return;
+
     var prev = document.querySelector('.gallery__arrow--prev');
     var next = document.querySelector('.gallery__arrow--next');
     var dlg = document.querySelector('.lightbox');
-    if (!slides.length) return;
+    /* The lightbox is fed the originals only, so it counts 1 / 10 rather
+       than 1 / 30 and a click on a copy opens the photo it is a copy of. */
+    var photos = originals.map(function (s) { return s.querySelector('img'); });
+
+    // The copies are decoration: the photo is already in the tree once, and
+    // a screen reader should not be read the same ten captions three times.
+    function copy(before) {
+      var frag = document.createDocumentFragment();
+      originals.forEach(function (s) {
+        var c = s.cloneNode(true);
+        c.setAttribute('aria-hidden', 'true');
+        frag.appendChild(c);
+      });
+      if (before) track.insertBefore(frag, originals[0]);
+      else track.appendChild(frag);
+    }
+    copy(true);
+    copy(false);
+
+    var slides = Array.prototype.slice.call(track.querySelectorAll('.gallery__slide'));
+    var setW = 0;
+
+    function gap() { return parseFloat(getComputedStyle(track).columnGap) || 0; }
+
+    /* Where the first photo rests: the pair plus its gap centred in the
+       viewport, never tighter than the page gutter. Below 768 the pair does
+       not fit and this falls through to the gutter on its own. */
+    function edge() {
+      var sw = originals[0].getBoundingClientRect().width;
+      var gutter = parseFloat(getComputedStyle(track).getPropertyValue('--gutter')) || 24;
+      return Math.max(gutter, (track.clientWidth - (sw * 2 + gap())) / 2);
+    }
+
+    /* Measured off the DOM rather than computed from widths and gaps, so it
+       stays right whatever the breakpoints do to either. */
+    function recentre() {
+      var e = edge();
+      setW = slides[n].offsetLeft - slides[0].offsetLeft;
+      track.style.setProperty('--edge', e + 'px');
+      track.scrollLeft = setW - e;
+    }
+
+    function wrap() {
+      if (!setW) return;
+      var x = track.scrollLeft;
+      if (x < setW * 0.5) track.scrollLeft = x + setW;
+      else if (x > setW * 1.5) track.scrollLeft = x - setW;
+    }
 
     var queued = false;
     function paint() {
       queued = false;
+      wrap();
       var port = track.getBoundingClientRect();
       slides.forEach(function (s) {
         var b = s.getBoundingClientRect();
@@ -2875,10 +2936,6 @@ html.has-lightbox { overflow: hidden; }
         var t = Math.max(0, Math.min(1, shown / b.width));
         s.style.setProperty('--o', (0.28 + 0.72 * t * t).toFixed(3));
       });
-      // 1px of slack: sub-pixel scroll positions never land exactly on the end
-      var end = track.scrollWidth - track.clientWidth;
-      prev.disabled = track.scrollLeft <= 1;
-      next.disabled = track.scrollLeft >= end - 1;
     }
     function schedule() {
       if (queued) return;
@@ -2887,21 +2944,31 @@ html.has-lightbox { overflow: hidden; }
     }
 
     track.addEventListener('scroll', schedule, { passive: true });
-    window.addEventListener('resize', schedule);
+
+    /* Re-centre only when the width really changed. A ResizeObserver also
+       fires for things that must not throw the reader back to the start. */
+    var lastW = 0;
+    function relayout() {
+      if (track.clientWidth !== lastW) {
+        lastW = track.clientWidth;
+        recentre();
+      }
+      schedule();
+    }
+    window.addEventListener('resize', relayout);
     // held in a variable so it is not collected while the section is alive
     var ro = null;
-    if (window.ResizeObserver) { ro = new ResizeObserver(schedule); ro.observe(track); }
+    if (window.ResizeObserver) { ro = new ResizeObserver(relayout); ro.observe(track); }
     // the slides are aspect-ratio boxes, so layout is right before the photos
-    // arrive; this only corrects for a font/scrollbar shift
-    imgs.forEach(function (im) { im.addEventListener('load', schedule); });
+    // arrive; this only corrects for a font or scrollbar shift
+    slides.forEach(function (s) { s.querySelector('img').addEventListener('load', schedule); });
 
-    /* One slide plus one gap per press. Paging by the full viewport would
+    /* One photo plus one gap per press. Paging by the full viewport would
        skip past photos the reader has only half seen, which is exactly the
        ones the fade is inviting them towards. */
     function step(dir) {
-      var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
       track.scrollBy({
-        left: dir * (slides[0].getBoundingClientRect().width + gap),
+        left: dir * (originals[0].getBoundingClientRect().width + gap()),
         behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
       });
     }
@@ -2912,12 +2979,14 @@ html.has-lightbox { overflow: hidden; }
        It sizes itself from naturalWidth/Height, so opening a square slide
        gives back the full landscape frame it was cut from. */
     if (dlg && dlg.openGallery) {
-      imgs.forEach(function (im, i) {
-        im.addEventListener('click', function () { dlg.openGallery(imgs, i); });
+      slides.forEach(function (s, i) {
+        s.querySelector('img').addEventListener('click', function () {
+          dlg.openGallery(photos, i % n);
+        });
       });
     }
 
-    paint();
+    relayout();
   })();
 </script>
 
