@@ -929,8 +929,15 @@ main { padding-top: 0; }
   --slide-w: clamp(280px, 44vw, 528px);
   --gap: 48px;
   --gutter: 24px;
+  /* How many photos are whole at once. A layout decision, so it lives here
+     with the other layout tokens; the script only centres however many this
+     says, and drops one at a time if the width cannot hold them. */
+  --shown: 2;
   --edge: max(var(--gutter), calc((100% - (var(--slide-w) * 2 + var(--gap))) / 2));
   overflow: hidden;
+  /* The browser keeps vertical scrolling; horizontal gestures come to us.
+     Without this a swipe along the strip would be swallowed as a page pan. */
+  touch-action: pan-y;
 }
 
 /* 500ms is the reference's own pace and it is the point of the module: long
@@ -947,6 +954,10 @@ main { padding-top: 0; }
 /* The loop jump: one set backwards onto an identical photo. It must not be
    animated or it would rewind the whole strip in front of the reader. */
 .gallery__rail.is-jumping { transition: none; }
+/* Under the finger the rail must track it exactly — a transition here would
+   make the strip lag behind the drag. */
+.gallery__rail.is-dragging { transition: none; }
+.gallery__rail.is-dragging .gallery__slide { transition: none; }
 
 /* --r is the crop this photo is composed at.
 
@@ -978,6 +989,9 @@ main { padding-top: 0; }
   height: 100%;
   object-fit: cover;
   cursor: zoom-in;
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 @media (max-width: 1024px) {
@@ -990,7 +1004,7 @@ main { padding-top: 0; }
    there to say the strip keeps going both ways. */
 @media (max-width: 767px) {
   .gallery { padding: 56px 0; }
-  .gallery__track { --slide-w: 78vw; --gap: 16px; --gutter: 16px; }
+  .gallery__track { --slide-w: 78vw; --gap: 16px; --gutter: 16px; --shown: 1; }
   .gallery__head { margin-bottom: 32px; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -2946,12 +2960,12 @@ html.has-lightbox { overflow: hidden; }
   });
 
   /* Gallery --------------------------------------------------------------
-     An endless strip driven only by its arrows. Three copies of the set are
-     laid end to end on a rail, the reader is parked in the middle one, and
-     the rail is moved back by exactly one set whenever a press carries them
-     into an outer copy. The jump lands on an identical photo at an identical
-     offset, so there is nothing to see: no first photo, no last photo, and
-     never a bare margin at either edge however wide the window gets.
+     An endless strip. Three copies of the set are laid end to end on a rail,
+     the reader is parked in the middle one, and the rail is moved back by
+     exactly one set whenever they travel into an outer copy. The jump lands
+     on an identical photo at an identical offset, so there is nothing to
+     see: no first photo, no last photo, and never a bare margin at either
+     edge however wide the window gets.
 
      Everything visible is a function of one number — which photo the strip
      is resting on. The rail's transform and each photo's opacity are both
@@ -2996,34 +3010,43 @@ html.has-lightbox { overflow: hidden; }
     var moving = false;  // a press is mid-flight; ignore further presses
 
     function gap() { return parseFloat(getComputedStyle(rail).columnGap) || 0; }
-
-    /* Where the resting photo sits: whatever group of photos the width can
-       hold, centred. Above 768 that group is the pair from the Figma frame.
-       Below it the pair cannot fit, so the group becomes a single photo and
-       the same arithmetic centres it — which is what leaves the matching
-       sliver of a neighbour on each side rather than one fat margin. */
-    function edge() {
-      var sw = originals[0].getBoundingClientRect().width;
-      var gutter = parseFloat(getComputedStyle(track).getPropertyValue('--gutter')) || 24;
-      var w = track.clientWidth;
-      var pair = sw * 2 + gap();
-      return Math.max(gutter, (w - (pair <= w ? pair : sw)) / 2);
-    }
+    function slideW() { return slides[0].getBoundingClientRect().width; }
+    function pitch() { return slideW() + gap(); }
 
     // Distance along the rail to slide k. Measured off the DOM rather than
     // computed from widths and gaps, so it stays right whatever the
     // breakpoints do to either and nothing can accumulate.
     function along(k) { return slides[k].offsetLeft - slides[0].offsetLeft; }
+    function setSize() { return along(n); }
+
+    /* Where the resting group sits. How many photos are whole at once is a
+       layout decision, so it lives in the stylesheet as --shown and this only
+       centres however many that is — dropping one at a time if the width
+       cannot actually hold them, which is what makes the narrow end degrade
+       to a single centred photo with a sliver on each side rather than one
+       fat margin. */
+    function edge() {
+      var w = track.clientWidth;
+      var gutter = parseFloat(getComputedStyle(track).getPropertyValue('--gutter')) || 24;
+      var shown = parseFloat(getComputedStyle(track).getPropertyValue('--shown')) || 1;
+      var sw = slideW(), g = gap();
+      while (shown > 1 && shown * sw + (shown - 1) * g > w - gutter * 2) shown--;
+      return Math.max(gutter, (w - (shown * sw + (shown - 1) * g)) / 2);
+    }
+
+    function setX(x) { rail.style.transform = 'translate3d(' + x + 'px, 0, 0)'; }
+    function currentX() {
+      var m = /translate3d\((-?[\d.]+)px/.exec(rail.style.transform);
+      return m ? parseFloat(m[1]) : edge() - along(at);
+    }
 
     /* One render. The transform puts the resting photo at --edge, and every
        photo is then whole or not purely as a matter of where it landed —
-       two states, decided once per press, never a ramp. */
+       two states, decided once per move, never a ramp. */
     function render() {
-      var e = edge();
-      var w = track.clientWidth;
-      var sw = slides[0].getBoundingClientRect().width;
+      var e = edge(), w = track.clientWidth, sw = slideW();
       var x = e - along(at);
-      rail.style.transform = 'translate3d(' + x + 'px, 0, 0)';
+      setX(x);
       for (var k = 0; k < slides.length; k++) {
         var left = x + along(k);
         // half a pixel of slack: --edge is fractional at most widths
@@ -3041,13 +3064,17 @@ html.has-lightbox { overflow: hidden; }
       rail.classList.remove('is-jumping');
     }
 
-    /* Bring the resting photo back into the middle copy. The photo under it
-       is identical and it moves by exactly one set, so only the index really
-       changes. */
+    /* Bring the index back into the middle copy, carrying whatever the rail
+       is currently showing with it. Both move by exactly one set and the
+       photo underneath is identical, so the swap is invisible — including
+       part-way through a drag, which is why it shifts the live transform
+       rather than snapping to the canonical one. */
     function normalise() {
       if (at >= n && at < n * 2) return;
-      at = n + ((at % n) + n) % n;
-      silently(render);
+      var x = currentX();
+      var forward = at < n;
+      at += forward ? n : -n;
+      silently(function () { setX(x + (forward ? -setSize() : setSize())); });
     }
 
     var lastW = 0;
@@ -3057,23 +3084,16 @@ html.has-lightbox { overflow: hidden; }
       silently(render);
     }
 
-    /* One photo per press. Paging by the full viewport would skip past
-       photos the reader has only half seen, which is exactly the ones the
-       dimming is inviting them towards.
-
-       The press is refused while one is already running. Queueing them would
-       let a reader outrun the 500ms and land the strip somewhere no frame
-       was ever composed for. */
     var timer = null;
     function settle() {
       if (!moving) return;
       moving = false;
       normalise();
     }
-    function step(dir) {
-      if (moving) return;
+    function go(steps) {
       normalise();          // always start with a whole set of runway ahead
-      at += dir;
+      at += steps;
+      normalise();          // a long flick can overshoot the copy in one go
       moving = true;
       render();
       /* transitionend is the normal release. This is the one that has to
@@ -3082,6 +3102,18 @@ html.has-lightbox { overflow: hidden; }
          lock the strip for good. */
       clearTimeout(timer);
       timer = setTimeout(settle, 700);
+    }
+
+    /* One photo per press. Paging by the full viewport would skip past
+       photos the reader has only half seen, which is exactly the ones the
+       dimming is inviting them towards.
+
+       The press is refused while one is already running. Queueing them would
+       let a reader outrun the movement and land the strip somewhere no frame
+       was ever composed for. */
+    function step(dir) {
+      if (moving) return;
+      go(dir);
     }
     prev.addEventListener('click', function () { step(-1); });
     next.addEventListener('click', function () { step(1); });
@@ -3093,6 +3125,63 @@ html.has-lightbox { overflow: hidden; }
       if (e.target !== rail || e.propertyName !== 'transform') return;
       clearTimeout(timer);
       settle();
+    });
+
+    /* Dragging ----------------------------------------------------------
+       Touch and pen only. A phone that does not answer the finger reads as
+       broken, whatever the arrows do. A mouse is deliberately left out: on a
+       strip where clicking a photo opens it, a drag and a click are the same
+       gesture until it is too late to tell them apart — and on a desktop the
+       arrows are meant to be the way through.
+
+       The axis is decided once, on the first few pixels of movement, and a
+       gesture that turns out to be vertical is handed straight back to the
+       page. touch-action: pan-y in the stylesheet is the other half of that
+       deal: the browser keeps vertical scrolling and gives us the rest. */
+    var drag = null;
+    var AXIS = 6;      // px before the gesture commits to an axis
+    var FLICK = 40;    // px that count as a deliberate short flick
+
+    track.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'mouse' || moving) return;
+      drag = { x: e.clientX, y: e.clientY, base: currentX(), axis: null };
+    });
+
+    track.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      var dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+      if (drag.axis === null) {
+        if (Math.abs(dx) < AXIS && Math.abs(dy) < AXIS) return;
+        drag.axis = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y';
+        if (drag.axis === 'x') rail.classList.add('is-dragging');
+        else { drag = null; return; }
+      }
+      setX(drag.base + dx);
+    }, { passive: true });
+
+    function release(e) {
+      if (!drag) return;
+      var d = drag; drag = null;
+      rail.classList.remove('is-dragging');
+      if (d.axis !== 'x') return;
+      var dx = e.clientX - d.x;
+      // the click that follows this gesture belongs to the drag, not to the
+      // photo under the finger
+      rail.dataset.dragged = '1';
+      /* Round to whole photos, so letting go always lands on a composition.
+         A short flick that did not travel a full photo still counts as one:
+         the intent was unmistakable and refusing it feels like the strip is
+         stuck. */
+      var steps = Math.round(-dx / pitch());
+      if (!steps && Math.abs(dx) > FLICK) steps = dx < 0 ? 1 : -1;
+      go(steps);
+    }
+    track.addEventListener('pointerup', release);
+    track.addEventListener('pointercancel', function () {
+      if (!drag) return;
+      drag = null;
+      rail.classList.remove('is-dragging');
+      go(0);          // put the rail back where it was
     });
 
     window.addEventListener('resize', relayout);
@@ -3107,10 +3196,13 @@ html.has-lightbox { overflow: hidden; }
 
     /* The crop is the strip's composition; the lightbox is the photograph.
        It sizes itself from naturalWidth/Height, so opening a square slide
-       gives back the full landscape frame it was cut from. */
+       gives back the full landscape frame it was cut from. A photo that was
+       dragged is not a photo that was clicked, so a gesture that moved the
+       rail does not also open the viewer. */
     if (dlg && dlg.openGallery) {
       slides.forEach(function (s, i) {
         s.querySelector('img').addEventListener('click', function () {
+          if (rail.dataset.dragged === '1') { rail.dataset.dragged = '0'; return; }
           dlg.openGallery(photos, i % n);
         });
       });
