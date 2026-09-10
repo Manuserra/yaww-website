@@ -1915,7 +1915,9 @@ html.has-lightbox { overflow: hidden; }
   max-width: var(--container-max);
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 32px;
+  /* One gutter of the page grid, so each card lands on exactly four columns
+     (4x72 + 3x48 = 432) and this row lines up with the rooms cards below. */
+  gap: 48px;
 }
 
 .quote-card {
@@ -1978,7 +1980,7 @@ html.has-lightbox { overflow: hidden; }
 }
 @media (max-width: 767px) {
   .quotes { padding: 56px 16px; }
-  .quotes__grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .quotes__grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }   /* one column: no gutter to keep */
   .quote-card { padding: 24px; }
 }
 
@@ -4333,26 +4335,30 @@ html.has-lightbox { overflow: hidden; }
      ships, because a reader cannot tell it from a real one. The copy below
      is written to be obviously unusable for exactly that reason, while still
      running to the length a real quote would.
-     `photo: ''` renders the grey circle — drop in a URL to replace it. */
+
+     The faces are stock portraits off Unsplash's CDN, here so the layout can
+     be judged with photographs in it. They are strangers: shipping them beside
+     a name and a retreat date would be inventing a person, so they go out with
+     the quotes. Setting `photo` back to '' renders the grey circle instead. */
   (function () {
     var TESTIMONIALS = [
       {
         quote: 'Placeholder quote, to be replaced with a real guest’s words. This line runs to roughly the length a three-line testimonial occupies, so the card can be judged at the size it will actually be.',
         name: 'Guest name',
         detail: 'Retreat attended, month year',
-        photo: ''
+        photo: 'https://images.unsplash.com/photo-1623717217554-72ca676de535?w=128&h=128&fit=crop&crop=faces&q=80'
       },
       {
         quote: 'Placeholder quote, to be replaced. A shorter one, here to show that a card with less to say still keeps its name and detail level with the cards beside it.',
         name: 'Guest name',
         detail: 'Retreat attended, month year',
-        photo: ''
+        photo: 'https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?w=128&h=128&fit=crop&crop=faces&q=80'
       },
       {
         quote: 'Placeholder quote, to be replaced. This one is deliberately long enough to reach the four-line clamp and be cut off, which is what stops one talkative guest from setting the height of the whole row for everybody else.',
         name: 'Guest name',
         detail: 'Retreat attended, month year',
-        photo: ''
+        photo: 'https://images.unsplash.com/photo-1669689290695-7f0efe5d4c8e?w=128&h=128&fit=crop&crop=faces&q=80'
       }
     ];
 
