@@ -561,14 +561,13 @@ main { padding-top: 0; }
   top: 1px;
   width: 22px;
   height: 22px;
-  border-radius: 0;
-  border: 1px solid var(--stone-400);
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   font-family: var(--font-body);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
+  font-variant-numeric: tabular-nums;
   color: var(--sea-blue-200);
 }
 .rooms__steps strong {
@@ -1248,7 +1247,8 @@ main { padding-top: 0; }
   justify-content: center;
   padding: 0;
   background: transparent;
-  border: 1px solid var(--stone-400);
+  border: 0;
+  border-bottom: 1px solid var(--stone-400);
   color: var(--sea-blue);
   cursor: pointer;
   transition: background-color .18s ease, border-color .18s ease,
@@ -1522,11 +1522,11 @@ main { padding-top: 0; }
   width: 44px;
   height: 44px;
   border-radius: 0;
-  border: 1px solid var(--stone-400);
+  border: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--stone-100);
+  background: none;
   color: var(--sea-blue);
   cursor: pointer;
 }
@@ -1807,7 +1807,7 @@ html.has-lightbox { overflow: hidden; }
 .retreat-itinerary__dot {
   width: var(--rail-w);
   height: var(--rail-w);
-  border-radius: 0;
+  border-radius: 50%;
   border: 1px solid var(--stone-500);
   background: var(--stone);
   flex: none;
@@ -1870,11 +1870,16 @@ html.has-lightbox { overflow: hidden; }
    gallery. Only the box (size, flex, ratio) belongs to each module; the
    track, slides, arrows and dots live here and the JS binds to .photo-slider,
    so a new gallery is markup only. */
+/* A 40px strip under the frame carries the controls. Absolutely positioned
+   children resolve against the padding box, so the track keeps only the
+   picture area above it and not one line of markup had to move. */
 .photo-slider {
   position: relative;
   overflow: hidden;
-  background: var(--stone-200);
+  padding-bottom: 40px;
+  background: none;
 }
+.photo-slider__track { background: var(--stone-200); }
 .photo-slider__track {
   display: flex;
   width: 100%;
@@ -1889,38 +1894,31 @@ html.has-lightbox { overflow: hidden; }
    gradient overlay. */
 .photo-slider__arrow {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 36px;
-  height: 36px;
-  border-radius: 0;
+  bottom: 0;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--stone-100);
-  border: 1px solid var(--stone-400);
-  color: var(--sea-blue-500);
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--sea-blue);
   cursor: pointer;
-  opacity: 1;   /* touch/no-hover devices: always visible, see media query below */
+  transition: color .18s ease;
 }
-.photo-slider__arrow--prev { left: 12px; }
-.photo-slider__arrow--next { right: 12px; }
+.photo-slider__arrow:hover { color: var(--sea-blue-500); }
+.photo-slider__arrow--prev { left: auto; right: 32px; }
+.photo-slider__arrow--next { right: 0; }
 .photo-slider__arrow svg { width: 18px; height: 18px; display: block; }
 .photo-slider__arrow:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
 
 /* Arrows reveal on hover only on devices that actually have hover (mouse/
    trackpad) — on touch there's no hover state to reveal them, so they'd be
    permanently unreachable if hidden by default there. */
-@media (hover: hover) and (pointer: fine) {
-  .photo-slider__arrow {
-    opacity: 0;
-    transition: opacity 0.2s ease;
-  }
-  .photo-slider:hover .photo-slider__arrow,
-  .photo-slider__arrow:focus-visible {
-    opacity: 1;
-  }
-}
+/* No hover-reveal any more: off the photograph the controls are part of the
+   page, and something you have to touch the picture to discover is a worse
+   control than one that is simply there. */
 
 /* Dots: always visible (ref: Pinterest's carousel) — translucent white +
    a soft dark drop-shadow contrasts on its own against any photo, so no
@@ -1938,13 +1936,13 @@ html.has-lightbox { overflow: hidden; }
   width: 16px;
   height: 2px;
   border-radius: 0;
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--stone-400);
   border: 0;
   padding: 0;
   cursor: pointer;
   transition: all 150ms ease-out;
 }
-.photo-slider__dot.is-active { background: #fff; width: 24px; height: 2px; }
+.photo-slider__dot.is-active { background: var(--sea-blue); width: 24px; height: 2px; }
 .photo-slider__dot:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
 
 /* Itinerary — 768…1199: the 768 frame. The row becomes indicator + a single
