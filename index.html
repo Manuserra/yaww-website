@@ -673,6 +673,148 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* hero removed — tabs sit flush under the nav's bottom border */
 main { padding-top: 0; }
+
+/* --- Footer · Newsletter -----------------------------------------------
+   The footer is two modules stacked on one dark ground; this is the first.
+   The dark frame around the stone panel is not a border — it is the
+   wrapper's own background showing through its 24px padding, so the panel
+   keeps a hard edge and the inset holds at every width. */
+.site-footer { background: var(--sea-blue-500); }
+
+.newsletter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 24px;
+  background: var(--sea-blue-500);
+}
+.newsletter__panel {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 56px;
+  padding: 104px 24px;
+  background: var(--stone);
+}
+
+.newsletter__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  align-self: stretch;
+}
+.newsletter__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+  color: var(--sea-blue);
+  text-align: center;
+}
+.newsletter__text {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.56px;
+  color: var(--sea-blue);
+  text-align: center;
+}
+
+.newsletter__form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 48px;
+  max-width: 100%;
+}
+.newsletter__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 100%;
+}
+/* The design labels each field with its placeholder, which leaves a screen
+   reader nothing to announce — so the real label is present and hidden.
+   Absolute takes it out of the flex flow, so it adds no gap of its own. */
+.newsletter__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.newsletter__input {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  width: 498px;
+  max-width: 100%;
+  height: 40px;
+  padding: 12px 8px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.56px;
+  color: var(--sea-blue);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--sea-blue-300);
+  border-radius: 0;
+}
+/* opacity:1 because Firefox dims placeholders by default, which would put
+   the cue below the contrast the palette was picked for */
+.newsletter__input::placeholder {
+  color: var(--sea-blue-200);
+  text-transform: uppercase;
+  opacity: 1;
+}
+.newsletter__input:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
+
+.newsletter__submit {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 498px;
+  max-width: 100%;
+  padding: 16px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+  color: var(--stone);
+  background: var(--sea-blue);
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+}
+.newsletter__submit:hover { background: var(--sea-blue-400); }
+.newsletter__submit:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
+
+/* Mobile: the 498px field is wider than the screen, so the form stretches
+   and the panel gives back most of its vertical padding — at this width the
+   generous inset reads as an empty screen rather than as breathing room. */
+@media (max-width: 767px) {
+  .newsletter { padding: 16px; }
+  .newsletter__panel { gap: 40px; padding: 56px 16px; }
+  .newsletter__form { align-self: stretch; }
+  .newsletter__fields,
+  .newsletter__input,
+  .newsletter__submit { width: 100%; }
+}
 </style>
 </head>
 <body>
@@ -783,6 +925,28 @@ main { padding-top: 0; }
 
   </div>
 </main>
+
+<footer class="site-footer">
+  <!-- Newsletter — first of the footer's two modules -->
+  <section class="newsletter">
+    <div class="newsletter__panel">
+      <div class="newsletter__intro">
+        <h2 class="newsletter__title">Join our newsletter</h2>
+        <p class="newsletter__text">Sign up your email address to receive all the juicy updates.</p>
+      </div>
+
+      <form class="newsletter__form" novalidate>
+        <div class="newsletter__fields">
+          <label class="newsletter__label" for="nl-email">Your email</label>
+          <input class="newsletter__input" id="nl-email" name="email" type="email" placeholder="Your email" autocomplete="email">
+          <label class="newsletter__label" for="nl-name">First name</label>
+          <input class="newsletter__input" id="nl-name" name="first_name" type="text" placeholder="First name" autocomplete="given-name">
+        </div>
+        <button class="newsletter__submit" type="submit">Sign up</button>
+      </form>
+    </div>
+  </section>
+</footer>
 
 <script>
   // Mobile nav toggle
@@ -1072,6 +1236,14 @@ render();
     });
   })();
 
+
+  /* Newsletter ------------------------------------------------------------
+     No signup provider is wired up yet, and a bare submit would reload the
+     page with the subscriber's address sitting in the query string. Swallow
+     it until there is an endpoint to post to. */
+  document.querySelectorAll('.newsletter__form').forEach(function (form) {
+    form.addEventListener('submit', function (e) { e.preventDefault(); });
+  });
 </script>
 
 </body>
