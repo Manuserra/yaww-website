@@ -2072,6 +2072,100 @@ html.has-lightbox { overflow: hidden; }
   .retreat-includes { padding-inline: 0; }
 }
 
+/* --- Testimonials -------------------------------------------------------
+   The quote and the name are the proof, so nothing else competes: no stars,
+   no score, no drop shadow. A hairline card on the page's own stone is the
+   same construction the rooms cards use, which keeps this reading as part of
+   the page rather than as a widget dropped into it. */
+.quotes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 56px 24px;
+  background: var(--stone);
+}
+.quotes__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+  color: var(--sea-blue);
+  text-align: center;
+}
+.quotes__grid {
+  width: 100%;
+  max-width: var(--container-max);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+}
+
+.quote-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 0;
+  padding: 32px;
+  background: var(--stone-100);
+  border: 1px solid var(--stone-300);
+}
+/* The same stone-300 as the card's own rule, so a guest with no photo yet
+   reads as a considered blank rather than as a broken image. */
+.quote-card__photo {
+  align-self: flex-start;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--stone-300);
+}
+/* The heading face in italic — the same voice the hero uses for the place
+   name, which is where the page already speaks rather than labels. */
+.quote-card__quote {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 26px;
+  color: var(--sea-blue);
+  /* Four lines keeps three cards level with each other whatever length the
+     real quotes turn out to be. */
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+/* Pushed to the foot so the attributions line up across cards even when one
+   quote runs shorter than its neighbours. */
+.quote-card__by { margin: 0; margin-top: auto; }
+.quote-card__name {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--sea-blue);
+}
+.quote-card__detail {
+  margin: 2px 0 0;
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--sea-blue-200);
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .quotes__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 767px) {
+  .quotes { padding: 56px 16px; }
+  .quotes__grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .quote-card { padding: 24px; }
+}
+
 /* --- Sticky booking bar -------------------------------------------------
    A second home for the hero's CTA, shown only while the real one is off
    screen. It rides above the sticky header, because two bars stacked at the
@@ -2954,6 +3048,14 @@ html.has-lightbox { overflow: hidden; }
     <h2 class="retreat-accom__title">Accommodations</h2>
     <div class="tabs tabs--hug retreat-accom__tabs" role="tablist" aria-label="Accommodations"></div>
     <div class="retreat-accom__panels"></div>
+  </section>
+
+  <!-- =========================================================
+       TESTIMONIALS ("What guests say") — rendered from JS
+       ========================================================= -->
+  <section class="quotes">
+    <h2 class="quotes__title">What guests say</h2>
+    <div class="quotes__grid" id="quotes-grid"></div>
   </section>
 
   <!-- =========================================================
@@ -4456,6 +4558,72 @@ html.has-lightbox { overflow: hidden; }
     });
     io.observe(hero);
     io.observe(rooms);
+  })();
+
+  /* Testimonials ---------------------------------------------------------
+     TODO — all three entries are placeholders. Replace them with real guest
+     words, names and photos before this page goes anywhere public: an
+     invented testimonial is the one kind of placeholder that does harm if it
+     ships, because a reader cannot tell it from a real one. The copy below
+     is written to be obviously unusable for exactly that reason, while still
+     running to the length a real quote would.
+     `photo: ''` renders the grey circle — drop in a URL to replace it. */
+  (function () {
+    var TESTIMONIALS = [
+      {
+        quote: 'Placeholder quote, to be replaced with a real guest’s words. This line runs to roughly the length a three-line testimonial occupies, so the card can be judged at the size it will actually be.',
+        name: 'Guest name',
+        detail: 'Retreat attended, month year',
+        photo: ''
+      },
+      {
+        quote: 'Placeholder quote, to be replaced. A shorter one, here to show that a card with less to say still keeps its name and detail level with the cards beside it.',
+        name: 'Guest name',
+        detail: 'Retreat attended, month year',
+        photo: ''
+      },
+      {
+        quote: 'Placeholder quote, to be replaced. This one is deliberately long enough to reach the four-line clamp and be cut off, which is what stops one talkative guest from setting the height of the whole row for everybody else.',
+        name: 'Guest name',
+        detail: 'Retreat attended, month year',
+        photo: ''
+      }
+    ];
+
+    var grid = document.getElementById('quotes-grid');
+    if (!grid) return;
+
+    function el(tag, cls, text) {
+      var n = document.createElement(tag);
+      if (cls) n.className = cls;
+      if (text != null) n.textContent = text;
+      return n;
+    }
+
+    TESTIMONIALS.forEach(function (t) {
+      var card = el('figure', 'quote-card');
+
+      /* An <img> with no src is a broken image; the div is the same circle
+         without the alt text and the failed request. */
+      if (t.photo) {
+        var img = el('img', 'quote-card__photo');
+        img.src = t.photo;
+        img.alt = t.name;
+        img.loading = 'lazy';
+        card.appendChild(img);
+      } else {
+        card.appendChild(el('div', 'quote-card__photo'));
+      }
+
+      card.appendChild(el('blockquote', 'quote-card__quote', '“' + t.quote + '”'));
+
+      var by = el('figcaption', 'quote-card__by');
+      by.appendChild(el('p', 'quote-card__name', t.name));
+      if (t.detail) by.appendChild(el('p', 'quote-card__detail', t.detail));
+      card.appendChild(by);
+
+      grid.appendChild(card);
+    });
   })();
 </script>
 
