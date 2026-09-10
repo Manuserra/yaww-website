@@ -427,7 +427,11 @@ main { padding-top: 0; }
      gap was just the leftover space, and it changed with the length of the
      list — 67px on a ten-item card, 19px on a thirteen-item one. Height now
      follows the content so the 48px is real and identical on every page. */
-  padding: 48px 24px;
+  /* 96px, not 48: the padding IS the parallax — it is the only strip of the
+     image you ever see, so doubling it doubles how much of the layer's
+     travel is on screen. On a phone the band would eat the screen, so it
+     goes back to 48 there. */
+  padding: 96px 24px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -883,15 +887,30 @@ main { padding-top: 0; }
   color: var(--sea-blue);
   text-align: center;
 }
+/* Two columns per group, hairline between rows: the same practical
+   information, but it stops being a wall of prose. The topic sits in its own
+   rank so the reader can find the one thing they came for by scanning down
+   the left, and the block fills the measure instead of leaving two thirds of
+   a 1440 screen empty. 912px is the width the accommodations and rooms
+   modules already use. */
 .tips__body {
   width: 100%;
-  max-width: 758px;
+  max-width: 912px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
 }
+.tips__group {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 32px;
+  padding: 32px 0;
+  border-top: 1px solid var(--hairline);
+}
+.tips__group:last-child { border-bottom: 1px solid var(--hairline); }
 /* Weight alone marks the heading: at this size a step up in scale would
    start to compete with the section title two lines above it. */
+/* The heading and the first bullet share a 24px line box, so they sit on
+   the same line without any nudging. */
 .tips__heading {
   margin: 0;
   font-family: var(--font-body);
@@ -920,8 +939,18 @@ main { padding-top: 0; }
 .tips__list li { position: relative; padding-left: 20px; }
 .tips__list li::before { content: "\2022"; position: absolute; left: 4px; }
 
+/* Below the two-column threshold the topic goes back above its bullets, but
+   the rules stay — they are what turned the wall into rows. */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .tips__group { grid-template-columns: 232px minmax(0, 1fr); gap: 24px; }
+}
 @media (max-width: 767px) {
   .tips { padding: 56px 16px; }
+  .tips__group {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    padding: 24px 0;
+  }
 }
 
 /* --- Carbon offset -----------------------------------------------------
@@ -2000,6 +2029,7 @@ html.has-lightbox { overflow: hidden; }
   .retreat-hero__location { font-size: 18px; line-height: 24px; }
   .retreat-hero__ctas { flex-direction: column; width: 100%; }
   .retreat-hero__ctas .btn { width: 100%; }
+  .retreat-includes { padding-block: 48px; }
   .retreat-teacher__row { flex-direction: column; width: 100%; max-width: 884px; gap: 24px; }
   .retreat-teacher__photo {
     width: 100%;
