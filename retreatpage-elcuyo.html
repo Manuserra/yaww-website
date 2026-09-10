@@ -158,7 +158,10 @@ main { padding-top: 0; }
   flex-direction: column;
   align-items: center;
   gap: 56px;
-  padding: 24px;
+  /* 56 at the foot, not 24: every module on this page is separated by
+     56 + 56, and the hero had no reason to be the exception — the ≤480
+     rule below was already using 56. */
+  padding: 24px 24px 56px;
 }
 .retreat-hero__image {
   width: 100%;
@@ -481,7 +484,7 @@ main { padding-top: 0; }
   flex-direction: column;
   align-items: center;
   gap: 40px;
-  padding: 0 24px 56px;
+  padding: 56px 24px;
   background: var(--stone);
 }
 .rooms__title {
@@ -741,7 +744,7 @@ main { padding-top: 0; }
 /* Mobile: one column, and a squatter photo so a card still fits its price
    and hotel list on screen together. */
 @media (max-width: 767px) {
-  .rooms { padding: 0 16px 56px; }
+  .rooms { padding: 56px 16px; }
   .rooms__grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   .rooms__media { aspect-ratio: 3 / 2; }
   .rooms__body { padding: 20px; }
@@ -1011,7 +1014,7 @@ main { padding-top: 0; }
 @media (prefers-reduced-motion: reduce) { .carbon__link { transition: none; } }
 
 @media (max-width: 767px) {
-  .carbon { padding: 56px 16px; gap: 32px; }
+  .carbon { padding: 56px 16px; }   /* gap stays 40, like every other module */
 }
 
 /* --- Additional info (FAQ) ---------------------------------------------
@@ -1167,7 +1170,7 @@ main { padding-top: 0; }
 }
 
 @media (max-width: 767px) {
-  .faq-section { padding: 56px 16px; gap: 32px; }
+  .faq-section { padding: 56px 16px; }   /* gap stays 40, like every other module */
 }
 @media (prefers-reduced-motion: reduce) {
   .faq__panel, .faq__answer, .faq__chev, .faq__q { transition: none; }
@@ -1550,7 +1553,7 @@ html.has-lightbox { overflow: hidden; }
   flex-direction: column;
   align-items: center;
   gap: 40px;
-  padding: 0 24px;
+  padding: 56px 24px;
   background: var(--stone);
 }
 .retreat-accom__title {
@@ -1952,7 +1955,7 @@ html.has-lightbox { overflow: hidden; }
   .retreat-itinerary { padding: 56px 16px; }
   /* matches the itinerary's side margin at this width, so the page keeps a
      single gutter down its whole length */
-  .retreat-accom { padding: 0 16px; }
+  .retreat-accom { padding: 56px 16px; }
 
   .retreat-itinerary__day {
     align-items: flex-start;
