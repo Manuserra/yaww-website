@@ -748,6 +748,67 @@ main { padding-top: 0; }
   .rooms__card--stacked .rooms__price { margin-top: 4px; }
 }
 
+/* --- Carbon offset -----------------------------------------------------
+   Three centred lines and nothing else. It comes after the photographs, at
+   the end of the page, and it is the one thing here the reader does for
+   somebody other than themselves — so it is set at caption size rather than
+   body size: present, findable, and deliberately not competing with the
+   retreat it follows. */
+.carbon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 56px 24px;
+  background: var(--stone);
+}
+.carbon__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+  color: var(--sea-blue);
+  text-align: center;
+}
+.carbon__text {
+  margin: 0;
+  width: 668px;
+  max-width: 100%;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.56px;
+  color: var(--sea-blue);
+  text-align: center;
+}
+/* Underlined, which the frame does not show. Set in the same face, size,
+   colour and alignment as the paragraph above it, this line is typographically
+   identical to body copy — there would be nothing to tell a reader it can be
+   clicked, and it is the only action in the module. The underline is offset
+   and thinned so it stays quiet; the hover then closes the gap to the text. */
+.carbon__link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--stone-600);
+  transition: text-decoration-color .18s ease, text-underline-offset .18s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .carbon__link:hover {
+    text-decoration-color: var(--sea-blue);
+    text-underline-offset: 2px;
+  }
+}
+.carbon__link:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .carbon__link { transition: none; } }
+
+@media (max-width: 767px) {
+  .carbon { padding: 56px 16px; gap: 32px; }
+}
+
 /* --- Gallery -----------------------------------------------------------
    A full-bleed strip. Every photo is the same width and they differ in
    height, all hung on one horizontal centre line — the uneven top and bottom
@@ -2321,6 +2382,15 @@ html.has-lightbox { overflow: hidden; }
     <div class="gallery__progress" aria-hidden="true">
       <span class="gallery__progress-bar"></span>
     </div>
+  </section>
+
+  <!-- =========================================================
+       CARBON OFFSET
+       ========================================================= -->
+  <section class="carbon">
+    <h2 class="carbon__title">Offset Your Carbon Footprint</h2>
+    <p class="carbon__text">Every trip has an environmental impact. If you&rsquo;d like to offset your carbon footprint, you can contribute to climate projects through trusted organizations.</p>
+    <p class="carbon__text"><a class="carbon__link" href="#">Learn More About Carbon Offsetting</a></p>
   </section>
 
   <dialog class="lightbox" aria-label="Photo viewer">
