@@ -1388,13 +1388,18 @@ html.has-lightbox { overflow: hidden; }
 /* Without this the panel's own display wins over the user agent's
    [hidden]{display:none} and every hotel renders at once. */
 .retreat-accom__panel[hidden] { display: none; }
+/* No bottom padding here: the section wrapper owns the space between
+   modules. It lived on the panel only while .retreat-accom had none of its
+   own, and a panel is the wrong place for it — these are swapped in and out
+   by the tab script, so section rhythm would ride on whichever hotel
+   happens to be showing, and every new panel would have to remember to
+   re-declare it. */
 .retreat-accom__panel {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 48px;
   width: 100%;
-  padding-bottom: 56px;
 }
 /* 912 × 560 as designed; below ~960 the viewport is narrower than that, so
    it becomes fluid on the same 57:35 ratio rather than overflowing. */
