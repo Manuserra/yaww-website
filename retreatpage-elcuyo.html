@@ -2048,33 +2048,58 @@ html.has-lightbox { overflow: hidden; }
   color: var(--sea-blue-100);
 }
 
-/* The newsletter opens the footer, so it gets the most air of the four. */
+/* The newsletter is the footer's one conversion point, so it is built to be
+   the loudest thing down here: the headline runs at the page's top heading
+   size, the ground-to-type contrast is the highest in the footer, and the
+   button is the only filled object in it. Everything else on this ground is
+   a muted blue that recedes — which is the point, and also why the earlier
+   muted-blue newsletter disappeared into the rest. */
 .footer-news {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
-  padding: 88px 0 72px;
+  gap: 32px;
+  padding: 96px 0 88px;
 }
-.footer-news__label {
+.footer-news__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+/* Stone, not the blue the rest of the footer uses: this is the one line
+   that has to be read before anything else here. */
+.footer-news__title {
   margin: 0;
+  max-width: 620px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 36px;      /* Desktop/H2-bold — the hero size, deliberately */
+  line-height: 48px;
+  color: var(--stone);
+  text-align: center;
+  text-wrap: balance;
+}
+.footer-news__sub {
+  margin: 0;
+  max-width: 520px;
   font-family: var(--font-body);
-  font-weight: 600;
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.32px;
-  color: var(--sea-blue-200);
+  /* stone-400, not the blue the footer links use: at 16px that blue lands
+     at 4.2:1, just under AA, and this line is the one that has to sell the
+     signup. It also builds the three steps the band needs — stone headline,
+     stone-400 support, blue links receding behind both. */
+  color: var(--stone-400);
   text-align: center;
 }
-/* The rule under the field is the whole field: no box, no fill, just the
-   line and the mark that sends it. */
+
 .footer-news__form {
   display: flex;
-  align-items: center;
-  gap: 16px;
-  width: 644px;
+  gap: 12px;
+  width: 560px;
   max-width: 100%;
-  border-bottom: 1px solid var(--sea-blue-400);
 }
 /* The design labels the field with its placeholder, which leaves a screen
    reader nothing to announce — so the real label is present and hidden. */
@@ -2091,38 +2116,44 @@ html.has-lightbox { overflow: hidden; }
 .footer-news__input {
   flex: 1 1 auto;
   min-width: 0;
-  height: 46px;
-  padding: 0 4px;
+  box-sizing: border-box;
+  height: 56px;
+  padding: 0 16px;
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 24px;
   letter-spacing: 0.56px;
-  color: var(--sea-blue-100);
+  color: var(--stone);
   background: transparent;
-  border: 0;
+  border: 1px solid var(--sea-blue-300);
   border-radius: 0;
+  transition: border-color 0.2s ease;
 }
 /* opacity:1 because Firefox dims placeholders on its own, which would drop
    the cue below the contrast this palette was picked for */
-.footer-news__input::placeholder { color: var(--sea-blue-200); opacity: 1; }
-.footer-news__input:focus-visible { outline: none; }
-.footer-news__form:focus-within { border-bottom-color: var(--sea-blue-100); }
+.footer-news__input::placeholder { color: var(--sea-blue-100); opacity: 1; }
+.footer-news__input:focus { outline: none; border-color: var(--stone); }
 
+/* The only filled object in the footer, so the eye lands on it last and
+   stays. Stone on the dark ground is the strongest pairing the palette has. */
 .footer-news__submit {
   flex: 0 0 auto;
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  color: var(--sea-blue-100);
-  background: transparent;
+  height: 56px;
+  padding: 0 32px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+  color: var(--sea-blue-500);
+  background: var(--stone);
   border: 0;
+  border-radius: 0;
   cursor: pointer;
-  transition: color 0.2s ease;
+  transition: background-color 0.2s ease;
 }
-.footer-news__submit svg { display: block; width: 24px; height: 24px; }
-.footer-news__submit:hover { color: var(--stone); }
+.footer-news__submit:hover { background: var(--stone-300); }
 
 .footer-nav__cols {
   display: grid;
@@ -2239,7 +2270,8 @@ html.has-lightbox { overflow: hidden; }
    on two lines, so the row folds to three and the rules follow it — every
    column that does not open a row keeps the one on its left. */
 @media (min-width: 768px) and (max-width: 1024px) {
-  .footer-news { padding: 72px 0 56px; }
+  .footer-news { padding: 72px 0 64px; }
+  .footer-news__title { font-size: 32px; line-height: 44px; }
   .footer-nav__cols {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     row-gap: 48px;
@@ -2255,8 +2287,13 @@ html.has-lightbox { overflow: hidden; }
    the rules go — at this width they crowd the text they separate more than
    they organise it. */
 @media (max-width: 767px) {
-  .footer-news { padding: 56px 0 40px; }
-  .footer-news__form { width: 100%; }
+  .footer-news { gap: 24px; padding: 56px 0 48px; }
+  .footer-news__title { font-size: 28px; line-height: 36px; }
+  .footer-news__sub { font-size: 14px; letter-spacing: 0.56px; }
+  /* the button stops being a tail on the field and becomes its own
+     full-width target, which is the only thumb-friendly shape here */
+  .footer-news__form { width: 100%; flex-direction: column; gap: 16px; }
+  .footer-news__submit { width: 100%; padding: 0 16px; }
   .footer-nav__cols {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 32px 24px;
@@ -2989,16 +3026,14 @@ html.has-lightbox { overflow: hidden; }
 
     <!-- Newsletter -->
     <section class="footer-news">
-      <p class="footer-news__label">Join the newsletter</p>
+      <div class="footer-news__head">
+        <h2 class="footer-news__title">Subscribe to our newsletter and receive a retreat discount.</h2>
+        <p class="footer-news__sub">Sign up with your email address to receive all the juicy updates.</p>
+      </div>
       <form class="footer-news__form" novalidate>
         <label class="footer-news__label-sr" for="nl-email">Email address</label>
         <input class="footer-news__input" id="nl-email" name="email" type="email" placeholder="Email address" autocomplete="email">
-        <button class="footer-news__submit" type="submit" aria-label="Subscribe">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-            <circle cx="12" cy="12" r="9"/>
-            <path d="M8.4 12h7.2M12.6 9l3 3-3 3" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
+        <button class="footer-news__submit" type="submit">Sign up</button>
       </form>
     </section>
 
