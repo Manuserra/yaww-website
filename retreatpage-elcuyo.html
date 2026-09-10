@@ -622,7 +622,10 @@ main { padding-top: 0; }
 .rooms__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 40px 32px;
+  /* One gutter of the page grid. The card area spans columns 5-12, so at 48
+     each card lands on exactly four columns (4x72 + 3x48 = 432) and the
+     cards line up with everything else on the page. */
+  gap: 48px;
 }
 
 .rooms__card {
@@ -733,9 +736,6 @@ main { padding-top: 0; }
 /* One CTA for the module, not one per card: the choice of tier is made in
    the grid, and four identical buttons would only add noise to it. */
 
-@media (min-width: 768px) and (max-width: 1024px) {
-  .rooms__grid { gap: 32px 24px; }
-}
 
 /* Mobile: one column, and a squatter photo so a card still fits its price
    and hotel list on screen together. */
