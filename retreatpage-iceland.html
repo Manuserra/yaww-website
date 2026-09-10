@@ -1888,6 +1888,101 @@ html.has-lightbox { overflow: hidden; }
   .retreat-includes { padding-inline: 0; }
 }
 
+/* --- Sticky booking bar -------------------------------------------------
+   A second home for the hero's CTA, shown only while the real one is off
+   screen. It rides above the sticky header, because two bars stacked at the
+   top would eat a third of a laptop viewport between them.
+
+   Hidden is the resting state and it is described three ways: transparent,
+   translated off its own edge, and inert. Opacity alone would leave an
+   invisible bar swallowing clicks across the top of the page. */
+.booking-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;              /* .site-header is 50 */
+  background: var(--stone-100);
+  border-bottom: 1px solid var(--stone-300);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-100%);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .booking-bar { transition: opacity 200ms ease, transform 200ms ease, visibility 0s linear 200ms; }
+}
+.booking-bar.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0s;     /* becoming visible must not wait on the fade */
+}
+
+.booking-bar__inner {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+.booking-bar__id { min-width: 0; }
+.booking-bar__name {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  color: var(--sea-blue);
+}
+.booking-bar__date {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--sea-blue-200);
+}
+.booking-bar__act {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex: 0 0 auto;
+}
+.booking-bar__price {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--sea-blue);
+  white-space: nowrap;
+}
+/* Only the phone layout shows a bare number, so the two halves of the line
+   can be told apart without a media query in the markup. */
+.booking-bar__price-unit { display: inline; }
+
+/* Phone: the bar moves to the bottom edge, where a thumb already is, and the
+   rule moves with it. The name and date go — at this width they would push
+   the price and the button into each other, and the reader has just scrolled
+   past both. */
+@media (max-width: 767px) {
+  .booking-bar {
+    top: auto;
+    bottom: 0;
+    transform: translateY(100%);
+    border-bottom: 0;
+    border-top: 1px solid var(--stone-300);
+  }
+  .booking-bar__inner { padding: 12px 16px; gap: 16px; }
+  .booking-bar__id { display: none; }
+  .booking-bar__price-unit { display: none; }
+  .booking-bar__act { flex: 1 1 auto; justify-content: space-between; }
+  .booking-bar__price { font-size: 16px; font-weight: 600; }
+  /* 44px is the smallest target a thumb hits reliably; the hero button's 56
+     would make the bar tall enough to cover the content behind it. */
+  .booking-bar .btn { min-height: 44px; padding: 10px 24px; }
+}
+
 /* --- Image reveal ------------------------------------------------------
    Images fade in as they load instead of snapping in. Same construction as
    aman.com: opacity alone, half a second, and the trigger is the image's own
@@ -3470,59 +3565,63 @@ html.has-lightbox { overflow: hidden; }
      through the rest of that tier without closing anything. Swapping TIERS
      is the whole per-retreat edit. Runs after the lightbox so
      dlg.openGallery exists. */
+  /* The page's room data. Lives out here rather than inside the pricing
+     module because the sticky booking bar reads it too — both need the
+     same numbers, and a second copy is a second thing to forget. */
+  /* The three options the retreat actually sells, with the prices from
+     its own page. Both private tiers are the same king room — only the
+     occupancy and the price differ. Every tier shares the turf house row,
+     because that single night is one common space for the whole group and
+     has no private version. */
+  var TIERS = [
+    {
+      name: 'Private \u2014 Single',
+      priceUSD: 11295,
+      hotels: [
+        { name: 'Northern Light Inn',
+          attrs: { bed: 'King', bath: 'En-suite', view: 'Lava fields' },
+          gallery: ['images/iceland/room-nli-king.jpg', 'images/iceland/hotel1-2.jpg', 'images/iceland/hotel1-3.jpg'] },
+        { name: 'Fosshotel Glacier Lagoon',
+          attrs: { bed: 'King', bath: 'En-suite', view: 'Mountain' },
+          gallery: ['images/iceland/room-foss-king.jpg', 'images/iceland/hotel2-2.jpg', 'images/iceland/hotel2-3.jpg'] },
+        { name: 'Turf Guesthouse & Horse Farm',
+          attrs: { bed: 'Individual', bath: 'Shared' },
+          gallery: ['images/iceland/hotel3-6.jpg', 'images/iceland/hotel3-1.jpg', 'images/iceland/hotel3-4.jpg'] }
+      ]
+    },
+    {
+      name: 'Private \u2014 Shared bed',
+      priceUSD: 9865,
+      hotels: [
+        { name: 'Northern Light Inn',
+          attrs: { bed: 'King', bath: 'En-suite', view: 'Lava fields' },
+          gallery: ['images/iceland/room-nli-king.jpg', 'images/iceland/hotel1-2.jpg', 'images/iceland/hotel1-3.jpg'] },
+        { name: 'Fosshotel Glacier Lagoon',
+          attrs: { bed: 'King', bath: 'En-suite', view: 'Mountain' },
+          gallery: ['images/iceland/room-foss-king.jpg', 'images/iceland/hotel2-2.jpg', 'images/iceland/hotel2-3.jpg'] },
+        { name: 'Turf Guesthouse & Horse Farm',
+          attrs: { bed: 'Individual', bath: 'Shared' },
+          gallery: ['images/iceland/hotel3-6.jpg', 'images/iceland/hotel3-1.jpg', 'images/iceland/hotel3-4.jpg'] }
+      ]
+    },
+    {
+      name: 'Shared Double',
+      priceUSD: 10265,
+      hotels: [
+        { name: 'Northern Light Inn',
+          attrs: { bed: 'Twin', bath: 'En-suite' },
+          gallery: ['images/iceland/room-nli-twin.jpg', 'images/iceland/hotel1-2.jpg', 'images/iceland/hotel1-3.jpg'] },
+        { name: 'Fosshotel Glacier Lagoon',
+          attrs: { bed: 'Twin', bath: 'En-suite', view: 'Sea' },
+          gallery: ['images/iceland/room-foss-triple.jpg', 'images/iceland/hotel2-4.jpg', 'images/iceland/hotel2-5.jpg'] },
+        { name: 'Turf Guesthouse & Horse Farm',
+          attrs: { bed: 'Individual', bath: 'Shared' },
+          gallery: ['images/iceland/hotel3-6.jpg', 'images/iceland/hotel3-1.jpg', 'images/iceland/hotel3-4.jpg'] }
+      ]
+    }
+  ];
+
   (function () {
-    /* The three options the retreat actually sells, with the prices from
-       its own page. Both private tiers are the same king room — only the
-       occupancy and the price differ. Every tier shares the turf house row,
-       because that single night is one common space for the whole group and
-       has no private version. */
-    var TIERS = [
-      {
-        name: 'Private \u2014 Single',
-        priceUSD: 11295,
-        hotels: [
-          { name: 'Northern Light Inn',
-            attrs: { bed: 'King', bath: 'En-suite', view: 'Lava fields' },
-            gallery: ['images/iceland/room-nli-king.jpg', 'images/iceland/hotel1-2.jpg', 'images/iceland/hotel1-3.jpg'] },
-          { name: 'Fosshotel Glacier Lagoon',
-            attrs: { bed: 'King', bath: 'En-suite', view: 'Mountain' },
-            gallery: ['images/iceland/room-foss-king.jpg', 'images/iceland/hotel2-2.jpg', 'images/iceland/hotel2-3.jpg'] },
-          { name: 'Turf Guesthouse & Horse Farm',
-            attrs: { bed: 'Individual', bath: 'Shared' },
-            gallery: ['images/iceland/hotel3-6.jpg', 'images/iceland/hotel3-1.jpg', 'images/iceland/hotel3-4.jpg'] }
-        ]
-      },
-      {
-        name: 'Private \u2014 Shared bed',
-        priceUSD: 9865,
-        hotels: [
-          { name: 'Northern Light Inn',
-            attrs: { bed: 'King', bath: 'En-suite', view: 'Lava fields' },
-            gallery: ['images/iceland/room-nli-king.jpg', 'images/iceland/hotel1-2.jpg', 'images/iceland/hotel1-3.jpg'] },
-          { name: 'Fosshotel Glacier Lagoon',
-            attrs: { bed: 'King', bath: 'En-suite', view: 'Mountain' },
-            gallery: ['images/iceland/room-foss-king.jpg', 'images/iceland/hotel2-2.jpg', 'images/iceland/hotel2-3.jpg'] },
-          { name: 'Turf Guesthouse & Horse Farm',
-            attrs: { bed: 'Individual', bath: 'Shared' },
-            gallery: ['images/iceland/hotel3-6.jpg', 'images/iceland/hotel3-1.jpg', 'images/iceland/hotel3-4.jpg'] }
-        ]
-      },
-      {
-        name: 'Shared Double',
-        priceUSD: 10265,
-        hotels: [
-          { name: 'Northern Light Inn',
-            attrs: { bed: 'Twin', bath: 'En-suite' },
-            gallery: ['images/iceland/room-nli-twin.jpg', 'images/iceland/hotel1-2.jpg', 'images/iceland/hotel1-3.jpg'] },
-          { name: 'Fosshotel Glacier Lagoon',
-            attrs: { bed: 'Twin', bath: 'En-suite', view: 'Sea' },
-            gallery: ['images/iceland/room-foss-triple.jpg', 'images/iceland/hotel2-4.jpg', 'images/iceland/hotel2-5.jpg'] },
-          { name: 'Turf Guesthouse & Horse Farm',
-            attrs: { bed: 'Individual', bath: 'Shared' },
-            gallery: ['images/iceland/hotel3-6.jpg', 'images/iceland/hotel3-1.jpg', 'images/iceland/hotel3-4.jpg'] }
-        ]
-      }
-    ];
 
     /* A name past this many characters is the one that cannot share a line
        with the price on a narrow screen. Purely a mobile concern; the class
@@ -4051,6 +4150,79 @@ html.has-lightbox { overflow: hidden; }
     img.addEventListener('load', done);
     img.addEventListener('error', done);   // a broken image must not stay invisible
   });
+
+  /* Sticky booking bar ---------------------------------------------------
+     Built here rather than written into the markup so the name and the date
+     have one source each: the hero states them, this repeats them. The price
+     is the cheapest tier, off the same TIERS the pricing grid renders.
+
+     Two observers' worth of work in one: the bar shows only while BOTH the
+     hero and the pricing grid are off screen. That covers the whole brief in
+     a single expression — hidden at the top because the hero's own CTA is
+     right there, hidden again over the pricing grid because its Reserve
+     button is, and shown everywhere else. No scroll handler. */
+  (function () {
+    var hero = document.querySelector('.retreat-hero');
+    var rooms = document.querySelector('.rooms');
+    if (!hero || !rooms || !window.IntersectionObserver) return;
+
+    var prices = (typeof TIERS !== 'undefined' ? TIERS : []).map(function (t) { return t.priceUSD; });
+    if (!prices.length) return;
+    var from = Math.min.apply(null, prices);
+
+    var name = hero.querySelector('.retreat-hero__title');
+    var date = hero.querySelector('.retreat-hero__meta span');
+
+    var bar = document.createElement('div');
+    bar.className = 'booking-bar';
+    var inner = document.createElement('div');
+    inner.className = 'booking-bar__inner';
+
+    var id = document.createElement('div');
+    id.className = 'booking-bar__id';
+    var nameEl = document.createElement('p');
+    nameEl.className = 'booking-bar__name';
+    nameEl.textContent = name ? name.textContent : '';
+    id.appendChild(nameEl);
+    if (date) {
+      var dateEl = document.createElement('p');
+      dateEl.className = 'booking-bar__date';
+      dateEl.textContent = date.textContent;
+      id.appendChild(dateEl);
+    }
+
+    var act = document.createElement('div');
+    act.className = 'booking-bar__act';
+    var priceEl = document.createElement('p');
+    priceEl.className = 'booking-bar__price';
+    priceEl.appendChild(document.createTextNode('From ' + from.toLocaleString('en-US') + ' USD'));
+    var unit = document.createElement('span');
+    unit.className = 'booking-bar__price-unit';
+    unit.textContent = ' · per person';
+    priceEl.appendChild(unit);
+    var cta = document.createElement('button');
+    cta.className = 'btn btn--primary';
+    cta.type = 'button';
+    cta.textContent = 'Book now';
+    act.appendChild(priceEl);
+    act.appendChild(cta);
+
+    inner.appendChild(id);
+    inner.appendChild(act);
+    bar.appendChild(inner);
+    document.body.appendChild(bar);
+
+    var heroIn = true, roomsIn = false;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.target === hero) heroIn = e.isIntersecting;
+        else roomsIn = e.isIntersecting;
+      });
+      bar.classList.toggle('is-visible', !heroIn && !roomsIn);
+    });
+    io.observe(hero);
+    io.observe(rooms);
+  })();
 </script>
 
 </body>
