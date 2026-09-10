@@ -2072,6 +2072,20 @@ html.has-lightbox { overflow: hidden; }
   .retreat-includes { padding-inline: 0; }
 }
 
+/* --- Image reveal ------------------------------------------------------
+   Images fade in as they load instead of snapping in. Same construction as
+   aman.com: opacity alone, half a second, and the trigger is the image's own
+   load event rather than its scroll position. The browser already holds back
+   a lazy image until it nears the viewport, so the fade lands exactly as one
+   scrolls into view — with nothing watching the scroll, which is why it never
+   stutters. Under reduced-motion the rule never applies and images just
+   appear. */
+@media (prefers-reduced-motion: no-preference) {
+  img.img-reveal { opacity: 0; transition: opacity 500ms ease-in-out; }
+  img.img-reveal.is-loaded { opacity: 1; }
+}
+
+
 /* --- Footer -------------------------------------------------------------
    One dark ground from the first hairline to the last: the sections are
    told apart by the rules between them and by how much air each is given,
@@ -4256,6 +4270,20 @@ html.has-lightbox { overflow: hidden; }
      it until there is an endpoint to post to. */
   document.querySelectorAll('.footer-news__form').forEach(function (form) {
     form.addEventListener('submit', function (e) { e.preventDefault(); });
+  });
+
+  /* Image reveal ---------------------------------------------------------
+     An image that has already decoded — cached, or above the fold — is left
+     alone: fading in something the reader is already looking at reads as a
+     glitch rather than as polish. The lightbox is skipped because its src is
+     swapped on every arrow press, and a one-shot listener would fire once and
+     then leave the rest of the gallery invisible. */
+  document.querySelectorAll('img:not(.lightbox__img)').forEach(function (img) {
+    if (img.complete) return;
+    img.classList.add('img-reveal');
+    function done() { img.classList.add('is-loaded'); }
+    img.addEventListener('load', done);
+    img.addEventListener('error', done);   // a broken image must not stay invisible
   });
 </script>
 
