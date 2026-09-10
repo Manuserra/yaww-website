@@ -809,6 +809,142 @@ main { padding-top: 0; }
   .carbon { padding: 56px 16px; gap: 32px; }
 }
 
+/* --- Additional info (FAQ) ---------------------------------------------
+   An accordion, built as buttons and regions rather than <details>. <details>
+   would give keyboard support and find-in-page for free, but it stops
+   rendering its content when closed, so there is nothing left to animate
+   shut — the panel would open smoothly and vanish. Doing it by hand costs
+   one aria-expanded and buys a close that is as considered as the open.
+
+   Several can be open at once. Auto-closing the last one is tidier to look
+   at and worse to use: these are reference answers, and a reader comparing
+   the cancellation policy against what happens if plans change should not
+   have one taken away to be given the other. Nothing here is ever closed on
+   the reader's behalf. */
+.faq-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 56px 24px;
+  background: var(--stone);
+}
+.faq-section__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+  color: var(--sea-blue);
+  text-align: center;
+}
+/* 672 is six columns and five gutters of the page grid. */
+.faq-list { width: 672px; max-width: 100%; }
+.faq { border-bottom: 1px solid var(--stone-300); }
+.faq__heading { margin: 0; font: inherit; }
+
+.faq__trigger {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 72px;   /* 24 + a 24px line + 24, as drawn; min so a question
+                         that wraps on a phone grows instead of clipping */
+  padding: 24px 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+}
+.faq__trigger:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
+.faq__q {
+  flex: 1;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue);
+  transition: color .18s ease;
+}
+/* The chevron is the affordance, so it rests one step back from the question
+   and comes forward when touched or opened. */
+.faq__chev {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  display: block;
+  color: var(--sea-blue-200);
+  transition: transform .36s cubic-bezier(.32, .72, 0, 1), color .18s ease;
+}
+.faq.is-open .faq__chev { transform: rotate(180deg); color: var(--sea-blue); }
+
+/* Hover: the label deepens and the chevron both darkens and moves two pixels
+   in the direction it is about to send the row — down when it will open, up
+   when it will close, because the rotation carries the nudge with it. It is
+   barely visible and entirely felt: the row answers before it is pressed,
+   and the answer is a preview of what pressing does. No background tint —
+   a filled row on this flat stone ground would shout. */
+@media (hover: hover) and (pointer: fine) {
+  .faq__trigger:hover .faq__q { color: var(--sea-blue-500); }
+  .faq__trigger:hover .faq__chev { color: var(--sea-blue); transform: translateY(2px); }
+  .faq.is-open .faq__trigger:hover .faq__chev { transform: rotate(180deg) translateY(2px); }
+}
+
+/* The height animation is a 0fr → 1fr grid row, so it needs no measurement
+   and no inline pixel heights: the panel is always exactly as tall as its
+   own text, at any width, before the fonts have even loaded.
+
+   Opening is 360ms, closing 280. Closing should be quicker — the reader has
+   already read it and is putting it away, and making them wait to tidy up is
+   the one place an unhurried brand turns into a slow interface. The curve is
+   the same one the tab indicator uses: leaves decisively, settles softly. */
+.faq__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .28s cubic-bezier(.32, .72, 0, 1);
+}
+.faq.is-open .faq__panel {
+  grid-template-rows: 1fr;
+  transition-duration: .36s;
+}
+/* The text waits 120ms before fading in, so it arrives into a box that has
+   already started opening rather than sliding up underneath itself — you
+   never catch yourself reading a line that is still moving. Going away it
+   does not wait: it leaves first, and the box closes on nothing.
+   visibility flips only once the box has finished shutting, which is what
+   takes the collapsed answer out of the tab order and the screen reader. */
+.faq__answer {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .18s ease, visibility 0s .28s;
+}
+.faq.is-open .faq__answer {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity .24s ease .12s, visibility 0s;
+}
+.faq__answer p {
+  margin: 0 0 24px;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue);
+}
+
+@media (max-width: 767px) {
+  .faq-section { padding: 56px 16px; gap: 32px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq__panel, .faq__answer, .faq__chev, .faq__q { transition: none; }
+}
+
 /* --- Gallery -----------------------------------------------------------
    A full-bleed strip. Every photo is the same width and they differ in
    height, all hung on one horizontal centre line — the uneven top and bottom
@@ -2339,6 +2475,86 @@ html.has-lightbox { overflow: hidden; }
   </section>
 
   <!-- =========================================================
+       ADDITIONAL INFO (FAQ)
+       Answers are PLACEHOLDER lorem until the real copy arrives.
+       ========================================================= -->
+  <section class="faq-section">
+    <h2 class="faq-section__title">Additional info</h2>
+    <div class="faq-list">
+      <div class="faq">
+        <h3 class="faq__heading">
+          <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="faq-1">
+            <span class="faq__q">Do you accept bitcoin?</span>
+            <svg class="faq__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </h3>
+        <div class="faq__panel">
+          <div class="faq__answer" id="faq-1" role="region">
+            <p>Lorem ipsum dolor sit amet consectetur. Ac diam magna tellus enim. Senectus tortor nec suspendisse malesuada. Ut nunc habitasse penatibus at. Risus a suscipit urna pulvinar in laoreet ut.</p>
+            <p>Pellentesque mi sagittis dignissim vitae maecenas a at fringilla. Semper velit tristique sed massa lorem cras diam. At morbi non orci felis urna urna. Arcu a odio praesent nisl nibh. Tristique morbi nibh sit semper ultricies maecenas mauris aliquet. Non hac eget habitant urna nec fringilla sed tellus. Ornare amet id non habitant. Odio tempor quis massa a erat ut aenean.</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq">
+        <h3 class="faq__heading">
+          <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="faq-2">
+            <span class="faq__q">What is the cancellation policy?</span>
+            <svg class="faq__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </h3>
+        <div class="faq__panel">
+          <div class="faq__answer" id="faq-2" role="region">
+            <p>Lorem ipsum dolor sit amet consectetur. Ac diam magna tellus enim. Senectus tortor nec suspendisse malesuada. Ut nunc habitasse penatibus at. Risus a suscipit urna pulvinar in laoreet ut.</p>
+            <p>Pellentesque mi sagittis dignissim vitae maecenas a at fringilla. Semper velit tristique sed massa lorem cras diam. At morbi non orci felis urna urna. Arcu a odio praesent nisl nibh. Tristique morbi nibh sit semper ultricies maecenas mauris aliquet. Non hac eget habitant urna nec fringilla sed tellus. Ornare amet id non habitant. Odio tempor quis massa a erat ut aenean.</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq">
+        <h3 class="faq__heading">
+          <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="faq-3">
+            <span class="faq__q">What happens if my travel plans change?</span>
+            <svg class="faq__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </h3>
+        <div class="faq__panel">
+          <div class="faq__answer" id="faq-3" role="region">
+            <p>Lorem ipsum dolor sit amet consectetur. Ac diam magna tellus enim. Senectus tortor nec suspendisse malesuada. Ut nunc habitasse penatibus at. Risus a suscipit urna pulvinar in laoreet ut.</p>
+            <p>Pellentesque mi sagittis dignissim vitae maecenas a at fringilla. Semper velit tristique sed massa lorem cras diam. At morbi non orci felis urna urna. Arcu a odio praesent nisl nibh. Tristique morbi nibh sit semper ultricies maecenas mauris aliquet. Non hac eget habitant urna nec fringilla sed tellus. Ornare amet id non habitant. Odio tempor quis massa a erat ut aenean.</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq">
+        <h3 class="faq__heading">
+          <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="faq-4">
+            <span class="faq__q">Are flight delays or cancellations covered?</span>
+            <svg class="faq__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </h3>
+        <div class="faq__panel">
+          <div class="faq__answer" id="faq-4" role="region">
+            <p>Lorem ipsum dolor sit amet consectetur. Ac diam magna tellus enim. Senectus tortor nec suspendisse malesuada. Ut nunc habitasse penatibus at. Risus a suscipit urna pulvinar in laoreet ut.</p>
+            <p>Pellentesque mi sagittis dignissim vitae maecenas a at fringilla. Semper velit tristique sed massa lorem cras diam. At morbi non orci felis urna urna. Arcu a odio praesent nisl nibh. Tristique morbi nibh sit semper ultricies maecenas mauris aliquet. Non hac eget habitant urna nec fringilla sed tellus. Ornare amet id non habitant. Odio tempor quis massa a erat ut aenean.</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq">
+        <h3 class="faq__heading">
+          <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="faq-5">
+            <span class="faq__q">Where can I find the full terms &amp; conditions?</span>
+            <svg class="faq__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </h3>
+        <div class="faq__panel">
+          <div class="faq__answer" id="faq-5" role="region">
+            <p>Lorem ipsum dolor sit amet consectetur. Ac diam magna tellus enim. Senectus tortor nec suspendisse malesuada. Ut nunc habitasse penatibus at. Risus a suscipit urna pulvinar in laoreet ut.</p>
+            <p>Pellentesque mi sagittis dignissim vitae maecenas a at fringilla. Semper velit tristique sed massa lorem cras diam. At morbi non orci felis urna urna. Arcu a odio praesent nisl nibh. Tristique morbi nibh sit semper ultricies maecenas mauris aliquet. Non hac eget habitant urna nec fringilla sed tellus. Ornare amet id non habitant. Odio tempor quis massa a erat ut aenean.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
        GALLERY
        Static markup on purpose: these ten photographs and the crop each one
        is composed at are an editorial decision, not data, and writing them
@@ -3332,6 +3548,18 @@ html.has-lightbox { overflow: hidden; }
     lastW = track.clientWidth;
     silently(render);
   })();
+
+  /* FAQ ------------------------------------------------------------------
+     The button owns the state and the class owns the animation. aria-expanded
+     is the same fact the class is, said to a screen reader. */
+  document.querySelectorAll('.faq__trigger').forEach(function (btn) {
+    var item = btn.closest('.faq');
+    btn.addEventListener('click', function () {
+      var open = !item.classList.contains('is-open');
+      item.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
 </script>
 
 </body>
