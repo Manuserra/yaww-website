@@ -1900,6 +1900,46 @@ html.has-lightbox { overflow: hidden; }
   .retreat-includes { padding-inline: 0; }
 }
 
+/* --- Urgency flag -------------------------------------------------------
+   Copied verbatim from the retreat cards in index.html: same padding,
+   radius, type and colour tokens, same class names, and scarce and sold out
+   share one declaration exactly as they do there. The only rule not carried
+   over is the absolute positioning, which places the flag in a card's top
+   corner and means nothing on a line of text.
+
+   The pill rather than the list view's .r-avail: that one is 14px semibold
+   uppercase at 0.56px tracking, which is the tier label ("SIGNATURE
+   COLLECTION") two lines above almost to the value. Side by side they would
+   read as two labels of one kind, and the urgency would vanish into the
+   tier. The pill is the only treatment here that reads as a different sort
+   of thing. */
+.card__flag {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+/* Scarcity and sold out both read as normal, active state — solid dark, no new hue. */
+/* Brand primary on the secondary stone — 6.72:1 */
+.card__flag--scarce,
+.card__flag--soldout { background: var(--sea-blue); color: var(--stone); }
+
+/* Its own centred line under the date, not inline with it. The meta line is
+   a 1fr auto 1fr grid so its separator sits on the page's axis; a flag added
+   to either side track widens both, which would open a gap of empty space on
+   the opposite side of the line. Its own row keeps the hero symmetrical and
+   still reads as belonging to the date directly above it. */
+.retreat-hero__urgency {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
 /* --- Testimonials -------------------------------------------------------
    The quote and the name are the proof, so nothing else competes: no stars,
    no score, no drop shadow. A hairline card on the page's own stone is the
@@ -3681,6 +3721,13 @@ html.has-lightbox { overflow: hidden; }
      through the rest of that tier without closing anything. Swapping TIERS
      is the whole per-retreat edit. Runs after the lightbox so
      dlg.openGallery exists. */
+  /* This date's urgency, same shape the index list uses:
+     {type:'scarce', label:'...'}, {type:'soldout'}, or null for none.
+     TODO — placeholder. The index carries Between Fire & Ice on September
+     6-12; this page sells October 11-19, so its real value is a different
+     date's and has to come from the booking data. */
+  var URGENCY = { type: 'scarce', label: '2 spaces left' };
+
   /* The page's room data. Lives out here rather than inside the pricing
      module because the sticky booking bar reads it too — both need the
      same numbers, and a second copy is a second thing to forget. */
@@ -4409,6 +4456,25 @@ html.has-lightbox { overflow: hidden; }
 
       grid.appendChild(card);
     });
+  })();
+
+  /* Hero urgency ---------------------------------------------------------
+     Mirrors cardFlag() in index.html, including the two states resolving to
+     the same class pair. Nothing is written when URGENCY is null, so the
+     hero keeps exactly the shape it has today on a date with no flag. */
+  (function () {
+    var meta = document.querySelector('.retreat-hero__meta');
+    if (!meta || typeof URGENCY === 'undefined' || !URGENCY) return;
+
+    var flag = document.createElement('span');
+    var soldout = URGENCY.type === 'soldout';
+    flag.className = 'card__flag card__flag--' + (soldout ? 'soldout' : 'scarce');
+    flag.textContent = soldout ? 'Sold out' : URGENCY.label;
+
+    var row = document.createElement('p');
+    row.className = 'retreat-hero__urgency';
+    row.appendChild(flag);
+    meta.insertAdjacentElement('afterend', row);
   })();
 </script>
 
