@@ -685,7 +685,7 @@ main { padding-top: 0; }
    so the whole thing lands near the height of a laptop viewport. */
 .site-footer {
   background: var(--sea-blue-500);
-  color: var(--sea-blue-100);
+  color: var(--stone);
 }
 
 /* The newsletter is the footer's one conversion point, so it is built to be
@@ -713,8 +713,9 @@ main { padding-top: 0; }
   margin: 0;
   max-width: 620px;
   font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 36px;      /* Desktop/H2-bold — the hero size, deliberately */
+  font-weight: 400;
+  font-style: italic;
+  font-size: 36px;      /* the hero size, deliberately */
   line-height: 48px;
   color: var(--stone);
   text-align: center;
@@ -727,11 +728,7 @@ main { padding-top: 0; }
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.32px;
-  /* stone-400, not the blue the footer links use: at 16px that blue lands
-     at 4.2:1, just under AA, and this line is the one that has to sell the
-     signup. It also builds the three steps the band needs — stone headline,
-     stone-400 support, blue links receding behind both. */
-  color: var(--stone-400);
+  color: var(--stone);
   text-align: center;
 }
 
@@ -771,7 +768,10 @@ main { padding-top: 0; }
 }
 /* opacity:1 because Firefox dims placeholders on its own, which would drop
    the cue below the contrast this palette was picked for */
-.footer-news__input::placeholder { color: var(--sea-blue-100); opacity: 1; }
+/* The one sand that stays stepped back: a placeholder at full --stone
+   reads as a value already typed into the field. opacity:1 because Firefox
+   dims placeholders on its own. */
+.footer-news__input::placeholder { color: var(--stone-400); opacity: 1; }
 .footer-news__input:focus { outline: none; border-color: var(--stone); }
 
 /* The only filled object in the footer, so the eye lands on it last and
@@ -829,7 +829,7 @@ main { padding-top: 0; }
   font-weight: 600;
   font-size: 18px;
   line-height: 24px;
-  color: var(--sea-blue-100);
+  color: var(--stone);
 }
 .footer-col__list {
   margin: 0;
@@ -848,18 +848,18 @@ main { padding-top: 0; }
   font-size: 14px;
   line-height: 24px;
   letter-spacing: 0.56px;
-  color: var(--sea-blue-100);
+  color: var(--stone);
   text-decoration: none;
   transition: color 0.2s ease;
 }
-/* Toward the page's own paper colour: on this ground a link lights up
-   rather than dims, and the shift is large enough to read as a state. */
-.footer-link:hover { color: var(--stone); }
+/* Sand is the brightest ink on this ground, so a link has nowhere to go but
+   down: hover steps back a shade rather than lighting up. */
+.footer-link:hover { color: var(--stone-400); }
 .footer-link:focus-visible,
 .footer-social:focus-visible,
 .footer-news__submit:focus-visible,
 .footer-logo:focus-visible {
-  outline: 2px solid var(--sea-blue-100);
+  outline: 2px solid var(--stone);
   outline-offset: 4px;
   border-radius: 2px;
 }
@@ -869,11 +869,11 @@ main { padding-top: 0; }
   align-items: center;
   gap: 12px;
   width: fit-content;
-  color: var(--sea-blue-100);
+  color: var(--stone);
   text-decoration: none;
   transition: color 0.2s ease;
 }
-.footer-social:hover { color: var(--stone); }
+.footer-social:hover { color: var(--stone-400); }
 .footer-social svg { display: block; width: 24px; height: 24px; flex: 0 0 auto; }
 .footer-social span {
   font-family: var(--font-body);
@@ -891,8 +891,10 @@ main { padding-top: 0; }
 .footer-logo a {
   display: block;
   line-height: 0;
-  color: var(--sea-blue-100);   /* the sprite paints with currentColor */
+  color: var(--stone);   /* the sprite paints with currentColor */
+  transition: color 0.2s ease;
 }
+.footer-logo a:hover { color: var(--stone-400); }
 .footer-logo svg { display: block; width: 364px; height: auto; max-width: 100%; }
 
 .footer-copy {
@@ -902,7 +904,7 @@ main { padding-top: 0; }
   font-size: 14px;
   line-height: 24px;
   letter-spacing: 0.56px;
-  color: var(--sea-blue-100);
+  color: var(--stone);
   text-align: center;
 }
 
