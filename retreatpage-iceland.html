@@ -1185,6 +1185,23 @@ main { padding-top: 0; }
   .gallery__progress-bar { transition: none; }
 }
 
+/* EVALUATION: 4 photos whole instead of two.
+
+   The reason to try it is the interaction, not the layout. A press always
+   changes exactly two photos — one arrives whole, one stops being whole.
+   With two whole and two cut that is two of the four on screen: half the
+   frame changes weight at once, and it reads as a block flipping rather
+   than a strip travelling. Showing six makes it two of six.
+
+   The cost is the photographs, which go from 528 wide to 264 — exactly half, and a quarter of the area.
+
+   Only the desktop case moves; below 1200 this is untouched. */
+@media (min-width: 1200px) {
+  .gallery__track {
+    --shown: 4;
+    --slide-w: clamp(200px, 18.33vw, 420px);
+  }
+}
 @media (max-width: 1024px) {
   .gallery__track { --gap: 24px; }
 }
