@@ -869,16 +869,27 @@ main { padding-top: 0; }
   transition: color .18s ease;
 }
 /* The chevron is the affordance, so it rests one step back from the question
-   and comes forward when touched or opened. */
+   and comes forward when touched or opened.
+
+   rotate and translate are set as separate properties rather than one
+   transform, so the two things they do can move at their own speeds: the
+   rotation keeps time with the panel it describes, while the hover nudge
+   answers the cursor immediately. Folded into a single transform they would
+   have to share one duration, and a 2px hover would take half a second to
+   arrive. */
 .faq__chev {
   flex: none;
   width: 16px;
   height: 16px;
   display: block;
   color: var(--sea-blue-200);
-  transition: transform .36s cubic-bezier(.32, .72, 0, 1), color .18s ease;
+  rotate: 0deg;
+  translate: 0 0;
+  transition: rotate .5s cubic-bezier(.45, 0, .25, 1),
+              translate .18s ease,
+              color .18s ease;
 }
-.faq.is-open .faq__chev { transform: rotate(180deg); color: var(--sea-blue); }
+.faq.is-open .faq__chev { rotate: 180deg; color: var(--sea-blue); }
 
 /* Hover: the label deepens and the chevron both darkens and moves two pixels
    in the direction it is about to send the row — down when it will open, up
@@ -888,45 +899,57 @@ main { padding-top: 0; }
    a filled row on this flat stone ground would shout. */
 @media (hover: hover) and (pointer: fine) {
   .faq__trigger:hover .faq__q { color: var(--sea-blue-500); }
-  .faq__trigger:hover .faq__chev { color: var(--sea-blue); transform: translateY(2px); }
-  .faq.is-open .faq__trigger:hover .faq__chev { transform: rotate(180deg) translateY(2px); }
+  .faq__trigger:hover .faq__chev { color: var(--sea-blue); translate: 0 2px; }
+  .faq.is-open .faq__trigger:hover .faq__chev { translate: 0 -2px; }
 }
 
 /* The height animation is a 0fr → 1fr grid row, so it needs no measurement
    and no inline pixel heights: the panel is always exactly as tall as its
    own text, at any width, before the fonts have even loaded.
 
-   Opening is 360ms, closing 280. Closing should be quicker — the reader has
-   already read it and is putting it away, and making them wait to tidy up is
-   the one place an unhurried brand turns into a slow interface. The curve is
-   the same one the tab indicator uses: leaves decisively, settles softly. */
+   Opening is 500ms, closing 400 — the same clock as the gallery, which is
+   this page's pace for anything that travels rather than responds. Closing
+   stays the quicker of the two: the reader has already read it and is
+   putting it away, and making them wait to tidy up is where an unhurried
+   brand turns into a slow interface. But the gap is small, so the close does
+   not snap shut after a calm open.
+
+   The curve matters more than the duration here. The tab indicator's
+   cubic-bezier(.32,.72,0,1) is nearly three quarters of the way there in the
+   first third of its time — that lunge is right for a mark darting between
+   two tabs and wrong for a panel unfolding, where it reads as a jerk
+   followed by a long crawl. This one eases in as well as out: it starts from
+   rest, gathers, and settles. Nothing leaves abruptly. */
 .faq__panel {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows .28s cubic-bezier(.32, .72, 0, 1);
+  transition: grid-template-rows .4s cubic-bezier(.45, 0, .25, 1);
 }
 .faq.is-open .faq__panel {
   grid-template-rows: 1fr;
-  transition-duration: .36s;
+  transition-duration: .5s;
 }
-/* The text waits 120ms before fading in, so it arrives into a box that has
+/* The text waits 160ms before fading in, so it arrives into a box that has
    already started opening rather than sliding up underneath itself — you
-   never catch yourself reading a line that is still moving. Going away it
-   does not wait: it leaves first, and the box closes on nothing.
-   visibility flips only once the box has finished shutting, which is what
-   takes the collapsed answer out of the tab order and the screen reader. */
+   never catch yourself reading a line that is still moving. The fade itself
+   is long and lazy, finishing well before the box does, so the answer is
+   settled and readable while the last of the movement is still happening.
+   Going away it does not wait: it leaves first, and the box closes on
+   nothing. visibility flips only once the box has finished shutting, which
+   is what takes the collapsed answer out of the tab order and the screen
+   reader. */
 .faq__answer {
   min-width: 0;
   min-height: 0;
   overflow: hidden;
   visibility: hidden;
   opacity: 0;
-  transition: opacity .18s ease, visibility 0s .28s;
+  transition: opacity .2s ease, visibility 0s .4s;
 }
 .faq.is-open .faq__answer {
   visibility: visible;
   opacity: 1;
-  transition: opacity .24s ease .12s, visibility 0s;
+  transition: opacity .34s ease .16s, visibility 0s;
 }
 .faq__answer p {
   margin: 0 0 24px;
@@ -2458,6 +2481,61 @@ html.has-lightbox { overflow: hidden; }
   </section>
 
   <!-- =========================================================
+       GALLERY
+       Static markup on purpose: these ten photographs and the crop each one
+       is composed at are an editorial decision, not data, and writing them
+       out means the strip is laid out before the script runs.
+
+       --r is that crop. The source files are all 1.65 landscape, so a square
+       slide is a real crop — only photos whose subject is vertical and
+       centred (a doorway, a street, a handstand) are given one. The
+       panorama and the wide horizons keep 28/17, which is their own ratio,
+       untouched. The lightbox shows the full uncropped frame either way.
+       ========================================================= -->
+  <section class="gallery">
+    <div class="gallery__head">
+      <h2 class="gallery__title">Where you&rsquo;ll be</h2>
+      <p class="gallery__intro">Reykjav&iacute;k for the first days, then south to Vik, where the beaches are black and the waterfalls come straight off the road. The photographs are from past retreats: the ice, the horses, and the sky on the nights it decides to perform.</p>
+      <div class="gallery__nav">
+        <button class="gallery__arrow gallery__arrow--prev" aria-label="Previous photos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="gallery__arrow gallery__arrow--next" aria-label="More photos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="gallery__track" role="group" aria-roledescription="carousel" aria-label="Photos from Iceland">
+      <div class="gallery__rail">
+        <figure class="gallery__slide" style="--r: 28/17"><img src="images/iceland/hero.jpg" alt="Fja&eth;r&aacute;rglj&uacute;fur canyon in the south" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 1/1"><img src="images/iceland/day4-1.jpg" alt="Hallgr&iacute;mskirkja rising over Reykjav&iacute;k" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 28/17"><img src="images/iceland/day5-2.jpg" alt="The Reynisdrangar sea stacks at Vik" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 5/4"><img src="images/iceland/day1-1.jpg" alt="Northern lights over the guesthouse" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 28/17"><img src="images/iceland/hotel1-1.jpg" alt="The lodge set in open country" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 1/1"><img src="images/iceland/day9-2.jpg" alt="On the black ice of the glacier lagoon" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 28/17"><img src="images/iceland/day7-1.jpg" alt="Icebergs at J&ouml;kuls&aacute;rl&oacute;n" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 5/4"><img src="images/iceland/day8-2.jpg" alt="Riding Icelandic horses along the coast" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 1/1"><img src="images/iceland/hotel3-1.jpg" alt="A turf house with its grass roof" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 28/17"><img src="images/iceland/day3-1.jpg" alt="Kirkjufell and its waterfall" loading="lazy"></figure>
+      </div>
+    </div>
+
+    <div class="gallery__progress" aria-hidden="true">
+      <span class="gallery__progress-bar"></span>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       CARBON OFFSET
+       ========================================================= -->
+  <section class="carbon">
+    <h2 class="carbon__title">Offset Your Carbon Footprint</h2>
+    <p class="carbon__text">Every trip has an environmental impact. If you&rsquo;d like to offset your carbon footprint, you can contribute to climate projects through trusted organizations.</p>
+    <p class="carbon__text"><a class="carbon__link" href="#">Learn More About Carbon Offsetting</a></p>
+  </section>
+
+  <!-- =========================================================
        ADDITIONAL INFO (FAQ)
        Answers are PLACEHOLDER lorem until the real copy arrives.
        ========================================================= -->
@@ -2535,61 +2613,6 @@ html.has-lightbox { overflow: hidden; }
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- =========================================================
-       GALLERY
-       Static markup on purpose: these ten photographs and the crop each one
-       is composed at are an editorial decision, not data, and writing them
-       out means the strip is laid out before the script runs.
-
-       --r is that crop. The source files are all 1.65 landscape, so a square
-       slide is a real crop — only photos whose subject is vertical and
-       centred (a doorway, a street, a handstand) are given one. The
-       panorama and the wide horizons keep 28/17, which is their own ratio,
-       untouched. The lightbox shows the full uncropped frame either way.
-       ========================================================= -->
-  <section class="gallery">
-    <div class="gallery__head">
-      <h2 class="gallery__title">Where you&rsquo;ll be</h2>
-      <p class="gallery__intro">Reykjav&iacute;k for the first days, then south to Vik, where the beaches are black and the waterfalls come straight off the road. The photographs are from past retreats: the ice, the horses, and the sky on the nights it decides to perform.</p>
-      <div class="gallery__nav">
-        <button class="gallery__arrow gallery__arrow--prev" aria-label="Previous photos">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <button class="gallery__arrow gallery__arrow--next" aria-label="More photos">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
-      </div>
-    </div>
-
-    <div class="gallery__track" role="group" aria-roledescription="carousel" aria-label="Photos from Iceland">
-      <div class="gallery__rail">
-        <figure class="gallery__slide" style="--r: 28/17"><img src="images/iceland/hero.jpg" alt="Fja&eth;r&aacute;rglj&uacute;fur canyon in the south" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 1/1"><img src="images/iceland/day4-1.jpg" alt="Hallgr&iacute;mskirkja rising over Reykjav&iacute;k" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 28/17"><img src="images/iceland/day5-2.jpg" alt="The Reynisdrangar sea stacks at Vik" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 5/4"><img src="images/iceland/day1-1.jpg" alt="Northern lights over the guesthouse" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 28/17"><img src="images/iceland/hotel1-1.jpg" alt="The lodge set in open country" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 1/1"><img src="images/iceland/day9-2.jpg" alt="On the black ice of the glacier lagoon" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 28/17"><img src="images/iceland/day7-1.jpg" alt="Icebergs at J&ouml;kuls&aacute;rl&oacute;n" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 5/4"><img src="images/iceland/day8-2.jpg" alt="Riding Icelandic horses along the coast" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 1/1"><img src="images/iceland/hotel3-1.jpg" alt="A turf house with its grass roof" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 28/17"><img src="images/iceland/day3-1.jpg" alt="Kirkjufell and its waterfall" loading="lazy"></figure>
-      </div>
-    </div>
-
-    <div class="gallery__progress" aria-hidden="true">
-      <span class="gallery__progress-bar"></span>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       CARBON OFFSET
-       ========================================================= -->
-  <section class="carbon">
-    <h2 class="carbon__title">Offset Your Carbon Footprint</h2>
-    <p class="carbon__text">Every trip has an environmental impact. If you&rsquo;d like to offset your carbon footprint, you can contribute to climate projects through trusted organizations.</p>
-    <p class="carbon__text"><a class="carbon__link" href="#">Learn More About Carbon Offsetting</a></p>
   </section>
 
   <dialog class="lightbox" aria-label="Photo viewer">
