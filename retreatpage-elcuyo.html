@@ -2058,8 +2058,8 @@ html.has-lightbox { overflow: hidden; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
-  padding: 96px 0 88px;
+  gap: 24px;
+  padding: 72px 0 56px;
 }
 .footer-news__head {
   display: flex;
@@ -2159,7 +2159,7 @@ html.has-lightbox { overflow: hidden; }
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   column-gap: 48px;
-  padding: 88px 0;
+  padding: 48px 0;
   border-top: 1px solid var(--sea-blue-400);
   border-bottom: 1px solid var(--sea-blue-400);
 }
@@ -2191,6 +2191,30 @@ html.has-lightbox { overflow: hidden; }
   line-height: 24px;
   color: var(--stone);
 }
+/* Every heading is the section it names, so all five are links — the header
+   nav and this map now answer to the same five destinations. */
+.footer-col__title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.footer-col__title a:hover { color: var(--stone-400); }
+.footer-col__title a:focus-visible {
+  outline: 2px solid var(--stone);
+  outline-offset: 4px;
+}
+
+/* Column-wise so the list still reads alphabetically down each rank. */
+.footer-col--locations .footer-col__list {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(5, auto);
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+/* The icons are their own row under the column's one text link. The extra
+   class carries the specificity to beat the column default above. */
+.footer-col .footer-col__social { flex-direction: row; gap: 16px; }
 .footer-col__list {
   margin: 0;
   padding: 0;
@@ -2245,7 +2269,7 @@ html.has-lightbox { overflow: hidden; }
 .footer-logo {
   display: flex;
   justify-content: center;
-  padding: 48px 0;
+  padding: 32px 0;
   border-bottom: 1px solid var(--sea-blue-400);
 }
 .footer-logo a {
@@ -2259,7 +2283,7 @@ html.has-lightbox { overflow: hidden; }
 
 .footer-copy {
   margin: 0;
-  padding: 48px 0 24px;
+  padding: 24px 0;
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 24px;
@@ -2272,17 +2296,17 @@ html.has-lightbox { overflow: hidden; }
    on two lines, so the row folds to three and the rules follow it — every
    column that does not open a row keeps the one on its left. */
 @media (min-width: 768px) and (max-width: 1024px) {
-  .footer-news { padding: 72px 0 64px; }
+  .footer-news { padding: 56px 0 48px; }
   .footer-news__title { font-size: 32px; line-height: 44px; }
   .footer-nav__cols {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    row-gap: 48px;
-    padding: 64px 0;
+    row-gap: 40px;
+    padding: 40px 0;
   }
   .footer-col:nth-child(5n + 1)::after { display: block; }
   .footer-col:nth-child(3n + 1)::after { display: none; }
-  .footer-logo { padding: 40px 0; }
-  .footer-copy { padding: 40px 0 24px; }
+  .footer-logo { padding: 32px 0; }
+  .footer-copy { padding: 24px 0; }
 }
 
 /* Mobile: two columns keep the footer scannable without a long scroll, and
@@ -2302,8 +2326,13 @@ html.has-lightbox { overflow: hidden; }
     padding: 40px 0;
   }
   .footer-col::after { display: none; }
+  .footer-col--locations .footer-col__list {
+    grid-auto-flow: row;
+    grid-template-rows: none;
+    grid-template-columns: minmax(0, 1fr);
+  }
   .footer-logo { padding: 32px 0; }
-  .footer-copy { padding: 32px 0 24px; }
+  .footer-copy { padding: 24px 0; }
 }
 </style>
 </head>
@@ -3039,13 +3068,17 @@ html.has-lightbox { overflow: hidden; }
       </form>
     </section>
 
-    <!-- Sitemap -->
+    <!-- Sitemap — one column per nav section, so the footer cannot drift out
+         of step with the header again. Five sections, five columns. -->
     <nav class="footer-nav" aria-label="Footer">
       <div class="footer-nav__cols">
 
         <div class="footer-col footer-col--home">
-          <h3 class="footer-col__title">Home</h3>
+          <h3 class="footer-col__title"><a href="index.html">Home</a></h3>
           <ul class="footer-col__list">
+            <li><a class="footer-link" href="#">Journal</a></li>
+          </ul>
+          <ul class="footer-col__list footer-col__social">
             <li>
               <a class="footer-social" href="#" aria-label="Yoga Adventures Worldwide on Instagram">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -3072,47 +3105,50 @@ html.has-lightbox { overflow: hidden; }
                 </svg>
               </a>
             </li>
-            <li>
-              <a class="footer-social" href="tel:+5219842026072">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M6.9 3.6c.5 0 .95.3 1.14.76l1.3 3.1c.2.48.06 1.04-.35 1.36l-1.2.94a11.4 11.4 0 0 0 4.45 4.45l.94-1.2c.32-.41.88-.55 1.36-.35l3.1 1.3c.46.19.76.64.76 1.14v2.66c0 .8-.66 1.46-1.47 1.42C9.1 18.72 5.28 14.9 4.78 5.07 4.74 4.26 5.4 3.6 6.2 3.6h.7Z"/>
-                </svg>
-                <span>+52 1 984 202 6072</span>
-              </a>
-            </li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h3 class="footer-col__title">About</h3>
+          <h3 class="footer-col__title"><a href="#">Retreats</a></h3>
+          <ul class="footer-col__list">
+            <li><a class="footer-link" href="#">All Retreats</a></li>
+            <li><a class="footer-link" href="#">Signature Collection</a></li>
+            <li><a class="footer-link" href="#">Deep Dives</a></li>
+            <li><a class="footer-link" href="#">Upcoming Dates</a></li>
+          </ul>
+        </div>
+
+        <!-- Ten destinations in two ranks: the full list is the point, but a
+             single rank of ten would be twice the height of every other
+             column and would set the height of the whole footer. -->
+        <div class="footer-col footer-col--locations">
+          <h3 class="footer-col__title"><a href="#">Locations</a></h3>
+          <ul class="footer-col__list">
+            <li><a class="footer-link" href="#">France</a></li>
+            <li><a class="footer-link" href="#">Greece</a></li>
+            <li><a class="footer-link" href="#">Iceland</a></li>
+            <li><a class="footer-link" href="#">Italy</a></li>
+            <li><a class="footer-link" href="#">Mexico</a></li>
+            <li><a class="footer-link" href="#">Montenegro</a></li>
+            <li><a class="footer-link" href="#">Morocco</a></li>
+            <li><a class="footer-link" href="#">Portugal</a></li>
+            <li><a class="footer-link" href="#">Spain</a></li>
+            <li><a class="footer-link" href="#">Thailand</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-col__title"><a href="#">About</a></h3>
           <ul class="footer-col__list">
             <li><a class="footer-link" href="#">Company</a></li>
             <li><a class="footer-link" href="#">Teachers</a></li>
             <li><a class="footer-link" href="#">Team</a></li>
-            <li><a class="footer-link" href="#">Gift Yoga</a></li>
             <li><a class="footer-link" href="#">Policies</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h3 class="footer-col__title">Retreats</h3>
-          <ul class="footer-col__list">
-            <li><a class="footer-link" href="#">Locations</a></li>
-            <li><a class="footer-link" href="#">Upcoming Dates</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h3 class="footer-col__title">Community</h3>
-          <ul class="footer-col__list">
-            <li><a class="footer-link" href="#">Membership Club</a></li>
-            <li><a class="footer-link" href="#">Journal Entries</a></li>
-            <li><a class="footer-link" href="#">Gives Global Program</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h3 class="footer-col__title">Contact</h3>
+          <h3 class="footer-col__title"><a href="#">Contact</a></h3>
           <ul class="footer-col__list">
             <li><a class="footer-link" href="#">General Inquiry</a></li>
             <li><a class="footer-link" href="#">Become a Teacher</a></li>
