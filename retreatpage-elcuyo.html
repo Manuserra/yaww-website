@@ -208,9 +208,17 @@ main { padding-top: 0; }
 }
 
 /* Frame 401: date meta row */
+/* Three columns, not a flex row: centring a flex row centres the whole
+   string, which puts the dot in the middle of the TEXT — and since the date
+   is wider than the teacher's name, that is right of the page's centre. Two
+   equal fr tracks with the dot's own column between them put the dot on the
+   page's axis instead, where the gap between the two buttons below already
+   is. The three spans stay three spans, so WordPress can still fill each
+   field on its own. */
 .retreat-hero__meta {
   margin: 0;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 15px;
   font-family: var(--font-body);
@@ -219,6 +227,8 @@ main { padding-top: 0; }
   line-height: 24px;
   color: var(--sea-blue);
 }
+.retreat-hero__meta > :first-child { text-align: right; }
+.retreat-hero__meta > :last-child  { text-align: left; }
 
 /* Frame 429: CTA buttons */
 .retreat-hero__ctas .btn { width: 286px; }
@@ -2063,7 +2073,9 @@ html.has-lightbox { overflow: hidden; }
   .retreat-hero__image { max-width: none; aspect-ratio: 4 / 5; }
   .retreat-hero__copy { padding-inline: 24px; }
   .retreat-hero__ctas { padding-inline: 24px; box-sizing: border-box; }
-  .retreat-hero__meta { flex-direction: column; gap: 4px; }
+  .retreat-hero__meta { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .retreat-hero__meta > :first-child,
+  .retreat-hero__meta > :last-child { text-align: center; }
   .retreat-hero__meta-dot { display: none; }
 
   /* Includes: real phone width — drop the section's side margin so the
