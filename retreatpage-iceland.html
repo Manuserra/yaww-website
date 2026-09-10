@@ -2042,7 +2042,7 @@ html.has-lightbox { overflow: hidden; }
   text-decoration: none;
   transition: color 0.2s ease;
 }
-.footer-col__title a:hover { color: var(--stone-400); }
+.footer-col__title a:hover { color: var(--sea-blue-100); }
 .footer-col__title a:focus-visible {
   outline: 2px solid var(--stone);
   outline-offset: 4px;
@@ -2080,8 +2080,10 @@ html.has-lightbox { overflow: hidden; }
   transition: color 0.2s ease;
 }
 /* Sand is the brightest ink on this ground, so a link has nowhere to go but
-   down: hover steps back a shade rather than lighting up. */
-.footer-link:hover { color: var(--stone-400); }
+   down. It steps back into the footer's own blue rather than into a paler
+   sand: the hue shift makes the state unmistakable where a half-tone of the
+   same sand would just read as a rendering artefact. */
+.footer-link:hover { color: var(--sea-blue-100); }
 .footer-link:focus-visible,
 .footer-social:focus-visible,
 .footer-news__submit:focus-visible,
@@ -2100,7 +2102,7 @@ html.has-lightbox { overflow: hidden; }
   text-decoration: none;
   transition: color 0.2s ease;
 }
-.footer-social:hover { color: var(--stone-400); }
+.footer-social:hover { color: var(--sea-blue-100); }
 .footer-social svg { display: block; width: 24px; height: 24px; flex: 0 0 auto; }
 .footer-social span {
   font-family: var(--font-body);
@@ -2124,7 +2126,7 @@ html.has-lightbox { overflow: hidden; }
   color: var(--stone);   /* the sprite paints with currentColor */
   transition: color 0.2s ease;
 }
-.footer-logo a:hover { color: var(--stone-400); }
+.footer-logo a:hover { color: var(--sea-blue-100); }
 .footer-logo > a svg { display: block; width: 364px; height: auto; max-width: 100%; }
 .footer-social-row {
   margin: 0;
