@@ -286,7 +286,7 @@ main { padding-top: 0; }
   justify-content: center;
   gap: 48px;
 }
-.card--narrow .card__media { aspect-ratio: 312 / 532; }
+.card--narrow .card__media { aspect-ratio: 312 / 408; }
 .result-link { display: block; height: 100%; color: inherit; text-decoration: none; }
 .result-link:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 4px; }
 .result-link:hover .card__title { text-decoration: underline; text-underline-offset: 3px; }
@@ -297,7 +297,6 @@ main { padding-top: 0; }
   overflow: hidden;
   background: var(--stone-300);
 }
-.card__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .card__badge {
   position: absolute;
   top: 16px; left: 16px;
@@ -1000,7 +999,7 @@ main { padding-top: 0; }
   <section class="home-hero">
     <div class="home-hero__media">
       <!-- TODO: foto real — grupo + gente local + mesa o mat, personas, no paisaje vacío -->
-      <img class="img-reveal" src="images/extra3-1.jpg" alt="Travellers exploring a village together on one of our journeys" loading="lazy">
+      <img src="images/extra3-1.jpg" alt="Travellers exploring a village together on one of our journeys" loading="lazy">
     </div>
     <div class="home-hero__copy">
       <p class="kicker">Small-group yoga journeys · since 2008</p>
@@ -1027,34 +1026,30 @@ main { padding-top: 0; }
 
       <a class="result-link" href="retreatpage-elcuyo.html">
         <article class="card card--narrow">
-          <div class="card__media">
-            <!-- TODO: foto real del retiro El Cuyo -->
-            <img class="img-reveal" src="images/day5-1.jpg" alt="Beach Escape Retreat — El Cuyo, Mexico" loading="lazy">
+          <div class="card__media" style="background: linear-gradient(155deg, hsl(182 32% 80%), hsl(182 26% 60%));">
             <span class="card__badge">Signature Collection</span>
           </div>
           <div class="card__body">
-            <p class="card__title">Beach Escape Retreat</p>
-            <p class="card__loc">El Cuyo, Mexico</p>
-            <p class="card__date">September 4–8, 2026</p>
-            <p class="card__teacher">with Renata Centi</p>
-            <p class="card__note">Pace: easy · Signature: sunrise at the pink lagoons</p>
+            <div class="card__title">Beach Escape Retreat</div>
+            <div class="card__loc">El Cuyo, Mexico</div>
+            <div class="card__date">September 4–8, 2026</div>
+            <div class="card__teacher">with Renata Centi</div>
+            <div class="card__note">Pace: easy · Signature: sunrise at the pink lagoons</div>
           </div>
         </article>
       </a>
 
       <a class="result-link" href="retreatpage-iceland.html">
         <article class="card card--narrow">
-          <div class="card__media">
-            <!-- TODO: foto real del retiro Iceland -->
-            <img class="img-reveal" src="images/iceland/hero.jpg" alt="Between Fire & Ice — Reykjavík & Vik, Iceland" loading="lazy">
+          <div class="card__media" style="background: linear-gradient(155deg, hsl(200 32% 80%), hsl(200 26% 60%));">
             <span class="card__badge">Signature Collection</span>
           </div>
           <div class="card__body">
-            <p class="card__title">Between Fire &amp; Ice</p>
-            <p class="card__loc">Reykjavík &amp; Vik, Iceland</p>
-            <p class="card__date">October 11–19, 2026</p>
-            <p class="card__teacher">with Jenniferlyn Chiemingo</p>
-            <p class="card__note">Pace: unhurried · Signature: glacier walk under the Northern Lights</p>
+            <div class="card__title">Between Fire &amp; Ice</div>
+            <div class="card__loc">Reykjavík &amp; Vik, Iceland</div>
+            <div class="card__date">October 11–19, 2026</div>
+            <div class="card__teacher">with Jenniferlyn Chiemingo</div>
+            <div class="card__note">Pace: unhurried · Signature: glacier walk under the Northern Lights</div>
           </div>
         </article>
       </a>
@@ -1062,17 +1057,15 @@ main { padding-top: 0; }
       <!-- TODO: route to its own retreat page once built -->
       <a class="result-link" href="retreats.html">
         <article class="card card--narrow">
-          <div class="card__media">
-            <!-- TODO: foto real del retiro Majestic Sardinia -->
-            <img class="img-reveal" src="images/extra2-1.jpg" alt="Majestic Sardinia — Sardinia, Italy" loading="lazy">
+          <div class="card__media" style="background: linear-gradient(155deg, hsl(194 32% 80%), hsl(194 26% 60%));">
             <span class="card__badge">Signature Collection</span>
           </div>
           <div class="card__body">
-            <p class="card__title">Majestic Sardinia</p>
-            <p class="card__loc">Sardinia, Italy</p>
-            <p class="card__date">September 4–8, 2026</p>
-            <p class="card__teacher">with Renata Centi</p>
-            <p class="card__note">Pace: moderate · Signature: a shepherd's lunch in the hills</p>
+            <div class="card__title">Majestic Sardinia</div>
+            <div class="card__loc">Sardinia, Italy</div>
+            <div class="card__date">September 4–8, 2026</div>
+            <div class="card__teacher">with Renata Centi</div>
+            <div class="card__note">Pace: moderate · Signature: a shepherd's lunch in the hills</div>
           </div>
         </article>
       </a>
@@ -1080,17 +1073,15 @@ main { padding-top: 0; }
       <!-- TODO: route to its own retreat page once built -->
       <a class="result-link" href="retreats.html">
         <article class="card card--narrow">
-          <div class="card__media">
-            <!-- TODO: foto real del retiro Santorini -->
-            <img class="img-reveal" src="images/extra4-1.jpg" alt="Sea, Sun & Slow Living Retreat — Santorini, Greece" loading="lazy">
+          <div class="card__media" style="background: linear-gradient(155deg, hsl(205 32% 80%), hsl(205 26% 60%));">
             <span class="card__badge">Signature Collection</span>
           </div>
           <div class="card__body">
-            <p class="card__title">Sea, Sun &amp; Slow Living Retreat</p>
-            <p class="card__loc">Santorini, Greece</p>
-            <p class="card__date">September 13–19, 2026</p>
-            <p class="card__teacher">with Genevieve Morin</p>
-            <p class="card__note">Pace: easy · Signature: sunset over the caldera</p>
+            <div class="card__title">Sea, Sun &amp; Slow Living Retreat</div>
+            <div class="card__loc">Santorini, Greece</div>
+            <div class="card__date">September 13–19, 2026</div>
+            <div class="card__teacher">with Genevieve Morin</div>
+            <div class="card__note">Pace: easy · Signature: sunset over the caldera</div>
           </div>
         </article>
       </a>
@@ -1110,7 +1101,7 @@ main { padding-top: 0; }
     <div class="pillar__row">
       <div class="pillar__media">
         <!-- TODO: foto real — encuentro con locales (pastores, familia en Oaxaca, monk chat) -->
-        <img class="img-reveal" src="images/day4-1.jpg" alt="A street in Valladolid, one of the local towns our journeys pass through" loading="lazy">
+        <img src="images/day4-1.jpg" alt="A street in Valladolid, one of the local towns our journeys pass through" loading="lazy">
       </div>
       <div class="pillar__copy">
         <p class="kicker">Pillar 1 · Inside the place</p>
@@ -1132,20 +1123,20 @@ main { padding-top: 0; }
         <p>Yoga most mornings, for every level, led by teachers we hand-pick for how they read a room, not just how they teach a pose.</p>
         <div class="teachers">
           <!-- TODO: foto real de la teacher -->
-          <div class="teachers__item"><img class="img-reveal" src="images/day1-1.jpg" alt="YAWW teacher" loading="lazy"></div>
+          <div class="teachers__item"><img src="images/day1-1.jpg" alt="YAWW teacher" loading="lazy"></div>
           <!-- TODO: foto real de la teacher -->
-          <div class="teachers__item"><img class="img-reveal" src="images/day3-1.jpg" alt="YAWW teacher" loading="lazy"></div>
+          <div class="teachers__item"><img src="images/day3-1.jpg" alt="YAWW teacher" loading="lazy"></div>
           <!-- TODO: foto real de la teacher -->
-          <div class="teachers__item"><img class="img-reveal" src="images/extra1-1.jpg" alt="YAWW teacher" loading="lazy"></div>
+          <div class="teachers__item"><img src="images/extra1-1.jpg" alt="YAWW teacher" loading="lazy"></div>
           <!-- TODO: foto real de la teacher -->
-          <div class="teachers__item"><img class="img-reveal" src="images/iceland/hero.jpg" alt="YAWW teacher" loading="lazy"></div>
+          <div class="teachers__item"><img src="images/iceland/hero.jpg" alt="YAWW teacher" loading="lazy"></div>
         </div>
         <!-- TODO: route to the teachers page -->
         <a class="btn btn--secondary" href="#">Meet our teachers</a>
       </div>
       <div class="pillar__media">
         <!-- TODO: foto real — práctica en destino -->
-        <img class="img-reveal" src="images/day3-1.jpg" alt="Morning yoga practice on retreat" loading="lazy">
+        <img src="images/day3-1.jpg" alt="Morning yoga practice on retreat" loading="lazy">
       </div>
     </div>
   </section>
@@ -1157,7 +1148,7 @@ main { padding-top: 0; }
     <div class="pillar__row">
       <div class="pillar__media">
         <!-- TODO: foto real — mesa compartida, risas -->
-        <img class="img-reveal" src="images/day2-1.jpg" alt="A shared breakfast table on retreat" loading="lazy">
+        <img src="images/day2-1.jpg" alt="A shared breakfast table on retreat" loading="lazy">
       </div>
       <div class="pillar__copy">
         <p class="kicker">Pillar 3 · Together</p>
@@ -1186,11 +1177,11 @@ main { padding-top: 0; }
       <div class="hosts__media">
         <div class="pillar__media">
           <!-- TODO: foto real de Christina -->
-          <img class="img-reveal" src="images/iceland/day1-1.jpg" alt="Christina, founder of Yoga Adventures Worldwide" loading="lazy">
+          <img src="images/iceland/day1-1.jpg" alt="Christina, founder of Yoga Adventures Worldwide" loading="lazy">
         </div>
         <div class="pillar__media">
           <!-- TODO: foto real del equipo (Sofi / JL) -->
-          <img class="img-reveal" src="images/extra3-1.jpg" alt="The YAWW team" loading="lazy">
+          <img src="images/extra3-1.jpg" alt="The YAWW team" loading="lazy">
         </div>
       </div>
     </div>
