@@ -272,15 +272,21 @@ main { padding-top: 0; }
   flex-direction: column;
   align-items: center;
   gap: 40px;
-  padding: 56px 24px;
+  padding: 56px var(--container-pad);
 }
+/* 4-up variant: a fixed 312-wide card so that at the 1440 container width
+   (1392 inner, 24px padding each side) four cards plus three 48px gutters
+   land exactly — 4×312 + 3×48 = 1392. auto-fit lets the row fold to 3 / 2 / 1
+   as the viewport narrows instead of shrinking the cards themselves. */
 .home-next__grid {
   width: 100%;
-  max-width: 1080px;
+  max-width: 1392px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, 312px);
+  justify-content: center;
   gap: 48px;
 }
+.card--narrow .card__media { aspect-ratio: 312 / 532; }
 .result-link { display: block; height: 100%; color: inherit; text-decoration: none; }
 .result-link:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 4px; }
 .result-link:hover .card__title { text-decoration: underline; text-underline-offset: 3px; }
@@ -359,10 +365,6 @@ main { padding-top: 0; }
   color: var(--sea-blue-200);
 }
 .home-next__tiers b { color: var(--sea-blue); font-weight: 600; }
-
-@media (max-width: 700px) {
-  .home-next__grid { grid-template-columns: 1fr; max-width: 420px; }
-}
 
 /* ============================================================
    HOME · PILLARS (split image/copy rows — three pillars + hosts)
@@ -1024,7 +1026,7 @@ main { padding-top: 0; }
     <div class="home-next__grid">
 
       <a class="result-link" href="retreatpage-elcuyo.html">
-        <article class="card">
+        <article class="card card--narrow">
           <div class="card__media">
             <!-- TODO: foto real del retiro El Cuyo -->
             <img class="img-reveal" src="images/day5-1.jpg" alt="Beach Escape Retreat — El Cuyo, Mexico" loading="lazy">
@@ -1041,7 +1043,7 @@ main { padding-top: 0; }
       </a>
 
       <a class="result-link" href="retreatpage-iceland.html">
-        <article class="card">
+        <article class="card card--narrow">
           <div class="card__media">
             <!-- TODO: foto real del retiro Iceland -->
             <img class="img-reveal" src="images/iceland/hero.jpg" alt="Between Fire & Ice — Reykjavík & Vik, Iceland" loading="lazy">
@@ -1053,6 +1055,42 @@ main { padding-top: 0; }
             <p class="card__date">October 11–19, 2026</p>
             <p class="card__teacher">with Jenniferlyn Chiemingo</p>
             <p class="card__note">Pace: unhurried · Signature: glacier walk under the Northern Lights</p>
+          </div>
+        </article>
+      </a>
+
+      <!-- TODO: route to its own retreat page once built -->
+      <a class="result-link" href="retreats.html">
+        <article class="card card--narrow">
+          <div class="card__media">
+            <!-- TODO: foto real del retiro Majestic Sardinia -->
+            <img class="img-reveal" src="images/extra2-1.jpg" alt="Majestic Sardinia — Sardinia, Italy" loading="lazy">
+            <span class="card__badge">Signature Collection</span>
+          </div>
+          <div class="card__body">
+            <p class="card__title">Majestic Sardinia</p>
+            <p class="card__loc">Sardinia, Italy</p>
+            <p class="card__date">September 4–8, 2026</p>
+            <p class="card__teacher">with Renata Centi</p>
+            <p class="card__note">Pace: moderate · Signature: a shepherd's lunch in the hills</p>
+          </div>
+        </article>
+      </a>
+
+      <!-- TODO: route to its own retreat page once built -->
+      <a class="result-link" href="retreats.html">
+        <article class="card card--narrow">
+          <div class="card__media">
+            <!-- TODO: foto real del retiro Santorini -->
+            <img class="img-reveal" src="images/extra4-1.jpg" alt="Sea, Sun & Slow Living Retreat — Santorini, Greece" loading="lazy">
+            <span class="card__badge">Signature Collection</span>
+          </div>
+          <div class="card__body">
+            <p class="card__title">Sea, Sun &amp; Slow Living Retreat</p>
+            <p class="card__loc">Santorini, Greece</p>
+            <p class="card__date">September 13–19, 2026</p>
+            <p class="card__teacher">with Genevieve Morin</p>
+            <p class="card__note">Pace: easy · Signature: sunset over the caldera</p>
           </div>
         </article>
       </a>
