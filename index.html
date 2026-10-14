@@ -331,19 +331,9 @@ main { padding-top: 0; }
   padding-block: 4px;   /* room for the focus ring on the first/last card */
   padding-inline: var(--container-pad);
   scrollbar-width: none;
-  /* Fades the last visible card toward the page ground over its final
-     56px rather than cutting it with a hard line — a second, independent
-     cue that reads even where the sliver above ends up thin. Switches
-     off once actually scrolled to the end, where a fade would be lying. */
-  -webkit-mask-image: linear-gradient(to right, black calc(100% - 56px), transparent 100%);
-          mask-image: linear-gradient(to right, black calc(100% - 56px), transparent 100%);
 }
 .rail__track::-webkit-scrollbar { display: none; }
 .rail__track > .result-link { flex: 0 0 var(--card-w); scroll-snap-align: start; }
-.rail.is-end .rail__track {
-  -webkit-mask-image: none;
-          mask-image: none;
-}
 
 /* Centred on the image band's own half, not the card's full height, so a
    two- vs. one-line title never nudges the controls. */
@@ -1594,10 +1584,8 @@ main { padding-top: 0; }
   }
   function updateArrows() {
     var max = track.scrollWidth - track.clientWidth;
-    var atEnd = track.scrollLeft >= max - EPS;
     setArrow(prevBtn, track.scrollLeft > EPS);
-    setArrow(nextBtn, !atEnd);
-    rail.classList.toggle('is-end', atEnd);
+    setArrow(nextBtn, track.scrollLeft < max - EPS);
   }
   function scrollByStep(dir) {
     var amount = Math.max(track.clientWidth * 0.85, 320) * dir;
