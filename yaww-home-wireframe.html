@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>YAWW Home Wireframe</title>
+<style>
+:root{--ink:#222;--mute:#888;--line:#ccc;--img:#e4e4e4;--note:#fff8d6;--noteb:#e0c96a}
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 system-ui,sans-serif;color:var(--ink);background:#f4f4f4}
+.wrap{max-width:1180px;margin:0 auto;padding:16px}
+.row{display:grid;grid-template-columns:1fr 300px;gap:16px;margin-bottom:16px}
+@media(max-width:860px){.row{grid-template-columns:1fr}}
+.mod{background:#fff;border:1px solid var(--line);padding:40px 32px;text-align:center}
+.note{background:var(--note);border:1px dashed var(--noteb);padding:12px 14px;font-size:12.5px;line-height:1.45}
+.note b{display:block;margin-bottom:4px}
+.tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+h1{font:400 40px/1.15 Georgia,serif;margin:8px 0}h2{font:400 30px/1.2 Georgia,serif;margin:6px 0 10px}
+p{max-width:520px;margin:8px auto;color:#555}
+.img{background:var(--img);display:flex;align-items:center;justify-content:center;color:#999;font-size:12px;min-height:160px}
+.btn{display:inline-block;border:1.5px solid var(--ink);padding:10px 22px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-top:14px}
+.btn.s{border-color:var(--mute);color:var(--mute)}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px;text-align:left}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;text-align:left}
+.split p{margin-left:0}
+@media(max-width:700px){.g4,.g3,.split{grid-template-columns:1fr}}
+.card .img{min-height:140px}.card small{display:block;color:var(--mute);font-size:12px}
+.pill{display:inline-block;border:1px solid var(--line);font-size:10px;padding:1px 6px;margin:6px 0 2px}
+.q{border-left:3px solid var(--line);padding:6px 12px;text-align:left;font:italic 15px/1.4 Georgia,serif;color:#444}
+.q small{display:block;font:12px system-ui;color:var(--mute);margin-top:4px}
+.nav{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid var(--line);padding:14px 20px;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.nav span{margin-left:16px}
+.hero{min-height:420px;display:flex;flex-direction:column;justify-content:center;background:var(--img)}
+.proof{font-size:12px;color:var(--mute);margin-top:10px}
+.ic{width:36px;height:36px;border:1px solid var(--line);border-radius:50%;margin:0 auto 8px}
+.small{font-size:13px}
+</style></head><body><div class="wrap">
+
+<div class="row"><div class="nav"><b>Yoga Adventures Worldwide</b><div><span>Retreats</span><span>Upcoming dates</span><span>How it works</span><span>About</span><span>Reviews</span><span>Teach with us</span></div></div>
+<div class="note"><b>Nav</b>Core Model: A salta directo a How it works / About / Reviews sin leer el arco. "Teach with us" visible: el negocio es de dos lados.</div></div>
+
+<div class="row"><div class="mod hero">
+<div class="tag">Small-group yoga journeys · since 2008</div>
+<h1>Discover a place from the inside,<br>with yoga woven into every day.</h1>
+<p>Hand-picked teachers, local experiences most travellers never get to, and a small group that becomes friends. Every detail handled.</p>
+<div><span class="btn">Find your retreat</span></div>
+<div class="proof">★ 4.9 Google (45) · ★ 4.8 Tripadvisor (87) — linked</div>
+<p class="small">[Foto: grupo + gente local + mesa o mat. Personas, no paisaje vacío]</p>
+</div>
+<div class="note"><b>1 · Promesa</b>Copy = propuesta de valor ya decidida en el doc (Step 5). Categoría "yoga journeys" (Positioning paso 8), no "girls' trip" ni "retreat". Ratings con conteo: prueba verificable arriba para A. Foto con personas porque las reviews describen "a hosted experience, not a product" (69/78).</div></div>
+
+<div class="row"><div class="mod">
+<h2>Where we're going next</h2>
+<div class="g4">
+<div class="card"><div class="img">foto</div><span class="pill">Signature</span><b>Retreat name</b><small>Place · Dates</small><small>with Teacher Name</small><small>Pace: easy · Signature: lunch with shepherds</small></div>
+<div class="card"><div class="img">foto</div><span class="pill">Deep Dive</span><b>Retreat name</b><small>Place · Dates</small><small>with Teacher Name</small><small>Pace · Signature moment</small></div>
+<div class="card"><div class="img">foto</div><span class="pill">Signature</span><b>Retreat name</b><small>Place · Dates</small><small>with Teacher Name</small><small>Pace · Signature moment</small></div>
+<div class="card"><div class="img">foto</div><span class="pill">Deep Dive</span><b>Retreat name</b><small>Place · Dates</small><small>with Teacher Name</small><small>Pace · Signature moment</small></div>
+</div>
+<span class="btn">See all upcoming dates</span>
+<p class="small">Deep Dives — [1 línea] · Signature Collection — [1 línea]</p>
+</div>
+<div class="note"><b>2 · Producto temprano</b>C (clientas que vuelven, ~50%) y A (volver a su retiro) no deberían scrollear. Diferencia vs WT: ellas muestran destinos; YAWW muestra <i>retiros con teacher nombrada</i> (modelo guest-teacher). Signature moment y ritmo en la card: Offer Analysis #3 y #5, y baja el gap de expectativas. Tiers: franja mínima.</div></div>
+
+<div class="row"><div class="mod"><div class="split">
+<div class="img" style="min-height:300px">foto: encuentro con locales (pastores, familia en Oaxaca, monk chat)</div>
+<div><div class="tag">Pillar 1 · Inside the place</div><h2>Beyond the retreat gate.</h2>
+<p>Most of our journeys move through two or more places. Mornings on the mat, afternoons with the people who live there: a shepherd's lunch in Sardinia, Day of the Dead with families in Oaxaca.</p>
+<p class="small">Curious, not extreme: every retreat shows its pace.</p></div></div></div>
+<div class="note"><b>3 · Pilar 1 (el diferencial más fuerte)</b>Clientas: curated local experiences en 72% de las reviews de destino ("as good as having a local take you around"). Contraste vs retiros en una sede (el marco mental de A) y vs adventure yoga (Travel Yogi: "local access, not physical challenge"). Ejemplos nombrados: Language guide.</div></div>
+
+<div class="row"><div class="mod"><div class="split">
+<div><div class="tag">Pillar 2 · Practice at the centre</div><h2>Yes, there's yoga. Every day.</h2>
+<p>Yoga most mornings, for every level, led by teachers we hand-pick for how they read a room, not just how they teach a pose.</p>
+<div class="g3" style="grid-template-columns:repeat(4,1fr)"><div class="img" style="min-height:80px">teacher</div><div class="img" style="min-height:80px">teacher</div><div class="img" style="min-height:80px">teacher</div><div class="img" style="min-height:80px">teacher</div></div>
+<span class="btn s">Meet our teachers</span></div>
+<div class="img" style="min-height:300px">foto: práctica en destino</div></div></div>
+<div class="note"><b>4 · Pilar 2</b>La teacher es lo más mencionado (65%) y lo que la marca menos muestra: va con caras. "Reading the room" = el elogio más repetido. Contraste vs viajes de mujeres sin yoga (WT, AdventureWomen), la mitad que les falta. "Most mornings", no "daily": el doc lo pide por honestidad y baja el principal origen de quejas.</div></div>
+
+<div class="row"><div class="mod"><div class="split">
+<div class="img" style="min-height:300px">foto: mesa compartida, risas</div>
+<div><div class="tag">Pillar 3 · Together</div><h2>Arrive as strangers.<br>Leave as friends.</h2>
+<p>Small groups, long tables, opening and closing circles. Come on your own: many do.</p>
+<div class="q">"Even though we were strangers at the beginning of the week, we parted as friends"<small>Mimi Stansbury · Montenegro · Google</small></div></div></div></div>
+<div class="note"><b>5 · Pilar 3: la columna vertebral</b>Conexión = único atributo en las 5 fuentes de la marca; las clientas usan casi las mismas palabras que Christina. La mesa (food 56%) vive acá, como lugar donde pasa la conexión, no como "fiesta". Absorbe la objeción "¿voy sola?" (20/46 solo). Contraste vs viajar por tu cuenta. Esencia: "together".</div></div>
+
+<div class="row"><div class="mod"><div class="split">
+<div><div class="tag">Your hosts</div><h2>Hosted by Christina<br>and her crew since 2008.</h2>
+<p>Christina designs every journey herself. A member of our team travels with every group, and someone you know by name answers every question before you go.</p>
+<span class="btn s">About us</span></div>
+<div class="g3" style="grid-template-columns:1fr 1fr"><div class="img" style="min-height:200px">Christina</div><div class="img" style="min-height:200px">Sofi / JL / team</div></div></div></div>
+<div class="note"><b>6 · El activo no copiable</b>Christina en 49% de las reviews ("Christina KNOWS all the things"); Positioning: curaduría y red = lo difícil de copiar. Para A: cara y nombre = empresa real. Va después de los pilares porque garantiza las promesas. Relación Kapferer: "a host who treats each client as a friend".</div></div>
+
+<div class="row"><div class="mod">
+<h2>How we work</h2>
+<div class="g3">
+<div><div class="ic"></div><b>Small groups</b><p class="small">6 to 13 travellers. Everyone at one table.</p></div>
+<div><div class="ic"></div><b>Every detail handled</b><p class="small">From the first question to the last dinner.</p></div>
+<div><div class="ic"></div><b>Clear booking</b><p class="small">$1,000 deposit secures your spot via WeTravel. Balance 90 days before.</p></div>
+</div><span class="btn s">How booking works</span></div>
+<div class="note"><b>7 · Foundation</b>Parity en la categoría ("table stakes"), así que va compacto con íconos (patrón WT). Baja el riesgo de pagar ~$8k. Gap del doc: "what's included" inconsistente; acá se promete solo lo que es igual en todos los retiros.</div></div>
+
+<div class="row"><div class="mod">
+<h2>In their words</h2>
+<div class="g3">
+<div class="q">"the value of this trip far exceeded the cost."<small>Lisa Hazen · El Cuyo · Google</small></div>
+<div class="q">"Our instructor… was exceptional as always in reading the room"<small>Mimi Stansbury · Thailand · Google</small></div>
+<div class="q">"I never had to think about the logistics…"<small>Navigate44707 · Portugal · Tripadvisor</small></div>
+</div>
+<p class="small">Many of our travellers come back year after year, some for more than ten.</p>
+<span class="btn s">Read all reviews on Google · Tripadvisor</span></div>
+<div class="note"><b>8 · Prueba de precio</b>"Feel sure the price is worth it" = el único fit Weak: la prueba existe pero no llega. Cada cita resuelve una duda (valor, teacher, cuidado). Sin prensa: la ventaja es lo verificable (link) y la lealtad (50% vuelve).</div></div>
+
+<div class="row"><div class="mod">
+<h2>Travel That Moves You</h2>
+<span class="btn">Find your retreat</span> <span class="btn s">Talk to us</span>
+</div>
+<div class="note"><b>9 · Pedido</b>Tagline existente de Christina (el doc recomienda mantenerla). "Talk to us": la venta es sales-led; A suele necesitar una persona antes del depósito.</div></div>
+
+<div class="row"><div class="mod"><div class="split">
+<div><h2 style="font-size:24px">Take your students abroad.</h2><p>We handle everything but the teaching.</p><span class="btn s">Teach with us</span></div>
+<div><h2 style="font-size:24px">Join the newsletter</h2><p>New journeys first.</p><span class="btn s">Sign up</span></div></div></div>
+<div class="note"><b>10 · Secundarios</b>Teachers: propuesta de valor del teacher canvas; la competencia recluta abiertamente. Newsletter: el ciclo de venta es largo.</div></div>
+
+</div></body></html>
