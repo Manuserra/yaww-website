@@ -53,6 +53,13 @@
    RESET
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; }
+/* Several components below set their own `display` (flex/grid/
+   inline-flex via .btn), which otherwise outranks the browser's
+   native `[hidden]{display:none}` default — any author rule beats a
+   user-agent one regardless of selector specificity — so `el.hidden =
+   true` would silently stop hiding anything the moment a class also
+   declares display. This keeps `hidden` authoritative everywhere. */
+[hidden] { display: none !important; }
 html, body { margin: 0; }
 body {
   background: var(--page-bg);
@@ -267,112 +274,239 @@ main { padding-top: 0; }
 }
 
 /* ============================================================
-   HOME · WHERE WE'RE GOING NEXT
-   Reuses the retreat-card component from the retreats grid: same
-   media crop, badge pill, title and meta rows — the --narrow variant
-   fixes the media crop at 312x408 (see card--narrow below).
-
-   Every upcoming retreat rides in one native horizontal scroller
-   instead of a capped grid, so the section never has to leave
-   retreats out. The track starts at the page's own left gutter and
-   is otherwise unconstrained, so the strip runs past the viewport
-   edge: whatever card lands on that edge gets cut by it, the usual
-   cue that there's more to scroll to. The arrows are a nudge, not a
-   requirement — trackpad and touch scroll the track natively.
+   HOME · WHERE WE'RE GOING NEXT — filter + grid
+   Built from the hi-fi handoff (Dropdowns.dc.html /
+   DropdownsMobile.dc.html / yaww-retreat-filter-handoff.md), with
+   every size, color and type value resolved against yaww-tokens.json
+   rather than copied from the prototype's own inline styles — the
+   handoff's own "Tipografía" table flags which prototype numbers
+   weren't real tokens; the values below are the token (or nearest
+   token) it names, not the prototype's raw px. Card grid and buttons
+   reuse the site's existing .card and .btn components rather than a
+   near-but-not-quite reimplementation of them.
    ============================================================ */
-.home-next {
+.retreats-filter {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 40px;
-  padding: 56px 0;
+  padding: 88px 24px 104px;
 }
-/* Only the rail itself goes edge-to-edge; the heading and the closing
-   button/copy keep the page's own side margin so they never crowd a
-   narrow viewport the way the full-bleed track is allowed to. */
-.home-next > .section-title,
-.home-next__foot {
-  padding-inline: var(--container-pad);
-}
-
-/* Sized off two custom properties, same idea as .gallery__track's own
-   --slide-w/--gap: the breakpoints below only ever change these two
-   numbers, everything else (the arrow's vertical centre included) is
-   computed from them instead of repeating its own magic numbers per
-   breakpoint. */
-.rail {
-  --card-w: 312px;
-  --card-h: 408px;
-  --gap: 48px;
-  position: relative;
+.retreats-filter__inner {
   width: 100%;
-}
-.rail__track {
+  max-width: var(--container-max);
   display: flex;
-  width: 100%;
-  gap: var(--gap);
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  padding-block: 4px;   /* room for the focus ring on the first/last card */
-  padding-inline: var(--container-pad);
-  scrollbar-width: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
 }
-.rail__track::-webkit-scrollbar { display: none; }
-.rail__track > .result-link { flex: 0 0 var(--card-w); }
+.retreats-filter__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+/* Desktop/h2 — larger than .section-title (h4) on purpose: this is the
+   homepage's one browse-and-book moment, not a supporting section. */
+.retreats-filter__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 48px;
+  color: var(--sea-blue);
+}
 
-/* Centred on the image band's own half, not the card's full height, so a
-   two- vs. one-line title never nudges the controls. */
-.rail__arrow {
+/* --- Filter bar ------------------------------------------------- */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  background: var(--stone-100);
+  border: 1px solid var(--stone-300);
+  box-shadow: 0 1px 2px rgba(40, 49, 57, 0.04);
+}
+.filter-seg { position: relative; flex: 1 1 240px; min-width: 0; }
+.filter-seg + .filter-seg { border-left: 1px solid var(--stone-300); }
+.filter-seg__btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 80px;
+  padding: 16px 24px;
+  background: transparent;
+  box-shadow: none;
+  transition: background-color .16s ease, box-shadow .16s ease;
+}
+.filter-seg.is-open .filter-seg__btn {
+  background: var(--stone-100);
+  box-shadow: inset 0 -2px 0 var(--sea-blue);
+}
+.filter-seg__text { display: flex; flex-direction: column; gap: 4px; min-width: 0; text-align: left; }
+.filter-seg__label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sea-blue-300);
+}
+.filter-seg__value {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 18px;
+  line-height: 24px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--sea-blue-500);
+}
+.filter-seg__value.is-empty { font-style: italic; color: var(--sea-blue-200); }
+.filter-seg__chev { flex-shrink: 0; color: var(--sea-blue); transition: transform .16s ease; }
+.filter-seg.is-open .filter-seg__chev { transform: rotate(180deg); }
+@media (prefers-reduced-motion: reduce) {
+  .filter-seg__btn, .filter-seg__chev { transition: none; }
+}
+
+/* --- Dropdown panel (desktop popover) ---------------------------- */
+.filter-panel {
   position: absolute;
-  top: calc(var(--card-h) / 2);
-  transform: translateY(-50%);
-  z-index: 3;
-  width: 44px;
-  height: 44px;
+  top: calc(100% + 8px);
+  left: -1px;
+  z-index: 20;
+  width: 360px;
+  max-width: calc(100vw - 32px);
+  background: var(--stone-100);
+  border: 1px solid var(--stone-300);
+  box-shadow: 0 16px 40px rgba(40, 49, 57, 0.14), 0 2px 6px rgba(40, 49, 57, 0.06);
+  max-height: 420px;
+  overflow-y: auto;
+  padding-block: 8px;
+}
+.filter-group { padding-block: 4px; }
+.filter-group__title {
+  margin: 0;
+  padding: 12px 16px 8px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sea-blue-300);
+}
+.filter-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background: transparent;
+  text-align: left;
+}
+.filter-option.is-selected { background: var(--stone-200); }
+.filter-option__avatar {
+  width: 40px; height: 40px;
   border-radius: 50%;
+  background: var(--stone-300);
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
-  background: rgba(253, 249, 247, 0.92);
-  border: 1px solid var(--stone-400);
+  font-family: var(--font-heading);
+  font-size: 13px;
   color: var(--sea-blue);
+}
+.filter-option__text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.filter-option__name { font-family: var(--font-body); font-size: 16px; line-height: 24px; color: var(--sea-blue-500); }
+.filter-option__name.is-muted { color: var(--sea-blue-200); }
+.filter-option.is-selected .filter-option__name { font-weight: 600; }
+.filter-option__meta {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  color: var(--sea-blue-300);
+}
+.filter-option__check { flex-shrink: 0; color: var(--sea-blue-500); }
+.filter-option:focus-visible,
+.filter-seg__btn:focus-visible,
+.filter-summary__clear:focus-visible {
+  outline: 2px solid var(--sea-blue-300);
+  outline-offset: -2px;
+}
+
+/* --- Results summary --------------------------------------------- */
+.filter-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+}
+.filter-summary__text {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 18px;
+  line-height: 24px;
+  color: var(--sea-blue);
+}
+.filter-summary__clear {
+  font-family: var(--font-body);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sea-blue);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--sea-blue);
+  padding: 4px 0;
   cursor: pointer;
-  box-shadow: 0 2px 10px rgba(40, 49, 57, 0.16);
-  opacity: 1;
-  transition: background-color .18s ease, border-color .18s ease,
-              color .18s ease, opacity .18s ease;
-}
-.rail__arrow.is-hidden { opacity: 0; pointer-events: none; }
-.rail__arrow--prev { left: 16px; }
-.rail__arrow--next { right: 16px; }
-.rail__arrow svg { width: 18px; height: 18px; display: block; }
-@media (hover: hover) and (pointer: fine) {
-  .rail__arrow:hover { background: var(--sea-blue); border-color: var(--sea-blue); color: var(--stone); }
-}
-.rail__arrow:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
-@media (prefers-reduced-motion: reduce) {
-  .rail__arrow { transition: none; }
 }
 
-/* Tighter gutter below the point the page's own --container-pad already
-   steps down at, same breakpoint .gallery uses for the same reason: less
-   air between cards once there's less width to spend it in. */
-@media (max-width: 1024px) {
-  .rail { --gap: 24px; }
+/* --- Empty state --------------------------------------------------- */
+.filter-empty {
+  width: 100%;
+  background: var(--stone-100);
+  border: 1px solid var(--stone-300);
+  padding: 56px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  text-align: center;
 }
-/* One card at a time below 768, narrower than its own fixed desktop size
-   so the same script-computed peek has room to show on both sides —
-   same reasoning as .gallery__track's 78vw mobile slide, ported to a
-   flex-basis instead of a transform rail. */
-@media (max-width: 767px) {
-  .rail { --card-w: 78vw; --card-h: calc(78vw * 408 / 312); --gap: 16px; }
-  .rail__arrow { width: 36px; height: 36px; }
-  .rail__arrow svg { width: 15px; height: 15px; }
-  .rail__arrow--prev { left: 10px; }
+.filter-empty__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+  color: var(--sea-blue);
 }
+.filter-empty__body {
+  margin: 0;
+  max-width: 480px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--sea-blue-300);
+}
+.filter-empty__ctas { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 8px; }
 
-.card--narrow .card__media { aspect-ratio: 312 / 408; }
+/* --- Grid (reuses .card / .result-link) --------------------------- */
+.filter-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 48px 24px;
+}
 .result-link { display: block; height: 100%; color: inherit; text-decoration: none; }
 .result-link:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 4px; }
 .result-link:hover .card__title { text-decoration: underline; text-underline-offset: 3px; }
@@ -444,26 +578,88 @@ main { padding-top: 0; }
   color: var(--sea-blue);
 }
 
-.home-next__foot {
+/* --- Responsive ----------------------------------------------------- */
+@media (max-width: 1024px) {
+  .retreats-filter { padding: 64px 16px 80px; }
+}
+@media (max-width: 767px) {
+  .retreats-filter { padding: 40px 16px 56px; gap: 24px; }
+  .retreats-filter__inner { gap: 24px; }
+  .retreats-filter__head { gap: 8px; }
+  .retreats-filter__title { font-size: 24px; line-height: 32px; }
+
+  /* Teacher spans the top row on its own; Destination + When share the
+     row under it — the handoff's 2-row card, not the 3-up bar. */
+  .filter-seg { flex: 1 1 100%; }
+  .filter-seg:nth-child(1) { flex-basis: 100%; border-left: 0; }
+  .filter-seg:nth-child(2) { flex: 1 1 0; border-top: 1px solid var(--stone-300); }
+  .filter-seg:nth-child(3) { flex: 1 1 0; border-top: 1px solid var(--stone-300); }
+  .filter-seg__btn { min-height: 64px; padding: 16px; }
+
+  .filter-grid { grid-template-columns: 1fr 1fr; gap: 32px 16px; }
+}
+@media (max-width: 480px) {
+  .filter-grid { grid-template-columns: 1fr; }
+}
+
+/* --- Mobile bottom sheet -------------------------------------------- */
+.filter-sheet { position: fixed; inset: 0; z-index: 100; display: none; }
+.filter-sheet.is-open { display: block; }
+.filter-sheet__scrim { position: absolute; inset: 0; background: rgba(40, 49, 57, 0.42); }
+.filter-sheet__panel {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  max-height: 80vh;
+  background: var(--stone-100);
   display: flex;
   flex-direction: column;
+  box-shadow: 0 -12px 32px rgba(40, 49, 57, 0.18);
+}
+.filter-sheet__grabber-row { display: flex; justify-content: center; padding: 8px 0 4px; }
+.filter-sheet__grabber { width: 40px; height: 4px; border-radius: 2px; background: var(--stone-400); }
+.filter-sheet__head {
+  display: flex;
   align-items: center;
-  gap: 24px;
-  text-align: center;
+  justify-content: space-between;
+  padding: 8px 16px 16px;
+  border-bottom: 1px solid var(--stone-300);
 }
-.home-next__tiers {
+.filter-sheet__title {
   margin: 0;
-  max-width: 680px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  font-family: var(--font-body);
-  font-size: 14px;
-  line-height: 22px;
-  letter-spacing: 0.32px;
-  color: var(--sea-blue-200);
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
+  color: var(--sea-blue);
 }
-.home-next__tiers b { color: var(--sea-blue); font-weight: 600; }
+.filter-sheet__close {
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  background: none; border: 0; color: var(--sea-blue);
+}
+.filter-sheet__list { flex: 1 1 auto; overflow-y: auto; padding-block: 8px; }
+.filter-sheet__foot {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 16px;
+  border-top: 1px solid var(--stone-300);
+  background: var(--stone-100);
+}
+.filter-sheet__clear {
+  font-family: var(--font-body);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sea-blue);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--sea-blue);
+  padding: 4px 0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.filter-sheet__confirm { flex: 1 1 auto; }
 
 /* ============================================================
    HOME · PILLARS (split image/copy rows — three pillars + hosts)
@@ -1122,27 +1318,64 @@ main { padding-top: 0; }
   </section>
 
   <!-- =========================================================
-       2 · WHERE WE'RE GOING NEXT — Producto temprano
-       Reuses the retreat-card component; links to the real retreat pages.
+       2 · WHERE WE'RE GOING NEXT — filter + grid
+       Teacher / Destination / When, single-select, AND-combined.
+       Markup is a static shell; retreat-filter.js renders the bar,
+       summary, grid and the mobile sheet from the RETREATS dataset.
        ========================================================= -->
-  <section class="home-next" id="next-retreats">
-    <h2 class="section-title">Where we're going next</h2>
+  <section class="retreats-filter" id="retreats-filter">
+    <div class="retreats-filter__inner">
 
-    <div class="rail">
-      <button class="rail__arrow rail__arrow--prev is-hidden" type="button" aria-label="Scroll to previous retreats" aria-hidden="true" tabindex="-1">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
-      </button>
-      <div class="rail__track" id="nextRetreatsTrack" tabindex="0" aria-label="Upcoming retreats"></div>
-      <button class="rail__arrow rail__arrow--next" type="button" aria-label="Scroll to more retreats">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
-      </button>
-    </div>
+      <div class="retreats-filter__head">
+        <p class="kicker">Upcoming retreats</p>
+        <h2 class="retreats-filter__title">Where we're going next</h2>
+      </div>
 
-    <div class="home-next__foot">
-      <a class="btn btn--primary" href="retreats.html">See all upcoming dates</a>
-      <p class="home-next__tiers"><b>Deep Dives</b> — grounded, intimate retreats in beautiful places, at our most accessible price point. <b>Signature Collection</b> — our most exclusive journeys: rare destinations, exceptional venues, every detail considered.</p>
+      <div class="filter-bar" role="group" aria-label="Filter retreats" id="filterBar"></div>
+
+      <div class="filter-summary">
+        <p class="filter-summary__text" id="filterSummaryText"></p>
+        <button type="button" class="filter-summary__clear" id="filterClearBtn" hidden>Clear all</button>
+      </div>
+
+      <div class="filter-empty" id="filterEmpty" hidden>
+        <p class="filter-empty__title" id="filterEmptyTitle"></p>
+        <p class="filter-empty__body" id="filterEmptyBody"></p>
+        <div class="filter-empty__ctas">
+          <!-- TODO: wire up an email-capture flow for "Notify me" -->
+          <a href="#" class="btn btn--primary" id="filterNotifyBtn">Notify me</a>
+          <!-- TODO: route "Talk to us" to a contact/sales flow -->
+          <a href="#" class="btn btn--secondary">Talk to us</a>
+        </div>
+      </div>
+
+      <div class="filter-grid" id="filterGrid"></div>
+
+      <a href="retreats.html" class="btn btn--secondary" id="filterMoreBtn" hidden></a>
+
     </div>
   </section>
+
+  <!-- Mobile filter sheet — one shared sheet, repopulated with whichever
+       segment opened it. Desktop never shows this (CSS + JS both gate
+       on the same 767px breakpoint). -->
+  <div class="filter-sheet" id="filterSheet" aria-hidden="true">
+    <div class="filter-sheet__scrim" id="filterSheetScrim"></div>
+    <div role="dialog" aria-modal="true" aria-labelledby="filterSheetTitle" class="filter-sheet__panel" id="filterSheetPanel">
+      <div class="filter-sheet__grabber-row"><span class="filter-sheet__grabber" aria-hidden="true"></span></div>
+      <div class="filter-sheet__head">
+        <h3 class="filter-sheet__title" id="filterSheetTitle"></h3>
+        <button type="button" class="filter-sheet__close" aria-label="Close" id="filterSheetCloseBtn">
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3 13 13 M13 3 3 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <ul role="listbox" class="filter-sheet__list" id="filterSheetList"></ul>
+      <div class="filter-sheet__foot">
+        <button type="button" class="filter-sheet__clear" id="filterSheetClearBtn">Clear</button>
+        <button type="button" class="btn btn--primary filter-sheet__confirm" id="filterSheetConfirmBtn"></button>
+      </div>
+    </div>
+  </div>
 
   <!-- =========================================================
        3 · PILLAR 1 — Inside the place
@@ -1473,48 +1706,47 @@ main { padding-top: 0; }
 
 <script>
 /* ============================================================
-   "Where we're going next" — retreats rail
-   Same RETREATS dataset as retreats.html (duplicated the way every
-   other shared block on this site is — there's no build step to
-   share it from). Renders the --narrow card variant into a native
-   horizontal scroller and keeps the two arrow buttons in sync with
-   how far there is left to scroll in either direction.
+   "Where we're going next" — Teacher / Destination / When filter
+   Single-select per segment, AND-combined, counts derived from the
+   data (never hand-written). Desktop opens an inline popover per
+   segment; narrower than the DS tablet breakpoint (767px) opens one
+   shared bottom sheet instead. See yaww-retreat-filter-handoff.md.
    ============================================================ */
 (function () {
+  // Same RETREATS dataset as retreats.html / the old rail (duplicated
+  // the way every shared block on this site already is), extended
+  // with the three filter facets: place (the exact Destination option
+  // it belongs to), region (which Destination group that rolls into)
+  // and season (the When option).
   var RETREATS = [
-    // Summer 2026
-    {name:"The Paris-Champagne Experience", loc:"Paris & Champagne, France", date:"August 30 – September 5, 2026", teacher:"Amy Appel", tier:"signature", hue:30, urgency:{type:"soldout"}},
-    {name:"Beach Escape Retreat", loc:"El Cuyo, Mexico", date:"September 4 – 8, 2026", teacher:"Renata Centi", tier:"deep", hue:182, urgency:{type:"scarce", label:"Filling fast"}},
-    {name:"A French Journey · A Yoga & Embodiment Retreat", loc:"Paris & Champagne, France", date:"September 6 – 12, 2026", teacher:"Dawn Thie", tier:"deep", hue:96, urgency:{type:"scarce", label:"Filling fast"}},
-    {name:"Sea, Sun & Slow Living Retreat", loc:"Santorini, Greece", date:"September 13 – 19, 2026", teacher:"Genevieve Morin", tier:"signature", hue:205, urgency:{type:"scarce", label:"2 spaces left"}},
-    {name:"Sea, Sun & Slow Living Retreat", loc:"Santorini, Greece", date:"September 20 – 26, 2026", teacher:"Genevieve Morin", tier:"deep", hue:212, urgency:{type:"soldout"}},
-    {name:"Majestic Sardinia", loc:"Sardinia, Italy", date:"September 4 – 8, 2026", teacher:"Renata Centi", tier:"signature", hue:194, urgency:{type:"scarce", label:"Filling fast"}},
+    {name:"The Paris-Champagne Experience", loc:"Paris & Champagne, France", date:"August 30 – September 5, 2026", teacher:"Amy Appel", tier:"signature", hue:30, urgency:{type:"soldout"}, place:"France", season:"Summer 2026"},
+    {name:"Beach Escape Retreat", loc:"El Cuyo, Mexico", date:"September 4 – 8, 2026", teacher:"Renata Centi", tier:"deep", hue:182, urgency:{type:"scarce", label:"Filling fast"}, place:"El Cuyo, Mexico", season:"Summer 2026"},
+    {name:"A French Journey · A Yoga & Embodiment Retreat", loc:"Paris & Champagne, France", date:"September 6 – 12, 2026", teacher:"Dawn Thie", tier:"deep", hue:96, urgency:{type:"scarce", label:"Filling fast"}, place:"France", season:"Summer 2026"},
+    {name:"Sea, Sun & Slow Living Retreat", loc:"Santorini, Greece", date:"September 13 – 19, 2026", teacher:"Genevieve Morin", tier:"signature", hue:205, urgency:{type:"scarce", label:"2 spaces left"}, place:"Santorini, Greece", season:"Summer 2026"},
+    {name:"Sea, Sun & Slow Living Retreat", loc:"Santorini, Greece", date:"September 20 – 26, 2026", teacher:"Genevieve Morin", tier:"deep", hue:212, urgency:{type:"soldout"}, place:"Santorini, Greece", season:"Summer 2026"},
+    {name:"Majestic Sardinia", loc:"Sardinia, Italy", date:"September 4 – 8, 2026", teacher:"Renata Centi", tier:"signature", hue:194, urgency:{type:"scarce", label:"Filling fast"}, place:"Sardinia, Italy", season:"Summer 2026"},
 
-    // Fall 2026
-    {name:"Majestic Sardinia", loc:"Sardinia, Italy", date:"September 27 – October 3, 2026", teacher:"Melanie Cordover", tier:"deep", hue:150, urgency:{type:"soldout"}},
-    {name:"Majestic Sardinia", loc:"Sardinia, Italy", date:"September 27 – October 3, 2026", teacher:"Sue Berger", tier:"signature", hue:158, urgency:{type:"scarce", label:"2 spaces left"}},
-    {name:"Between Fire & Ice", loc:"Reykjavík & Vik, Iceland", date:"September 6 – 12, 2026", teacher:"Dawn Thie", tier:"signature", hue:200, urgency:{type:"scarce", label:"Filling fast"}},
-    {name:"Beach Escape Retreat", loc:"El Cuyo, Mexico", date:"October 21 – 25, 2026", teacher:"Renata Centi", tier:"deep", hue:186},
-    {name:"Day of the Dead", loc:"Oaxaca, Mexico", date:"October 28 – November 24, 2026", teacher:"Alicia Delaney", tier:"deep", hue:36},
-    {name:"Mesmerized in Morocco", loc:"Marrakesh & Essaouira, Morocco", date:"September 4 – 8, 2026", teacher:"Renata Centi", tier:"signature", hue:24},
+    {name:"Majestic Sardinia", loc:"Sardinia, Italy", date:"September 27 – October 3, 2026", teacher:"Melanie Cordover", tier:"deep", hue:150, urgency:{type:"soldout"}, place:"Sardinia, Italy", season:"Fall 2026"},
+    {name:"Majestic Sardinia", loc:"Sardinia, Italy", date:"September 27 – October 3, 2026", teacher:"Sue Berger", tier:"signature", hue:158, urgency:{type:"scarce", label:"2 spaces left"}, place:"Sardinia, Italy", season:"Fall 2026"},
+    {name:"Between Fire & Ice", loc:"Reykjavík & Vik, Iceland", date:"September 6 – 12, 2026", teacher:"Dawn Thie", tier:"signature", hue:200, urgency:{type:"scarce", label:"Filling fast"}, place:"Iceland", season:"Fall 2026"},
+    {name:"Beach Escape Retreat", loc:"El Cuyo, Mexico", date:"October 21 – 25, 2026", teacher:"Renata Centi", tier:"deep", hue:186, place:"El Cuyo, Mexico", season:"Fall 2026"},
+    {name:"Day of the Dead", loc:"Oaxaca, Mexico", date:"October 28 – November 24, 2026", teacher:"Alicia Delaney", tier:"deep", hue:36, place:"Oaxaca, Mexico", season:"Fall 2026"},
+    {name:"Mesmerized in Morocco", loc:"Marrakesh & Essaouira, Morocco", date:"September 4 – 8, 2026", teacher:"Renata Centi", tier:"signature", hue:24, place:"Morocco", season:"Fall 2026"},
 
-    // Winter 2026 / 2027
-    {name:"Treasures of Thailand", loc:"Chiang Mai & Koh Yao Noi, Thailand", date:"December 1 – 10, 2026", teacher:"Amy Sennett-Starner", tier:"deep", hue:162},
-    {name:"Inner Glow Retreat", loc:"El Cuyo, Mexico", date:"December 1 – 6, 2026", teacher:"Alicia Delaney", tier:"deep", hue:20},
-    {name:"An Embodied Pause", loc:"El Cuyo, Mexico", date:"December 6 – 11, 2026", teacher:"Carie Cook", tier:"deep", hue:210},
-    {name:"Breath Body Soul Retreat", loc:"El Cuyo, Mexico", date:"January 24 – 29, 2027", teacher:"Sue Berger", tier:"deep", hue:190},
-    {name:"Radiance Retreat", loc:"El Cuyo, Mexico", date:"February 2 – 7, 2027", teacher:"Alicia Delaney", tier:"deep", hue:45},
+    {name:"Treasures of Thailand", loc:"Chiang Mai & Koh Yao Noi, Thailand", date:"December 1 – 10, 2026", teacher:"Amy Sennett-Starner", tier:"deep", hue:162, place:"Thailand", season:"Winter 2026 / 27"},
+    {name:"Inner Glow Retreat", loc:"El Cuyo, Mexico", date:"December 1 – 6, 2026", teacher:"Alicia Delaney", tier:"deep", hue:20, place:"El Cuyo, Mexico", season:"Winter 2026 / 27"},
+    {name:"An Embodied Pause", loc:"El Cuyo, Mexico", date:"December 6 – 11, 2026", teacher:"Carie Cook", tier:"deep", hue:210, place:"El Cuyo, Mexico", season:"Winter 2026 / 27"},
+    {name:"Breath Body Soul Retreat", loc:"El Cuyo, Mexico", date:"January 24 – 29, 2027", teacher:"Sue Berger", tier:"deep", hue:190, place:"El Cuyo, Mexico", season:"Winter 2026 / 27"},
+    {name:"Radiance Retreat", loc:"El Cuyo, Mexico", date:"February 2 – 7, 2027", teacher:"Alicia Delaney", tier:"deep", hue:45, place:"El Cuyo, Mexico", season:"Winter 2026 / 27"},
 
-    // Spring 2027
-    {name:"Somatic Yoga & Hiking Retreat", loc:"Lisboa & Costa Vicentina, Portugal", date:"May 9 – 16, 2027", teacher:"Karah Charette", tier:"signature", hue:120},
-    {name:"Inner Landscape Retreat", loc:"Lisboa & Costa Vicentina, Portugal", date:"May 16 – 23, 2027", teacher:"Dawn Thie", tier:"deep", hue:40},
-    {name:"Balkan Beauty Yoga Retreat", loc:"Bay of Kotor, Montenegro", date:"May 15 – 21, 2027", teacher:"Sherry Sidoti", tier:"signature", hue:150},
-    {name:"Yoga and Reflections Retreat", loc:"Camino de Santiago, Spain", date:"April 18 – 27, 2027", teacher:"Jenniferlyn Chiemingo", tier:"deep", hue:35},
+    {name:"Somatic Yoga & Hiking Retreat", loc:"Lisboa & Costa Vicentina, Portugal", date:"May 9 – 16, 2027", teacher:"Karah Charette", tier:"signature", hue:120, place:"Portugal", season:"Spring 2027"},
+    {name:"Inner Landscape Retreat", loc:"Lisboa & Costa Vicentina, Portugal", date:"May 16 – 23, 2027", teacher:"Dawn Thie", tier:"deep", hue:40, place:"Portugal", season:"Spring 2027"},
+    {name:"Balkan Beauty Yoga Retreat", loc:"Bay of Kotor, Montenegro", date:"May 15 – 21, 2027", teacher:"Sherry Sidoti", tier:"signature", hue:150, place:"Montenegro", season:"Spring 2027"},
+    {name:"Yoga and Reflections Retreat", loc:"Camino de Santiago, Spain", date:"April 18 – 27, 2027", teacher:"Jenniferlyn Chiemingo", tier:"deep", hue:35, place:"Camino de Santiago, Spain", season:"Spring 2027"},
 
-    // Fall 2027
-    {name:"Yoga Retreat Name", loc:"Santorini, Greece", date:"September 19 – 25, 2027", teacher:"Sue Berger", tier:"deep", hue:200},
-    {name:"Yoga Retreat Name", loc:"Santorini, Greece", date:"September 25 – October 2, 2027", teacher:"a fabulous YAWW instructor", tier:"signature", hue:220},
-    {name:"Yoga and Reflections Retreat", loc:"Camino de Santiago, Spain", date:"September 19 – 28, 2027", teacher:"Genevieve Morin", tier:"signature", hue:38}
+    {name:"Yoga Retreat Name", loc:"Santorini, Greece", date:"September 19 – 25, 2027", teacher:"Sue Berger", tier:"deep", hue:200, place:"Santorini, Greece", season:"Fall 2027"},
+    {name:"Yoga Retreat Name", loc:"Santorini, Greece", date:"September 25 – October 2, 2027", teacher:"a fabulous YAWW instructor", tier:"signature", hue:220, place:"Santorini, Greece", season:"Fall 2027"},
+    {name:"Yoga and Reflections Retreat", loc:"Camino de Santiago, Spain", date:"September 19 – 28, 2027", teacher:"Genevieve Morin", tier:"signature", hue:38, place:"Camino de Santiago, Spain", season:"Fall 2027"}
   ];
 
   // Only the two locations with a built detail page link out to it;
@@ -1524,6 +1756,39 @@ main { padding-top: 0; }
     "Reykjavík & Vik, Iceland": "retreatpage-iceland.html"
   };
 
+  // Teacher and Destination rosters are curated, not derived from the
+  // data — "Alison Buchanan" has no retreats yet on purpose, to show
+  // the 0-count / Notify-me path the handoff calls for. "a fabulous
+  // YAWW instructor" (one placeholder row above) is left out of the
+  // roster: it isn't a real name to filter by, but its retreat still
+  // surfaces through Destination/When/"Any teacher".
+  var TEACHERS = ["Alicia Delaney", "Alison Buchanan", "Amy Appel", "Amy Sennett-Starner", "Carie Cook", "Dawn Thie", "Genevieve Morin", "Jenniferlyn Chiemingo", "Karah Charette", "Melanie Cordover", "Renata Centi", "Sherry Sidoti", "Sue Berger"];
+  var PLACES = [
+    { title: "Europe", items: ["France", "Iceland", "Montenegro", "Portugal", "Santorini, Greece", "Sardinia, Italy", "Camino de Santiago, Spain"] },
+    { title: "The Americas", items: ["El Cuyo, Mexico", "Oaxaca, Mexico"] },
+    { title: "Africa & Asia", items: ["Morocco", "Thailand"] }
+  ];
+  var WHENS = ["Summer 2026", "Fall 2026", "Winter 2026 / 27", "Spring 2027", "Fall 2027"];
+
+  var SEGMENTS = [
+    { key: "teacher", label: "Teacher", any: "Any teacher", groups: [{ title: "", items: TEACHERS, avatar: true }] },
+    { key: "place", label: "Destination", any: "Anywhere", groups: PLACES.map(function (g) { return { title: g.title, items: g.items, avatar: false }; }) },
+    { key: "when", label: "When", any: "Any time", groups: [{ title: "", items: WHENS, avatar: false }] }
+  ];
+
+  var state = { open: "", teacher: "", place: "", when: "" };
+
+  // Hook point for whatever analytics eventually lands on this site —
+  // dispatches a DOM event rather than assuming a specific SDK. The
+  // handoff asks for an event per filter change and per Notify-me click.
+  function track(evt, props) {
+    document.dispatchEvent(new CustomEvent("yaww:track", { detail: Object.assign({ event: evt }, props || {}) }));
+  }
+
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+  function initials(name) { return name.split(" ").map(function (p) { return p.charAt(0); }).join("").slice(0, 2).toUpperCase(); }
+  function count(key, value) { return RETREATS.filter(function (r) { return r[key] === value; }).length; }
+  function countMeta(n) { return n === 0 ? "No dates yet" : (n === 1 ? "1 retreat" : n + " retreats"); }
   function badgeLabel(tier) { return tier === "signature" ? "Signature Collection" : "Deep Dives"; }
   function mediaStyle(hue) { return "background: linear-gradient(155deg, hsl(" + hue + " 32% 80%), hsl(" + hue + " 26% 60%));"; }
   function flagHTML(r) {
@@ -1535,106 +1800,312 @@ main { padding-top: 0; }
     var href = PAGES[r.loc] || "retreats.html";
     return (
       '<a class="result-link" href="' + href + '">' +
-        '<article class="card card--narrow">' +
+        '<article class="card">' +
           '<div class="card__media" style="' + mediaStyle(r.hue) + '">' +
             '<span class="card__badge">' + badgeLabel(r.tier) + '</span>' +
             flagHTML(r) +
           '</div>' +
           '<div class="card__body">' +
-            '<div class="card__title">' + r.name + '</div>' +
-            '<div class="card__loc">' + r.loc + '</div>' +
-            '<div class="card__date">' + r.date + '</div>' +
-            '<div class="card__teacher">with ' + r.teacher + '</div>' +
+            '<div class="card__title">' + esc(r.name) + '</div>' +
+            '<div class="card__loc">' + esc(r.loc) + '</div>' +
+            '<div class="card__date">' + esc(r.date) + '</div>' +
+            '<div class="card__teacher">with ' + esc(r.teacher) + '</div>' +
           '</div>' +
         '</article>' +
       '</a>'
     );
   }
 
-  var track = document.getElementById('nextRetreatsTrack');
-  if (!track) return;
-  track.innerHTML = RETREATS.map(cardHTML).join('');
-
-  var rail = track.closest('.rail');
-  var prevBtn = rail.querySelector('.rail__arrow--prev');
-  var nextBtn = rail.querySelector('.rail__arrow--next');
-  var EPS = 4;   // sub-pixel scroll rounding
-
-  function setArrow(btn, visible) {
-    btn.classList.toggle('is-hidden', !visible);
-    btn.tabIndex = visible ? 0 : -1;
-    btn.setAttribute('aria-hidden', visible ? 'false' : 'true');
+  function checkSVG() {
+    return '<svg class="filter-option__check" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   }
-
-  /* Paging geometry — the standard "peek carousel" shape: every page
-     past the first centres a run of whole cards with the same peek
-     split evenly on both sides (half a card showing either edge). Page
-     0 is simply whatever that leaves at the start — it is never width-
-     clamped to match, because clamping it is what produced a reserved
-     strip of nothing between the last card and the arrow: there is no
-     page to centre against at the very start, so there is nothing to
-     reserve for. Measured off the rendered card, not assumed, so it
-     holds at any viewport and recomputes on resize the way .gallery
-     recomputes --edge. */
-  var geo = { shown: 1, stride: 0, firstStep: 0 };
-  function computeGeometry() {
-    var first = track.querySelector('.result-link');
-    if (!first) return;
-    var cardW = first.getBoundingClientRect().width;
-    var gap = parseFloat(getComputedStyle(rail).getPropertyValue('--gap')) || 0;
-    var pad = parseFloat(getComputedStyle(track).paddingLeft) || 0;
-    var railW = rail.getBoundingClientRect().width;
-    var unit = cardW + gap;
-
-    /* A page of `shown` whole cards, flanked by a gap and a peek on
-       EACH side, has to add up to the rail's own width:
-         railW = 2*peek + 2*gap + shown*cardW + (shown-1)*gap
-       solved for peek. shown is the largest count whose peek still
-       clears the minimum — this is also exactly where page 0 hands
-       off: the first click lands on the same peek this page settles
-       into on both edges. */
-    var minPeek = cardW * 0.3;   // enough of a card to read as deliberate, not a sliver
-    var shown = Math.max(1, Math.floor((railW - gap - 2 * minPeek) / unit));
-    var peek = (railW - shown * cardW - (shown + 1) * gap) / 2;
-
-    geo.shown = shown;
-    geo.stride = shown * unit;
-    geo.firstStep = pad + geo.stride - gap - peek;
+  function anyOptionHTML(key, label) {
+    var sel = state[key] === "";
+    return (
+      '<li role="option" aria-selected="' + sel + '">' +
+        '<button type="button" class="filter-option' + (sel ? ' is-selected' : '') + '" data-key="' + key + '" data-value="">' +
+          '<span class="filter-option__text">' +
+            '<span class="filter-option__name">' + esc(label) + '</span>' +
+            '<span class="filter-option__meta">' + RETREATS.length + ' retreats</span>' +
+          '</span>' +
+          (sel ? checkSVG() : '') +
+        '</button>' +
+      '</li>'
+    );
   }
-
-  function updateArrows() {
-    var max = track.scrollWidth - track.clientWidth;
-    setArrow(prevBtn, track.scrollLeft > EPS);
-    setArrow(nextBtn, track.scrollLeft < max - EPS);
+  function optionHTML(key, value, withAvatar) {
+    var n = count(key, value), sel = state[key] === value, muted = n === 0;
+    return (
+      '<li role="option" aria-selected="' + sel + '">' +
+        '<button type="button" class="filter-option' + (sel ? ' is-selected' : '') + '" data-key="' + key + '" data-value="' + esc(value) + '">' +
+          (withAvatar ? '<span class="filter-option__avatar" aria-hidden="true">' + esc(initials(value)) + '</span>' : '') +
+          '<span class="filter-option__text">' +
+            '<span class="filter-option__name' + (muted ? ' is-muted' : '') + '">' + esc(value) + '</span>' +
+            '<span class="filter-option__meta">' + countMeta(n) + '</span>' +
+          '</span>' +
+          (sel ? checkSVG() : '') +
+        '</button>' +
+      '</li>'
+    );
   }
-  function goNext() {
-    var amount = track.scrollLeft < EPS ? geo.firstStep : geo.stride;
-    track.scrollBy({ left: amount, behavior: 'smooth' });
-  }
-  function goPrev() {
-    var amount = track.scrollLeft < geo.firstStep + EPS ? track.scrollLeft : geo.stride;
-    track.scrollBy({ left: -amount, behavior: 'smooth' });
-  }
-
-  var ticking = false;
-  track.addEventListener('scroll', function () {
-    if (!ticking) {
-      requestAnimationFrame(function () { updateArrows(); ticking = false; });
-      ticking = true;
+  // Desktop popover: "Any…" shares a listbox with the first ungrouped
+  // set (Teacher, When); Destination's named groups each get their own.
+  function panelHTML(def) {
+    var parts = [];
+    var ungrouped = def.groups.length === 1 && !def.groups[0].title;
+    parts.push(
+      '<div class="filter-group"><ul role="listbox" aria-label="' + esc(def.label) + '">' +
+        anyOptionHTML(def.key, def.any) +
+        (ungrouped ? def.groups[0].items.map(function (v) { return optionHTML(def.key, v, def.groups[0].avatar); }).join("") : "") +
+      '</ul></div>'
+    );
+    if (!ungrouped) {
+      def.groups.forEach(function (g) {
+        parts.push(
+          '<div class="filter-group">' +
+            (g.title ? '<p class="filter-group__title">' + esc(g.title) + '</p>' : '') +
+            '<ul role="listbox" aria-label="' + esc(g.title || def.label) + '">' +
+              g.items.map(function (v) { return optionHTML(def.key, v, g.avatar); }).join("") +
+            '</ul>' +
+          '</div>'
+        );
+      });
     }
-  }, { passive: true });
+    return parts.join("");
+  }
+  // Mobile sheet: one flat listbox (the <ul> IS #filterSheetList), group
+  // titles become non-interactive <li role="presentation"> dividers —
+  // <ul> can't take a <p> child directly.
+  function sheetItemsHTML(def) {
+    var html = anyOptionHTML(def.key, def.any);
+    def.groups.forEach(function (g) {
+      if (g.title) html += '<li role="presentation" class="filter-group"><p class="filter-group__title">' + esc(g.title) + '</p></li>';
+      html += g.items.map(function (v) { return optionHTML(def.key, v, g.avatar); }).join("");
+    });
+    return html;
+  }
 
-  var resizeTimer;
-  window.addEventListener('resize', function () {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function () { computeGeometry(); updateArrows(); }, 150);
+  var bar = document.getElementById("filterBar");
+  var summaryText = document.getElementById("filterSummaryText");
+  var clearBtn = document.getElementById("filterClearBtn");
+  var emptyBlock = document.getElementById("filterEmpty");
+  var emptyTitle = document.getElementById("filterEmptyTitle");
+  var emptyBody = document.getElementById("filterEmptyBody");
+  var notifyBtn = document.getElementById("filterNotifyBtn");
+  var grid = document.getElementById("filterGrid");
+  var moreBtn = document.getElementById("filterMoreBtn");
+
+  var sheet = document.getElementById("filterSheet");
+  var sheetScrim = document.getElementById("filterSheetScrim");
+  var sheetPanel = document.getElementById("filterSheetPanel");
+  var sheetTitle = document.getElementById("filterSheetTitle");
+  var sheetList = document.getElementById("filterSheetList");
+  var sheetCloseBtn = document.getElementById("filterSheetCloseBtn");
+  var sheetClearBtn = document.getElementById("filterSheetClearBtn");
+  var sheetConfirmBtn = document.getElementById("filterSheetConfirmBtn");
+
+  if (!bar || !grid) return;
+
+  function isMobile() { return window.matchMedia("(max-width: 767px)").matches; }
+  function segByKey(key) { return SEGMENTS.filter(function (d) { return d.key === key; })[0]; }
+  function filteredList() {
+    return RETREATS.filter(function (r) {
+      return (!state.teacher || r.teacher === state.teacher) &&
+             (!state.place || r.place === state.place) &&
+             (!state.when || r.season === state.when);
+    });
+  }
+
+  function renderBar() {
+    bar.innerHTML = SEGMENTS.map(function (def) {
+      var open = state.open === def.key && !isMobile();
+      var value = state[def.key] || def.any;
+      var empty = !state[def.key];
+      return (
+        '<div class="filter-seg' + (open ? ' is-open' : '') + '">' +
+          '<button type="button" class="filter-seg__btn" data-seg="' + def.key + '" aria-haspopup="listbox" aria-expanded="' + open + '">' +
+            '<span class="filter-seg__text">' +
+              '<span class="filter-seg__label">' + esc(def.label) + '</span>' +
+              '<span class="filter-seg__value' + (empty ? ' is-empty' : '') + '">' + esc(value) + '</span>' +
+            '</span>' +
+            '<svg class="filter-seg__chev" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 5.25 7 9.25 11 5.25" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+          '</button>' +
+          (open ? '<div class="filter-panel">' + panelHTML(def) + '</div>' : '') +
+        '</div>'
+      );
+    }).join("");
+  }
+
+  function renderResults() {
+    var list = filteredList();
+    var n = list.length;
+    var parts = [];
+    if (state.teacher) parts.push("with " + state.teacher);
+    if (state.place) parts.push("in " + state.place);
+    if (state.when) parts.push(state.when);
+    summaryText.textContent = (n === 1 ? "1 retreat" : n + " retreats") + (parts.length ? " " + parts.join(", ") : " coming up");
+    clearBtn.hidden = !(state.teacher || state.place || state.when);
+
+    if (n === 0) {
+      emptyBlock.hidden = false;
+      grid.hidden = true;
+      moreBtn.hidden = true;
+      emptyTitle.textContent = state.teacher ? "No dates with " + state.teacher + " yet" : "No retreats match yet";
+      emptyBody.textContent = state.teacher
+        ? "Her next retreat may not be announced yet, or it may be for her own students. Leave your email and we'll write as soon as new dates open."
+        : "Leave your email and we'll write as soon as new dates open.";
+    } else {
+      emptyBlock.hidden = true;
+      grid.hidden = false;
+      grid.innerHTML = list.slice(0, 4).map(cardHTML).join("");
+      moreBtn.hidden = n <= 4;
+      moreBtn.textContent = "See all " + n + " retreat" + (n === 1 ? "" : "s");
+    }
+  }
+
+  function renderSheetContent(key) {
+    var def = segByKey(key);
+    if (!def) return;
+    sheetTitle.textContent = def.label;
+    sheetList.setAttribute("aria-label", def.label);
+    sheetList.innerHTML = sheetItemsHTML(def);
+    var n = filteredList().length;
+    sheetConfirmBtn.textContent = n === 1 ? "Show 1 retreat" : "Show " + n + " retreats";
+  }
+  function openSheet(key) {
+    state.open = key;
+    renderBar();
+    renderSheetContent(key);
+    sheet.classList.add("is-open");
+    sheet.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    track("filter_open", { facet: key });
+    window.requestAnimationFrame(function () { sheetCloseBtn.focus(); });
+  }
+  function closeSheet() {
+    sheet.classList.remove("is-open");
+    sheet.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    var key = state.open;
+    state.open = "";
+    renderBar();
+    var segBtn = bar.querySelector('.filter-seg__btn[data-seg="' + key + '"]');
+    if (segBtn) segBtn.focus();
+  }
+
+  function pick(key, value) {
+    state[key] = state[key] === value ? "" : value;
+    state.open = "";
+    track("filter_change", { facet: key, value: state[key] });
+    renderBar();
+    renderResults();
+  }
+  function pickInSheet(key, value) {
+    state[key] = state[key] === value ? "" : value;
+    track("filter_change", { facet: key, value: state[key] });
+    renderResults();
+    renderSheetContent(key);
+  }
+
+  // --- Desktop bar: open/close segments, pick options, arrow-key nav ---
+  bar.addEventListener("click", function (e) {
+    var segBtn = e.target.closest(".filter-seg__btn");
+    if (segBtn) {
+      var key = segBtn.dataset.seg;
+      if (isMobile()) { openSheet(key); e.stopPropagation(); return; }
+      var wasOpen = state.open === key;
+      state.open = wasOpen ? "" : key;
+      renderBar();
+      if (state.open) {
+        track("filter_open", { facet: key });
+        var panel = bar.querySelector(".filter-panel");
+        var focusTarget = (panel && panel.querySelector(".filter-option.is-selected")) || (panel && panel.querySelector(".filter-option"));
+        if (focusTarget) focusTarget.focus();
+      }
+      e.stopPropagation();
+      return;
+    }
+    var optBtn = e.target.closest(".filter-option");
+    if (optBtn) { pick(optBtn.dataset.key, optBtn.dataset.value); e.stopPropagation(); }
+  });
+  bar.addEventListener("keydown", function (e) {
+    if (!state.open || isMobile()) return;
+    if (["ArrowDown", "ArrowUp", "Home", "End"].indexOf(e.key) === -1) return;
+    var panel = bar.querySelector(".filter-panel");
+    if (!panel) return;
+    var opts = Array.prototype.slice.call(panel.querySelectorAll(".filter-option"));
+    if (!opts.length) return;
+    var idx = opts.indexOf(document.activeElement);
+    e.preventDefault();
+    if (e.key === "ArrowDown") (opts[idx + 1] || opts[0]).focus();
+    else if (e.key === "ArrowUp") (opts[idx - 1] || opts[opts.length - 1]).focus();
+    else if (e.key === "Home") opts[0].focus();
+    else if (e.key === "End") opts[opts.length - 1].focus();
   });
 
-  prevBtn.addEventListener('click', goPrev);
-  nextBtn.addEventListener('click', goNext);
+  // Click outside the bar closes whichever desktop popover is open —
+  // safe to leave unconditional: it no-ops whenever nothing is open or
+  // the bar's own handler already dealt with the click (stopPropagation
+  // above keeps that click from ever reaching here).
+  document.addEventListener("click", function (e) {
+    if (!state.open || isMobile()) return;
+    if (!bar.contains(e.target)) { state.open = ""; renderBar(); }
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    if (sheet.classList.contains("is-open")) { closeSheet(); return; }
+    if (state.open) {
+      var key = state.open;
+      state.open = "";
+      renderBar();
+      var segBtn = bar.querySelector('.filter-seg__btn[data-seg="' + key + '"]');
+      if (segBtn) segBtn.focus();
+    }
+  });
 
-  computeGeometry();
-  updateArrows();
+  // --- Mobile sheet: selecting updates live, footer buttons dismiss ---
+  sheetList.addEventListener("click", function (e) {
+    var optBtn = e.target.closest(".filter-option");
+    if (optBtn) pickInSheet(optBtn.dataset.key, optBtn.dataset.value);
+  });
+  sheetClearBtn.addEventListener("click", function () {
+    if (!state.open) return;
+    state[state.open] = "";
+    track("filter_change", { facet: state.open, value: "" });
+    renderResults();
+    renderSheetContent(state.open);
+  });
+  [sheetCloseBtn, sheetScrim, sheetConfirmBtn].forEach(function (el) {
+    el.addEventListener("click", closeSheet);
+  });
+  sheet.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") { closeSheet(); return; }
+    if (e.key !== "Tab") return;
+    var focusables = sheetPanel.querySelectorAll('button, [href], [tabindex]:not([tabindex="-1"])');
+    if (!focusables.length) return;
+    var first = focusables[0], last = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+
+  clearBtn.addEventListener("click", function () {
+    state.teacher = ""; state.place = ""; state.when = ""; state.open = "";
+    renderBar();
+    renderResults();
+  });
+  notifyBtn.addEventListener("click", function () { track("notify_me_click", { teacher: state.teacher }); });
+
+  var resizeTimer;
+  window.addEventListener("resize", function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      if (!isMobile() && sheet.classList.contains("is-open")) closeSheet();
+      renderBar();
+    }, 150);
+  });
+
+  renderBar();
+  renderResults();
 })();
 </script>
 
