@@ -269,27 +269,82 @@ main { padding-top: 0; }
 /* ============================================================
    HOME · WHERE WE'RE GOING NEXT
    Reuses the retreat-card component from the retreats grid: same
-   media crop, badge pill, title and meta rows.
+   media crop, badge pill, title and meta rows — the --narrow variant
+   fixes the media crop at 312x408 (see card--narrow below).
+
+   Every upcoming retreat rides in one native horizontal scroller
+   instead of a capped grid, so the section never has to leave
+   retreats out. The track starts at the page's own left gutter and
+   is otherwise unconstrained, so the strip runs past the viewport
+   edge: whatever card lands on that edge gets cut by it, the usual
+   cue that there's more to scroll to. The arrows are a nudge, not a
+   requirement — trackpad and touch scroll the track natively.
    ============================================================ */
 .home-next {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 40px;
-  padding: 56px var(--container-pad);
+  padding: 56px 0;
 }
-/* 4-up variant: a fixed 312-wide card so that at the 1440 container width
-   (1392 inner, 24px padding each side) four cards plus three 48px gutters
-   land exactly — 4×312 + 3×48 = 1392. auto-fit lets the row fold to 3 / 2 / 1
-   as the viewport narrows instead of shrinking the cards themselves. */
-.home-next__grid {
-  width: 100%;
-  max-width: 1392px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 312px);
-  justify-content: center;
+/* Only the rail itself goes edge-to-edge; the heading and the closing
+   button/copy keep the page's own side margin so they never crowd a
+   narrow viewport the way the full-bleed track is allowed to. */
+.home-next > .section-title,
+.home-next__foot {
+  padding-inline: var(--container-pad);
+}
+
+.rail { position: relative; width: 100%; }
+.rail__track {
+  display: flex;
   gap: 48px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: var(--container-pad);
+  -webkit-overflow-scrolling: touch;
+  padding-block: 4px;   /* room for the focus ring on the first/last card */
+  padding-inline: var(--container-pad);
+  scrollbar-width: none;
 }
+.rail__track::-webkit-scrollbar { display: none; }
+.rail__track > .result-link { flex: 0 0 312px; scroll-snap-align: start; }
+
+/* Centred on the image band's own half (312x408 → 204), not the card's
+   full height, so a two- vs. one-line title never nudges the controls. */
+.rail__arrow {
+  position: absolute;
+  top: 204px;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: rgba(253, 249, 247, 0.92);
+  border: 1px solid var(--stone-400);
+  color: var(--sea-blue);
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(40, 49, 57, 0.16);
+  opacity: 1;
+  transition: background-color .18s ease, border-color .18s ease,
+              color .18s ease, opacity .18s ease;
+}
+.rail__arrow.is-hidden { opacity: 0; pointer-events: none; }
+.rail__arrow--prev { left: 16px; }
+.rail__arrow--next { right: 16px; }
+.rail__arrow svg { width: 18px; height: 18px; display: block; }
+@media (hover: hover) and (pointer: fine) {
+  .rail__arrow:hover { background: var(--sea-blue); border-color: var(--sea-blue); color: var(--stone); }
+}
+.rail__arrow:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  .rail__arrow { transition: none; }
+}
+
 .card--narrow .card__media { aspect-ratio: 312 / 408; }
 .result-link { display: block; height: 100%; color: inherit; text-decoration: none; }
 .result-link:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 4px; }
@@ -314,6 +369,22 @@ main { padding-top: 0; }
   font-size: 14px;
   line-height: 20px;
 }
+.card__flag {
+  position: absolute;
+  top: 16px; right: 16px;
+  z-index: 2;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.card__flag--scarce,
+.card__flag--soldout { background: var(--sea-blue); color: var(--stone); }
 .card__body {
   padding-top: 16px;
   display: flex;
@@ -1004,7 +1075,7 @@ main { padding-top: 0; }
       <img src="images/extra3-1.jpg" alt="Travellers exploring a village together on one of our journeys" loading="lazy">
     </div>
     <div class="home-hero__copy">
-      <p class="kicker">Small-group yoga journeys · since 2008</p>
+      <p class="kicker">Travel That Moves You · since 2008</p>
       <h1 class="home-hero__title">Discover a place from the inside,<br>with yoga woven into every day.</h1>
       <p class="home-hero__desc">Hand-picked teachers, local experiences most travellers never get to, and a small group that becomes friends. Every detail handled.</p>
     </div>
@@ -1030,66 +1101,14 @@ main { padding-top: 0; }
   <section class="home-next" id="next-retreats">
     <h2 class="section-title">Where we're going next</h2>
 
-    <div class="home-next__grid">
-
-      <a class="result-link" href="retreatpage-elcuyo.html">
-        <article class="card card--narrow">
-          <div class="card__media" style="background: linear-gradient(155deg, hsl(182 32% 80%), hsl(182 26% 60%));">
-            <span class="card__badge">Signature Collection</span>
-          </div>
-          <div class="card__body">
-            <div class="card__title">Beach Escape Retreat</div>
-            <div class="card__loc">El Cuyo, Mexico</div>
-            <div class="card__date">September 4–8, 2026</div>
-            <div class="card__teacher">with Renata Centi</div>
-          </div>
-        </article>
-      </a>
-
-      <a class="result-link" href="retreatpage-iceland.html">
-        <article class="card card--narrow">
-          <div class="card__media" style="background: linear-gradient(155deg, hsl(200 32% 80%), hsl(200 26% 60%));">
-            <span class="card__badge">Signature Collection</span>
-          </div>
-          <div class="card__body">
-            <div class="card__title">Between Fire &amp; Ice</div>
-            <div class="card__loc">Reykjavík &amp; Vik, Iceland</div>
-            <div class="card__date">October 11–19, 2026</div>
-            <div class="card__teacher">with Jenniferlyn Chiemingo</div>
-          </div>
-        </article>
-      </a>
-
-      <!-- TODO: route to its own retreat page once built -->
-      <a class="result-link" href="retreats.html">
-        <article class="card card--narrow">
-          <div class="card__media" style="background: linear-gradient(155deg, hsl(194 32% 80%), hsl(194 26% 60%));">
-            <span class="card__badge">Signature Collection</span>
-          </div>
-          <div class="card__body">
-            <div class="card__title">Majestic Sardinia</div>
-            <div class="card__loc">Sardinia, Italy</div>
-            <div class="card__date">September 4–8, 2026</div>
-            <div class="card__teacher">with Renata Centi</div>
-          </div>
-        </article>
-      </a>
-
-      <!-- TODO: route to its own retreat page once built -->
-      <a class="result-link" href="retreats.html">
-        <article class="card card--narrow">
-          <div class="card__media" style="background: linear-gradient(155deg, hsl(205 32% 80%), hsl(205 26% 60%));">
-            <span class="card__badge">Signature Collection</span>
-          </div>
-          <div class="card__body">
-            <div class="card__title">Sea, Sun &amp; Slow Living Retreat</div>
-            <div class="card__loc">Santorini, Greece</div>
-            <div class="card__date">September 13–19, 2026</div>
-            <div class="card__teacher">with Genevieve Morin</div>
-          </div>
-        </article>
-      </a>
-
+    <div class="rail">
+      <button class="rail__arrow rail__arrow--prev is-hidden" type="button" aria-label="Scroll to previous retreats" aria-hidden="true" tabindex="-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+      </button>
+      <div class="rail__track" id="nextRetreatsTrack" tabindex="0" aria-label="Upcoming retreats"></div>
+      <button class="rail__arrow rail__arrow--next" type="button" aria-label="Scroll to more retreats">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
     </div>
 
     <div class="home-next__foot">
@@ -1424,6 +1443,125 @@ main { padding-top: 0; }
 
   </div>
 </footer>
+
+<script>
+/* ============================================================
+   "Where we're going next" — retreats rail
+   Same RETREATS dataset as retreats.html (duplicated the way every
+   other shared block on this site is — there's no build step to
+   share it from). Renders the --narrow card variant into a native
+   horizontal scroller and keeps the two arrow buttons in sync with
+   how far there is left to scroll in either direction.
+   ============================================================ */
+(function () {
+  var RETREATS = [
+    // Summer 2026
+    {name:"The Paris-Champagne Experience", loc:"Paris & Champagne, France", date:"August 30 – September 5, 2026", teacher:"Amy Appel", tier:"signature", hue:30, urgency:{type:"soldout"}},
+    {name:"Beach Escape Retreat", loc:"El Cuyo, Mexico", date:"September 4 – 8, 2026", teacher:"Renata Centi", tier:"deep", hue:182, urgency:{type:"scarce", label:"Filling fast"}},
+    {name:"A French Journey · A Yoga & Embodiment Retreat", loc:"Paris & Champagne, France", date:"September 6 – 12, 2026", teacher:"Dawn Thie", tier:"deep", hue:96, urgency:{type:"scarce", label:"Filling fast"}},
+    {name:"Sea, Sun & Slow Living Retreat", loc:"Santorini, Greece", date:"September 13 – 19, 2026", teacher:"Genevieve Morin", tier:"signature", hue:205, urgency:{type:"scarce", label:"2 spaces left"}},
+    {name:"Sea, Sun & Slow Living Retreat", loc:"Santorini, Greece", date:"September 20 – 26, 2026", teacher:"Genevieve Morin", tier:"deep", hue:212, urgency:{type:"soldout"}},
+    {name:"Majestic Sardinia", loc:"Sardinia, Italy", date:"September 4 – 8, 2026", teacher:"Renata Centi", tier:"signature", hue:194, urgency:{type:"scarce", label:"Filling fast"}},
+
+    // Fall 2026
+    {name:"Majestic Sardinia", loc:"Sardinia, Italy", date:"September 27 – October 3, 2026", teacher:"Melanie Cordover", tier:"deep", hue:150, urgency:{type:"soldout"}},
+    {name:"Majestic Sardinia", loc:"Sardinia, Italy", date:"September 27 – October 3, 2026", teacher:"Sue Berger", tier:"signature", hue:158, urgency:{type:"scarce", label:"2 spaces left"}},
+    {name:"Between Fire & Ice", loc:"Reykjavík & Vik, Iceland", date:"September 6 – 12, 2026", teacher:"Dawn Thie", tier:"signature", hue:200, urgency:{type:"scarce", label:"Filling fast"}},
+    {name:"Beach Escape Retreat", loc:"El Cuyo, Mexico", date:"October 21 – 25, 2026", teacher:"Renata Centi", tier:"deep", hue:186},
+    {name:"Day of the Dead", loc:"Oaxaca, Mexico", date:"October 28 – November 24, 2026", teacher:"Alicia Delaney", tier:"deep", hue:36},
+    {name:"Mesmerized in Morocco", loc:"Marrakesh & Essaouira, Morocco", date:"September 4 – 8, 2026", teacher:"Renata Centi", tier:"signature", hue:24},
+
+    // Winter 2026 / 2027
+    {name:"Treasures of Thailand", loc:"Chiang Mai & Koh Yao Noi, Thailand", date:"December 1 – 10, 2026", teacher:"Amy Sennett-Starner", tier:"deep", hue:162},
+    {name:"Inner Glow Retreat", loc:"El Cuyo, Mexico", date:"December 1 – 6, 2026", teacher:"Alicia Delaney", tier:"deep", hue:20},
+    {name:"An Embodied Pause", loc:"El Cuyo, Mexico", date:"December 6 – 11, 2026", teacher:"Carie Cook", tier:"deep", hue:210},
+    {name:"Breath Body Soul Retreat", loc:"El Cuyo, Mexico", date:"January 24 – 29, 2027", teacher:"Sue Berger", tier:"deep", hue:190},
+    {name:"Radiance Retreat", loc:"El Cuyo, Mexico", date:"February 2 – 7, 2027", teacher:"Alicia Delaney", tier:"deep", hue:45},
+
+    // Spring 2027
+    {name:"Somatic Yoga & Hiking Retreat", loc:"Lisboa & Costa Vicentina, Portugal", date:"May 9 – 16, 2027", teacher:"Karah Charette", tier:"signature", hue:120},
+    {name:"Inner Landscape Retreat", loc:"Lisboa & Costa Vicentina, Portugal", date:"May 16 – 23, 2027", teacher:"Dawn Thie", tier:"deep", hue:40},
+    {name:"Balkan Beauty Yoga Retreat", loc:"Bay of Kotor, Montenegro", date:"May 15 – 21, 2027", teacher:"Sherry Sidoti", tier:"signature", hue:150},
+    {name:"Yoga and Reflections Retreat", loc:"Camino de Santiago, Spain", date:"April 18 – 27, 2027", teacher:"Jenniferlyn Chiemingo", tier:"deep", hue:35},
+
+    // Fall 2027
+    {name:"Yoga Retreat Name", loc:"Santorini, Greece", date:"September 19 – 25, 2027", teacher:"Sue Berger", tier:"deep", hue:200},
+    {name:"Yoga Retreat Name", loc:"Santorini, Greece", date:"September 25 – October 2, 2027", teacher:"a fabulous YAWW instructor", tier:"signature", hue:220},
+    {name:"Yoga and Reflections Retreat", loc:"Camino de Santiago, Spain", date:"September 19 – 28, 2027", teacher:"Genevieve Morin", tier:"signature", hue:38}
+  ];
+
+  // Only the two locations with a built detail page link out to it;
+  // everything else falls back to the full listing.
+  var PAGES = {
+    "El Cuyo, Mexico": "retreatpage-elcuyo.html",
+    "Reykjavík & Vik, Iceland": "retreatpage-iceland.html"
+  };
+
+  function badgeLabel(tier) { return tier === "signature" ? "Signature Collection" : "Deep Dives"; }
+  function mediaStyle(hue) { return "background: linear-gradient(155deg, hsl(" + hue + " 32% 80%), hsl(" + hue + " 26% 60%));"; }
+  function flagHTML(r) {
+    if (!r.urgency) return "";
+    if (r.urgency.type === "soldout") return '<span class="card__flag card__flag--soldout">Sold out</span>';
+    return '<span class="card__flag card__flag--scarce">' + r.urgency.label + '</span>';
+  }
+  function cardHTML(r) {
+    var href = PAGES[r.loc] || "retreats.html";
+    return (
+      '<a class="result-link" href="' + href + '">' +
+        '<article class="card card--narrow">' +
+          '<div class="card__media" style="' + mediaStyle(r.hue) + '">' +
+            '<span class="card__badge">' + badgeLabel(r.tier) + '</span>' +
+            flagHTML(r) +
+          '</div>' +
+          '<div class="card__body">' +
+            '<div class="card__title">' + r.name + '</div>' +
+            '<div class="card__loc">' + r.loc + '</div>' +
+            '<div class="card__date">' + r.date + '</div>' +
+            '<div class="card__teacher">with ' + r.teacher + '</div>' +
+          '</div>' +
+        '</article>' +
+      '</a>'
+    );
+  }
+
+  var track = document.getElementById('nextRetreatsTrack');
+  if (!track) return;
+  track.innerHTML = RETREATS.map(cardHTML).join('');
+
+  var rail = track.closest('.rail');
+  var prevBtn = rail.querySelector('.rail__arrow--prev');
+  var nextBtn = rail.querySelector('.rail__arrow--next');
+  var EPS = 4;   // sub-pixel scroll rounding
+
+  function setArrow(btn, visible) {
+    btn.classList.toggle('is-hidden', !visible);
+    btn.tabIndex = visible ? 0 : -1;
+    btn.setAttribute('aria-hidden', visible ? 'false' : 'true');
+  }
+  function updateArrows() {
+    var max = track.scrollWidth - track.clientWidth;
+    setArrow(prevBtn, track.scrollLeft > EPS);
+    setArrow(nextBtn, track.scrollLeft < max - EPS);
+  }
+  function scrollByStep(dir) {
+    var amount = Math.max(track.clientWidth * 0.85, 320) * dir;
+    track.scrollBy({ left: amount, behavior: 'smooth' });
+  }
+
+  var ticking = false;
+  track.addEventListener('scroll', function () {
+    if (!ticking) {
+      requestAnimationFrame(function () { updateArrows(); ticking = false; });
+      ticking = true;
+    }
+  }, { passive: true });
+  window.addEventListener('resize', updateArrows);
+  prevBtn.addEventListener('click', function () { scrollByStep(-1); });
+  nextBtn.addEventListener('click', function () { scrollByStep(1); });
+
+  updateArrows();
+})();
+</script>
 
 <script>
   // Mobile nav toggle
