@@ -295,10 +295,35 @@ main { padding-top: 0; }
   padding-inline: var(--container-pad);
 }
 
-.rail { position: relative; width: 100%; }
+/* Sized off two custom properties, same idea as .gallery__track's own
+   --slide-w/--gap: the breakpoints below only ever change these two
+   numbers, everything else (the arrow's vertical centre included) is
+   computed from them instead of repeating its own magic numbers per
+   breakpoint. */
+.rail {
+  --card-w: 312px;
+  --card-h: 408px;
+  --gap: 48px;
+  /* How much of the track's own right edge is deliberately given up so a
+     card is always left mid-cut there, whatever the viewport's width
+     happens to be — see the note on .rail__track. The next arrow sits
+     flush with that reserved edge, so it reads as part of the same cut
+     rather than floating past it. */
+  --peek: 96px;
+  position: relative;
+  width: 100%;
+}
 .rail__track {
   display: flex;
-  gap: 48px;
+  /* A fixed card width can't guarantee a cut card at every viewport the
+     way the gallery's vw-sized slides do — whatever a viewport's own
+     width happens to divide into after N whole cards is whatever it is,
+     and at exactly this site's own 1440 container width it divides out
+     to zero (4 cards is precisely 1392 + the 2x24 gutters). Giving up a
+     fixed sliver of the track's own width means there is always a next
+     card to find regardless of what the viewport's width is. */
+  width: calc(100% - var(--peek));
+  gap: var(--gap);
   overflow-x: auto;
   scroll-snap-type: x proximity;
   scroll-padding-inline: var(--container-pad);
@@ -306,15 +331,25 @@ main { padding-top: 0; }
   padding-block: 4px;   /* room for the focus ring on the first/last card */
   padding-inline: var(--container-pad);
   scrollbar-width: none;
+  /* Fades the last visible card toward the page ground over its final
+     56px rather than cutting it with a hard line — a second, independent
+     cue that reads even where the sliver above ends up thin. Switches
+     off once actually scrolled to the end, where a fade would be lying. */
+  -webkit-mask-image: linear-gradient(to right, black calc(100% - 56px), transparent 100%);
+          mask-image: linear-gradient(to right, black calc(100% - 56px), transparent 100%);
 }
 .rail__track::-webkit-scrollbar { display: none; }
-.rail__track > .result-link { flex: 0 0 312px; scroll-snap-align: start; }
+.rail__track > .result-link { flex: 0 0 var(--card-w); scroll-snap-align: start; }
+.rail.is-end .rail__track {
+  -webkit-mask-image: none;
+          mask-image: none;
+}
 
-/* Centred on the image band's own half (312x408 → 204), not the card's
-   full height, so a two- vs. one-line title never nudges the controls. */
+/* Centred on the image band's own half, not the card's full height, so a
+   two- vs. one-line title never nudges the controls. */
 .rail__arrow {
   position: absolute;
-  top: 204px;
+  top: calc(var(--card-h) / 2);
   transform: translateY(-50%);
   z-index: 3;
   width: 44px;
@@ -335,7 +370,7 @@ main { padding-top: 0; }
 }
 .rail__arrow.is-hidden { opacity: 0; pointer-events: none; }
 .rail__arrow--prev { left: 16px; }
-.rail__arrow--next { right: 16px; }
+.rail__arrow--next { right: var(--peek); }
 .rail__arrow svg { width: 18px; height: 18px; display: block; }
 @media (hover: hover) and (pointer: fine) {
   .rail__arrow:hover { background: var(--sea-blue); border-color: var(--sea-blue); color: var(--stone); }
@@ -343,6 +378,25 @@ main { padding-top: 0; }
 .rail__arrow:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) {
   .rail__arrow { transition: none; }
+}
+
+/* Tighter gutter below the point the page's own --container-pad already
+   steps down at, same breakpoint .gallery uses for the same reason: less
+   air between cards once there's less width to spend it in. */
+@media (max-width: 1024px) {
+  .rail { --gap: 24px; }
+}
+/* One card at a time below 768, narrower than its own fixed desktop size
+   so a sliver of the next one always shows — same reasoning as
+   .gallery__track's 78vw mobile slide, ported to a flex-basis instead of
+   a transform rail. */
+@media (max-width: 767px) {
+  /* The vw-sized card already leaves its own sliver of the next one, so
+     --peek only needs to clear the arrow here, not force a cut. */
+  .rail { --card-w: 78vw; --card-h: calc(78vw * 408 / 312); --gap: 16px; --peek: 10px; }
+  .rail__arrow { width: 36px; height: 36px; }
+  .rail__arrow svg { width: 15px; height: 15px; }
+  .rail__arrow--prev { left: 10px; }
 }
 
 .card--narrow .card__media { aspect-ratio: 312 / 408; }
@@ -1540,8 +1594,10 @@ main { padding-top: 0; }
   }
   function updateArrows() {
     var max = track.scrollWidth - track.clientWidth;
+    var atEnd = track.scrollLeft >= max - EPS;
     setArrow(prevBtn, track.scrollLeft > EPS);
-    setArrow(nextBtn, track.scrollLeft < max - EPS);
+    setArrow(nextBtn, !atEnd);
+    rail.classList.toggle('is-end', atEnd);
   }
   function scrollByStep(dir) {
     var amount = Math.max(track.clientWidth * 0.85, 320) * dir;
