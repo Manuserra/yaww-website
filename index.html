@@ -230,6 +230,9 @@ main { padding-top: 0; }
 }
 .home-hero__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .home-hero__copy { display: flex; flex-direction: column; align-items: center; gap: 16px; max-width: 760px; }
+.home-hero__ctas { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.home-hero__btns { display: flex; align-items: center; gap: 16px; }
+.home-hero__btns .btn { width: 286px; }
 .home-hero__title {
   margin: 0;
   font-family: var(--font-heading);
@@ -259,6 +262,8 @@ main { padding-top: 0; }
 
 @media (max-width: 767px) {
   .home-hero__title { font-size: 26px; line-height: 34px; }
+  .home-hero__btns { flex-direction: column; width: 100%; }
+  .home-hero__btns .btn { width: 100%; }
 }
 
 /* ============================================================
@@ -1002,7 +1007,13 @@ main { padding-top: 0; }
       <p class="kicker">Small-group yoga journeys · since 2008</p>
       <h1 class="home-hero__title">Discover a place from the inside,<br>with yoga woven into every day.</h1>
       <p class="home-hero__desc">Hand-picked teachers, local experiences most travellers never get to, and a small group that becomes friends. Every detail handled.</p>
-      <a class="btn btn--primary" href="retreats.html">Find your retreat</a>
+    </div>
+    <div class="home-hero__ctas">
+      <div class="home-hero__btns">
+        <a class="btn btn--primary" href="retreats.html">Find your retreat</a>
+        <!-- TODO: route "Talk to us" to a contact/sales flow -->
+        <a class="btn btn--secondary" href="#">Talk to us</a>
+      </div>
       <p class="home-hero__proof">
         <!-- TODO: link to real Google review profile -->
         <a href="#">★ 4.9 Google (45)</a> ·
