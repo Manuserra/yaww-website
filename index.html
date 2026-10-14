@@ -304,13 +304,6 @@ main { padding-top: 0; }
   --card-w: 312px;
   --card-h: 408px;
   --gap: 48px;
-  /* Set by the script, not guessed here: how much of the track's own
-     right edge page 0 gives up so it shows exactly as many whole cards
-     as every later page does, plus the same trailing peek those pages
-     settle on — rather than however many happen to fit with nothing
-     left over, which is what made the gap look arbitrary. The next
-     arrow sits flush with that reserved edge. */
-  --peek: 0px;
   position: relative;
   width: 100%;
 }
@@ -324,14 +317,6 @@ main { padding-top: 0; }
   padding-inline: var(--container-pad);
   scrollbar-width: none;
 }
-/* Only page 0 needs the width trimmed: it's the one page not anchored
-   by a scroll position on both sides, so left to its own width it
-   would greedily fit one whole card more than every later page settles
-   on, with nothing left over to cut — back to the original problem.
-   Scrolled anywhere past the start, the track is simply full width and
-   the peek the script already measured falls out of the scroll
-   position itself, same as every page after it. */
-.rail.is-start .rail__track { width: calc(100% - var(--peek)); }
 .rail__track::-webkit-scrollbar { display: none; }
 .rail__track > .result-link { flex: 0 0 var(--card-w); }
 
@@ -361,7 +346,6 @@ main { padding-top: 0; }
 .rail__arrow.is-hidden { opacity: 0; pointer-events: none; }
 .rail__arrow--prev { left: 16px; }
 .rail__arrow--next { right: 16px; }
-.rail.is-start .rail__arrow--next { right: var(--peek); }
 .rail__arrow svg { width: 18px; height: 18px; display: block; }
 @media (hover: hover) and (pointer: fine) {
   .rail__arrow:hover { background: var(--sea-blue); border-color: var(--sea-blue); color: var(--stone); }
@@ -1582,17 +1566,16 @@ main { padding-top: 0; }
     btn.setAttribute('aria-hidden', visible ? 'false' : 'true');
   }
 
-  /* Paging geometry — the standard "peek carousel" shape: page 0 rests
-     flush with the page's own left gutter and shows a run of whole
-     cards plus one peek, on its right only; every later page centres
-     that same run of whole cards with the peek split evenly on BOTH
-     sides (half a card showing either edge), because it is no longer
-     anchored to the gutter. The arrow step is therefore not a fixed
-     distance — the first click moves less than every one after it, by
-     exactly the width of the peek page 0 didn't have to share. All of
-     it is measured off the rendered card, not assumed, so it holds at
-     any viewport and recomputes on resize the way .gallery recomputes
-     --edge. */
+  /* Paging geometry — the standard "peek carousel" shape: every page
+     past the first centres a run of whole cards with the same peek
+     split evenly on both sides (half a card showing either edge). Page
+     0 is simply whatever that leaves at the start — it is never width-
+     clamped to match, because clamping it is what produced a reserved
+     strip of nothing between the last card and the arrow: there is no
+     page to centre against at the very start, so there is nothing to
+     reserve for. Measured off the rendered card, not assumed, so it
+     holds at any viewport and recomputes on resize the way .gallery
+     recomputes --edge. */
   var geo = { shown: 1, stride: 0, firstStep: 0 };
   function computeGeometry() {
     var first = track.querySelector('.result-link');
@@ -1606,16 +1589,14 @@ main { padding-top: 0; }
     /* A page of `shown` whole cards, flanked by a gap and a peek on
        EACH side, has to add up to the rail's own width:
          railW = 2*peek + 2*gap + shown*cardW + (shown-1)*gap
-       solved for peek. shown is then the largest count whose peek
-       still clears the minimum. */
+       solved for peek. shown is the largest count whose peek still
+       clears the minimum — this is also exactly where page 0 hands
+       off: the first click lands on the same peek this page settles
+       into on both edges. */
     var minPeek = cardW * 0.3;   // enough of a card to read as deliberate, not a sliver
     var shown = Math.max(1, Math.floor((railW - gap - 2 * minPeek) / unit));
     var peek = (railW - shown * cardW - (shown + 1) * gap) / 2;
-    // Page 0 only cuts a card on its right, so it earns back the gap
-    // and peek a middle page spends on its left edge.
-    var reserve = Math.max(0, railW - pad - shown * unit - peek);
 
-    rail.style.setProperty('--peek', reserve + 'px');
     geo.shown = shown;
     geo.stride = shown * unit;
     geo.firstStep = pad + geo.stride - gap - peek;
@@ -1625,7 +1606,6 @@ main { padding-top: 0; }
     var max = track.scrollWidth - track.clientWidth;
     setArrow(prevBtn, track.scrollLeft > EPS);
     setArrow(nextBtn, track.scrollLeft < max - EPS);
-    rail.classList.toggle('is-start', track.scrollLeft <= EPS);
   }
   function goNext() {
     var amount = track.scrollLeft < EPS ? geo.firstStep : geo.stride;
