@@ -533,15 +533,19 @@ main { padding-top: 0; }
 }
 .filter-empty__ctas { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 8px; }
 
-@media (max-width: 767px) {
-  /* The bar fills the available width here (a 2-row card), instead of
-     shrinking to its three segments' own width like the desktop bar
-     does — same inset-from-the-edge box as .filter-summary/.filter-empty. */
-  .filter-bar { width: calc(100% - (var(--container-pad) * 2)); }
-  .filter-seg { width: auto; flex: 1 1 100%; }
-  .filter-seg:nth-child(1) { flex-basis: 100%; border-left: 0; }
-  .filter-seg:nth-child(2) { flex: 1 1 0; border-top: 1px solid var(--stone-300); }
-  .filter-seg:nth-child(3) { flex: 1 1 0; border-top: 1px solid var(--stone-300); }
+/* Three fixed-360px segments plus their borders need 1082px, so three
+   of them never actually fit until the viewport clears 1082 + 2 ×
+   --container-pad(24) = 1130px — short of that (which includes the
+   whole 768–1023 tablet range, not just phone widths) a flex-wrap bar
+   doesn't fail cleanly: it packs however many of the three segments
+   happen to fit on the first line and drops only the odd one out to a
+   second line, which is the "2 then 1" accident. Below this one
+   deliberate breakpoint the bar always stacks all three, full width,
+   one per row — never a partial wrap. */
+@media (max-width: 1129px) {
+  .filter-bar { width: calc(100% - (var(--container-pad) * 2)); flex-direction: column; }
+  .filter-seg { width: auto; }
+  .filter-seg + .filter-seg { border-left: 0; border-top: 1px solid var(--stone-300); }
   .filter-seg__btn { min-height: 64px; padding: 16px; }
 }
 
@@ -669,12 +673,16 @@ main { padding-top: 0; }
 @media (max-width: 1024px) {
   .rail { --gap: 24px; }
 }
-/* One card at a time below 768, narrower than its own fixed desktop size
-   so the same script-computed peek has room to show on both sides —
-   same reasoning as .gallery__track's 78vw mobile slide, ported to a
-   flex-basis instead of a transform rail. */
+/* The card itself stays the same 312×408 at every breakpoint — only
+   --gap narrows, and computeGeometry() (see the rail's own <script>)
+   already derives how many of those fixed-size cards fit from the
+   rail's measured width, so "how many show / how much peeks" is what
+   adapts, never the card. (This used to flex --card-w down to 78vw
+   below 768 — ported from .gallery__track's mobile slide — but a
+   viewport-relative card size meant the card itself visibly resized
+   right at the breakpoint, which is exactly what should never happen.) */
 @media (max-width: 767px) {
-  .rail { --card-w: 78vw; --card-h: calc(78vw * 408 / 312); --gap: 16px; }
+  .rail { --gap: 16px; }
   .rail__arrow { width: 36px; height: 36px; }
   .rail__arrow svg { width: 15px; height: 15px; }
   .rail__arrow--prev { left: 10px; }
