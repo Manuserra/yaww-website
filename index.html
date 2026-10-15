@@ -913,11 +913,13 @@ main { padding-top: 0; }
 }
 .pillar__copy h2 {
   margin: 0;
+  max-width: 480px;
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 24px;
   line-height: 40px;
   color: var(--sea-blue);
+  text-wrap: balance;
 }
 .pillar__copy p {
   margin: 0;
@@ -927,6 +929,7 @@ main { padding-top: 0; }
   line-height: 24px;
   letter-spacing: 0.32px;
   color: var(--sea-blue);
+  text-wrap: balance;
 }
 .pillar__copy p.small {
   font-size: 13px;
@@ -1628,94 +1631,7 @@ main { padding-top: 0; }
   </section>
 
   <!-- =========================================================
-       4 · PILLAR 1 — Handpicked instructors
-       ========================================================= -->
-  <section class="pillar">
-    <div class="pillar__row">
-      <!-- TODO: foto real — clase en destino -->
-      <div class="pillar__media" style="background: linear-gradient(155deg, hsl(200 32% 80%), hsl(200 26% 60%));"></div>
-      <div class="pillar__copy">
-        <p class="kicker">Handpicked instructors</p>
-        <h2>Practice with a teacher you'll want to follow anywhere</h2>
-        <p>Classes every day, for all levels. Our teachers adapt each session to the group, so a first-timer and a teacher of 20 years both get what they came for.</p>
-        <a class="btn btn--secondary" href="retreats.html">Explore upcoming retreats</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       5 · PILLAR 2 — The experience
-       ========================================================= -->
-  <section class="pillar pillar--reverse">
-    <div class="pillar__row">
-      <div class="pillar__copy">
-        <p class="kicker">The experience</p>
-        <h2>See what most visitors never get to</h2>
-        <p>Lunch with shepherds in the mountains of Sardinia. A private tour of the Guggenheim in Bilbao. A blessing from monks in Chiang Mai. We plan the days around the people and places we've come to know over years of going back.</p>
-        <a class="btn btn--secondary" href="retreats.html">Explore upcoming retreats</a>
-      </div>
-      <!-- TODO: foto real — experiencia local (trekking, mercado, taller) -->
-      <div class="pillar__media" style="background: linear-gradient(155deg, hsl(96 32% 80%), hsl(96 26% 60%));"></div>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       6 · PILLAR 3 — The shift
-       ========================================================= -->
-  <section class="pillar">
-    <div class="pillar__row">
-      <!-- TODO: foto real — chef local, cena larga, clase de cocina -->
-      <div class="pillar__media" style="background: linear-gradient(155deg, hsl(30 32% 80%), hsl(30 26% 60%));"></div>
-      <div class="pillar__copy">
-        <p class="kicker">The shift</p>
-        <h2>Sit down to the best food in town</h2>
-        <p>Local chefs, long dinners, a cooking class on a farm. Our guests write about the meals more than anything else.</p>
-        <a class="btn btn--secondary" href="retreats.html">Explore upcoming retreats</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       7 · HOW WE WORK — Foundation
-       ========================================================= -->
-  <section class="how">
-    <h2 class="section-title">How we work</h2>
-    <div class="how__grid">
-      <div class="how__item">
-        <span class="how__icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="9" cy="8" r="3.2"/><path d="M3.5 19.5c0-3 2.5-5.3 5.5-5.3s5.5 2.3 5.5 5.3"/>
-            <circle cx="17" cy="9" r="2.4"/><path d="M15.2 14.6c2.3.3 4.3 2.3 4.3 4.9"/>
-          </svg>
-        </span>
-        <b>Small groups</b>
-        <p>6 to 13 travellers. Everyone at one table.</p>
-      </div>
-      <div class="how__item">
-        <span class="how__icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 12.5l4.5 4.5L20 6"/>
-          </svg>
-        </span>
-        <b>Every detail handled</b>
-        <p>From the first question to the last dinner.</p>
-      </div>
-      <div class="how__item">
-        <span class="how__icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3.5" y="5.5" width="17" height="14" rx="1.5"/><path d="M3.5 10h17"/>
-          </svg>
-        </span>
-        <b>Clear booking</b>
-        <p>$1,000 deposit secures your spot via WeTravel. Balance 90 days before.</p>
-      </div>
-    </div>
-    <!-- TODO: route to the booking info page -->
-    <a class="btn btn--secondary" href="#">How booking works</a>
-  </section>
-
-  <!-- =========================================================
-       8 · IN OUR GUESTS' WORDS
+       4 · IN OUR GUESTS' WORDS
        ========================================================= -->
   <section class="quotes">
     <h2 class="section-title">In our guests' words</h2>
@@ -1751,6 +1667,93 @@ main { padding-top: 0; }
         </figcaption>
       </figure>
     </div>
+  </section>
+
+  <!-- =========================================================
+       5 · PILLAR 1 — Handpicked instructors
+       ========================================================= -->
+  <section class="pillar">
+    <div class="pillar__row">
+      <!-- TODO: foto real — clase en destino -->
+      <div class="pillar__media" style="background: linear-gradient(155deg, hsl(200 32% 80%), hsl(200 26% 60%));"></div>
+      <div class="pillar__copy">
+        <p class="kicker">Handpicked instructors</p>
+        <h2>Practice with a teacher you'll want to follow anywhere</h2>
+        <p>Classes every day, for all levels. Our teachers adapt each session to the group, so a first-timer and a teacher of 20 years both get what they came for.</p>
+        <a class="btn btn--secondary" href="retreats.html">Explore upcoming retreats</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       6 · PILLAR 2 — The experience
+       ========================================================= -->
+  <section class="pillar pillar--reverse">
+    <div class="pillar__row">
+      <div class="pillar__copy">
+        <p class="kicker">The experience</p>
+        <h2>See what most visitors never get to</h2>
+        <p>Lunch with shepherds in the mountains of Sardinia. A private tour of the Guggenheim in Bilbao. A blessing from monks in Chiang Mai. We plan the days around the people and places we've come to know over years of going back.</p>
+        <a class="btn btn--secondary" href="retreats.html">Explore upcoming retreats</a>
+      </div>
+      <!-- TODO: foto real — experiencia local (trekking, mercado, taller) -->
+      <div class="pillar__media" style="background: linear-gradient(155deg, hsl(96 32% 80%), hsl(96 26% 60%));"></div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       7 · PILLAR 3 — The shift
+       ========================================================= -->
+  <section class="pillar">
+    <div class="pillar__row">
+      <!-- TODO: foto real — chef local, cena larga, clase de cocina -->
+      <div class="pillar__media" style="background: linear-gradient(155deg, hsl(30 32% 80%), hsl(30 26% 60%));"></div>
+      <div class="pillar__copy">
+        <p class="kicker">The shift</p>
+        <h2>Sit down to the best food in town</h2>
+        <p>Local chefs, long dinners, a cooking class on a farm. Our guests write about the meals more than anything else.</p>
+        <a class="btn btn--secondary" href="retreats.html">Explore upcoming retreats</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       8 · HOW WE WORK — Foundation
+       ========================================================= -->
+  <section class="how">
+    <h2 class="section-title">How we work</h2>
+    <div class="how__grid">
+      <div class="how__item">
+        <span class="how__icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="8" r="3.2"/><path d="M3.5 19.5c0-3 2.5-5.3 5.5-5.3s5.5 2.3 5.5 5.3"/>
+            <circle cx="17" cy="9" r="2.4"/><path d="M15.2 14.6c2.3.3 4.3 2.3 4.3 4.9"/>
+          </svg>
+        </span>
+        <b>Small groups</b>
+        <p>6 to 13 travellers. Everyone at one table.</p>
+      </div>
+      <div class="how__item">
+        <span class="how__icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 12.5l4.5 4.5L20 6"/>
+          </svg>
+        </span>
+        <b>Every detail handled</b>
+        <p>From the first question to the last dinner.</p>
+      </div>
+      <div class="how__item">
+        <span class="how__icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3.5" y="5.5" width="17" height="14" rx="1.5"/><path d="M3.5 10h17"/>
+          </svg>
+        </span>
+        <b>Clear booking</b>
+        <p>$1,000 deposit secures your spot via WeTravel. Balance 90 days before.</p>
+      </div>
+    </div>
+    <!-- TODO: route to the booking info page -->
+    <a class="btn btn--secondary" href="#">How booking works</a>
   </section>
 
   <!-- =========================================================
