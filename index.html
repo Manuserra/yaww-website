@@ -341,17 +341,21 @@ main { padding-top: 0; }
 }
 .filter-seg { position: relative; width: 360px; flex: 0 0 auto; min-width: 0; }
 .filter-seg + .filter-seg { border-left: 1px solid var(--stone-300); }
-/* .filter-seg__btn is the row: a transparent trigger button (the text
-   + chevron, opens the panel/sheet) plus — once a value is picked — a
-   separate clear button sitting next to it, not nested inside it, so
-   the two stay independently clickable. */
+/* .filter-seg__btn is the row, and the thing clicks delegate off of
+   (it carries data-seg too): a trigger button wrapping just the label
+   + value (opens the panel/sheet), then — once a value is picked — a
+   clear button, then the chevron last, in that visual order, same as
+   it's always sat at the row's trailing edge. The chevron and clear
+   button are siblings of the trigger, not nested inside it, so the x
+   stays independently clickable; clicking the chevron still opens the
+   panel because the click bubbles up to this row's own listener. */
 .filter-seg__btn {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
   min-height: 80px;
-  padding: 16px 16px 16px 24px;
+  padding: 16px 24px;
   transition: background-color .16s ease, box-shadow .16s ease;
 }
 .filter-seg.is-open .filter-seg__btn {
@@ -361,10 +365,6 @@ main { padding-top: 0; }
 .filter-seg__trigger {
   flex: 1 1 auto;
   min-width: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
   text-align: left;
 }
 .filter-seg__text { display: flex; flex-direction: column; gap: 4px; min-width: 0; text-align: left; }
@@ -497,7 +497,6 @@ main { padding-top: 0; }
   font-size: 14px;
   line-height: 16px;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
   color: var(--sea-blue);
   background: none;
   border: 0;
@@ -2140,19 +2139,19 @@ main { padding-top: 0; }
       var empty = !state[def.key];
       return (
         '<div class="filter-seg' + (open ? ' is-open' : '') + '">' +
-          '<div class="filter-seg__btn">' +
+          '<div class="filter-seg__btn" data-seg="' + def.key + '">' +
             '<button type="button" class="filter-seg__trigger" data-seg="' + def.key + '" aria-haspopup="listbox" aria-expanded="' + open + '">' +
               '<span class="filter-seg__text">' +
                 '<span class="filter-seg__label">' + esc(def.label) + '</span>' +
                 '<span class="filter-seg__value' + (empty ? ' is-empty' : '') + '">' + esc(value) + '</span>' +
               '</span>' +
-              '<svg class="filter-seg__chev" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 5.25 7 9.25 11 5.25" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
             '</button>' +
             (empty ? '' :
               '<button type="button" class="filter-seg__clear" data-seg="' + def.key + '" aria-label="Clear ' + esc(def.label) + ' filter">' +
                 '<svg width="12" height="12" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3 13 13 M13 3 3 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>' +
               '</button>'
             ) +
+            '<svg class="filter-seg__chev" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 5.25 7 9.25 11 5.25" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
           '</div>' +
           (open ? '<div class="filter-panel">' + panelHTML(def) + '</div>' : '') +
         '</div>'
@@ -2240,7 +2239,11 @@ main { padding-top: 0; }
   filterBar.addEventListener("click", function (e) {
     var clearSegBtn = e.target.closest(".filter-seg__clear");
     if (clearSegBtn) { clearFacet(clearSegBtn.dataset.seg); e.stopPropagation(); return; }
-    var segBtn = e.target.closest(".filter-seg__trigger");
+    // Delegated off the whole row (not just .filter-seg__trigger) so a
+    // click anywhere in it — including the chevron, which now sits
+    // outside the trigger button so the clear "x" can come before it —
+    // still opens the panel/sheet.
+    var segBtn = e.target.closest(".filter-seg__btn");
     if (segBtn) {
       var key = segBtn.dataset.seg;
       if (isMobile()) { openSheet(key); e.stopPropagation(); return; }
