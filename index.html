@@ -874,15 +874,19 @@ main { padding-top: 0; }
    ============================================================ */
 .pillar {
   display: flex;
-  justify-content: center;
-  padding: 56px 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 56px 24px 24px;
+  gap: 56px;
+  background: var(--stone);
 }
 .pillar__row {
   width: 100%;
   max-width: var(--container-max);
+  margin-inline: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 64px;
+  gap: 48px;
   align-items: center;
 }
 .pillar--reverse .pillar__media { order: 2; }
@@ -893,13 +897,31 @@ main { padding-top: 0; }
   background: var(--stone-300);
 }
 .pillar__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.pillar__copy { display: flex; flex-direction: column; gap: 16px; }
+.pillar__copy { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+/* The button (and anything else that isn't eyebrow/title/paragraph —
+   the teacher grid, the pull-quote) sits apart from that group at
+   32px, not the 16px between the three text pieces themselves. */
+.pillar__copy > .btn,
+.pillar__copy > .teachers,
+.pillar__copy > .pillar__quote {
+  margin-top: 16px;
+}
+/* Beats .pillar__copy p's own font-size/line-height/letter-spacing on
+   specificity (0,1,1 there vs 0,2,0 here) — .kicker's <p> tag was
+   quietly inheriting the paragraph rule's 16px/0.32em instead of its
+   own 14px/0.56em caption spec. */
+.pillar__copy .kicker {
+  color: var(--stone-600);
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.56px;
+}
 .pillar__copy h2 {
   margin: 0;
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 30px;
-  line-height: 38px;
+  font-size: 24px;
+  line-height: 40px;
   color: var(--sea-blue);
 }
 .pillar__copy p {
@@ -915,6 +937,11 @@ main { padding-top: 0; }
   font-size: 13px;
   line-height: 20px;
   color: var(--sea-blue-200);
+}
+.pillar__copy .btn--secondary {
+  padding: 16px 24px;
+  border-width: 1.4px;
+  background: var(--stone);
 }
 
 /* Pillar 2 — teacher thumbnails */
@@ -968,8 +995,7 @@ main { padding-top: 0; }
   .pillar__copy p { max-width: none; }
 }
 @media (max-width: 767px) {
-  .pillar { padding: 40px 16px; }
-  .pillar__copy h2 { font-size: 24px; line-height: 32px; }
+  .pillar { padding: 40px 16px 16px; gap: 40px; }
   .teachers { grid-template-columns: repeat(4, 1fr); gap: 8px; }
 }
 
@@ -1663,54 +1689,61 @@ main { padding-top: 0; }
   </section>
 
   <!-- =========================================================
-       4 · PILLAR 1 — Inside the place
+       4 · PILLAR 1 — Handpicked instructors
        ========================================================= -->
   <section class="pillar">
     <div class="pillar__row">
       <div class="pillar__media">
-        <!-- TODO: foto real — encuentro con locales (pastores, familia en Oaxaca, monk chat) -->
-        <img src="images/day4-1.jpg" alt="A street in Valladolid, one of the local towns our journeys pass through" loading="lazy">
+        <!-- TODO: foto real — clase en destino -->
+        <img src="images/day3-1.jpg" alt="A yoga class in session during one of our retreats" loading="lazy">
       </div>
       <div class="pillar__copy">
-        <p class="kicker">Pillar 1 · Inside the place</p>
-        <h2>Beyond the retreat gate.</h2>
-        <p>Most of our journeys move through two or more places. Mornings on the mat, afternoons with the people who live there: a shepherd's lunch in Sardinia, Day of the Dead with families in Oaxaca.</p>
-        <p class="small">Curious, not extreme: every retreat shows its pace.</p>
+        <p class="kicker">Handpicked instructors</p>
+        <h2>Practice with a teacher you'll want to follow anywhere</h2>
+        <p>Classes every day, for all levels. Our teachers adapt each session to the group, so a first-timer and a teacher of 20 years both get what they came for.</p>
+        <a class="btn btn--secondary" href="retreats.html">Explore upcoming retreats</a>
       </div>
     </div>
   </section>
 
   <!-- =========================================================
-       5 · PILLAR 2 — Practice at the centre
+       5 · PILLAR 2 — The experience
        ========================================================= -->
   <section class="pillar pillar--reverse">
     <div class="pillar__row">
       <div class="pillar__copy">
-        <p class="kicker">Pillar 2 · Practice at the centre</p>
-        <h2>Yes, there's yoga. Every day.</h2>
-        <p>Yoga most mornings, for every level, led by teachers we hand-pick for how they read a room, not just how they teach a pose.</p>
-        <div class="teachers">
-          <!-- TODO: foto real de la teacher -->
-          <div class="teachers__item"><img src="images/day1-1.jpg" alt="YAWW teacher" loading="lazy"></div>
-          <!-- TODO: foto real de la teacher -->
-          <div class="teachers__item"><img src="images/day3-1.jpg" alt="YAWW teacher" loading="lazy"></div>
-          <!-- TODO: foto real de la teacher -->
-          <div class="teachers__item"><img src="images/extra1-1.jpg" alt="YAWW teacher" loading="lazy"></div>
-          <!-- TODO: foto real de la teacher -->
-          <div class="teachers__item"><img src="images/iceland/hero.jpg" alt="YAWW teacher" loading="lazy"></div>
-        </div>
-        <!-- TODO: route to the teachers page -->
-        <a class="btn btn--secondary" href="#">Meet our teachers</a>
+        <p class="kicker">The experience</p>
+        <h2>See what most visitors never get to</h2>
+        <p>Lunch with shepherds in the mountains of Sardinia. A private tour of the Guggenheim in Bilbao. A blessing from monks in Chiang Mai. We plan the days around the people and places we've come to know over years of going back.</p>
+        <a class="btn btn--secondary" href="retreats.html">Explore upcoming retreats</a>
       </div>
       <div class="pillar__media">
-        <!-- TODO: foto real — práctica en destino -->
-        <img src="images/day3-1.jpg" alt="Morning yoga practice on retreat" loading="lazy">
+        <!-- TODO: foto real — experiencia local (trekking, mercado, taller) -->
+        <img src="images/day4-1.jpg" alt="Guests on a local excursion during one of our retreats" loading="lazy">
       </div>
     </div>
   </section>
 
   <!-- =========================================================
-       6 · PILLAR 3 — Together
+       6 · PILLAR 3 — The shift
+       ========================================================= -->
+  <section class="pillar">
+    <div class="pillar__row">
+      <div class="pillar__media">
+        <!-- TODO: foto real — chef local, cena larga, clase de cocina -->
+        <img src="images/day2-2.jpg" alt="Guests sharing a meal cooked by a local chef" loading="lazy">
+      </div>
+      <div class="pillar__copy">
+        <p class="kicker">The shift</p>
+        <h2>Sit down to the best food in town</h2>
+        <p>Local chefs, long dinners, a cooking class on a farm. Our guests write about the meals more than anything else.</p>
+        <a class="btn btn--secondary" href="retreats.html">Explore upcoming retreats</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       7 · PILLAR 4 — Together
        ========================================================= -->
   <section class="pillar">
     <div class="pillar__row">
@@ -1719,7 +1752,7 @@ main { padding-top: 0; }
         <img src="images/day2-1.jpg" alt="A shared breakfast table on retreat" loading="lazy">
       </div>
       <div class="pillar__copy">
-        <p class="kicker">Pillar 3 · Together</p>
+        <p class="kicker">Together</p>
         <h2>Arrive as strangers.<br>Leave as friends.</h2>
         <p>Small groups, long tables, opening and closing circles. Come on your own: many do.</p>
         <blockquote class="pillar__quote">
@@ -1731,7 +1764,7 @@ main { padding-top: 0; }
   </section>
 
   <!-- =========================================================
-       7 · YOUR HOSTS — the non-copyable asset
+       8 · YOUR HOSTS — the non-copyable asset
        ========================================================= -->
   <section class="pillar">
     <div class="pillar__row">
@@ -1756,7 +1789,7 @@ main { padding-top: 0; }
   </section>
 
   <!-- =========================================================
-       8 · HOW WE WORK — Foundation
+       9 · HOW WE WORK — Foundation
        ========================================================= -->
   <section class="how">
     <h2 class="section-title">How we work</h2>
@@ -1795,7 +1828,7 @@ main { padding-top: 0; }
   </section>
 
   <!-- =========================================================
-       9 · IN THEIR WORDS — Prueba de precio
+       10 · IN OUR GUESTS' WORDS
        ========================================================= -->
   <section class="quotes">
     <h2 class="section-title">In our guests' words</h2>
@@ -1839,7 +1872,7 @@ main { padding-top: 0; }
   </section>
 
   <!-- =========================================================
-       10 · TAGLINE — Pedido
+       11 · TAGLINE — Pedido
        ========================================================= -->
   <section class="tagline">
     <h2>Travel That Moves You</h2>
@@ -1851,7 +1884,7 @@ main { padding-top: 0; }
   </section>
 
   <!-- =========================================================
-       11 · SECONDARY — Teach with us / Newsletter
+       12 · SECONDARY — Teach with us / Newsletter
        ========================================================= -->
   <section class="secondary">
     <div class="secondary__col">
