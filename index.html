@@ -535,32 +535,27 @@ main { padding-top: 0; }
 
 /* Three fixed-360px segments plus their borders need 1082px, so three
    of them never actually fit until the viewport clears 1082 + 2 ×
-   --container-pad(24) = 1130px — short of that (which includes the
-   whole 768–1023 tablet range, not just phone widths) a flex-wrap bar
-   doesn't fail cleanly: it packs however many of the three segments
-   happen to fit on the first line and drops only the odd one out to a
-   second line, which is the "2 then 1" accident. Below this one
-   deliberate breakpoint the bar always stacks all three instead —
-   but it keeps each segment at its own 360px (same as the popover
-   width) and centres the stack, rather than stretching every row to
-   the full container straight away: at tablet widths there's no need
-   to go full-bleed just because it no longer fits in one row. Only
-   the mobile breakpoint below goes full width, once 360px-and-centred
-   itself stops being the natural fit. */
+   --container-pad(24) = 1130px. Short of that there's still plenty of
+   width to work with down to 768 (the site's own mobile breakpoint,
+   where the nav itself switches to a hamburger) — compressing the row
+   reads better here than stacking three segments early, with most of
+   the screen still empty either side, would. So segments shrink/grow
+   to fill a single row instead; only below 768, where there's
+   genuinely no width left to compress into, does it stack. */
 @media (max-width: 1129px) {
-  .filter-bar { flex-direction: column; align-items: center; }
-  .filter-seg + .filter-seg { border-left: 0; border-top: 1px solid var(--stone-300); }
+  .filter-bar { width: 100%; }
+  .filter-seg { width: auto; flex: 1 1 240px; }
 }
-/* Properly mobile: now it does go full width, same inset-from-the-edge
-   box as .filter-summary/.filter-empty, with the segment's own min-
-   height/padding tightened to match. */
+/* Properly mobile: stacks in a column and goes full width — same
+   inset-from-the-edge box as .filter-summary/.filter-empty, with the
+   segment's own min-height/padding tightened to match. */
 @media (max-width: 767px) {
   .filter-bar {
-    align-items: stretch;
+    flex-direction: column;
     width: calc(100% - (var(--container-pad) * 2));
-    max-width: calc(100% - (var(--container-pad) * 2));
   }
-  .filter-seg { width: auto; }
+  .filter-seg { flex: 0 0 auto; width: auto; }
+  .filter-seg + .filter-seg { border-left: 0; border-top: 1px solid var(--stone-300); }
   .filter-seg__btn { min-height: 64px; padding: 16px; }
 }
 
