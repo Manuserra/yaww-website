@@ -1625,17 +1625,17 @@ main { padding-top: 0; }
    section's comments for why those specific numbers. Reused for the
    motion, but NOT for the section's own height: Includes is a
    content-driven strip (fixed padding) because it only needs to show
-   a thin slice of photo behind a card. This band IS the photo, so a
-   fixed pixel height breaks the moment the viewport's proportions
-   change — at a wide-but-short laptop window it's fine, but on a
-   large external monitor (tall AND wide) the same fixed height reads
-   as a thin letterboxed strip relative to how much screen it now
-   spans edge-to-edge. min-height in vh, clamped, keeps the band
-   reading as "full-bleed photo" at both sizes instead of one.
-   vh is avoided on mobile on purpose — Safari/Chrome resize the vh
-   unit as the address bar shows/hides, which would make the band's
-   height visibly jump while scrolling; padding-driven height (like
-   Includes already does on mobile) doesn't have that problem.
+   a thin slice of photo behind a card. This band IS the photo, and is
+   meant to fill the screen on any monitor, so its height is tied to
+   the viewport instead of content or a fixed px value.
+   100vh is declared first as the fallback, then overridden by 100dvh
+   ("dynamic viewport height") for browsers that support it — plain vh
+   on mobile Safari/Chrome is pinned to the LARGEST possible viewport
+   (address bar hidden), so the moment that bar is visible the band is
+   actually taller than the real visible area and the content inside
+   it sits partly scrolled off-screen. dvh instead tracks the real,
+   current visible height continuously, so "full screen" is true even
+   as the browser chrome shows and hides while scrolling.
    ============================================================ */
 .home-cta {
   position: relative;
@@ -1644,7 +1644,8 @@ main { padding-top: 0; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: clamp(420px, 60vh, 720px);
+  min-height: 100vh;
+  min-height: 100dvh;
   padding: 56px 24px;
   text-align: center;
   gap: 32px;
@@ -1699,11 +1700,8 @@ main { padding-top: 0; }
    so both CTA pairs on the page measure identically. */
 .home-cta__btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
 .home-cta__btns .btn { width: 286px; }
-@media (max-width: 1024px) {
-  .home-cta { min-height: clamp(380px, 55vh, 620px); }
-}
 @media (max-width: 767px) {
-  .home-cta { min-height: 0; padding: 56px 16px; gap: 24px; }
+  .home-cta { padding: 56px 16px; gap: 24px; }
   .home-cta__title { font-size: 26px; line-height: 34px; }
   .home-cta__btns { flex-direction: column; width: 100%; max-width: 320px; }
   .home-cta__btns .btn { width: 100%; }
@@ -2478,12 +2476,13 @@ main { padding-top: 0; }
           </ul>
         </div>
 
-        <!-- Ten destinations in two ranks: the full list is the point, but a
-             single rank of ten would be twice the height of every other
-             column and would set the height of the whole footer. -->
-        <div class="footer-col footer-col--split">
+        <!-- Preview: single column instead of the usual 2-rank split (see
+             footer-col__list--split below) — the user asked to see all ten
+             destinations and all seven Journal topics stacked in one line
+             each, to compare against the split version. -->
+        <div class="footer-col">
           <h3 class="footer-col__title"><a href="#">Locations</a></h3>
-          <ul class="footer-col__list footer-col__list--split" style="--rows: 5;">
+          <ul class="footer-col__list">
             <li><a class="footer-link" href="#">France</a></li>
             <li><a class="footer-link" href="#">Greece</a></li>
             <li><a class="footer-link" href="#">Iceland</a></li>
@@ -2507,9 +2506,9 @@ main { padding-top: 0; }
           </ul>
         </div>
 
-        <div class="footer-col footer-col--split">
+        <div class="footer-col">
           <h3 class="footer-col__title"><a href="#">Journal</a></h3>
-          <ul class="footer-col__list footer-col__list--split" style="--rows: 4;">
+          <ul class="footer-col__list">
             <li><a class="footer-link" href="#">Astrology &amp; Tarot</a></li>
             <li><a class="footer-link" href="#">Foodies</a></li>
             <li><a class="footer-link" href="#">Guides</a></li>
