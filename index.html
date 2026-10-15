@@ -1695,7 +1695,10 @@ main { padding-top: 0; }
   letter-spacing: 0.32px;
   color: var(--stone-100);
 }
+/* Same fixed width as the hero's own two-button row (.home-hero__btns),
+   so both CTA pairs on the page measure identically. */
 .home-cta__btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+.home-cta__btns .btn { width: 286px; }
 @media (max-width: 1024px) {
   .home-cta { min-height: clamp(380px, 55vh, 620px); }
 }
@@ -1703,6 +1706,7 @@ main { padding-top: 0; }
   .home-cta { min-height: 0; padding: 56px 16px; gap: 24px; }
   .home-cta__title { font-size: 26px; line-height: 34px; }
   .home-cta__btns { flex-direction: column; width: 100%; max-width: 320px; }
+  .home-cta__btns .btn { width: 100%; }
 }
 
 /* --- Image reveal ------------------------------------------------------
