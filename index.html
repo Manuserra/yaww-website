@@ -1503,6 +1503,113 @@ main { padding-top: 0; }
   .lead__media { flex-direction: column; }
 }
 
+/* ============================================================
+   HOME · GOOD TO KNOW (FAQ)
+   Same accordion component as the retreat pages' "Additional info"
+   — copied as-is (markup, CSS and JS), not rebuilt, so behavior and
+   motion stay identical. See retreatpage-elcuyo.html for the full
+   rationale comments on this component's timing/animation choices.
+   ============================================================ */
+.faq-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 56px 24px;
+  background: var(--stone);
+}
+.faq-section__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+  color: var(--sea-blue);
+  text-align: center;
+}
+.faq-list { width: 672px; max-width: 100%; }
+.faq { border-bottom: 1px solid var(--stone-300); }
+.faq__heading { margin: 0; font: inherit; }
+.faq__trigger {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 72px;
+  padding: 24px 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+}
+.faq__trigger:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
+.faq__q {
+  flex: 1;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue);
+  transition: color .18s ease;
+}
+.faq__chev {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  display: block;
+  color: var(--sea-blue-200);
+  rotate: 0deg;
+  translate: 0 0;
+  transition: rotate .5s cubic-bezier(.45, 0, .25, 1),
+              translate .18s ease,
+              color .18s ease;
+}
+.faq.is-open .faq__chev { rotate: 180deg; color: var(--sea-blue); }
+@media (hover: hover) and (pointer: fine) {
+  .faq__trigger:hover .faq__q { color: var(--sea-blue-500); }
+  .faq__trigger:hover .faq__chev { color: var(--sea-blue); translate: 0 2px; }
+  .faq.is-open .faq__trigger:hover .faq__chev { translate: 0 -2px; }
+}
+.faq__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .4s cubic-bezier(.45, 0, .25, 1);
+}
+.faq.is-open .faq__panel {
+  grid-template-rows: 1fr;
+  transition-duration: .5s;
+}
+.faq__answer {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .2s ease, visibility 0s .4s;
+}
+.faq.is-open .faq__answer {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity .34s ease .16s, visibility 0s;
+}
+.faq__answer p {
+  margin: 0 0 24px;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue);
+}
+@media (max-width: 767px) {
+  .faq-section { padding: 56px 16px; gap: 32px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq__panel, .faq__answer, .faq__chev, .faq__q { transition: none; }
+}
+
 /* --- Image reveal ------------------------------------------------------
    Images fade in as they load instead of snapping in. */
 @media (prefers-reduced-motion: no-preference) {
@@ -2142,6 +2249,82 @@ main { padding-top: 0; }
       <div class="lead__photo" aria-hidden="true" style="background: linear-gradient(155deg, hsl(30 32% 80%), hsl(30 26% 60%));"></div>
       <!-- TODO: real photo — rooftop yoga overlooking the water -->
       <div class="lead__photo" aria-hidden="true" style="background: linear-gradient(155deg, hsl(200 32% 80%), hsl(200 26% 60%));"></div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       12 · GOOD TO KNOW (FAQ)
+       ========================================================= -->
+  <section class="faq-section">
+    <h2 class="faq-section__title">Good to know</h2>
+    <div class="faq-list">
+      <div class="faq">
+        <h3 class="faq__heading">
+          <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="home-faq-1">
+            <span class="faq__q">Do I need to be an experienced yogi?</span>
+            <svg class="faq__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </h3>
+        <div class="faq__panel">
+          <div class="faq__answer" id="home-faq-1" role="region">
+            <p>No. Classes are designed for all levels, and teachers adjust each session to the group.</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq">
+        <h3 class="faq__heading">
+          <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="home-faq-2">
+            <span class="faq__q">Can I come on my own?</span>
+            <svg class="faq__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </h3>
+        <div class="faq__panel">
+          <div class="faq__answer" id="home-faq-2" role="region">
+            <p>Yes. Many of our guests travel solo, and plenty leave with friends for the next one.</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq">
+        <h3 class="faq__heading">
+          <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="home-faq-3">
+            <span class="faq__q">What's included?</span>
+            <svg class="faq__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </h3>
+        <div class="faq__panel">
+          <div class="faq__answer" id="home-faq-3" role="region">
+            <p>Accommodation, daily yoga, most meals, curated excursions and a team member with the group all week. Each retreat page lists exactly what's covered. Flights aren't included unless the retreat page says so.</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq">
+        <h3 class="faq__heading">
+          <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="home-faq-4">
+            <span class="faq__q">How big are the groups?</span>
+            <svg class="faq__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </h3>
+        <div class="faq__panel">
+          <div class="faq__answer" id="home-faq-4" role="region">
+            <!-- TODO: real group-size range, e.g. "Between 8 and 14 guests" -->
+            <p>Small. [NEED: rango real, ej. "Between 8 and 14 guests"]</p>
+          </div>
+        </div>
+      </div>
+      <div class="faq">
+        <h3 class="faq__heading">
+          <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="home-faq-5">
+            <span class="faq__q">What if I need to cancel?</span>
+            <svg class="faq__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </h3>
+        <div class="faq__panel">
+          <div class="faq__answer" id="home-faq-5" role="region">
+            <!-- TODO: one-line cancellation policy + link to Terms -->
+            <p>[NEED: política de cancelación en una línea + link a Terms]</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -2859,6 +3042,18 @@ main { padding-top: 0; }
   // Newsletter form — no endpoint yet, swallow the submit
   document.querySelectorAll('.footer-news__form').forEach(function (form) {
     form.addEventListener('submit', function (e) { e.preventDefault(); });
+  });
+
+  // FAQ accordion — same as the retreat pages' "Additional info". The
+  // button owns the state and the class owns the animation; aria-expanded
+  // is the same fact the class is, said to a screen reader.
+  document.querySelectorAll('.faq__trigger').forEach(function (btn) {
+    var item = btn.closest('.faq');
+    btn.addEventListener('click', function () {
+      var open = !item.classList.contains('is-open');
+      item.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
   });
 
   // Image reveal — fade in once loaded, skip images already decoded (cached / above the fold)
