@@ -1264,7 +1264,7 @@ main { padding-top: 0; }
   position: absolute;
   top: -1px;
   left: 0;
-  height: 2px;
+  height: 1px;
   width: 0;
   background: var(--stone-600);
   animation: whoFill 7000ms linear forwards;
@@ -1288,9 +1288,9 @@ main { padding-top: 0; }
   font-weight: 700;
   font-size: 20px;
   line-height: 32px;
-  color: var(--sea-blue-200);
+  color: var(--sea-blue-100);
 }
-.who__profile.is-active .who__tab-title { color: var(--sea-blue-500); }
+.who__profile.is-active .who__tab-title { color: var(--sea-blue); }
 .who__tab-body {
   margin: 0;
   font-family: var(--font-body);
@@ -1407,6 +1407,7 @@ main { padding-top: 0; }
 .who__nav {
   width: 48px;
   height: 48px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2955,14 +2956,17 @@ main { padding-top: 0; }
       applyPauseState();
     }
 
-    function renderStack() {
+    // Built once: the CSS transition on .who__card can only animate a
+    // property change on a node that persists across renders. Rebuilding
+    // the 4 cards from scratch on every go() (the original renderStack)
+    // gave each one a brand-new element with no "before" state to
+    // interpolate from, so the postcards snapped straight to position
+    // instead of visibly passing each other — updateStackPositions below
+    // is what actually moves them.
+    function renderStackOnce() {
       stackEl.innerHTML = DATA.map(function (d, k) {
-        var pos = (k - state.index + n) % n;
-        var p = POS[pos];
-        var active = pos === 0;
-        var style = 'grid-area: 1 / 1; transform: ' + p.transform + '; z-index: ' + p.zIndex + '; opacity: ' + p.opacity + '; box-shadow: ' + p.boxShadow + ';';
         return (
-          '<article class="who__card" id="whoCard' + k + '" role="tabpanel" aria-labelledby="whoTab' + k + '" aria-hidden="' + (!active) + '" style="' + style + '">' +
+          '<article class="who__card" id="whoCard' + k + '" role="tabpanel" aria-labelledby="whoTab' + k + '">' +
             '<div class="who__card-row">' +
               '<div class="who__card-message">' +
                 '<blockquote class="who__quote">&ldquo;' + esc(d.quote) + '&rdquo;</blockquote>' +
@@ -2981,6 +2985,22 @@ main { padding-top: 0; }
           '</article>'
         );
       }).join('');
+      DATA.forEach(function (d, k) {
+        document.getElementById('whoCard' + k).style.gridArea = '1 / 1';
+      });
+    }
+
+    function updateStackPositions() {
+      DATA.forEach(function (d, k) {
+        var card = document.getElementById('whoCard' + k);
+        var pos = (k - state.index + n) % n;
+        var p = POS[pos];
+        card.style.transform = p.transform;
+        card.style.zIndex = p.zIndex;
+        card.style.opacity = p.opacity;
+        card.style.boxShadow = p.boxShadow;
+        card.setAttribute('aria-hidden', String(pos !== 0));
+      });
     }
 
     function renderCounter() {
@@ -3003,17 +3023,28 @@ main { padding-top: 0; }
     function go(k) {
       state.index = (k + n) % n;
       renderProfiles();
-      renderStack();
+      updateStackPositions();
       renderCounter();
+    }
+
+    // Any direct pick — a profile tab, the arrow keys, or prev/next —
+    // stops the auto-advance for good, same as hitting pause. Only the
+    // internal animationend callback above is allowed to call go()
+    // without this, since that's the auto-advance itself.
+    function stopAuto() {
+      if (state.stopped) return;
+      state.stopped = true;
+      renderPlayBtn();
     }
 
     profilesEl.addEventListener('click', function (e) {
       var tab = e.target.closest('.who__tab');
-      if (tab) go(parseInt(tab.dataset.i, 10));
+      if (tab) { stopAuto(); go(parseInt(tab.dataset.i, 10)); }
     });
     profilesEl.addEventListener('keydown', function (e) {
       if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
       e.preventDefault();
+      stopAuto();
       go(state.index + (e.key === 'ArrowRight' ? 1 : -1));
       var tab = profilesEl.querySelector('.who__tab[aria-selected="true"]');
       if (tab) tab.focus();
@@ -3023,8 +3054,8 @@ main { padding-top: 0; }
     profilesEl.addEventListener('focusin', function () { state.hover = true; applyPauseState(); });
     profilesEl.addEventListener('focusout', function () { state.hover = false; applyPauseState(); });
 
-    prevBtn.addEventListener('click', function () { go(state.index - 1); });
-    nextBtn.addEventListener('click', function () { go(state.index + 1); });
+    prevBtn.addEventListener('click', function () { stopAuto(); go(state.index - 1); });
+    nextBtn.addEventListener('click', function () { stopAuto(); go(state.index + 1); });
     playBtn.addEventListener('click', function () {
       state.stopped = !state.stopped;
       renderPlayBtn();
@@ -3033,7 +3064,8 @@ main { padding-top: 0; }
 
     renderPlayBtn();
     renderProfiles();
-    renderStack();
+    renderStackOnce();
+    updateStackPositions();
     renderCounter();
   })();
 </script>
