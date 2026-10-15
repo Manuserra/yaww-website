@@ -1447,69 +1447,60 @@ main { padding-top: 0; }
 }
 
 /* ============================================================
-   HOME · TAGLINE CTA BAND
+   HOME · LEAD A RETREAT WITH US
    ============================================================ */
-.tagline {
+.lead {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
-  padding: 72px 24px;
-  text-align: center;
-  background: var(--stone-200);
-  border-block: 1px solid var(--stone-300);
+  gap: 48px;
+  padding: 48px 24px;
+  background: var(--stone-300);
 }
-.tagline h2 {
-  margin: 0;
-  font-family: var(--font-heading);
-  font-weight: 400;
-  font-style: italic;
-  font-size: 36px;
-  line-height: 48px;
-  color: var(--sea-blue);
-}
-.tagline__ctas { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
-@media (max-width: 767px) {
-  .tagline { padding: 48px 16px; }
-  .tagline h2 { font-size: 26px; line-height: 34px; }
-  .tagline__ctas { flex-direction: column; width: 100%; max-width: 320px; }
-}
-
-/* ============================================================
-   HOME · SECONDARY (teach with us / newsletter)
-   ============================================================ */
-.secondary {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  max-width: var(--container-max);
-  margin-inline: auto;
-}
-.secondary__col {
+.lead__intro {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 48px 24px;
+  align-items: center;
+  gap: 16px;
+  max-width: 996px;
+  text-align: center;
 }
-.secondary__col:first-child { border-right: 1px solid var(--stone-300); }
-.secondary__col h3 {
+.lead__title {
   margin: 0;
+  color: var(--sea-blue);
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 22px;
-  line-height: 30px;
-  color: var(--sea-blue);
+  font-size: 24px;
+  line-height: 40px;
 }
-.secondary__col p {
+.lead__body {
   margin: 0;
+  color: var(--sea-blue);
   font-family: var(--font-body);
-  font-size: 14px;
-  line-height: 22px;
-  color: var(--sea-blue-200);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
 }
-.secondary__col .btn { align-self: flex-start; margin-top: 8px; }
-@media (max-width: 700px) {
-  .secondary { grid-template-columns: 1fr; }
-  .secondary__col:first-child { border-right: 0; border-bottom: 1px solid var(--stone-300); }
+.lead__media {
+  width: 100%;
+  max-width: var(--container-max);
+  display: flex;
+  gap: 24px;
+}
+/* Same ratio as the pillar photos above — flex:1 1 0 + aspect-ratio,
+   no fixed width/height, so the box resolves from whatever space the
+   row actually gives it instead of fighting the flex layout. */
+.lead__photo { flex: 1 1 0; aspect-ratio: 3 / 2; }
+@media (max-width: 1024px) {
+  .lead__title { font-size: 18px; line-height: 24px; }
+  .lead__body { font-size: 14px; line-height: 16px; }
+}
+@media (max-width: 767px) {
+  .lead { padding: 40px 16px; gap: 32px; }
+  .lead__title { font-size: 16px; line-height: 24px; }
+  .lead__body { font-size: 14px; line-height: 24px; }
+  .lead__media { flex-direction: column; }
 }
 
 /* --- Image reveal ------------------------------------------------------
@@ -2137,31 +2128,20 @@ main { padding-top: 0; }
   </section>
 
   <!-- =========================================================
-       11 · TAGLINE — Pedido
+       11 · LEAD A RETREAT WITH US
        ========================================================= -->
-  <section class="tagline">
-    <h2>Travel That Moves You</h2>
-    <div class="tagline__ctas">
-      <a class="btn btn--primary" href="retreats.html">Find your retreat</a>
-      <!-- TODO: route "Talk to us" to a contact/sales flow -->
-      <a class="btn btn--secondary" href="#">Talk to us</a>
+  <section class="lead">
+    <div class="lead__intro">
+      <h2 class="lead__title">Lead a retreat with us</h2>
+      <p class="lead__body">Bring your students somewhere new. We plan the itinerary, book the hotels, run the logistics and help fill your spots, so you can focus on teaching.</p>
     </div>
-  </section>
-
-  <!-- =========================================================
-       12 · SECONDARY — Teach with us / Newsletter
-       ========================================================= -->
-  <section class="secondary">
-    <div class="secondary__col">
-      <h3>Take your students abroad.</h3>
-      <p>We handle everything but the teaching.</p>
-      <!-- TODO: route to the teach-with-us page -->
-      <a class="btn btn--secondary" href="#">Teach with us</a>
-    </div>
-    <div class="secondary__col">
-      <h3>Join the newsletter</h3>
-      <p>New journeys first.</p>
-      <a class="btn btn--secondary" href="#newsletter">Sign up</a>
+    <!-- TODO: route to the teach-with-us page -->
+    <a class="btn btn--secondary" href="#">Explore upcoming retreats</a>
+    <div class="lead__media">
+      <!-- TODO: real photo — a group of students on a retreat -->
+      <div class="lead__photo" aria-hidden="true" style="background: linear-gradient(155deg, hsl(30 32% 80%), hsl(30 26% 60%));"></div>
+      <!-- TODO: real photo — rooftop yoga overlooking the water -->
+      <div class="lead__photo" aria-hidden="true" style="background: linear-gradient(155deg, hsl(200 32% 80%), hsl(200 26% 60%));"></div>
     </div>
   </section>
 
