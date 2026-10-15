@@ -191,6 +191,14 @@ main { padding-top: 0; }
 }
 .btn--secondary:hover,
 .btn--secondary:active { background: var(--stone-600); border-color: var(--stone-600); color: var(--stone); }
+/* Same shape as --secondary, inverted for a dark/photo background. */
+.btn--light {
+  background: var(--stone-100);
+  border-color: var(--stone-100);
+  color: var(--sea-blue);
+}
+.btn--light:hover,
+.btn--light:active { background: var(--stone-300); border-color: var(--stone-300); }
 @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
 
 /* ============================================================
@@ -1610,6 +1618,90 @@ main { padding-top: 0; }
   .faq__panel, .faq__answer, .faq__chev, .faq__q { transition: none; }
 }
 
+/* ============================================================
+   HOME · CTA BAND (full-bleed parallax photo)
+   Same parallax rig as .retreat-includes__bg (bg sized 150%/-25%
+   offset, JS clamps movement to 20% of section height) — see that
+   section's comments for why those specific numbers. Reused for the
+   motion, but NOT for the section's own height: Includes is a
+   content-driven strip (fixed padding) because it only needs to show
+   a thin slice of photo behind a card. This band IS the photo, so a
+   fixed pixel height breaks the moment the viewport's proportions
+   change — at a wide-but-short laptop window it's fine, but on a
+   large external monitor (tall AND wide) the same fixed height reads
+   as a thin letterboxed strip relative to how much screen it now
+   spans edge-to-edge. min-height in vh, clamped, keeps the band
+   reading as "full-bleed photo" at both sizes instead of one.
+   vh is avoided on mobile on purpose — Safari/Chrome resize the vh
+   unit as the address bar shows/hides, which would make the band's
+   height visibly jump while scrolling; padding-driven height (like
+   Includes already does on mobile) doesn't have that problem.
+   ============================================================ */
+.home-cta {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(420px, 60vh, 720px);
+  padding: 56px 24px;
+  text-align: center;
+  gap: 32px;
+}
+.home-cta__bg {
+  position: absolute;
+  left: 0; right: 0;
+  top: -25%;
+  height: 150%;
+  /* TODO: real photo — a yoga shala interior, doors open to the
+     landscape (see the lead/pillar gradients for the same convention) */
+  background-image:
+    linear-gradient(rgba(40, 49, 57, 0.45), rgba(40, 49, 57, 0.45)),
+    linear-gradient(155deg, hsl(28 18% 52%), hsl(28 26% 20%));
+  background-size: cover, cover;
+  background-position: 50%, 50%;
+  background-repeat: no-repeat, no-repeat;
+  will-change: transform;
+  pointer-events: none;
+}
+.home-cta__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  max-width: 640px;
+}
+.home-cta__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 36px;
+  line-height: 48px;
+  color: var(--stone-100);
+}
+.home-cta__desc {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  color: var(--stone-100);
+}
+.home-cta__btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+@media (max-width: 1024px) {
+  .home-cta { min-height: clamp(380px, 55vh, 620px); }
+}
+@media (max-width: 767px) {
+  .home-cta { min-height: 0; padding: 56px 16px; gap: 24px; }
+  .home-cta__title { font-size: 26px; line-height: 34px; }
+  .home-cta__btns { flex-direction: column; width: 100%; max-width: 320px; }
+}
+
 /* --- Image reveal ------------------------------------------------------
    Images fade in as they load instead of snapping in. */
 @media (prefers-reduced-motion: no-preference) {
@@ -2328,6 +2420,22 @@ main { padding-top: 0; }
     </div>
   </section>
 
+  <!-- =========================================================
+       13 · CTA BAND (full-bleed parallax photo)
+       ========================================================= -->
+  <section class="home-cta">
+    <div class="home-cta__bg" aria-hidden="true"></div>
+    <div class="home-cta__content">
+      <h2 class="home-cta__title">Your next week away starts here</h2>
+      <p class="home-cta__desc">Pick a place you've always wanted to know. We'll take care of the rest.</p>
+      <div class="home-cta__btns">
+        <a class="btn btn--primary" href="retreats.html">Explore upcoming retreats</a>
+        <!-- TODO: route "Questions? Talk to us" to a contact/sales flow -->
+        <a class="btn btn--light" href="#">Questions? Talk to us</a>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer class="site-footer" id="newsletter">
@@ -2336,7 +2444,7 @@ main { padding-top: 0; }
     <!-- Newsletter -->
     <section class="footer-news">
       <div class="footer-news__head">
-        <h2 class="footer-news__title">Subscribe to our newsletter and receive a retreat discount.</h2>
+        <h2 class="footer-news__title">Subscribe to our newsletter.</h2>
         <p class="footer-news__sub">Sign up with your email address to receive all the juicy updates.</p>
       </div>
       <form class="footer-news__form" novalidate>
@@ -3055,6 +3163,45 @@ main { padding-top: 0; }
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
   });
+
+  // CTA band: background parallax — same rig as .retreat-includes__bg
+  // (retreat pages), same SPEED/MAX_OFFSET_RATIO values.
+  (function () {
+    var section = document.querySelector('.home-cta');
+    var bg = document.querySelector('.home-cta__bg');
+    if (!section || !bg) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var SPEED = 0.3;
+    var MAX_OFFSET_RATIO = 0.2;
+    var ticking = false;
+    var listening = false;
+
+    function update() {
+      ticking = false;
+      var rect = section.getBoundingClientRect();
+      var raw = (window.innerHeight / 2 - (rect.top + rect.height / 2)) * SPEED;
+      var max = rect.height * MAX_OFFSET_RATIO;
+      var offset = Math.max(-max, Math.min(max, raw));
+      bg.style.transform = 'translate3d(0,' + offset.toFixed(1) + 'px,0)';
+    }
+
+    function onScroll() {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }
+
+    new IntersectionObserver(function (entries) {
+      var visible = entries[0].isIntersecting;
+      if (visible && !listening) {
+        listening = true;
+        window.addEventListener('scroll', onScroll, { passive: true });
+        update();
+      } else if (!visible && listening) {
+        listening = false;
+        window.removeEventListener('scroll', onScroll);
+      }
+    }, { rootMargin: '20% 0px' }).observe(section);
+  })();
 
   // Image reveal — fade in once loaded, skip images already decoded (cached / above the fold)
   document.querySelectorAll('img').forEach(function (img) {
