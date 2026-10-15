@@ -1010,49 +1010,86 @@ main { padding-top: 0; }
 }
 
 /* ============================================================
-   HOME · HOW WE WORK
+   HOME · YOU BOOK, WE HANDLE EVERY DETAIL (4-step booking process)
    ============================================================ */
-.how {
+.booking {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
-  padding: 56px 24px;
-  background: var(--stone-100);
-  border-block: 1px solid var(--stone-300);
+  gap: 48px;
+  padding: 56px var(--container-pad) 48px;
+  background: var(--stone);
 }
-.how__grid {
+/* Same line-clamp treatment as the testimonials' own title: caps at
+   two lines/996px rather than ever spanning the full row width. */
+.booking__title {
+  max-width: 996px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.booking__row {
   width: 100%;
   max-width: var(--container-max);
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-  text-align: center;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: 48px;
 }
-.how__item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-.how__icon {
-  width: 44px; height: 44px;
-  display: flex; align-items: center; justify-content: center;
-  border: 1px solid var(--stone-400);
+.booking__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  flex: 1 0 0;
+  min-width: 0;
+}
+.booking__circle {
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  color: var(--sea-blue);
+  background: var(--stone-100);
+  border: 1px solid var(--stone-400);
+  flex-shrink: 0;
 }
-.how__item b {
+.booking__label {
+  margin: 0;
+  align-self: stretch;
+  color: var(--sea-blue);
+  text-align: center;
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 16px;
-  color: var(--sea-blue);
+  font-size: 20px;
+  line-height: 32px;
+  text-wrap: balance;
 }
-.how__item p {
+.booking__body {
   margin: 0;
-  max-width: 260px;
+  align-self: stretch;
+  color: var(--sea-blue);
+  text-align: center;
   font-family: var(--font-body);
-  font-size: 14px;
-  line-height: 20px;
-  color: var(--sea-blue-200);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  text-wrap: balance;
 }
-@media (max-width: 700px) {
-  .how__grid { grid-template-columns: 1fr; gap: 32px; }
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* align-items:center (from the base rule) is right for a single
+     row, but once it wraps to 2×2 it centres each short step inside
+     its wrapped line's own height — set by whichever step in that
+     row has the longer body text — leaving shorter steps a few px
+     lower than their row-mate. flex-start keeps every step flush
+     with its row's top instead. */
+  .booking__row { flex-wrap: wrap; justify-content: center; align-items: flex-start; }
+  .booking__step { flex: 0 0 calc(50% - 24px); }
+}
+@media (max-width: 767px) {
+  .booking { padding: 40px 16px; gap: 40px; }
+  .booking__row { flex-direction: column; gap: 40px; }
 }
 
 /* ============================================================
@@ -1792,42 +1829,33 @@ main { padding-top: 0; }
   </section>
 
   <!-- =========================================================
-       9 · HOW WE WORK — Foundation
+       9 · YOU BOOK, WE HANDLE EVERY DETAIL
        ========================================================= -->
-  <section class="how">
-    <h2 class="section-title">How we work</h2>
-    <div class="how__grid">
-      <div class="how__item">
-        <span class="how__icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="9" cy="8" r="3.2"/><path d="M3.5 19.5c0-3 2.5-5.3 5.5-5.3s5.5 2.3 5.5 5.3"/>
-            <circle cx="17" cy="9" r="2.4"/><path d="M15.2 14.6c2.3.3 4.3 2.3 4.3 4.9"/>
-          </svg>
-        </span>
-        <b>Small groups</b>
-        <p>6 to 13 travellers. Everyone at one table.</p>
+  <section class="booking">
+    <h2 class="section-title booking__title">You book. We handle every detail.</h2>
+    <div class="booking__row">
+      <div class="booking__step">
+        <span class="booking__circle" aria-hidden="true"></span>
+        <p class="booking__label">1. Choose your retreat.</p>
+        <p class="booking__body">Pick a destination and a room. Questions first? Write to us and a real person answers.</p>
       </div>
-      <div class="how__item">
-        <span class="how__icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 12.5l4.5 4.5L20 6"/>
-          </svg>
-        </span>
-        <b>Every detail handled</b>
-        <p>From the first question to the last dinner.</p>
+      <div class="booking__step">
+        <span class="booking__circle" aria-hidden="true"></span>
+        <p class="booking__label">2. Reserve with a deposit.</p>
+        <!-- TODO: confirm the deposit amount/percentage and when the balance is due -->
+        <p class="booking__body">Secure your spot online with a deposit. We'll confirm the exact amount and due date with you.</p>
       </div>
-      <div class="how__item">
-        <span class="how__icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3.5" y="5.5" width="17" height="14" rx="1.5"/><path d="M3.5 10h17"/>
-          </svg>
-        </span>
-        <b>Clear booking</b>
-        <p>$1,000 deposit secures your spot via WeTravel. Balance 90 days before.</p>
+      <div class="booking__step">
+        <span class="booking__circle" aria-hidden="true"></span>
+        <p class="booking__label">3. Get ready with us.</p>
+        <p class="booking__body">Before you go, we send everything you need to know: what to pack, how to get there, what each day holds.</p>
+      </div>
+      <div class="booking__step">
+        <span class="booking__circle" aria-hidden="true"></span>
+        <p class="booking__label">4. Arrive and be present.</p>
+        <p class="booking__body">A member of our team travels with every group, so all you have to do is show up.</p>
       </div>
     </div>
-    <!-- TODO: route to the booking info page -->
-    <a class="btn btn--secondary" href="#">How booking works</a>
   </section>
 
   <!-- =========================================================
