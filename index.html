@@ -1945,7 +1945,7 @@ main { padding-top: 0; }
      reserve for. Measured off the rendered card, not assumed, so it
      holds at any viewport and recomputes on resize the way .gallery
      recomputes --edge. */
-  var geo = { shown: 1, stride: 0, firstStep: 0 };
+  var geo = { shown: 1, stride: 0, firstStep: 0, pad: 0, unit: 1 };
   function computeGeometry() {
     var first = track.querySelector('.result-link');
     if (!first) return;
@@ -1969,6 +1969,12 @@ main { padding-top: 0; }
     geo.shown = shown;
     geo.stride = shown * unit;
     geo.firstStep = pad + geo.stride - gap - peek;
+    // Cached so a later resize can re-derive which *card* the current
+    // scrollLeft was pointing at under THIS geometry, even after the
+    // viewport (and so --gap/pad, read live from the DOM) has already
+    // moved on to a new one by the time that resize is handled.
+    geo.pad = pad;
+    geo.unit = unit;
   }
 
   function updateArrows() {
@@ -1983,6 +1989,20 @@ main { padding-top: 0; }
   function goPrev() {
     var amount = track.scrollLeft < geo.firstStep + EPS ? track.scrollLeft : geo.stride;
     track.scrollBy({ left: -amount, behavior: 'smooth' });
+  }
+  // Which card a scroll position sits flush against, and the inverse —
+  // cards lay out at pad + i*unit, so this is just that solved both
+  // ways. Anchoring resize on a *card index* rather than a page number
+  // is the part that matters: "page 2" covers a different run of cards
+  // once a wider/narrower rail changes how many show per page, so
+  // re-landing on the same page number still swaps out what's on
+  // screen — re-landing on the same card index is what actually keeps
+  // whatever you were looking at in view.
+  function cardIndexAt(scrollLeft, g) {
+    return Math.max(0, Math.round((scrollLeft - g.pad) / g.unit));
+  }
+  function scrollLeftForCardIndex(index, g) {
+    return g.pad + index * g.unit;
   }
 
   // Re-renders the track from whatever list the filter currently
@@ -2007,7 +2027,20 @@ main { padding-top: 0; }
   var resizeTimer;
   window.addEventListener('resize', function () {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function () { computeGeometry(); updateArrows(); }, 150);
+    resizeTimer = setTimeout(function () {
+      // Re-anchor on whichever card was leading the view instead of
+      // leaving scrollLeft as a stale pixel value: the rail's width
+      // just changed, so the same pixel offset now points at a
+      // different slice of the strip — without this, resizing reads
+      // as cards sliding out from the side rather than the view just
+      // resizing in place around what was already showing.
+      var anchor = cardIndexAt(track.scrollLeft, geo);
+      var wasAtStart = track.scrollLeft < EPS;   // page 0 is flush-left by definition, not pad + 0*unit
+      computeGeometry();
+      var max = track.scrollWidth - track.clientWidth;
+      track.scrollLeft = wasAtStart ? 0 : Math.max(0, Math.min(scrollLeftForCardIndex(anchor, geo), max));
+      updateArrows();
+    }, 150);
   });
 
   prevBtn.addEventListener('click', goPrev);
