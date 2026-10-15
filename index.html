@@ -880,17 +880,24 @@ main { padding-top: 0; }
   gap: 56px;
   background: var(--stone);
 }
+/* 912px image + 48px gap + 432px text = 1392, the full content width
+   at 1440 — not a 50/50 split. The image track is 1fr (fluid) so it's
+   the one that gives up width first as the viewport narrows; the text
+   track stays a fixed 432px down to the point this collapses to a
+   single column. Reversed pillars get the same two widths in the
+   opposite order — DOM order already puts copy before media there, so
+   no .pillar--reverse-specific child reordering is needed, just a
+   column-track swap. */
 .pillar__row {
   width: 100%;
   max-width: var(--container-max);
   margin-inline: auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 432px;
   gap: 48px;
   align-items: center;
 }
-.pillar--reverse .pillar__media { order: 2; }
-.pillar--reverse .pillar__copy { order: 1; }
+.pillar--reverse .pillar__row { grid-template-columns: 432px 1fr; }
 .pillar__media {
   aspect-ratio: 912 / 560;
   overflow: hidden;
@@ -943,11 +950,13 @@ main { padding-top: 0; }
 }
 
 @media (max-width: 900px) {
-  .pillar__row { grid-template-columns: 1fr; gap: 24px; }
-  .pillar--reverse .pillar__media,
-  .pillar--reverse .pillar__copy,
-  .pillar__media,
-  .pillar__copy { order: initial; }
+  /* .pillar--reverse .pillar__row's own 432px/1fr columns (specificity
+     0,2,0) would otherwise outrank a plain .pillar__row override here
+     regardless of this media query — match that selector explicitly
+     so the stack-to-one-column rule actually wins for reversed
+     pillars too. */
+  .pillar__row,
+  .pillar--reverse .pillar__row { grid-template-columns: 1fr; gap: 24px; }
   .pillar__copy p { max-width: none; }
 }
 @media (max-width: 767px) {
