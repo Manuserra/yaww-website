@@ -955,6 +955,61 @@ main { padding-top: 0; }
 }
 
 /* ============================================================
+   HOME · THE WAY WE MOVE (centred intro + a 3-up photo gallery,
+   the middle one shorter and bottom-aligned with the other two)
+   ============================================================ */
+.movement {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 48px;
+  padding: 48px var(--container-pad);
+  background: var(--stone);
+}
+.movement__intro {
+  width: 555px;
+  max-width: 100%;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+/* Compound selector (not just .movement__kicker on its own) so this
+   reliably beats .kicker's own color on specificity rather than
+   depending on which rule happens to come later in the file. */
+.kicker.movement__kicker { color: var(--stone-600); }
+.movement__intro .section-title { text-wrap: balance; }
+.movement__body {
+  margin: 0;
+  color: var(--sea-blue);
+  text-align: center;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  text-wrap: balance;
+}
+.movement__gallery {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 48px;
+}
+.movement__media { flex: 1 1 0; min-width: 0; overflow: hidden; }
+.movement__media--tall { aspect-ratio: 432 / 568; }
+.movement__media--short { aspect-ratio: 432 / 423; }
+@media (max-width: 767px) {
+  .movement { padding: 40px 16px; gap: 40px; }
+  .movement__gallery { flex-direction: column; align-items: stretch; gap: 16px; }
+  .movement__media { flex: none; width: 100%; }
+}
+
+/* ============================================================
    HOME · HOW WE WORK
    ============================================================ */
 .how {
@@ -1718,7 +1773,26 @@ main { padding-top: 0; }
   </section>
 
   <!-- =========================================================
-       8 · HOW WE WORK — Foundation
+       8 · THE WAY WE MOVE
+       ========================================================= -->
+  <section class="movement">
+    <div class="movement__intro">
+      <p class="kicker movement__kicker">The way we move</p>
+      <h2 class="section-title">Movement with presence, care and attention becomes the way we travel.</h2>
+      <p class="movement__body">Our teachers hold space for practice that is restorative and expansive, honoring the rhythm of each body and each day.</p>
+    </div>
+    <div class="movement__gallery">
+      <!-- TODO: foto real — rincón del destino -->
+      <div class="movement__media movement__media--tall" style="background: linear-gradient(155deg, hsl(210 32% 80%), hsl(210 26% 60%));"></div>
+      <!-- TODO: foto real — práctica en destino -->
+      <div class="movement__media movement__media--short" style="background: linear-gradient(155deg, hsl(150 32% 80%), hsl(150 26% 60%));"></div>
+      <!-- TODO: foto real — sobremesa / terraza -->
+      <div class="movement__media movement__media--tall" style="background: linear-gradient(155deg, hsl(24 32% 80%), hsl(24 26% 60%));"></div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       9 · HOW WE WORK — Foundation
        ========================================================= -->
   <section class="how">
     <h2 class="section-title">How we work</h2>
@@ -1757,7 +1831,7 @@ main { padding-top: 0; }
   </section>
 
   <!-- =========================================================
-       9 · TAGLINE — Pedido
+       10 · TAGLINE — Pedido
        ========================================================= -->
   <section class="tagline">
     <h2>Travel That Moves You</h2>
@@ -1769,7 +1843,7 @@ main { padding-top: 0; }
   </section>
 
   <!-- =========================================================
-       10 · SECONDARY — Teach with us / Newsletter
+       11 · SECONDARY — Teach with us / Newsletter
        ========================================================= -->
   <section class="secondary">
     <div class="secondary__col">
