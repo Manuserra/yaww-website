@@ -640,14 +640,6 @@ main { padding-top: 0; }
   scrollbar-width: none;
 }
 .rail__track::-webkit-scrollbar { display: none; }
-/* Past page 0, the track's own width is pinned (via inline style, see
-   the rail's <script>) to exactly however much it takes to show the
-   peek on both edges + the full cards between them, then centred —
-   so the visible peek is a fixed proportion of a card at any viewport
-   width, never "whatever's left over." The narrower box is what
-   actually carves out the blank margin on both sides; arrows stay
-   anchored to .rail's own full edges regardless. */
-.rail__track.is-paged { margin-inline: auto; }
 .rail__track > .result-link { flex: 0 0 var(--card-w); }
 
 /* Centred on the image band's own half, not the card's full height, so a
@@ -1944,29 +1936,16 @@ main { padding-top: 0; }
   }
 
   /* Paging geometry — the standard "peek carousel" shape: every page
-     past the first shows a FIXED peek (half a card, PEEK_RATIO) on
-     both edges, with as many whole cards as fit between them — fixed,
-     not "whatever's left over after fitting N cards," which is what
-     used to make the cut drift continuously as the window resized.
-     Pulling that off with fixed-pixel cards (not fluid ones) needs
-     more than scrollLeft alone can give it: for a card to show
-     *exactly* half of itself at any rail width, the viewport doing
-     the clipping has to be exactly peek+peek+gap+shown*cards wide,
-     not the rail's full width. So .rail__track's own CSS width gets
-     pinned to that (see setPaged below) once you're past page 0, and
-     centred — the leftover becomes margin on both sides instead of
-     extra (or missing) card. Page 0 keeps its old treatment (flush at
-     the start, natural whatever-fits trailing peek, full rail width):
-     it was deliberately never width-clamped before, because clamping
-     it to match is what produced a reserved strip of nothing between
-     the last card and the arrow — there's no leading peek to balance
-     against at the very start, so there's nothing to reserve for.
-     Measured off the rendered card, not assumed, so it holds at any
-     viewport and recomputes on resize the way .gallery recomputes
-     --edge. */
-  var PEEK_RATIO = 0.5;
-  var geo = { shown: 1, shown0: 1, peek: 0, trackW: 0, stride: 0, firstStep: 0, pad: 0, unit: 1 };
-  var paged = false;   // false = page 0 (full-width track), true = past it (narrow, centred track)
+     past the first centres a run of whole cards with the same peek
+     split evenly on both sides (half a card showing either edge). Page
+     0 is simply whatever that leaves at the start — it is never width-
+     clamped to match, because clamping it is what produced a reserved
+     strip of nothing between the last card and the arrow: there is no
+     page to centre against at the very start, so there is nothing to
+     reserve for. Measured off the rendered card, not assumed, so it
+     holds at any viewport and recomputes on resize the way .gallery
+     recomputes --edge. */
+  var geo = { shown: 1, stride: 0, firstStep: 0, pad: 0, unit: 1 };
   function computeGeometry() {
     var first = track.querySelector('.result-link');
     if (!first) return;
@@ -1975,23 +1954,21 @@ main { padding-top: 0; }
     var pad = parseFloat(getComputedStyle(track).paddingLeft) || 0;
     var railW = rail.getBoundingClientRect().width;
     var unit = cardW + gap;
-    var peek = cardW * PEEK_RATIO;
 
-    // Page 0: as many whole cards as fit, flush at the start, plus the
-    // same fixed peek of the next one (not a leftover-sized sliver).
-    var shown0 = Math.max(1, Math.floor((railW - pad - peek) / unit));
-    // Every page after that: fixed peek on both edges, whole cards
-    // between them — this is also the width .rail__track gets pinned
-    // to (2*peek + gap + shown*unit) so there's no leftover to begin
-    // with, rather than a remainder to somehow absorb.
-    var shown = Math.max(1, Math.floor((railW - 2 * peek - gap) / unit));
+    /* A page of `shown` whole cards, flanked by a gap and a peek on
+       EACH side, has to add up to the rail's own width:
+         railW = 2*peek + 2*gap + shown*cardW + (shown-1)*gap
+       solved for peek. shown is the largest count whose peek still
+       clears the minimum — this is also exactly where page 0 hands
+       off: the first click lands on the same peek this page settles
+       into on both edges. */
+    var minPeek = cardW * 0.3;   // enough of a card to read as deliberate, not a sliver
+    var shown = Math.max(1, Math.floor((railW - gap - 2 * minPeek) / unit));
+    var peek = (railW - shown * cardW - (shown + 1) * gap) / 2;
 
     geo.shown = shown;
-    geo.shown0 = shown0;
-    geo.peek = peek;
-    geo.trackW = 2 * peek + gap + shown * unit;
-    geo.stride = (shown + 1) * unit;
-    geo.firstStep = pad + shown0 * unit + peek;
+    geo.stride = shown * unit;
+    geo.firstStep = pad + geo.stride - gap - peek;
     // Cached so a later resize can re-derive which *card* the current
     // scrollLeft was pointing at under THIS geometry, even after the
     // viewport (and so --gap/pad, read live from the DOM) has already
@@ -2000,68 +1977,40 @@ main { padding-top: 0; }
     geo.unit = unit;
   }
 
-  // Narrows + centres the track once past page 0 (pinning its CSS
-  // width so the browser can only ever reveal exactly `peek` pixels
-  // of the edge cards, not "up to however much extra room there is"),
-  // and lets it fill the rail again back at page 0.
-  function setPaged(isPaged) {
-    paged = isPaged;
-    if (isPaged) {
-      track.style.width = geo.trackW + 'px';
-      track.classList.add('is-paged');
-    } else {
-      track.style.width = '';
-      track.classList.remove('is-paged');
-    }
-  }
-
   function updateArrows() {
     var max = track.scrollWidth - track.clientWidth;
     setArrow(prevBtn, track.scrollLeft > EPS);
     setArrow(nextBtn, track.scrollLeft < max - EPS);
   }
   function goNext() {
-    if (track.scrollLeft < EPS) {
-      setPaged(true);
-      track.scrollTo({ left: geo.firstStep, behavior: 'smooth' });
-    } else {
-      track.scrollBy({ left: geo.stride, behavior: 'smooth' });
-    }
+    var amount = track.scrollLeft < EPS ? geo.firstStep : geo.stride;
+    track.scrollBy({ left: amount, behavior: 'smooth' });
   }
   function goPrev() {
-    if (track.scrollLeft < geo.firstStep + EPS) {
-      track.scrollTo({ left: 0, behavior: 'smooth' });
-      setPaged(false);
-    } else {
-      track.scrollBy({ left: -geo.stride, behavior: 'smooth' });
-    }
+    var amount = track.scrollLeft < geo.firstStep + EPS ? track.scrollLeft : geo.stride;
+    track.scrollBy({ left: -amount, behavior: 'smooth' });
   }
-  // Which card a scroll position sits against, and the inverse — cards
-  // lay out at pad + i*unit, offset by a fixed `peek` once paged (the
-  // leading card shows only its right `peek` pixels, same idea as
-  // firstStep above). Anchoring resize on a *card index* rather than a
-  // page number is the part that matters on top of that: "page 2"
-  // covers a different run of cards once a wider/narrower rail changes
-  // how many show per page, so re-landing on the same page number
-  // still swaps out what's on screen — re-landing on the same card
-  // index (at the same fixed peek, if paged) is what actually keeps
+  // Which card a scroll position sits flush against, and the inverse —
+  // cards lay out at pad + i*unit, so this is just that solved both
+  // ways. Anchoring resize on a *card index* rather than a page number
+  // is the part that matters: "page 2" covers a different run of cards
+  // once a wider/narrower rail changes how many show per page, so
+  // re-landing on the same page number still swaps out what's on
+  // screen — re-landing on the same card index is what actually keeps
   // whatever you were looking at in view.
-  function cardIndexAt(scrollLeft, g, isPaged) {
-    var offset = isPaged ? g.peek : 0;
-    return Math.max(0, Math.round((scrollLeft - g.pad - offset) / g.unit));
+  function cardIndexAt(scrollLeft, g) {
+    return Math.max(0, Math.round((scrollLeft - g.pad) / g.unit));
   }
-  function scrollLeftForCardIndex(index, g, isPaged) {
-    var offset = isPaged ? g.peek : 0;
-    return g.pad + index * g.unit + offset;
+  function scrollLeftForCardIndex(index, g) {
+    return g.pad + index * g.unit;
   }
 
   // Re-renders the track from whatever list the filter currently
   // resolves to, then re-measures the peek geometry from scratch —
-  // the card count just changed, so the old geometry no longer
-  // describes it. Always lands back on page 0 (full-width track).
+  // the card count just changed, so the old shown/stride/firstStep no
+  // longer describe it.
   function renderTrack(list) {
     track.innerHTML = list.map(cardHTML).join('');
-    setPaged(false);
     track.scrollLeft = 0;
     computeGeometry();
     updateArrows();
@@ -2084,17 +2033,12 @@ main { padding-top: 0; }
       // just changed, so the same pixel offset now points at a
       // different slice of the strip — without this, resizing reads
       // as cards sliding out from the side rather than the view just
-      // resizing in place around what was already showing. Re-applies
-      // the same paged/not-paged mode with the freshly-computed
-      // trackW, so a page past 0 keeps its fixed peek — never that
-      // sliver growing or shrinking as the window changes — instead of
-      // just inheriting whatever the old pixel offset happens to show.
-      var wasPaged = paged;
-      var anchor = cardIndexAt(track.scrollLeft, geo, wasPaged);
+      // resizing in place around what was already showing.
+      var anchor = cardIndexAt(track.scrollLeft, geo);
+      var wasAtStart = track.scrollLeft < EPS;   // page 0 is flush-left by definition, not pad + 0*unit
       computeGeometry();
-      setPaged(wasPaged);
       var max = track.scrollWidth - track.clientWidth;
-      track.scrollLeft = wasPaged ? Math.max(0, Math.min(scrollLeftForCardIndex(anchor, geo, true), max)) : 0;
+      track.scrollLeft = wasAtStart ? 0 : Math.max(0, Math.min(scrollLeftForCardIndex(anchor, geo), max));
       updateArrows();
     }, 150);
   });
