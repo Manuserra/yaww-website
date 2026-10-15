@@ -1020,28 +1020,48 @@ main { padding-top: 0; }
 }
 
 /* ============================================================
-   HOME · IN THEIR WORDS (shared quote-card component)
+   HOME · IN OUR GUESTS' WORDS (shared quote-card component)
    ============================================================ */
 .quotes {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
-  padding: 56px 24px;
+  gap: 48px;
+  padding: 72px var(--container-pad) 56px;
+  background: var(--stone);
+}
+/* Caps the title at two lines (clipped with an ellipsis past that)
+   and at 996px so it never spans the full 1392px content row even on
+   a short one-line heading — same idea as .tiers__body's max-width,
+   just wide enough for a heading instead of a paragraph. */
+.quotes > .section-title {
+  max-width: 996px;
+  margin-inline: auto;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .quotes__grid {
   width: 100%;
   max-width: var(--container-max);
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-inline: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
   gap: 48px;
 }
 .quote-card {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex: 1 0 0;
+  align-self: stretch;
   gap: 24px;
   margin: 0;
-  padding: 32px;
+  padding: 24px;
   background: var(--stone-100);
   border: 1px solid var(--stone-300);
 }
@@ -1050,25 +1070,43 @@ main { padding-top: 0; }
   font-family: var(--font-heading);
   font-style: italic;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 26px;
+  font-size: 20px;
+  line-height: 32px;
   color: var(--sea-blue);
 }
-.quote-card__by { margin: 0; margin-top: auto; }
+.quote-card__by {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+}
+/* TODO: real guest photo — flat stone-300 fill as a placeholder, same
+   pattern as the filter's teacher avatars. */
+.quote-card__avatar {
+  width: 40px;
+  height: 40px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: var(--stone-300);
+  flex-shrink: 0;
+}
 .quote-card__name {
   margin: 0;
   font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 20px;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 19px;
+  letter-spacing: 0.6px;
   color: var(--sea-blue);
 }
 .quote-card__detail {
   margin: 2px 0 0;
   font-family: var(--font-body);
-  font-size: 13px;
-  line-height: 20px;
-  color: var(--sea-blue-200);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: 0.56px;
+  color: var(--sea-blue-300);
 }
 .quotes__foot {
   display: flex;
@@ -1084,12 +1122,13 @@ main { padding-top: 0; }
   color: var(--sea-blue-200);
 }
 @media (min-width: 768px) and (max-width: 1024px) {
-  .quotes__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .quotes__grid { flex-wrap: wrap; }
+  .quote-card { flex: 0 0 calc(50% - 24px); }
 }
 @media (max-width: 767px) {
-  .quotes { padding: 40px 16px; }
-  .quotes__grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
-  .quote-card { padding: 24px; }
+  .quotes { padding: 40px 16px; gap: 32px; }
+  .quotes__grid { flex-direction: column; gap: 24px; }
+  .quote-card { padding: 24px; flex: none; width: 100%; }
 }
 
 /* ============================================================
@@ -1759,27 +1798,36 @@ main { padding-top: 0; }
        9 · IN THEIR WORDS — Prueba de precio
        ========================================================= -->
   <section class="quotes">
-    <h2 class="section-title">In their words</h2>
+    <h2 class="section-title">In our guests' words</h2>
     <div class="quotes__grid">
       <figure class="quote-card">
         <blockquote class="quote-card__quote">&ldquo;the value of this trip far exceeded the cost.&rdquo;</blockquote>
         <figcaption class="quote-card__by">
-          <p class="quote-card__name">Lisa Hazen</p>
-          <p class="quote-card__detail">El Cuyo · Google</p>
+          <span class="quote-card__avatar" aria-hidden="true"></span>
+          <span>
+            <p class="quote-card__name">Lisa Hazen</p>
+            <p class="quote-card__detail">El Cuyo Retreat</p>
+          </span>
         </figcaption>
       </figure>
       <figure class="quote-card">
         <blockquote class="quote-card__quote">&ldquo;Our instructor&hellip; was exceptional as always in reading the room&rdquo;</blockquote>
         <figcaption class="quote-card__by">
-          <p class="quote-card__name">Mimi Stansbury</p>
-          <p class="quote-card__detail">Thailand · Google</p>
+          <span class="quote-card__avatar" aria-hidden="true"></span>
+          <span>
+            <p class="quote-card__name">Mimi Stansbury</p>
+            <p class="quote-card__detail">Thailand Retreat</p>
+          </span>
         </figcaption>
       </figure>
       <figure class="quote-card">
         <blockquote class="quote-card__quote">&ldquo;I never had to think about the logistics&hellip;&rdquo;</blockquote>
         <figcaption class="quote-card__by">
-          <p class="quote-card__name">Navigate44707</p>
-          <p class="quote-card__detail">Portugal · Tripadvisor</p>
+          <span class="quote-card__avatar" aria-hidden="true"></span>
+          <span>
+            <p class="quote-card__name">Navigate44707</p>
+            <p class="quote-card__detail">Portugal Retreat</p>
+          </span>
         </figcaption>
       </figure>
     </div>
