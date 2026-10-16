@@ -79,24 +79,24 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
        ├─ .site-header__brand   (logo row · pad 24/24/16 · border-bottom hairline)
        └─ .site-header__nav     (nav row  · height 55 · border-bottom hairline)
    ============================================================ */
+/* The logo row used to be sticky together with the nav, hidden on
+   scroll via a scrollY>64 threshold that snapped a max-height/opacity
+   transition — a hard binary state flipping on a single pixel
+   crossing, which stutters the moment the scroll position hovers
+   near that line (exactly what Lenis's inertia does while settling).
+   The reference site (diegodelbono.com/yoga, same header/logo) does
+   this with no JS at all: only the nav row is sticky; the logo above
+   it is plain static content that simply scrolls away at scroll
+   speed, the same as any other element leaving the top of the
+   viewport. Matched that here — .site-header is just a background
+   wrapper now, .site-header__nav carries the sticky behavior alone. */
 .site-header {
   background: var(--header-bg);
-  position: sticky;
-  top: 0;
-  z-index: 50;
 }
 
 /* --- Brand / logo row --- */
 .site-header__brand {
   border-bottom: 1px solid var(--hairline);
-  overflow: hidden;
-  max-height: 200px;
-  transition: max-height .35s ease, opacity .25s ease, border-color .25s ease;
-}
-.site-header.is-scrolled .site-header__brand {
-  max-height: 0;
-  opacity: 0;
-  border-bottom-color: transparent;
 }
 .site-header__brand .container {
   display: flex;
@@ -118,6 +118,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* --- Nav row --- */
 .site-header__nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--header-bg);
   border-bottom: 1px solid var(--hairline);
 }
 .site-header__nav .container {
@@ -196,7 +200,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
     border-bottom: 1px solid var(--hairline);
     padding: 8px var(--container-pad) 16px;
   }
-  .site-header__nav { position: relative; }
   .site-header__nav.is-open .nav-list { display: flex; }
   .nav-list li { width: 100%; }
   .nav-list a { justify-content: flex-start; width: 100%; }
@@ -1252,20 +1255,6 @@ main { padding-top: 0; }
     });
   })();
 
-  // Hide the logo row on scroll — keep only the nav
-  (function () {
-    var header = document.querySelector('.site-header');
-    if (!header) return;
-    var ticking = false;
-    function update() {
-      header.classList.toggle('is-scrolled', window.scrollY > 64);
-      ticking = false;
-    }
-    window.addEventListener('scroll', function () {
-      if (!ticking) { requestAnimationFrame(update); ticking = true; }
-    }, { passive: true });
-    update();
-  })();
 </script>
 
 
