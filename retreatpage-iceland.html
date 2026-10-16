@@ -2464,7 +2464,6 @@ html.has-lightbox { overflow: hidden; }
 </svg>
 
 <header class="site-header">
-
   <div class="site-header__brand">
     <div class="container">
       <a href="index.html" class="site-header__logo" aria-label="Yoga Adventures Worldwide — home">
@@ -2472,8 +2471,17 @@ html.has-lightbox { overflow: hidden; }
       </a>
     </div>
   </div>
+</header>
 
-  <nav class="site-header__nav" aria-label="Primary">
+<!-- A sibling of <header>, not nested inside it: position:sticky only
+     stays pinned while part of its CONTAINING BLOCK (the nearest
+     ancestor box) is still in the scrollport. Nested inside the
+     ~138px-tall <header>, the nav ran out of box to stick within the
+     moment the page scrolled past that header height, and scrolled
+     away with it — it never actually stayed stuck past the first
+     screenful. As a direct child of <body> (which spans the whole
+     page) it has the room to stay pinned for the full scroll. -->
+<nav class="site-header__nav" aria-label="Primary">
     <div class="container">
       <a href="index.html" class="site-header__logo site-header__logo--nav" aria-label="Yoga Adventures Worldwide — home">
         <svg role="img" aria-hidden="true" width="364" height="41" viewBox="0 0 364 41"><use href="#site-logo-symbol"></use></svg>
@@ -2492,8 +2500,6 @@ html.has-lightbox { overflow: hidden; }
       </ul>
     </div>
   </nav>
-
-</header>
 
 <main>
 

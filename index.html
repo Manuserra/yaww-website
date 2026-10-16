@@ -2042,7 +2042,6 @@ main { padding-top: 0; }
 </svg>
 
 <header class="site-header">
-
   <div class="site-header__brand">
     <div class="container">
       <a href="index.html" class="site-header__logo" aria-label="Yoga Adventures Worldwide — home">
@@ -2050,25 +2049,32 @@ main { padding-top: 0; }
       </a>
     </div>
   </div>
-
-  <nav class="site-header__nav" aria-label="Primary">
-    <div class="container">
-      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
-          <path d="M3 6h18M3 12h18M3 18h18"/>
-        </svg>
-      </button>
-      <ul class="nav-list" id="primary-nav">
-        <li><a href="retreats.html">Retreats</a></li>
-        <li><a href="#">Locations</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Journal</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
-
 </header>
+
+<!-- A sibling of <header>, not nested inside it: position:sticky only
+     stays pinned while part of its CONTAINING BLOCK (the nearest
+     ancestor box) is still in the scrollport. Nested inside the
+     ~138px-tall <header>, the nav ran out of box to stick within the
+     moment the page scrolled past that header height, and scrolled
+     away with it — it never actually stayed stuck past the first
+     screenful. As a direct child of <body> (which spans the whole
+     page) it has the room to stay pinned for the full scroll. -->
+<nav class="site-header__nav" aria-label="Primary">
+  <div class="container">
+    <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+        <path d="M3 6h18M3 12h18M3 18h18"/>
+      </svg>
+    </button>
+    <ul class="nav-list" id="primary-nav">
+      <li><a href="retreats.html">Retreats</a></li>
+      <li><a href="#">Locations</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Journal</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+</nav>
 
 <main>
 
