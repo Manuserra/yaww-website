@@ -795,7 +795,7 @@ main { padding-top: 0; }
   justify-content: center;
   align-items: center;
   gap: 40px;
-  padding: 48px var(--container-pad) 56px;
+  padding: 96px var(--container-pad) 112px;
   background: var(--sea-blue);
 }
 .tiers__row {
@@ -951,10 +951,22 @@ main { padding-top: 0; }
   line-height: 20px;
   color: var(--sea-blue-200);
 }
+/* No background here on purpose — .btn--secondary's own default is
+   transparent, which already reads identically to an explicit stone
+   fill on this section's stone background. Setting it explicitly used
+   to matter only by accident: ".pillar__copy .btn--secondary" and
+   ".btn--secondary:hover" both carry specificity (0,2,0), so the one
+   lower in the file wins regardless of :hover — this rule sat below
+   the hover rule and silently pinned the button's background back to
+   stone every time it was hovered, while :hover's own `color: stone`
+   still applied. Text and fill both stone == invisible text on hover,
+   border the only thing left showing. Dropping the background removes
+   the collision entirely: the shared .btn--secondary:hover rule is
+   free to fill it on hover, same as every other secondary button
+   (hero included). */
 .pillar__copy .btn--secondary {
   padding: 16px 24px;
   border-width: 1.4px;
-  background: var(--stone);
 }
 
 @media (max-width: 900px) {
@@ -1070,6 +1082,10 @@ main { padding-top: 0; }
   background: var(--stone-100);
   border: 1px solid var(--stone-400);
   flex-shrink: 0;
+  /* .booking__step's own flex gap (16px) already separates every pair
+     of children equally; this adds to just the circle→label gap to
+     bring it to 48px without touching label→body (stays 16px). */
+  margin-bottom: 32px;
 }
 .booking__label {
   margin: 0;
@@ -1494,7 +1510,7 @@ main { padding-top: 0; }
   width: 100%;
   max-width: var(--container-max);
   display: flex;
-  gap: 24px;
+  gap: 48px;
 }
 /* Same ratio as the pillar photos above — flex:1 1 0 + aspect-ratio,
    no fixed width/height, so the box resolves from whatever space the
@@ -1696,15 +1712,20 @@ main { padding-top: 0; }
   letter-spacing: 0.32px;
   color: var(--stone-100);
 }
-/* Same fixed width as the hero's own two-button row (.home-hero__btns),
-   so both CTA pairs on the page measure identically. */
+/* Forcing the hero's fixed 286px width broke here: "Explore upcoming
+   retreats" doesn't fit on one line at that width, so it wrapped to
+   two and grew taller than the hero's own buttons — the opposite of
+   matching them. white-space: nowrap + auto width keeps every button
+   on this row at the same single-line height as the hero's (both use
+   the same .btn base, so the height is identical whenever neither one
+   wraps), even though the two buttons end up different widths. */
 .home-cta__btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
-.home-cta__btns .btn { width: 286px; }
+.home-cta__btns .btn { white-space: nowrap; }
 @media (max-width: 767px) {
   .home-cta { padding: 56px 16px; gap: 24px; }
   .home-cta__title { font-size: 26px; line-height: 34px; }
   .home-cta__btns { flex-direction: column; width: 100%; max-width: 320px; }
-  .home-cta__btns .btn { width: 100%; }
+  .home-cta__btns .btn { width: 100%; white-space: normal; }
 }
 
 /* --- Image reveal ------------------------------------------------------
@@ -1910,7 +1931,7 @@ main { padding-top: 0; }
   align-items: center;
   justify-content: center;
   gap: 24px;
-  padding: 24px 0;
+  padding: 48px 0;
   border-bottom: 1px solid var(--sea-blue-400);
 }
 .footer-logo a {
