@@ -2650,6 +2650,39 @@ html.has-lightbox { overflow: hidden; }
 
 </main>
 
+<!-- Smooth scroll (Lenis) — same library/config as diegodelbono.com/yoga,
+     the reference site for this theme. -->
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script>
+/* Lenis replaces native scroll with an eased, inertial one — the
+   "smooth scroll" feel. Config copied as-is from the reference site's
+   own init (lerp/wheelMultiplier/etc. are the exact values that give
+   it that particular weight and settle time; retuning any one of them
+   changes how the whole site feels to scroll, not just a number).
+   The one addition: skip it entirely under prefers-reduced-motion,
+   same as every other motion on this page — Lenis's own scroll is
+   still just the native scrollbar/wheel/touch underneath, so skipping
+   it only removes the eased inertia, not scrolling itself. */
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (typeof Lenis === 'undefined') return;
+
+  var lenis = new Lenis({
+    lerp: 0.1,
+    wheelMultiplier: 0.7,
+    infinite: false,
+    gestureOrientation: 'vertical',
+    normalizeWheel: false,
+    smoothTouch: false
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+})();
+</script>
 <script>
   // Mobile nav toggle
   (function () {
