@@ -243,7 +243,14 @@ main { padding-top: 0; }
 }
 .home-hero__media {
   width: 100%;
-  max-width: 1392px;
+  /* Every other content row on the page caps at var(--container-max)
+     (1440) inside a section that already has its own 24px side
+     padding — up to a 1488px viewport those two numbers net out to
+     the same 1392px, which is where this literal 1392 came from, but
+     past that width the section's padding keeps scaling while this
+     stayed hard-capped, so the hero photo read as narrower than
+     everything below it on a wide-enough monitor. */
+  max-width: var(--container-max);
   aspect-ratio: 1392 / 720;
   overflow: hidden;
   background: var(--stone-300);
