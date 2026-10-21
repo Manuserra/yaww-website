@@ -331,15 +331,22 @@ main { padding-top: 0; }
 .site-header {
   position: relative;
   z-index: 2;
-  background: transparent;
-  /* Without this, .site-header's own background snapped instantly on
-     hover while .site-header__nav (below) eased over .3s — the logo
-     row visibly solidified first and the nav caught up a beat later,
-     reading as two things reacting separately instead of one header.
-     Same duration/easing as .site-header__nav so both paint in lockstep. */
-  transition: background-color .3s ease;
 }
-.site-header__brand { border-bottom-color: var(--stone-400); }
+/* The animated background used to live on .site-header (the outer
+   wrapper) while its border lived one level down on .site-header__brand
+   — two different elements, each getting its own style recalc/paint,
+   versus .site-header__nav where one single element owns both
+   properties. Even with identical declared durations, two separate
+   elements aren't guaranteed to commit their first animation frame on
+   the same tick, which is exactly the "logo fades a beat before/after
+   the nav" the user was seeing. Moved background onto
+   .site-header__brand too, so each row is now one element owning both
+   of its own properties — structurally identical to the nav row, not
+   just timed the same. */
+.site-header__brand {
+  background: transparent;
+  border-bottom-color: var(--stone-400);
+}
 .site-header__nav {
   background: transparent;
   border-bottom-color: var(--stone-400);
@@ -367,12 +374,9 @@ main { padding-top: 0; }
      :hover on. body:has() is what lets one hover target restyle a
      sibling — both of these resolve true together whichever row the
      pointer is actually over, so the two conditions always agree. */
-  body:has(.site-header:hover, .site-header__nav:hover) .site-header,
-  body:has(.site-header:hover, .site-header__nav:hover) .site-header__nav {
-    background: var(--header-bg);
-  }
   body:has(.site-header:hover, .site-header__nav:hover) .site-header__brand,
   body:has(.site-header:hover, .site-header__nav:hover) .site-header__nav {
+    background: var(--header-bg);
     border-bottom-color: var(--hairline);
   }
   body:has(.site-header:hover, .site-header__nav:hover) .site-header__logo,
