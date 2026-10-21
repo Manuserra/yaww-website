@@ -331,6 +331,15 @@ main { padding-top: 0; }
 .site-header {
   position: relative;
   z-index: 2;
+  /* The shared block above (untouched) gives .site-header a solid
+     background: var(--header-bg) — correct on every other page, where
+     it's the only background in play. Here .site-header__brand sits
+     on top of it and does the actual animating, but .site-header's
+     own solid fill was still painting behind it at rest, showing
+     through brand's "transparent" as a solid bar. This never needs to
+     animate itself (brand already does), just needs to stop
+     overriding brand's transparency. */
+  background: transparent;
 }
 /* The animated background used to live on .site-header (the outer
    wrapper) while its border lived one level down on .site-header__brand
