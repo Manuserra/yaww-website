@@ -233,30 +233,56 @@ main { padding-top: 0; }
 /* ============================================================
    HOME · HERO
    ============================================================ */
+/* --- Full-bleed experiment --------------------------------------------
+   Photo fills the viewport edge to edge, including the strip behind
+   the header/nav — see .site-chrome below for how those go transparent
+   over it. Reuses the real photo already in the repo (images/extra3-1.jpg)
+   rather than a placeholder: swap that file (or hand over a new one
+   directly, not through git) whenever a different hero photo is ready. */
 .home-hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 56px;
+  justify-content: center;
+  gap: 32px;
   padding: 24px;
   text-align: center;
+  overflow: hidden;
 }
 .home-hero__media {
-  width: 100%;
-  /* Every other content row on the page caps at var(--container-max)
-     (1440) inside a section that already has its own 24px side
-     padding — up to a 1488px viewport those two numbers net out to
-     the same 1392px, which is where this literal 1392 came from, but
-     past that width the section's padding keeps scaling while this
-     stayed hard-capped, so the hero photo read as narrower than
-     everything below it on a wide-enough monitor. */
-  max-width: var(--container-max);
-  aspect-ratio: 1392 / 720;
-  overflow: hidden;
-  background: var(--stone-300);
+  position: absolute;
+  inset: 0;
 }
 .home-hero__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Darkest at top (under the transparent nav) and bottom (under the
+   buttons), lighter through the middle — the title/desc sit in the
+   lightest band, so the scrim does its job without flattening the
+   whole photo. The top band is pinned to a fixed 140px (roughly the
+   logo+nav row height) at a stronger opacity rather than fading from
+   the very first pixel: a percentage-based fade left the logo
+   unreadable whenever the photo happened to have something pale (sky,
+   a white wall) sitting right behind it — guaranteeing a dark band
+   for the header's own height is what the nav text actually needs,
+   not an average across the whole photo. */
+.home-hero__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(40, 49, 57, .62) 0, rgba(40, 49, 57, .55) 140px,
+    rgba(40, 49, 57, .12) 260px, rgba(40, 49, 57, .12) 65%,
+    rgba(40, 49, 57, .5));
+  pointer-events: none;
+}
+.home-hero__copy,
+.home-hero__ctas {
+  position: relative;
+  z-index: 1;
+}
 .home-hero__copy { display: flex; flex-direction: column; align-items: center; gap: 16px; max-width: 760px; }
+.home-hero__copy .kicker { color: var(--stone-200); }
 .home-hero__ctas { display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .home-hero__btns { display: flex; align-items: center; gap: 16px; }
 .home-hero__btns .btn { width: 286px; }
@@ -266,7 +292,7 @@ main { padding-top: 0; }
   font-weight: 700;
   font-size: 36px;
   line-height: 48px;
-  color: var(--sea-blue);
+  color: var(--stone-100);
 }
 .home-hero__desc {
   margin: 0;
@@ -275,22 +301,115 @@ main { padding-top: 0; }
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.32px;
-  color: var(--sea-blue);
+  color: var(--stone-100);
 }
 .home-hero__proof {
   margin: 4px 0 0;
   font-family: var(--font-body);
   font-size: 13px;
   line-height: 20px;
-  color: var(--sea-blue-200);
+  color: var(--stone-200);
 }
-.home-hero__proof a { text-decoration: underline; text-underline-offset: 2px; color: var(--sea-blue-200); }
-.home-hero__proof a:hover { color: var(--sea-blue); }
+.home-hero__proof a { text-decoration: underline; text-underline-offset: 2px; color: var(--stone-200); }
+.home-hero__proof a:hover { color: var(--stone-100); }
 
 @media (max-width: 767px) {
   .home-hero__title { font-size: 26px; line-height: 34px; }
   .home-hero__btns { flex-direction: column; width: 100%; }
   .home-hero__btns .btn { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-hero__proof a { transition: none; }
+}
+
+/* --- Transparent overlay chrome (home hero only) -----------------------
+   .site-header and .site-header__nav keep their normal rules (used by
+   every other page) — this wraps them in one more box that's fixed
+   over the hero and starts transparent with light (stone-200) text,
+   so the full-bleed photo genuinely shows through behind the logo and
+   nav instead of a solid bar sitting on top of it.
+
+   Two separate things turn it solid, both landing on the same
+   declarations so they can never visually disagree:
+   - :hover (desktop only — guarded by (hover:hover) so a touch tap
+     can't get stuck "hovering"), a discoverable affordance while the
+     photo is still on screen.
+   - .is-solid, added by the scroll listener below once the hero has
+     fully scrolled past — past that point the page is back to its
+     normal stone/white sections, where stone-200 text would have
+     nothing to read against, so this has to stop being optional. */
+.site-chrome {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 60;
+  background-color: transparent;
+  transition: background-color .4s cubic-bezier(.4, 0, .2, 1);
+}
+/* A standing (non-interactive) contrast guarantee, independent of the
+   hero's own scrim below: whatever photo eventually sits behind this
+   header, the logo/nav text needs to read without relying on that
+   specific image happening to be dark enough right at the top —
+   this darkens a fixed ~160px band under the chrome itself. Fades out
+   the moment the real solid background takes over (hover or scrolled
+   past), since at that point it would just double up for nothing. */
+.site-chrome::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(40, 49, 57, .65), rgba(40, 49, 57, .3) 100px, rgba(40, 49, 57, 0) 170px);
+  pointer-events: none;
+  transition: opacity .4s cubic-bezier(.4, 0, .2, 1);
+}
+.site-chrome.is-solid::before { opacity: 0; }
+.site-chrome .site-header__nav {
+  position: static;
+  background: transparent;
+  border-bottom-color: transparent;
+  transition: border-color .4s cubic-bezier(.4, 0, .2, 1);
+}
+.site-chrome .site-header__brand {
+  border-bottom-color: transparent;
+  transition: border-color .4s cubic-bezier(.4, 0, .2, 1);
+}
+.site-chrome .site-header__logo,
+.site-chrome .site-header__logo--nav,
+.site-chrome .nav-list a,
+.site-chrome .nav-toggle {
+  color: var(--stone-200);
+  transition: color .4s cubic-bezier(.4, 0, .2, 1);
+}
+/* The mobile dropdown panel is solid the moment it opens regardless of
+   scroll/hover state — it has its own background to read against, not
+   the photo — so its links stay the normal ink color throughout. */
+.site-chrome .site-header__nav.is-open .nav-list a { color: var(--nav-ink); }
+
+.site-chrome.is-solid { background: var(--header-bg); }
+.site-chrome.is-solid .site-header__nav,
+.site-chrome.is-solid .site-header__brand { border-bottom-color: var(--hairline); }
+.site-chrome.is-solid .site-header__logo,
+.site-chrome.is-solid .site-header__logo--nav,
+.site-chrome.is-solid .nav-list a,
+.site-chrome.is-solid .nav-toggle { color: var(--sea-blue); }
+
+@media (hover: hover) and (pointer: fine) {
+  .site-chrome:not(.is-solid):hover { background-color: var(--header-bg); }
+  .site-chrome:not(.is-solid):hover::before { opacity: 0; }
+  .site-chrome:not(.is-solid):hover .site-header__nav,
+  .site-chrome:not(.is-solid):hover .site-header__brand { border-bottom-color: var(--hairline); }
+  .site-chrome:not(.is-solid):hover .site-header__logo,
+  .site-chrome:not(.is-solid):hover .site-header__logo--nav,
+  .site-chrome:not(.is-solid):hover .nav-list a,
+  .site-chrome:not(.is-solid):hover .nav-toggle { color: var(--sea-blue); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-chrome,
+  .site-chrome .site-header__nav,
+  .site-chrome .site-header__brand,
+  .site-chrome .site-header__logo,
+  .site-chrome .site-header__logo--nav,
+  .site-chrome .nav-list a,
+  .site-chrome .nav-toggle { transition: none; }
 }
 
 /* ============================================================
@@ -2048,6 +2167,10 @@ main { padding-top: 0; }
 </symbol>
 </svg>
 
+<!-- Fixed over the hero photo, not a flow element — see .site-chrome
+     in the stylesheet for why it starts transparent and how it turns
+     solid (hover, or the scroll listener below once past the hero). -->
+<div class="site-chrome" id="siteChrome">
 <header class="site-header">
   <div class="site-header__brand">
     <div class="container">
@@ -2058,14 +2181,6 @@ main { padding-top: 0; }
   </div>
 </header>
 
-<!-- A sibling of <header>, not nested inside it: position:sticky only
-     stays pinned while part of its CONTAINING BLOCK (the nearest
-     ancestor box) is still in the scrollport. Nested inside the
-     ~138px-tall <header>, the nav ran out of box to stick within the
-     moment the page scrolled past that header height, and scrolled
-     away with it — it never actually stayed stuck past the first
-     screenful. As a direct child of <body> (which spans the whole
-     page) it has the room to stay pinned for the full scroll. -->
 <nav class="site-header__nav" aria-label="Primary">
   <div class="container">
     <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu">
@@ -2082,6 +2197,7 @@ main { padding-top: 0; }
     </ul>
   </div>
 </nav>
+</div>
 
 <main>
 
@@ -2090,9 +2206,12 @@ main { padding-top: 0; }
        ========================================================= -->
   <section class="home-hero">
     <div class="home-hero__media">
-      <!-- TODO: foto real — grupo + gente local + mesa o mat, personas, no paisaje vacío -->
-      <img src="images/extra3-1.jpg" alt="Travellers exploring a village together on one of our journeys" loading="lazy">
+      <!-- Real photo already in the repo (images/extra3-1.jpg) — swap
+           the file, or hand over a new one directly, whenever a
+           different hero photo is ready; no need to go through git. -->
+      <img src="images/extra3-1.jpg" alt="Travellers exploring a village together on one of our journeys" loading="eager">
     </div>
+    <div class="home-hero__scrim" aria-hidden="true"></div>
     <div class="home-hero__copy">
       <p class="kicker">Travel That Moves You · since 2008</p>
       <h1 class="home-hero__title">Discover a place from the inside,<br>with yoga woven into every day.</h1>
@@ -2102,7 +2221,7 @@ main { padding-top: 0; }
       <div class="home-hero__btns">
         <a class="btn btn--primary" href="retreats.html">Find your retreat</a>
         <!-- TODO: route "Talk to us" to a contact/sales flow -->
-        <a class="btn btn--secondary" href="#">Talk to us</a>
+        <a class="btn btn--light" href="#">Talk to us</a>
       </div>
       <p class="home-hero__proof">
         <!-- TODO: link to real Google review profile -->
@@ -3209,6 +3328,24 @@ main { padding-top: 0; }
       var open = nav.classList.toggle('is-open');
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
+  })();
+
+  // Transparent-over-hero header: once the hero has fully scrolled
+  // past, .site-chrome switches to solid permanently — hover alone
+  // only covers the stretch where the photo is still behind it.
+  (function () {
+    var chrome = document.getElementById('siteChrome');
+    var hero = document.querySelector('.home-hero');
+    if (!chrome || !hero) return;
+    var ticking = false;
+    function update() {
+      chrome.classList.toggle('is-solid', hero.getBoundingClientRect().bottom <= 0);
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    update();
   })();
 
   // Newsletter form — no endpoint yet, swallow the submit
