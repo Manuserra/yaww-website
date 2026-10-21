@@ -332,6 +332,12 @@ main { padding-top: 0; }
   position: relative;
   z-index: 2;
   background: transparent;
+  /* Without this, .site-header's own background snapped instantly on
+     hover while .site-header__nav (below) eased over .3s — the logo
+     row visibly solidified first and the nav caught up a beat later,
+     reading as two things reacting separately instead of one header.
+     Same duration/easing as .site-header__nav so both paint in lockstep. */
+  transition: background-color .3s ease;
 }
 .site-header__brand { border-bottom-color: var(--stone-400); }
 .site-header__nav {
