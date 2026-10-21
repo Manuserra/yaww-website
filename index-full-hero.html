@@ -353,16 +353,30 @@ main { padding-top: 0; }
 .site-header__nav.is-open .nav-list a { color: var(--nav-ink); }
 
 @media (hover: hover) and (pointer: fine) {
-  .site-header:hover { background: var(--header-bg); }
-  .site-header:hover .site-header__brand { border-bottom-color: var(--hairline); }
-  .site-header:hover .site-header__logo,
-  .site-header:hover .site-header__logo--nav { color: var(--sea-blue); }
-  .site-header__nav:hover {
+  /* Hovering EITHER row solidifies both together, as one header, not
+     two independent pieces — .site-header and .site-header__nav are
+     siblings (not nested, on purpose: nesting nav inside a box as
+     short as the header broke its sticky behavior, see the comment
+     above .home-hero), so there's no shared parent to put a single
+     :hover on. body:has() is what lets one hover target restyle a
+     sibling — both of these resolve true together whichever row the
+     pointer is actually over, so the two conditions always agree. */
+  body:has(.site-header:hover, .site-header__nav:hover) .site-header,
+  body:has(.site-header:hover, .site-header__nav:hover) .site-header__nav {
     background: var(--header-bg);
+  }
+  body:has(.site-header:hover, .site-header__nav:hover) .site-header__brand,
+  body:has(.site-header:hover, .site-header__nav:hover) .site-header__nav {
     border-bottom-color: var(--hairline);
   }
-  .site-header__nav:hover .nav-list a,
-  .site-header__nav:hover .nav-toggle { color: var(--nav-ink); }
+  body:has(.site-header:hover, .site-header__nav:hover) .site-header__logo,
+  body:has(.site-header:hover, .site-header__nav:hover) .site-header__logo--nav {
+    color: var(--sea-blue);
+  }
+  body:has(.site-header:hover, .site-header__nav:hover) .nav-list a,
+  body:has(.site-header:hover, .site-header__nav:hover) .nav-toggle {
+    color: var(--nav-ink);
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .site-header,
