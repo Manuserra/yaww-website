@@ -251,21 +251,23 @@ main { padding-top: 0; }
      ever-larger empty margins. */
   width: 100%;
   /* Height tracks the viewport's own height instead of a fixed
-     width:height ratio — fills the screen below minus the 24px
-     top/bottom padding .home-hero already carries, at any window
-     height. At a typical ~1440x900 desktop window this lands close to
-     today's old aspect-ratio-derived 720px, but it's no longer tied to
-     width at all: a taller or shorter window changes the photo's
+     width:height ratio — fills the screen below the header, at any
+     window height. A taller or shorter window changes the photo's
      height directly, not its proportions. The rest of the hero (copy,
-     buttons) sits below it in normal flow, so the full section ends up
-     taller than one screen — scrolling to see the buttons is expected
-     here, not a bug. 100vh first as the fallback, then 100dvh where
-     supported, same reason the CTA band uses it: 100vh alone is
-     pinned to the LARGEST possible mobile viewport (address bar
-     hidden), so the photo would actually run taller than the visible
-     area the moment that bar is on screen. */
-  height: calc(100vh - 48px);
-  height: calc(100dvh - 48px);
+     buttons) still sits below it in normal flow, so scrolling to them
+     is still expected on most windows — this isn't trying to fit the
+     whole hero section in one screen, just make the photo itself read
+     as "fills the rest of this screen" rather than "fills the rest of
+     this screen plus however tall the header happens to be".
+     138px is .site-header + .site-header__nav's combined height
+     (measured, not guessed — see the comment on .home-hero in the
+     full-bleed variant for the same number). 100vh first as the
+     fallback, then 100dvh where supported, same reason the CTA band
+     uses it: 100vh alone is pinned to the LARGEST possible mobile
+     viewport (address bar hidden), so the photo would actually run
+     taller than the visible area the moment that bar is on screen. */
+  height: calc(100vh - 138px - 48px);
+  height: calc(100dvh - 138px - 48px);
   overflow: hidden;
   background: var(--stone-300);
 }
@@ -305,6 +307,15 @@ main { padding-top: 0; }
   .home-hero__title { font-size: 26px; line-height: 34px; }
   .home-hero__btns { flex-direction: column; width: 100%; }
   .home-hero__btns .btn { width: 100%; }
+  /* .site-header__brand is display:none under 767px (only the nav row
+     shows), so the header's real height here is just the nav's 56px,
+     not the 138px brand+nav total the desktop rule subtracts — left
+     as 138px, the photo would come out 82px shorter than it should
+     and leave an unwanted gap above the copy. */
+  .home-hero__media {
+    height: calc(100vh - 56px - 48px);
+    height: calc(100dvh - 56px - 48px);
+  }
 }
 
 /* ============================================================
