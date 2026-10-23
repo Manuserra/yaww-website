@@ -1745,14 +1745,11 @@ main { padding-top: 0; }
   left: 0; right: 0;
   top: -25%;
   height: 150%;
-  /* TODO: real photo — a yoga shala interior, doors open to the
-     landscape. Same placeholder convention as every other module
-     (linear-gradient(155deg, hsl(H 32% 80%), hsl(H 26% 60%))), plus
-     the dark scrim every photo-background CTA needs for legible
-     white text on top of whatever photo eventually lands here. */
+  /* Dark scrim stacked over the photo for legible white text on top
+     of a yoga shala interior, doors open to the desert landscape. */
   background-image:
     linear-gradient(rgba(40, 49, 57, 0.45), rgba(40, 49, 57, 0.45)),
-    linear-gradient(155deg, hsl(200 32% 80%), hsl(200 26% 60%));
+    url("images/cta-yoga-shala.jpg");
   background-size: cover, cover;
   background-position: 50%, 50%;
   background-repeat: no-repeat, no-repeat;
