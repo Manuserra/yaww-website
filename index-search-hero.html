@@ -277,10 +277,11 @@ main { padding-top: 0; }
 }
 .home-hero__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 /* The proof card overlaps the photo, so it needs to be read against
-   it reliably — stone-100 is near-opaque already (not the translucent
-   scrim treatment the CTA band/full-bleed hero use), simplest thing
-   that reads as "a card sitting on the photo" without needing to
-   darken the photo itself for contrast. */
+   it reliably — var(--stone), the site's standard background, is
+   already solid (not the translucent scrim treatment the CTA band/
+   full-bleed hero use), simplest thing that reads as "a card sitting
+   on the photo" without needing to darken the photo itself for
+   contrast. */
 .home-hero__proof {
   position: absolute;
   left: 50%;
@@ -290,7 +291,7 @@ main { padding-top: 0; }
   align-items: center;
   gap: 10px;
   padding: 12px;
-  background: var(--stone-100);
+  background: var(--stone);
   white-space: nowrap;
 }
 .home-hero__proof span,
