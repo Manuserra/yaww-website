@@ -288,24 +288,30 @@ main { padding-top: 0; }
   bottom: 0;
   transform: translateX(-50%);
   display: flex;
+  width: 669px;
+  padding: 12px;
+  justify-content: center;
   align-items: center;
   gap: 10px;
-  padding: 12px;
   background: var(--stone);
-  white-space: nowrap;
 }
-.home-hero__proof span,
-.home-hero__proof a {
+.home-hero__proof-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 0 0;
+}
+.home-hero__proof-value,
+.home-hero__proof-label {
+  text-align: center;
   font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 24px;
-  letter-spacing: 0.32px;
+  letter-spacing: 0.56px;
   color: var(--sea-blue);
 }
-.home-hero__proof a { text-decoration: underline; text-underline-offset: 2px; }
-.home-hero__proof a:hover { color: var(--sea-blue-400); }
-.home-hero__proof-divider { width: 1px; align-self: stretch; background: var(--stone-400); flex-shrink: 0; }
+.home-hero__proof-value { font-weight: 600; }
+.home-hero__proof-label { font-weight: 400; }
 
 .home-hero__copy { display: flex; flex-direction: column; align-items: center; gap: 16px; max-width: 760px; }
 .home-hero__title {
@@ -336,12 +342,9 @@ main { padding-top: 0; }
 @media (max-width: 767px) {
   .home-hero__title { font-size: 32px; line-height: 40px; }
   .home-hero__proof {
-    bottom: 0;
+    width: calc(100% - 32px);
     padding: 10px;
     gap: 8px;
-    max-width: calc(100% - 32px);
-    white-space: normal;
-    text-align: center;
   }
   /* .site-header__brand is display:none under 767px (only the nav row
      shows), so the header's real height here is just the nav's 56px,
@@ -2151,12 +2154,18 @@ main { padding-top: 0; }
     <div class="home-hero__media">
       <img src="images/hero-montenegro-yoga.jpg" alt="A group of yogis reaching upward during an outdoor class overlooking the Bay of Kotor, Montenegro" loading="lazy">
       <div class="home-hero__proof">
-        <span>Since 2008</span>
-        <span class="home-hero__proof-divider" aria-hidden="true"></span>
-        <!-- TODO: link to real Google review profile -->
-        <a href="#">★ 4.9 Google</a>
-        <span class="home-hero__proof-divider" aria-hidden="true"></span>
-        <span>600+ retreats</span>
+        <div class="home-hero__proof-item">
+          <span class="home-hero__proof-value">Since 2008</span>
+          <span class="home-hero__proof-label">Exploring together</span>
+        </div>
+        <div class="home-hero__proof-item">
+          <span class="home-hero__proof-value">★ 4.9</span>
+          <span class="home-hero__proof-label">Google Reviews</span>
+        </div>
+        <div class="home-hero__proof-item">
+          <span class="home-hero__proof-value">600+</span>
+          <span class="home-hero__proof-label">Retreats hosted</span>
+        </div>
       </div>
     </div>
     <div class="home-hero__copy">
