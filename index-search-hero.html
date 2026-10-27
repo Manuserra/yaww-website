@@ -898,8 +898,16 @@ main { padding-top: 0; }
   gap: 24px;
   align-self: stretch;
 }
-/* Empty on purpose for now — the stacked-photo treatment visible in
-   the redline comes in a follow-up pass. */
+/* Three copies of the same postcard photo, stacked and fanned out on
+   hover. All positions below are expressed in cqw (% of .tiers__image's
+   own inline size) rather than the literal Figma px values, so the
+   whole stack scales smoothly at any width — including the fluid
+   432px-max box the 767px breakpoint below gives it — instead of
+   needing a separate hand-tuned layout per breakpoint. Figma's 432px
+   reference frame = 100cqw, so 1px = (100/432)cqw; every value here is
+   that same conversion applied to the redline's numbers. The image
+   file itself already has its cream border baked in (exported that
+   way on purpose), so no CSS border is added on top of it. */
 .tiers__image {
   display: flex;
   width: 432px;
@@ -907,6 +915,57 @@ main { padding-top: 0; }
   justify-content: center;
   align-items: center;
   max-width: 100%;
+  position: relative;
+  container-type: inline-size;
+}
+.tiers__postcard {
+  position: absolute;
+  background-image: url("images/AC-1 12.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+@media (hover: hover) and (pointer: fine) {
+  .tiers__postcard {
+    transition: left .35s ease, right .35s ease, top .35s ease, bottom .35s ease, transform .35s ease;
+  }
+}
+@media (prefers-reduced-motion: reduce) { .tiers__postcard { transition: none; } }
+.tiers__postcard--back {
+  width: 26.106cqw;
+  height: 34.128cqw;
+  left: 32.498cqw;
+  bottom: 7.14cqw;
+  transform: rotate(-2.862deg) scaleX(-1);
+}
+.tiers__postcard--mid {
+  width: 25.732cqw;
+  height: 33.64cqw;
+  right: 32.208cqw;
+  bottom: 7.323cqw;
+  transform: rotate(2.159deg);
+}
+.tiers__postcard--front {
+  width: 29.398cqw;
+  height: 38.657cqw;
+  right: 35.088cqw;
+  top: 9.722cqw;
+}
+@media (hover: hover) and (pointer: fine) {
+  .tiers__card:hover .tiers__postcard--back {
+    left: 12.5cqw;
+    bottom: 3.883cqw;
+    transform: rotate(-6.485deg) scaleX(-1);
+  }
+  .tiers__card:hover .tiers__postcard--mid {
+    right: 12.994cqw;
+    bottom: 4.146cqw;
+    transform: rotate(6.485deg);
+  }
+  .tiers__card:hover .tiers__postcard--front {
+    right: 35.088cqw;
+    top: 9.259cqw;
+  }
 }
 .tiers__text {
   display: flex;
@@ -2272,9 +2331,11 @@ main { padding-top: 0; }
     <div class="tiers__row">
       <div class="tiers__card">
         <div class="tiers__intro">
-          <!-- Image frame intentionally empty for now — stacked-photo
-               treatment comes in a follow-up pass. -->
-          <div class="tiers__image" aria-hidden="true"></div>
+          <div class="tiers__image" aria-hidden="true">
+            <span class="tiers__postcard tiers__postcard--back"></span>
+            <span class="tiers__postcard tiers__postcard--mid"></span>
+            <span class="tiers__postcard tiers__postcard--front"></span>
+          </div>
           <div class="tiers__text">
             <p class="kicker tiers__eyebrow">Deep Dives</p>
             <h3 class="tiers__headline">Go deeper</h3>
@@ -2289,7 +2350,11 @@ main { padding-top: 0; }
       </div>
       <div class="tiers__card">
         <div class="tiers__intro">
-          <div class="tiers__image" aria-hidden="true"></div>
+          <div class="tiers__image" aria-hidden="true">
+            <span class="tiers__postcard tiers__postcard--back"></span>
+            <span class="tiers__postcard tiers__postcard--mid"></span>
+            <span class="tiers__postcard tiers__postcard--front"></span>
+          </div>
           <div class="tiers__text">
             <p class="kicker tiers__eyebrow">Signature Collection</p>
             <h3 class="tiers__headline">See the world differently</h3>
@@ -2304,7 +2369,11 @@ main { padding-top: 0; }
       </div>
       <div class="tiers__card">
         <div class="tiers__intro">
-          <div class="tiers__image" aria-hidden="true"></div>
+          <div class="tiers__image" aria-hidden="true">
+            <span class="tiers__postcard tiers__postcard--back"></span>
+            <span class="tiers__postcard tiers__postcard--mid"></span>
+            <span class="tiers__postcard tiers__postcard--front"></span>
+          </div>
           <div class="tiers__text">
             <p class="kicker tiers__eyebrow">The Reserve</p>
             <h3 class="tiers__headline">Beyond the expected</h3>
