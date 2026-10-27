@@ -898,16 +898,24 @@ main { padding-top: 0; }
   gap: 24px;
   align-self: stretch;
 }
-/* Three copies of the same postcard photo, stacked and fanned out on
-   hover. All positions below are expressed in cqw (% of .tiers__image's
-   own inline size) rather than the literal Figma px values, so the
-   whole stack scales smoothly at any width — including the fluid
-   432px-max box the 767px breakpoint below gives it — instead of
-   needing a separate hand-tuned layout per breakpoint. Figma's 432px
-   reference frame = 100cqw, so 1px = (100/432)cqw; every value here is
-   that same conversion applied to the redline's numbers. The image
-   file itself already has its cream border baked in (exported that
-   way on purpose), so no CSS border is added on top of it. */
+/* Three copies of the same postcard photo, stacked at rest and fanned
+   into a spread hand of cards on hover. Position/size below are in
+   cqw (% of .tiers__image's own inline size, Figma's 432px reference
+   frame = 100cqw) so the whole stack scales as one fluid unit at any
+   width, including the fluid mobile .tiers__image below — no separate
+   per-breakpoint layout needed.
+
+   Motion lives entirely in `transform`/`box-shadow`, not the
+   left/right/top/bottom anchors (those stay fixed — they only place
+   the resting stack). transform is compositor-only, so the fan-out
+   stays smooth under animation; box-shadow adds the lift that sells
+   the "picked up off the stack" feeling. Entry (hover-in) uses a
+   soft-overshoot curve so the fan feels like it springs open rather
+   than slides; exit uses a plain ease-out so the stack settles back
+   down instead of bouncing. The front card leads the motion (0 delay,
+   lifts + grows) with back/mid following a beat later as they swing
+   outward — a small stagger is most of what separates "things moved"
+   from "this was choreographed." */
 .tiers__image {
   display: flex;
   width: 432px;
@@ -924,14 +932,17 @@ main { padding-top: 0; }
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  box-shadow: 0 4px 10px rgba(30, 37, 43, 0.22);
+  will-change: transform, box-shadow;
 }
 @media (hover: hover) and (pointer: fine) {
   .tiers__postcard {
-    transition: left .35s ease, right .35s ease, top .35s ease, bottom .35s ease, transform .35s ease;
+    transition: transform .4s cubic-bezier(.22, 1, .36, 1), box-shadow .4s cubic-bezier(.22, 1, .36, 1);
   }
 }
 @media (prefers-reduced-motion: reduce) { .tiers__postcard { transition: none; } }
 .tiers__postcard--back {
+  z-index: 1;
   width: 26.106cqw;
   height: 34.128cqw;
   left: 32.498cqw;
@@ -939,6 +950,7 @@ main { padding-top: 0; }
   transform: rotate(-2.862deg) scaleX(-1);
 }
 .tiers__postcard--mid {
+  z-index: 2;
   width: 25.732cqw;
   height: 33.64cqw;
   right: 32.208cqw;
@@ -946,25 +958,32 @@ main { padding-top: 0; }
   transform: rotate(2.159deg);
 }
 .tiers__postcard--front {
+  z-index: 3;
   width: 29.398cqw;
   height: 38.657cqw;
   right: 35.088cqw;
   top: 9.722cqw;
 }
 @media (hover: hover) and (pointer: fine) {
-  .tiers__card:hover .tiers__postcard--back {
-    left: 12.5cqw;
-    bottom: 3.883cqw;
-    transform: rotate(-6.485deg) scaleX(-1);
+  .tiers__card:hover .tiers__postcard--front {
+    transform: translateY(-9cqw) scale(1.07);
+    box-shadow: 0 22px 34px rgba(30, 37, 43, 0.4);
+    transition-duration: .5s;
+    transition-timing-function: cubic-bezier(.34, 1.56, .64, 1);
   }
   .tiers__card:hover .tiers__postcard--mid {
-    right: 12.994cqw;
-    bottom: 4.146cqw;
-    transform: rotate(6.485deg);
+    transform: translate(19.5cqw, 3.5cqw) rotate(8deg);
+    box-shadow: 0 16px 28px rgba(30, 37, 43, 0.32);
+    transition-duration: .55s;
+    transition-timing-function: cubic-bezier(.34, 1.56, .64, 1);
+    transition-delay: .05s;
   }
-  .tiers__card:hover .tiers__postcard--front {
-    right: 35.088cqw;
-    top: 9.259cqw;
+  .tiers__card:hover .tiers__postcard--back {
+    transform: translate(-19.5cqw, 3.5cqw) rotate(-8deg) scaleX(-1);
+    box-shadow: 0 16px 28px rgba(30, 37, 43, 0.32);
+    transition-duration: .55s;
+    transition-timing-function: cubic-bezier(.34, 1.56, .64, 1);
+    transition-delay: .08s;
   }
 }
 .tiers__text {
