@@ -868,196 +868,9 @@ main { padding-top: 0; }
 
 /* ============================================================
    HOME · TIERS (Deep Dives / Signature Collection / The Reserve)
-   ============================================================ */
-.tiers {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-  padding: 48px var(--container-pad) 56px;
-  background: var(--sea-blue);
-}
-.tiers__row {
-  display: flex;
-  align-items: flex-start;
-  gap: 48px;
-  align-self: stretch;
-  width: 100%;
-  max-width: var(--container-max);
-  margin-inline: auto;
-}
-.tiers__card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 48px;
-  flex: 1 0 0;
-  min-width: 0;
-}
-.tiers__intro {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-  align-self: stretch;
-}
-/* Three copies of the same postcard photo, stacked at rest and fanned
-   into a spread hand of cards on hover. Position/size below are in
-   cqw (% of .tiers__image's own inline size, Figma's 432px reference
-   frame = 100cqw) so the whole stack scales as one fluid unit at any
-   width, including the fluid mobile .tiers__image below — no separate
-   per-breakpoint layout needed.
-
-   Motion lives entirely in `transform`/`box-shadow`, not the
-   left/right/top/bottom anchors (those stay fixed — they only place
-   the resting stack). transform is compositor-only, so the fan-out
-   stays smooth under animation; box-shadow adds the lift that sells
-   the "picked up off the stack" feeling. Same calm ease-out both
-   ways (in and out) — an overshoot/spring curve was tried first and
-   read as bouncy rather than premium, so both hover-in and hover-out
-   share the base rule's cubic-bezier(.22,1,.36,1). The front card
-   leads the motion (0 delay, lifts + a slight scale) with back/mid
-   following a beat later as they swing outward — a small stagger is
-   most of what separates "things moved"
-   from "this was choreographed." */
-.tiers__image {
-  display: flex;
-  width: 432px;
-  height: 251px;
-  justify-content: center;
-  align-items: center;
-  max-width: 100%;
-  position: relative;
-  container-type: inline-size;
-}
-.tiers__postcard {
-  position: absolute;
-  background-image: url("images/AC-1 12.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  box-shadow: 0 4px 10px rgba(30, 37, 43, 0.22);
-  will-change: transform, box-shadow;
-}
-@media (hover: hover) and (pointer: fine) {
-  .tiers__postcard {
-    transition: transform .4s cubic-bezier(.22, 1, .36, 1), box-shadow .4s cubic-bezier(.22, 1, .36, 1);
-  }
-}
-@media (prefers-reduced-motion: reduce) { .tiers__postcard { transition: none; } }
-.tiers__postcard--back {
-  z-index: 1;
-  width: 26.106cqw;
-  height: 34.128cqw;
-  left: 32.498cqw;
-  bottom: 7.14cqw;
-  transform: rotate(-2.862deg) scaleX(-1);
-}
-.tiers__postcard--mid {
-  z-index: 2;
-  width: 25.732cqw;
-  height: 33.64cqw;
-  right: 32.208cqw;
-  bottom: 7.323cqw;
-  transform: rotate(2.159deg);
-}
-.tiers__postcard--front {
-  z-index: 3;
-  width: 29.398cqw;
-  height: 38.657cqw;
-  right: 35.088cqw;
-  top: 9.722cqw;
-}
-@media (hover: hover) and (pointer: fine) {
-  .tiers__card:hover .tiers__postcard--front {
-    transform: translateY(-9cqw) scale(1.03);
-    box-shadow: 0 22px 34px rgba(30, 37, 43, 0.4);
-    transition-duration: .5s;
-  }
-  .tiers__card:hover .tiers__postcard--mid {
-    transform: translate(19.5cqw, 3.5cqw) rotate(8deg);
-    box-shadow: 0 16px 28px rgba(30, 37, 43, 0.32);
-    transition-duration: .55s;
-    transition-delay: .05s;
-  }
-  .tiers__card:hover .tiers__postcard--back {
-    transform: translate(-19.5cqw, 3.5cqw) rotate(-8deg) scaleX(-1);
-    box-shadow: 0 16px 28px rgba(30, 37, 43, 0.32);
-    transition-duration: .55s;
-    transition-delay: .08s;
-  }
-}
-.tiers__text {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
-  align-self: stretch;
-}
-.kicker.tiers__eyebrow { align-self: stretch; text-align: center; color: var(--stone); }
-.tiers__headline {
-  margin: 0;
-  align-self: stretch;
-  color: var(--stone);
-  text-align: center;
-  font-family: var(--font-heading);
-  font-style: italic;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 40px;
-}
-.tiers__body {
-  margin: 0 auto;
-  max-width: 400px;
-  align-self: stretch;
-  color: var(--stone);
-  text-align: center;
-  font-family: var(--font-body);
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0.32px;
-}
-.tiers__link {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 24px;
-  max-width: 100%;
-  color: var(--stone);
-}
-.tiers__link-text {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: 0.56px;
-  text-transform: uppercase;
-}
-.tiers__link svg { flex-shrink: 0; transition: transform .16s ease; }
-@media (hover: hover) and (pointer: fine) {
-  .tiers__link:hover svg { transform: translateX(4px); }
-}
-.tiers__link:focus-visible { outline: 2px solid var(--stone); outline-offset: 4px; }
-@media (prefers-reduced-motion: reduce) { .tiers__link svg { transition: none; } }
-@media (max-width: 767px) {
-  .tiers__row { flex-direction: column; gap: 48px; }
-  /* The 432x251 image frame is a 1440-viewport value — fixed, it would
-     force the whole card wider than a phone screen. Scaled fluidly
-     here instead, same aspect ratio, capped at its original size. */
-  .tiers__card { width: 100%; max-width: 432px; }
-  .tiers__image { width: 100%; max-width: 432px; aspect-ratio: 432 / 251; height: auto; }
-}
-
-/* ============================================================
-   HOME · TIERS 2 (duplicate scratch copy — image/animation being
-   redesigned from zero here; the module above is untouched)
+   Class prefix stayed `tiers2` from when this was a scratch copy
+   built alongside the original — the original has since been
+   removed, this is the only version now.
    ============================================================ */
 .tiers2 {
   display: flex;
@@ -1172,7 +985,7 @@ main { padding-top: 0; }
   height: 38.657cqw;
   left: 32.498cqw;
   bottom: 7.14cqw;
-  transform: rotate(-2.862deg) scaleX(-1);
+  transform: rotate(-2.862deg);
 }
 .tiers2__postcard--mid {
   z-index: 2;
@@ -1200,7 +1013,7 @@ main { padding-top: 0; }
   }
   .tiers2__card:hover .tiers2__postcard--mid::after { opacity: 1; transition-delay: 50ms; }
   .tiers2__card:hover .tiers2__postcard--back {
-    transform: translate(-22cqw, 4cqw) rotate(-10deg) scaleX(-1);
+    transform: translate(-22cqw, 4cqw) rotate(-10deg);
     transition-delay: 80ms;
   }
   .tiers2__card:hover .tiers2__postcard--back::after { opacity: 1; transition-delay: 80ms; }
@@ -1530,7 +1343,7 @@ main { padding-top: 0; }
 }
 /* Caps the title at two lines (clipped with an ellipsis past that)
    and at 996px so it never spans the full 1392px content row even on
-   a short one-line heading — same idea as .tiers__body's max-width,
+   a short one-line heading — same idea as .tiers2__body's max-width,
    just wide enough for a heading instead of a paragraph. */
 .quotes > .section-title {
   max-width: 996px;
@@ -2560,71 +2373,6 @@ main { padding-top: 0; }
 
   <!-- =========================================================
        3 · TIERS — Deep Dives / Signature Collection / The Reserve
-       ========================================================= -->
-  <section class="tiers">
-    <div class="tiers__row">
-      <div class="tiers__card">
-        <div class="tiers__intro">
-          <div class="tiers__image" aria-hidden="true">
-            <span class="tiers__postcard tiers__postcard--back"></span>
-            <span class="tiers__postcard tiers__postcard--mid"></span>
-            <span class="tiers__postcard tiers__postcard--front"></span>
-          </div>
-          <div class="tiers__text">
-            <p class="kicker tiers__eyebrow">Deep Dives</p>
-            <h3 class="tiers__headline">Go deeper</h3>
-            <p class="tiers__body">More time on the mat. More space for yourself. Immersive yoga, inspiring teachers, meaningful cultural moments, and plenty of unscheduled time to rest, reflect, or explore at your own pace.</p>
-          </div>
-        </div>
-        <!-- TODO: route to retreats.html filtered to Deep Dives once that filter exists there -->
-        <a class="tiers__link" href="retreats.html">
-          <span class="tiers__link-text">Explore Deep Dives</span>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16.01 11H4V13H16.01V16L20 12L16.01 8V11V11Z" fill="currentColor"/></svg>
-        </a>
-      </div>
-      <div class="tiers__card">
-        <div class="tiers__intro">
-          <div class="tiers__image" aria-hidden="true">
-            <span class="tiers__postcard tiers__postcard--back"></span>
-            <span class="tiers__postcard tiers__postcard--mid"></span>
-            <span class="tiers__postcard tiers__postcard--front"></span>
-          </div>
-          <div class="tiers__text">
-            <p class="kicker tiers__eyebrow">Signature Collection</p>
-            <h3 class="tiers__headline">See the world differently</h3>
-            <p class="tiers__body">Our signature blend of exceptional yoga, fascinating cultures, incredible food, and adventures well beyond the ordinary. Thoughtfully curated for those who want more of the world.</p>
-          </div>
-        </div>
-        <!-- TODO: route to retreats.html filtered to Signature Collection once that filter exists there -->
-        <a class="tiers__link" href="retreats.html">
-          <span class="tiers__link-text">Explore Signature Collection</span>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16.01 11H4V13H16.01V16L20 12L16.01 8V11V11Z" fill="currentColor"/></svg>
-        </a>
-      </div>
-      <div class="tiers__card">
-        <div class="tiers__intro">
-          <div class="tiers__image" aria-hidden="true">
-            <span class="tiers__postcard tiers__postcard--back"></span>
-            <span class="tiers__postcard tiers__postcard--mid"></span>
-            <span class="tiers__postcard tiers__postcard--front"></span>
-          </div>
-          <div class="tiers__text">
-            <p class="kicker tiers__eyebrow">The Reserve</p>
-            <h3 class="tiers__headline">Beyond the expected</h3>
-            <p class="tiers__body">A new expression of the YAWW experience. Inspired yoga, extraordinary places to stay, private encounters, and exclusive access to some of the world's most fascinating destinations.</p>
-          </div>
-        </div>
-        <!-- TODO: route to retreats.html filtered to The Reserve once that tier/filter exists there -->
-        <a class="tiers__link" href="retreats.html">
-          <span class="tiers__link-text">Explore The Reserve</span>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16.01 11H4V13H16.01V16L20 12L16.01 8V11V11Z" fill="currentColor"/></svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       3b · TIERS 2 (scratch duplicate — image/animation redesign)
        ========================================================= -->
   <section class="tiers2">
     <div class="tiers2__row">
