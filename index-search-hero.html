@@ -1606,6 +1606,7 @@ main { padding-top: 0; }
   height: 100%;
   min-height: 320px;
   aspect-ratio: 3 / 4;
+  object-fit: cover;
 }
 
 .who__controls {
@@ -3511,16 +3512,13 @@ main { padding-top: 0; }
     var section = document.querySelector('.who');
     if (!section) return;
 
-    // TODO: real guest photos — hue is a gradient-fill placeholder,
-    // same convention as the rail's own cards. `alt` is held here
-    // ready for the <img> that replaces .who__photo once there's a
-    // real photo to describe (none of these photos are of the person
-    // quoted, per the handoff — alt stays scene-descriptive, not a name).
+    // `alt` is scene-descriptive, not a name — none of these photos
+    // are of the person quoted, per the handoff.
     var DATA = [
-      { title: 'First time traveling solo', body: 'Many of our guests travel on their own. We answer every question before you book, and you meet the whole group at our opening circle.', quote: 'I have been wanting to take a solo trip but was always a little nervous. Jennifer made me feel so comfortable.', name: 'Allyson M.', place: 'El Cuyo Retreat', hue: 10, alt: 'A guest smiling on a colorful street' },
-      { title: 'New to yoga', body: "Classes are built for every level. Plenty of our guests don't call themselves yogis.", quote: "She has invited me several times and I always hesitated because I'm not a yogi.", name: 'Melissa M.', place: 'El Cuyo Retreat', hue: 95, alt: 'Guests practicing on an open-air yoga deck' },
-      { title: 'Traveling with someone', body: 'A friend, partner or daughter. Book together and share a room, or come as a group and make the week your own.', quote: 'My Yoga Adventure retreat, in El Cuyo, with my daughter, … has been one of the most incredible things that I have done!', name: 'Deborah C.', place: 'El Cuyo Retreat', hue: 240, alt: 'Two guests laughing in matching embroidered aprons' },
-      { title: 'Coming back again', body: 'Many guests travel with us year after year, and run into old friends on the next trip.', quote: 'They keep surprising me with amazing locations and activities!', name: 'Mimi S.', place: 'Montenegro Retreat', hue: 190, alt: 'Two guests chatting on a terrace above a bay' }
+      { title: 'First time traveling solo', body: 'Many of our guests travel on their own. We answer every question before you book, and you meet the whole group at our opening circle.', quote: 'I have been wanting to take a solo trip but was always a little nervous. Jennifer made me feel so comfortable.', name: 'Allyson M.', place: 'El Cuyo Retreat', photo: 'guest-solo.jpg', alt: 'A guest smiling on a colorful street' },
+      { title: 'New to yoga', body: "Classes are built for every level. Plenty of our guests don't call themselves yogis.", quote: "She has invited me several times and I always hesitated because I'm not a yogi.", name: 'Melissa M.', place: 'El Cuyo Retreat', photo: 'guest-new-to-yoga.jpg', alt: 'A guest smiling mid-stretch during an open-air core class' },
+      { title: 'Traveling with someone', body: 'A friend, partner or daughter. Book together and share a room, or come as a group and make the week your own.', quote: 'My Yoga Adventure retreat, in El Cuyo, with my daughter, … has been one of the most incredible things that I have done!', name: 'Deborah C.', place: 'El Cuyo Retreat', photo: 'guest-with-someone.jpg', alt: 'Two guests smiling face to face atop ancient stone ruins' },
+      { title: 'Coming back again', body: 'Many guests travel with us year after year, and run into old friends on the next trip.', quote: 'They keep surprising me with amazing locations and activities!', name: 'Mimi S.', place: 'Montenegro Retreat', photo: 'guest-returning.jpg', alt: 'Two guests laughing together on a terrace above a bay' }
     ];
     var n = DATA.length;
 
@@ -3544,7 +3542,6 @@ main { padding-top: 0; }
 
     function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
     function pad2(x) { return x < 10 ? '0' + x : String(x); }
-    function mediaStyle(hue) { return 'background: linear-gradient(155deg, hsl(' + hue + ' 32% 80%), hsl(' + hue + ' 26% 60%));'; }
 
     function renderProfiles() {
       profilesEl.innerHTML = DATA.map(function (d, k) {
@@ -3591,7 +3588,7 @@ main { padding-top: 0; }
                 '</div>' +
               '</div>' +
               '<div class="who__card-media">' +
-                '<div class="who__photo" aria-hidden="true" style="' + mediaStyle(d.hue) + '"></div>' +
+                '<img class="who__photo" src="images/' + d.photo + '" alt="' + esc(d.alt) + '" loading="lazy">' +
               '</div>' +
             '</div>' +
           '</article>'
