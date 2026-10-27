@@ -1123,11 +1123,11 @@ main { padding-top: 0; }
    module. */
 .tiers2__image {
   display: flex;
-  width: 432px;
-  height: 251px;
+  width: 100%;
+  max-width: 432px;
+  aspect-ratio: 432 / 251;
   justify-content: center;
   align-items: center;
-  max-width: 100%;
   position: relative;
   container-type: inline-size;
 }
@@ -1155,16 +1155,16 @@ main { padding-top: 0; }
 }
 .tiers2__postcard--back {
   z-index: 1;
-  width: 26.106cqw;
-  height: 34.128cqw;
+  width: 28cqw;
+  height: 36.8cqw;
   left: 32.498cqw;
   bottom: 7.14cqw;
   transform: rotate(-2.862deg) scaleX(-1);
 }
 .tiers2__postcard--mid {
   z-index: 2;
-  width: 25.732cqw;
-  height: 33.64cqw;
+  width: 28cqw;
+  height: 36.8cqw;
   right: 32.208cqw;
   bottom: 7.323cqw;
   transform: rotate(2.159deg);
@@ -1178,16 +1178,16 @@ main { padding-top: 0; }
 }
 @media (hover: hover) and (pointer: fine) {
   .tiers2__card:hover .tiers2__postcard--front {
-    transform: translateY(-4cqw) scale(1.03);
+    transform: translateY(-6cqw) scale(1.03);
   }
   .tiers2__card:hover .tiers2__postcard--front::after { opacity: 1; }
   .tiers2__card:hover .tiers2__postcard--mid {
-    transform: translate(11cqw, 1.5cqw) rotate(6deg);
+    transform: translate(15cqw, 2.5cqw) rotate(7deg);
     transition-delay: 50ms;
   }
   .tiers2__card:hover .tiers2__postcard--mid::after { opacity: 1; transition-delay: 50ms; }
   .tiers2__card:hover .tiers2__postcard--back {
-    transform: translate(-11cqw, 1.5cqw) rotate(-6deg) scaleX(-1);
+    transform: translate(-15cqw, 2.5cqw) rotate(-7deg) scaleX(-1);
     transition-delay: 80ms;
   }
   .tiers2__card:hover .tiers2__postcard--back::after { opacity: 1; transition-delay: 80ms; }
@@ -1253,7 +1253,6 @@ main { padding-top: 0; }
 @media (max-width: 767px) {
   .tiers2__row { flex-direction: column; gap: 48px; }
   .tiers2__card { width: 100%; max-width: 432px; }
-  .tiers2__image { width: 100%; max-width: 432px; aspect-ratio: 432 / 251; height: auto; }
 }
 
 /* ============================================================
