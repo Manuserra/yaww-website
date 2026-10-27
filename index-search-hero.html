@@ -1138,11 +1138,19 @@ main { padding-top: 0; }
   background-position: center;
   background-repeat: no-repeat;
 }
-/* Per-tier photo, only Signature Collection and The Reserve sourced
-   so far — Deep Dives and the mobile/original tiers module keep the
-   placeholder AC-1 12.png until the rest of the set exists. */
-.tiers2__image--signature .tiers2__postcard { background-image: url("images/signature.png"); }
-.tiers2__image--reserve .tiers2__postcard { background-image: url("images/the reserve.png"); }
+/* Per-tier, per-layer photos — each tier now has its own 3-photo set
+   (front = the hero shot already chosen per tier; back/mid = the two
+   accompanying shots). The original tiers module keeps the shared
+   AC-1 12.png placeholder on all three layers, untouched. */
+.tiers2__image--deep .tiers2__postcard--back { background-image: url("images/deep-dives-back.png"); }
+.tiers2__image--deep .tiers2__postcard--mid { background-image: url("images/deep-dives-mid.png"); }
+.tiers2__image--deep .tiers2__postcard--front { background-image: url("images/AC-1 12.png"); }
+.tiers2__image--signature .tiers2__postcard--back { background-image: url("images/signature-back.png"); }
+.tiers2__image--signature .tiers2__postcard--mid { background-image: url("images/signature-mid.png"); }
+.tiers2__image--signature .tiers2__postcard--front { background-image: url("images/signature.png"); }
+.tiers2__image--reserve .tiers2__postcard--back { background-image: url("images/reserve-back.png"); }
+.tiers2__image--reserve .tiers2__postcard--mid { background-image: url("images/reserve-mid.png"); }
+.tiers2__image--reserve .tiers2__postcard--front { background-image: url("images/the reserve.png"); }
 .tiers2__postcard::after {
   content: "";
   position: absolute;
@@ -2622,7 +2630,7 @@ main { padding-top: 0; }
     <div class="tiers2__row">
       <div class="tiers2__card">
         <div class="tiers2__intro">
-          <div class="tiers2__image" aria-hidden="true">
+          <div class="tiers2__image tiers2__image--deep" aria-hidden="true">
             <span class="tiers2__postcard tiers2__postcard--back"></span>
             <span class="tiers2__postcard tiers2__postcard--mid"></span>
             <span class="tiers2__postcard tiers2__postcard--front"></span>
