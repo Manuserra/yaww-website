@@ -47,6 +47,10 @@
   /* --- Layout --- */
   --container-max: 1440px;
   --container-pad: 24px;
+
+  /* --- Motion --- */
+  --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 /* ============================================================
@@ -1088,10 +1092,35 @@ main { padding-top: 0; }
   gap: 24px;
   align-self: stretch;
 }
-/* Starting point only: same 432x251 frame, same AC-1 12.png image,
-   no animation yet. Image/motion treatment gets redesigned here from
-   zero — this is scratch space, not a copy of the postcard-fan rig
-   above. */
+/* Built with the `animate` skill (Emil Kowalski's animation
+   philosophy). Gate result: marketing/homepage card, seen rarely per
+   visit, not a daily-driver control — classified Delight, not the
+   "near-imperceptible" bar a tens-of-times/day hover gets. Purpose:
+   delight (the fan reveal is a personality beat for the brand, no
+   information rides on it).
+
+   Ingredients: CSS transition triggered by :hover (cheapest tool that
+   fits — no JS state). Only `transform` and `opacity` animate — never
+   left/right/top/bottom (those stay fixed, they just place the
+   resting stack) and never `box-shadow` directly (a paint cost); the
+   hover shadow is a ::after with a static box-shadow whose opacity
+   fades in instead. Curve is --ease-in-out: the postcards stay
+   mounted and visible the whole time and move across the screen
+   rather than entering/exiting, which is what that curve is for (not
+   --ease-out, and not an invented bezier — both tokens are the exact
+   values the skill specifies, defined once at :root). One shared
+   420ms duration — longer than the <300ms budget that rule holds UI
+   controls to, which this skill explicitly exempts marketing/
+   explanatory motion from — with only the start time staggered
+   (0/50/80ms) front-to-back, inside the skill's 30-80ms stagger
+   range. Reduced motion keeps the opacity fade (cheap, non-motion)
+   and drops the transform entirely, per "fewer and gentler, not
+   zero." Hover gated to real pointers so a tap doesn't latch it on.
+
+   Position/size are in cqw (% of .tiers2__image's own inline size,
+   Figma's 432px reference frame = 100cqw) so the whole stack scales
+   as one fluid unit at any width, same technique as the original
+   module. */
 .tiers2__image {
   display: flex;
   width: 432px;
@@ -1100,11 +1129,68 @@ main { padding-top: 0; }
   align-items: center;
   max-width: 100%;
   position: relative;
+  container-type: inline-size;
 }
-.tiers2__image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.tiers2__postcard {
+  position: absolute;
+  background-image: url("images/AC-1 12.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.tiers2__postcard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: 0 16px 28px rgba(30, 37, 43, 0.32);
+  opacity: 0;
+}
+@media (hover: hover) and (pointer: fine) {
+  .tiers2__postcard { transition: transform 420ms var(--ease-in-out); }
+  .tiers2__postcard::after { transition: opacity 420ms var(--ease-in-out); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tiers2__postcard { transition: none; }
+  .tiers2__postcard::after { transition: opacity 200ms ease; }
+}
+.tiers2__postcard--back {
+  z-index: 1;
+  width: 26.106cqw;
+  height: 34.128cqw;
+  left: 32.498cqw;
+  bottom: 7.14cqw;
+  transform: rotate(-2.862deg) scaleX(-1);
+}
+.tiers2__postcard--mid {
+  z-index: 2;
+  width: 25.732cqw;
+  height: 33.64cqw;
+  right: 32.208cqw;
+  bottom: 7.323cqw;
+  transform: rotate(2.159deg);
+}
+.tiers2__postcard--front {
+  z-index: 3;
+  width: 29.398cqw;
+  height: 38.657cqw;
+  right: 35.088cqw;
+  top: 9.722cqw;
+}
+@media (hover: hover) and (pointer: fine) {
+  .tiers2__card:hover .tiers2__postcard--front {
+    transform: translateY(-9cqw) scale(1.03);
+  }
+  .tiers2__card:hover .tiers2__postcard--front::after { opacity: 1; }
+  .tiers2__card:hover .tiers2__postcard--mid {
+    transform: translate(19.5cqw, 3.5cqw) rotate(8deg);
+    transition-delay: 50ms;
+  }
+  .tiers2__card:hover .tiers2__postcard--mid::after { opacity: 1; transition-delay: 50ms; }
+  .tiers2__card:hover .tiers2__postcard--back {
+    transform: translate(-19.5cqw, 3.5cqw) rotate(-8deg) scaleX(-1);
+    transition-delay: 80ms;
+  }
+  .tiers2__card:hover .tiers2__postcard--back::after { opacity: 1; transition-delay: 80ms; }
 }
 .tiers2__text {
   display: flex;
@@ -2532,8 +2618,10 @@ main { padding-top: 0; }
     <div class="tiers2__row">
       <div class="tiers2__card">
         <div class="tiers2__intro">
-          <div class="tiers2__image">
-            <img src="images/AC-1 12.png" alt="" loading="lazy">
+          <div class="tiers2__image" aria-hidden="true">
+            <span class="tiers2__postcard tiers2__postcard--back"></span>
+            <span class="tiers2__postcard tiers2__postcard--mid"></span>
+            <span class="tiers2__postcard tiers2__postcard--front"></span>
           </div>
           <div class="tiers2__text">
             <p class="kicker tiers2__eyebrow">Deep Dives</p>
@@ -2548,8 +2636,10 @@ main { padding-top: 0; }
       </div>
       <div class="tiers2__card">
         <div class="tiers2__intro">
-          <div class="tiers2__image">
-            <img src="images/AC-1 12.png" alt="" loading="lazy">
+          <div class="tiers2__image" aria-hidden="true">
+            <span class="tiers2__postcard tiers2__postcard--back"></span>
+            <span class="tiers2__postcard tiers2__postcard--mid"></span>
+            <span class="tiers2__postcard tiers2__postcard--front"></span>
           </div>
           <div class="tiers2__text">
             <p class="kicker tiers2__eyebrow">Signature Collection</p>
@@ -2564,8 +2654,10 @@ main { padding-top: 0; }
       </div>
       <div class="tiers2__card">
         <div class="tiers2__intro">
-          <div class="tiers2__image">
-            <img src="images/AC-1 12.png" alt="" loading="lazy">
+          <div class="tiers2__image" aria-hidden="true">
+            <span class="tiers2__postcard tiers2__postcard--back"></span>
+            <span class="tiers2__postcard tiers2__postcard--mid"></span>
+            <span class="tiers2__postcard tiers2__postcard--front"></span>
           </div>
           <div class="tiers2__text">
             <p class="kicker tiers2__eyebrow">The Reserve</p>
