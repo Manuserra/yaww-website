@@ -1138,6 +1138,11 @@ main { padding-top: 0; }
   background-position: center;
   background-repeat: no-repeat;
 }
+/* Per-tier photo, only Signature Collection and The Reserve sourced
+   so far — Deep Dives and the mobile/original tiers module keep the
+   placeholder AC-1 12.png until the rest of the set exists. */
+.tiers2__image--signature .tiers2__postcard { background-image: url("images/signature.png"); }
+.tiers2__image--reserve .tiers2__postcard { background-image: url("images/the reserve.png"); }
 .tiers2__postcard::after {
   content: "";
   position: absolute;
@@ -2635,7 +2640,7 @@ main { padding-top: 0; }
       </div>
       <div class="tiers2__card">
         <div class="tiers2__intro">
-          <div class="tiers2__image" aria-hidden="true">
+          <div class="tiers2__image tiers2__image--signature" aria-hidden="true">
             <span class="tiers2__postcard tiers2__postcard--back"></span>
             <span class="tiers2__postcard tiers2__postcard--mid"></span>
             <span class="tiers2__postcard tiers2__postcard--front"></span>
@@ -2653,7 +2658,7 @@ main { padding-top: 0; }
       </div>
       <div class="tiers2__card">
         <div class="tiers2__intro">
-          <div class="tiers2__image" aria-hidden="true">
+          <div class="tiers2__image tiers2__image--reserve" aria-hidden="true">
             <span class="tiers2__postcard tiers2__postcard--back"></span>
             <span class="tiers2__postcard tiers2__postcard--mid"></span>
             <span class="tiers2__postcard tiers2__postcard--front"></span>
