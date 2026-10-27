@@ -1052,6 +1052,125 @@ main { padding-top: 0; }
 }
 
 /* ============================================================
+   HOME · TIERS 2 (duplicate scratch copy — image/animation being
+   redesigned from zero here; the module above is untouched)
+   ============================================================ */
+.tiers2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 48px var(--container-pad) 56px;
+  background: var(--sea-blue);
+}
+.tiers2__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 48px;
+  align-self: stretch;
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+}
+.tiers2__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  flex: 1 0 0;
+  min-width: 0;
+}
+.tiers2__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  align-self: stretch;
+}
+/* Starting point only: same 432x251 frame, same AC-1 12.png image,
+   no animation yet. Image/motion treatment gets redesigned here from
+   zero — this is scratch space, not a copy of the postcard-fan rig
+   above. */
+.tiers2__image {
+  display: flex;
+  width: 432px;
+  height: 251px;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  position: relative;
+}
+.tiers2__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tiers2__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  align-self: stretch;
+}
+.kicker.tiers2__eyebrow { align-self: stretch; text-align: center; color: var(--stone); }
+.tiers2__headline {
+  margin: 0;
+  align-self: stretch;
+  color: var(--stone);
+  text-align: center;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 40px;
+}
+.tiers2__body {
+  margin: 0 auto;
+  max-width: 400px;
+  align-self: stretch;
+  color: var(--stone);
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+}
+.tiers2__link {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+  max-width: 100%;
+  color: var(--stone);
+}
+.tiers2__link-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+}
+.tiers2__link svg { flex-shrink: 0; transition: transform .16s ease; }
+@media (hover: hover) and (pointer: fine) {
+  .tiers2__link:hover svg { transform: translateX(4px); }
+}
+.tiers2__link:focus-visible { outline: 2px solid var(--stone); outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) { .tiers2__link svg { transition: none; } }
+@media (max-width: 767px) {
+  .tiers2__row { flex-direction: column; gap: 48px; }
+  .tiers2__card { width: 100%; max-width: 432px; }
+  .tiers2__image { width: 100%; max-width: 432px; aspect-ratio: 432 / 251; height: auto; }
+}
+
+/* ============================================================
    HOME · PILLARS (split image/copy rows — three pillars + hosts)
    ============================================================ */
 .pillar {
@@ -2400,6 +2519,62 @@ main { padding-top: 0; }
         <!-- TODO: route to retreats.html filtered to The Reserve once that tier/filter exists there -->
         <a class="tiers__link" href="retreats.html">
           <span class="tiers__link-text">Explore The Reserve</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16.01 11H4V13H16.01V16L20 12L16.01 8V11V11Z" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       3b · TIERS 2 (scratch duplicate — image/animation redesign)
+       ========================================================= -->
+  <section class="tiers2">
+    <div class="tiers2__row">
+      <div class="tiers2__card">
+        <div class="tiers2__intro">
+          <div class="tiers2__image">
+            <img src="images/AC-1 12.png" alt="" loading="lazy">
+          </div>
+          <div class="tiers2__text">
+            <p class="kicker tiers2__eyebrow">Deep Dives</p>
+            <h3 class="tiers2__headline">Go deeper</h3>
+            <p class="tiers2__body">More time on the mat. More space for yourself. Immersive yoga, inspiring teachers, meaningful cultural moments, and plenty of unscheduled time to rest, reflect, or explore at your own pace.</p>
+          </div>
+        </div>
+        <a class="tiers2__link" href="retreats.html">
+          <span class="tiers2__link-text">Explore Deep Dives</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16.01 11H4V13H16.01V16L20 12L16.01 8V11V11Z" fill="currentColor"/></svg>
+        </a>
+      </div>
+      <div class="tiers2__card">
+        <div class="tiers2__intro">
+          <div class="tiers2__image">
+            <img src="images/AC-1 12.png" alt="" loading="lazy">
+          </div>
+          <div class="tiers2__text">
+            <p class="kicker tiers2__eyebrow">Signature Collection</p>
+            <h3 class="tiers2__headline">See the world differently</h3>
+            <p class="tiers2__body">Our signature blend of exceptional yoga, fascinating cultures, incredible food, and adventures well beyond the ordinary. Thoughtfully curated for those who want more of the world.</p>
+          </div>
+        </div>
+        <a class="tiers2__link" href="retreats.html">
+          <span class="tiers2__link-text">Explore Signature Collection</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16.01 11H4V13H16.01V16L20 12L16.01 8V11V11Z" fill="currentColor"/></svg>
+        </a>
+      </div>
+      <div class="tiers2__card">
+        <div class="tiers2__intro">
+          <div class="tiers2__image">
+            <img src="images/AC-1 12.png" alt="" loading="lazy">
+          </div>
+          <div class="tiers2__text">
+            <p class="kicker tiers2__eyebrow">The Reserve</p>
+            <h3 class="tiers2__headline">Beyond the expected</h3>
+            <p class="tiers2__body">A new expression of the YAWW experience. Inspired yoga, extraordinary places to stay, private encounters, and exclusive access to some of the world's most fascinating destinations.</p>
+          </div>
+        </div>
+        <a class="tiers2__link" href="retreats.html">
+          <span class="tiers2__link-text">Explore The Reserve</span>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16.01 11H4V13H16.01V16L20 12L16.01 8V11V11Z" fill="currentColor"/></svg>
         </a>
       </div>
