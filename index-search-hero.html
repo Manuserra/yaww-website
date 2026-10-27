@@ -1580,7 +1580,19 @@ main { padding-top: 0; }
   height: 48px;
   border-radius: 50%;
   background: var(--stone-300);
+  object-fit: cover;
+  display: block;
   flex-shrink: 0;
+}
+.who__avatar--initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  color: var(--sea-blue);
 }
 .who__signer-text { display: flex; flex-direction: column; gap: 2px; }
 .who__name {
@@ -3516,9 +3528,9 @@ main { padding-top: 0; }
     // are of the person quoted, per the handoff.
     var DATA = [
       { title: 'First time traveling solo', body: 'Many of our guests travel on their own. We answer every question before you book, and you meet the whole group at our opening circle.', quote: 'I have been wanting to take a solo trip but was always a little nervous. Jennifer made me feel so comfortable throughout the sign-up process, and the rest of the team were so welcoming in El Cuyo. Can’t wait for the next trip!', name: 'Allyson M.', place: 'El Cuyo Retreat', photo: 'guest-solo.jpg', alt: 'A guest smiling on a colorful street' },
-      { title: 'New to yoga', body: "Classes are built for every level. Plenty of our guests don't call themselves yogis.", quote: 'She has invited me several times and I always hesitated because I’m not a yogi. I finally decided to go on a retreat to El Cuyo, and I’m so glad I did. Not only did I enjoy the yoga, I enjoyed every single moment of the trip.', name: 'Melissa M.', place: 'El Cuyo Retreat', photo: 'guest-new-to-yoga.jpg', alt: 'A guest smiling mid-stretch during an open-air core class' },
+      { title: 'New to yoga', body: "Classes are built for every level. Plenty of our guests don't call themselves yogis.", quote: 'She has invited me several times and I always hesitated because I’m not a yogi. I finally decided to go on a retreat to El Cuyo, and I’m so glad I did. Not only did I enjoy the yoga, I enjoyed every single moment of the trip.', name: 'Melissa M.', place: 'El Cuyo Retreat', photo: 'guest-new-to-yoga.jpg', avatar: 'melissa-m-avatar.png', alt: 'A guest smiling mid-stretch during an open-air core class' },
       { title: 'Traveling with someone', body: 'A friend, partner or daughter. Book together and share a room, or come as a group and make the week your own.', quote: 'My Yoga Adventure retreat in El Cuyo with my daughter … has been one of the most incredible things that I have done! … It felt like family coming together, at each meal, to share stories of life and daily adventures.', name: 'Deborah C.', place: 'El Cuyo Retreat', photo: 'guest-with-someone.jpg', alt: 'Two guests smiling face to face atop ancient stone ruins' },
-      { title: 'Coming back again', body: 'Many guests travel with us year after year, and run into old friends on the next trip.', quote: 'I have been traveling with Yoga Adventures Worldwide for over ten years and they keep surprising me with amazing locations and activities! … Even though we were strangers at the beginning of the week, we parted as friends and look forward to running into each other at the next adventure.', name: 'Mimi S.', place: 'Montenegro Retreat', photo: 'guest-returning.jpg', alt: 'Two guests laughing together on a terrace above a bay' }
+      { title: 'Coming back again', body: 'Many guests travel with us year after year, and run into old friends on the next trip.', quote: 'I have been traveling with Yoga Adventures Worldwide for over ten years and they keep surprising me with amazing locations and activities! … Even though we were strangers at the beginning of the week, we parted as friends and look forward to running into each other at the next adventure.', name: 'Mimi S.', place: 'Montenegro Retreat', photo: 'guest-returning.jpg', avatar: 'mimi-s.png', alt: 'Two guests laughing together on a terrace above a bay' }
     ];
     var n = DATA.length;
 
@@ -3542,6 +3554,12 @@ main { padding-top: 0; }
 
     function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
     function pad2(x) { return x < 10 ? '0' + x : String(x); }
+    // No avatar photo yet for every guest — initials-on-a-circle is the
+    // stand-in, using the same light stone/sea-blue pairing as the real
+    // avatar photos' background, not a one-off color.
+    function initials(name) {
+      return String(name).trim().split(/\s+/).map(function (w) { return w.charAt(0).toUpperCase(); }).join('').slice(0, 2);
+    }
 
     function renderProfiles() {
       profilesEl.innerHTML = DATA.map(function (d, k) {
@@ -3580,7 +3598,9 @@ main { padding-top: 0; }
               '<div class="who__card-message">' +
                 '<blockquote class="who__quote">&ldquo;' + esc(d.quote) + '&rdquo;</blockquote>' +
                 '<div class="who__signer">' +
-                  '<span class="who__avatar" aria-hidden="true"></span>' +
+                  (d.avatar
+                    ? '<img class="who__avatar" src="images/' + d.avatar + '" alt="">'
+                    : '<span class="who__avatar who__avatar--initials" aria-hidden="true">' + esc(initials(d.name)) + '</span>') +
                   '<span class="who__signer-text">' +
                     '<span class="who__name">' + esc(d.name) + '</span>' +
                     '<span class="who__place">' + esc(d.place) + '</span>' +
