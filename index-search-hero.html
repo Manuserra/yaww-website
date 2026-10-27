@@ -909,12 +909,13 @@ main { padding-top: 0; }
    left/right/top/bottom anchors (those stay fixed — they only place
    the resting stack). transform is compositor-only, so the fan-out
    stays smooth under animation; box-shadow adds the lift that sells
-   the "picked up off the stack" feeling. Entry (hover-in) uses a
-   soft-overshoot curve so the fan feels like it springs open rather
-   than slides; exit uses a plain ease-out so the stack settles back
-   down instead of bouncing. The front card leads the motion (0 delay,
-   lifts + grows) with back/mid following a beat later as they swing
-   outward — a small stagger is most of what separates "things moved"
+   the "picked up off the stack" feeling. Same calm ease-out both
+   ways (in and out) — an overshoot/spring curve was tried first and
+   read as bouncy rather than premium, so both hover-in and hover-out
+   share the base rule's cubic-bezier(.22,1,.36,1). The front card
+   leads the motion (0 delay, lifts + a slight scale) with back/mid
+   following a beat later as they swing outward — a small stagger is
+   most of what separates "things moved"
    from "this was choreographed." */
 .tiers__image {
   display: flex;
@@ -966,23 +967,20 @@ main { padding-top: 0; }
 }
 @media (hover: hover) and (pointer: fine) {
   .tiers__card:hover .tiers__postcard--front {
-    transform: translateY(-9cqw) scale(1.07);
+    transform: translateY(-9cqw) scale(1.03);
     box-shadow: 0 22px 34px rgba(30, 37, 43, 0.4);
     transition-duration: .5s;
-    transition-timing-function: cubic-bezier(.34, 1.56, .64, 1);
   }
   .tiers__card:hover .tiers__postcard--mid {
     transform: translate(19.5cqw, 3.5cqw) rotate(8deg);
     box-shadow: 0 16px 28px rgba(30, 37, 43, 0.32);
     transition-duration: .55s;
-    transition-timing-function: cubic-bezier(.34, 1.56, .64, 1);
     transition-delay: .05s;
   }
   .tiers__card:hover .tiers__postcard--back {
     transform: translate(-19.5cqw, 3.5cqw) rotate(-8deg) scaleX(-1);
     box-shadow: 0 16px 28px rgba(30, 37, 43, 0.32);
     transition-duration: .55s;
-    transition-timing-function: cubic-bezier(.34, 1.56, .64, 1);
     transition-delay: .08s;
   }
 }
