@@ -1573,10 +1573,6 @@ main { padding-top: 0; }
   line-height: 32px;
   color: var(--sea-blue);
 }
-/* The "write here" lines of a real postcard back — fixed count/
-   spacing, always directly under the quote regardless of its length. */
-.who__lines { display: flex; flex-direction: column; gap: 22px; }
-.who__lines span { display: block; height: 1px; background: var(--hairline); }
 .who__signer { display: flex; align-items: center; gap: 16px; margin-top: auto; }
 .who__avatar {
   width: 48px;
@@ -3600,7 +3596,6 @@ main { padding-top: 0; }
             '<div class="who__card-row">' +
               '<div class="who__card-message">' +
                 '<blockquote class="who__quote">&ldquo;' + esc(d.quote) + '&rdquo;</blockquote>' +
-                '<div class="who__lines" aria-hidden="true"><span></span><span></span><span></span></div>' +
                 '<div class="who__signer">' +
                   (d.avatar
                     ? '<img class="who__avatar" src="images/' + d.avatar + '" alt="">'
