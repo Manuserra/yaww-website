@@ -1564,21 +1564,6 @@ main { padding-top: 0; }
   flex-direction: column;
   gap: 24px;
 }
-/* `float` does nothing on a flex item (.who__card-message is a flex
-   column), so the stamp lives inside its own plain-block wrapper —
-   that's the only reason this extra div exists. Same position on
-   every card since it's the same markup/CSS every time. */
-.who__quote-wrap { display: block; }
-.who__stamp {
-  float: right;
-  width: 76px;
-  height: 76px;
-  margin: -6px 0 12px 20px;
-  color: var(--sea-blue);
-  opacity: 0.55;
-  transform: rotate(-9deg);
-  shape-outside: circle(50%);
-}
 .who__quote {
   margin: 0;
   font-family: var(--font-heading);
@@ -1589,10 +1574,8 @@ main { padding-top: 0; }
   color: var(--sea-blue);
 }
 /* The "write here" lines of a real postcard back — fixed count/
-   spacing, always directly under the quote regardless of its length.
-   clear:both so it starts below the stamp even on a short quote that
-   wouldn't otherwise reach past the float. */
-.who__lines { display: flex; flex-direction: column; gap: 22px; clear: both; }
+   spacing, always directly under the quote regardless of its length. */
+.who__lines { display: flex; flex-direction: column; gap: 22px; }
 .who__lines span { display: block; height: 1px; background: var(--hairline); }
 .who__signer { display: flex; align-items: center; gap: 16px; margin-top: auto; }
 .who__avatar {
@@ -2270,25 +2253,6 @@ main { padding-top: 0; }
 </clipPath>
 </defs>
 </symbol>
-</svg>
-
-<!-- Postal-stamp sprite: the site's star mark, redrawn as a retro ink
-     stamp (double ring + curved wordmark + star), referenced via <use>
-     from each "who comes" postcard. Defined once, same reasoning as
-     the logo sprite above. -->
-<svg aria-hidden="true" style="position:absolute; width:0; height:0; overflow:hidden;">
-  <symbol id="postal-stamp-symbol" viewBox="0 0 120 120">
-    <circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" stroke-width="1.25"/>
-    <circle cx="60" cy="60" r="48" fill="none" stroke="currentColor" stroke-width="1"/>
-    <path id="postal-stamp-arc" d="M20,60 A40,40 0 0 1 100,60" fill="none"/>
-    <text font-family="Raleway, sans-serif" font-size="7.5" font-weight="600" letter-spacing="1.1" fill="currentColor">
-      <textPath href="#postal-stamp-arc" startOffset="50%" text-anchor="middle">YOGA ADVENTURES WORLDWIDE</textPath>
-    </text>
-    <g transform="translate(60,52) scale(3.3) translate(-5.2375,-4.6825)">
-      <path d="M8.065,3.589c-.05-.026-.142-.036-.175-.086-.03-.045.029-.137.038-.194.079-.487.102-.748.318-1.206.091-.195.285-.47.35-.652.008-.022.012-.041.008-.064-.452.184-.88.442-1.37.526-.133.023-.276.024-.407.045-.194.031-.382.088-.575.124-.123-.253-.34-.44-.493-.67-.27-.406-.383-.865-.564-1.31-.04-.006-.048.033-.062.059-.108.202-.167.501-.26.722-.218.508-.652.808-.84,1.325-.34-.122-.708-.105-1.055-.201-.374-.102-.693-.333-1.036-.442-.115-.037-.179-.049-.117.085.061.133.163.271.228.409.195.412.304.829.344,1.279l.11.385-.636.432c-.444.316-.992.419-1.498.603-.005.047,0,.03.025.041.268.119.601.18.884.3.425.181.691.45,1.08.661.155.084.266.051.238.258-.084.61-.186.953-.463,1.503-.062.123-.171.275-.219.396-.01.026-.015.048-.011.076.271-.105.526-.246.797-.351.408-.158.607-.168,1.029-.221.102-.013.485-.141.526-.134.047.008.152.216.19.265.24.314.449.529.604.917.039.099.246.782.287.794.01.003.04.004.042-.011.126-.362.233-.734.426-1.069.138-.238.307-.384.46-.596.084-.118.133-.255.222-.362l.848.121c.46.084.871.38,1.292.526.029.01.058.013.088.016-.077-.209-.208-.403-.3-.608-.216-.477-.232-.819-.343-1.313-.017-.074-.098-.261-.076-.329.331-.199.615-.461.969-.625.13-.059.272-.109.407-.156.201-.071.513-.135.689-.222.02-.01.044-.015.04-.042-.396-.143-.809-.244-1.181-.444-.305-.164-.545-.395-.858-.559" fill="currentColor"/>
-    </g>
-    <text x="60" y="96" font-family="Raleway, sans-serif" font-size="8" font-weight="600" letter-spacing="1.5" fill="currentColor" text-anchor="middle">EST. 2008</text>
-  </symbol>
 </svg>
 
 <header class="site-header">
@@ -3635,10 +3599,7 @@ main { padding-top: 0; }
           '<article class="who__card" id="whoCard' + k + '" role="tabpanel" aria-labelledby="whoTab' + k + '">' +
             '<div class="who__card-row">' +
               '<div class="who__card-message">' +
-                '<div class="who__quote-wrap">' +
-                  '<svg class="who__stamp" aria-hidden="true"><use href="#postal-stamp-symbol"></use></svg>' +
-                  '<blockquote class="who__quote">&ldquo;' + esc(d.quote) + '&rdquo;</blockquote>' +
-                '</div>' +
+                '<blockquote class="who__quote">&ldquo;' + esc(d.quote) + '&rdquo;</blockquote>' +
                 '<div class="who__lines" aria-hidden="true"><span></span><span></span><span></span></div>' +
                 '<div class="who__signer">' +
                   (d.avatar
