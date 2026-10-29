@@ -9,6 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<!-- TODO: swap YOUR-SET-ID for the real Hugeicons kit ID before this ships -->
+<link rel="stylesheet" href="https://sets.hugeicons.com/YOUR-SET-ID.css" crossorigin="anonymous">
 
 <style>
 /* ============================================================
@@ -1250,10 +1252,17 @@ main { padding-top: 0; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 48px;
+  gap: 56px;
   padding: 56px var(--container-pad) 48px;
   background: var(--stone);
 }
+.booking__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.kicker.booking__kicker { color: var(--stone-600); text-align: center; }
 /* Same line-clamp treatment as the testimonials' own title: caps at
    two lines/996px rather than ever spanning the full row width. */
 .booking__title {
@@ -1269,34 +1278,39 @@ main { padding-top: 0; }
   max-width: var(--container-max);
   margin-inline: auto;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 48px;
 }
 .booking__step {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
   flex: 1 0 0;
   min-width: 0;
 }
-.booking__circle {
+.booking__icon-box {
   width: 80px;
   height: 80px;
-  border-radius: 50%;
-  background: var(--stone-100);
-  border: 1px solid var(--stone-400);
+  aspect-ratio: 1 / 1;
+  background: var(--stone-300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
   /* .booking__step's own flex gap (16px) already separates every pair
-     of children equally; this adds to just the circle→label gap to
-     bring it to 48px without touching label→body (stays 16px). */
-  margin-bottom: 32px;
+     of children equally; this adds to just the icon→label gap to
+     bring it to 32px without touching label→body (stays 16px). */
+  margin-bottom: 16px;
+}
+.booking__icon {
+  font-size: 32px;
+  color: var(--sea-blue);
 }
 .booking__label {
   margin: 0;
   align-self: stretch;
   color: var(--sea-blue);
-  text-align: center;
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 20px;
@@ -1307,7 +1321,6 @@ main { padding-top: 0; }
   margin: 0;
   align-self: stretch;
   color: var(--sea-blue);
-  text-align: center;
   font-family: var(--font-body);
   font-weight: 400;
   font-size: 16px;
@@ -1316,13 +1329,7 @@ main { padding-top: 0; }
   text-wrap: balance;
 }
 @media (min-width: 768px) and (max-width: 1024px) {
-  /* align-items:center (from the base rule) is right for a single
-     row, but once it wraps to 2×2 it centres each short step inside
-     its wrapped line's own height — set by whichever step in that
-     row has the longer body text — leaving shorter steps a few px
-     lower than their row-mate. flex-start keeps every step flush
-     with its row's top instead. */
-  .booking__row { flex-wrap: wrap; justify-content: center; align-items: flex-start; }
+  .booking__row { flex-wrap: wrap; justify-content: center; }
   .booking__step { flex: 0 0 calc(50% - 24px); }
 }
 @media (max-width: 767px) {
@@ -2556,28 +2563,31 @@ main { padding-top: 0; }
        9 · YOU BOOK, WE HANDLE EVERY DETAIL
        ========================================================= -->
   <section class="booking">
-    <h2 class="section-title booking__title">You book. We handle every detail.</h2>
+    <div class="booking__intro">
+      <p class="kicker booking__kicker">How it works</p>
+      <h2 class="section-title booking__title">Ready when you are</h2>
+    </div>
     <div class="booking__row">
       <div class="booking__step">
-        <span class="booking__circle" aria-hidden="true"></span>
-        <p class="booking__label">1. Choose your retreat.</p>
-        <p class="booking__body">Pick a destination and a room. Questions first? Write to us and a real person answers.</p>
+        <!-- TODO: confirm the real Hugeicons class for this one (placeholder: globe + magnifier) -->
+        <span class="booking__icon-box" aria-hidden="true"><i class="hgi hgi-stroke hgi-rounded hgi-global-search booking__icon"></i></span>
+        <p class="booking__label">Choose your retreat</p>
+        <p class="booking__body">Explore our destinations, teachers, and dates. Choose the journey that speaks to you.</p>
       </div>
       <div class="booking__step">
-        <span class="booking__circle" aria-hidden="true"></span>
-        <p class="booking__label">2. Reserve with a deposit.</p>
-        <!-- TODO: confirm the deposit amount/percentage and when the balance is due -->
-        <p class="booking__body">Secure your spot online with a deposit. We'll confirm the exact amount and due date with you.</p>
+        <span class="booking__icon-box" aria-hidden="true"><i class="hgi hgi-stroke hgi-rounded hgi-calendar-check booking__icon"></i></span>
+        <p class="booking__label">Reserve your place</p>
+        <p class="booking__body">Choose your room and complete your reservation. We'll be in touch to confirm the details and welcome you.</p>
       </div>
       <div class="booking__step">
-        <span class="booking__circle" aria-hidden="true"></span>
-        <p class="booking__label">3. Get ready with us.</p>
-        <p class="booking__body">Before you go, we send everything you need to know: what to pack, how to get there, what each day holds.</p>
+        <span class="booking__icon-box" aria-hidden="true"><i class="hgi hgi-stroke hgi-rounded hgi-luggage-02 booking__icon"></i></span>
+        <p class="booking__label">Get ready with us</p>
+        <p class="booking__body">We'll guide you through everything you need to know before departure, from arrival details to what to pack.</p>
       </div>
       <div class="booking__step">
-        <span class="booking__circle" aria-hidden="true"></span>
-        <p class="booking__label">4. Arrive and be present.</p>
-        <p class="booking__body">A member of our team travels with every group, so all you have to do is show up.</p>
+        <span class="booking__icon-box" aria-hidden="true"><i class="hgi hgi-stroke hgi-rounded hgi-yoga-02 booking__icon"></i></span>
+        <p class="booking__label">Arrive and enjoy</p>
+        <p class="booking__body">From the planning to the retreat itself, we take care of the details so you can enjoy every moment.</p>
       </div>
     </div>
   </section>
