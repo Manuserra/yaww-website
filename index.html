@@ -47,6 +47,10 @@
   /* --- Layout --- */
   --container-max: 1440px;
   --container-pad: 24px;
+
+  /* --- Motion --- */
+  --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 /* ============================================================
@@ -237,60 +241,124 @@ main { padding-top: 0; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 56px;
+  gap: 24px;
   padding: 24px;
   text-align: center;
 }
 .home-hero__media {
+  /* No max-width cap here on purpose, unlike every other content row
+     on the page (those stay capped at var(--container-max) and just
+     grow their own side margins past it). This hero instead keeps a
+     constant 24px gutter at any width — .home-hero's own padding is
+     the only thing bounding it — so past 1440px the photo keeps
+     growing with the window instead of stopping and centering with
+     ever-larger empty margins. */
   width: 100%;
-  /* Every other content row on the page caps at var(--container-max)
-     (1440) inside a section that already has its own 24px side
-     padding — up to a 1488px viewport those two numbers net out to
-     the same 1392px, which is where this literal 1392 came from, but
-     past that width the section's padding keeps scaling while this
-     stayed hard-capped, so the hero photo read as narrower than
-     everything below it on a wide-enough monitor. */
-  max-width: var(--container-max);
-  aspect-ratio: 1392 / 720;
+  /* Height tracks the viewport's own height instead of a fixed
+     width:height ratio — fills the screen below the header, at any
+     window height. A taller or shorter window changes the photo's
+     height directly, not its proportions. The rest of the hero (copy,
+     buttons) still sits below it in normal flow, so scrolling to them
+     is still expected on most windows — this isn't trying to fit the
+     whole hero section in one screen, just make the photo itself read
+     as "fills the rest of this screen" rather than "fills the rest of
+     this screen plus however tall the header happens to be".
+     138px is .site-header + .site-header__nav's combined height
+     (measured, not guessed — see the comment on .home-hero in the
+     full-bleed variant for the same number). 100vh first as the
+     fallback, then 100dvh where supported, same reason the CTA band
+     uses it: 100vh alone is pinned to the LARGEST possible mobile
+     viewport (address bar hidden), so the photo would actually run
+     taller than the visible area the moment that bar is on screen. */
+  height: calc(100vh - 138px - 48px);
+  height: calc(100dvh - 138px - 48px);
   overflow: hidden;
   background: var(--stone-300);
+  /* Anchors .home-hero__proof, the "Since 2008 · ★ 4.9 Google · 600+
+     retreats" card that sits on top of the photo near its bottom edge
+     instead of below it as a plain text line. */
+  position: relative;
 }
 .home-hero__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* The proof card overlaps the photo, so it needs to be read against
+   it reliably — var(--stone), the site's standard background, is
+   already solid (not the translucent scrim treatment the CTA band/
+   full-bleed hero use), simplest thing that reads as "a card sitting
+   on the photo" without needing to darken the photo itself for
+   contrast. */
+.home-hero__proof {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  display: flex;
+  width: 669px;
+  padding: 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background: var(--stone);
+}
+.home-hero__proof-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 0 0;
+}
+.home-hero__proof-value,
+.home-hero__proof-label {
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.56px;
+  color: var(--sea-blue);
+}
+.home-hero__proof-value { font-weight: 600; }
+.home-hero__proof-label { font-weight: 400; }
+
 .home-hero__copy { display: flex; flex-direction: column; align-items: center; gap: 16px; max-width: 760px; }
-.home-hero__ctas { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-.home-hero__btns { display: flex; align-items: center; gap: 16px; }
-.home-hero__btns .btn { width: 286px; }
 .home-hero__title {
   margin: 0;
   font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 36px;
-  line-height: 48px;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 56px;
+  line-height: 64px;
   color: var(--sea-blue);
 }
 .home-hero__desc {
   margin: 0;
-  max-width: 560px;
+  max-width: 760px;
   font-family: var(--font-body);
-  font-size: 16px;
+  font-weight: 400;
+  font-size: 18px;
   line-height: 24px;
-  letter-spacing: 0.32px;
   color: var(--sea-blue);
 }
-.home-hero__proof {
-  margin: 4px 0 0;
-  font-family: var(--font-body);
-  font-size: 13px;
-  line-height: 20px;
-  color: var(--sea-blue-200);
-}
-.home-hero__proof a { text-decoration: underline; text-underline-offset: 2px; color: var(--sea-blue-200); }
-.home-hero__proof a:hover { color: var(--sea-blue); }
+/* The filter bar sits as its own direct child of .home-hero (not
+   nested in .home-hero__copy, which is capped at 760px for readable
+   line length) — at up to 1082px (3×360px segments) it's wider than
+   that cap allows, same reason .home-hero__ctas used to be a sibling
+   rather than a child of .home-hero__copy. */
+.home-hero .filter-bar { margin-top: 8px; }
 
 @media (max-width: 767px) {
-  .home-hero__title { font-size: 26px; line-height: 34px; }
-  .home-hero__btns { flex-direction: column; width: 100%; }
-  .home-hero__btns .btn { width: 100%; }
+  .home-hero__title { font-size: 32px; line-height: 40px; }
+  .home-hero__proof {
+    width: calc(100% - 32px);
+    padding: 10px;
+    gap: 8px;
+  }
+  /* .site-header__brand is display:none under 767px (only the nav row
+     shows), so the header's real height here is just the nav's 56px,
+     not the 138px brand+nav total the desktop rule subtracts — left
+     as 138px, the photo would come out 82px shorter than it should
+     and leave an unwanted gap above the copy. */
+  .home-hero__media {
+    height: calc(100vh - 56px - 48px);
+    height: calc(100dvh - 56px - 48px);
+  }
 }
 
 /* ============================================================
@@ -799,18 +867,21 @@ main { padding-top: 0; }
 }
 
 /* ============================================================
-   HOME · TIERS (Deep Dives vs. Signature Collection)
+   HOME · TIERS (Deep Dives / Signature Collection / The Reserve)
+   Class prefix stayed `tiers2` from when this was a scratch copy
+   built alongside the original — the original has since been
+   removed, this is the only version now.
    ============================================================ */
-.tiers {
+.tiers2 {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 40px;
-  padding: 96px var(--container-pad) 112px;
+  padding: 48px var(--container-pad) 56px;
   background: var(--sea-blue);
 }
-.tiers__row {
+.tiers2__row {
   display: flex;
   align-items: flex-start;
   gap: 48px;
@@ -819,7 +890,7 @@ main { padding-top: 0; }
   max-width: var(--container-max);
   margin-inline: auto;
 }
-.tiers__card {
+.tiers2__card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -827,34 +898,149 @@ main { padding-top: 0; }
   flex: 1 0 0;
   min-width: 0;
 }
-.tiers__intro {
+.tiers2__intro {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 24px;
   align-self: stretch;
 }
-.tiers__icon {
-  width: 112px;
-  height: 112px;
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  background: var(--sea-blue-200);
-  flex-shrink: 0;
+/* Built with the `animate` skill (Emil Kowalski's animation
+   philosophy). Gate result: marketing/homepage card, seen rarely per
+   visit, not a daily-driver control — classified Delight, not the
+   "near-imperceptible" bar a tens-of-times/day hover gets. Purpose:
+   delight (the fan reveal is a personality beat for the brand, no
+   information rides on it).
+
+   Ingredients: CSS transition triggered by :hover (cheapest tool that
+   fits — no JS state). Only `transform` and `opacity` animate — never
+   left/right/top/bottom (those stay fixed, they just place the
+   resting stack) and never `box-shadow` directly (a paint cost); the
+   hover shadow is a ::after with a static box-shadow whose opacity
+   fades in instead. Curve is --ease-in-out: the postcards stay
+   mounted and visible the whole time and move across the screen
+   rather than entering/exiting, which is what that curve is for (not
+   --ease-out, and not an invented bezier — both tokens are the exact
+   values the skill specifies, defined once at :root). One shared
+   420ms duration — longer than the <300ms budget that rule holds UI
+   controls to, which this skill explicitly exempts marketing/
+   explanatory motion from — with only the start time staggered
+   (0/50/80ms) front-to-back, inside the skill's 30-80ms stagger
+   range. Reduced motion keeps the opacity fade (cheap, non-motion)
+   and drops the transform entirely, per "fewer and gentler, not
+   zero." Hover gated to real pointers so a tap doesn't latch it on.
+
+   Position/size are in cqw (% of .tiers2__image's own inline size,
+   Figma's 432px reference frame = 100cqw) so the whole stack scales
+   as one fluid unit at any width, same technique as the original
+   module. */
+.tiers2__image {
+  display: flex;
+  width: 100%;
+  max-width: 432px;
+  aspect-ratio: 432 / 251;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  container-type: inline-size;
 }
-.tiers__title {
+.tiers2__postcard {
+  position: absolute;
+  background-image: url("images/AC-1 12.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+/* Per-tier, per-layer photos — each tier now has its own 3-photo set
+   (front = the hero shot already chosen per tier; back/mid = the two
+   accompanying shots). The original tiers module keeps the shared
+   AC-1 12.png placeholder on all three layers, untouched. */
+.tiers2__image--deep .tiers2__postcard--back { background-image: url("images/deep-dives-back.png"); }
+.tiers2__image--deep .tiers2__postcard--mid { background-image: url("images/deep-dives-mid.png"); }
+.tiers2__image--deep .tiers2__postcard--front { background-image: url("images/AC-1 12.png"); }
+.tiers2__image--signature .tiers2__postcard--back { background-image: url("images/signature-back.png"); }
+.tiers2__image--signature .tiers2__postcard--mid { background-image: url("images/signature-mid.png"); }
+.tiers2__image--signature .tiers2__postcard--front { background-image: url("images/signature.png"); }
+.tiers2__image--reserve .tiers2__postcard--back { background-image: url("images/reserve-back.png"); }
+.tiers2__image--reserve .tiers2__postcard--mid { background-image: url("images/reserve-mid.png"); }
+.tiers2__image--reserve .tiers2__postcard--front { background-image: url("images/the reserve.png"); }
+.tiers2__postcard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  box-shadow: 0 16px 28px rgba(30, 37, 43, 0.32);
+  opacity: 0;
+}
+@media (hover: hover) and (pointer: fine) {
+  .tiers2__postcard { transition: transform 420ms var(--ease-in-out); }
+  .tiers2__postcard::after { transition: opacity 420ms var(--ease-in-out); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tiers2__postcard { transition: none; }
+  .tiers2__postcard::after { transition: opacity 200ms ease; }
+}
+.tiers2__postcard--back {
+  z-index: 1;
+  width: 29.398cqw;
+  height: 38.657cqw;
+  left: 32.498cqw;
+  bottom: 7.14cqw;
+  transform: rotate(-2.862deg);
+}
+.tiers2__postcard--mid {
+  z-index: 2;
+  width: 29.398cqw;
+  height: 38.657cqw;
+  right: 32.208cqw;
+  bottom: 7.323cqw;
+  transform: rotate(2.159deg);
+}
+.tiers2__postcard--front {
+  z-index: 3;
+  width: 29.398cqw;
+  height: 38.657cqw;
+  right: 35.088cqw;
+  top: 9.722cqw;
+}
+@media (hover: hover) and (pointer: fine) {
+  .tiers2__card:hover .tiers2__postcard--front {
+    transform: translateY(-3cqw) scale(1.03);
+  }
+  .tiers2__card:hover .tiers2__postcard--front::after { opacity: 1; }
+  .tiers2__card:hover .tiers2__postcard--mid {
+    transform: translate(22cqw, 4cqw) rotate(10deg);
+    transition-delay: 50ms;
+  }
+  .tiers2__card:hover .tiers2__postcard--mid::after { opacity: 1; transition-delay: 50ms; }
+  .tiers2__card:hover .tiers2__postcard--back {
+    transform: translate(-22cqw, 4cqw) rotate(-10deg);
+    transition-delay: 80ms;
+  }
+  .tiers2__card:hover .tiers2__postcard--back::after { opacity: 1; transition-delay: 80ms; }
+}
+.tiers2__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  align-self: stretch;
+}
+.kicker.tiers2__eyebrow { align-self: stretch; text-align: center; color: var(--stone); }
+.tiers2__headline {
   margin: 0;
   align-self: stretch;
   color: var(--stone);
   text-align: center;
   font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 400;
   font-size: 24px;
-  font-weight: 700;
   line-height: 40px;
 }
-.tiers__body {
-  margin: 0;
+.tiers2__body {
+  margin: 0 auto;
   max-width: 400px;
+  align-self: stretch;
   color: var(--stone);
   text-align: center;
   font-family: var(--font-body);
@@ -863,30 +1049,36 @@ main { padding-top: 0; }
   line-height: 24px;
   letter-spacing: 0.32px;
 }
-.tiers__link {
-  display: inline-flex;
-  align-items: center;
+.tiers2__link {
+  display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px;
+  align-items: flex-start;
+  gap: 24px;
   max-width: 100%;
-  text-align: center;
   color: var(--stone);
+}
+.tiers2__link-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 14px;
   line-height: 24px;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.56px;
   text-transform: uppercase;
 }
-.tiers__link svg { flex-shrink: 0; transition: transform .16s ease; }
+.tiers2__link svg { flex-shrink: 0; transition: transform .16s ease; }
 @media (hover: hover) and (pointer: fine) {
-  .tiers__link:hover svg { transform: translateX(4px); }
+  .tiers2__link:hover svg { transform: translateX(4px); }
 }
-.tiers__link:focus-visible { outline: 2px solid var(--stone); outline-offset: 4px; }
-@media (prefers-reduced-motion: reduce) { .tiers__link svg { transition: none; } }
+.tiers2__link:focus-visible { outline: 2px solid var(--stone); outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) { .tiers2__link svg { transition: none; } }
 @media (max-width: 767px) {
-  .tiers__row { flex-direction: column; gap: 48px; }
+  .tiers2__row { flex-direction: column; gap: 48px; }
+  .tiers2__card { width: 100%; max-width: 432px; }
 }
 
 /* ============================================================
@@ -1151,7 +1343,7 @@ main { padding-top: 0; }
 }
 /* Caps the title at two lines (clipped with an ellipsis past that)
    and at 996px so it never spans the full 1392px content row even on
-   a short one-line heading — same idea as .tiers__body's max-width,
+   a short one-line heading — same idea as .tiers2__body's max-width,
    just wide enough for a heading instead of a paragraph. */
 .quotes > .section-title {
   max-width: 996px;
@@ -1168,7 +1360,7 @@ main { padding-top: 0; }
   margin-inline: auto;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 48px;
 }
 .quote-card {
@@ -1177,7 +1369,6 @@ main { padding-top: 0; }
   justify-content: space-between;
   align-items: flex-start;
   flex: 1 0 0;
-  height: 243px;
   gap: 24px;
   margin: 0;
   padding: 24px;
@@ -1189,7 +1380,7 @@ main { padding-top: 0; }
   font-family: var(--font-heading);
   font-style: italic;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 32px;
   color: var(--sea-blue);
 }
@@ -1207,6 +1398,8 @@ main { padding-top: 0; }
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   background: var(--stone-300);
+  object-fit: cover;
+  display: block;
   flex-shrink: 0;
 }
 .quote-card__name {
@@ -1369,8 +1562,7 @@ main { padding-top: 0; }
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 32px;
+  gap: 24px;
 }
 .who__quote {
   margin: 0;
@@ -1381,13 +1573,25 @@ main { padding-top: 0; }
   line-height: 32px;
   color: var(--sea-blue);
 }
-.who__signer { display: flex; align-items: center; gap: 16px; }
+.who__signer { display: flex; align-items: center; gap: 16px; margin-top: auto; }
 .who__avatar {
   width: 48px;
   height: 48px;
   border-radius: 50%;
   background: var(--stone-300);
+  object-fit: cover;
+  display: block;
   flex-shrink: 0;
+}
+.who__avatar--initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  color: var(--sea-blue);
 }
 .who__signer-text { display: flex; flex-direction: column; gap: 2px; }
 .who__name {
@@ -1413,6 +1617,7 @@ main { padding-top: 0; }
   height: 100%;
   min-height: 320px;
   aspect-ratio: 3 / 4;
+  object-fit: cover;
 }
 
 .who__controls {
@@ -2088,42 +2293,44 @@ main { padding-top: 0; }
        ========================================================= -->
   <section class="home-hero">
     <div class="home-hero__media">
-      <!-- TODO: foto real — grupo + gente local + mesa o mat, personas, no paisaje vacío -->
-      <img src="images/hero-desert-camels.jpg" alt="A line of travellers riding camels across desert dunes in Morocco" loading="lazy">
+      <img src="images/hero-montenegro-yoga.jpg" alt="A group of yogis reaching upward during an outdoor class overlooking the Bay of Kotor, Montenegro" loading="lazy">
+      <div class="home-hero__proof">
+        <div class="home-hero__proof-item">
+          <span class="home-hero__proof-value">Since 2008</span>
+          <span class="home-hero__proof-label">Exploring together</span>
+        </div>
+        <div class="home-hero__proof-item">
+          <span class="home-hero__proof-value">★ 4.9</span>
+          <span class="home-hero__proof-label">Google Reviews</span>
+        </div>
+        <div class="home-hero__proof-item">
+          <span class="home-hero__proof-value">600+</span>
+          <span class="home-hero__proof-label">Retreats hosted</span>
+        </div>
+      </div>
     </div>
     <div class="home-hero__copy">
-      <p class="kicker">Travel That Moves You · since 2008</p>
-      <h1 class="home-hero__title">Discover a place from the inside,<br>with yoga woven into every day.</h1>
-      <p class="home-hero__desc">Hand-picked teachers, local experiences most travellers never get to, and a small group that becomes friends. Every detail handled.</p>
+      <h1 class="home-hero__title">Travel that moves you</h1>
+      <p class="home-hero__desc">Thoughtfully curated journeys for curious travelers.<br>Exceptional yoga, authentic cultural experiences, incredible food,<br>and good company in some of the world's most inspiring destinations.</p>
+      <p class="home-hero__desc">YOGA. CULTURE. CONNECTION.</p>
     </div>
-    <div class="home-hero__ctas">
-      <div class="home-hero__btns">
-        <a class="btn btn--primary" href="retreats.html">Find your retreat</a>
-        <!-- TODO: route "Talk to us" to a contact/sales flow -->
-        <a class="btn btn--secondary" href="#">Talk to us</a>
-      </div>
-      <p class="home-hero__proof">
-        <!-- TODO: link to real Google review profile -->
-        <a href="#">★ 4.9 Google (45)</a> ·
-        <!-- TODO: link to real Tripadvisor listing -->
-        <a href="#">★ 4.8 Tripadvisor (87)</a>
-      </p>
-    </div>
+    <!-- Same filter bar as "Where we're going next" below — moved up
+         here instead of duplicated: one #filterBar, one set of JS
+         listeners, the rail further down the page re-renders live as
+         soon as a segment here is picked, same as it always did. -->
+    <div class="filter-bar" role="group" aria-label="Filter retreats" id="filterBar"></div>
   </section>
 
   <!-- =========================================================
        2 · WHERE WE'RE GOING NEXT — Producto temprano
        Reuses the retreat-card component; links to the real retreat pages.
-       Teacher / Destination / When filter sits above the rail and
-       narrows which of its cards render — it's an addition to the
-       rail, not a replacement for it. Filter markup is a static
-       shell; retreat-filter.js below renders the bar, the summary,
-       the mobile sheet and re-renders the rail's own track.
+       The Teacher/Destination/When filter itself now lives in the hero
+       above (#filterBar) — this section is just its results. Filter
+       markup is a static shell; retreat-filter.js below renders the
+       bar, the summary, the mobile sheet and re-renders the rail's
+       own track, same as before.
        ========================================================= -->
   <section class="home-next" id="next-retreats">
-    <h2 class="section-title">Where we're going next</h2>
-
-    <div class="filter-bar" role="group" aria-label="Filter retreats" id="filterBar"></div>
 
     <div class="filter-summary">
       <p class="filter-summary__text" id="filterSummaryText"></p>
@@ -2178,32 +2385,62 @@ main { padding-top: 0; }
   </div>
 
   <!-- =========================================================
-       3 · TIERS — Deep Dives vs. Signature Collection
+       3 · TIERS — Deep Dives / Signature Collection / The Reserve
        ========================================================= -->
-  <section class="tiers">
-    <div class="tiers__row">
-      <div class="tiers__card">
-        <div class="tiers__intro">
-          <span class="tiers__icon" aria-hidden="true"></span>
-          <h3 class="tiers__title">Deep Dives</h3>
-          <p class="tiers__body">Grounded, intimate retreats in beautiful places, at our most accessible price point.</p>
+  <section class="tiers2">
+    <div class="tiers2__row">
+      <div class="tiers2__card">
+        <div class="tiers2__intro">
+          <div class="tiers2__image tiers2__image--deep" aria-hidden="true">
+            <span class="tiers2__postcard tiers2__postcard--back"></span>
+            <span class="tiers2__postcard tiers2__postcard--mid"></span>
+            <span class="tiers2__postcard tiers2__postcard--front"></span>
+          </div>
+          <div class="tiers2__text">
+            <p class="kicker tiers2__eyebrow">Deep Dives</p>
+            <h3 class="tiers2__headline">Go deeper</h3>
+            <p class="tiers2__body">More time on the mat. More space for yourself. Immersive yoga, inspiring teachers, meaningful cultural moments, and plenty of unscheduled time to rest, reflect, or explore at your own pace.</p>
+          </div>
         </div>
-        <!-- TODO: route to retreats.html filtered to Deep Dives once that filter exists there -->
-        <a class="tiers__link" href="retreats.html">
-          Explore Deep Dives retreats
-          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a class="tiers2__link" href="retreats.html">
+          <span class="tiers2__link-text">Explore Deep Dives</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16.01 11H4V13H16.01V16L20 12L16.01 8V11V11Z" fill="currentColor"/></svg>
         </a>
       </div>
-      <div class="tiers__card">
-        <div class="tiers__intro">
-          <span class="tiers__icon" aria-hidden="true"></span>
-          <h3 class="tiers__title">Signature Collection</h3>
-          <p class="tiers__body">Our most exclusive journeys: rare destinations, exceptional venues, every detail considered.</p>
+      <div class="tiers2__card">
+        <div class="tiers2__intro">
+          <div class="tiers2__image tiers2__image--signature" aria-hidden="true">
+            <span class="tiers2__postcard tiers2__postcard--back"></span>
+            <span class="tiers2__postcard tiers2__postcard--mid"></span>
+            <span class="tiers2__postcard tiers2__postcard--front"></span>
+          </div>
+          <div class="tiers2__text">
+            <p class="kicker tiers2__eyebrow">Signature Collection</p>
+            <h3 class="tiers2__headline">See the world differently</h3>
+            <p class="tiers2__body">Our signature blend of exceptional yoga, fascinating cultures, incredible food, and adventures well beyond the ordinary. Thoughtfully curated for those who want more of the world.</p>
+          </div>
         </div>
-        <!-- TODO: route to retreats.html filtered to Signature Collection once that filter exists there -->
-        <a class="tiers__link" href="retreats.html">
-          Explore Signature Collection retreats
-          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a class="tiers2__link" href="retreats.html">
+          <span class="tiers2__link-text">Explore Signature Collection</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16.01 11H4V13H16.01V16L20 12L16.01 8V11V11Z" fill="currentColor"/></svg>
+        </a>
+      </div>
+      <div class="tiers2__card">
+        <div class="tiers2__intro">
+          <div class="tiers2__image tiers2__image--reserve" aria-hidden="true">
+            <span class="tiers2__postcard tiers2__postcard--back"></span>
+            <span class="tiers2__postcard tiers2__postcard--mid"></span>
+            <span class="tiers2__postcard tiers2__postcard--front"></span>
+          </div>
+          <div class="tiers2__text">
+            <p class="kicker tiers2__eyebrow">The Reserve</p>
+            <h3 class="tiers2__headline">Beyond the expected</h3>
+            <p class="tiers2__body">A new expression of the YAWW experience. Inspired yoga, extraordinary places to stay, private encounters, and exclusive access to some of the world's most fascinating destinations.</p>
+          </div>
+        </div>
+        <a class="tiers2__link" href="retreats.html">
+          <span class="tiers2__link-text">Explore The Reserve</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16.01 11H4V13H16.01V16L20 12L16.01 8V11V11Z" fill="currentColor"/></svg>
         </a>
       </div>
     </div>
@@ -2216,32 +2453,32 @@ main { padding-top: 0; }
     <h2 class="section-title">In our guests' words</h2>
     <div class="quotes__grid">
       <figure class="quote-card">
-        <blockquote class="quote-card__quote">&ldquo;the value of this trip far exceeded the cost.&rdquo;</blockquote>
+        <blockquote class="quote-card__quote">&ldquo;This is my fourth trip with YAWW and I plan on doing more. The perfect combination of retreat and vacation. The yoga teachers are phenomenal and the facilitators are akin to having a personal concierge.&rdquo;</blockquote>
         <figcaption class="quote-card__by">
-          <span class="quote-card__avatar" aria-hidden="true"></span>
+          <img class="quote-card__avatar" src="images/amanda-s.png" alt="">
           <span>
-            <p class="quote-card__name">Lisa Hazen</p>
-            <p class="quote-card__detail">El Cuyo Retreat</p>
-          </span>
-        </figcaption>
-      </figure>
-      <figure class="quote-card">
-        <blockquote class="quote-card__quote">&ldquo;Our instructor&hellip; was exceptional as always in reading the room&rdquo;</blockquote>
-        <figcaption class="quote-card__by">
-          <span class="quote-card__avatar" aria-hidden="true"></span>
-          <span>
-            <p class="quote-card__name">Mimi Stansbury</p>
-            <p class="quote-card__detail">Thailand Retreat</p>
-          </span>
-        </figcaption>
-      </figure>
-      <figure class="quote-card">
-        <blockquote class="quote-card__quote">&ldquo;I never had to think about the logistics&hellip;&rdquo;</blockquote>
-        <figcaption class="quote-card__by">
-          <span class="quote-card__avatar" aria-hidden="true"></span>
-          <span>
-            <p class="quote-card__name">Navigate44707</p>
+            <p class="quote-card__name">Amanda S.</p>
             <p class="quote-card__detail">Portugal Retreat</p>
+          </span>
+        </figcaption>
+      </figure>
+      <figure class="quote-card">
+        <blockquote class="quote-card__quote">&ldquo;This retreat was an unforgettable experience! Every detail was planned and I felt very cared for. I met amazing people, felt immersed in the local culture, saw incredible sites, and had amazing food.&rdquo;</blockquote>
+        <figcaption class="quote-card__by">
+          <img class="quote-card__avatar" src="images/marney-b.png" alt="">
+          <span>
+            <p class="quote-card__name">Marney B.</p>
+            <p class="quote-card__detail">Morocco Retreat</p>
+          </span>
+        </figcaption>
+      </figure>
+      <figure class="quote-card">
+        <blockquote class="quote-card__quote">&ldquo;Answering every question and concern and making sure everything is perfect for us is beyond anything I expect from a travel company. The teachers and facilitators are simply the best of the best!&rdquo;</blockquote>
+        <figcaption class="quote-card__by">
+          <img class="quote-card__avatar" src="images/mimi-s.png" alt="">
+          <span>
+            <p class="quote-card__name">Mimi S.</p>
+            <p class="quote-card__detail">Montenegro Retreat</p>
           </span>
         </figcaption>
       </figure>
@@ -2257,10 +2494,10 @@ main { padding-top: 0; }
         <img src="images/pillar-1-yoga.jpg" alt="A group resting in savasana on an outdoor deck overlooking the water, led by their teacher" loading="lazy">
       </div>
       <div class="pillar__copy">
-        <p class="kicker">Handpicked instructors</p>
-        <h2>Practice with a teacher you'll want to follow anywhere</h2>
-        <p>Classes every day, for all levels. Our teachers adapt each session to the group, so a first-timer and a teacher of 20 years both get what they came for.</p>
-        <a class="btn btn--secondary" href="retreats.html">Explore upcoming retreats</a>
+        <p class="kicker">The people behind the practice</p>
+        <h2>Teachers worth traveling for</h2>
+        <p>Great yoga begins with great teachers. We bring together inspiring instructors who offer more than exceptional classes. They bring personality, depth, and a genuine love for what they do. Their practice is an essential part of every YAWW journey.</p>
+        <a class="btn btn--secondary" href="retreats.html">Meet our teachers</a>
       </div>
     </div>
   </section>
@@ -2272,9 +2509,9 @@ main { padding-top: 0; }
     <div class="pillar__row">
       <div class="pillar__copy">
         <p class="kicker">The experience</p>
-        <h2>See what most visitors never get to</h2>
-        <p>Lunch with shepherds in the mountains of Sardinia. A private tour of the Guggenheim in Bilbao. A blessing from monks in Chiang Mai. We plan the days around the people and places we've come to know over years of going back.</p>
-        <a class="btn btn--secondary" href="retreats.html">Explore upcoming retreats</a>
+        <h2>Beyond the guidebook</h2>
+        <p>Hunting for truffles in the woods of Croatia. Lunch with shepherds in the mountains of Sardinia. A meditation guided by a monk in Chiang Mai. Our journeys are shaped by the people we've come to know, the relationships we've built over the years, and a genuine respect for the places and communities that welcome us.</p>
+        <a class="btn btn--secondary" href="retreats.html">Explore our destinations</a>
       </div>
       <div class="pillar__media">
         <img src="images/pillar-2-adventure.jpg" alt="A small group crouched together in a forest, searching the ground for truffles" loading="lazy">
@@ -2291,10 +2528,10 @@ main { padding-top: 0; }
         <img src="images/pillar-3-food.jpg" alt="A long candlelit table of guests laughing together over dinner" loading="lazy">
       </div>
       <div class="pillar__copy">
-        <p class="kicker">The shift</p>
-        <h2>Sit down to the best food in town</h2>
-        <p>Local chefs, long dinners, a cooking class on a farm. Our guests write about the meals more than anything else.</p>
-        <a class="btn btn--secondary" href="retreats.html">Explore upcoming retreats</a>
+        <p class="kicker">The way we gather</p>
+        <h2>Pull up a chair</h2>
+        <p>We follow the food. Local chefs, family-run kitchens, regional specialties, and long meals that have a way of turning strangers into friends. Eating locally is part of how we discover a destination and support the people who call it home.</p>
+        <a class="btn btn--secondary" href="retreats.html">Find your next retreat</a>
       </div>
     </div>
   </section>
@@ -2305,8 +2542,8 @@ main { padding-top: 0; }
   <section class="movement">
     <div class="movement__intro">
       <p class="kicker movement__kicker">The way we move</p>
-      <h2 class="section-title">Movement with presence, care and attention becomes the way we travel.</h2>
-      <p class="movement__body">Our teachers hold space for practice that is restorative and expansive, honoring the rhythm of each body and each day.</p>
+      <h2 class="section-title">A practice that grounds the journey</h2>
+      <p class="movement__body">Yoga is at the heart of every YAWW retreat. Sometimes energizing, sometimes restorative, our time on the mat offers a chance to reconnect with ourselves before heading out to experience the world.</p>
     </div>
     <div class="movement__gallery">
       <!-- TODO: foto real — rincón del destino -->
@@ -2695,8 +2932,8 @@ main { padding-top: 0; }
   // Only the two locations with a built detail page link out to it;
   // everything else falls back to the full listing.
   var PAGES = {
-    "El Cuyo, Mexico": "retreatpage-elcuyo.html",
-    "Reykjavík & Vik, Iceland": "retreatpage-iceland.html"
+    "El Cuyo, Mexico": "retreatpage-elcuyo-fluid-hero.html",
+    "Reykjavík & Vik, Iceland": "retreatpage-iceland-fluid-hero.html"
   };
 
   function badgeLabel(tier) { return tier === "signature" ? "Signature Collection" : "Deep Dives"; }
@@ -3286,16 +3523,13 @@ main { padding-top: 0; }
     var section = document.querySelector('.who');
     if (!section) return;
 
-    // TODO: real guest photos — hue is a gradient-fill placeholder,
-    // same convention as the rail's own cards. `alt` is held here
-    // ready for the <img> that replaces .who__photo once there's a
-    // real photo to describe (none of these photos are of the person
-    // quoted, per the handoff — alt stays scene-descriptive, not a name).
+    // `alt` is scene-descriptive, not a name — none of these photos
+    // are of the person quoted, per the handoff.
     var DATA = [
-      { title: 'First time traveling solo', body: 'Many of our guests travel on their own. We answer every question before you book, and you meet the whole group at our opening circle.', quote: 'I have been wanting to take a solo trip but was always a little nervous. Jennifer made me feel so comfortable.', name: 'Allyson M.', place: 'El Cuyo Retreat', hue: 10, alt: 'A guest smiling on a colorful street' },
-      { title: 'New to yoga', body: "Classes are built for every level. Plenty of our guests don't call themselves yogis.", quote: "She has invited me several times and I always hesitated because I'm not a yogi.", name: 'Melissa M.', place: 'El Cuyo Retreat', hue: 95, alt: 'Guests practicing on an open-air yoga deck' },
-      { title: 'Traveling with someone', body: 'A friend, partner or daughter. Book together and share a room, or come as a group and make the week your own.', quote: 'My Yoga Adventure retreat, in El Cuyo, with my daughter, … has been one of the most incredible things that I have done!', name: 'Deborah C.', place: 'El Cuyo Retreat', hue: 240, alt: 'Two guests laughing in matching embroidered aprons' },
-      { title: 'Coming back again', body: 'Many guests travel with us year after year, and run into old friends on the next trip.', quote: 'They keep surprising me with amazing locations and activities!', name: 'Mimi S.', place: 'Montenegro Retreat', hue: 190, alt: 'Two guests chatting on a terrace above a bay' }
+      { title: 'First time traveling solo', body: 'Many of our guests travel on their own. We answer every question before you book, and you meet the whole group at our opening circle.', quote: 'I have been wanting to take a solo trip but was always a little nervous. Jennifer made me feel so comfortable throughout the sign-up process, and the rest of the team were so welcoming in El Cuyo. Can’t wait for the next trip!', name: 'Allyson M.', place: 'El Cuyo Retreat', photo: 'guest-solo.jpg', alt: 'A guest smiling on a colorful street' },
+      { title: 'New to yoga', body: "Classes are built for every level. Plenty of our guests don't call themselves yogis.", quote: 'She has invited me several times and I always hesitated because I’m not a yogi. I finally decided to go on a retreat to El Cuyo, and I’m so glad I did. Not only did I enjoy the yoga, I enjoyed every single moment of the trip.', name: 'Melissa M.', place: 'El Cuyo Retreat', photo: 'guest-new-to-yoga.jpg', avatar: 'melissa-m-avatar.png', alt: 'A guest smiling mid-stretch during an open-air core class' },
+      { title: 'Traveling with someone', body: 'A friend, partner or daughter. Book together and share a room, or come as a group and make the week your own.', quote: 'My Yoga Adventure retreat in El Cuyo with my daughter … has been one of the most incredible things that I have done! … It felt like family coming together, at each meal, to share stories of life and daily adventures.', name: 'Deborah C.', place: 'El Cuyo Retreat', photo: 'guest-with-someone.jpg', alt: 'Two guests smiling face to face atop ancient stone ruins' },
+      { title: 'Coming back again', body: 'Many guests travel with us year after year, and run into old friends on the next trip.', quote: 'I have been traveling with Yoga Adventures Worldwide for over ten years and they keep surprising me with amazing locations and activities! … Even though we were strangers at the beginning of the week, we parted as friends and look forward to running into each other at the next adventure.', name: 'Mimi S.', place: 'Montenegro Retreat', photo: 'guest-returning.jpg', avatar: 'mimi-s.png', alt: 'Two guests laughing together on a terrace above a bay' }
     ];
     var n = DATA.length;
 
@@ -3319,7 +3553,12 @@ main { padding-top: 0; }
 
     function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
     function pad2(x) { return x < 10 ? '0' + x : String(x); }
-    function mediaStyle(hue) { return 'background: linear-gradient(155deg, hsl(' + hue + ' 32% 80%), hsl(' + hue + ' 26% 60%));'; }
+    // No avatar photo yet for every guest — initials-on-a-circle is the
+    // stand-in, using the same light stone/sea-blue pairing as the real
+    // avatar photos' background, not a one-off color.
+    function initials(name) {
+      return String(name).trim().split(/\s+/).map(function (w) { return w.charAt(0).toUpperCase(); }).join('').slice(0, 2);
+    }
 
     function renderProfiles() {
       profilesEl.innerHTML = DATA.map(function (d, k) {
@@ -3358,7 +3597,9 @@ main { padding-top: 0; }
               '<div class="who__card-message">' +
                 '<blockquote class="who__quote">&ldquo;' + esc(d.quote) + '&rdquo;</blockquote>' +
                 '<div class="who__signer">' +
-                  '<span class="who__avatar" aria-hidden="true"></span>' +
+                  (d.avatar
+                    ? '<img class="who__avatar" src="images/' + d.avatar + '" alt="">'
+                    : '<span class="who__avatar who__avatar--initials" aria-hidden="true">' + esc(initials(d.name)) + '</span>') +
                   '<span class="who__signer-text">' +
                     '<span class="who__name">' + esc(d.name) + '</span>' +
                     '<span class="who__place">' + esc(d.place) + '</span>' +
@@ -3366,7 +3607,7 @@ main { padding-top: 0; }
                 '</div>' +
               '</div>' +
               '<div class="who__card-media">' +
-                '<div class="who__photo" aria-hidden="true" style="' + mediaStyle(d.hue) + '"></div>' +
+                '<img class="who__photo" src="images/' + d.photo + '" alt="' + esc(d.alt) + '" loading="lazy">' +
               '</div>' +
             '</div>' +
           '</article>'
