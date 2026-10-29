@@ -1234,7 +1234,7 @@ main { padding-top: 0; }
   align-items: flex-end;
   gap: 48px;
 }
-.movement__media { flex: 1 1 0; min-width: 0; overflow: hidden; }
+.movement__media { flex: 1 1 0; min-width: 0; overflow: hidden; display: block; width: 100%; height: 100%; object-fit: cover; }
 .movement__media--tall { aspect-ratio: 432 / 568; }
 .movement__media--short { aspect-ratio: 432 / 423; }
 @media (max-width: 767px) {
@@ -2546,12 +2546,9 @@ main { padding-top: 0; }
       <p class="movement__body">Yoga is at the heart of every YAWW retreat. Sometimes energizing, sometimes restorative, our time on the mat offers a chance to reconnect with ourselves before heading out to experience the world.</p>
     </div>
     <div class="movement__gallery">
-      <!-- TODO: foto real — rincón del destino -->
-      <div class="movement__media movement__media--tall" style="background: linear-gradient(155deg, hsl(210 32% 80%), hsl(210 26% 60%));"></div>
-      <!-- TODO: foto real — práctica en destino -->
-      <div class="movement__media movement__media--short" style="background: linear-gradient(155deg, hsl(150 32% 80%), hsl(150 26% 60%));"></div>
-      <!-- TODO: foto real — sobremesa / terraza -->
-      <div class="movement__media movement__media--tall" style="background: linear-gradient(155deg, hsl(24 32% 80%), hsl(24 26% 60%));"></div>
+      <img class="movement__media movement__media--tall" src="images/movement-poolside.jpg" alt="Students resting in savasana on a sunlit poolside terrace">
+      <img class="movement__media movement__media--short" src="images/movement-beachfront.jpg" alt="Practitioners setting up mats on a candlelit, open-air deck facing the beach at dusk">
+      <img class="movement__media movement__media--tall" src="images/movement-hillside.jpg" alt="A group reaching overhead in a standing stretch on a wooden deck overlooking green hills">
     </div>
   </section>
 
