@@ -1374,6 +1374,7 @@ main { padding-top: 0; }
   display: flex;
   align-items: flex-start;
   flex: 0 0 var(--card-w);
+  min-width: 0;
   height: var(--card-h);
   gap: 24px;
   margin: 0;
@@ -1429,8 +1430,6 @@ main { padding-top: 0; }
   flex-shrink: 0;
   border-left: 1px solid var(--stone-300);
 }
-/* TODO: real guest photo per testimonial — flat stone-300 fill as a
-   placeholder, same pattern used everywhere else awaiting a photo. */
 .quote-card__photo {
   flex: 1 1 0;
   min-width: 0;
@@ -1440,6 +1439,11 @@ main { padding-top: 0; }
   background: var(--stone-300);
 }
 @media (max-width: 767px) {
+  /* Horizontal stays 0 (the rail still needs to bleed edge-to-edge),
+     but the vertical rhythm matches every other section's own mobile
+     step-down — lost when .quotes__grid's rules were rewritten for
+     the rail, restored here. */
+  .quotes { padding: 40px 0; gap: 32px; }
   /* No explicit mobile spec was given (the Figma frames are 1440-only)
      — stacks text above photo and fits the card to the viewport rather
      than force the 722px desktop width into a horizontal squeeze. */
