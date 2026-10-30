@@ -1344,96 +1344,108 @@ main { padding-top: 0; }
   flex-direction: column;
   align-items: center;
   gap: 48px;
-  padding: 72px var(--container-pad) 56px;
+  padding: 72px 0 56px;
   background: var(--stone);
 }
 /* Caps the title at two lines (clipped with an ellipsis past that)
    and at 996px so it never spans the full 1392px content row even on
    a short one-line heading — same idea as .tiers2__body's max-width,
-   just wide enough for a heading instead of a paragraph. */
+   just wide enough for a heading instead of a paragraph. Keeps its own
+   side padding same as .home-next > .section-title: only the rail
+   itself goes edge-to-edge so its cards can peek past the margin. */
 .quotes > .section-title {
   max-width: 996px;
   margin-inline: auto;
+  padding-inline: var(--container-pad);
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.quotes__grid {
-  width: 100%;
-  max-width: var(--container-max);
-  margin-inline: auto;
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  gap: 48px;
-}
+/* Reuses the site's one rail/carousel component (.rail, see HOME ·
+   NEXT UP's own comment above) rather than inventing a second scroller
+   — just a wider card. At 1440 that geometry naturally resolves to
+   "1 whole card shown, peek on both sides", which is exactly the
+   spec: nothing quotes-specific to tune. */
+.rail--quotes { --card-w: 722px; --card-h: 458px; }
 .quote-card {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   align-items: flex-start;
-  flex: 1 0 0;
+  flex: 0 0 var(--card-w);
+  height: var(--card-h);
   gap: 24px;
   margin: 0;
   padding: 24px;
   background: var(--stone-100);
   border: 1px solid var(--stone-300);
 }
+.quote-card__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: stretch;
+  flex: 1 1 0;
+  min-width: 0;
+  gap: 24px;
+}
 .quote-card__quote {
   margin: 0;
   font-family: var(--font-heading);
   font-style: italic;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 32px;
   color: var(--sea-blue);
 }
 .quote-card__by {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  flex-direction: column;
+  gap: 4px;
   margin: 0;
-}
-/* TODO: real guest photo — flat stone-300 fill as a placeholder, same
-   pattern as the filter's teacher avatars. */
-.quote-card__avatar {
-  width: 40px;
-  height: 40px;
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  background: var(--stone-300);
-  object-fit: cover;
-  display: block;
-  flex-shrink: 0;
 }
 .quote-card__name {
   margin: 0;
   font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 19px;
-  letter-spacing: 0.6px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
   color: var(--sea-blue);
 }
 .quote-card__detail {
-  margin: 2px 0 0;
+  margin: 0;
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 14px;
-  line-height: 19px;
-  letter-spacing: 0.56px;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
   color: var(--sea-blue-300);
 }
-@media (min-width: 768px) and (max-width: 1024px) {
-  .quotes__grid { flex-wrap: wrap; }
-  .quote-card { flex: 0 0 calc(50% - 24px); }
+.quote-card__divider {
+  width: 0;
+  align-self: stretch;
+  flex-shrink: 0;
+  border-left: 1px solid var(--stone-300);
+}
+/* TODO: real guest photo per testimonial — flat stone-300 fill as a
+   placeholder, same pattern used everywhere else awaiting a photo. */
+.quote-card__photo {
+  flex: 1 1 0;
+  min-width: 0;
+  align-self: stretch;
+  display: block;
+  object-fit: cover;
+  background: var(--stone-300);
 }
 @media (max-width: 767px) {
-  .quotes { padding: 40px 16px; gap: 32px; }
-  .quotes__grid { flex-direction: column; gap: 24px; }
-  .quote-card { padding: 24px; flex: none; width: 100%; }
+  /* No explicit mobile spec was given (the Figma frames are 1440-only)
+     — stacks text above photo and fits the card to the viewport rather
+     than force the 722px desktop width into a horizontal squeeze. */
+  .rail--quotes { --card-w: min(420px, calc(100vw - 2 * 16px - 32px)); --card-h: auto; }
+  .quote-card { flex-direction: column; height: auto; }
+  .quote-card__divider { width: auto; height: 1px; align-self: stretch; border-left: none; border-top: 1px solid var(--stone-300); }
+  .quote-card__photo { align-self: stretch; aspect-ratio: 3 / 2; }
 }
 
 /* ============================================================
@@ -2457,37 +2469,51 @@ main { padding-top: 0; }
        ========================================================= -->
   <section class="quotes">
     <h2 class="section-title">In our guests' words</h2>
-    <div class="quotes__grid">
-      <figure class="quote-card">
-        <blockquote class="quote-card__quote">&ldquo;This is my fourth trip with YAWW and I plan on doing more. The perfect combination of retreat and vacation. The yoga teachers are phenomenal and the facilitators are akin to having a personal concierge.&rdquo;</blockquote>
-        <figcaption class="quote-card__by">
-          <img class="quote-card__avatar" src="images/amanda-s.png" alt="">
-          <span>
-            <p class="quote-card__name">Amanda S.</p>
-            <p class="quote-card__detail">Portugal Retreat</p>
-          </span>
-        </figcaption>
-      </figure>
-      <figure class="quote-card">
-        <blockquote class="quote-card__quote">&ldquo;This retreat was an unforgettable experience! Every detail was planned and I felt very cared for. I met amazing people, felt immersed in the local culture, saw incredible sites, and had amazing food.&rdquo;</blockquote>
-        <figcaption class="quote-card__by">
-          <img class="quote-card__avatar" src="images/marney-b.png" alt="">
-          <span>
-            <p class="quote-card__name">Marney B.</p>
-            <p class="quote-card__detail">Morocco Retreat</p>
-          </span>
-        </figcaption>
-      </figure>
-      <figure class="quote-card">
-        <blockquote class="quote-card__quote">&ldquo;Answering every question and concern and making sure everything is perfect for us is beyond anything I expect from a travel company. The teachers and facilitators are simply the best of the best!&rdquo;</blockquote>
-        <figcaption class="quote-card__by">
-          <img class="quote-card__avatar" src="images/mimi-s.png" alt="">
-          <span>
-            <p class="quote-card__name">Mimi S.</p>
-            <p class="quote-card__detail">Montenegro Retreat</p>
-          </span>
-        </figcaption>
-      </figure>
+    <div class="rail rail--quotes" id="quotesRail">
+      <button class="rail__arrow rail__arrow--prev is-hidden" type="button" aria-label="Previous testimonial" aria-hidden="true" tabindex="-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>
+      </button>
+      <div class="rail__track" id="quotesTrack" tabindex="0" aria-label="Guest testimonials">
+        <figure class="quote-card">
+          <div class="quote-card__text">
+            <blockquote class="quote-card__quote">&ldquo;This is my fourth trip with YAWW and I plan on doing more. The perfect combination of retreat and vacation. The yoga teachers are phenomenal and the facilitators are akin to having a personal concierge.&rdquo;</blockquote>
+            <figcaption class="quote-card__by">
+              <p class="quote-card__name">Amanda S.</p>
+              <p class="quote-card__detail">Portugal Retreat</p>
+            </figcaption>
+          </div>
+          <span class="quote-card__divider" aria-hidden="true"></span>
+          <!-- TODO: real photo — Amanda S., Portugal retreat -->
+          <div class="quote-card__photo" aria-hidden="true" style="background: linear-gradient(155deg, hsl(200 32% 80%), hsl(200 26% 60%));"></div>
+        </figure>
+        <figure class="quote-card">
+          <div class="quote-card__text">
+            <blockquote class="quote-card__quote">&ldquo;This retreat was an unforgettable experience! Every detail was planned and I felt very cared for. I met amazing people, felt immersed in the local culture, saw incredible sites, and had amazing food.&rdquo;</blockquote>
+            <figcaption class="quote-card__by">
+              <p class="quote-card__name">Marney B.</p>
+              <p class="quote-card__detail">Morocco Retreat</p>
+            </figcaption>
+          </div>
+          <span class="quote-card__divider" aria-hidden="true"></span>
+          <!-- TODO: real photo — Marney B., Morocco retreat (woman eating lunch on a terrace, per the Figma mock) -->
+          <div class="quote-card__photo" aria-hidden="true" style="background: linear-gradient(155deg, hsl(30 32% 80%), hsl(30 26% 60%));"></div>
+        </figure>
+        <figure class="quote-card">
+          <div class="quote-card__text">
+            <blockquote class="quote-card__quote">&ldquo;Answering every question and concern and making sure everything is perfect for us is beyond anything I expect from a travel company. The teachers and facilitators are simply the best of the best!&rdquo;</blockquote>
+            <figcaption class="quote-card__by">
+              <p class="quote-card__name">Mimi S.</p>
+              <p class="quote-card__detail">Montenegro Retreat</p>
+            </figcaption>
+          </div>
+          <span class="quote-card__divider" aria-hidden="true"></span>
+          <!-- TODO: real photo — Mimi S., Montenegro retreat -->
+          <div class="quote-card__photo" aria-hidden="true" style="background: linear-gradient(155deg, hsl(150 32% 80%), hsl(150 26% 60%));"></div>
+        </figure>
+      </div>
+      <button class="rail__arrow rail__arrow--next" type="button" aria-label="Next testimonial">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
     </div>
   </section>
 
@@ -3438,6 +3464,99 @@ main { padding-top: 0; }
   renderFilterBar();
   renderResults();
 })();
+</script>
+
+<script>
+  /* "In our guests' words" carousel — same .rail peek/arrow engine as
+     HOME · NEXT UP's retreats rail above (deliberately a second, small
+     copy of that geometry rather than a shared helper: the testimonial
+     list is fixed markup, not a filtered/re-rendered one, so there's no
+     renderTrack()-equivalent to share, and duplicating ~30 lines beats
+     reworking the other rail's already-working script to fit a second
+     caller). */
+  (function () {
+    var track = document.getElementById('quotesTrack');
+    if (!track) return;
+
+    var rail = document.getElementById('quotesRail');
+    var prevBtn = rail.querySelector('.rail__arrow--prev');
+    var nextBtn = rail.querySelector('.rail__arrow--next');
+    var EPS = 4;
+
+    function setArrow(btn, visible) {
+      btn.classList.toggle('is-hidden', !visible);
+      btn.tabIndex = visible ? 0 : -1;
+      btn.setAttribute('aria-hidden', visible ? 'false' : 'true');
+    }
+
+    var geo = { shown: 1, stride: 0, firstStep: 0, pad: 0, unit: 1 };
+    function computeGeometry() {
+      var first = track.querySelector('.quote-card');
+      if (!first) return;
+      var cardW = first.getBoundingClientRect().width;
+      var gap = parseFloat(getComputedStyle(rail).getPropertyValue('--gap')) || 0;
+      var pad = parseFloat(getComputedStyle(track).paddingLeft) || 0;
+      var railW = rail.getBoundingClientRect().width;
+      var unit = cardW + gap;
+
+      var minPeek = cardW * 0.3;
+      var shown = Math.max(1, Math.floor((railW - gap - 2 * minPeek) / unit));
+      var peek = (railW - shown * cardW - (shown + 1) * gap) / 2;
+
+      geo.shown = shown;
+      geo.stride = shown * unit;
+      geo.firstStep = pad + geo.stride - gap - peek;
+      geo.pad = pad;
+      geo.unit = unit;
+    }
+
+    function updateArrows() {
+      var max = track.scrollWidth - track.clientWidth;
+      setArrow(prevBtn, track.scrollLeft > EPS);
+      setArrow(nextBtn, track.scrollLeft < max - EPS);
+    }
+    function goNext() {
+      var amount = track.scrollLeft < EPS ? geo.firstStep : geo.stride;
+      track.scrollBy({ left: amount, behavior: 'smooth' });
+    }
+    function goPrev() {
+      var amount = track.scrollLeft < geo.firstStep + EPS ? track.scrollLeft : geo.stride;
+      track.scrollBy({ left: -amount, behavior: 'smooth' });
+    }
+    function cardIndexAt(scrollLeft, g) {
+      return Math.max(0, Math.round((scrollLeft - g.pad) / g.unit));
+    }
+    function scrollLeftForCardIndex(index, g) {
+      return g.pad + index * g.unit;
+    }
+
+    computeGeometry();
+    updateArrows();
+
+    var ticking = false;
+    track.addEventListener('scroll', function () {
+      if (!ticking) {
+        requestAnimationFrame(function () { updateArrows(); ticking = false; });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        var anchor = cardIndexAt(track.scrollLeft, geo);
+        var wasAtStart = track.scrollLeft < EPS;
+        computeGeometry();
+        var max = track.scrollWidth - track.clientWidth;
+        track.scrollLeft = wasAtStart ? 0 : Math.max(0, Math.min(scrollLeftForCardIndex(anchor, geo), max));
+        updateArrows();
+      }, 150);
+    });
+
+    prevBtn.addEventListener('click', goPrev);
+    nextBtn.addEventListener('click', goNext);
+  })();
 </script>
 
 <script>
