@@ -1739,7 +1739,7 @@ main { padding-top: 0; }
 /* Same ratio as the pillar photos above — flex:1 1 0 + aspect-ratio,
    no fixed width/height, so the box resolves from whatever space the
    row actually gives it instead of fighting the flex layout. */
-.lead__photo { flex: 1 1 0; aspect-ratio: 3 / 2; }
+.lead__photo { flex: 1 1 0; min-width: 0; aspect-ratio: 3 / 2; display: block; width: 100%; height: 100%; object-fit: cover; }
 @media (max-width: 1024px) {
   .lead__title { font-size: 18px; line-height: 24px; }
   .lead__body { font-size: 14px; line-height: 16px; }
@@ -2619,15 +2619,13 @@ main { padding-top: 0; }
   <section class="lead">
     <div class="lead__intro">
       <h2 class="lead__title">Lead a retreat with us</h2>
-      <p class="lead__body">Bring your students somewhere new. We plan the itinerary, book the hotels, run the logistics and help fill your spots, so you can focus on teaching.</p>
+      <p class="lead__body">Bring your students somewhere new.<br>We plan the itinerary, book the hotels, run the logistics and help fill your spots, so you can focus on teaching.</p>
     </div>
     <!-- TODO: route to the teach-with-us page -->
-    <a class="btn btn--secondary" href="#">Explore upcoming retreats</a>
+    <a class="btn btn--secondary" href="#">Plan your retreat</a>
     <div class="lead__media">
-      <!-- TODO: real photo — a group of students on a retreat -->
-      <div class="lead__photo" aria-hidden="true" style="background: linear-gradient(155deg, hsl(30 32% 80%), hsl(30 26% 60%));"></div>
-      <!-- TODO: real photo — rooftop yoga overlooking the water -->
-      <div class="lead__photo" aria-hidden="true" style="background: linear-gradient(155deg, hsl(200 32% 80%), hsl(200 26% 60%));"></div>
+      <img class="lead__photo" src="images/lead-group-terrace.jpg" alt="A teacher leading a discussion with her group seated on a terrace overlooking the bay">
+      <img class="lead__photo" src="images/lead-yoga-stretch.jpg" alt="A teacher guiding students through a lunging stretch in a sunlit studio">
     </div>
   </section>
 
