@@ -881,18 +881,21 @@ main { padding-top: 0; }
    three photo stacks that fill their boxes edge to edge, with no
    internal whitespace of their own to borrow from.
 
-   The top padding goes up with it. On a full-bleed colour band the
-   edge is a hard line rather than the invisible seam it is between
-   two stone sections, so leaving it at 48 would have pinned the
-   heading closer to that edge than to the cards it belongs to. At
-   56/56 the band is symmetric top to bottom. */
+   The band's own padding is 72, the largest step the page uses
+   (.quotes already tops out there) and the one place that deserves
+   it: this is the only full-bleed colour block on the homepage, so
+   its edges are hard lines rather than the invisible seams between
+   stone sections, and it needs more inset than a stone section to
+   read as inset at all. Symmetric top to bottom, and larger than the
+   56 it holds between its own heading and cards, so the band reads as
+   one block rather than as a heading sitting on a row. */
 .tiers2 {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 56px;
-  padding: 56px var(--container-pad) 56px;
+  padding: 72px var(--container-pad) 72px;
   background: var(--sea-blue);
 }
 /* Section heading. Same kicker + .section-title pairing the other
