@@ -4,3 +4,12 @@ index-full-hero.html
 index-fluid-hero.html
 
 .DS_Store
+
+# Screenshots dropped in the repo while working — never referenced by a
+# page. Both spellings, since the name follows the system language.
+Captura de Pantalla *
+Screenshot *
+
+# Scratch footage, not used by any page. Deliberately not *.mp4: video the
+# site actually serves should still be tracked.
+/hero-lassie.mp4
