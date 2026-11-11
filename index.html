@@ -1008,13 +1008,25 @@ main { padding-top: 0; }
     transform: translateY(-1cqw) scale(1.03);
   }
   .tiers2__card:hover .tiers2__postcard--front::after { opacity: 1; }
+  /* The fan opens to 28cqw rather than the 20cqw it first shipped
+     with: at 20 the front shot still covered about half of each
+     accompanying photo, so the pair read as texture behind the hero
+     rather than as two images you could actually look at. Measured
+     at the 432px card, 28cqw leaves 69% of each one clear, up from
+     54%, while still tucking under the front, so the group keeps
+     reading as one stack being fanned and not three separate cards.
+     The rotation opens a touch too (10deg -> 12deg) to keep the
+     spread looking like a hand of cards. Clearance is not a concern:
+     the fan overhangs its own card by 9.4% of the card width, against
+     the 22.7% the neighbour holds empty inside its own edge — and
+     that inset is in cqw, so it holds at every width. */
   .tiers2__card:hover .tiers2__postcard--mid {
-    transform: translate(20cqw, 4cqw) rotate(10deg);
+    transform: translate(28cqw, 4cqw) rotate(12deg);
     transition-delay: 50ms;
   }
   .tiers2__card:hover .tiers2__postcard--mid::after { opacity: 1; transition-delay: 50ms; }
   .tiers2__card:hover .tiers2__postcard--back {
-    transform: translate(-20cqw, 4cqw) rotate(-10deg);
+    transform: translate(-28cqw, 4cqw) rotate(-12deg);
     transition-delay: 80ms;
   }
   .tiers2__card:hover .tiers2__postcard--back::after { opacity: 1; transition-delay: 80ms; }
