@@ -1283,7 +1283,8 @@ main { padding-top: 0; }
 .booking__step {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
   gap: 16px;
   flex: 1 0 0;
   min-width: 0;
@@ -1292,8 +1293,6 @@ main { padding-top: 0; }
   width: 80px;
   height: 80px;
   aspect-ratio: 1 / 1;
-  background: var(--stone-100);
-  border: 1px solid var(--stone-300);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1303,9 +1302,12 @@ main { padding-top: 0; }
      bring it to 32px without touching label→body (stays 16px). */
   margin-bottom: 16px;
 }
+/* The SVGs ship with their own pale-blue disc and figure, so the box
+   itself stays transparent — no stone square or border behind them. */
 .booking__icon {
-  font-size: 32px;
-  color: var(--stone-600);
+  width: 80px;
+  height: 80px;
+  display: block;
 }
 .booking__label {
   margin: 0;
@@ -1334,7 +1336,8 @@ main { padding-top: 0; }
 }
 @media (max-width: 767px) {
   .booking { padding: 40px 16px; gap: 40px; }
-  .booking__row { flex-direction: column; gap: 40px; }
+  .booking__row { flex-direction: column; align-items: center; gap: 40px; }
+  .booking__step { max-width: 420px; }
 }
 
 /* ============================================================
@@ -2596,22 +2599,22 @@ main { padding-top: 0; }
     </div>
     <div class="booking__row">
       <div class="booking__step">
-        <span class="booking__icon-box" aria-hidden="true"><i class="hgi-stroke hgi-global-search booking__icon"></i></span>
+        <span class="booking__icon-box" aria-hidden="true"><img class="booking__icon" src="images/icon_choose.svg" alt="" width="80" height="80" loading="lazy"></span>
         <p class="booking__label">Choose your retreat</p>
         <p class="booking__body">Explore our destinations, teachers, and dates. Choose the journey that speaks to you.</p>
       </div>
       <div class="booking__step">
-        <span class="booking__icon-box" aria-hidden="true"><i class="hgi-stroke hgi-calendar-check booking__icon"></i></span>
+        <span class="booking__icon-box" aria-hidden="true"><img class="booking__icon" src="images/icon_deposit.svg" alt="" width="80" height="80" loading="lazy"></span>
         <p class="booking__label">Reserve your place</p>
         <p class="booking__body">Choose your room and complete your reservation. We'll be in touch to confirm the details and welcome you.</p>
       </div>
       <div class="booking__step">
-        <span class="booking__icon-box" aria-hidden="true"><i class="hgi-stroke hgi-luggage-02 booking__icon"></i></span>
+        <span class="booking__icon-box" aria-hidden="true"><img class="booking__icon" src="images/icon_ready.svg" alt="" width="80" height="80" loading="lazy"></span>
         <p class="booking__label">Get ready with us</p>
         <p class="booking__body">We'll guide you through everything you need to know before departure, from arrival details to what to pack.</p>
       </div>
       <div class="booking__step">
-        <span class="booking__icon-box" aria-hidden="true"><i class="hgi-stroke hgi-yoga-02 booking__icon"></i></span>
+        <span class="booking__icon-box" aria-hidden="true"><img class="booking__icon" src="images/icon_arrive.svg" alt="" width="80" height="80" loading="lazy"></span>
         <p class="booking__label">Arrive and enjoy</p>
         <p class="booking__body">From the planning to the retreat itself, we take care of the details so you can enjoy every moment.</p>
       </div>
