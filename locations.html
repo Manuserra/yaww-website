@@ -815,15 +815,21 @@ main { padding-top: 0; }
       <p class="locations__lede">Thirteen destinations we return to year after year, each with the hotels, teachers and local guides we have come to trust. Pick a place to see what a week there looks like.</p>
     </div>
 
-    <!-- TODO — placeholder photography, stood in from the retreat
-         libraries, same as about.html. The reference build has a
-         672x888 thumbnail per destination; swap them in here and the
-         markup does not change. -->
+    <!-- Every card is a location-<slug>.jpg at 864x1136, so a real
+         thumbnail drops in by overwriting the file.
+
+         Nine are the content library's own thumbnails. Iceland has no
+         thumbnail there, so it is a real Iceland frame from that
+         retreat's itinerary, cropped to the same size. Argentina,
+         France and Portugal have no material in the library at all
+         and are standing in on retreat photography — their alt text
+         describes the stand-in rather than the destination, and needs
+         rewriting along with the file. -->
     <div class="locations-grid">
       <article class="location">
         <a class="location__link" href="#">
           <div class="location__image">
-            <img src="images/day1-1.jpg" alt="A lake and mountains in Patagonia" width="672" height="888">
+            <img src="images/location-argentina.jpg" alt="Mats laid out on a shaded wooden deck above the sand" width="672" height="888">
           </div>
           <h2 class="location__title">Argentina</h2>
           <p class="location__caption">From Buenos Aires&rsquo; vibrant pulse to Patagonia&rsquo;s tranquil lakes, an Argentine journey of yoga, flavor, and discovery.</p>
@@ -832,7 +838,7 @@ main { padding-top: 0; }
       <article class="location">
         <a class="location__link" href="#">
           <div class="location__image">
-            <img src="images/day2-2.jpg" alt="A quiet stretch of shoreline at El Cuyo" width="672" height="888">
+            <img src="images/location-el-cuyo.jpg" alt="A headstand on a shaded deck, palms and open sea beyond" width="672" height="888">
           </div>
           <h2 class="location__title">El Cuyo, Mini Retreat</h2>
           <p class="location__caption">Ocean light, slow days, and grounding yoga by the shore. A short retreat designed to reset your pace and reconnect with yourself.</p>
@@ -841,7 +847,7 @@ main { padding-top: 0; }
       <article class="location">
         <a class="location__link" href="#">
           <div class="location__image">
-            <img src="images/day3-1.jpg" alt="A village lane in the French countryside" width="672" height="888">
+            <img src="images/location-france.jpg" alt="A guest stretching on a balcony framed by palm leaves" width="672" height="888">
           </div>
           <h2 class="location__title">France</h2>
           <p class="location__caption">From the rhythm of Paris to the quiet glow of Champagne, a French journey of yoga, flavor, and unhurried beauty.</p>
@@ -850,7 +856,7 @@ main { padding-top: 0; }
       <article class="location">
         <a class="location__link" href="#">
           <div class="location__image">
-            <img src="images/day4-3.jpg" alt="Black sand and open sky in Iceland" width="672" height="888" loading="lazy">
+            <img src="images/location-iceland.jpg" alt="A river winding between the mossy walls of Fja&eth;r&aacute;rglj&uacute;fur canyon" width="672" height="888" loading="lazy">
           </div>
           <h2 class="location__title">Iceland</h2>
           <p class="location__caption">Where fire meets ice and silence hums beneath the surface. A journey through vast skies, black sands, and the quiet brilliance of northern light.</p>
@@ -859,7 +865,7 @@ main { padding-top: 0; }
       <article class="location">
         <a class="location__link" href="#">
           <div class="location__image">
-            <img src="images/day5-1.jpg" alt="The Bay of Kotor seen from above" width="672" height="888" loading="lazy">
+            <img src="images/location-montenegro.jpg" alt="A swimmer at the edge of an infinity pool facing the green slopes across the bay" width="672" height="888" loading="lazy">
           </div>
           <h2 class="location__title">Montenegro</h2>
           <p class="location__caption">Montenegro&rsquo;s bays, peaks, and medieval villages create days of yoga, water journeys, and slow exploration along the Bay of Kotor&mdash;a retreat rich with quiet beauty.</p>
@@ -868,7 +874,7 @@ main { padding-top: 0; }
       <article class="location">
         <a class="location__link" href="#">
           <div class="location__image">
-            <img src="images/day6-2.jpg" alt="A doorway in a Marrakech medina" width="672" height="888" loading="lazy">
+            <img src="images/location-morocco.jpg" alt="An open-sided yoga pavilion of pale wood, bolsters laid out, desert beyond" width="672" height="888" loading="lazy">
           </div>
           <h2 class="location__title">Morocco</h2>
           <p class="location__caption">A week between Marrakech and Essaouira, vibrant streets, ocean air, and the quiet luxury of slowing down in between.</p>
@@ -877,7 +883,7 @@ main { padding-top: 0; }
       <article class="location">
         <a class="location__link" href="#">
           <div class="location__image">
-            <img src="images/day1-4.jpg" alt="A courtyard in Oaxaca City" width="672" height="888" loading="lazy">
+            <img src="images/location-oaxaca.jpg" alt="The baroque stone towers of Santo Domingo rising above agave plants" width="672" height="888" loading="lazy">
           </div>
           <h2 class="location__title">Oaxaca, Mexico</h2>
           <p class="location__caption">A soulful Oaxaca escape honoring D&iacute;a de los Muertos through ritual, culture, and connection; a journey shaped by art, remembrance, and gentle reverence.</p>
@@ -886,7 +892,7 @@ main { padding-top: 0; }
       <article class="location">
         <a class="location__link" href="#">
           <div class="location__image">
-            <img src="images/day2-5.jpg" alt="Tiled facades in Lisbon" width="672" height="888" loading="lazy">
+            <img src="images/location-portugal.jpg" alt="The sun going down over an empty beach" width="672" height="888" loading="lazy">
           </div>
           <h2 class="location__title">Portugal</h2>
           <p class="location__caption">From Lisbon&rsquo;s tiled light to misty Sintra and the wild Costa Vicentina, a Portuguese journey of yoga, culture, coastal hikes, and Atlantic air.</p>
@@ -895,7 +901,7 @@ main { padding-top: 0; }
       <article class="location">
         <a class="location__link" href="#">
           <div class="location__image">
-            <img src="images/day3-4.jpg" alt="Whitewashed walls above the Aegean" width="672" height="888" loading="lazy">
+            <img src="images/location-santorini.jpg" alt="The caldera seen from the cliff path, boats far below on deep blue water" width="672" height="888" loading="lazy">
           </div>
           <h2 class="location__title">Santorini</h2>
           <p class="location__caption">Between sea and sun, find your rhythm again. Wake to whitewashed light, move with the tide, and let the island&rsquo;s slow beauty restore your spirit.</p>
@@ -904,7 +910,7 @@ main { padding-top: 0; }
       <article class="location">
         <a class="location__link" href="#">
           <div class="location__image">
-            <img src="images/day4-5.jpg" alt="A turquoise cove on the Sardinian coast" width="672" height="888" loading="lazy">
+            <img src="images/location-sardinia.jpg" alt="A dancer's pose on pale sand at the edge of turquoise shallows" width="672" height="888" loading="lazy">
           </div>
           <h2 class="location__title">Sardinia</h2>
           <p class="location__caption">Sardinia&rsquo;s turquoise coves, wild valleys, and ancient rhythms guide a retreat shaped by yoga, nature, and the island&rsquo;s vibrant beauty, both coastal and mountain-born.</p>
@@ -913,7 +919,7 @@ main { padding-top: 0; }
       <article class="location">
         <a class="location__link" href="#">
           <div class="location__image">
-            <img src="images/day5-4.jpg" alt="Green hills above the Basque coast" width="672" height="888" loading="lazy">
+            <img src="images/location-spain-basque-country.jpg" alt="The curve of La Concha beach below the balconied houses of San Sebasti&aacute;n" width="672" height="888" loading="lazy">
           </div>
           <h2 class="location__title">Spain, Basque Country</h2>
           <p class="location__caption">Basque shores, gentle hills, and Rioja vineyards shape a retreat of yoga, culture, and cuisine&mdash;inviting connection, ease, and a deep appreciation for place.</p>
@@ -922,7 +928,7 @@ main { padding-top: 0; }
       <article class="location">
         <a class="location__link" href="#">
           <div class="location__image">
-            <img src="images/day6-5.jpg" alt="A temple roofline framed by forest" width="672" height="888" loading="lazy">
+            <img src="images/location-thailand.jpg" alt="A row of seated stone Buddhas weathered by the weather" width="672" height="888" loading="lazy">
           </div>
           <h2 class="location__title">Thailand</h2>
           <p class="location__caption">Thailand&rsquo;s golden temples, quiet forests, and island light create a retreat that blends yoga, culture, and mindful exploration into a journey of inner clarity.</p>
@@ -931,7 +937,7 @@ main { padding-top: 0; }
       <article class="location">
         <a class="location__link" href="#">
           <div class="location__image">
-            <img src="images/extra1-2.jpg" alt="Domes and minarets on the Istanbul skyline" width="672" height="888" loading="lazy">
+            <img src="images/location-turkey.jpg" alt="The domes and minarets of the Blue Mosque framed by a stone archway" width="672" height="888" loading="lazy">
           </div>
           <h2 class="location__title">Turkey</h2>
           <p class="location__caption">Istanbul&rsquo;s mosques, markets, and modern edges blend with Cappadocia&rsquo;s quiet canyons, creating a retreat shaped by yoga, culture, and slow, artful discovery.</p>
