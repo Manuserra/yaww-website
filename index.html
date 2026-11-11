@@ -882,6 +882,23 @@ main { padding-top: 0; }
   padding: 48px var(--container-pad) 56px;
   background: var(--sea-blue);
 }
+/* Section heading. Same kicker + .section-title pairing the other
+   sections use, so it inherits the shared type scale and the centring
+   .section-title already carries. Both inks are overridden to --stone
+   because their defaults (--sea-blue, --sea-blue-200) are meant for
+   the light sections and land at 1.7:1 on this band — the same reason
+   .tiers2__eyebrow re-inks the card eyebrows. Spacing matches
+   .booking__intro, the other kicker+title-only intro. */
+.tiers2__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  max-width: 555px;
+  margin-inline: auto;
+}
+.kicker.tiers2__kicker { color: var(--stone); text-align: center; }
+.tiers2__title { color: var(--stone); text-wrap: balance; }
 .tiers2__row {
   display: flex;
   align-items: flex-start;
@@ -2426,6 +2443,10 @@ main { padding-top: 0; }
        3 · TIERS — Deep Dives / Signature Collection / The Reserve
        ========================================================= -->
   <section class="tiers2">
+    <div class="tiers2__head">
+      <p class="kicker tiers2__kicker">Our collections</p>
+      <h2 class="section-title tiers2__title">Three ways to travel with us</h2>
+    </div>
     <div class="tiers2__row">
       <div class="tiers2__card">
         <div class="tiers2__intro">
