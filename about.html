@@ -584,6 +584,41 @@ main { padding-top: 0; }
 
   }
 
+/* --- Split image reveal -------------------------------------------------
+   Both split sections fit inside one screen (the figure is 725px tall and
+   the text shorter still), so there is no room for a pinned-column scroll
+   effect: the taller column would have 245px and 101px of travel to pin
+   against, less than one wheel flick. A reveal on entry is what reads at
+   this size — the figure lifts 16px and fades as it crosses in.
+
+   .js-reveal is added by script, never written into the HTML, so the
+   figures render visible if that script never runs. Only transform and
+   opacity animate. --ease-out, not --ease-in-out: this enters rather than
+   moving across while mounted. Reduced motion keeps the fade and drops
+   the lift, the same trade the tier postcards make.
+
+   It sits on the <figure>, not the <img>, so it layers over the existing
+   load fade on img.img-reveal rather than competing with it.
+
+   The transition is declared on .is-revealed and not on the hidden state
+   on purpose. Script adds .js-reveal to a figure the browser has already
+   laid out at full opacity, so a transition sitting on that state would
+   animate the figure OUT over 600ms before ever bringing it back in.
+   Declared this way the hide is instantaneous and only the entrance
+   animates. */
+@media (prefers-reduced-motion: no-preference) {
+  .about-split__media.js-reveal { opacity: 0; transform: translateY(16px); }
+  .about-split__media.js-reveal.is-revealed {
+    opacity: 1;
+    transform: none;
+    transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-split__media.js-reveal { opacity: 0; }
+  .about-split__media.js-reveal.is-revealed { opacity: 1; transition: opacity 300ms ease; }
+}
+
 /* --- Image reveal ------------------------------------------------------
    Images fade in as they load instead of snapping in. */
 @media (prefers-reduced-motion: no-preference) {
@@ -1371,6 +1406,27 @@ main { padding-top: 0; }
   document.querySelectorAll('.footer-news__form').forEach(function (form) {
     form.addEventListener('submit', function (e) { e.preventDefault(); });
   });
+
+  // Split image reveal — the figure lifts and fades as it enters view.
+  // The pre-reveal class is applied here rather than in the markup so the
+  // figures stay visible if this script never runs; unobserved once shown,
+  // since it only ever plays one way.
+  (function () {
+    var figures = document.querySelectorAll('.about-split__media');
+    if (!figures.length || !('IntersectionObserver' in window)) return;
+
+    Array.prototype.forEach.call(figures, function (f) { f.classList.add('js-reveal'); });
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-revealed');
+        io.unobserve(entry.target);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+
+    Array.prototype.forEach.call(figures, function (f) { io.observe(f); });
+  })();
 
   // Image reveal — fade in once loaded, skip images already decoded (cached / above the fold)
   document.querySelectorAll('img').forEach(function (img) {
