@@ -873,13 +873,26 @@ main { padding-top: 0; }
    built alongside the original — the original has since been
    removed, this is the only version now.
    ============================================================ */
+/* 56/56 rather than the 40/48 this shipped with. Every other section
+   separates its heading from its content by 48 or 56; at 40 this was
+   the only one below the floor, which is why it read tight under a
+   heading. 56 is the step the two heaviest sections use (.booking,
+   .pillar), and this band carries the heaviest content on the page —
+   three photo stacks that fill their boxes edge to edge, with no
+   internal whitespace of their own to borrow from.
+
+   The top padding goes up with it. On a full-bleed colour band the
+   edge is a hard line rather than the invisible seam it is between
+   two stone sections, so leaving it at 48 would have pinned the
+   heading closer to that edge than to the cards it belongs to. At
+   56/56 the band is symmetric top to bottom. */
 .tiers2 {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 40px;
-  padding: 48px var(--container-pad) 56px;
+  gap: 56px;
+  padding: 56px var(--container-pad) 56px;
   background: var(--sea-blue);
 }
 /* Section heading. Same kicker + .section-title pairing the other
@@ -920,7 +933,7 @@ main { padding-top: 0; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 32px;
   align-self: stretch;
 }
 /* Built with the `animate` skill (Emil Kowalski's animation
@@ -1036,14 +1049,19 @@ main { padding-top: 0; }
      spread looking like a hand of cards. Clearance is not a concern:
      the fan overhangs its own card by 9.4% of the card width, against
      the 22.7% the neighbour holds empty inside its own edge — and
-     that inset is in cqw, so it holds at every width. */
+     that inset is in cqw, so it holds at every width.
+
+     The drop is 2cqw, not the 4cqw the narrower fan used: rotating
+     12deg swings the lower corners out far enough that at 4cqw they
+     reached into the eyebrow below. Halving it keeps the cards
+     falling open without the corners crossing the text. */
   .tiers2__card:hover .tiers2__postcard--mid {
-    transform: translate(28cqw, 4cqw) rotate(12deg);
+    transform: translate(28cqw, 2cqw) rotate(12deg);
     transition-delay: 50ms;
   }
   .tiers2__card:hover .tiers2__postcard--mid::after { opacity: 1; transition-delay: 50ms; }
   .tiers2__card:hover .tiers2__postcard--back {
-    transform: translate(-28cqw, 4cqw) rotate(-12deg);
+    transform: translate(-28cqw, 2cqw) rotate(-12deg);
     transition-delay: 80ms;
   }
   .tiers2__card:hover .tiers2__postcard--back::after { opacity: 1; transition-delay: 80ms; }
