@@ -921,19 +921,27 @@ main { padding-top: 0; }
   max-width: var(--container-max);
   margin-inline: auto;
 }
+/* Raised with the gap inside .tiers2__intro so the nesting still
+   reads: 12 inside the text block, 40 from the stack to it, 56 from
+   that group to the link. At 40/48 the outer two were close enough to
+   flatten into one level. */
 .tiers2__card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 48px;
+  gap: 56px;
   flex: 1 0 0;
   min-width: 0;
 }
+/* The stack needs more air under it than a normal image would: the
+   postcards carry a white border that reads as part of the photo, so
+   the first dark pixel sits further from the eyebrow than the box
+   edge suggests and the gap looks smaller than it measures. */
 .tiers2__intro {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
+  gap: 40px;
   align-self: stretch;
 }
 /* Built with the `animate` skill (Emil Kowalski's animation
