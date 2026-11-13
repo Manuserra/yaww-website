@@ -1,0 +1,914 @@
+{
+ "slug": "camino-de-santiago-sep-2027",
+ "title": "Camino de Santiago : A Yoga & Reflections Retreat",
+ "subtitle": null,
+ "destination": "Camino de Santiago",
+ "location_label": "Camino de Santiago, Spain",
+ "country": "Spain",
+ "region": "Galicia",
+ "tier": "signature",
+ "tier_label": "Signature Collection",
+ "tier_source": "retreat_categories-signature-retreats on the source post",
+ "status": "open",
+ "status_label": null,
+ "urgency": null,
+ "date_start": "2027-09-19",
+ "date_end": "2027-09-28",
+ "dates_label": "September 19 - 28, 2027",
+ "season": "Summer, 2027",
+ "nights": 9,
+ "days": 10,
+ "teachers": [
+  {
+   "name": "Genevieve Morin",
+   "slug": "genevieve-morin",
+   "role": null,
+   "bio": [
+    "Genevieve has been leading retreats internationally for the last 20 years. She is passionate about worldwide travel, full immersion in different cultures, and the importance of broadening our understanding of one another.",
+    "As a trilingual yoga teacher, speaking English, French and Spanish, verbal and non-verbal communication are at the core of her interests. Like cooking or creating music, moving the body, dancing and yogic expression are international, borderless forms of communication. The potential of connection to ourselves, to one another, and to a universal energy is boundless.",
+    "Even when Genevieve travels on retreat to a place where common language is not spoken, sharing the language of yoga and movement is always possible. Genevieve loves leading a group of people to unique destinations, especially those who may feel timid or shy in a foreign place. To offer an opportunity for people to experience our human oneness is pivotal and life-changing. We are all human beings with similar needs and desires, and despite borders or differences, we all yearn toward meaningful connections. Genevieve is endlessly intrigued by how simple life truly is… and how simple and joyful our journeys can be.",
+    "Discover more about Genevieve on her website, Truro Yoga."
+   ],
+   "photo": {
+    "file": "retreats/_shared/teachers/img/yoga-teacher-genevieve-morin.jpg",
+    "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/04/2023.05.14_YogaAdventures_AraiMoleri_0190-scaled-e1745705921584.jpg",
+    "alt": "Genevieve Morin, yoga teacher, laughing on a rocky hillside",
+    "shared": true
+   },
+   "instagram": null,
+   "source": "https://yogaadventuresworldwide.com/team/"
+  }
+ ],
+ "teacher_unassigned": false,
+ "hero_image": {
+  "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-santiago-cathedral-behind-the-gates.jpg",
+  "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/0268e141-237d-41fe-ba41-a2e06166f359.jpg",
+  "alt": "The cathedral of Santiago de Compostela seen through the iron gates at the end of the Camino, Spain",
+  "shared": true
+ },
+ "intro": "For more than a thousand years, people have walked the Camino seeking perspective, gratitude, courage, or simply the experience of slowing down.",
+ "about_title": null,
+ "about_body": [
+  "For more than a thousand years, people have walked across Galicia toward Santiago de Compostela. They came for all kinds of reasons — grief, gratitude, a decision they couldn’t make sitting still. What they had in common was the willingness to put one foot in front of the other and let the road do its work.",
+  "We walk the final stretch of the Camino Portugués: roughly 110 kilometers from Vigo to Santiago, over six days of walking. Eucalyptus forests and vineyards, tidal rivers and stone villages, old bridges, hórreos, the smell of rain on granite. Then the last long day, and the city at the end of it.",
+  "Days begin with movement — yoga on a terrace, a stretch by the water, meditation before the first kilometer. Each day closes with something restorative: gentle practice, journaling, a long dinner with the people you’ve walked beside. In between, there’s the trail. Some days we walk together and talk. One day we walk entirely in silence. Most days you’ll find your own pace, and perhaps be surprised by what shows up in it.",
+  "Your bags travel ahead of you. Each night there’s a real bed, a good meal, and more often than not a garden, a pool, or a thermal spring waiting for you to close the day. This is a pilgrimage with soft landings — the walking is honest, and so is the rest.",
+  "A pilgrimage is a walk with intention. That’s all it has ever needed to be.",
+  "The road doesn’t ask you to believe anything. It asks you to keep going. To carry only what you actually need. To accept the weather. To greet strangers walking in the same direction. To let the day be simple: wake, move, walk, eat, rest, repeat.",
+  "Ten days of that changes something. Not dramatically, not all at once. but you tend to notice it on the way home.",
+  "Some days we walk without speaking. No conversation, no headphones, no phone — just breath and footfall. It’s the part people are most nervous about, and the part they remember.",
+  "Other days the road is social. Conversations at walking pace, shoulder to shoulder, when nobody has to hold eye contact. Long lunches, wine in a village square, circles at the beginning and the end.",
+  "The practice here is practical and kind to a walking body: hips, hamstrings, feet, shoulders. Mornings are for warming up and waking up. Evenings are slower — restorative shapes, breath, long holds. Each day comes with a journaling prompt, and time to sit with it. Meditation is offered and always optional.",
+  "Terrain is mostly gentle: forest track, country lane, some cobbled village streets and rolling hills",
+  "Everyone walks at their own pace, and a taxi is always an option on any stretch",
+  "Luggage is transferred hotel to hotel — you carry only a day pack"
+ ],
+ "highlights": [],
+ "includes": [
+  "9 nights in characterful hotels, pazos and a parador",
+  "No two nights look quite the same — from traditional Galician stays and garden retreats to a beautiful finish in Santiago de Compostela.",
+  "Daily luggage transfer",
+  "Your bags travel ahead each morning. You walk with only a day pack and what you need for the trail.",
+  "Daily yoga, meditation & journaling",
+  "Thoughtful practices designed around the rhythm of the walk — movement to begin the day, restoration and reflection to close it.",
+  "An expert YAWW facilitator throughout the journey",
+  "With you from Vigo to Santiago, taking care of the details so you can stay present for the experience.",
+  "Opening & closing circles",
+  "Time to arrive together, set an intention for the journey, and mark what has shifted before we go home.",
+  "Breakfast daily, 2 lunches & 8 dinners",
+  "From long dinners after a day on the trail to some of the flavors Galicia is known for.",
+  "Two-hour Pilgrim Ritual Spa treatment & water circuits",
+  "A well-earned ritual of restoration once we reach Santiago. Floatarium session, deep tissue back massage, and targeted relief for tired legs and aching feet.",
+  "Your official pilgrim credential",
+  "Carry it along the Camino and collect stamps as you make your way toward Compostela.",
+  "Support whenever you need it",
+  "A taxi is available on any stretch of the walk, if you need it. Walk every kilometer or listen to your body along the way.",
+  "A full rest day in Caldas de Reis",
+  "A pause in the journey for gardens, pool time and water circuits, reading, sleeping, wandering — or simply doing nothing at all.",
+  "A journal & YAWW gift bag",
+  "A few thoughtful things from us to accompany you on the journey.",
+  "All local taxes"
+ ],
+ "includes_footnote": null,
+ "not_included": [
+  "International airfare into Spain or Portugal",
+  "Airport transfers on opening and closing day",
+  "5 lunches and 4 dinners on your own",
+  "Taxis along the trail if you decide to order one (Uber is readily available if you need)",
+  "Alcohol outside of what is included with dinners; bottled water",
+  "Optional excursions on the rest day (thermal baths at Cuntis, wine experiences)",
+  "Additional spa services and treatments",
+  "Travel and trip cancellation insurance; medical insurance coverage",
+  "Anything you’d like to carry home",
+  "Staff gratuities (we suggest between $60–95 USD for the team looking after you)"
+ ],
+ "not_included_footnote": null,
+ "itinerary": [
+  {
+   "day": 1,
+   "label": "Day 1",
+   "title": "– Vigo, Spain",
+   "bullets": [
+    "Arrival, and the first evening together",
+    "Check into our accommodations on the water in Vigo",
+    "Early arrivals: leave your bags at reception, walk the seafront, find a coffee",
+    "Opening circle and grounding yoga practice at the hotel",
+    "Welcome dinner together"
+   ],
+   "images": [
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-gardens-above-the-ria.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/vigo-beach-1.jpeg",
+     "alt": "Formal gardens above the ria in Galicia, on the Camino de Santiago, Spain",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-practice-with-arms-overhead.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/YAWW4-3.jpg",
+     "alt": "Guests practising with arms overhead during the retreat on the Camino de Santiago, Spain",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "day": 2,
+   "label": "Day 2",
+   "title": "– Vigo → Redondela",
+   "bullets": [
+    "The first full day on the trail, out along the ría and up into the hills.",
+    "8:15am Morning movement and warm-up (30 minutes)",
+    "9am Breakfast",
+    "10am Set out for Redondela 22 km / 13 miles · 4–5 hours",
+    "Arrive at hotel",
+    "Restorative practice for tired legs",
+    "Dinner together at the hotel"
+   ],
+   "images": [
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-floor-practice-on-a-rug.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/YAWW6-12.jpg",
+     "alt": "Guests in a floor practice on rugs during the retreat on the Camino de Santiago, Spain",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-the-ria-and-the-town-from-above.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/max-kukurudziak-IwEjj7NFqWw-unsplash.jpg",
+     "alt": "The ria and the town seen from above in Galicia, Spain",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "day": 3,
+   "label": "Day 3",
+   "title": "– Redondela → Arcade",
+   "bullets": [
+    "A short, forgiving day — and the best oysters in Galicia at the end of it.",
+    "by 8am Suitcases to reception",
+    "Yoga practice and journaling",
+    "10am Breakfast together",
+    "Set out for Arcade 8 km / 5 miles · about 2 hours",
+    "Lunch together by the water in Arcade",
+    "Check in; optional spa at the hotel; rest, explore the town",
+    "6:30–7:30pm Meditation and journaling by the water",
+    "Dinner on your own"
+   ],
+   "images": [
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-camino-waymarker-on-a-stone-wall.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/1d939842-7c62-45b9-9b6e-d63767035683.jpg",
+     "alt": "A yellow shell waymarker set into a granite wall on the Camino de Santiago, Spain",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-toasting-around-the-dinner-table.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/YAWW4-76.jpg",
+     "alt": "The group raising their glasses around the dinner table on the Camino de Santiago, Spain",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "day": 4,
+   "label": "Day 4",
+   "title": "– Arcade → Pontevedra",
+   "bullets": [
+    "Today we walk in silence.",
+    "by 8am Suitcases to reception",
+    "Breakfast at the hotel",
+    "Morning stretch and journaling beside the ría",
+    "Set out for Pontevedra —14 km / 8 miles · 3–4 hours",
+    "Lunch on your own",
+    "Check in at hotel",
+    "6–7:30pm Gentle yoga and journaling; silence lifts",
+    "Dinner on your own in Pontevedra"
+   ],
+   "images": [
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-mossy-path-through-the-woods.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/2f075a5a-cc4f-413c-8e3c-de798f1d5a7f.jpg",
+     "alt": "A mossy footpath through the woods on the Camino de Santiago, Spain",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-leather-journal-and-dried-flowers.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/getty-images-EUG62FvoLOs-unsplash.jpg",
+     "alt": "A leather journal, a pencil and dried flowers laid out for the reflections practice on the Camino de Santiago",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "day": 5,
+   "label": "Day 5",
+   "title": "– Pontevedra → Caldas de Reis",
+   "bullets": [
+    "A long, beautiful day that ends at a river and a garden.",
+    "by 8am Suitcases to reception",
+    "Breakfast",
+    "Morning stretch outdoors on the hotel terrace",
+    "Set out for Caldas de Reis 22 km / 13 miles · about 6 hours",
+    "Lunch on your own along the way or in Caldas",
+    "Check in at hotel; rest by the pool, wander the gardens",
+    "Gentle yoga and journaling",
+    "Happy hour",
+    "8pm Dinner together at the hotel"
+   ],
+   "images": [
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-stretching-above-the-green-valley.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/04/wendyyogaport.jpeg",
+     "alt": "Guests stretching at a viewpoint above a green valley on the Camino de Santiago, Spain",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-river-running-through-the-ferns.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/rio-torre-do-rio-02-1030x687-1.jpg",
+     "alt": "A river running through ferns and woodland in Galicia, on the Camino de Santiago, Spain",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "day": 6,
+   "label": "Day 6",
+   "title": "– Caldas de Reis / rest day",
+   "bullets": [
+    "No walking. This is the day the week rearranges itself around.",
+    "Yoga and movement class",
+    "Breakfast",
+    "The day is yours: swim, read, sleep, do nothing well",
+    "Optional thermal baths at nearby Cuntis, or a local wine experience",
+    "Restorative yoga and journaling by the fire",
+    "Dinner together at the hotel"
+   ],
+   "images": [
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-pazo-gardens-and-the-river.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/jardines-fachada-torre-do-rio-14-1030x687-1.jpg",
+     "alt": "The gardens and the river beside a stone pazo on the Camino de Santiago, Spain",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-pool-beside-the-waterfall.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/piscina-torre-do-rio-08-1030x687-1.jpg",
+     "alt": "A pool beside the waterfall in the garden of a riverside hotel on the Camino de Santiago, Spain",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "day": 7,
+   "label": "Day 7",
+   "title": "– Caldas de Reis → Padrón",
+   "bullets": [
+    "Rested legs, vineyards, and the last night before Santiago.",
+    "by 8am Suitcases to reception",
+    "Breakfast, then a leg warm-up on the terrace",
+    "Head out to Padron 19 km / 11.5 miles · 5–6 hours",
+    "Lunch on your own along the way",
+    "Check in at our country guesthouse; gardens and spa",
+    "Gentle yoga, journaling, and intention setting for the final day",
+    "Dinner together"
+   ],
+   "images": [
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-yellow-arrow-painted-on-a-tree.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/fonsi-fernandez-QbOxCQddlgE-unsplash.jpg",
+     "alt": "A yellow waymarking arrow painted on a mossy tree trunk on the Camino de Santiago, Spain",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-stone-house-and-horreo.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/OsLambrans_exterior_camino1.webp",
+     "alt": "A Galician stone house with its horreo granary beside the Camino de Santiago, Spain",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "day": 8,
+   "label": "Day 8",
+   "title": "– Padrón → Santiago de Compostela",
+   "bullets": [
+    "The longest day, and the one you’ll remember.",
+    "by 8am Suitcases to reception",
+    "Breakfast",
+    "Body warm-up and meditation",
+    "Set out for Santiago de Compostela 25 km / 15 miles · about 7 hours",
+    "Lunch on your own along the way",
+    "Arrive into the old city; meet at the Santiago de Compostela Cathedral",
+    "Check into our final accommodations just outside the center",
+    "Dinner together as a group"
+   ],
+   "images": [
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-carved-stone-vaulting.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/mario-la-pergola-n09YCcRHZhY-unsplash.jpg",
+     "alt": "Carved stone vaulting and a sculpted portal in Santiago de Compostela, Spain",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-scallop-shells-on-a-table.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/sergio-kian-q0vQw9OxsFg-unsplash.jpg",
+     "alt": "Scallop shells on red cords, the pilgrim's badge of the Camino de Santiago, Spain",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "day": 9,
+   "label": "Day 9",
+   "title": "– Santiago de Compostela",
+   "bullets": [
+    "A day to be still in the place you walked to.",
+    "Yoga practice",
+    "Breakfast",
+    "Two hour Pilgrim Ritual at the Spa",
+    "Lunch at the hotel",
+    "Afternoon free : wander Compostela, or stay with the spa and the gardens",
+    "Closing circle and final yoga practice",
+    "Farewell dinner together"
+   ],
+   "images": [
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-relais-hotel-and-gardens.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/1775482969_4.tmedium-e1786339654464.jpg",
+     "alt": "The stone hotel and its gardens at the end of the Camino de Santiago, Spain",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-spa-pool-at-the-final-hotel.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/Screenshot-2026-08-10-at-11.56.19-a.m.png",
+     "alt": "A guest at the indoor spa pool of the final hotel on the Camino de Santiago, Spain",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "day": 10,
+   "label": "Day 10",
+   "title": "– Departure",
+   "bullets": [
+    "Breakfast",
+    "Check out and onward travel",
+    "Reserve my space"
+   ],
+   "images": []
+  }
+ ],
+ "itinerary_notes": [],
+ "optional_excursions_schedule": [],
+ "accommodations": [
+  {
+   "name": null,
+   "label": null,
+   "text": [
+    "Part of the pleasure of this route is that no two nights look alike.",
+    "We stay in casas rurales with their own particular charm — family-run, unhurried, the kind of place where breakfast is whatever came out of the garden.",
+    "We stay in traditional Galician pazos, stone manor houses with walled gardens and centuries of weather on them.",
+    "And we finish in Compostela at a Relais & Châteaux hotel with a spa, for two nights of proper pampering at the end of the walk.",
+    "All stays are the most charming along this route. Each is unique, well appointed and comfortable with ensuite bathrooms."
+   ],
+   "instagram": null,
+   "gallery": [
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-hotel-lounge-with-a-picture-wall.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/vigo-hotel.jpeg",
+     "alt": "A hotel lounge with a wall of framed prints on the Camino de Santiago, Spain",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-twin-room-with-wooden-floors.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/OsLambrans_C_HabitacionMelon.webp",
+     "alt": "A twin room with wooden floors and a view to the garden on the Camino de Santiago, Spain",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-beamed-room-under-the-eaves.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/habitacion-mimosa-torre-do-rio-05-1030x687-1.jpg",
+     "alt": "A room under the beamed eaves of a Galician pazo on the Camino de Santiago, Spain",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-pazo-sitting-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/salon-torre-do-rio-13-1030x687-1.jpg",
+     "alt": "The sitting room of a Galician pazo, bookshelves and lamps, on the Camino de Santiago, Spain",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-pazo-gardens-and-the-river.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/jardines-fachada-torre-do-rio-14-1030x687-1.jpg",
+     "alt": "The gardens and the river beside a stone pazo on the Camino de Santiago, Spain",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-parador-at-dusk.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/Parador-de-Pontevedra-55.jpg",
+     "alt": "The stone parador lit at dusk in Pontevedra on the Camino de Santiago, Spain",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-corridor-with-stone-walls.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/1775492599_hab-5.tmedium.jpg",
+     "alt": "A corridor with stone walls and panelled doors in a casa rural on the Camino de Santiago, Spain",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-room-with-patterned-wallpaper.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/1775492675_hab-6.tmedium.jpg",
+     "alt": "A room with patterned wallpaper opening to the garden on the Camino de Santiago, Spain",
+     "shared": true
+    }
+   ]
+  }
+ ],
+ "rooms": [
+  {
+   "name": "Private Room",
+   "price_usd": 7995,
+   "price_label": "7,995usd Private",
+   "price_unit": "private room",
+   "description": "All stays along the route are unique, well appointed and comfortable with ensuite bathrooms.",
+   "attrs": {
+    "bed": null,
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-room-with-toile-wallpaper.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/1775492726_hab-7.tmedium-e1786341843180.jpg",
+     "alt": "A bedroom with toile wallpaper and a stone wall on the Camino de Santiago, Spain",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-twin-room-with-red-runners.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/OsLambrans_A_HabitacionCero-e1786341991514.webp",
+     "alt": "A twin room with red bed runners in a casa rural on the Camino de Santiago, Spain",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "name": "Private Room — shared bed",
+   "price_usd": 6995,
+   "price_label": "6,995usd Shared Bed per person",
+   "price_unit": "per person",
+   "description": "Shared-bed rate in a private room.",
+   "attrs": {
+    "bed": null,
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-room-with-toile-wallpaper.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/1775492726_hab-7.tmedium-e1786341843180.jpg",
+     "alt": "A bedroom with toile wallpaper and a stone wall on the Camino de Santiago, Spain",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-twin-room-with-red-runners.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/OsLambrans_A_HabitacionCero-e1786341991514.webp",
+     "alt": "A twin room with red bed runners in a casa rural on the Camino de Santiago, Spain",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "name": "Shared Room",
+   "price_usd": 6995,
+   "price_label": "6,995usd per person",
+   "price_unit": "per person",
+   "description": "All shared rooms have 2 separate beds. A few nights you will have your own private room.",
+   "attrs": {
+    "bed": "2 separate beds",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": []
+  }
+ ],
+ "pricing_notes": [
+  "All pricing is in USD.",
+  "If you would like to share a room with a friend please sign up together. If you would like us to pair you with a roommate we will do our best to provide another participant. If there is no one else to share a room with you will be required to take a private accommodation.",
+  "Airfare is not included in this package.",
+  "Space is limited to 12 guests for an intimate retreat. Please secure your space early.",
+  "Space is limited to 12 guests for an intimate retreat."
+ ],
+ "extras": [],
+ "travel_tips": [
+  {
+   "heading": null,
+   "items": [
+    "Camino de Santiago :"
+   ]
+  },
+  {
+   "heading": "Arrival & airports",
+   "items": [
+    "We begin in Vigo and finish in Santiago de Compostela — two different cities, so book into one and out of the other.",
+    "Vigo (VGO) is the closest airport to our starting hotel, around 20 minutes away.",
+    "Santiago (SCQ), Lisbon (LIS) and Porto (OPO) are well connected and often better value; from Porto, there are direct trains and buses to Vigo in around 2–2.5 hours. A private taxi ride could be arranged to simplify the process. Pricing will depend on how many in the ride. Inquire for more.",
+    "For the return, Santiago airport is about 15 minutes from our final hotel.",
+    "Arrive a day or three early if you can. Starting a walking week jet-lagged is a hard way to begin."
+   ]
+  },
+  {
+   "heading": "Preparing your body",
+   "items": [
+    "This is not a technical trail, but it is six days of consecutive walking. Come with some kilometers already in your legs.",
+    "In the months before, build up to walking 15–20 km comfortably, ideally on back-to-back days.",
+    "Break everything in properly. Nothing new on day one — not shoes, not socks, not a pack.",
+    "Trail runners or light hiking shoes both work well; heavy boots are usually not necessary for the Portuguese Way route."
+   ]
+  },
+  {
+   "heading": "Packing",
+   "items": [
+    "Your suitcase travels between hotels each day, so pack it however you like — you’ll only carry a small day pack on the trail.",
+    "In the day pack: water bottle, sun protection, hat, a rain layer, snacks, blister care, and your journal (part of our gift to you). We will send a full packing list prior to the retreat.",
+    "Layers. Galicia is green because Galicia rains — a proper waterproof jacket earns its place in both seasons.",
+    "Two pairs of walking shoes if you have them, and more socks than feels reasonable. A comfy pair of squishy slides or Birks for when you’re not on the trail are essential.",
+    "A swimsuit for the pools, thermal baths and spas along the way.",
+    "One nicer outfit for the farewell dinner in Santiago."
+   ]
+  },
+  {
+   "heading": "Weather",
+   "items": [
+    "April: green, fresh and changeable. Expect 54-66°F, wildflowers, and a decent chance of rain.",
+    "September: warmer and more settled, around 63–75°F, with the harvest underway and long evenings.",
+    "Either way, mornings are cool and afternoons can be warm. Layers do most of the work."
+   ]
+  },
+  {
+   "heading": "Yoga & props",
+   "items": [
+    "Mats and props are provided at the hotels where we practice.",
+    "If you prefer your own mat, bring a light travel mat such as a Liforme (save 20% here).",
+    "Practices are designed around a walking body — accessible, restorative and always optional.",
+    "Part of our gift to you at opening circle will be a journal and a pen."
+   ]
+  },
+  {
+   "heading": "Food & dietary notes",
+   "items": [
+    "Galician cooking is seafood-forward and exceptional: percebes, pulpo, oysters at Arcade, Padrón peppers, Albariño.",
+    "Vegetarian and vegan options can be arranged with advance notice.",
+    "Gluten-free and allergy-friendly meals are possible, though cross-contamination may occur.",
+    "If you have a serious allergy, bring two epi-pens and let our team know where they are.",
+    "Meals on your own can be eaten along the trail under the shade of a tree or in a cafe made for pilgrims; dinners are available at or close to the hotels.",
+    "Tap water throughout Galicia is safe to drink, and we recommend bringing a refillable water bottle to fill at the hotels each morning and along the Camino where you’ll also find public fountains — just look for those marked “agua potable” (drinking water) and avoid drinking from unmarked natural springs."
+   ]
+  },
+  {
+   "heading": "Your credential",
+   "items": [
+    "Every pilgrim carries a credential — a small folded passport stamped at hotels, cafés and churches along the way.",
+    "Because we walk more than the final 100 kilometres, you’re eligible to collect your certificate on arrival in Santiago.",
+    "Collect at least two stamps a day. It’s a small ritual, and it becomes one of the things you keep."
+   ]
+  },
+  {
+   "heading": "Travel & Medical insurance",
+   "items": [
+    "We strongly recommend purchasing travel and trip cancellation insurance as soon as you book, to protect your investment and give you peace of mind while traveling. Cover your retreat here. We require that you show proof of medical insurance in case you need to use it."
+   ]
+  }
+ ],
+ "gallery_title": null,
+ "gallery_intro": null,
+ "gallery": [
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-resting-outside-a-village-bar.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/cbbce1b4-da34-49b8-bef1-7825b0db8ca8.jpg",
+   "alt": "Walkers resting at tables outside a village bar on the Camino de Santiago, Spain",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-river-running-through-the-ferns.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/rio-torre-do-rio-02-1030x687-1.jpg",
+   "alt": "A river running through ferns and woodland in Galicia, on the Camino de Santiago, Spain",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-hotel-gardens-above-the-sea.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/vigo-hotel-beach.jpeg",
+   "alt": "Hotel gardens looking out over the sea in Galicia, on the Camino de Santiago, Spain",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-stone-house-and-horreo.webp",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/OsLambrans_exterior_camino1.webp",
+   "alt": "A Galician stone house with its horreo granary beside the Camino de Santiago, Spain",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-pazo-gardens-and-the-river.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/jardines-fachada-torre-do-rio-14-1030x687-1.jpg",
+   "alt": "The gardens and the river beside a stone pazo on the Camino de Santiago, Spain",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-cloister-fountain-in-santiago.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/max-kukurudziak-_pIYtgNgrjA-unsplash.jpg",
+   "alt": "A fountain in a stone cloister in Santiago de Compostela, Spain",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-old-stone-bridge-over-the-river.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/alejandro-pinero-amerio-hNKBXSBmrOQ-unsplash-scaled-e1786341033372.jpg",
+   "alt": "An old stone bridge arching over the river on the Camino de Santiago, Spain",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-cathedral-tower-against-the-sky.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/andrea-fontalvo-2C-DioYk-l0-unsplash.jpg",
+   "alt": "A baroque tower of Santiago de Compostela cathedral against the sky, Spain",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-yellow-arrow-painted-on-a-tree.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/fonsi-fernandez-QbOxCQddlgE-unsplash.jpg",
+   "alt": "A yellow waymarking arrow painted on a mossy tree trunk on the Camino de Santiago, Spain",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-village-church-in-the-hills.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/getty-images-l2w9oeH6E5s-unsplash.jpg",
+   "alt": "A stone village church among the green hills on the Camino de Santiago, Spain",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-carved-wooden-door.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/mario-la-pergola-8RZn2izNgY4-unsplash.jpg",
+   "alt": "A heavily carved wooden door in a stone portal in Galicia, on the Camino de Santiago, Spain",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-hotel-reception-lounge.webp",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/OsLambrans_B_recepcion.webp",
+   "alt": "The reception lounge of a casa rural on the Camino de Santiago, Spain",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-the-ria-and-the-town-from-above.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/max-kukurudziak-IwEjj7NFqWw-unsplash.jpg",
+   "alt": "The ria and the town seen from above in Galicia, Spain",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-relais-hotel-and-gardens.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/1775482969_4.tmedium-e1786339654464.jpg",
+   "alt": "The stone hotel and its gardens at the end of the Camino de Santiago, Spain",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-ferns-on-a-mossy-wall.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/1775483283_fot0-3.tmedium.jpg",
+   "alt": "Ferns growing from a mossy stone wall along the Camino de Santiago, Spain",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-toasting-around-the-dinner-table.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/YAWW4-76.jpg",
+   "alt": "The group raising their glasses around the dinner table on the Camino de Santiago, Spain",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-bench-under-the-trees.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/1775483384_foto-3.tmedium.jpg",
+   "alt": "A bench under the trees in a park in Galicia, on the Camino de Santiago, Spain",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-practice-seen-through-the-window.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/YAWW6-10.jpg",
+   "alt": "A practice seen through the window glass during the retreat on the Camino de Santiago, Spain",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-walking-the-city-street-together.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/YAWW3-13.jpg",
+   "alt": "Guests walking a city street together in Galicia, on the Camino de Santiago, Spain",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-laughing-over-coffee.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/YAWW2-44.jpg",
+   "alt": "Guests laughing together over coffee on the Camino de Santiago, Spain",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-prawns-in-the-pan.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/YAWW1-17.jpg",
+   "alt": "Prawns cooking in a pan with rosemary, a Galician meal on the Camino de Santiago, Spain",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-arriving-in-the-city.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/YAWW3-9.jpg",
+   "alt": "Guests arriving in the city, arms out, on the Camino de Santiago, Spain",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-room-under-the-beams-with-stone-walls.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/habitacion-mimosa-torre-do-rio-02-1030x687-1-e1786341697373.jpg",
+   "alt": "A bedroom under timber beams with stone walls on the Camino de Santiago, Spain",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-room-with-a-window-over-the-estuary.webp",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/OsLambrans_A_HabitacionNaranja4-e1786341956102.webp",
+   "alt": "A room with a window over the estuary on the Camino de Santiago, Spain",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-map-of-the-route-through-galicia.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/CAMINO-MAPS-1-scaled-e1786380262520.jpg",
+   "alt": "An illustrated map of the route through Galicia from Vigo to Santiago de Compostela, Spain",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-cathedral-tower-against-the-sky.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/andrea-fontalvo-2C-DioYk-l0-unsplash.jpg",
+   "alt": "A baroque tower of Santiago de Compostela cathedral against the sky, Spain",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/camino-de-santiago/img/yoga-retreat-camino-de-santiago-spain-pilgrim-statue-on-a-white-wall.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/08/42b7e5cb-6755-42eb-8c9f-de0b0f0baa69.jpg",
+   "alt": "A bronze pilgrim statue with staff and scallop shell on a white wall on the Camino de Santiago, Spain",
+   "shared": true,
+   "ratio": null
+  }
+ ],
+ "faqs": [
+  {
+   "question": "How fit do I need to be?",
+   "answer": [
+    "You should be comfortable walking 20 km in a day and happy to do it several days in a row. The terrain is gentle — this is about endurance, not difficulty. If a day feels like too much, a taxi is always available and nobody will think anything of it."
+   ]
+  },
+  {
+   "question": "Do I have to carry my luggage?",
+   "answer": [
+    "No. Your suitcase is transferred hotel to hotel every morning. You walk with a day pack."
+   ]
+  },
+  {
+   "question": "Is this a religious retreat?",
+   "answer": [
+    "No. The Camino is a thousand-year-old pilgrimage route and we walk it with respect for that history, but our frame is contemplative rather than religious. You’re welcome to visit the cathedral, and equally welcome not to. Silence, walking, journaling and practice are the spine of the week."
+   ]
+  },
+  {
+   "question": "Do I have to walk every day?",
+   "answer": [
+    "No. Six of the ten days involve walking, and you can opt out of any of them — if you need, an Uber can take you ahead to the next hotel. Most people walk more than they expected to."
+   ]
+  },
+  {
+   "question": "What is the day of silence actually like?",
+   "answer": [
+    "After morning practice, we set out and let the trail get quiet. For about four hours, there’s no conversation, no phones, no headphones — just the rhythm of your footsteps, the landscape around you, and whatever comes up along the way. You can choose to walk entirely on your own, or move quietly alongside others, finding your own pace and space for the day. We come back together in the evening to break the silence during our practice and reflect on the experience. It may be the part of the retreat that feels most unfamiliar going in — and one of the parts you remember most."
+   ]
+  },
+  {
+   "question": "Will I get the Compostela certificate?",
+   "answer": [
+    "Yes, if you’d like it. We walk well over the 100 km required, and you’ll collect stamps in your credential along the way."
+   ]
+  },
+  {
+   "question": "Can I come on my own?",
+   "answer": [
+    "Most people do. Shared rooms are available if you’d like to be matched with another solo traveller, and private rooms if you’d rather have your own space."
+   ]
+  },
+  {
+   "question": "What if it rains?",
+   "answer": [
+    "It probably will, at some point. Galicia’s green comes from somewhere. Bring a good jacket and it becomes part of the story rather than a problem."
+   ]
+  }
+ ],
+ "booking": {
+  "deposit_usd": 1000,
+  "deposit_label": "$1,000 USD per person",
+  "deposit_instructions": "Deposits of $1,000usd are due to secure your space in the retreat. Please check availability with us for accommodations before making your deposit.",
+  "balance_due_days": 90,
+  "balance_note": "The balance of your retreat (minus your $1,000usd initial deposit) is due 90 days prior to arrival. All details with instructions for settling up will be emailed to you three months prior to the retreat.",
+  "payment_methods": [
+   "Credit card",
+   "Wire transfer",
+   "Zelle",
+   "Bitcoin"
+  ],
+  "roommate_note": "Roommates should book together. If you would like to share a room and do not have a roommate we will provide one for you if possible. In the case that there is no one to share a room we ask that you take a private room instead.",
+  "cancellation_policy": [
+   "All payments are 100% non refundable and non-transferable. We recommend that you buy trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you."
+  ],
+  "booking_url": "https://yogaadventuresworldwide.com/retreat/camino-de-santiago/#reserve",
+  "contact_url": "https://yogaadventuresworldwide.com/contact-about-yoga-retreats/"
+ },
+ "testimonials": null,
+ "carbon_offset": null,
+ "source_url": "https://yogaadventuresworldwide.com/retreat/camino-de-santiago/",
+ "source_post_slug": "camino-de-santiago",
+ "source_categories": [
+  "signature-retreats",
+  "yoga"
+ ],
+ "source_is_shared": true,
+ "seo_title": "Camino de Santiago Yoga Retreat · Sep 2027",
+ "seo_description": "9-night yoga retreat in Camino de Santiago, Spain. September 19 - 28, 2027, with Genevieve Morin.",
+ "_notes": {
+  "about_body": " Location-level copy: shared by all 2 dates on camino-de-santiago.",
+  "intro": "Location-level copy from the top of camino-de-santiago, shared by all its dates.",
+  "includes": "Location-level list from camino-de-santiago, shared by all its dates.",
+  "itinerary": "Location-level itinerary from camino-de-santiago, shared by all its dates.",
+  "accommodations": "The old site describes the property but never names it, so `name` is null.",
+  "rooms.gallery": "Some room types have no photographs of their own: the old site shows images only under some of the headings in its pricing block.",
+  "travel_tips": "Location-level content from camino-de-santiago, shared by all its dates.",
+  "gallery": "Location-level gallery from camino-de-santiago, shared by all its dates.",
+  "faqs": "From the source page's own FAQs block.",
+  "hero_image": "Location-level hero from camino-de-santiago, shared by all its dates.",
+  "highlights": "The old site has no highlights block; nothing was invented to fill it.",
+  "testimonials": "The source page has an empty \"Praise\" carousel — the markup is there, the quotes are not. Left null; the template ships placeholder quotes.",
+  "carbon_offset": "No carbon-offset copy anywhere on the old site. The template's text is new site-wide copy.",
+  "seo_title": "DRAFT. Written only from this retreat's real destination, month and year.",
+  "seo_description": "DRAFT. Written only from real data: nights, location, published date range, teacher, status.",
+  "status": "From /all-upcoming-dates/ on 2026-11-12."
+ },
+ "_missing": [
+  "about_title",
+  "accommodations[].name",
+  "carbon_offset",
+  "extras",
+  "gallery_intro",
+  "gallery_title",
+  "highlights",
+  "includes_footnote",
+  "itinerary_notes",
+  "not_included_footnote",
+  "optional_excursions_schedule",
+  "status_label",
+  "subtitle",
+  "teachers[Genevieve Morin].instagram",
+  "teachers[Genevieve Morin].role",
+  "testimonials",
+  "urgency"
+ ]
+}

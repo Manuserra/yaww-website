@@ -13,3 +13,10 @@ Screenshot *
 # Scratch footage, not used by any page. Deliberately not *.mp4: video the
 # site actually serves should still be tracked.
 /hero-lassie.mp4
+
+# Retreat photography extracted from the old site: 524 files, ~692 MB, at the
+# original resolution on purpose. Too heavy for the repo, so the masters live
+# beside it in ../yaww-retreat-images/ under the same retreats/... paths, which
+# is why the `file` values in retreats/*/data.json still resolve there.
+retreats/**/img/
+retreats/_shared/

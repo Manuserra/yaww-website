@@ -1,0 +1,757 @@
+{
+ "slug": "argentina-mar-2027",
+ "title": "Argentina Yoga Retreat : Buenos Aires & Patagonia",
+ "subtitle": null,
+ "destination": "Argentina",
+ "location_label": "Buenos Aires & Patagonia, Argentina",
+ "country": "Argentina",
+ "region": "Buenos Aires & Villa La Angostura",
+ "tier": null,
+ "tier_label": null,
+ "tier_source": null,
+ "status": "few_spaces",
+ "status_label": "2 SPACES LEFT!",
+ "urgency": {
+  "type": "scarce",
+  "label": "2 Spaces Left"
+ },
+ "date_start": "2027-03-12",
+ "date_end": "2027-03-19",
+ "dates_label": "March 12 - 19, 2027",
+ "season": "Winter, 2026 / 2027",
+ "nights": 7,
+ "days": 8,
+ "teachers": [
+  {
+   "name": "Alison Buchanan",
+   "slug": "alison-buchanan",
+   "role": null,
+   "bio": [
+    "Alison’s motto is “strength comes from within.” By leading from the heart, and believing in our innate power, she feels that every one of our goals is achievable.",
+    "Alison brings this philosophy to her teaching, where she aims to create challenging, yet playful sequences. Her classes are holistic and mindful, and always tuned to what students need in the moment. Deep down, Alison is an alignment and anatomy nerd who loves to share her knowledge with the aim of helping people move better, and thus feel better, in their bodies.",
+    "Before moving to Seattle, Alison was a longtime teacher in the San Francisco Bay Area. She has taught yoga professionally for 13 years, and continues to advance her yogic studies with dynamic asana and mediation teachers nationwide. During yoga retreats with Alison, you can expect her to be an engaged leader who offers a strength-focused yoga class in the morning, and a restorative/meditation class in the evening. She’ll be a person with whom you can authentically connect on-and-off the mat. She’ll also be an active participant, who’ll happily go adventuring with you, and then reminisce about it all over a glass a wine at the end of the day.",
+    "Come experience adventure, excitement, restoration and all-around fun with her on a life-changing retreat."
+   ],
+   "photo": {
+    "file": "retreats/_shared/teachers/img/yoga-teacher-alison-buchanan.jpg",
+    "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/04/Alison-4-1-scaled-e1745639242256.jpg",
+    "alt": "Alison Buchanan, yoga teacher, looking out to sea",
+    "shared": true
+   },
+   "instagram": null,
+   "source": "https://yogaadventuresworldwide.com/team/"
+  }
+ ],
+ "teacher_unassigned": false,
+ "hero_image": {
+  "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-lake-and-snowy-peaks-in-patagonia.jpg",
+  "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/monte-tronador-view-e1572206780560.jpg",
+  "alt": "A wooded island on the lake with snowy peaks beyond, near Villa La Angostura, Argentina",
+  "shared": false
+ },
+ "intro": "Join us for an unforgettable 7 night adventure that begins in the vibrant and historic city of Buenos Aires and continues in the breathtaking beauty of Patagonia’s Villa La Angostura. Your journey starts with three nights in Buenos Aires, where you’ll experience the energy of this iconic city with daily yoga sessions, exquisite food and wine, and immersive city tours that capture the heart and soul of Argentine culture. Enjoy a unique retreat adventure and immerse yourself in the rich history and vibrant spirit of Buenos Aires.",
+ "about_title": null,
+ "about_body": [
+  "Our extraordinary 7-night yoga and adventure retreat takes you from the lively streets of Buenos Aires to the serene landscapes of Villa La Angostura in Patagonia. Our adventure begins with four days in Buenos Aires, a city bursting with life and history. Here, you’ll enjoy daily yoga practices, savor delicious Argentine cuisine paired with fine wines, and explore the city’s rich cultural heritage through guided tours, tango performances and secret speakeasys. Experience the thrill of playing polo, one of Argentina’s most cherished sports, and immerse yourself in the vibrant atmosphere of this remarkable city.",
+  "After soaking in the dynamic energy of Buenos Aires, we’ll whisk you away to the peaceful surroundings of Villa La Angostura in Patagonia for the next four nights. This stunning retreat, set amid crystal-clear lakes and towering mountains, offers daily yoga sessions in nature’s embrace, scenic hikes, unique excursions and ample time to relax and recharge in a tranquil setting. Fresh, locally sourced meals and the best of Argentine wines nourish you daily as you unwind by the water.",
+  "Literally the best of both worlds…we are so excited to share this amazing country with you!"
+ ],
+ "highlights": [],
+ "includes": [
+  "3 nights in Buenos Aires’ Palermo neighborhood charming boutique hotel",
+  "4 nights in Villa La Angostura lake front accommodations",
+  "High quality yoga instruction as per the Itinerary",
+  "Expert Y&AWW facilitator to guide you through your adventure",
+  "Breakfast daily, 2 lunches & 6 dinners",
+  "Argentine Cooking Class/Demo",
+  "Guided City Tour w/ coffee & time for shopping",
+  "Polo Day with lesson & match",
+  "Tango Class & Show",
+  "Argentine wine tasting",
+  "Two optional nature walks",
+  "Scenic drive along the Ruta de 7 Lagos",
+  "Guided kayaking trip on the lake with mate & epic views",
+  "Dry Sauna, Heated Pool, Hammam, hotel gym available for use in VLA",
+  "Optional Spa services available",
+  "Gift bag from us to you",
+  "All local taxes",
+  "Expert YAWW facilitator onsite for you during your retreat",
+  "RT Transfers to and from VLA to Bariloche airport"
+ ],
+ "includes_footnote": null,
+ "not_included": [
+  "International airfare into Buenos Aires",
+  "Airport Transfers on opening day (from EZE into the city)",
+  "Roundtrip flights from Buenos Aires (AEP) to Bariloche*",
+  "Alcohol outside of what is included with dinners; bottled water",
+  "4 lunches & 1 dinner on your own",
+  "Travel & Trip cancellation insurance; Medical insurance coverage",
+  "Any extra goodies you’d like to bring home",
+  "Staff Gratuities (suggested between $65-95usd for the incredible staff)",
+  "We will advise flight times and details at that time. You will be responsible for purchasing your own roundtrip domestic flights during the retreat as well as your airport transfers on opening and closing day.",
+  "Please see the Travel Tips guide below for more."
+ ],
+ "not_included_footnote": "Domestic flight details to BRC will be sent to the group approx. 4 months prior to dates.",
+ "itinerary": [
+  {
+   "day": 1,
+   "label": "Day 1",
+   "title": "BUENOS AIRES",
+   "bullets": [
+    "For early arrivals, you can relax at the hotel spa, by the pool, enjoy lunch or explore the neighborhood.",
+    "Bags can be left at reception until rooms are ready.",
+    "3pm Hotel Check-in",
+    "4-5:30pm Opening circle & Grounding Yoga practice at a local studio",
+    "6:30-10pm Private Cooking Class & curated Asado dinner together"
+   ],
+   "images": [
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-room-with-palm-print-wallpaper.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/ROOM-STANDARD-e1724890855180.jpg",
+     "alt": "A room with palm-print wallpaper at the hotel in Buenos Aires, Argentina",
+     "shared": false
+    },
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-stretching-in-the-doorway.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/05/anj-heart-pose-1.jpg",
+     "alt": "A guest stretching in a sunlit doorway during the retreat in Argentina",
+     "shared": false
+    },
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-poolside-loungers-in-the-garden.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/POOL-LOUNGE-e1724890935177.jpg",
+     "alt": "Loungers beside the garden pool at the hotel in Buenos Aires, Argentina",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 2,
+   "label": "Day 2",
+   "title": "BUENOS AIRES",
+   "bullets": [
+    "Coffee, Tea and fruit",
+    "8-9:15am Morning Movement Yoga practice at a local studio",
+    "9:30am Breakfast at the hotel",
+    "12-3pm Guided Walking City tour",
+    "Free time for lunch on your own, shopping, Mercado San Telmo, explore the area",
+    "7:30-8:30pm Tango class",
+    "8:45-10:15pm Classic Argentine dInner",
+    "10:30pm Milonga Tango Show"
+   ],
+   "images": [
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-street-art-in-buenos-aires.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/travel-flatwhite-UjYedVEj2nw-unsplash-1.jpg",
+     "alt": "Layered street art and stickers on a wall in Buenos Aires, Argentina",
+     "shared": false
+    },
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-tango-dancers-in-the-street.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/alain-bonnardeaux-M1pEv-T12D8-unsplash.jpg",
+     "alt": "Tango dancers performing in the street in Buenos Aires, Argentina",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 3,
+   "label": "Day 3",
+   "title": "BUENOS AIRES",
+   "bullets": [
+    "8-9:15am Breakfast",
+    "9:30am Leave for Polo Day",
+    "10:30-11:15am Pre-polo stretch and meditation",
+    "11:30am-7pm Polo Day w/ lunch, pool; professional Polo match; Horse rides & polo lesson",
+    "7-8pm Back to hotel",
+    "9pm Dinner together at a classic Argentinian comfort food favorite",
+    "Optional after dinner drinks at Tres Monos (#11 World’s Best Bar Award) or a local speakeasy"
+   ],
+   "images": [
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-red-car-on-a-cobbled-street.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/juan-domenech-pCSF2Y9qQwo-unsplash.jpg",
+     "alt": "A red vintage car parked on a cobbled street in Buenos Aires, Argentina",
+     "shared": false
+    },
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-polo-players-on-horseback.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/Polo-Day-34.jpeg",
+     "alt": "Polo players on horseback at the polo day near Buenos Aires, Argentina",
+     "shared": false
+    },
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-cocktail-at-the-hotel-bar.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/Screenshot-2024-08-28-at-5.52.27%E2%80%AFp.m-e1724906245543.png",
+     "alt": "A cocktail served at the hotel bar in Buenos Aires, Argentina",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 4,
+   "label": "Day 4",
+   "title": "Travel day to VLA",
+   "bullets": [
+    "Breakfast",
+    "Hotel Check out; Leave for airport AEP",
+    "Flight to Bariloche*",
+    "Late lunch along the way to Villa La Angostura",
+    "Hotel arrival/check in; Settle",
+    "Wine tasting by the fire at hotel with empanadas; fiambres and cheese"
+   ],
+   "images": [
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-peaks-above-the-lake.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/B23824BD-CA5C-4DB3-B84E-59C831CB045C-1.jpg",
+     "alt": "Jagged peaks rising above the clear lake near Villa La Angostura, Argentina",
+     "shared": false
+    },
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-walking-in-the-old-forest.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/nicolas-encina-7P1_deGzweo-unsplash.jpg",
+     "alt": "A walker among the mossy trunks of the old forest in Patagonia, Argentina",
+     "shared": false
+    },
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-triangle-pose-by-the-lake.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/IMG_1419.jpg",
+     "alt": "A guest in triangle pose on the shore of the lake in Patagonia, Argentina",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 5,
+   "label": "Day 5",
+   "title": "Villa La Angostura, Patagonia",
+   "bullets": [
+    "Coffee, Tea and fruit",
+    "8-9:30am Morning Vinyasa Yoga practice with lake views",
+    "9:45am Breakfast",
+    "Free time/hike/rest, chill; spa services; explore the town/shopping; Lunch on your own",
+    "2pm Drive up to Ruta de 7 Lagos for views",
+    "3:30-5:30pm Guided Kayak excursion on Lago Espejo with mate",
+    "7pm Happy Hour & Dinner with epic sunset views (included)"
+   ],
+   "images": [
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-kayaking-on-the-lake.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/kalen-emsley-NrN5Rvl89Lo-unsplash-scaled-e1724907274543.jpg",
+     "alt": "A guest kayaking on the lake below the mountains in Patagonia, Argentina",
+     "shared": false
+    },
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-mate-held-against-the-lake.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/camila-seves-espasandin-RzDWPyuKT14-unsplash.jpg",
+     "alt": "A gourd of mate held up against the lake in Patagonia, Argentina",
+     "shared": false
+    },
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-lakes-seen-from-the-ruta-de-los-siete-lagos.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/ignacio-aguilar-2rz6SCSdmgQ-unsplash.jpg",
+     "alt": "The lakes seen from a viewpoint on the Ruta de los Siete Lagos, Argentina",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 6,
+   "label": "Day 6",
+   "title": "Villa La Angostura, Patagonia",
+   "bullets": [
+    "Coffee, Tea and fruit",
+    "8:30-10am Morning Vinyasa Yoga practice",
+    "10:15am Breakfast",
+    "Free time to hike, rest, chill; spa services; explore the town/shopping",
+    "Lunch & Dinner on your own"
+   ],
+   "images": [
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-walking-the-lupin-lined-path.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/FE1508E6-7432-447D-9DC0-BD725DF74755-2.jpg",
+     "alt": "A guest walking a path lined with lupins beside the river in Patagonia, Argentina",
+     "shared": false
+    },
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-red-poppies-in-the-garden.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/poppies-e1724907594950.jpg",
+     "alt": "Red poppies in a garden in Villa La Angostura, Argentina",
+     "shared": false
+    },
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-tree-pose-among-the-poplars.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/IMG_5993.jpeg",
+     "alt": "A guest in tree pose among tall poplars by the lake in Patagonia, Argentina",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 7,
+   "label": "Day 7",
+   "title": "Villa La Angostura, Patagonia",
+   "bullets": [
+    "Coffee, Tea and fruit",
+    "8-9:15am Morning Movement Yoga practice",
+    "9:30am Breakfast",
+    "11:30am-3:30pm Day in nature; easy/moderate walk through the Arrayanes Forest",
+    "3:30pm Return to hotel or get dropped off in town for lunch on your own; last minute shopping",
+    "6:30-8pm Intention setting & Closing Circle",
+    "8:30pm Closing Dinner at the hotel together"
+   ],
+   "images": [
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-wooden-walkway-through-the-woods.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/florian-delee-QnB21-vaAvA-unsplash-scaled-e1724907649241.jpg",
+     "alt": "A wooden walkway winding through the woods near Villa La Angostura, Argentina",
+     "shared": false
+    },
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-clear-lake-below-the-andes.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/islet-off-the-hotel-e1724907570135.jpg",
+     "alt": "The clear water of the lake below the snow-capped Andes in Patagonia, Argentina",
+     "shared": false
+    },
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-asado-cooking-over-the-fire.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/asado-outdoor-e1724907349990.jpg",
+     "alt": "An asado cooking over the open fire at the lodge in Villa La Angostura, Argentina",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 8,
+   "label": "Day 8",
+   "title": "Travel back to Buenos Aires",
+   "bullets": [
+    "Breakfast",
+    "Hotel check out",
+    "Return flights to Buenos Aires (domestic airport AEP)*",
+    "This itinerary is subject to adjustments, changes in times, locations, or activities as the retreat leaders and hosts see fit. Any change will be on par with our standards or an upgrade in services or location making for an even more amazing experience for the group and our guests. Thank you in advance for your flexibility and cooperation if any situation were to arise.",
+    "reserve here!"
+   ],
+   "images": [
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-painted-wall-and-a-taxi.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/manuel-cortina-kJ4MO0Gicgs-unsplash.jpg",
+     "alt": "A painted portrait on a shutter and a black-and-yellow taxi in Buenos Aires, Argentina",
+     "shared": false
+    },
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-dome-of-the-congress-building.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/gustavo-sanchez-HbvAY8ilEV4-unsplash-1.jpg",
+     "alt": "The green dome of the Congress building in Buenos Aires, Argentina",
+     "shared": false
+    },
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-painted-houses-of-la-boca.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/lachezara-parvanova-EM557Acnzrs-unsplash.jpg",
+     "alt": "Brightly painted corrugated houses with washing lines in La Boca, Buenos Aires, Argentina",
+     "shared": false
+    }
+   ]
+  }
+ ],
+ "itinerary_notes": [
+  "Please note domestic flights are not included in the package. We will advise on pricing 4 months before the retreat.",
+  "Please refer to our Travel Tips Guide below for more on planning your return flights back to your home country. You will be responsible for purchasing your own domestic flights as per instructions in group email. Airport transfers are not included in the retreat package."
+ ],
+ "optional_excursions_schedule": [],
+ "accommodations": [
+  {
+   "name": null,
+   "label": "Buenos Aires boutique hotel",
+   "text": [
+    "3 nights in Buenos Aires’ Palermo neighborhood charming boutique hotel."
+   ],
+   "instagram": null,
+   "gallery": [
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-hotel-restaurant-in-palermo.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/RESTO-1-e1724980455729.jpg",
+     "alt": "The restaurant of the boutique hotel in Palermo, Buenos Aires, Argentina",
+     "shared": false
+    },
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-hotel-room-with-pink-floor.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/ROOM-HOME-HOTEL-e1724980612899.jpg",
+     "alt": "A room with a pink floor and a view to the garden at the hotel in Buenos Aires, Argentina",
+     "shared": false
+    },
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-breakfast-laid-on-a-wooden-table.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/DESAYUNO.jpg",
+     "alt": "Breakfast laid out on a wooden table at the hotel in Buenos Aires, Argentina",
+     "shared": false
+    },
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-hotel-pool-from-above.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/home-pool.jpg",
+     "alt": "The garden pool of the boutique hotel in Buenos Aires seen from above, Argentina",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": null,
+   "label": "Villa La Angostura lake front hotel",
+   "text": [
+    "4 nights in Villa La Angostura lake front accommodations. Dry sauna, heated pool, hammam and hotel gym are available for use."
+   ],
+   "instagram": null,
+   "gallery": [
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-lakeside-lodge-among-the-birches.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/Screenshot-2024-08-29-at-7.18.54%E2%80%AFp.m-e1724981230282.png",
+     "alt": "The lakeside lodge among the birches at Villa La Angostura, Argentina",
+     "shared": false
+    },
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-fire-burning-in-the-lodge-lounge.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/Screenshot-2024-08-29-at-7.20.07%E2%80%AFp.m-e1724981292208.png",
+     "alt": "A fire burning in the stone fireplace of the lodge lounge in Villa La Angostura, Argentina",
+     "shared": false
+    },
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-lodge-pool-above-the-lake.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/Screenshot-2024-08-29-at-7.19.41%E2%80%AFp.m-e1724982217940.png",
+     "alt": "The pool and loungers above the lake at the lodge in Villa La Angostura, Argentina",
+     "shared": false
+    },
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-twin-room-with-breakfast-tray.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/Screenshot-2024-08-29-at-7.19.08%E2%80%AFp.m-e1724982269267.png",
+     "alt": "A twin room with a breakfast tray at the lodge in Villa La Angostura, Argentina",
+     "shared": false
+    }
+   ]
+  }
+ ],
+ "rooms": [
+  {
+   "name": "Standard Room",
+   "price_usd": 7295,
+   "price_label": "Standard Room 7,295usd — City views in BA; Ground floor in VLA",
+   "price_unit": null,
+   "description": "These rooms have 1 king bed with private bathroom. Some can have 2 twin beds. Please inquire for availability.",
+   "attrs": {
+    "bed": "King",
+    "bath": "Private",
+    "view": "City views in Buenos Aires"
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-standard-room-in-buenos-aires.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/home-hotel-buenos-aires-pic-57-e1783976261148.jpeg",
+     "alt": "A standard room with a king bed at the hotel in Buenos Aires, Argentina",
+     "shared": false
+    },
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-standard-room-with-a-lake-view.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/Screenshot-2024-08-29-at-7.19.08%E2%80%AFp.m-e1783976205713.png",
+     "alt": "A standard room with a breakfast tray and a window to the trees in Villa La Angostura, Argentina",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": "Superior Room",
+   "price_usd": 7595,
+   "price_label": "Superior Room 7,595usd — City views in BA; Upper floor in VLA",
+   "price_unit": null,
+   "description": "These rooms have 1 king bed with private bathroom. Some can have 2 twin beds. Please inquire for availability.",
+   "attrs": {
+    "bed": "King",
+    "bath": "Private",
+    "view": "City views in Buenos Aires"
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-hotel-room-with-pink-floor.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/ROOM-HOME-HOTEL-e1724980612899.jpg",
+     "alt": "A room with a pink floor and a view to the garden at the hotel in Buenos Aires, Argentina",
+     "shared": false
+    },
+    {
+     "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-lake-view-room-in-villa-la-angostura.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/lake-view-1.jpg",
+     "alt": "A twin room looking out over the lake in Villa La Angostura, Argentina",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": "Garden Room",
+   "price_usd": 7695,
+   "price_label": "Garden Room 7,695usd — Garden views in BA; Upper floor in VLA",
+   "price_unit": null,
+   "description": "These rooms have 1 king bed with private bathroom. Some can have 2 twin beds. Please inquire for availability.",
+   "attrs": {
+    "bed": "King",
+    "bath": "Private",
+    "view": "Garden views in Buenos Aires"
+   },
+   "hotel": null,
+   "gallery": []
+  }
+ ],
+ "pricing_notes": [
+  "Please note that domestic flights from AEP to BRC are not included in the pricing.",
+  "Domestic flights from AEP to BRC are not included in the pricing. We will advise which flights to book 4 months prior to the dates."
+ ],
+ "extras": [],
+ "travel_tips": [
+  {
+   "heading": "Argentina yoga retreat : Buenos Aires & Patagonia",
+   "items": [
+    "AIRPORT INFO : Buenos Aires has 2 Airports : EZE that serves International flights & AEP that serves domestic flights and some South America flights. EZE is approx 45 minutes & AEP is approx 15 minutes from our hotel in the city. For departures, we will not have the return flight times from Patagonia until 4 months prior to retreat dates when you purchase your tickets. If you want to purchase your international flights for Buenos Aires sooner than 4 months out and want to make sure the flight times jive, you can plan to leave from Buenos Aires (EZE) to your international destination in the late evening/night of closing day or plan to stay overnight in BA and leave the following morning. Please keep in mind you will have to change airports from AEP to EZE to fly out to the US or your home country. This ride is approx 1 to 1.5 hours. We will help coordinate groups together to share taxis once we have everyone’s flight details so you can plan to ride together. You will be responsible for getting your own taxi from the AEP airport after the retreat ends.",
+    "AIRPORT TRANSFERS : You can take a taxi from the EZE terminal upon arrival right to our first hotel in the city. EZE is about 45 minutes from the hotel and AEP is about 15 minutes. Rates will be based on the taxi meter. Please keep in mind for your return flights to Buenos Aires and then to your final international destination, you will have to change airports from AEP to EZE. This ride is approx 1 to 1.5 hours. Airport transfers are NOT included in the package but we will help coordinate groups together to share taxis once we have everyone’s flight details so you can plan to ride together. You will be responsible for getting your own taxi from the AEP airport after the retreat ends.",
+    "WEATHER : Seasons in Argentina are opposite from North America, so our Spring is their Fall and our Fall is their Spring. Please plan to dress in layers for all kinds of weather situations. There could be rain and both hotels have swimming pools and the VLA location has a jacuzzi too. The lake will be cold no matter what time of year but if you’re feeling a cold plunge calling…this is your chance!",
+    "WHAT TO PACK : Layers are always recommended to transition from sunny days to cooler evenings. Jeans, light sweaters or jackets should be handy for cooler evenings while day time can be sunny and mild. Comfortable shoes are recommended and heels should be carefully considered because of the uneven cobblestone streets that you will surely encounter. A bathing suit and something to lay on top of in the sand if you plan to hang out by the lake is recommended. Bring a rain jacket and umbrella just in case. We will be hiking in nature so something sturdy for this walk is recommended.",
+    "YOGA PROPS : We will be practicing at a studio in Buenos Aires so mats and props are provided. In Patagonia a yoga mat will be provided for your use. If you like to practice on your own mat and are looking for an amazing travel mat we highly recommend Liforme mats and knee pads. You can use this link to get an additional 5% discount on your order.",
+    "DIETARY CONCERNS : Argentina is a culture that goes heavy on the meats..that said, in most cases they are willing to offer vegetarian options and at times can accommodate vegan as well. We ask that you be flexible in terms of diet as much as possible. Gluten free and specific food allergies will be easier to consider but anything serious will be difficult to control given the risk of cross-contamination in the kitchens while preparing meals. If you have a serious allergy please bring at least 2 epi-pens with you, carry them with you at all times and let us know where they are located so we may assist you in case of an emergency.",
+    "TRAVEL INSURANCE AND TRIP CANCELLATION COVERAGE : We highly recommend you immediately purchasing travel insurance and Trip Cancellation coverage as soon as you make your deposit towards travel to cover your investment in case anything should go awry with your travel plans."
+   ]
+  }
+ ],
+ "gallery_title": null,
+ "gallery_intro": null,
+ "gallery": [
+  {
+   "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-walking-the-lakeshore.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/37E0D52C-AC21-4F4F-8051-7C98661E099C-2.jpg",
+   "alt": "A guest walking the lakeshore among the lupins in Patagonia, Argentina",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-embers-of-the-asado-fire.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/AG-5F-200731.jpg",
+   "alt": "The glowing embers of an asado fire in Argentina",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-walking-the-lupin-lined-path.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/FE1508E6-7432-447D-9DC0-BD725DF74755-2.jpg",
+   "alt": "A guest walking a path lined with lupins beside the river in Patagonia, Argentina",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-open-kitchen-of-the-parrilla.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/AG-5F-200706.jpg",
+   "alt": "The open fire kitchen of a parrilla restaurant in Argentina",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-argentine-wine-bottles-on-the-rack.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/AG-5F-200738.jpg",
+   "alt": "Argentine wine bottles resting on the rack for the tasting, Argentina",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-cuts-of-beef-in-the-cabinet.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/AG-5F-200736.jpg",
+   "alt": "Labelled cuts of beef in the cabinet of a parrilla in Argentina",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-polo-match-in-play.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/Polo-Day-22.jpg",
+   "alt": "Polo players in play during the polo day near Buenos Aires, Argentina",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-dining-room-with-a-checkerboard-floor.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/IMG_6374-1.jpeg",
+   "alt": "A dining room with a checkerboard floor and long wooden table in Argentina",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-the-casa-rosada.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/rafael-leao-Y82RgUcbNCQ-unsplash.jpg",
+   "alt": "The pink facade of the Casa Rosada in Buenos Aires, Argentina",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-outdoor-shower-beside-the-pool.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/RING-POOL.jpg",
+   "alt": "An outdoor shower beside the pool in the hotel garden in Buenos Aires, Argentina",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-poolside-loungers-in-the-garden.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/POOL-LOUNGE-e1724890935177.jpg",
+   "alt": "Loungers beside the garden pool at the hotel in Buenos Aires, Argentina",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-caminito-corner-with-the-flag.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/celso-hashimoto-5SUqK_nZQsM-unsplash.jpg",
+   "alt": "A corner of Caminito with the Argentine flag flying in La Boca, Buenos Aires",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-painted-balconies-in-la-boca.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/barbara-zandoval-fl3fdbbtj4Q-unsplash.jpg",
+   "alt": "Painted balconies along a street in La Boca, Buenos Aires, Argentina",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-umbrellas-strung-above-the-street.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/gustavo-sanchez-RE8dZo4VCPI-unsplash.jpg",
+   "alt": "Coloured umbrellas strung above a street in Buenos Aires, Argentina",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-still-lake-and-clouds.png",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/Screenshot-2024-08-29-at-9.13.23%E2%80%AFp.m.png",
+   "alt": "Clouds reflected in the still lake in Patagonia, Argentina",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-sheepskin-saddle-on-a-polo-pony.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/floris-van-cauwelaert-H5vsCbjmDBE-unsplash.jpg",
+   "alt": "A sheepskin saddle and stirrup on a polo pony in Argentina",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-hands-raised-overhead-against-white.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/stephanie-greene-1aB-1s4BIEo-unsplash-scaled-e1725042060492.jpg",
+   "alt": "A guest with hands raised overhead against a plain white wall during practice in Argentina",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-wine-and-the-parrilla-grill.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/luca-lo-tartaro-6nwERVy4NVY-unsplash.jpg",
+   "alt": "A glass of red wine held in front of the parrilla grill in Argentina",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-meat-flaring-on-the-grill.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/rafael-hoyos-weht-Aqot8S_Keb8-unsplash-scaled-e1724985914595.jpg",
+   "alt": "Meat flaring over the coals of a grill in Argentina",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/argentina-mar-2027/img/yoga-retreat-argentina-map-of-buenos-aires-and-villa-la-angostura.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/Argentina-e1725491515198.jpg",
+   "alt": "A map of Argentina marking Buenos Aires and Villa La Angostura",
+   "shared": false,
+   "ratio": null
+  }
+ ],
+ "faqs": [
+  {
+   "question": "Do you accept bitcoin?",
+   "answer": [
+    "In addition to credit card payments we also accept wire transfers, Zelle and Bitcoin. Please inquire for more details."
+   ]
+  },
+  {
+   "question": "What is the cancellation policy?",
+   "answer": [
+    "All payments are 100% non refundable and non-transferable. We recommend that you buy trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you."
+   ]
+  },
+  {
+   "question": "What happens if my travel plans change?",
+   "answer": [
+    "There are no refunds as per our cancellation policies. We highly recommend that all of our guests secure a quality travel insurance that will cover them for any event which may cause a change of travel plans, including personal health issues or personal situations in general which may affect travel plans."
+   ]
+  },
+  {
+   "question": "Are flight delays or cancellations covered?",
+   "answer": [
+    "Not by us: transportation delays, cancellations or changes due to strikes, labor disputes, or lockouts from airlines, boats, ferries or any type of transportation are among the events we recommend covering with travel insurance."
+   ]
+  },
+  {
+   "question": "Where can I find the full terms & conditions?",
+   "answer": [
+    "The full terms and conditions are published at https://yogaadventuresworldwide.com/termsandconditions/ . By submitting payments toward your retreat you accept them."
+   ]
+  }
+ ],
+ "booking": {
+  "deposit_usd": 1000,
+  "deposit_label": "$1,000 USD per person",
+  "deposit_instructions": "Deposits of $1,000usd are due to secure your space in the retreat. Please check availability with us for accommodations before making your deposit.",
+  "balance_due_days": 90,
+  "balance_note": "The balance of your retreat (minus your $1,000usd initial deposit) is due 90 days prior to arrival. All details with instructions for settling up will be emailed to you three months prior to the retreat.",
+  "payment_methods": [
+   "Credit card",
+   "Wire transfer",
+   "Zelle",
+   "Bitcoin"
+  ],
+  "roommate_note": "Roommates should book together. If you would like to share a room and do not have a roommate we will provide one for you if possible. In the case that there is no one to share a room we ask that you take a private room instead.",
+  "cancellation_policy": [
+   "All payments are 100% non refundable and non-transferable. We recommend that you buy trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you."
+  ],
+  "booking_url": "https://yogaadventuresworldwide.com/retreat/yoga-retreat-argentina/#reserve",
+  "contact_url": "https://yogaadventuresworldwide.com/contact-about-yoga-retreats/"
+ },
+ "testimonials": null,
+ "carbon_offset": null,
+ "source_url": "https://yogaadventuresworldwide.com/retreat/yoga-retreat-argentina/",
+ "source_post_slug": "yoga-retreat-argentina",
+ "source_categories": [
+  "yoga"
+ ],
+ "source_is_shared": false,
+ "seo_title": "Argentina Yoga Retreat · Mar 2027",
+ "seo_description": "7-night yoga retreat in Buenos Aires & Patagonia, Argentina. March 12 - 19, 2027, with Alison Buchanan.",
+ "_notes": {
+  "accommodations.gallery": "The old site runs the photographs of both venues through a single gallery with no marker of which is which, so each venue here carries the whole set.",
+  "accommodations": "The old site describes the property but never names it, so `name` is null.",
+  "rooms.gallery": "Some room types have no photographs of their own: the old site shows images only under some of the headings in its pricing block.",
+  "faqs": "The source page has no FAQs block. These five answers are quoted from the site-wide Policies text inside the retreat page's Reserve section, matched to the five questions the template ships. They are not retreat-specific.",
+  "tier": "Not deducible: the old site's retreat_categories are topical (yoga, art-creative, yoga-food-and-wine, family-retreats) and only signature-retreats maps to a collection. Left null rather than guessed.",
+  "highlights": "The old site has no highlights block; nothing was invented to fill it.",
+  "testimonials": "The source page has an empty \"Praise\" carousel — the markup is there, the quotes are not. Left null; the template ships placeholder quotes.",
+  "carbon_offset": "No carbon-offset copy anywhere on the old site. The template's text is new site-wide copy.",
+  "seo_title": "DRAFT. Written only from this retreat's real destination, month and year.",
+  "seo_description": "DRAFT. Written only from real data: nights, location, published date range, teacher, status.",
+  "status": "From /all-upcoming-dates/ on 2026-11-12 — flag read \"2 SPACES LEFT!\"."
+ },
+ "_missing": [
+  "about_title",
+  "accommodations[].name",
+  "carbon_offset",
+  "extras",
+  "gallery_intro",
+  "gallery_title",
+  "highlights",
+  "includes_footnote",
+  "optional_excursions_schedule",
+  "subtitle",
+  "teachers[Alison Buchanan].instagram",
+  "teachers[Alison Buchanan].role",
+  "testimonials",
+  "tier",
+  "tier_label",
+  "tier_source"
+ ]
+}

@@ -1,0 +1,851 @@
+{
+ "slug": "santorini-sep-2027-erickson",
+ "title": "Yoga Retreat Greece",
+ "subtitle": null,
+ "destination": "Santorini",
+ "location_label": "Santorini, Greece",
+ "country": "Greece",
+ "region": "Pyrgos, Santorini",
+ "tier": null,
+ "tier_label": null,
+ "tier_source": null,
+ "status": "open",
+ "status_label": null,
+ "urgency": null,
+ "date_start": "2027-09-12",
+ "date_end": "2027-09-18",
+ "dates_label": "September 12 - 18, 2027",
+ "season": "Summer, 2027",
+ "nights": 6,
+ "days": 7,
+ "teachers": [
+  {
+   "name": "Bonnie Erickson",
+   "slug": "bonnie-erickson",
+   "role": null,
+   "bio": [
+    "Born in England, raised in California, and seasoned with the grit of 20 years in New York City, Bonnie brings a lifetime of movement, mindfulness, and heart-centered teaching to the mat.",
+    "A lifelong dancer, her path has been anything but linear — from opening restaurants for Wolfgang Puck and editing for The New York Times to spending twelve years as Director of Educational Programming at Broadway Dance Center in NYC. Through it all, movement has remained a constant.",
+    "After nearly two decades as a devoted yoga student, Bonnie stepped into teaching and has since guided more than 2,500 classes. She is currently continuing her studies through Stanford’s YogaX program, with a focus on therapeutic yoga.",
+    "Known for her soothing voice, deep warmth, healing touch, and wonderfully silly spirit, Bonnie creates classes that are thoughtful and grounding without ever taking themselves too seriously. Expect to breathe deeply, move freely, laugh often, and leave feeling invigorated, integrated, inspired, and joyful.",
+    "Come breathe, move, laugh, and maybe even dance with the BEE."
+   ],
+   "photo": {
+    "file": "retreats/_shared/teachers/img/yoga-teacher-bonnie-erickson.jpg",
+    "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/09/IMG_3936-scaled-e1788482475330.jpeg",
+    "alt": "Bonnie Erickson, yoga teacher, outdoors beside a field and open water",
+    "shared": true
+   },
+   "instagram": null,
+   "source": "https://yogaadventuresworldwide.com/team/"
+  }
+ ],
+ "teacher_unassigned": false,
+ "hero_image": {
+  "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-group-on-the-fira-to-oia-trail.jpg",
+  "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/santorini-hike-2.jpg",
+  "alt": "The group stopped on the clifftop trail from Fira to Oia, Santorini, Greece",
+  "shared": true
+ },
+ "intro": "Looking for the best yoga retreat in Greece?! Then join us in Santorini for an EPIC adventure filled with soulful yoga, delicious Greek food and wines, breathtaking scenery and beaches, a stunning hike and tons of time to relax by the pool or catch up on some reading in this Grecian paradise. Santorini is known for its breathtaking sunsets and ocean views but we show you a side of the island that is so much more than that. It’s not all honeymoons and romantic getaways!",
+ "about_title": null,
+ "about_body": [
+  "We have been leading yoga retreats in Santorini for many years and leaving with tons of amazing memories and new friends! Come experience this amazing Greek Island adventure to the most picturesque island in the beautiful Cyclades of the Aegean archipelago.",
+  "Of course Santorini is known for its breathtaking sunsets and ocean views but our retreats includes so much more. Incredible yoga practices with spectacular views from our private luxury villa will start off your days, followed by a bit of hiking, amazing food, delicious local wines, and beach hopping round out your days. We venture out in a fabulous catamaran out for an afternoon into evening sunset cruise finding the best hidden spots along the beautiful edges of Santorini with a bit of local wine, some music, and the ocean breeze to move us along. Add on to your week with a pampering healing massage, a cooking demonstration, or simply relax around the villa by one of the pools or explore the village of Pyrgos by foot just outside your door.",
+  "However you plan to enjoy your days on retreat we are thrilled to have you along for the ride!"
+ ],
+ "highlights": [],
+ "includes": [
+  "6 nights accommodations in luxury villa atop Santorini with swimming pools and caldera views",
+  "Yoga daily as per the itinerary",
+  "Breakfast daily",
+  "Opening & Closing dinners plus one dinner out on the town (2 glasses of wine included with dinners)",
+  "Guided Southern Island Day tour including Lighthouse, Aktrotiri Ruins site & beach hopping; Lunch included at our favorite spot",
+  "Seaside wine tasting of Santorini’s best whites",
+  "Catamaran Sunset Cruise w/ late lunch, swimming and cocktails",
+  "Hike the famous trail from Fira to Oia with incredible views as an option",
+  "Walking Food & Drink Tour of some of the islands best treats",
+  "Shared Airport Transfers to and from JTR*",
+  "Free time to explore the island and beaches on your own"
+ ],
+ "includes_footnote": null,
+ "not_included": [
+  "Airfare into JTR (Thira Airport in Santorini)",
+  "4 lunches & 2 dinners",
+  "Extras like massages, shopping, drinking water, alcohol and taxis",
+  "Gratuities for villa staff, guides, drivers, boat captains, etc",
+  "If you need a private ride outside of these shuttle times please send us your flight itinerary and we can arrange this for you at an additional cost."
+ ],
+ "not_included_footnote": "Shuttle pick up from JTR airport at 3pm on arrival day. Departure from the villa on final morning at 9am.",
+ "itinerary": [
+  {
+   "day": 1,
+   "label": "Day 1",
+   "title": null,
+   "bullets": [
+    "3pm Shared shuttle pick up from JTR airport*",
+    "Villa check-in and settle",
+    "6pm Welcome Grounding circle & stretch",
+    "7:30pm Dinner together as a group at our Villa"
+   ],
+   "images": [
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-sunset-meditation-on-the-terrace.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/yoga-space-2.jpg",
+     "alt": "A guest meditating on the terrace as the sun sets over the caldera in Santorini, Greece",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-greek-salad-and-dips.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/santorini-salad-e1668298995605.jpg",
+     "alt": "A Greek salad with feta and capers served with dips on the retreat in Santorini, Greece",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "day": 2,
+   "label": "Day 2",
+   "title": null,
+   "bullets": [
+    "Coffee, tea & fruit available",
+    "8:30-9:45am Yoga Practice",
+    "10am Breakfast",
+    "11am-6pm Southern Island Tour including Akrotiri Ruins and beach hopping afternoon; lunch included",
+    "Free evening",
+    "Dinner on your own"
+   ],
+   "images": [
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-group-at-the-akrotiri-ruins.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/akrotiri-group-1.jpg",
+     "alt": "The retreat group together at the excavated ruins of Akrotiri, Santorini, Greece",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-thatched-parasols-on-the-black-beach.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/black_beach.jpg",
+     "alt": "Thatched parasols along the black sand beach in Santorini, Greece",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "day": 3,
+   "label": "Day 3",
+   "title": null,
+   "bullets": [
+    "Coffee, tea & fruit available",
+    "9-10:15am Yoga Practice",
+    "10:30am Breakfast",
+    "11am – 4pm Optional Healing Massages at the villa (75 minutes each 135 euro each)",
+    "Free time & lunch on your own",
+    "5pm Wine tasting at local winery Assyrtiko, Vinsanto and other favorites",
+    "8pm Dinner together at one of the best restaurants on the island (included)"
+   ],
+   "images": [
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-swimming-in-the-villa-pool.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/pool-time-2.jpg",
+     "alt": "A guest swimming in the villa pool below the whitewashed terraces in Santorini, Greece",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-dinner-out-above-the-lights.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/dinner-on-the-town.jpg",
+     "alt": "Guests at a long dinner table above the island lights in Santorini, Greece",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "day": 4,
+   "label": "Day 4",
+   "title": null,
+   "bullets": [
+    "Coffee, tea & fruit available",
+    "9-10:15am Yoga Practice",
+    "10:30am Breakfast",
+    "Free time to explore the village of Pyrgos outside our door or shopping in Fira or Oia for amazing Greek designs!",
+    "2pm-7pm Afternoon to evening yachting adventure. A delicious mixed grill and Mediterranean style late lunch will be served onboard.",
+    "Dinner on your own"
+   ],
+   "images": [
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-leaping-from-the-catamaran.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/06/jump-in.jpg",
+     "alt": "Guests leaping from the catamaran into the sea off Santorini, Greece",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-on-deck-of-the-catamaran.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/boat-time.jpg",
+     "alt": "A guest on the deck of the catamaran on the sunset cruise around Santorini, Greece",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "day": 5,
+   "label": "Day 5",
+   "title": null,
+   "bullets": [
+    "Coffee, tea & fruit available",
+    "9-10:15am Yoga Practice",
+    "10:30am Breakfast",
+    "Free Afternoon Time to explore, relax, and enjoy Santorini; Optional Healing Massages at the villa (75 minutes each 135 euro each)",
+    "Lunch on your own",
+    "5-10pm Authentic Greek Walking Food & Drink Tour"
+   ],
+   "images": [
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-morning-practice-on-the-terrace.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/yoga-space-1.jpg",
+     "alt": "A morning practice on the villa terrace above the caldera in Santorini, Greece",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-forward-fold-above-the-caldera.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/yoga-in-greece.jpg",
+     "alt": "A guest in a wide-legged forward fold on the terrace above the caldera in Santorini, Greece",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "day": 6,
+   "label": "Day 6",
+   "title": null,
+   "bullets": [
+    "Coffee, tea & fruit available",
+    "9-10:15am Yoga Practice",
+    "10:30am Breakfast",
+    "11:30am-4pm Optional Hike from Fira to Oia or explore on your own",
+    "Lunch on your own",
+    "11am – 5:45pm Optional Healing Massages at the villa (75 minutes each 135 euro each)",
+    "6-7:45pm Gentle practice & closing circle",
+    "8:30pm Farewell Dinner together as a group"
+   ],
+   "images": [
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-walking-the-coastal-trail.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/santorini-hike-1-e1668301840920.jpg",
+     "alt": "Guests walking the dusty coastal trail in Santorini, Greece",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-standing-on-the-white-terrace-wall.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/angles.jpg",
+     "alt": "A guest standing on the white terrace wall against a deep blue sky in Santorini, Greece",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "day": 7,
+   "label": "Day 7",
+   "title": null,
+   "bullets": [
+    "Breakfast available",
+    "9am Shared shuttle transportation to JTR Santorini Airport**"
+   ],
+   "images": [
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-breakfast-table-at-the-villa.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/greek-breakfast-2.jpg",
+     "alt": "The long breakfast table laid at the villa in Santorini, Greece",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-four-guests-above-the-caldera.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/greece-love-e1540081445858.jpg",
+     "alt": "Four guests laughing together above the caldera in Santorini, Greece",
+     "shared": true
+    }
+   ]
+  }
+ ],
+ "itinerary_notes": [
+  "This itinerary is subject to adjustments, changes in times, locations, or activities as the retreat leaders and hosts see fit. Any change will be on par with our standards or an upgrade in services or location making for an even more amazing experience for the group and our guests. Thank you in advance for your flexibility and cooperation if any situation were to arise.",
+  "If you need a private ride outside of these shuttle times please send us your flight itinerary and we can arrange this for you at an additional cost.",
+  "PLEASE NOTE : All included dinners include two glasses of wine. Lunches include water for the table. Any other drinks are on your own."
+ ],
+ "optional_excursions_schedule": [],
+ "accommodations": [
+  {
+   "name": null,
+   "label": null,
+   "text": [
+    "Accommodations in our own strikingly beautiful villa featuring breathtaking views of the island and the Aegean Sea. We will take a full property of luxury villas for ourselves. Swimming pools and lounge chairs, fully equipped kitchens, and quiet reading nooks are available throughout the property.",
+    "Full breakfast will be offered daily in our main dining area. Traditional Greek fruits, cheeses, pastries, eggs, and coffee will be among the choices daily. Choose to create your own lunches and dinners in these lovely kitchens and lounge by the pool for the afternoon.",
+    "Rooms are offered as private queens, semi-private queens (2 level accommodations with loft upstairs), and Shared accommodations. Each villa has its own bathrooms and some rooms have en-suite bathrooms with its own charms and unique details.",
+    "Our yoga retreat offers spectacular accommodations on Greece’s most picturesque island in the Cyclades! You’ll be so glad you joined us for this truly amazing retreat experience."
+   ],
+   "instagram": null,
+   "gallery": [
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-pool-and-loungers-at-the-villa.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/04/18-1.jpg",
+     "alt": "The pool and loungers at the villa property in Santorini, Greece",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-loungers-on-the-villa-terrace.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/13.jpg",
+     "alt": "Wooden loungers on the villa terrace above the caldera in Santorini, Greece",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-white-bedroom-with-an-alcove.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/04/19-1.jpg",
+     "alt": "A white bedroom set into an alcove at the villa in Santorini, Greece",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-bed-beside-a-small-window.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/04/25-1.jpg",
+     "alt": "A bed tucked beside a small window at the villa in Santorini, Greece",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-bathroom-with-a-plaster-bath.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/15-1.jpg",
+     "alt": "A bathroom with a moulded plaster bath at the villa in Santorini, Greece",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-wardrobe-and-linen-shelves.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/04/42-1.jpg",
+     "alt": "A white wardrobe and linen shelves in a villa room in Santorini, Greece",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-dining-table-in-a-villa-suite.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/04/22-1.jpg",
+     "alt": "A wooden dining table in a villa suite in Santorini, Greece",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-old-wine-press-in-the-villa.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/04/47-1.jpg",
+     "alt": "An old wooden wine press kept inside the villa in Santorini, Greece",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-lofted-bed-under-the-eaves.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/04/21-1.jpg",
+     "alt": "A lofted bed under the eaves beside tall doors at the villa in Santorini, Greece",
+     "shared": true
+    }
+   ]
+  }
+ ],
+ "rooms": [
+  {
+   "name": "Private Queen Room – private bathroom",
+   "price_usd": 6295,
+   "price_label": "6,295usd Private",
+   "price_unit": "private room",
+   "description": "This room has a private ensuite bathroom.",
+   "attrs": {
+    "bed": "Queen",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-bedroom-with-an-arched-window.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/04/19-2.jpg",
+     "alt": "A bedroom with an arched window at the villa in Santorini, Greece",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-villa-courtyard-with-white-stairs.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/04/10-1.jpg",
+     "alt": "The villa courtyard with its white stairs in Santorini, Greece",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "name": "Private Queen Room – private bathroom, shared bed",
+   "price_usd": 5295,
+   "price_label": "5,295usd Shared Bed — per person",
+   "price_unit": "per person",
+   "description": "This room has a private ensuite bathroom. Shared-bed rate; you must provide your own bedmate.",
+   "attrs": {
+    "bed": "Queen",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": []
+  },
+  {
+   "name": "Private Queen Room – shared bathroom",
+   "price_usd": 6195,
+   "price_label": "6,195usd Private",
+   "price_unit": "private room",
+   "description": "Bathrooms are shared with one other room.",
+   "attrs": {
+    "bed": "Queen",
+    "bath": "Shared",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-lofted-bed-under-the-eaves.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/04/21-1.jpg",
+     "alt": "A lofted bed under the eaves beside tall doors at the villa in Santorini, Greece",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-dining-table-in-a-villa-suite.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/04/22-1.jpg",
+     "alt": "A wooden dining table in a villa suite in Santorini, Greece",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-plaster-washstand-in-an-arch.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/04/38-1.jpg",
+     "alt": "A moulded plaster washstand under an arch at the villa in Santorini, Greece",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "name": "Private Queen Room – shared bathroom, shared bed",
+   "price_usd": 5195,
+   "price_label": "5,195usd Shared Bed — per person",
+   "price_unit": "per person",
+   "description": "Bathrooms are shared with one other room. Shared-bed rate; you must provide your own bedmate.",
+   "attrs": {
+    "bed": "Queen",
+    "bath": "Shared",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": []
+  },
+  {
+   "name": "Shared Double Room – shared bathroom",
+   "price_usd": 5695,
+   "price_label": "2 twin beds : 5,695usd per person",
+   "price_unit": "per person",
+   "description": "2 twin beds.",
+   "attrs": {
+    "bed": "Twin",
+    "bath": "Shared",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-loft-above-the-kitchen.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/17-1.jpg",
+     "alt": "A sleeping loft reached by a ladder above the kitchen at the villa in Santorini, Greece",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-bathroom-with-a-plaster-bath.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/15-1.jpg",
+     "alt": "A bathroom with a moulded plaster bath at the villa in Santorini, Greece",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "name": "Lofted Queen Bed – shared bathroom",
+   "price_usd": 5995,
+   "price_label": "5,995usd Private",
+   "price_unit": "private room",
+   "description": "The loft space is accessed by a ladder with a full and half shared bathroom downstairs.",
+   "attrs": {
+    "bed": "Queen",
+    "bath": "Shared",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-kitchenette-beside-the-bedroom.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/kavitaLR.jpg",
+     "alt": "A kitchenette beside the bedroom in a villa suite in Santorini, Greece",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-whitewashed-courtyard-of-the-villa.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/8.jpg",
+     "alt": "The whitewashed courtyard and terraces of the villa in Santorini, Greece",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-vaulted-bathroom-in-white-plaster.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/KAVITA-BATH.jpg",
+     "alt": "A vaulted bathroom in white plaster at the villa in Santorini, Greece",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-queen-bed-in-a-vaulted-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/kavita-private-room.jpg",
+     "alt": "A queen bed in a vaulted white room at the villa in Santorini, Greece",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "name": "Shared Suite – shared bathroom",
+   "price_usd": 6095,
+   "price_label": "Private Queen Room : 6,095usd Private",
+   "price_unit": "private room",
+   "description": "One bathroom inside the bedroom is shared in this villa.",
+   "attrs": {
+    "bed": "Queen",
+    "bath": "Shared",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-sitting-room-with-red-cushions.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/kavita3.jpg",
+     "alt": "A sitting room with red cushions and a low table at the villa in Santorini, Greece",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-white-sitting-room-with-double-doors.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/kavita-LR.jpg",
+     "alt": "The white sitting room of a villa suite in Santorini, Greece",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "name": "Studio Style Twin Bed – shared bathroom",
+   "price_usd": 5995,
+   "price_label": "Studio Style Twin Bed in Living Area : 5,995usd",
+   "price_unit": null,
+   "description": "Studio-style twin bed in the living area. One bathroom inside the bedroom is shared in this villa.",
+   "attrs": {
+    "bed": "Twin",
+    "bath": "Shared",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": []
+  }
+ ],
+ "pricing_notes": [
+  "This property is made up of 4 smaller villas, all with varying room types. Some villas share bathrooms as indicated below and all villas have several bedrooms within them.",
+  "They are unique, well appointed and comfortable.",
+  "Please note that bathrooms are shared with one other room.",
+  "Please note that the loft space is accessed by a ladder with a full and half shared bathroom downstairs.",
+  "Please note that one bathroom inside the bedroom is shared in this villa.",
+  "Please note that one bathroom inside the bedroom is shared in this villa.",
+  "All pricing is in USD.",
+  "If you would like to share a bed with a friend/partner please inquire with us for shared bed rates.",
+  "Airfare is not included in this package.",
+  "For travel to Santorini Island please see our FLIGHT TIPS in the Includes section.",
+  "Space is limited to 15 students for an intimate retreat. Please secure your space early by inquiring for availability.",
+  "This property is made up of 4 smaller villas, all with varying room types. Some villas share bathrooms as indicated. Space is limited to 15 students."
+ ],
+ "extras": [
+  {
+   "name": "Optional healing massage at the villa",
+   "price_usd": null,
+   "price_label": "135 euro each",
+   "unit": "each",
+   "desc": "75 minute healing massage at the villa, available on several afternoons.",
+   "gallery": []
+  }
+ ],
+ "travel_tips": [],
+ "gallery_title": null,
+ "gallery_intro": null,
+ "gallery": [
+  {
+   "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-three-guests-laughing.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/greece-love-e1630531303246.jpg",
+   "alt": "Three guests laughing together on the retreat in Santorini, Greece",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-walking-the-coastal-trail.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/santorini-hike-1-e1668301840920.jpg",
+   "alt": "Guests walking the dusty coastal trail in Santorini, Greece",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-morning-practice-on-the-terrace.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/yoga-space-1.jpg",
+   "alt": "A morning practice on the villa terrace above the caldera in Santorini, Greece",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-practising-alone-by-the-pool.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/yogi-time-e1540080116722.jpg",
+   "alt": "A guest practising alone on the villa terrace by the pool in Santorini, Greece",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-sailing-past-the-caldera-cliffs.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/so-proper...-e1540080133325.jpg",
+   "alt": "A guest on board as the boat passes the caldera cliffs of Santorini, Greece",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-fishing-boat-and-prickly-pears.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/greek-seas-e1540080191461.jpg",
+   "alt": "A wooden fishing boat and prickly pears beside the sea in Santorini, Greece",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-jumping-off-the-boat.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/jump-in-e1540080205757.jpg",
+   "alt": "Guests leaping off the boat into the sea on the catamaran cruise in Santorini, Greece",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-seated-meditation-on-the-terrace.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/meditation-greece-e1540080219452.jpg",
+   "alt": "A guest in seated meditation on the villa terrace in Santorini, Greece",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-class-on-the-villa-rooftop.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/yoga-rooftop-2-e1543788900512.jpg",
+   "alt": "A yoga class spread across the villa rooftop above the island in Santorini, Greece",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-in-the-villa-pool.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/pool-time-e1540080256444.jpg",
+   "alt": "A guest resting at the edge of the villa pool in Santorini, Greece",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-breakfast-table-at-the-villa.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/greek-breakfast-2.jpg",
+   "alt": "The long breakfast table laid at the villa in Santorini, Greece",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-fruit-salad-with-pomegranate.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/greek-fruit-salads-e1540080311630.jpg",
+   "alt": "A bowl of melon and pomegranate from the breakfast table in Santorini, Greece",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-greek-breakfast-pastries.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/greek-breakfast-e1540080319212.jpg",
+   "alt": "Greek pastries and juice laid out for breakfast at the villa in Santorini, Greece",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-green-salad-at-the-table.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/greek-salads-e1540080334137.jpg",
+   "alt": "A bowl of green salad served at the table in Santorini, Greece",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-lounging-on-the-catamaran.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/boat-time-3-e1540080347390.jpg",
+   "alt": "Guests lounging on the netting of the catamaran off Santorini, Greece",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-on-deck-of-the-catamaran.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/boat-time.jpg",
+   "alt": "A guest on the deck of the catamaran on the sunset cruise around Santorini, Greece",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-group-at-the-akrotiri-ruins.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/akrotiri-group-1.jpg",
+   "alt": "The retreat group together at the excavated ruins of Akrotiri, Santorini, Greece",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-standing-on-the-white-terrace-wall.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/angles.jpg",
+   "alt": "A guest standing on the white terrace wall against a deep blue sky in Santorini, Greece",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-dinner-out-above-the-lights.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/dinner-on-the-town.jpg",
+   "alt": "Guests at a long dinner table above the island lights in Santorini, Greece",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-the-group-on-the-village-steps.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/album-cover-e1540081296540.jpg",
+   "alt": "The retreat group spread across the whitewashed village steps in Santorini, Greece",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-wine-tasting-by-the-sea.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/wine-tasting-1-e1540080531932.jpg",
+   "alt": "Guests raising glasses at the seaside wine tasting in Santorini, Greece",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-forward-fold-above-the-caldera.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/yoga-in-greece.jpg",
+   "alt": "A guest in a wide-legged forward fold on the terrace above the caldera in Santorini, Greece",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-walking-the-rocky-shore.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/stina-in-greece-e1540080572514.jpg",
+   "alt": "A guest walking the rocky shore beside the sea in Santorini, Greece",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-two-guests-on-the-terrace.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/blondes-have-more-fun-e1540080588112.jpg",
+   "alt": "Two guests sitting and talking on the sunlit villa terrace in Santorini, Greece",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-wardrobe-and-linen-shelves.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/04/42-1.jpg",
+   "alt": "A white wardrobe and linen shelves in a villa room in Santorini, Greece",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/santorini/img/yoga-retreat-santorini-greece-white-bedroom-with-a-wooden-chair.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/cavana_private.jpg",
+   "alt": "A white bedroom with a wooden chair at the villa in Santorini, Greece",
+   "shared": true,
+   "ratio": null
+  }
+ ],
+ "faqs": [
+  {
+   "question": "Do you accept bitcoin?",
+   "answer": [
+    "In addition to credit card payments we also accept wire transfers, Zelle and Bitcoin. Please inquire for more details."
+   ]
+  },
+  {
+   "question": "What is the cancellation policy?",
+   "answer": [
+    "All payments are 100% non refundable and non-transferable. We recommend that you buy trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you."
+   ]
+  },
+  {
+   "question": "What happens if my travel plans change?",
+   "answer": [
+    "There are no refunds as per our cancellation policies. We highly recommend that all of our guests secure a quality travel insurance that will cover them for any event which may cause a change of travel plans, including personal health issues or personal situations in general which may affect travel plans."
+   ]
+  },
+  {
+   "question": "Are flight delays or cancellations covered?",
+   "answer": [
+    "Not by us: transportation delays, cancellations or changes due to strikes, labor disputes, or lockouts from airlines, boats, ferries or any type of transportation are among the events we recommend covering with travel insurance."
+   ]
+  },
+  {
+   "question": "Where can I find the full terms & conditions?",
+   "answer": [
+    "The full terms and conditions are published at https://yogaadventuresworldwide.com/termsandconditions/ . By submitting payments toward your retreat you accept them."
+   ]
+  }
+ ],
+ "booking": {
+  "deposit_usd": 1000,
+  "deposit_label": "$1,000 USD per person",
+  "deposit_instructions": "Deposits of $1,000usd are due to secure your space in the retreat. Please check availability with us for accommodations before making your deposit.",
+  "balance_due_days": 90,
+  "balance_note": "The balance of your retreat (minus your $1,000usd initial deposit) is due 90 days prior to arrival. All details with instructions for settling up will be emailed to you three months prior to the retreat.",
+  "payment_methods": [
+   "Credit card",
+   "Wire transfer",
+   "Zelle",
+   "Bitcoin"
+  ],
+  "roommate_note": "Roommates should book together. If you would like to share a room and do not have a roommate we will provide one for you if possible. In the case that there is no one to share a room we ask that you take a private room instead.",
+  "cancellation_policy": [
+   "All payments are 100% non refundable and non-transferable. We recommend that you buy trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you."
+  ],
+  "booking_url": "https://yogaadventuresworldwide.com/retreat/yoga-retreat-greece/#reserve",
+  "contact_url": "https://yogaadventuresworldwide.com/contact-about-yoga-retreats/"
+ },
+ "testimonials": null,
+ "carbon_offset": null,
+ "source_url": "https://yogaadventuresworldwide.com/retreat/yoga-retreat-greece/",
+ "source_post_slug": "yoga-retreat-greece",
+ "source_categories": [
+  "yoga"
+ ],
+ "source_is_shared": true,
+ "seo_title": "Santorini Yoga Retreat · Sep 2027",
+ "seo_description": "6-night yoga retreat in Santorini, Greece. September 12 - 18, 2027, with Bonnie Erickson.",
+ "_notes": {
+  "about_body": " Location-level copy: shared by all 4 dates on yoga-retreat-greece.",
+  "intro": "Location-level copy from the top of yoga-retreat-greece, shared by all its dates.",
+  "includes": "Location-level list from yoga-retreat-greece, shared by all its dates.",
+  "itinerary": "Location-level itinerary from yoga-retreat-greece, shared by all its dates.",
+  "accommodations": "The old site describes the property but never names it, so `name` is null.",
+  "rooms.gallery": "Some room types have no photographs of their own: the old site shows images only under some of the headings in its pricing block.",
+  "travel_tips": "The source page has no Travel Tips section.",
+  "gallery": "Location-level gallery from yoga-retreat-greece, shared by all its dates.",
+  "faqs": "The source page has no FAQs block. These five answers are quoted from the site-wide Policies text inside the retreat page's Reserve section, matched to the five questions the template ships. They are not retreat-specific.",
+  "tier": "Not deducible: the old site's retreat_categories are topical (yoga, art-creative, yoga-food-and-wine, family-retreats) and only signature-retreats maps to a collection. Left null rather than guessed.",
+  "hero_image": "Location-level hero from yoga-retreat-greece, shared by all its dates.",
+  "highlights": "The old site has no highlights block; nothing was invented to fill it.",
+  "testimonials": "The source page has an empty \"Praise\" carousel — the markup is there, the quotes are not. Left null; the template ships placeholder quotes.",
+  "carbon_offset": "No carbon-offset copy anywhere on the old site. The template's text is new site-wide copy.",
+  "seo_title": "DRAFT. Written only from this retreat's real destination, month and year.",
+  "seo_description": "DRAFT. Written only from real data: nights, location, published date range, teacher, status.",
+  "status": "From /all-upcoming-dates/ on 2026-11-12."
+ },
+ "_missing": [
+  "about_title",
+  "accommodations[].name",
+  "carbon_offset",
+  "gallery_intro",
+  "gallery_title",
+  "highlights",
+  "includes_footnote",
+  "optional_excursions_schedule",
+  "status_label",
+  "subtitle",
+  "teachers[Bonnie Erickson].instagram",
+  "teachers[Bonnie Erickson].role",
+  "testimonials",
+  "tier",
+  "tier_label",
+  "tier_source",
+  "travel_tips",
+  "urgency"
+ ]
+}

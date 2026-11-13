@@ -1,0 +1,122 @@
+# -*- coding: utf-8 -*-
+"""The 19 open editions, transcribed from /all-upcoming-dates/ (fetched 2026-11-12)."""
+
+LOC = {
+ "beach-yoga-retreat-mexico": dict(
+    destination="El Cuyo", country="Mexico", region="Yucatán",
+    location_label="El Cuyo, Mexico", shared_key="el-cuyo"),
+ "mini-yoga-retreats-in-paradise": dict(
+    destination="El Cuyo", country="Mexico", region="Yucatán",
+    location_label="El Cuyo, Mexico", shared_key="el-cuyo"),
+ "embodied-the-art-of-being-seen": dict(
+    destination="El Cuyo", country="Mexico", region="Yucatán",
+    location_label="El Cuyo, Mexico", shared_key="el-cuyo"),
+ "yoga-retreat-greece": dict(
+    destination="Santorini", country="Greece", region="Pyrgos, Santorini",
+    location_label="Santorini, Greece", shared_key="santorini"),
+ "yoga-retreat-montenegro": dict(
+    destination="Montenegro", country="Montenegro", region="Perast, Bay of Kotor",
+    location_label="Bay of Kotor, Montenegro", shared_key="montenegro"),
+ "yoga-retreat-portugal": dict(
+    destination="Portugal", country="Portugal", region="Lisbon & Costa Vicentina",
+    location_label="Lisbon & Costa Vicentina, Portugal", shared_key="portugal"),
+ "camino-de-santiago": dict(
+    destination="Camino de Santiago", country="Spain", region="Galicia",
+    location_label="Camino de Santiago, Spain", shared_key="camino-de-santiago"),
+ "yoga-retreat-argentina": dict(
+    destination="Argentina", country="Argentina", region="Buenos Aires & Villa La Angostura",
+    location_label="Buenos Aires & Patagonia, Argentina", shared_key="argentina"),
+ "yoga-retreat-morocco": dict(
+    destination="Morocco", country="Morocco", region="Marrakech & Essaouira",
+    location_label="Marrakech & Essaouira, Morocco", shared_key="morocco"),
+ "yoga-retreat-day-of-the-dead-oaxaca": dict(
+    destination="Oaxaca", country="Mexico", region="Oaxaca City",
+    location_label="Oaxaca, Mexico", shared_key="oaxaca"),
+ "treasures-of-thailand-a-yoga-wellness-retreat": dict(
+    destination="Thailand", country="Thailand", region="Chiang Mai & Koh Yao Noi",
+    location_label="Chiang Mai & Koh Yao Noi, Thailand", shared_key="thailand"),
+}
+
+# title = the retreat name as the old site advertises this edition
+E = [
+ dict(slug="morocco-nov-2026", src="yoga-retreat-morocco",
+      title="Mesmerized in Morocco : A Yoga & Culture Retreat",
+      dates_label="November 7 - 14, 2026", start="2026-11-07", end="2026-11-14",
+      season="Fall, 2026", teachers=["Dawn Thie"], status="sold_out", status_label="sold out"),
+ dict(slug="thailand-dec-2026", src="treasures-of-thailand-a-yoga-wellness-retreat",
+      title="Treasures of Thailand : A Yoga + Wellness Retreat",
+      dates_label="December 1 - 10, 2026", start="2026-12-01", end="2026-12-10",
+      season="Winter, 2026 / 2027", teachers=["Amy Sennett-Starner"], status="sold_out", status_label="sold out"),
+ dict(slug="el-cuyo-dec-2026-delaney", src="beach-yoga-retreat-mexico",
+      title="Yucatán Yoga & Spa Beach Retreat",
+      dates_label="December 1 - 6, 2026", start="2026-12-01", end="2026-12-06",
+      season="Winter, 2026 / 2027", teachers=["Alicia Delaney"], status="open", status_label=None),
+ dict(slug="el-cuyo-dec-2026-d29", src="beach-yoga-retreat-mexico",
+      title="Yucatán Yoga & Spa Beach Retreat",
+      dates_label="December 29, 2026 - January 3, 2027", start="2026-12-29", end="2027-01-03",
+      season="Winter, 2026 / 2027", teachers=[], status="open", status_label="New Retreat"),
+ dict(slug="el-cuyo-jan-2027-berger", src="beach-yoga-retreat-mexico",
+      title="Yucatán Yoga & Spa Beach Retreat",
+      dates_label="January 24 - 29, 2027", start="2027-01-24", end="2027-01-29",
+      season="Winter, 2026 / 2027", teachers=["Sue Berger"], status="open", status_label=None),
+ dict(slug="el-cuyo-jan-2027-coffey", src="mini-yoga-retreats-in-paradise",
+      title="Mini Yoga Retreats in El Cuyo",
+      dates_label="January 29 - February 2, 2027", start="2027-01-29", end="2027-02-02",
+      season="Winter, 2026 / 2027", teachers=["Jamie Coffey"], status="open", status_label=None),
+ dict(slug="el-cuyo-feb-2027-delaney", src="beach-yoga-retreat-mexico",
+      title="Yucatán Yoga & Spa Beach Retreat",
+      dates_label="February 2 - 7, 2027", start="2027-02-02", end="2027-02-07",
+      season="Winter, 2026 / 2027", teachers=["Alicia Delaney"], status="open", status_label=None),
+ dict(slug="el-cuyo-feb-2027-morin-gray", src="embodied-the-art-of-being-seen",
+      title="Embodied : The Art of Being Seen",
+      dates_label="February 14 - 20, 2027", start="2027-02-14", end="2027-02-20",
+      season="Winter, 2026 / 2027", teachers=["Genevieve Morin", "Rachel Gray"], status="open", status_label=None),
+ dict(slug="argentina-mar-2027", src="yoga-retreat-argentina",
+      title="Argentina Yoga Retreat : Buenos Aires & Patagonia",
+      dates_label="March 12 - 19, 2027", start="2027-03-12", end="2027-03-19",
+      season="Winter, 2026 / 2027", teachers=["Alison Buchanan"], status="few_spaces", status_label="2 SPACES LEFT!"),
+ dict(slug="camino-de-santiago-apr-2027", src="camino-de-santiago",
+      title="Camino de Santiago : A Yoga & Reflections Retreat",
+      dates_label="April 18 - 27, 2027", start="2027-04-18", end="2027-04-27",
+      season="Spring, 2027", teachers=["Jenniferlyn Chiemingo"], status="few_spaces", status_label="2 SPACES LEFT!"),
+ dict(slug="montenegro-may-2027-erickson", src="yoga-retreat-montenegro",
+      title="Montenegro Magic : A Yoga & Nature Retreat",
+      dates_label="May 15 - 21, 2027", start="2027-05-15", end="2027-05-21",
+      season="Spring, 2027", teachers=["Bonnie Erickson"], status="open", status_label=None),
+ dict(slug="portugal-may-2027", src="yoga-retreat-portugal",
+      title="Portugal : A Yoga & Coastal Retreat",
+      dates_label="May 16 - 23, 2027", start="2027-05-16", end="2027-05-23",
+      season="Spring, 2027", teachers=["Dawn Thie"], status="open", status_label=None),
+ dict(slug="montenegro-may-2027-cordover", src="yoga-retreat-montenegro",
+      title="Montenegro Magic : A Yoga & Nature Retreat",
+      dates_label="May 22 - 28, 2027", start="2027-05-22", end="2027-05-28",
+      season="Spring, 2027", teachers=["Melanie Cordover"], status="few_spaces", status_label="1 SPACE LEFT!"),
+ dict(slug="santorini-may-2027", src="yoga-retreat-greece",
+      title="Yoga Retreat Greece", dates_label="May 23 - 29, 2027",
+      start="2027-05-23", end="2027-05-29",
+      season="Spring, 2027", teachers=["Yessica Puebla"], status="open", status_label=None),
+ dict(slug="santorini-sep-2027-erickson", src="yoga-retreat-greece",
+      title="Yoga Retreat Greece", dates_label="September 12 - 18, 2027",
+      start="2027-09-12", end="2027-09-18",
+      season="Summer, 2027", teachers=["Bonnie Erickson"], status="open", status_label=None),
+ dict(slug="camino-de-santiago-sep-2027", src="camino-de-santiago",
+      title="Camino de Santiago : A Yoga & Reflections Retreat",
+      dates_label="September 19 - 28, 2027", start="2027-09-19", end="2027-09-28",
+      season="Summer, 2027", teachers=["Genevieve Morin"], status="open", status_label=None),
+ dict(slug="santorini-sep-2027-berger", src="yoga-retreat-greece",
+      title="Yoga Retreat Greece", dates_label="September 19 - 25, 2027",
+      start="2027-09-19", end="2027-09-25",
+      season="Summer, 2027", teachers=["Sue Berger"], status="sold_out", status_label="sold out"),
+ dict(slug="santorini-sep-2027-d26", src="yoga-retreat-greece",
+      title="Yoga Retreat Greece", dates_label="September 26 - October 2, 2027",
+      start="2027-09-26", end="2027-10-02",
+      season="Summer, 2027", teachers=[], status="open", status_label=None),
+ dict(slug="oaxaca-oct-2027", src="yoga-retreat-day-of-the-dead-oaxaca",
+      title="Day of the Dead Yoga + Reverence Retreat Oaxaca",
+      dates_label="October 28 - November 4, 2027", start="2027-10-28", end="2027-11-04",
+      season="Fall, 2027", teachers=[], status="open", status_label="New Retreat"),
+]
+
+SUBTITLE = {
+ "embodied-the-art-of-being-seen": "A Yoga & Boudoir Photography Experience",
+}

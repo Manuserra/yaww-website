@@ -1,0 +1,930 @@
+{
+ "slug": "thailand-dec-2026",
+ "title": "Treasures of Thailand : A Yoga + Wellness Retreat",
+ "subtitle": null,
+ "destination": "Thailand",
+ "location_label": "Chiang Mai & Koh Yao Noi, Thailand",
+ "country": "Thailand",
+ "region": "Chiang Mai & Koh Yao Noi",
+ "tier": null,
+ "tier_label": null,
+ "tier_source": null,
+ "status": "sold_out",
+ "status_label": "sold out",
+ "urgency": {
+  "type": "soldout",
+  "label": null
+ },
+ "date_start": "2026-12-01",
+ "date_end": "2026-12-10",
+ "dates_label": "December 1 - 10, 2026",
+ "season": "Winter, 2026 / 2027",
+ "nights": 9,
+ "days": 10,
+ "teachers": [
+  {
+   "name": "Amy Sennett-Starner",
+   "slug": "amy-sennett-starner",
+   "role": null,
+   "bio": [
+    "Amy comes with a unique set of teaching skills. Her former life as a dancer, coupled with her many years of teaching movement, has given her a keen ability to truly teach from the inside out; not just making asana or shapes, but feeling what’s happening inside your body. Her “voice” as a teacher is to truly notice what you’re feeling while moving through space, mind and soul. She is fiercely passionate about developing a love of and a respect for the self-study of our yoga practice.",
+    "Amy holds an MFA in Dance and Choreography, a 200-hour Yoga Alliance certification and is a certified Pilates instructor. She is also a proud mom of 2 teenage bodyguards, a 4-legged crazy Catahoula and wife to her loving husband of 20 years. Amy owns and operates a studio in West Seattle, WA – Dragonfly Yoga Pilates Dance, LLC. She can’t wait to meet you!"
+   ],
+   "photo": {
+    "file": "retreats/_shared/teachers/img/yoga-teacher-amy-sennett-starner.jpg",
+    "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/amy.color_.smile_-scaled-e1776292499952.jpg",
+    "alt": "Amy Sennett-Starner, yoga teacher, arms folded against a teal wall",
+    "shared": true
+   },
+   "instagram": null,
+   "source": "https://yogaadventuresworldwide.com/team/"
+  }
+ ],
+ "teacher_unassigned": false,
+ "hero_image": {
+  "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-row-of-seated-buddhas.jpg",
+  "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/mario-la-pergola-ShvFHBxqA3c-unsplash.jpg",
+  "alt": "A long row of seated stone Buddhas at a temple in Thailand",
+  "shared": false
+ },
+ "intro": "Uncover the treasures of Thailand through yoga, mindfulness, and cultural exploration in a retreat designed to rejuvenate your body, mind, and soul through yoga and wellness in the heart of Siam.",
+ "about_title": null,
+ "about_body": [
+  "Uncover the treasures of Thailand through yoga, mindfulness, and cultural exploration in a retreat designed to rejuvenate your body, mind, and soul through yoga and wellness in the heart of Siam.",
+  "Our 9 night adventure begins in the enchanting city of Chiang Mai, where ancient temples and charming streets weave together a rich tapestry of spiritual heritage. Immerse yourself in the serene beauty of northern Thailand as we venture into the countryside, exploring traditional villages and lush, verdant landscapes.",
+  "Indulge in authentic experiences like hands-on Thai cooking classes, rejuvenating spa treatments, and ethical elephant interactions. Embark on a sacred monk’s hike to a magnificent mountaintop temple, where tranquility and breathtaking views await. This retreat offers a harmonious blend of wellness, cultural discovery, and unforgettable moments in one of Thailand’s most captivating regions.",
+  "After days filled with cultural wonders and meaningful connections, we’ll journey south to a secluded idyllic beach front paradise on Koh Yao Noi. Here, you’ll unwind for three glorious days, basking in crystal-clear waters, white sandy beaches, and vibrant sunsets. This retreat promises an incredible blend of adventure, relaxation, and a deep dive into Thailand’s natural and cultural beauty.",
+  "Our daily yoga practices will be thoughtfully designed to complement and deepen your connection to Thailand’s rich Buddhist culture. As we explore sacred temples and partake in the spiritual traditions, our yoga sessions will focus on mindfulness, reflection, and inner peace. Incorporating meditation and pranayama, we’ll honor the principles of Buddhism—cultivating compassion, presence, and gratitude. Each practice will be a serene space to integrate the day’s experiences, inviting you to connect with the country’s spiritual essence on a profound level."
+ ],
+ "highlights": [],
+ "includes": [
+  "9 nights on retreat : 5 nights in Chiang Mai & 4 nights beachfront on Koh Yao Noi",
+  "Yoga as per itinerary",
+  "Breakfast daily; 4 lunches; 6 dinners together",
+  "Guided Temple visit and Monk’s trail hike",
+  "Thai Cooking Class on an organic farm",
+  "Pampering spa experience w/ 3 hours of decadent services including Foot Massage, Traditional Thai Massage and Tok Sen Massage",
+  "Full day experience with Thailand’s most respected Elephant Rehab facility",
+  "Half day long boat excursion to some of Thailand’s most incredible islands and beaches",
+  "Free day at the beach to explore and relax on your own as you choose",
+  "Free time during the retreat for some shopping and exploring night markets"
+ ],
+ "includes_footnote": null,
+ "not_included": [
+  "International airfare to and from Thailand (plan to fly into Chiang Mai CNX airport and out of Phuket HKT or Krabi KBV)",
+  "Airport transfers arriving into Chiang Mai at the beginning of the retreat",
+  "Domestic flight from Chiang Mai to Phuket during the retreat + any checked bag fees or seat upgrades.",
+  "FOR OUR DECEMBER 1-10, 2026 RETREAT BOOK THIS FLIGHT :",
+  "DECEMBER 6, 2026 LEAVING CNX 12:40pm – ARRIVE HKT 2:50pm",
+  "Thai AirAsia Economy Airbus A320FD 3162",
+  "Make sure you book your return flight out of Phuket or Krabi after 1pm to have time for the boat transfer from the island.",
+  "Likely you’ll get your big international flights roundtrip in and out of Bangkok. There are many domestic flights to Bangkok daily from the islands. See our Travel Tips Guide for more.",
+  "Transfers from the island to the airport upon departure",
+  "4 lunches & 3 dinners",
+  "Optional activities",
+  "Extras like massages, shopping, drinking water, alcohol and taxis",
+  "Gratuities for villa staff, guides, drivers, boat captains, etc"
+ ],
+ "not_included_footnote": null,
+ "itinerary": [
+  {
+   "day": 1,
+   "label": "Day 1",
+   "title": "Chiang Mai City",
+   "bullets": [
+    "3pm Arrival & settle into accommodations in the Old City",
+    "5-6:30pm Yoga practice & Opening Circle",
+    "Dinner together as a group"
+   ],
+   "images": [
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-tiled-roofs-of-the-chiang-mai-hotel.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/2108.jpg",
+     "alt": "The tiled roofs and carved guardians of the hotel in Chiang Mai, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-pool-reflecting-the-palms.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/2112.jpg",
+     "alt": "The pool reflecting the palms and the brick facade at the hotel in Chiang Mai, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-northern-thai-dishes-on-a-table.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/thaifood.jpg",
+     "alt": "A spread of northern Thai dishes laid out on a table in Chiang Mai, Thailand",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 2,
+   "label": "Day 2",
+   "title": "Chiang Mai City",
+   "bullets": [
+    "Coffee/Tea",
+    "Yoga Practice",
+    "Breakfast",
+    "Pampering Spa Day in CM w/ 3 hours of signature services :",
+    "Foot Massage, Traditional Thai Massage and Tok Sen Massage",
+    "Late lunch together at the spa included",
+    "Evening stroll through town to visit the temples by night",
+    "Dinner on your own"
+   ],
+   "images": [
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-preparing-flower-offerings.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/3181B64U0730-e1727650178578.jpg",
+     "alt": "A woman preparing flower offerings and fruit in Chiang Mai, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-brick-chedi-with-a-gold-buddha.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/yingchu-chen-JPLLB7gFEAc-unsplash-scaled-e1727651623924.jpg",
+     "alt": "A brick chedi with a gilded Buddha at a temple in Chiang Mai, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-spa-table-with-rose-petals.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/2386Honeymoon-scaled-e1727653242345.jpg",
+     "alt": "A hand resting at a spa table strewn with rose petals in Thailand",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 3,
+   "label": "Day 3",
+   "title": "Chiang Mai City",
+   "bullets": [
+    "Coffee/Tea",
+    "Yoga Practice",
+    "Breakfast",
+    "Guided Sacred Temple Hike with lunch",
+    "Monk chat and meditation",
+    "Dinner together as a group"
+   ],
+   "images": [
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-weathered-temple-facade.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/vlad-chistyakov-9ewMduOf8_k-unsplash-scaled-e1727650289844.jpg",
+     "alt": "A weathered temple facade among banana leaves in Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-lotus-flowers-on-the-pond.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/lotus-scaled-e1727650319718.webp",
+     "alt": "Pink lotus flowers open on a green pond in Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-kinnari-statue-among-the-trees.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/gaurav-bagdi-F5faFgCWiA-unsplash-scaled-e1727650343580.jpg",
+     "alt": "A kinnari statue among the trees at a temple in Chiang Mai, Thailand",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 4,
+   "label": "Day 4",
+   "title": "Chiang Mai City",
+   "bullets": [
+    "Breakfast",
+    "Elephant Nature Park Full Day experience with lunch*",
+    "Return to hotel",
+    "Gentle yoga together",
+    "Dinner on your own"
+   ],
+   "images": [
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-elephants-walking-the-track.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/elephantwalk-scaled-e1727653506793.jpg",
+     "alt": "Elephants walking a sandy track at the sanctuary in Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-elephant-close-up.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/elephanteyes.jpg",
+     "alt": "A close portrait of an elephant at the sanctuary in Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-elephant-in-the-palms.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/elephantsT.jpg",
+     "alt": "An elephant among the palms at the sanctuary in Thailand",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 5,
+   "label": "Day 5",
+   "title": "Chiang Mai City",
+   "bullets": [
+    "Coffee/Tea",
+    "Yoga Practice",
+    "Breakfast",
+    "Free time to explore the city; pool time; rest",
+    "Lunch on your own",
+    "Leave for cooking school farm and market tour",
+    "Thai Cooking Class with dinner on an organic farm"
+   ],
+   "images": [
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-thatched-pavilion-over-the-water.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/cooking-school-e1727650220118.jpg",
+     "alt": "A thatched teak pavilion standing over the water in Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-upward-dog-in-the-studio.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/ave-calvar-2IZmKLHedQM-unsplash.jpg",
+     "alt": "A guest in upward dog during a studio practice in Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-carved-stone-heads-in-the-garden.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/terracotta-products.jpg",
+     "alt": "Carved stone heads in a terracotta garden in Thailand",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 6,
+   "label": "Day 6",
+   "title": "TRAVEL DAY",
+   "bullets": [
+    "Breakfast; Check-out of CM hotel",
+    "Leave for Chiang Mai airport",
+    "Flights from Chiang Mai to Phuket (client to book on their own–SEE INCLUDES SECTION)",
+    "Private transfer to Koh Yao Noi resort",
+    "Hotel check-in; arrive and settle",
+    "Yoga practice",
+    "Dinner together as a group"
+   ],
+   "images": [
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-hammock-above-the-bay.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/hammock-e1727654235231.webp",
+     "alt": "A guest reading in a hammock above the bay on Koh Yao Noi, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-practice-on-the-lawn-by-the-sea.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/yoga-beach-e1727654125125.webp",
+     "alt": "Guests in prayer position on mats on the lawn by the sea on Koh Yao Noi, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-plunge-pool-at-sunset.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/plunge-pool-sunset-e1727654208416.webp",
+     "alt": "A plunge pool looking out over the bay at sunset on Koh Yao Noi, Thailand",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 7,
+   "label": "Day 7",
+   "title": "KOH YAO NOI",
+   "bullets": [
+    "Coffee/Tea/Fruit; Breakfast",
+    "Yoga practice in front of the beach",
+    "Free time; relax; spa services; optional excursions; bike to town; kayaks",
+    "Lunch on your own",
+    "Yoga Practice",
+    "Dinner together as a group"
+   ],
+   "images": [
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-longtail-boats-among-the-karsts.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/Island-Hopping-03-scaled-1.webp",
+     "alt": "Longtail boats cutting between the limestone karsts in southern Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-village-shop-on-the-island.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/beach-village-e1727654855196.webp",
+     "alt": "Guests outside a village shop on Koh Yao Noi, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-orchids-against-the-green.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/orchid.webp",
+     "alt": "Pink orchids against dense green foliage in Thailand",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 8,
+   "label": "Day 8",
+   "title": "KOH YAO NOI",
+   "bullets": [
+    "Breakfast",
+    "Half day long boat excursion w/ lunch",
+    "Rest; spa services; relax on the beach; kayaks",
+    "Yoga practice",
+    "Dinner on your own"
+   ],
+   "images": [
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-longtail-boats-beached-below-the-karsts.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/long-boats.webp",
+     "alt": "Longtail boats beached below the limestone karsts in southern Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-hands-resting-in-meditation-seat.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/getty-images-puPbC2L7QI8-unsplash.jpg",
+     "alt": "Hands resting open in a cross-legged meditation seat during practice in Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-hornbill-in-the-palms.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/tucan-e1727654542366.webp",
+     "alt": "A hornbill perched among palm fronds in Thailand",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 9,
+   "label": "Day 9",
+   "title": "KOH YAO NOI",
+   "bullets": [
+    "Coffee/Tea/Fruit; Breakfast",
+    "Yoga practice in front of the beach",
+    "Free time; relax; spa services; optional excursions; bike to town; kayaks",
+    "Lunch on your own",
+    "Yoga Practice & Closing Circle",
+    "Closing dinner together as a group"
+   ],
+   "images": [
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-turquoise-water-and-limestone-cliffs.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/island-hopping-tour-e1732741000656.webp",
+     "alt": "Turquoise water against the limestone cliffs on the island-hopping day in Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-hammock-between-the-palms.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/hammock-2.webp",
+     "alt": "A guest in a hammock strung between palms on the beach on Koh Yao Noi, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-jungle-hillside-above-the-beach.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/11/Drone-Resort-Grounds-1-e1732741838253.webp",
+     "alt": "The jungle hillside rising above the resort beach on Koh Yao Noi, Thailand",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 10,
+   "label": "Day 10",
+   "title": "DEPARTURE",
+   "bullets": [
+    "Breakfast & Departures on your own*",
+    "Please book a flight after 1pm to make sure you arrive on time from the island.",
+    "Ferries are subject to weather conditions but typically run on schedule.",
+    "RESERVE YOUR SPACE HERE!"
+   ],
+   "images": [
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-hands-in-prayer-position.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/frank-flores-3TB1lkF_-jA-unsplash.jpg",
+     "alt": "Hands pressed together in prayer position during practice in Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-limestone-island-and-a-longtail-boat.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/views-e1727655468961.webp",
+     "alt": "A limestone island and a longtail boat on the calm sea off Koh Yao Noi, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-tuk-tuks-lined-up-in-the-street.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/chris-arthur-collins-e9pxmdw0uEQ-unsplash-scaled-e1727655365645.jpg",
+     "alt": "Tuk-tuks lined up in the street in Chiang Mai, Thailand",
+     "shared": false
+    }
+   ]
+  }
+ ],
+ "itinerary_notes": [
+  "Please note this experience is supporting rescued elephants from a distance. We will be making them food, walking along side them at a distance and observing herds from afar. Most elephants in Thailand are mistreated and tourists unknowingly partake in activities that traumatize the animals. We are supporting the most ethical and humane sanctuary in the country. No bathing or riding elephants will take place on this retreat.",
+  "Depending on your plans you may explore other islands, stay on at the hotel a few more nights or explore Phuket, Krabi or Bangkok on your own.",
+  "This itinerary is subject to adjustments, changes in times, locations, or activities as the retreat leaders and hosts see fit. Any change will be on par with our standards or an upgrade in services or location making for an even more amazing experience for the group and our guests. Thank you in advance for your flexibility and cooperation if any situation were to arise."
+ ],
+ "optional_excursions_schedule": [],
+ "accommodations": [
+  {
+   "name": null,
+   "label": "5 nights in Chiang Mai Old City",
+   "text": [
+    "Our first 5 nights will be enjoyed tucked inside the Old City walls in a stunning, classical Thai hotel with saltwater swimming pool and intricate details throughout.",
+    "We will practice our yoga at the hotel and enjoy breakfasts daily as well.",
+    "Deluxe Suite options are along the ground floor with access directly to the swimming pool from your private terrace.",
+    "Our Superior private or shared room options have a charming wooden ceiling with beautiful details like bath products, robes and Thai decor."
+   ],
+   "instagram": null,
+   "gallery": [
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-carved-gateway-of-the-chiang-mai-hotel.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/2111.jpg",
+     "alt": "The carved gateway and guardian figures at the hotel in Chiang Mai Old City, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-saltwater-pool-along-the-carved-wall.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/2109.jpg",
+     "alt": "The saltwater pool running beside the carved wall at the hotel in Chiang Mai, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-teak-screen-onto-the-pool.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/2224.jpg",
+     "alt": "A carved teak screen opening onto the pool at the hotel in Chiang Mai, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-bathtub-looking-into-the-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/2228.jpg",
+     "alt": "A bathtub with gold fittings looking through to the bedroom at the hotel in Chiang Mai, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-robes-and-bath-products-on-a-tray.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/2187.jpg",
+     "alt": "Folded robes and bath products on a wooden tray at the hotel in Chiang Mai, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-balcony-over-the-pool.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/2225.jpg",
+     "alt": "A room balcony looking over the pool at the hotel in Chiang Mai, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-superior-room-with-a-carved-headboard.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/2157-e1727822723689.jpg",
+     "alt": "A superior room with a carved wooden headboard at the hotel in Chiang Mai, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-twin-superior-room-in-chiang-mai.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/2183.jpg",
+     "alt": "A superior room made up with twin beds at the hotel in Chiang Mai, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-superior-room-with-a-carved-headboard.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/2157-e1727822723689.jpg",
+     "alt": "A superior room with a carved wooden headboard at the hotel in Chiang Mai, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-stone-basin-in-the-bathroom.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/10/2242.jpg",
+     "alt": "A stone basin and brass tap in a bathroom at the hotel in Chiang Mai, Thailand",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": null,
+   "label": "4 nights beachfront on Koh Yao Noi",
+   "text": [
+    "Then we make our way to the stunning beaches of southern Thailand on the island of Koh Yao Noi where we will be staying beachfront at a secluded, gorgeous and scenic hotel for our final four nights. Yoga daily, spa services available, kayaking, beaches and villages to explore nearby.",
+    "Superior rooms have private or shared room options tucked into the jungle. Interior WC and sink area with open-air shower and balcony with jungle views."
+   ],
+   "instagram": null,
+   "gallery": [
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-koh-yao-noi-bay-from-the-air.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/beach-e1727826273341.webp",
+     "alt": "The bay and beachfront resort on Koh Yao Noi seen from the air, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-hillside-villas-above-the-sea.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/seaview-with-plunge-pool-e1727826332718.webp",
+     "alt": "Hillside villas looking out over the sea on Koh Yao Noi, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-practice-in-the-thatched-shala.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/Yoga-01-scaled-e1727827738881.jpg",
+     "alt": "A practice in downward dog in the thatched shala on Koh Yao Noi, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-beach-and-jungle-hillside.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/Drone-Resort-Grounds-1-e1727827492863.webp",
+     "alt": "The beach backed by jungle hillside on Koh Yao Noi, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-superior-studio-with-a-thatched-ceiling.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/11/Superior-Studio-04-1.webp",
+     "alt": "A superior studio with a thatched ceiling on Koh Yao Noi, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-studio-balcony-with-a-swing-seat.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/11/Superior-Studio-07.webp",
+     "alt": "A studio balcony with a swing seat over the jungle on Koh Yao Noi, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-studio-bed-under-a-mosquito-net.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/11/Superior-Studio-02.webp",
+     "alt": "A studio bed under a mosquito net on Koh Yao Noi, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-terrace-with-swing-chairs.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/11/Superior-Studio-08.webp",
+     "alt": "A terrace with swing chairs looking into the jungle on Koh Yao Noi, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-sea-view-room-with-a-canopy-bed.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/seaview-room.webp",
+     "alt": "A sea view room with a canopy bed on Koh Yao Noi, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-open-air-shower-with-a-blue-jar.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/bathroom.webp",
+     "alt": "An open-air shower area with a blue ceramic jar on Koh Yao Noi, Thailand",
+     "shared": false
+    }
+   ]
+  }
+ ],
+ "rooms": [
+  {
+   "name": "Superior — Private Room",
+   "price_usd": 7455,
+   "price_label": "7,455usd",
+   "price_unit": "private room",
+   "description": "Private bathroom & balcony in Chiang Mai; jungle view room with private bath at the beach.",
+   "attrs": {
+    "bed": null,
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-superior-room-with-a-carved-headboard.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/2157-e1727822723689.jpg",
+     "alt": "A superior room with a carved wooden headboard at the hotel in Chiang Mai, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-stone-basin-in-the-bathroom.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/10/2242.jpg",
+     "alt": "A stone basin and brass tap in a bathroom at the hotel in Chiang Mai, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-sea-view-room-with-a-canopy-bed.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/seaview-room.webp",
+     "alt": "A sea view room with a canopy bed on Koh Yao Noi, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-open-air-shower-with-a-blue-jar.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/bathroom.webp",
+     "alt": "An open-air shower area with a blue ceramic jar on Koh Yao Noi, Thailand",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": "Superior — Shared Double Bed",
+   "price_usd": 6495,
+   "price_label": "6,495usd per person",
+   "price_unit": "per person",
+   "description": "Shared-bed rate. You will be required to take a Private Superior if there is no roommate available.",
+   "attrs": {
+    "bed": "Double",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-superior-room-with-a-carved-headboard.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/2157-e1727822723689.jpg",
+     "alt": "A superior room with a carved wooden headboard at the hotel in Chiang Mai, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-stone-basin-in-the-bathroom.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/10/2242.jpg",
+     "alt": "A stone basin and brass tap in a bathroom at the hotel in Chiang Mai, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-sea-view-room-with-a-canopy-bed.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/seaview-room.webp",
+     "alt": "A sea view room with a canopy bed on Koh Yao Noi, Thailand",
+     "shared": false
+    },
+    {
+     "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-open-air-shower-with-a-blue-jar.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/bathroom.webp",
+     "alt": "An open-air shower area with a blue ceramic jar on Koh Yao Noi, Thailand",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": "Shared Room — Queen Bed",
+   "price_usd": 6595,
+   "price_label": "Queen Bed 6,595usd",
+   "price_unit": "per person",
+   "description": "In Koh Yao Noi the shared room has a queen and a twin bed.",
+   "attrs": {
+    "bed": "Queen",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": []
+  },
+  {
+   "name": "Shared Room — Twin Bed",
+   "price_usd": 6395,
+   "price_label": "Twin Bed 6,395usd",
+   "price_unit": "per person",
+   "description": "In Koh Yao Noi the shared room has a queen and a twin bed.",
+   "attrs": {
+    "bed": "Twin",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": []
+  }
+ ],
+ "pricing_notes": [
+  "All pricing is in USD.",
+  "For travel to Thailand please see our Travel Tips Guide below.",
+  "Space is limited to 10 students for an intimate retreat. Please secure your space early by making your deposit under the Reserve tab.",
+  "We stay in 2 different venues during the 9 night retreat: 5 nights in Chiang Mai Old City and 4 nights on Koh Yao Noi. Space is limited to 10 students."
+ ],
+ "extras": [],
+ "travel_tips": [
+  {
+   "heading": null,
+   "items": [
+    "Treasures of Thailand : A Yoga + Wellness Retreat",
+    "BEHAVIOR :",
+    "In Thailand, cultural expectations emphasize respect, humility, and politeness, themes which we will be practicing during our time on retreat. One key aspect is the concept of “saving face,” which means avoiding confrontations or actions that could cause embarrassment to others. Thai people often use the traditional greeting called the wai, where the palms are pressed together in a prayer-like gesture. Additionally, showing respect towards Buddhism and the monarchy is very important. When visiting temples, dress modestly, removing shoes and keeping shoulders and knees covered. Finally, avoid touching people’s heads, as it’s considered the most sacred part of the body, and be mindful not to point feet at others or sacred objects, as feet are seen as the lowest and least clean part of the body.",
+    "FLIGHTS :",
+    "Thailand has several international airports that cater to flights from various global destinations.",
+    "Our retreat begins in Chiang Mai. You should plan to fly into Chiang Mai International Airport (CNX).",
+    "Our retreat ends in the southern beaches on an island called Koh Yao Noi. You can choose to fly out of PHUKET or KRABI airports after the retreat ends depending on where your travels take you afterwards. Flights should be after 1pm local time in order to arrive from the hotel venue, via ferry to your airport.",
+    "Please note the domestic flight during the retreat from the north to the south is NOT included in your package. Upon registering for this retreat we will advise the flight for you to purchase.",
+    "If you plan to travel before or after your retreat there are several other airports to consider. The main options include:",
+    "Suvarnabhumi Airport (BKK) – Bangkok: This is the largest and busiest airport in Thailand, serving as a major hub for international flights. Many airlines offer direct flights to Bangkok from cities in Asia, Europe, the Middle East, North America, and Australia.",
+    "Don Mueang International Airport (DMK) – Bangkok: Mostly serving low-cost airlines and regional flights, Don Mueang is another option for entering Thailand, especially if you’re flying from neighboring countries.",
+    "Phuket International Airport (HKT) is the main airport serving Phuket, Thailand, and is one of the busiest airports in the country. It serves as the gateway to the island’s famous beaches, resorts, and attractions.",
+    "Krabi International Airport (KBV): While smaller, Krabi’s airport is a gateway to southern Thailand’s beach destinations. It handles some direct international flights, mainly from other Asian countries.",
+    "JETLAG :",
+    "To manage jet lag when flying to Thailand, start adjusting your sleep schedule a few days before your trip by going to bed and waking up earlier. Stay well-hydrated during the flight and avoid alcohol and caffeine, which can disrupt sleep. Upon arrival, try to spend time outside in natural sunlight to help reset your internal clock. It’s also helpful to take short naps if needed, but avoid long sleep periods during the day to adjust to the local time faster.",
+    "We recommend you arrive into SEA several days before the retreat to adjust to the nearly 12 hour time difference (depending on where you are traveling from). Bangkok or other islands might be of interest to explore. Keep in mind that the seasons/weather are very different throughout the country. Please check details of your travel destinations prior to making arrangements.",
+    "When traveling in Thailand, a few key points to keep in mind :",
+    "Respect Local Customs: Thailand has deep-rooted cultural traditions. Dress modestly, especially when visiting temples or religious sites. Avoid pointing your feet towards people or religious objects, and use the traditional wai (palms pressed together) as a polite greeting.",
+    "Health and Safety: It’s wise to drink bottled water and avoid consuming tap water. Ensure you have travel insurance for any medical emergencies. Thailand is generally safe, but it’s good to be cautious in crowded areas to avoid petty theft.",
+    "Transportation: Tuk-tuks and motorbike taxis are common for short distances, while Grab (a ride-hailing app) can be used for longer trips. Always agree on a fare before starting a tuk-tuk ride, as meters are not used.",
+    "Money: The local currency is the Thai Baht (THB). ATMs are widely available, and credit cards are accepted in many places, though smaller shops may require cash. It’s also useful to carry small denominations for market purchases or tipping.",
+    "Weather and Packing: November is the start of the cool, dry season in Thailand, so pack light, breathable clothing, a hat, sunscreen, and comfortable walking shoes."
+   ]
+  }
+ ],
+ "gallery_title": null,
+ "gallery_intro": null,
+ "gallery": [
+  {
+   "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-thai-massage-by-candlelight.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/getty-images-wOuxNOiGKpg-unsplash-scaled-e1727653059526.jpg",
+   "alt": "A Thai massage being given by candlelight at the spa in Thailand",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-carved-stone-heads-in-the-garden.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/terracotta-products.jpg",
+   "alt": "Carved stone heads in a terracotta garden in Thailand",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-northern-thai-dishes-on-a-table.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/thaifood.jpg",
+   "alt": "A spread of northern Thai dishes laid out on a table in Chiang Mai, Thailand",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-thai-dishes-with-orchids.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/thai-food.jpg",
+   "alt": "Thai dishes laid out with orchids and jasmine garlands in Thailand",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-pool-reflecting-the-palms.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/2112.jpg",
+   "alt": "The pool reflecting the palms and the brick facade at the hotel in Chiang Mai, Thailand",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-twin-superior-room-in-chiang-mai.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/2183.jpg",
+   "alt": "A superior room made up with twin beds at the hotel in Chiang Mai, Thailand",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-practice-on-the-lawn-by-the-sea.webp",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/yoga-beach-e1727654125125.webp",
+   "alt": "Guests in prayer position on mats on the lawn by the sea on Koh Yao Noi, Thailand",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-longtail-boats-beached-below-the-karsts.webp",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/long-boats.webp",
+   "alt": "Longtail boats beached below the limestone karsts in southern Thailand",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-lotus-flowers-on-the-pond.webp",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/lotus-scaled-e1727650319718.webp",
+   "alt": "Pink lotus flowers open on a green pond in Thailand",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-village-shop-on-the-island.webp",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/beach-village-e1727654855196.webp",
+   "alt": "Guests outside a village shop on Koh Yao Noi, Thailand",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-koh-yao-noi-bay-from-the-air.webp",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/beach-e1727826273341.webp",
+   "alt": "The bay and beachfront resort on Koh Yao Noi seen from the air, Thailand",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-preparing-flower-offerings.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/3181B64U0730-e1727650178578.jpg",
+   "alt": "A woman preparing flower offerings and fruit in Chiang Mai, Thailand",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-elephants-walking-the-track.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/elephantwalk-scaled-e1727653506793.jpg",
+   "alt": "Elephants walking a sandy track at the sanctuary in Thailand",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-temple-guardian-and-chedi.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/teodor-kuduschiev-fNqG48e71gg-unsplash.jpg",
+   "alt": "A carved temple guardian beside a chedi in Chiang Mai, Thailand",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-tuk-tuks-lined-up-in-the-street.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/chris-arthur-collins-e9pxmdw0uEQ-unsplash-scaled-e1727655365645.jpg",
+   "alt": "Tuk-tuks lined up in the street in Chiang Mai, Thailand",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-adjusting-a-seated-posture.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/getty-images-fMyC20EN2jg-unsplash-e1725408737315.jpg",
+   "alt": "A teacher adjusting a guest's hands in a seated posture in Thailand",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/thailand-dec-2026/img/yoga-retreat-thailand-stone-elephant-statues.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/09/deepavali-gaind-xdkdgAyzHGE-unsplash.jpg",
+   "alt": "Carved stone elephants at a temple in Thailand",
+   "shared": false,
+   "ratio": null
+  }
+ ],
+ "faqs": [
+  {
+   "question": "Do you accept bitcoin?",
+   "answer": [
+    "In addition to credit card payments we also accept wire transfers, Zelle and Bitcoin. Please inquire for more details."
+   ]
+  },
+  {
+   "question": "What is the cancellation policy?",
+   "answer": [
+    "All payments are 100% non refundable and non-transferable. We recommend that you buy trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you."
+   ]
+  },
+  {
+   "question": "What happens if my travel plans change?",
+   "answer": [
+    "There are no refunds as per our cancellation policies. We highly recommend that all of our guests secure a quality travel insurance that will cover them for any event which may cause a change of travel plans, including personal health issues or personal situations in general which may affect travel plans."
+   ]
+  },
+  {
+   "question": "Are flight delays or cancellations covered?",
+   "answer": [
+    "Not by us: transportation delays, cancellations or changes due to strikes, labor disputes, or lockouts from airlines, boats, ferries or any type of transportation are among the events we recommend covering with travel insurance."
+   ]
+  },
+  {
+   "question": "Where can I find the full terms & conditions?",
+   "answer": [
+    "The full terms and conditions are published at https://yogaadventuresworldwide.com/termsandconditions/ . By submitting payments toward your retreat you accept them."
+   ]
+  }
+ ],
+ "booking": {
+  "deposit_usd": 1000,
+  "deposit_label": "$1,000 USD per person",
+  "deposit_instructions": "Deposits of $1,000usd are due to secure your space in the retreat. Please check availability with us for accommodations before making your deposit.",
+  "balance_due_days": 90,
+  "balance_note": "The balance of your retreat (minus your $1,000usd initial deposit) is due 90 days prior to arrival. All details with instructions for settling up will be emailed to you three months prior to the retreat.",
+  "payment_methods": [
+   "Credit card",
+   "Wire transfer",
+   "Zelle",
+   "Bitcoin"
+  ],
+  "roommate_note": "Roommates should book together. If you would like to share a room and do not have a roommate we will provide one for you if possible. In the case that there is no one to share a room we ask that you take a private room instead.",
+  "cancellation_policy": [
+   "All payments are 100% non refundable and non-transferable. We recommend that you buy trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you."
+  ],
+  "booking_url": "https://yogaadventuresworldwide.com/retreat/treasures-of-thailand-a-yoga-wellness-retreat/#reserve",
+  "contact_url": "https://yogaadventuresworldwide.com/contact-about-yoga-retreats/"
+ },
+ "testimonials": null,
+ "carbon_offset": null,
+ "source_url": "https://yogaadventuresworldwide.com/retreat/treasures-of-thailand-a-yoga-wellness-retreat/",
+ "source_post_slug": "treasures-of-thailand-a-yoga-wellness-retreat",
+ "source_categories": [
+  "yoga"
+ ],
+ "source_is_shared": false,
+ "seo_title": "Thailand Yoga Retreat · Dec 2026",
+ "seo_description": "9-night yoga retreat in Chiang Mai & Koh Yao Noi, Thailand. December 1 - 10, 2026, with Amy Sennett-Starner — sold out.",
+ "_notes": {
+  "accommodations.gallery": "The old site runs both venues through one gallery; the photographs were looked at and split back to the venue they show.",
+  "accommodations": "The old site describes the property but never names it, so `name` is null.",
+  "rooms.gallery": "Some room types have no photographs of their own: the old site shows images only under some of the headings in its pricing block.",
+  "faqs": "The source page has no FAQs block. These five answers are quoted from the site-wide Policies text inside the retreat page's Reserve section, matched to the five questions the template ships. They are not retreat-specific.",
+  "tier": "Not deducible: the old site's retreat_categories are topical (yoga, art-creative, yoga-food-and-wine, family-retreats) and only signature-retreats maps to a collection. Left null rather than guessed.",
+  "highlights": "The old site has no highlights block; nothing was invented to fill it.",
+  "testimonials": "The source page has an empty \"Praise\" carousel — the markup is there, the quotes are not. Left null; the template ships placeholder quotes.",
+  "carbon_offset": "No carbon-offset copy anywhere on the old site. The template's text is new site-wide copy.",
+  "seo_title": "DRAFT. Written only from this retreat's real destination, month and year.",
+  "seo_description": "DRAFT. Written only from real data: nights, location, published date range, teacher, status.",
+  "status": "From /all-upcoming-dates/ on 2026-11-12 — flag read \"sold out\"."
+ },
+ "_missing": [
+  "about_title",
+  "accommodations[].name",
+  "carbon_offset",
+  "extras",
+  "gallery_intro",
+  "gallery_title",
+  "highlights",
+  "includes_footnote",
+  "not_included_footnote",
+  "optional_excursions_schedule",
+  "subtitle",
+  "teachers[Amy Sennett-Starner].instagram",
+  "teachers[Amy Sennett-Starner].role",
+  "testimonials",
+  "tier",
+  "tier_label",
+  "tier_source"
+ ]
+}

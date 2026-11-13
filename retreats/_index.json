@@ -1,0 +1,546 @@
+{
+ "generated": "2026-11-12",
+ "source": "https://yogaadventuresworldwide.com/",
+ "definition_of_open": "Listed on /all-upcoming-dates/ on 2026-11-12. Sold-out and few-spaces editions are included and flagged via `status`.",
+ "count": 19,
+ "notes": [
+  "The old site groups retreats by LOCATION: one post per destination holding several dates. Each row here is one concrete edition (destination + dates + teacher), which is how the new site models a retreat. `source_post_slug` says which location post it came from and `shared_location_key` which _shared image folder it draws on.",
+  "morocco-nov-2026 began on 2026-11-07, before the extraction date, so it is already under way rather than bookable. It is kept because the old site still lists it under Upcoming Dates; `started_before_today` flags it.",
+  "`tier` is only set where the source post carries the retreat_categories-signature-retreats term. The old site has no Deep Dives taxonomy, so every other row is null rather than guessed. The tiers hard-coded in retreats.html are placeholder design data and were not used.",
+  "`nights` is the difference between date_start and date_end; it matches the nights each source page states in its Includes list."
+ ],
+ "retreats": [
+  {
+   "slug": "morocco-nov-2026",
+   "title": "Mesmerized in Morocco : A Yoga & Culture Retreat",
+   "destination": "Morocco",
+   "country": "Morocco",
+   "location_label": "Marrakech & Essaouira, Morocco",
+   "date_start": "2026-11-07",
+   "date_end": "2026-11-14",
+   "dates_label": "November 7 - 14, 2026",
+   "nights": 7,
+   "season": "Fall, 2026",
+   "teachers": [
+    "Dawn Thie"
+   ],
+   "teacher_unassigned": false,
+   "status": "sold_out",
+   "status_label": "sold out",
+   "tier": null,
+   "tier_label": null,
+   "source_url": "https://yogaadventuresworldwide.com/retreat/yoga-retreat-morocco/",
+   "source_post_slug": "yoga-retreat-morocco",
+   "source_categories": [
+    "yoga"
+   ],
+   "shared_location_key": "morocco",
+   "started_before_today": true,
+   "data": "retreats/morocco-nov-2026/data.json"
+  },
+  {
+   "slug": "el-cuyo-dec-2026-delaney",
+   "title": "Yucatán Yoga & Spa Beach Retreat",
+   "destination": "El Cuyo",
+   "country": "Mexico",
+   "location_label": "El Cuyo, Mexico",
+   "date_start": "2026-12-01",
+   "date_end": "2026-12-06",
+   "dates_label": "December 1 - 6, 2026",
+   "nights": 5,
+   "season": "Winter, 2026 / 2027",
+   "teachers": [
+    "Alicia Delaney"
+   ],
+   "teacher_unassigned": false,
+   "status": "open",
+   "status_label": null,
+   "tier": null,
+   "tier_label": null,
+   "source_url": "https://yogaadventuresworldwide.com/retreat/beach-yoga-retreat-mexico/",
+   "source_post_slug": "beach-yoga-retreat-mexico",
+   "source_categories": [
+    "yoga"
+   ],
+   "shared_location_key": "el-cuyo",
+   "started_before_today": false,
+   "data": "retreats/el-cuyo-dec-2026-delaney/data.json"
+  },
+  {
+   "slug": "thailand-dec-2026",
+   "title": "Treasures of Thailand : A Yoga + Wellness Retreat",
+   "destination": "Thailand",
+   "country": "Thailand",
+   "location_label": "Chiang Mai & Koh Yao Noi, Thailand",
+   "date_start": "2026-12-01",
+   "date_end": "2026-12-10",
+   "dates_label": "December 1 - 10, 2026",
+   "nights": 9,
+   "season": "Winter, 2026 / 2027",
+   "teachers": [
+    "Amy Sennett-Starner"
+   ],
+   "teacher_unassigned": false,
+   "status": "sold_out",
+   "status_label": "sold out",
+   "tier": null,
+   "tier_label": null,
+   "source_url": "https://yogaadventuresworldwide.com/retreat/treasures-of-thailand-a-yoga-wellness-retreat/",
+   "source_post_slug": "treasures-of-thailand-a-yoga-wellness-retreat",
+   "source_categories": [
+    "yoga"
+   ],
+   "shared_location_key": "thailand",
+   "started_before_today": false,
+   "data": "retreats/thailand-dec-2026/data.json"
+  },
+  {
+   "slug": "el-cuyo-dec-2026-d29",
+   "title": "Yucatán Yoga & Spa Beach Retreat",
+   "destination": "El Cuyo",
+   "country": "Mexico",
+   "location_label": "El Cuyo, Mexico",
+   "date_start": "2026-12-29",
+   "date_end": "2027-01-03",
+   "dates_label": "December 29, 2026 - January 3, 2027",
+   "nights": 5,
+   "season": "Winter, 2026 / 2027",
+   "teachers": [],
+   "teacher_unassigned": true,
+   "status": "open",
+   "status_label": "New Retreat",
+   "tier": null,
+   "tier_label": null,
+   "source_url": "https://yogaadventuresworldwide.com/retreat/beach-yoga-retreat-mexico/",
+   "source_post_slug": "beach-yoga-retreat-mexico",
+   "source_categories": [
+    "yoga"
+   ],
+   "shared_location_key": "el-cuyo",
+   "started_before_today": false,
+   "data": "retreats/el-cuyo-dec-2026-d29/data.json"
+  },
+  {
+   "slug": "el-cuyo-jan-2027-berger",
+   "title": "Yucatán Yoga & Spa Beach Retreat",
+   "destination": "El Cuyo",
+   "country": "Mexico",
+   "location_label": "El Cuyo, Mexico",
+   "date_start": "2027-01-24",
+   "date_end": "2027-01-29",
+   "dates_label": "January 24 - 29, 2027",
+   "nights": 5,
+   "season": "Winter, 2026 / 2027",
+   "teachers": [
+    "Sue Berger"
+   ],
+   "teacher_unassigned": false,
+   "status": "open",
+   "status_label": null,
+   "tier": null,
+   "tier_label": null,
+   "source_url": "https://yogaadventuresworldwide.com/retreat/beach-yoga-retreat-mexico/",
+   "source_post_slug": "beach-yoga-retreat-mexico",
+   "source_categories": [
+    "yoga"
+   ],
+   "shared_location_key": "el-cuyo",
+   "started_before_today": false,
+   "data": "retreats/el-cuyo-jan-2027-berger/data.json"
+  },
+  {
+   "slug": "el-cuyo-jan-2027-coffey",
+   "title": "Mini Yoga Retreats in El Cuyo",
+   "destination": "El Cuyo",
+   "country": "Mexico",
+   "location_label": "El Cuyo, Mexico",
+   "date_start": "2027-01-29",
+   "date_end": "2027-02-02",
+   "dates_label": "January 29 - February 2, 2027",
+   "nights": 4,
+   "season": "Winter, 2026 / 2027",
+   "teachers": [
+    "Jamie Coffey"
+   ],
+   "teacher_unassigned": false,
+   "status": "open",
+   "status_label": null,
+   "tier": null,
+   "tier_label": null,
+   "source_url": "https://yogaadventuresworldwide.com/retreat/mini-yoga-retreats-in-paradise/",
+   "source_post_slug": "mini-yoga-retreats-in-paradise",
+   "source_categories": [
+    "yoga"
+   ],
+   "shared_location_key": "el-cuyo",
+   "started_before_today": false,
+   "data": "retreats/el-cuyo-jan-2027-coffey/data.json"
+  },
+  {
+   "slug": "el-cuyo-feb-2027-delaney",
+   "title": "Yucatán Yoga & Spa Beach Retreat",
+   "destination": "El Cuyo",
+   "country": "Mexico",
+   "location_label": "El Cuyo, Mexico",
+   "date_start": "2027-02-02",
+   "date_end": "2027-02-07",
+   "dates_label": "February 2 - 7, 2027",
+   "nights": 5,
+   "season": "Winter, 2026 / 2027",
+   "teachers": [
+    "Alicia Delaney"
+   ],
+   "teacher_unassigned": false,
+   "status": "open",
+   "status_label": null,
+   "tier": null,
+   "tier_label": null,
+   "source_url": "https://yogaadventuresworldwide.com/retreat/beach-yoga-retreat-mexico/",
+   "source_post_slug": "beach-yoga-retreat-mexico",
+   "source_categories": [
+    "yoga"
+   ],
+   "shared_location_key": "el-cuyo",
+   "started_before_today": false,
+   "data": "retreats/el-cuyo-feb-2027-delaney/data.json"
+  },
+  {
+   "slug": "el-cuyo-feb-2027-morin-gray",
+   "title": "Embodied : The Art of Being Seen",
+   "destination": "El Cuyo",
+   "country": "Mexico",
+   "location_label": "El Cuyo, Mexico",
+   "date_start": "2027-02-14",
+   "date_end": "2027-02-20",
+   "dates_label": "February 14 - 20, 2027",
+   "nights": 6,
+   "season": "Winter, 2026 / 2027",
+   "teachers": [
+    "Genevieve Morin",
+    "Rachel Gray"
+   ],
+   "teacher_unassigned": false,
+   "status": "open",
+   "status_label": null,
+   "tier": null,
+   "tier_label": null,
+   "source_url": "https://yogaadventuresworldwide.com/retreat/embodied-the-art-of-being-seen/",
+   "source_post_slug": "embodied-the-art-of-being-seen",
+   "source_categories": [
+    "art-creative",
+    "yoga"
+   ],
+   "shared_location_key": "el-cuyo",
+   "started_before_today": false,
+   "data": "retreats/el-cuyo-feb-2027-morin-gray/data.json"
+  },
+  {
+   "slug": "argentina-mar-2027",
+   "title": "Argentina Yoga Retreat : Buenos Aires & Patagonia",
+   "destination": "Argentina",
+   "country": "Argentina",
+   "location_label": "Buenos Aires & Patagonia, Argentina",
+   "date_start": "2027-03-12",
+   "date_end": "2027-03-19",
+   "dates_label": "March 12 - 19, 2027",
+   "nights": 7,
+   "season": "Winter, 2026 / 2027",
+   "teachers": [
+    "Alison Buchanan"
+   ],
+   "teacher_unassigned": false,
+   "status": "few_spaces",
+   "status_label": "2 SPACES LEFT!",
+   "tier": null,
+   "tier_label": null,
+   "source_url": "https://yogaadventuresworldwide.com/retreat/yoga-retreat-argentina/",
+   "source_post_slug": "yoga-retreat-argentina",
+   "source_categories": [
+    "yoga"
+   ],
+   "shared_location_key": "argentina",
+   "started_before_today": false,
+   "data": "retreats/argentina-mar-2027/data.json"
+  },
+  {
+   "slug": "camino-de-santiago-apr-2027",
+   "title": "Camino de Santiago : A Yoga & Reflections Retreat",
+   "destination": "Camino de Santiago",
+   "country": "Spain",
+   "location_label": "Camino de Santiago, Spain",
+   "date_start": "2027-04-18",
+   "date_end": "2027-04-27",
+   "dates_label": "April 18 - 27, 2027",
+   "nights": 9,
+   "season": "Spring, 2027",
+   "teachers": [
+    "Jenniferlyn Chiemingo"
+   ],
+   "teacher_unassigned": false,
+   "status": "few_spaces",
+   "status_label": "2 SPACES LEFT!",
+   "tier": "signature",
+   "tier_label": "Signature Collection",
+   "source_url": "https://yogaadventuresworldwide.com/retreat/camino-de-santiago/",
+   "source_post_slug": "camino-de-santiago",
+   "source_categories": [
+    "signature-retreats",
+    "yoga"
+   ],
+   "shared_location_key": "camino-de-santiago",
+   "started_before_today": false,
+   "data": "retreats/camino-de-santiago-apr-2027/data.json"
+  },
+  {
+   "slug": "montenegro-may-2027-erickson",
+   "title": "Montenegro Magic : A Yoga & Nature Retreat",
+   "destination": "Montenegro",
+   "country": "Montenegro",
+   "location_label": "Bay of Kotor, Montenegro",
+   "date_start": "2027-05-15",
+   "date_end": "2027-05-21",
+   "dates_label": "May 15 - 21, 2027",
+   "nights": 6,
+   "season": "Spring, 2027",
+   "teachers": [
+    "Bonnie Erickson"
+   ],
+   "teacher_unassigned": false,
+   "status": "open",
+   "status_label": null,
+   "tier": null,
+   "tier_label": null,
+   "source_url": "https://yogaadventuresworldwide.com/retreat/yoga-retreat-montenegro/",
+   "source_post_slug": "yoga-retreat-montenegro",
+   "source_categories": [
+    "yoga"
+   ],
+   "shared_location_key": "montenegro",
+   "started_before_today": false,
+   "data": "retreats/montenegro-may-2027-erickson/data.json"
+  },
+  {
+   "slug": "portugal-may-2027",
+   "title": "Portugal : A Yoga & Coastal Retreat",
+   "destination": "Portugal",
+   "country": "Portugal",
+   "location_label": "Lisbon & Costa Vicentina, Portugal",
+   "date_start": "2027-05-16",
+   "date_end": "2027-05-23",
+   "dates_label": "May 16 - 23, 2027",
+   "nights": 7,
+   "season": "Spring, 2027",
+   "teachers": [
+    "Dawn Thie"
+   ],
+   "teacher_unassigned": false,
+   "status": "open",
+   "status_label": null,
+   "tier": null,
+   "tier_label": null,
+   "source_url": "https://yogaadventuresworldwide.com/retreat/yoga-retreat-portugal/",
+   "source_post_slug": "yoga-retreat-portugal",
+   "source_categories": [
+    "yoga",
+    "yoga-food-and-wine"
+   ],
+   "shared_location_key": "portugal",
+   "started_before_today": false,
+   "data": "retreats/portugal-may-2027/data.json"
+  },
+  {
+   "slug": "montenegro-may-2027-cordover",
+   "title": "Montenegro Magic : A Yoga & Nature Retreat",
+   "destination": "Montenegro",
+   "country": "Montenegro",
+   "location_label": "Bay of Kotor, Montenegro",
+   "date_start": "2027-05-22",
+   "date_end": "2027-05-28",
+   "dates_label": "May 22 - 28, 2027",
+   "nights": 6,
+   "season": "Spring, 2027",
+   "teachers": [
+    "Melanie Cordover"
+   ],
+   "teacher_unassigned": false,
+   "status": "few_spaces",
+   "status_label": "1 SPACE LEFT!",
+   "tier": null,
+   "tier_label": null,
+   "source_url": "https://yogaadventuresworldwide.com/retreat/yoga-retreat-montenegro/",
+   "source_post_slug": "yoga-retreat-montenegro",
+   "source_categories": [
+    "yoga"
+   ],
+   "shared_location_key": "montenegro",
+   "started_before_today": false,
+   "data": "retreats/montenegro-may-2027-cordover/data.json"
+  },
+  {
+   "slug": "santorini-may-2027",
+   "title": "Yoga Retreat Greece",
+   "destination": "Santorini",
+   "country": "Greece",
+   "location_label": "Santorini, Greece",
+   "date_start": "2027-05-23",
+   "date_end": "2027-05-29",
+   "dates_label": "May 23 - 29, 2027",
+   "nights": 6,
+   "season": "Spring, 2027",
+   "teachers": [
+    "Yessica Puebla"
+   ],
+   "teacher_unassigned": false,
+   "status": "open",
+   "status_label": null,
+   "tier": null,
+   "tier_label": null,
+   "source_url": "https://yogaadventuresworldwide.com/retreat/yoga-retreat-greece/",
+   "source_post_slug": "yoga-retreat-greece",
+   "source_categories": [
+    "yoga"
+   ],
+   "shared_location_key": "santorini",
+   "started_before_today": false,
+   "data": "retreats/santorini-may-2027/data.json"
+  },
+  {
+   "slug": "santorini-sep-2027-erickson",
+   "title": "Yoga Retreat Greece",
+   "destination": "Santorini",
+   "country": "Greece",
+   "location_label": "Santorini, Greece",
+   "date_start": "2027-09-12",
+   "date_end": "2027-09-18",
+   "dates_label": "September 12 - 18, 2027",
+   "nights": 6,
+   "season": "Summer, 2027",
+   "teachers": [
+    "Bonnie Erickson"
+   ],
+   "teacher_unassigned": false,
+   "status": "open",
+   "status_label": null,
+   "tier": null,
+   "tier_label": null,
+   "source_url": "https://yogaadventuresworldwide.com/retreat/yoga-retreat-greece/",
+   "source_post_slug": "yoga-retreat-greece",
+   "source_categories": [
+    "yoga"
+   ],
+   "shared_location_key": "santorini",
+   "started_before_today": false,
+   "data": "retreats/santorini-sep-2027-erickson/data.json"
+  },
+  {
+   "slug": "camino-de-santiago-sep-2027",
+   "title": "Camino de Santiago : A Yoga & Reflections Retreat",
+   "destination": "Camino de Santiago",
+   "country": "Spain",
+   "location_label": "Camino de Santiago, Spain",
+   "date_start": "2027-09-19",
+   "date_end": "2027-09-28",
+   "dates_label": "September 19 - 28, 2027",
+   "nights": 9,
+   "season": "Summer, 2027",
+   "teachers": [
+    "Genevieve Morin"
+   ],
+   "teacher_unassigned": false,
+   "status": "open",
+   "status_label": null,
+   "tier": "signature",
+   "tier_label": "Signature Collection",
+   "source_url": "https://yogaadventuresworldwide.com/retreat/camino-de-santiago/",
+   "source_post_slug": "camino-de-santiago",
+   "source_categories": [
+    "signature-retreats",
+    "yoga"
+   ],
+   "shared_location_key": "camino-de-santiago",
+   "started_before_today": false,
+   "data": "retreats/camino-de-santiago-sep-2027/data.json"
+  },
+  {
+   "slug": "santorini-sep-2027-berger",
+   "title": "Yoga Retreat Greece",
+   "destination": "Santorini",
+   "country": "Greece",
+   "location_label": "Santorini, Greece",
+   "date_start": "2027-09-19",
+   "date_end": "2027-09-25",
+   "dates_label": "September 19 - 25, 2027",
+   "nights": 6,
+   "season": "Summer, 2027",
+   "teachers": [
+    "Sue Berger"
+   ],
+   "teacher_unassigned": false,
+   "status": "sold_out",
+   "status_label": "sold out",
+   "tier": null,
+   "tier_label": null,
+   "source_url": "https://yogaadventuresworldwide.com/retreat/yoga-retreat-greece/",
+   "source_post_slug": "yoga-retreat-greece",
+   "source_categories": [
+    "yoga"
+   ],
+   "shared_location_key": "santorini",
+   "started_before_today": false,
+   "data": "retreats/santorini-sep-2027-berger/data.json"
+  },
+  {
+   "slug": "santorini-sep-2027-d26",
+   "title": "Yoga Retreat Greece",
+   "destination": "Santorini",
+   "country": "Greece",
+   "location_label": "Santorini, Greece",
+   "date_start": "2027-09-26",
+   "date_end": "2027-10-02",
+   "dates_label": "September 26 - October 2, 2027",
+   "nights": 6,
+   "season": "Summer, 2027",
+   "teachers": [],
+   "teacher_unassigned": true,
+   "status": "open",
+   "status_label": null,
+   "tier": null,
+   "tier_label": null,
+   "source_url": "https://yogaadventuresworldwide.com/retreat/yoga-retreat-greece/",
+   "source_post_slug": "yoga-retreat-greece",
+   "source_categories": [
+    "yoga"
+   ],
+   "shared_location_key": "santorini",
+   "started_before_today": false,
+   "data": "retreats/santorini-sep-2027-d26/data.json"
+  },
+  {
+   "slug": "oaxaca-oct-2027",
+   "title": "Day of the Dead Yoga + Reverence Retreat Oaxaca",
+   "destination": "Oaxaca",
+   "country": "Mexico",
+   "location_label": "Oaxaca, Mexico",
+   "date_start": "2027-10-28",
+   "date_end": "2027-11-04",
+   "dates_label": "October 28 - November 4, 2027",
+   "nights": 7,
+   "season": "Fall, 2027",
+   "teachers": [],
+   "teacher_unassigned": true,
+   "status": "open",
+   "status_label": "New Retreat",
+   "tier": null,
+   "tier_label": null,
+   "source_url": "https://yogaadventuresworldwide.com/retreat/yoga-retreat-day-of-the-dead-oaxaca/",
+   "source_post_slug": "yoga-retreat-day-of-the-dead-oaxaca",
+   "source_categories": [
+    "yoga",
+    "yoga-food-and-wine"
+   ],
+   "shared_location_key": "oaxaca",
+   "started_before_today": false,
+   "data": "retreats/oaxaca-oct-2027/data.json"
+  }
+ ]
+}

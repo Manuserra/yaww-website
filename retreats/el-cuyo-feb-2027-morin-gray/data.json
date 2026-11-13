@@ -1,0 +1,815 @@
+{
+ "slug": "el-cuyo-feb-2027-morin-gray",
+ "title": "Embodied : The Art of Being Seen",
+ "subtitle": "A Yoga & Boudoir Photography Experience",
+ "destination": "El Cuyo",
+ "location_label": "El Cuyo, Mexico",
+ "country": "Mexico",
+ "region": "Yucatán",
+ "tier": null,
+ "tier_label": null,
+ "tier_source": null,
+ "status": "open",
+ "status_label": null,
+ "urgency": null,
+ "date_start": "2027-02-14",
+ "date_end": "2027-02-20",
+ "dates_label": "February 14 - 20, 2027",
+ "season": "Winter, 2026 / 2027",
+ "nights": 6,
+ "days": 7,
+ "teachers": [
+  {
+   "name": "Genevieve Morin",
+   "slug": "genevieve-morin",
+   "role": null,
+   "bio": [
+    "Genevieve has been leading retreats internationally for the last 20 years. She is passionate about worldwide travel, full immersion in different cultures, and the importance of broadening our understanding of one another.",
+    "As a trilingual yoga teacher, speaking English, French and Spanish, verbal and non-verbal communication are at the core of her interests. Like cooking or creating music, moving the body, dancing and yogic expression are international, borderless forms of communication. The potential of connection to ourselves, to one another, and to a universal energy is boundless.",
+    "Even when Genevieve travels on retreat to a place where common language is not spoken, sharing the language of yoga and movement is always possible. Genevieve loves leading a group of people to unique destinations, especially those who may feel timid or shy in a foreign place. To offer an opportunity for people to experience our human oneness is pivotal and life-changing. We are all human beings with similar needs and desires, and despite borders or differences, we all yearn toward meaningful connections. Genevieve is endlessly intrigued by how simple life truly is… and how simple and joyful our journeys can be.",
+    "Discover more about Genevieve on her website, Truro Yoga."
+   ],
+   "photo": {
+    "file": "retreats/_shared/teachers/img/yoga-teacher-genevieve-morin.jpg",
+    "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/04/2023.05.14_YogaAdventures_AraiMoleri_0190-scaled-e1745705921584.jpg",
+    "alt": "Genevieve Morin, yoga teacher, laughing on a rocky hillside",
+    "shared": true
+   },
+   "instagram": null,
+   "source": "https://yogaadventuresworldwide.com/team/"
+  },
+  {
+   "name": "Rachel Gray",
+   "slug": "rachel-gray",
+   "role": "Boudoir & portrait photographer",
+   "bio": [
+    "Rachel Gray is an internationally recognized photographer, who has worked with leading brands such as Tiffany, Netflix, Time Magazine, and more. Based in Malibu, her work is rooted in both a fine-art foundation and a capacity to capture with presence and sensitivity.",
+    "Her work centers on connection — the quiet, unguarded moments where people reveal how they inhabit their bodies and relationships. Clients often describe the experience of working with her as grounding and fun, noting her ability to “conjure vulnerability without imposition.”",
+    "During this retreat, you will be guided through an intimate portrait experience that results in an image designed to be treasured for a lifetime. Rachel’s version of boudoir photography is rooted in a light hearted, and playful openness. Participants co-create based on their comfort level and the resulting image is a reflection of each person’s inner landscape."
+   ],
+   "photo": {
+    "file": "retreats/_shared/teachers/img/yoga-teacher-rachel-gray.png",
+    "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/10/Screenshot-2025-10-22-at-1.27.34-PM-e1761360405699.png",
+    "alt": "Rachel Gray, the photographer leading the Embodied retreat in El Cuyo, with a camera on her shoulder",
+    "shared": true
+   },
+   "instagram": null,
+   "source": "https://yogaadventuresworldwide.com/team/"
+  }
+ ],
+ "teacher_unassigned": false,
+ "hero_image": {
+  "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-empty-shoreline-at-dawn.jpg",
+  "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/10/Elise.Cuyo_RGPhoto_002-e1783807105689.jpg",
+  "alt": "A lone figure on the wide empty shoreline at dawn in El Cuyo, Mexico",
+  "shared": false
+ },
+ "intro": "Through breath and spontaneous, organic movement, we’ll shake loose the noise and come home to ourselves – not as something to fix, but as something to inhabit.",
+ "about_title": null,
+ "about_body": [
+  "Boudoir is deeper than traditional portraiture — intimate not because of nudity, but because of the honesty it captures. It’s a style of photography that reveals how you inhabit yourself: the softness that appears when you stop bracing, the connection that shows up when you’re no longer performing, the presence that emerges when you feel fully at ease.",
+  "A yoga retreat is the perfect environment for this kind of work. After days of movement, breath, and grounding practices, most people become more open, relaxed, and connected to themselves than they ever are in daily life. That radiance and ease translates directly into the images — it’s why the portraits created here often feel different from anything someone has tried before.",
+  "Participants may be photographed solo or with a partner, always at their chosen level of comfort. Nudity is never required; the only optional form included in this retreat is toplessness, and every image is created with clarity, consent, and care. The process is collaborative, light-hearted, and designed to support expression rather than performance.",
+  "– Marking a transition — newlyweds, newly single, post-divorce, postpartum, healing",
+  "– Exploring visibility and self-expression in a grounded, supported environment",
+  "No experience required — just curiosity, comfort, and a willingness to be met exactly where you are.",
+  "__________________________________________________________________________________________",
+  "Rachel Gray is an internationally recognized photographer, who has worked with leading brands such as Tiffany, Netflix, Time Magazine, and more. Based in Malibu, her work is rooted in both a fine-art foundation and a capacity to capture with presence and sensitivity.",
+  "Her work centers on connection — the quiet, unguarded moments where people reveal how they inhabit their bodies and relationships. Clients often describe the experience of working with her as grounding and fun, noting her ability to “conjure vulnerability without imposition.”",
+  "During this retreat, you will be guided through an intimate portrait experience that results in an image designed to be treasured for a lifetime. Rachel’s version of boudoir photography is rooted in a light hearted, and playful openness. Participants co-create based on their comfort level and the resulting image is a reflection of each person’s inner landscape."
+ ],
+ "highlights": [],
+ "includes": [
+  "6 nights beach front accommodations at Utopia : El Cuyo Guesthouse & Yoga Studio",
+  "Delicious breakfast daily plus 3 lunches & 4 dinners",
+  "Embodied Yoga practices as per itinerary",
+  "Playful photo session to get comfortable with the camera",
+  "90 minute Boudoir Photography session with Rachel",
+  "Curated imaged consultation with Rachel to select your favorite images",
+  "5 professionally retouched images (delivered digitally 10-12 weeks post retreat)",
+  "Sunset bike ride around town",
+  "Guided Temazcal & Cacao ceremony",
+  "75 minute healing massage",
+  "Mexican Mud Ceremony on the beach",
+  "Bicycles, Kayaks & SUP boards available all the week",
+  "All hotel taxes & fees"
+ ],
+ "includes_footnote": null,
+ "not_included": [
+  "Airfare and airport transfers.*",
+  "2 lunches & 1 dinner on your own",
+  "Staff tips (suggested amount between $45usd and $75usd (750 to 1250 Mexican pesos) per person for the house staff & between $10-20usd (200-400mxn) for massage);",
+  "tips are preferred in Mexican pesos please",
+  "Extra excursions and massages",
+  "Additional prints from the photographer",
+  "Pricing will depend on how many sharing the ride."
+ ],
+ "not_included_footnote": "We can arrange private or shared airport transfers for you when you forward us your flight itinerary.",
+ "itinerary": [
+  {
+   "day": 1,
+   "label": "Day 1",
+   "title": null,
+   "bullets": [
+    "3pm Arrival, settle in",
+    "6-7:30pm Opening Circle + Gentle Yoga; Boudoir Talk & Intro",
+    "What is boudoir? Portraiture & Intimacy",
+    "What image do you want to portray?",
+    "7:45pm Dinner"
+   ],
+   "images": [
+    {
+     "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-palm-over-the-shore-at-dusk.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/10/sDC-19-2.jpg",
+     "alt": "A palm leaning over the shore at dusk in El Cuyo, Mexico",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 2,
+   "label": "Day 2",
+   "title": null,
+   "bullets": [
+    "8-9:30am Morning Yoga",
+    "Breakfast",
+    "Mud Ceremony on the beach",
+    "Free time, massages, beach walks",
+    "Lunch at the house",
+    "Playful group beach photo session with Rachel",
+    "Dinner together at the house"
+   ],
+   "images": [
+    {
+     "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-resting-at-the-waters-edge.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/10/WhatsApp-Image-2026-04-28-at-00.49.31.jpeg",
+     "alt": "Guests lying at the water's edge on the beach at El Cuyo, Mexico",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 3,
+   "label": "Day 3",
+   "title": null,
+   "bullets": [
+    "8-9:30am Morning Yoga",
+    "Breakfast",
+    "Integration time: journaling, movement, rest; massages",
+    "BOUDOIR Sessions with Rachel",
+    "Lunch on your own",
+    "Temazcal & Cacao Ceremony",
+    "Dinner together at the house"
+   ],
+   "images": [
+    {
+     "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-bonfire-on-the-beach.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/10/Screen-Shot-2019-11-05-at-10.09.16-AM.png",
+     "alt": "A bonfire burning on the beach at night during the retreat in El Cuyo, Mexico",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 4,
+   "label": "Day 4",
+   "title": null,
+   "bullets": [
+    "8-9:30am Morning Yoga",
+    "Breakfast",
+    "Massages, rest, beach walks, explore town",
+    "BOUDOIR Sessions with Rachel",
+    "Lunch on your own",
+    "Sunset bike rides around town",
+    "Dinner on your own"
+   ],
+   "images": [
+    {
+     "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-mats-set-out-in-the-beachfront-shala.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/10/10087287916.jpg_exif1-3.jpg",
+     "alt": "Mats and bolsters set out in the beachfront shala in El Cuyo, Mexico",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 5,
+   "label": "Day 5",
+   "title": null,
+   "bullets": [
+    "8-9:30am Morning Yoga",
+    "Breakfast",
+    "BOUDOIR Sessions with Rachel",
+    "Lunch together at the house",
+    "Massages, rest, beach walks, explore town",
+    "Evening Yoga Practice",
+    "Dinner on your own"
+   ],
+   "images": [
+    {
+     "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-portrait-study-in-black-and-white.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/07/MimiCuyo_RPG-18.jpeg",
+     "alt": "A black and white portrait study of a shoulder and neck in soft light, from the photography retreat in El Cuyo",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 6,
+   "label": "Day 6",
+   "title": null,
+   "bullets": [
+    "8-9:30am Meditation & Morning Yoga",
+    "Breakfast",
+    "BOUDOIR Sessions with Rachel",
+    "Lunch together at the house",
+    "Closing Circle and optional Open Photo Share",
+    "What did you create? What did you notice? What are you taking with you?",
+    "Final Celebration dinner together at the house"
+   ],
+   "images": [
+    {
+     "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-portrait-against-the-clouds.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/07/Elise.Cuyo_RGPhoto_001.jpeg",
+     "alt": "A portrait photographed from behind against a sky full of cloud on the beach at El Cuyo",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 7,
+   "label": "Day 7",
+   "title": null,
+   "bullets": [
+    "Breakfast",
+    "Departures to CUN+"
+   ],
+   "images": [
+    {
+     "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-guesthouse-entrance-with-fountain.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/10/R1-04942-0001_websize.jpg",
+     "alt": "The guesthouse entrance with its stone fountain and bougainvillea in El Cuyo, Mexico",
+     "shared": false
+    }
+   ]
+  }
+ ],
+ "itinerary_notes": [
+  "+We can arrange private or shared airport transfers for you when you forward us your flight itinerary. Pricing will depend on how many sharing the ride.",
+  "Our itinerary may be subject to change depending on weather conditions and circumstances beyond our control while on retreat. In any case, we will take measures to provide a similar experience of the same high quality. Thank you for your flexibility if it becomes necessary."
+ ],
+ "optional_excursions_schedule": [],
+ "accommodations": [
+  {
+   "name": "Utopia Guesthouse & Yoga Studio : El Cuyo",
+   "label": null,
+   "text": [
+    "Utopia Guesthouse & Yoga Studio : El Cuyo is the 3rd incarnation of a series of retreat houses that we have created to host retreat groups over the years.",
+    "The main living area shares a sitting room and a dining area indoors. There are porches both on the front side of the house and the beach side.",
+    "Bedrooms are simple and cozy with neutral tones, natural textures from local sources and some with ocean views.",
+    "The house has 8 bedrooms (5 privates with a queen bed each and 3 shared with 2 twin beds).",
+    "Bathrooms are shared amongst the house. There are three full bathrooms plus a double sink wash area upstairs and an outdoor shower with doors on the beach.",
+    "Our yoga studio has ocean views from the second story terrace of the house. Yoga mats, blankets, straps and blocks are available."
+   ],
+   "instagram": "@utopiayogaelcuyo",
+   "gallery": [
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-guesthouse-from-the-sandy-street.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/exteriorfront.jpg",
+     "alt": "The guesthouse seen from the sandy street in El Cuyo, Mexico, under coconut palms",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-porch-with-rocking-chairs.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/frontporch.jpeg",
+     "alt": "Wooden rocking chairs along the shaded front porch of the guesthouse in El Cuyo",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-guesthouse-from-the-beach.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/backexterior.jpg",
+     "alt": "The two-storey beachfront guesthouse in El Cuyo seen from the sand, hammocks strung on the terrace",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-living-room-with-hat-wall.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/livingroom2.jpg",
+     "alt": "The guesthouse living room in El Cuyo, with a long pale sofa and straw hats hung on the wall",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-mantel-detail-with-glass-float.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/mantledetail.jpg",
+     "alt": "A green glass fishing float and a framed mirror on the mantel at the guesthouse in El Cuyo",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-dining-room-long-table.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/diningroom.jpg",
+     "alt": "The long dining table under a macrame lamp at the guesthouse in El Cuyo",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-private-interior-queen-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/room2bed-1.jpg",
+     "alt": "A private interior queen bedroom with a wooden headboard at the guesthouse in El Cuyo",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-beachfront-queen-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/roombeachfrontqueen.jpg",
+     "alt": "A beachfront queen room at the guesthouse in El Cuyo, the door open to the terrace",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-shared-double-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/roomshareddoubles.jpg",
+     "alt": "A shared double room with twin beds and an open clothes rail at the guesthouse in El Cuyo",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-tower-room-king-bed.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/towerkingbed.jpg",
+     "alt": "The third-floor tower room at the guesthouse in El Cuyo, made up with a king bed",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-tower-room-dressing-area.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/dressingroom.jpg",
+     "alt": "The separate dressing area of the tower room at the guesthouse in El Cuyo",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-tower-room-twin-beds.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/towershareddouble.jpg",
+     "alt": "The tower room at the guesthouse in El Cuyo made up with two twin beds",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-bathroom-with-wooden-washstand.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/bathroomsink.jpg",
+     "alt": "A shared bathroom with a basin on a wooden stand and rolled towels at the guesthouse in El Cuyo",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-double-sink-wash-area.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/doublesinkwasharea.jpg",
+     "alt": "The upstairs double-sink wash area with two round mirrors at the guesthouse in El Cuyo",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-shower-behind-a-linen-curtain.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/showerdetail.jpg",
+     "alt": "A shower behind a linen curtain at the guesthouse in El Cuyo",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-outdoor-shower-with-patterned-tiles.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/outdoorshower.jpg",
+     "alt": "The outdoor shower, tiled in green and screened with palm thatch, at the guesthouse in El Cuyo",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-upstairs-corner-with-green-cabinet.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/upstairsdetail.jpg",
+     "alt": "An upstairs corner of the guesthouse in El Cuyo with a weathered green cabinet",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-coconut-shell-shower-head.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/outdoorshower2.jpg",
+     "alt": "Water pouring from a coconut-shell shower head over green patterned tiles at the outdoor shower in El Cuyo",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-headstand-on-the-yoga-deck.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/Swr-29-1.jpg",
+     "alt": "A guest in a headstand on the open-air yoga deck in El Cuyo, Mexico",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-candlelit-evening-practice.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/M8.jpg",
+     "alt": "A candlelit evening practice on the beachfront deck in El Cuyo, Mexico",
+     "shared": true
+    }
+   ]
+  }
+ ],
+ "rooms": [
+  {
+   "name": "Shared Double rooms",
+   "price_usd": 3495,
+   "price_label": "$3,495usd per person",
+   "price_unit": "per person",
+   "description": "Interior bedrooms with 2 twin beds and shared bathrooms within steps.",
+   "attrs": {
+    "bed": "Twin",
+    "bath": "Shared",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-shared-double-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/roomshareddoubles.jpg",
+     "alt": "A shared double room with twin beds and an open clothes rail at the guesthouse in El Cuyo",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-bathroom-with-round-basin.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/DV270447.jpg",
+     "alt": "A shared bathroom with a round basin and a palm leaf at the guesthouse in El Cuyo",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "name": "Shared Tower Room",
+   "price_usd": 3695,
+   "price_label": "$3,695usd per person",
+   "price_unit": "per person",
+   "description": "Third floor bedroom with separate entrance. Can be a king bed or 2 twins. Separate dressing area and shared bathroom.",
+   "attrs": {
+    "bed": "King or 2 twins",
+    "bath": "Shared",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-tower-room-king-bed.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/towerkingbed.jpg",
+     "alt": "The third-floor tower room at the guesthouse in El Cuyo, made up with a king bed",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-tower-room-dressing-area.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/dressingroom.jpg",
+     "alt": "The separate dressing area of the tower room at the guesthouse in El Cuyo",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-tower-room-twin-beds.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/towershareddouble.jpg",
+     "alt": "The tower room at the guesthouse in El Cuyo made up with two twin beds",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "name": "Private Interior rooms",
+   "price_usd": 3635,
+   "price_label": "$3,635usd private room",
+   "price_unit": "private room",
+   "description": "Interior queen bedrooms with shared bathrooms within a few steps.",
+   "attrs": {
+    "bed": "Queen",
+    "bath": "Shared",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-private-interior-queen-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/room2bed-1.jpg",
+     "alt": "A private interior queen bedroom with a wooden headboard at the guesthouse in El Cuyo",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-interior-passage-to-the-rooms.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/room2.jpg",
+     "alt": "The narrow interior passage and stairs leading to the bedrooms at the guesthouse in El Cuyo",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "name": "Private ocean view room — second floor",
+   "price_usd": 3755,
+   "price_label": "$3,755usd SECOND FLOOR ROOMS",
+   "price_unit": "private room",
+   "description": "Oceanview queen bedrooms with shared bathrooms within a few steps.",
+   "attrs": {
+    "bed": "Queen",
+    "bath": "Shared",
+    "view": "Ocean"
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-ocean-view-room-open-to-the-beach.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/roombeachfrontqueen.jpeg",
+     "alt": "An ocean view room at the guesthouse in El Cuyo with the door open to the sand",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-beachfront-room-with-green-doors.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/roombeachfrontqueendoor-1.jpg",
+     "alt": "Green double doors open onto a beachfront queen room at the guesthouse in El Cuyo",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-queen-room-under-a-vaulted-ceiling.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/room3.jpg",
+     "alt": "A queen bedroom with a vaulted ceiling and a woven pendant lamp at the guesthouse in El Cuyo",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "name": "Private ocean view room — beachfront",
+   "price_usd": 3815,
+   "price_label": "$3,815usd BEACHFRONT ROOM",
+   "price_unit": "private room",
+   "description": "Oceanview queen bedrooms with shared bathrooms within a few steps.",
+   "attrs": {
+    "bed": "Queen",
+    "bath": "Shared",
+    "view": "Beachfront"
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-ocean-view-room-open-to-the-beach.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/roombeachfrontqueen.jpeg",
+     "alt": "An ocean view room at the guesthouse in El Cuyo with the door open to the sand",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-beachfront-room-with-green-doors.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/roombeachfrontqueendoor-1.jpg",
+     "alt": "Green double doors open onto a beachfront queen room at the guesthouse in El Cuyo",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/el-cuyo/img/yoga-retreat-el-cuyo-mexico-queen-room-under-a-vaulted-ceiling.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/01/room3.jpg",
+     "alt": "A queen bedroom with a vaulted ceiling and a woven pendant lamp at the guesthouse in El Cuyo",
+     "shared": true
+    }
+   ]
+  }
+ ],
+ "pricing_notes": [],
+ "extras": [
+  {
+   "name": "Additional 75 minute massages",
+   "price_usd": 140,
+   "price_label": "$140usd each",
+   "unit": "each",
+   "desc": "Additional 75 minute massages.",
+   "gallery": []
+  }
+ ],
+ "travel_tips": [
+  {
+   "heading": "Yucatán Yoga & Spa Beach Retreat",
+   "items": [
+    "Fly into Cancun International airport (CUN). Please note that Cancun is in the state of Quintana Roo and El Cuyo is in the state of Yucatan and a one hour time difference applies year round. Cancun being one hour LATER than El Cuyo. Please make sure to double check the time zones well as you plan your travel.",
+    "From Cancun Airport to El Cuyo, travel time is approximately 2.5 hours door to door. Our drivers are very safe and reliable and we can arrange transfers from the airport to our beach house if you like. Please send along your full flight details and we will try to pair you with others traveling on a similar schedule to and from the retreat. Pricing depends on how many are in the ride.",
+    "Taxis are not allowed to wait outside the Cancun International airport at arrivals so a transfer needs to be arranged for a private car service pick up in advance or there is a local bus that takes you to El Cuyo.",
+    "For traveling on your own by bus to and from El Cuyo the easiest option is to combine the bus with a taxi. From CUN airport you could take a bus to Tizimin and from there get a taxi to Utopia in El Cuyo and vice versa on the way back. OR you can take a series of local buses between El Cuyo and Tizimin if you want to avoid the $50usd taxi ride. To consult the bus schedule ADO is the most reliable.",
+    "There are no ATMS in El Cuyo and everything is better paid in cash as most places do not accept credit cards. Please plan to take out cash in Mexican pesos at the airport ATM upon arrival, pre-order currency from your bank back home and bring it with you or exchange your currency at the airport for Mexican pesos. Some places accept credit cards but it’s always a better idea to have cash just in case. That said there is not a lot of shopping in El Cuyo as it is a quiet town with beach and chill. Cash tips for staff are appreciated",
+    "Wifi is not the most reliable and does come in and out at times along with the electricity though it is getting better. If it does go out it usually comes back fairly quickly and offers a nice chance to sit back and relax and watch the stars. If you need super reliable internet please let us know to discuss this further. The idea is to unplug and be offline as much as possible.",
+    "There are no specialized stores and although there are a few pharmacies in the town if a specific drug is required, you would have to travel by car to the city of Tizimín about an hour and a half away so please plan on bringing everything you might think you will need with you from home."
+   ]
+  }
+ ],
+ "gallery_title": null,
+ "gallery_intro": null,
+ "gallery": [
+  {
+   "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-portrait-by-the-sea.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/07/RGP_6567.jpeg",
+   "alt": "A portrait of a guest in a silk shirt by the sea at El Cuyo, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-boudoir-portrait-by-the-window.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/07/kelli1.jpeg",
+   "alt": "A boudoir portrait taken in window light during the photography retreat in El Cuyo",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-boudoir-portrait-in-warm-light.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/07/kelli2.jpeg",
+   "alt": "A boudoir portrait in warm low light during the photography retreat in El Cuyo",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-black-and-white-portrait-smiling.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/07/MartyCuyo_RGP-6.jpeg",
+   "alt": "A black and white portrait of a laughing guest from the photography retreat in El Cuyo",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-seated-boudoir-portrait.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/07/MartyCuyo_RGP-3.jpeg",
+   "alt": "A seated boudoir portrait in window light during the photography retreat in El Cuyo",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-reclining-portrait-in-black-and-white.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/07/MartyCuyo_RGP-9.jpeg",
+   "alt": "A reclining black and white boudoir portrait from the photography retreat in El Cuyo",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-portrait-on-the-beach-at-sunset.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/07/IMG_5205.jpeg",
+   "alt": "A portrait taken on the beach at sunset during the photography retreat in El Cuyo",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-silhouette-against-the-setting-sun.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/07/Elise.Cuyo_RGPhoto_005.jpeg",
+   "alt": "A guest photographed in silhouette against the setting sun at the shoreline in El Cuyo",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-portrait-against-the-clouds.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/07/Elise.Cuyo_RGPhoto_001.jpeg",
+   "alt": "A portrait photographed from behind against a sky full of cloud on the beach at El Cuyo",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-sitting-in-the-shallows-at-sunset.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/07/Elise.Cuyo_RGPHOTO_10.jpeg",
+   "alt": "A guest sitting in the shallow water at sunset during the photography retreat in El Cuyo",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-portrait-in-a-sunlit-doorway.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/07/Elise.Cuyo_RGPhoto_016.jpeg",
+   "alt": "A backlit portrait in a sunlit doorway during the photography retreat in El Cuyo",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-portrait-on-a-chair-head-back.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/07/MimiCuyo_RPG-15.jpeg",
+   "alt": "A black and white portrait of a guest seated with her head back, from the photography retreat in El Cuyo",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-portrait-from-behind.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/07/MimiCuyo_RPG-13.jpeg",
+   "alt": "A black and white portrait photographed from behind during the photography retreat in El Cuyo",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-face-in-dappled-light.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/07/MimiCuyo_RPG-5.jpeg",
+   "alt": "A close portrait of a face in dappled light during the photography retreat in El Cuyo",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-portrait-with-flowing-silk.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/07/Lauren.Cuyo-44-copy.jpeg",
+   "alt": "A portrait with flowing silk caught in the light, from the photography retreat in El Cuyo",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-sheer-fabric-in-the-surf.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/07/Genevieve.Cuyo-5.jpeg",
+   "alt": "A portrait in sheer fabric at the edge of the surf in El Cuyo, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-kneeling-on-the-wet-sand-at-sunset.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/07/Elise.jpeg",
+   "alt": "A guest kneeling on the wet sand at sunset during the photography retreat in El Cuyo",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-portrait-in-a-lace-robe.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/07/mimi.jpeg",
+   "alt": "A portrait in a lace robe under warm light, from the photography retreat in El Cuyo",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/el-cuyo-feb-2027-morin-gray/img/yoga-retreat-el-cuyo-mexico-black-and-white-form-study.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/07/Christina.Cuyo_RGP-1.jpeg",
+   "alt": "A black and white form study from the photography retreat in El Cuyo, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/teachers/img/yoga-teacher-rachel-gray.png",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/10/Screenshot-2025-10-22-at-1.27.34-PM-e1761360405699.png",
+   "alt": "Rachel Gray, the photographer leading the Embodied retreat in El Cuyo, with a camera on her shoulder",
+   "shared": true,
+   "ratio": null
+  }
+ ],
+ "faqs": [
+  {
+   "question": "Do you accept bitcoin?",
+   "answer": [
+    "In addition to credit card payments we also accept wire transfers, Zelle and Bitcoin. Please inquire for more details."
+   ]
+  },
+  {
+   "question": "What is the cancellation policy?",
+   "answer": [
+    "All payments are 100% non refundable and non-transferable. We recommend that you buy trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you."
+   ]
+  },
+  {
+   "question": "What happens if my travel plans change?",
+   "answer": [
+    "There are no refunds as per our cancellation policies. We highly recommend that all of our guests secure a quality travel insurance that will cover them for any event which may cause a change of travel plans, including personal health issues or personal situations in general which may affect travel plans."
+   ]
+  },
+  {
+   "question": "Are flight delays or cancellations covered?",
+   "answer": [
+    "Not by us: transportation delays, cancellations or changes due to strikes, labor disputes, or lockouts from airlines, boats, ferries or any type of transportation are among the events we recommend covering with travel insurance."
+   ]
+  },
+  {
+   "question": "Where can I find the full terms & conditions?",
+   "answer": [
+    "The full terms and conditions are published at https://yogaadventuresworldwide.com/termsandconditions/ . By submitting payments toward your retreat you accept them."
+   ]
+  }
+ ],
+ "booking": {
+  "deposit_usd": 750,
+  "deposit_label": "$750 USD per person",
+  "deposit_instructions": "Deposits of $750usd are due to secure your space in the retreat via Zelle to utopiaelcuyo@gmail.com or by scanning the QR on the page. Please check availability with us for accommodations before making your deposit.",
+  "balance_due_days": 90,
+  "balance_note": "The balance of your retreat (minus your $750usd initial deposit) is due 90 days prior to arrival. All details with instructions for settling up will be emailed to you three months prior to the retreat.",
+  "payment_methods": [
+   "Credit card",
+   "Wire transfer",
+   "Zelle",
+   "Bitcoin"
+  ],
+  "roommate_note": "Roommates should book together. If you would like to share a room and do not have a roommate we will provide one for you if possible. In the case that there is no one to share a room we ask that you take a private room instead.",
+  "cancellation_policy": [
+   "All payments are 100% non refundable and non-transferable. We recommend that you buy trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you."
+  ],
+  "booking_url": "https://yogaadventuresworldwide.com/retreat/embodied-the-art-of-being-seen/#reserve",
+  "contact_url": "https://yogaadventuresworldwide.com/contact-about-yoga-retreats/"
+ },
+ "testimonials": null,
+ "carbon_offset": null,
+ "source_url": "https://yogaadventuresworldwide.com/retreat/embodied-the-art-of-being-seen/",
+ "source_post_slug": "embodied-the-art-of-being-seen",
+ "source_categories": [
+  "art-creative",
+  "yoga"
+ ],
+ "source_is_shared": false,
+ "seo_title": "El Cuyo Yoga Retreat · Feb 2027",
+ "seo_description": "6-night yoga retreat in El Cuyo, Mexico. February 14 - 20, 2027, with Genevieve Morin.",
+ "_notes": {
+  "travel_tips": "Taken from the El Cuyo location page (beach-yoga-retreat-mexico): same destination and same guesthouse, but not published on this retreat's own page.",
+  "faqs": "The source page has no FAQs block. These five answers are quoted from the site-wide Policies text inside the retreat page's Reserve section, matched to the five questions the template ships. They are not retreat-specific.",
+  "tier": "Not deducible: the old site's retreat_categories are topical (yoga, art-creative, yoga-food-and-wine, family-retreats) and only signature-retreats maps to a collection. Left null rather than guessed.",
+  "highlights": "The old site has no highlights block; nothing was invented to fill it.",
+  "testimonials": "The source page has an empty \"Praise\" carousel — the markup is there, the quotes are not. Left null; the template ships placeholder quotes.",
+  "carbon_offset": "No carbon-offset copy anywhere on the old site. The template's text is new site-wide copy.",
+  "seo_title": "DRAFT. Written only from this retreat's real destination, month and year.",
+  "seo_description": "DRAFT. Written only from real data: nights, location, published date range, teacher, status.",
+  "status": "From /all-upcoming-dates/ on 2026-11-12."
+ },
+ "_missing": [
+  "about_title",
+  "carbon_offset",
+  "gallery_intro",
+  "gallery_title",
+  "highlights",
+  "includes_footnote",
+  "optional_excursions_schedule",
+  "pricing_notes",
+  "status_label",
+  "teachers[Genevieve Morin].instagram",
+  "teachers[Genevieve Morin].role",
+  "teachers[Rachel Gray].instagram",
+  "testimonials",
+  "tier",
+  "tier_label",
+  "tier_source",
+  "urgency"
+ ]
+}

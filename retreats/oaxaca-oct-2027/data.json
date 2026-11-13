@@ -1,0 +1,860 @@
+{
+ "slug": "oaxaca-oct-2027",
+ "title": "Day of the Dead Yoga + Reverence Retreat Oaxaca",
+ "subtitle": null,
+ "destination": "Oaxaca",
+ "location_label": "Oaxaca, Mexico",
+ "country": "Mexico",
+ "region": "Oaxaca City",
+ "tier": null,
+ "tier_label": null,
+ "tier_source": null,
+ "status": "open",
+ "status_label": "New Retreat",
+ "urgency": {
+  "type": "new",
+  "label": "New retreat"
+ },
+ "date_start": "2027-10-28",
+ "date_end": "2027-11-04",
+ "dates_label": "October 28 - November 4, 2027",
+ "season": "Fall, 2027",
+ "nights": 7,
+ "days": 8,
+ "teachers": [],
+ "teacher_unassigned": true,
+ "hero_image": {
+  "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-santo-domingo-behind-the-agaves.jpg",
+  "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/11/destination-oaxaca-mexico.jpg",
+  "alt": "The church of Santo Domingo seen behind agaves in Oaxaca, Mexico",
+  "shared": false
+ },
+ "intro": "Join us for the perfectly curated bespoke yoga retreat in Oaxaca, Mexico to celebrate the soulful tradition of Dia de los Muertos.",
+ "about_title": null,
+ "about_body": [
+  "World-renowned for its bright flavors from the kitchen and for putting mezcal on the hipster mixology scene, Oaxaca City is one of our most sought-after destinations to date for a plethora of reasons. Firstly, of course, for the incredible Mexican cuisine lovingly crafted for generations over open flames and harvested fresh from the abundant fields nestled in the mountains and valleys of Oaxaca. Next, for the rich tradition of their local spirit, mezcal, made from the abundant agave plants of the region.",
+  "Of course, for the unique artisans and craftsmanship that is richly steeped in the culture from candle makers to rug weavers and the incredibly talented artists who create the adorable alebrijes creatures. And finally, to celebrate the Day of the Dead, a time when all souls gather to remember, honor and celebrate the memories and favorites of their loved ones lost. Altars are decorated with strongly scented marigold flowers believed to lure the dead back to this realm, with cut paper flags, beautifully decorated sugar skulls, plenty of fruits and local vegetables and spices, and even their favorite libations for the spirits to enjoy!",
+  "We honor our loved ones lost by bringing their photos and some of their favorite things to place on the altar we create together for this very sacred holiday. It’s such a different perspective on death, and we think that is so very special and important to revere in the opportunity to view death in a different way. It reminds us just how precious our time together on this plane is and to celebrate with fondness and a common bond those who have touched our lives so deeply.",
+  "Join us for the most unique yoga retreat to celebrate Mexico, its culture, cuisine, wonders of nature, and artistic expression in Oaxaca. Soulful yoga practices will anchor each day along with fabulous adventures including traditional Mexican cuisine cooking class, artisanal mezcal distillery tours and tastings, excursions to visit local artisans like candle makers, rug weavers, and alebrije artists, healing massages, markets and shopping time will round out the days. Our lovely accommodations are nestled just far enough outside the city to have a reprieve from the bustle of Oaxaca but close enough to experience all it has to offer. Join us to experience the rich tradition and culture in the heart of Mexico’s culinary gem. Your souls will thank you."
+ ],
+ "highlights": [],
+ "includes": [
+  "7 nights in fabulous private villa accommodations",
+  "Yoga classes daily as per itinerary",
+  "All breakfasts and early morning coffee, tea, and snack before yoga",
+  "5 dinners together at the villa",
+  "Walking City Food Tour with tastings at some of the city’s best spots",
+  "Traditional Oaxacan Cooking class with lunch",
+  "75 minute healing massage",
+  "Artisanal Mezcal tasting and distillery tour",
+  "Catrina face painting and optional cemetery visits**",
+  "Excursion to the stunning mountain range of Oaxaca : candle maker demo and visit to local rug maker family. Lunch included.",
+  "Creation of our own Day of the Dead Altar",
+  "Excursion to visit artisans making alebrijes & to create your own. Lunch included on the copal farm.",
+  "All villa taxes and fees"
+ ],
+ "includes_footnote": null,
+ "not_included": [
+  "Airfare and airport transfers*",
+  "2 dinners and any other meals and drinks not listed in the itinerary.",
+  "Any souvenirs you’d like to bring home with you (rugs, mezcal, pottery, candles, etc).",
+  "Staff gratuities are at your discretion. Housekeeping daily, massage therapist, and meal service suggested."
+ ],
+ "not_included_footnote": "We can arrange private or shared airport transfers for you when you forward us your flight itinerary. Pricing will depend on how many sharing the ride.",
+ "itinerary": [
+  {
+   "day": 1,
+   "label": "Day 1",
+   "title": "October 28",
+   "bullets": [
+    "Arrival and check-in",
+    "Settle in, massages, relax, explore the neighborhood, go into the city",
+    "5:30-7pm Opening circle, smudge and gentle yoga practice",
+    "7:30pm Dinner together at the villa"
+   ],
+   "images": [
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-giant-puppet-in-a-flowered-dress.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_4654.jpeg",
+     "alt": "A giant mojiganga puppet in an embroidered dress during Day of the Dead in Oaxaca, Mexico",
+     "shared": false
+    },
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-setting-up-the-altar.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_0417.jpeg",
+     "alt": "A guest setting up the Day of the Dead altar at the villa in Oaxaca, Mexico",
+     "shared": false
+    },
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-marigold-garlands-on-a-doorway.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_4629.jpeg",
+     "alt": "Marigold garlands framing a doorway during Day of the Dead in Oaxaca, Mexico",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 2,
+   "label": "Day 2",
+   "title": "October 29",
+   "bullets": [
+    "Coffee, Tea and fruit available",
+    "8:30-10am Yoga Practice",
+    "1-6pm Walking Food Tour of the city",
+    "Free time to explore the city",
+    "Dinner on your own"
+   ],
+   "images": [
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-mezcal-shelves-behind-the-bar.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_0040.jpeg",
+     "alt": "A host in front of shelves of mezcal and pottery in Oaxaca, Mexico",
+     "shared": false
+    },
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-the-group-against-a-painted-wall.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_0019.jpeg",
+     "alt": "The retreat group in front of a marigold-decorated wall in Oaxaca, Mexico",
+     "shared": false
+    },
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-cooking-demonstration-in-the-kitchen.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_0020.jpeg",
+     "alt": "A cook preparing ingredients at a demonstration kitchen in Oaxaca, Mexico",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 3,
+   "label": "Day 3",
+   "title": "October 30",
+   "bullets": [
+    "Coffee, Tea and fruit available",
+    "8:30-10am Yoga Practice",
+    "10:15am Breakfast",
+    "11:30am-7pm Excursion to the beautiful mountain towns of Oaxaca. Stops to visit a custom candle-maker, visit a family of rug makers in their shop and enjoy lunch with them, explore a Mezcal distillery to see the process in action and have a taste (or 6).",
+    "8pm Dinner at the villa"
+   ],
+   "images": [
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-visiting-the-weaving-workshop.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_4976-scaled-e1642787074592.jpg",
+     "alt": "Guests visiting a weaving workshop in a village near Oaxaca, Mexico",
+     "shared": false
+    },
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-holding-up-a-red-paper-flower.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_0174.jpg",
+     "alt": "A guest holding up a large red paper flower in Oaxaca, Mexico",
+     "shared": false
+    },
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-mezcal-still-at-the-palenque.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_5110-scaled-e1642787040109.jpg",
+     "alt": "A worker tending the copper still at a mezcal palenque near Oaxaca, Mexico",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 4,
+   "label": "Day 4",
+   "title": "October 31",
+   "bullets": [
+    "Coffee, Tea and fruit available",
+    "8:30-10am Yoga Practice",
+    "10:15am Breakfast",
+    "Day of the Dead Alter creation (bring any photos and special items to add)",
+    "Free time, massages, explore the city, shopping, ruins, relax",
+    "6-7:15pm Altar circle discussion",
+    "Dinner together at the villa"
+   ],
+   "images": [
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-day-of-the-dead-altar-with-marigolds.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_0102.jpeg",
+     "alt": "A Day of the Dead altar banked with marigolds in Oaxaca, Mexico",
+     "shared": false
+    },
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-church-towers-above-the-agaves.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/ale-cisnros-tiRYkJJr_yM-unsplash.jpg",
+     "alt": "Church towers rising above the agaves in Oaxaca, Mexico",
+     "shared": false
+    },
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-headstand-in-a-marigold-lined-lane.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/091A2C1A-4C38-485C-9C98-15F4ED4E592A.jpeg",
+     "alt": "A guest in a headstand in a cobbled lane strung with marigolds in Oaxaca, Mexico",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 5,
+   "label": "Day 5",
+   "title": "November 1",
+   "bullets": [
+    "Coffee, Tea and fruit available",
+    "8:30-10am Remembrance practice",
+    "10:15am Breakfast",
+    "12-4pm Cooking Class with lunch",
+    "6pm Happy hour, Catrina face painting**",
+    "8pm Dinner together at the villa",
+    "9:30pm Cemetery visits to adorn the graves left unattended"
+   ],
+   "images": [
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-cooking-class-over-the-coals.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_0144.jpeg",
+     "alt": "Guests cooking over the coals with a local cook in Oaxaca, Mexico",
+     "shared": false
+    },
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-practice-under-the-beamed-roof.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_0014-e1736375623276.jpeg",
+     "alt": "A practice under the beamed roof of the villa in Oaxaca, Mexico",
+     "shared": false
+    },
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-guest-in-calavera-face-paint.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_0183.jpeg",
+     "alt": "A guest in calavera face paint and a flower crown for Day of the Dead in Oaxaca, Mexico",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 6,
+   "label": "Day 6",
+   "title": "November 2",
+   "bullets": [
+    "8:30am Breakfast",
+    "9:30am – 7pm Excursion to visit Albrijes artisans, create our own art piece; enjoy lunch on the farm, stop along the way for typical Oaxacan black pottery",
+    "Dinner on your own"
+   ],
+   "images": [
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-painting-an-alebrije.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_4221.jpg",
+     "alt": "An artisan painting a large carved alebrije in a workshop near Oaxaca, Mexico",
+     "shared": false
+    },
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-trying-on-an-alebrije-mask.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/alebrije_mask.jpg",
+     "alt": "A guest trying on a carved alebrije mask in Oaxaca, Mexico",
+     "shared": false
+    },
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-making-tortillas-on-the-comal.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/11/oaxaca-food-e1736382135937.jpg",
+     "alt": "Hands turning tortillas on the comal in Oaxaca, Mexico",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 7,
+   "label": "Day 7",
+   "title": "November 3",
+   "bullets": [
+    "Coffee, Tea and fruit available",
+    "8:30-10am Yoga Practice",
+    "10:15am Breakfast",
+    "Free time, massages, explore the city, shopping, relax; lunch on your own",
+    "6-7:30pm Closing circle and final yoga practice",
+    "7:45pm Closing Dinner together at the villa"
+   ],
+   "images": [
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-the-group-among-the-agaves.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/bd2e997b-065e-48e1-809e-19f8c30d5b61.jpeg",
+     "alt": "The retreat group together among the agaves in Oaxaca, Mexico",
+     "shared": false
+    },
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-agave-field-under-a-wide-sky.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/314adad3-973c-46b1-8870-6e524e24eab2-1.jpeg",
+     "alt": "A field of blue agave under a wide sky in Oaxaca, Mexico",
+     "shared": false
+    },
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-mezcal-tasting-at-the-bar.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_0393.jpeg",
+     "alt": "Guests laughing over a mezcal tasting in Oaxaca, Mexico",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 8,
+   "label": "Day 8",
+   "title": "November 4",
+   "bullets": [
+    "Breakfast available",
+    "Airport Departures+"
+   ],
+   "images": [
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-posing-with-a-red-mototaxi.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_0620.jpeg",
+     "alt": "A guest in Day of the Dead costume beside a red mototaxi in Oaxaca, Mexico",
+     "shared": false
+    }
+   ]
+  }
+ ],
+ "itinerary_notes": [
+  "Feel free to bring any costume items you’d like to don on the town for the celebrations. Inspiration can be found all over the web.",
+  "+We can arrange private or shared airport transfers for you when you forward us your flight itinerary. Pricing will depend on how many sharing the ride.",
+  "Our itinerary may be subject to change depending on weather conditions and circumstances beyond our control while on retreat. In any case, we will take measures to provide a similar experience of the same high quality. Thank you for your flexibility if it becomes necessary."
+ ],
+ "optional_excursions_schedule": [],
+ "accommodations": [
+  {
+   "name": null,
+   "label": null,
+   "text": [
+    "Step into the charm of a bygone era with our exclusive private accommodations in a stately mansion built in the last century. Nestled just 15 minutes from the heart of Oaxaca City, this extraordinary property is one of the few that retains its original furnishings, offering a unique and authentic experience.",
+    "Surrounded by lush gardens, the villa provides a tranquil retreat where you can wake to the gentle melody of birdsong and enjoy the serenity of nature. Take a barefoot stroll across the grounds to reconnect with the earth, or explore the peaceful surroundings with a leisurely walk or jog.",
+    "The villa is more than just a place to stay—it’s an invitation to indulge in life’s simple pleasures. From intimate gatherings under the stars to morning walks where the earth meets your feet, this is a space that encourages relaxation, reflection, and connection."
+   ],
+   "instagram": null,
+   "gallery": [
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-the-villa-and-its-lawn-at-dusk.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/house.webp",
+     "alt": "The villa and its lawn lit at dusk outside Oaxaca City, Mexico",
+     "shared": false
+    },
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-villa-arcade-under-the-big-tree.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/house-ext.webp",
+     "alt": "The arcaded villa under a spreading tree at dusk near Oaxaca City, Mexico",
+     "shared": false
+    },
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-villa-sitting-room.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/LR.webp",
+     "alt": "The sitting room of the villa with beamed ceilings near Oaxaca City, Mexico",
+     "shared": false
+    },
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-villa-dining-room.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/DR-2.webp",
+     "alt": "The long dining room of the villa near Oaxaca City, Mexico",
+     "shared": false
+    },
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-garden-with-a-stone-fountain.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/jardin.webp",
+     "alt": "The garden and stone fountain of the villa near Oaxaca City, Mexico",
+     "shared": false
+    },
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-garden-lit-at-dusk.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/garden-views.webp",
+     "alt": "The villa garden lit at dusk near Oaxaca City, Mexico",
+     "shared": false
+    },
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-terracotta-corridor-with-lanterns.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/PATIO.webp",
+     "alt": "A terracotta corridor with hanging lanterns at the villa near Oaxaca City, Mexico",
+     "shared": false
+    },
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-pool-and-frangipani-tree.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/pool.webp",
+     "alt": "The pool and a frangipani tree in the garden of the villa near Oaxaca City, Mexico",
+     "shared": false
+    }
+   ]
+  }
+ ],
+ "rooms": [
+  {
+   "name": "Shared Triple Room",
+   "price_usd": null,
+   "price_label": "2027 PRICING COMING SOON",
+   "price_unit": "per person",
+   "description": "3 twin beds and an ensuite bathroom.",
+   "attrs": {
+    "bed": "Triple",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": []
+  },
+  {
+   "name": "Shared Double Room with shared bath",
+   "price_usd": null,
+   "price_label": "2027 PRICING COMING SOON",
+   "price_unit": "per person",
+   "description": "2 twin beds and a shared bathroom with one other room.",
+   "attrs": {
+    "bed": "Twin",
+    "bath": "Shared",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": []
+  },
+  {
+   "name": "Shared Double Room with private bath",
+   "price_usd": null,
+   "price_label": "2027 PRICING COMING SOON",
+   "price_unit": "per person",
+   "description": "2 twin beds and a private bathroom.",
+   "attrs": {
+    "bed": "Twin",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": []
+  },
+  {
+   "name": "Private Room",
+   "price_usd": null,
+   "price_label": "2027 PRICING COMING SOON",
+   "price_unit": "private room",
+   "description": "King bed with private ensuite bathroom.",
+   "attrs": {
+    "bed": "King",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-private-king-room-with-a-carved-headboard.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/KING.webp",
+     "alt": "A private room with a carved wooden headboard at the villa near Oaxaca City, Mexico",
+     "shared": false
+    },
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-bathroom-with-carved-mirrors.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/BATHROOM-SINK.webp",
+     "alt": "A bathroom with carved mirrors and a stone basin at the villa near Oaxaca City, Mexico",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": "Private Room — shared bed",
+   "price_usd": null,
+   "price_label": "2027 PRICING COMING SOON",
+   "price_unit": "per person",
+   "description": "King bed with private ensuite bathroom, shared-bed rate. You must provide your own bedmate.",
+   "attrs": {
+    "bed": "King",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-private-king-room-with-a-carved-headboard.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/KING.webp",
+     "alt": "A private room with a carved wooden headboard at the villa near Oaxaca City, Mexico",
+     "shared": false
+    },
+    {
+     "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-bathroom-with-carved-mirrors.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/BATHROOM-SINK.webp",
+     "alt": "A bathroom with carved mirrors and a stone basin at the villa near Oaxaca City, Mexico",
+     "shared": false
+    }
+   ]
+  }
+ ],
+ "pricing_notes": [
+  "You must provide your own bed mate for this option. We can pair roommates together but not people sharing a bed together.",
+  "The old site shows 2027 prices as “XXusd” with the note “2027 PRICING COMING SOON”, so every price here is null. Space in the private villa is limited, so guests are asked to be open to sharing a room."
+ ],
+ "extras": [],
+ "travel_tips": [
+  {
+   "heading": "Yoga + Reverence Retreat",
+   "items": [
+    "Travel :",
+    "The closest airport to our retreat villa accommodations is Oaxaca International Airport (OAX) also known as Xoxocotlán International Airport. Airport transfers and flights are not included in the retreat package. If you would like us to arrange a ride to and from the airport for you please submit your flight details.",
+    "Weather :",
+    "Days are typically pleasant this time of year with temps in the 70s F. Evenings cool off in the desert as the sun goes down so a sweater and jeans at night make things comfortable. There is a swimming pool on the roof of our villa so make sure to pack your swimsuit if you’d like to take a tip during the day!",
+    "Bring :",
+    "For our night out at the cemeteries and face painting, you should check around online for some inspo for a costume.…at least a flower crown would be nice or a big hat and a dress if you’re feeling festive! There may be items you pick up while in Oaxaca if you make the time as well. We have our favorite local artists coming to do face painting for us so all you’ll need is the attire. The weather at night can be a bit chilly so please plan your outfit accordingly.",
+    "For our altar for Dia de Muertos, we will be creating together a traditional offering with flowers, candles, cut paper, typical fruits and vegetables, chocolate and breads. We ask that if you’d like to bring along something to symbolize your loved ones who have passed that you please do so in the form of a photo (framed or a copy), any items that they particularly enjoyed in life (like a favorite game, or a cigarette or whatever trinket might be close to your heart). We will build our altar slowly over the days leading up to Nov 1 and 2nd and each person will have some private time to add their muertos. This is a very special time and we are really looking forward to sharing it with you all in this unique way.",
+    "Please plan to bring your yoga mat and any props you use while practicing.",
+    "Footwear : Streets are cobblestone and relatively uneven in the city; the walking we do on excursions is fine in a sandal or tennis shoe. There is no strenuous walking on this retreat.",
+    "Tipping :",
+    "Tips are not included in your retreat package and we encourage you to tip anyone who has made your retreat more comfortable and pleasant. Our villa has daily maid service in the rooms, grounds keepers and an overnight guard onsite. We have private chefs cooking all our meals at home, Sonia who leads our cooking class and our food tour as well as Julio who drives us all around town. If you like we can collect tips in one lump sum and then divide them amongst everyone who makes the magic happen behind the scenes. You can contribute your gratuity at any time on retreat but we will present it all together at the final dinner to the staff.",
+    "Recommended amount for the 7 nights is 1000-1500 Mexican pesos.",
+    "The massage therapist can be tipped directly. We recommend between 100-200 Mexican pesos per treatment.",
+    "Thank you so much in advance from them. You will see what a fabulous job they all do for us!",
+    "Hydrate :",
+    "The altitude of Oaxaca City is at about 5000 feet. We recommend hydrating well prior to arrival and drinking lots of water for the first few days if you are sensitive to higher elevations."
+   ]
+  }
+ ],
+ "gallery_title": null,
+ "gallery_intro": null,
+ "gallery": [
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-mototaxi-in-the-street-at-night.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/tuk_tuk_oaxaca.jpg",
+   "alt": "A red mototaxi in the street at night during Day of the Dead in Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-evening-gathering-on-the-lawn.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/yoga_retreat_oaxaca.jpg",
+   "alt": "An evening gathering on the villa lawn during the retreat in Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-costumed-evening-in-the-garden.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_3303.jpg",
+   "alt": "A costumed Day of the Dead evening in the villa garden in Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-the-group-in-costume-on-the-street.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_1561-2.jpg",
+   "alt": "The retreat group in Day of the Dead costume on a street in Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-guests-in-catrina-make-up.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_3359.jpg",
+   "alt": "Guests in catrina make-up and flower crowns for Day of the Dead in Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-headstand-in-the-marigold-lane.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2021/09/091A2C1A-4C38-485C-9C98-15F4ED4E592A.jpg",
+   "alt": "A guest in a headstand in a marigold-strung lane in Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-altar-with-candles-and-marigolds.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_3045.jpg",
+   "alt": "An altar laid with candles, marigolds and a sugar skull in Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-two-guests-dressed-as-catrinas.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_5369.jpg",
+   "alt": "Two guests dressed as catrinas for Day of the Dead in Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-lighting-candles-at-the-altar.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_5364.jpg",
+   "alt": "Guests lighting candles at the Day of the Dead altar in Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-two-catrinas-with-a-sugar-skull.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_5345.jpg",
+   "alt": "Two guests in catrina costume holding a sugar skull in Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-at-the-mezcal-bar.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_5279.jpg",
+   "alt": "A guest at the mezcal bar with bottles ranged behind in Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-trying-on-an-alebrije-mask.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/alebrije_mask.jpg",
+   "alt": "A guest trying on a carved alebrije mask in Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-talking-over-the-table-outside.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_5224.jpg",
+   "alt": "Guests talking across a table outdoors during the retreat in Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-watching-the-mezcal-process.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_5237.jpg",
+   "alt": "Guests watching the mezcal-making process at the palenque in Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-tasting-mezcal-around-the-millstone.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_5130.jpg",
+   "alt": "Guests tasting mezcal around the millstone at the palenque in Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-the-mezcalero-pouring-a-taste.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_5129.jpg",
+   "alt": "The mezcalero pouring a taste for the group at the palenque in Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-poolside-class-at-the-villa.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_5089-scaled-e1642722981303.jpg",
+   "alt": "A yoga class in warrior pose beside the pool at the villa in Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-roasted-agave-hearts-at-the-palenque.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_5084-1.jpg",
+   "alt": "Roasted agave hearts piled at the mezcal palenque in Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-the-palenque-yard.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_5083-2.jpg",
+   "alt": "The open yard of the mezcal palenque with agave hearts in Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-the-group-at-the-palenque.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_5075.jpg",
+   "alt": "The retreat group together at the mezcal palenque in Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-sharing-a-mezcal-tasting.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_5122.jpg",
+   "alt": "Guests sharing a mezcal tasting in Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-two-guests-under-the-bougainvillea.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_5116.jpg",
+   "alt": "Two guests under flowering bougainvillea in Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-mezcal-still-at-the-palenque.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_5110-scaled-e1642787040109.jpg",
+   "alt": "A worker tending the copper still at a mezcal palenque near Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-watching-the-cooking-demonstration.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_5058.jpg",
+   "alt": "Guests gathered to watch a cooking demonstration in a village near Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-the-group-at-the-weaving-workshop.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_5055.jpg",
+   "alt": "The retreat group outside a weaving workshop near Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-being-shown-the-dyed-wool.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_5059.jpg",
+   "alt": "A weaver showing dyed wool to guests near Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-weaver-at-the-loom.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_5004.jpg",
+   "alt": "A weaver working at the loom in a village near Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-learning-to-use-the-loom.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_5009.jpg",
+   "alt": "Guests learning to work the loom with a weaver near Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-serving-the-meal-at-the-workshop.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_5029.jpg",
+   "alt": "Food being served to guests after the workshop near Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-guests-at-the-loom-with-the-weaver.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_5003.jpg",
+   "alt": "Guests at the loom with the weaver in a village near Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-grinding-dye-under-the-skeins.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_4994.jpg",
+   "alt": "Guests grinding natural dye below hanging skeins of wool near Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-visiting-the-weaving-workshop.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_4976-scaled-e1642787074592.jpg",
+   "alt": "Guests visiting a weaving workshop in a village near Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-workshop-under-the-papel-picado.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_4959.jpg",
+   "alt": "A workshop under strings of papel picado in a village near Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-tree-pose-on-the-lawn.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_4947.jpg",
+   "alt": "A class in tree pose on the lawn at the villa in Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-closing-circle-by-the-pool.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/IMG_4954-1.jpg",
+   "alt": "The group sitting in a closing circle beside the pool at the villa in Oaxaca, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-shared-double-room-at-the-villa.webp",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/SHD-DBL-2.webp",
+   "alt": "A shared double room with twin beds at the villa near Oaxaca City, Mexico",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/oaxaca-oct-2027/img/yoga-retreat-oaxaca-mexico-bathroom-with-carved-mirrors.webp",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/06/BATHROOM-SINK.webp",
+   "alt": "A bathroom with carved mirrors and a stone basin at the villa near Oaxaca City, Mexico",
+   "shared": false,
+   "ratio": null
+  }
+ ],
+ "faqs": [
+  {
+   "question": "Do you accept bitcoin?",
+   "answer": [
+    "In addition to credit card payments we also accept wire transfers, Zelle and Bitcoin. Please inquire for more details."
+   ]
+  },
+  {
+   "question": "What is the cancellation policy?",
+   "answer": [
+    "All payments are 100% non refundable and non-transferable. We recommend that you buy trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you."
+   ]
+  },
+  {
+   "question": "What happens if my travel plans change?",
+   "answer": [
+    "There are no refunds as per our cancellation policies. We highly recommend that all of our guests secure a quality travel insurance that will cover them for any event which may cause a change of travel plans, including personal health issues or personal situations in general which may affect travel plans."
+   ]
+  },
+  {
+   "question": "Are flight delays or cancellations covered?",
+   "answer": [
+    "Not by us: transportation delays, cancellations or changes due to strikes, labor disputes, or lockouts from airlines, boats, ferries or any type of transportation are among the events we recommend covering with travel insurance."
+   ]
+  },
+  {
+   "question": "Where can I find the full terms & conditions?",
+   "answer": [
+    "The full terms and conditions are published at https://yogaadventuresworldwide.com/termsandconditions/ . By submitting payments toward your retreat you accept them."
+   ]
+  }
+ ],
+ "booking": {
+  "deposit_usd": 1000,
+  "deposit_label": "$1,000 USD per person",
+  "deposit_instructions": "Deposits of $1,000usd are due to secure your space in the retreat. Please check availability with us for accommodations before making your deposit.",
+  "balance_due_days": 90,
+  "balance_note": "The balance of your retreat (minus your $1,000usd initial deposit) is due 90 days prior to arrival. All details with instructions for settling up will be emailed to you three months prior to the retreat.",
+  "payment_methods": [
+   "Credit card",
+   "Wire transfer",
+   "Zelle",
+   "Bitcoin"
+  ],
+  "roommate_note": "Roommates should book together. If you would like to share a room and do not have a roommate we will provide one for you if possible. In the case that there is no one to share a room we ask that you take a private room instead.",
+  "cancellation_policy": [
+   "All payments are 100% non refundable and non-transferable. We recommend that you buy trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you."
+  ],
+  "booking_url": "https://yogaadventuresworldwide.com/retreat/yoga-retreat-day-of-the-dead-oaxaca/#reserve",
+  "contact_url": "https://yogaadventuresworldwide.com/contact-about-yoga-retreats/"
+ },
+ "testimonials": null,
+ "carbon_offset": null,
+ "source_url": "https://yogaadventuresworldwide.com/retreat/yoga-retreat-day-of-the-dead-oaxaca/",
+ "source_post_slug": "yoga-retreat-day-of-the-dead-oaxaca",
+ "source_categories": [
+  "yoga",
+  "yoga-food-and-wine"
+ ],
+ "source_is_shared": false,
+ "seo_title": "Oaxaca Yoga Retreat · Oct 2027",
+ "seo_description": "7-night yoga retreat in Oaxaca, Mexico. October 28 - November 4, 2027.",
+ "_notes": {
+  "accommodations": "The old site describes the property but never names it, so `name` is null.",
+  "rooms.gallery": "Some room types have no photographs of their own: the old site shows images only under some of the headings in its pricing block.",
+  "rooms": "The old site shows 2027 prices as “XXusd” with the note “2027 PRICING COMING SOON”, so every price here is null. Space in the private villa is limited, so guests are asked to be open to sharing a room.",
+  "faqs": "The source page has no FAQs block. These five answers are quoted from the site-wide Policies text inside the retreat page's Reserve section, matched to the five questions the template ships. They are not retreat-specific.",
+  "teachers": "The old site advertises this date \"with a fabulous YAWW instructor\" — no teacher assigned yet.",
+  "tier": "Not deducible: the old site's retreat_categories are topical (yoga, art-creative, yoga-food-and-wine, family-retreats) and only signature-retreats maps to a collection. Left null rather than guessed.",
+  "highlights": "The old site has no highlights block; nothing was invented to fill it.",
+  "testimonials": "The source page has an empty \"Praise\" carousel — the markup is there, the quotes are not. Left null; the template ships placeholder quotes.",
+  "carbon_offset": "No carbon-offset copy anywhere on the old site. The template's text is new site-wide copy.",
+  "seo_title": "DRAFT. Written only from this retreat's real destination, month and year.",
+  "seo_description": "DRAFT. Written only from real data: nights, location, published date range, teacher, status.",
+  "status": "From /all-upcoming-dates/ on 2026-11-12 — flag read \"New Retreat\"."
+ },
+ "_missing": [
+  "about_title",
+  "accommodations[].name",
+  "carbon_offset",
+  "extras",
+  "gallery_intro",
+  "gallery_title",
+  "highlights",
+  "includes_footnote",
+  "optional_excursions_schedule",
+  "rooms[].price_usd",
+  "subtitle",
+  "teachers",
+  "testimonials",
+  "tier",
+  "tier_label",
+  "tier_source"
+ ]
+}

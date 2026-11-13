@@ -1,0 +1,826 @@
+{
+ "slug": "morocco-nov-2026",
+ "title": "Mesmerized in Morocco : A Yoga & Culture Retreat",
+ "subtitle": null,
+ "destination": "Morocco",
+ "location_label": "Marrakech & Essaouira, Morocco",
+ "country": "Morocco",
+ "region": "Marrakech & Essaouira",
+ "tier": null,
+ "tier_label": null,
+ "tier_source": null,
+ "status": "sold_out",
+ "status_label": "sold out",
+ "urgency": {
+  "type": "soldout",
+  "label": null
+ },
+ "date_start": "2026-11-07",
+ "date_end": "2026-11-14",
+ "dates_label": "November 7 - 14, 2026",
+ "season": "Fall, 2026",
+ "nights": 7,
+ "days": 8,
+ "teachers": [
+  {
+   "name": "Dawn Thie",
+   "slug": "dawn-thie",
+   "role": null,
+   "bio": [
+    "Find Your True Self. It is Dawn’s highest intention to help guide students to a deeper relationship with Self. By moving our bodies and our energy, we free our soul to be seen and we can connect to parts of Self that are waiting to be explored.",
+    "Dawn carefully designs classes to clear the energetic channels within the body to create more space and open the path to inner peace. Incorporating the 8 Limb Path of Yoga, she invites students to explore something deeper within themselves using asana, breath work, intention and focus, in a way that meets students where they are. Feeling into the energy present in the room, Dawn uses her authentic voice offering clear and concise guidance, while weaving in yoga philosophy and heartfelt intention for both a physical and spiritual experience. All through a trauma informed approach.",
+    "When we connect to Self, we begin to experience the innate peace within and thus walk along this planet more peacefully. Dawn has been leading retreats nationally and internationally, as well as teacher trainings and workshops around the country. Originally trained in the traditional Sivananda Hatha style of yoga, Dawn’s classes offer a classical approach to yoga with a modern twist of accessibility. To learn more about Dawn please check our her website, I AM Dawn Thie Yoga."
+   ],
+   "photo": {
+    "file": "retreats/_shared/teachers/img/yoga-teacher-dawn-thie.jpg",
+    "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/09/17-46-scaled-e1788483200913.jpg",
+    "alt": "Dawn Thie, yoga teacher, smiling on a hillside above a bay",
+    "shared": true
+   },
+   "instagram": null,
+   "source": "https://yogaadventuresworldwide.com/team/"
+  }
+ ],
+ "teacher_unassigned": false,
+ "hero_image": {
+  "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-koutoubia-minaret-behind-the-palms.jpg",
+  "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/jr-harris-1Nr4XZzt6ds-unsplash.jpg",
+  "alt": "The Koutoubia minaret rising behind the palms in Marrakech, Morocco",
+  "shared": false
+ },
+ "intro": "Mesmerized in Morocco is a carefully composed journey through two of the country’s most compelling worlds—where design, tradition, and atmosphere take precedence over spectacle. Days are anchored by yoga and unfold through select cultural experiences: a traditional hammam and massage, privately guided medina exploration, intimate belly-dancing instruction, camel rides along the Atlantic, and a hands-on tagine cooking experience. Each moment is intentional, allowing Morocco’s texture, color, and cadence to reveal themselves naturally.",
+ "about_title": null,
+ "about_body": [
+  "This retreat moves between two distinct worlds—each with its own rhythm, texture, and allure. In Marrakech, the energy is layered and cinematic: lantern-lit evenings, intricate architecture, and a hum that invites you to look closer. Days are grounded by yoga in a traditional riad, with time unfolding into guided exploration, sensory rituals, and long, memorable meals. Marrakech offers contrast and intensity, balanced by moments of pause and restoration.",
+  "In Essaouira, everything softens. The Atlantic air clears space, the pace slows, and life feels expansive and unhurried. Mornings open with practice, followed by wandering the medina, time by the sea, hammam rituals, cooking experiences, and simple pleasures that don’t ask to be scheduled. Camel rides along the beach, henna, music, and shared tables become part of the rhythm rather than highlights.",
+  "Together, Marrakech and Essaouira create a retreat experience that feels considered and complete—energizing, restorative, and deeply atmospheric. This is Morocco experienced through access, beauty, and intention, designed for travelers who value culture, ease, and moments that linger long after the journey ends."
+ ],
+ "highlights": [],
+ "includes": [
+  "7 nights on retreat : 3 in Marrakech & 4 in Essaouira",
+  "Yoga daily as per the Itinerary",
+  "Traditional Moroccan breakfast daily",
+  "Three lunches and five dinners together*",
+  "Grounding circle with mint tea & cookies",
+  "Henna designs on hands and feet",
+  "Pampering Spa Day with traditional hamman experience and one hour massage",
+  "Guided group adventure into Marrakech to explore the pulse of the country; includes trip to the famous Marjorelle Gardens of Yves Saint Laurent, a visit to the famous Ben Yousself Koran School, and a visit to the souks with free time for shopping",
+  "Cooking class of traditional dishes with a guided adventure to the spice market",
+  "Camel ride along the secluded coastline with Mogador island as our backdrop",
+  "A free day to explore as you wish",
+  "Roundtrip airport transfers to and from RAK (shared schedule on itinerary)",
+  "All local taxes"
+ ],
+ "includes_footnote": "Water and local wine, included in some dinners together.",
+ "not_included": [
+  "Airfare",
+  "Alcohol and bottled water",
+  "3 lunches & 2 dinners on your own",
+  "Travel insurance",
+  "Extras",
+  "Staff Gratuities (suggested between $70-100usd for the incredible staff)"
+ ],
+ "not_included_footnote": null,
+ "itinerary": [
+  {
+   "day": 1,
+   "label": "Day 1",
+   "title": null,
+   "bullets": [
+    "Arrival & Settle-in into Marrakech",
+    "RAK Airport Transfers to our riad**",
+    "3pm Riad check-in; Settle (Marrakech medina)",
+    "4:30-7pm Opening grounding circle and gentle practice followed by henna & Moroccan cookies and mint tea",
+    "7:30pm Dinner together"
+   ],
+   "images": [
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-lighting-a-candle-together.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/hennaanna.jpeg",
+     "alt": "A guest and a local woman lighting a candle together on the retreat in Morocco",
+     "shared": false
+    },
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-sharing-a-meal-by-candlelight.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/11/DSC04618.jpg",
+     "alt": "Guests sharing a meal by candlelight on the retreat in Morocco",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 2,
+   "label": "Day 2",
+   "title": null,
+   "bullets": [
+    "7:30am Coffee, tea & fruit available",
+    "8-9:15am Morning Class",
+    "9:30am Breakfast",
+    "12-4pm Pampering Spa Treatments (hammam, scrub, 60 minute massage)",
+    "6:30-7:30pm Specialty belly dancing workshop with a professional dancer",
+    "8-11pm Dinner & belly dancing show together at Le Comptoir"
+   ],
+   "images": [
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-hammam-with-tiled-basin.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/Screenshot-2026-01-03-at-8.48.57-PM.png",
+     "alt": "A tiled hammam with a marble basin in Morocco",
+     "shared": false
+    },
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-candle-trays-carried-at-dinner.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/Screenshot-2026-01-03-at-8.55.35-PM-e1767492604674.png",
+     "alt": "Trays of lit candles carried in at a Moroccan dinner",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 3,
+   "label": "Day 3",
+   "title": null,
+   "bullets": [
+    "8am Coffee, tea & fruit available",
+    "9-10:15am Mindful Flow Yoga Practice",
+    "10:30am Breakfast",
+    "12-6pm Group outing w/ our local guide to explore the city and the souks (Majorelle Gardens & Koran School); Lunch included",
+    "Free time and dinner on your own"
+   ],
+   "images": [
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-walking-the-marrakech-souk.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/11/DSC04505.jpg",
+     "alt": "Guests walking through the souk in Marrakech, Morocco",
+     "shared": false
+    },
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-the-group-in-the-riad-courtyard.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/11/DSC04426.jpg",
+     "alt": "The retreat group together in the tiled courtyard of the riad in Marrakech, Morocco",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 4,
+   "label": "Day 4",
+   "title": null,
+   "bullets": [
+    "7:30am Coffee, tea & fruit available",
+    "9am Breakfast",
+    "10:30am Check out of riad and leave for Essaouira",
+    "Drive to Essaouira (2.5 hour drive w/ stop along the way)",
+    "2pm Barbecue lunch by the pool",
+    "3:30pm Check into accommodations",
+    "5:30-7pm Evening practice",
+    "Dinner on your own or at the Beldi"
+   ],
+   "images": [
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-essaouira-ramparts-above-the-sea.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/11/DSC04674.jpg",
+     "alt": "The ramparts of Essaouira above the Atlantic, Morocco",
+     "shared": false
+    },
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-resting-face-down-on-the-mat.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/cards.jpeg",
+     "alt": "A guest resting face down on the mat on the tiled floor in Morocco",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 5,
+   "label": "Day 5",
+   "title": null,
+   "bullets": [
+    "7:30am Coffee, tea & fruit available",
+    "8:30-9:45am Yoga Practice",
+    "10am Breakfast",
+    "1pm Leave for the medina of Essaouira; Lay of the land tour and free time",
+    "4-8pm Cooking class with dinner",
+    "Return to Beldi or stay in Essa for some live music on your own"
+   ],
+   "images": [
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-couscous-cooking-class.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/couscouscooking.jpeg",
+     "alt": "Guests rolling couscous with local cooks during the cooking class in Morocco",
+     "shared": false
+    },
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-couscous-platter-on-the-table.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/veggiecouscous.jpeg",
+     "alt": "A platter of couscous with vegetables served at the table in Morocco",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 6,
+   "label": "Day 6",
+   "title": null,
+   "bullets": [
+    "8am Coffee, tea & fruit available",
+    "8:30-10am Morning Yoga Practice",
+    "10:15am Breakfast",
+    "Free time to explore as you wish; take a kite lesson, visit a local argan producer or get artsy at a local cheese farm, enjoy quiet beach or pool time, check out the Medina",
+    "Lunch on your own",
+    "6-7pm Evening practice",
+    "7:30pm Dinner together at the Beldi"
+   ],
+   "images": [
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-in-the-pool-at-the-countryside-stay.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/hangingwithyourbesties.jpeg",
+     "alt": "Guests in the pool at the countryside stay near Essaouira, Morocco",
+     "shared": false
+    },
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-looking-at-rugs-in-the-souk.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/08/shopping.jpeg",
+     "alt": "Guests looking at rugs and textiles in the souk in Morocco",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 7,
+   "label": "Day 7",
+   "title": null,
+   "bullets": [
+    "8am Coffee, tea & fruit available",
+    "8:30-9:45am Morning Yoga Practice",
+    "10am Breakfast",
+    "12-1:30pm Camel rides on the beach",
+    "Free time to explore as you wish; last minute shopping and exploring",
+    "Lunch on your own",
+    "6:30-7:45pm Evening practice & Closing Circle",
+    "8pm Farewell Dinner together"
+   ],
+   "images": [
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-camel-caravan-on-the-beach.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/caravan3.jpeg",
+     "alt": "A camel caravan crossing the beach at Essaouira, Morocco",
+     "shared": false
+    },
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-empty-studio-with-bolsters.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/Screenshot-2026-01-03-at-9.25.45-PM-e1767494277982.png",
+     "alt": "The empty yoga studio with bolsters laid out at the countryside stay near Essaouira, Morocco",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 8,
+   "label": "Day 8",
+   "title": null,
+   "bullets": [
+    "8am Coffee, tea & Breakfast available",
+    "Check out of riad",
+    "9am Shared Departure Shuttle to RAK airport**",
+    "Departure transfer to RAK from Essaouira will plan to leave at 9am on the last retreat day. Please plan to leave for the RAK airport approx 5.5 hours before your flight out.",
+    "If you would like a private ride outside of these times or from another airport we can arrange this for you at an additional cost.",
+    "Book now!"
+   ],
+   "images": [
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-sitting-at-the-edge-of-the-pool.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/11/sofi-essa.jpeg",
+     "alt": "A guest sitting at the edge of the pool at the countryside stay near Essaouira, Morocco",
+     "shared": false
+    },
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-sitting-on-rugs-by-the-pool.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/newfriendsonreatreat.jpeg",
+     "alt": "Guests sitting and talking on rugs by the pool in Morocco",
+     "shared": false
+    }
+   ]
+  }
+ ],
+ "itinerary_notes": [
+  "This itinerary is subject to adjustments, changes in times, locations, or activities as the retreat leaders and hosts see fit. Any change will be on par with our standards or an upgrade in services or location making for an even more amazing experience for the group and our guests. Thank you in advance for your flexibility and cooperation if any situation were to arise.",
+  "Arrival transfers from RAK airport will be private or shared depending on everyone’s flight schedules on the start day of the retreat. If you arrive earlier and want to join our shuttle you can meet at the airport at a specified time to go with others or you can meet us at the riad on your own."
+ ],
+ "optional_excursions_schedule": [],
+ "accommodations": [
+  {
+   "name": null,
+   "label": "Riad in the Marrakech medina",
+   "text": [
+    "Our Moroccan retreat adventure will take us to several locations highlighting the best of the country. We begin in our own riad in the heart of the medina in Marrakech.",
+    "A traditional riad with stunning design, authentic voice and incredible staff. It’s home for our retreats for the first few nights and where we stay for extra nights in the city to relax and unwind from the bustle of the souks."
+   ],
+   "instagram": null,
+   "gallery": [
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-riad-courtyard-and-plunge-pool.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/riad-1.jpg",
+     "alt": "The tiled courtyard and plunge pool of the riad in the Marrakech medina, Morocco",
+     "shared": false
+    },
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-riad-arched-windows.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/riad-4.jpg",
+     "alt": "Arched windows with wrought-iron balconies at the riad in Marrakech, Morocco",
+     "shared": false
+    },
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-riad-rooftop-terrace.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/riad-roof.jpg",
+     "alt": "The rooftop terrace with parasols and low chairs at the riad in Marrakech, Morocco",
+     "shared": false
+    },
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-riad-courtyard-seating.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/riad-int.jpg",
+     "alt": "Seating and potted plants around the courtyard pool of the riad in Marrakech, Morocco",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": null,
+   "label": "Countryside domes near Essaouira",
+   "text": [
+    "Moving on to the laid back coastal vibes of Essaouira, we embrace serenity and calm in the stunning countryside accommodations of our long standing partners in Morocco. A quick drive to the city center but far enough away to enjoy the peace of the area.",
+    "Unique domes house each room with a common space poolside for meals, relaxation and connection. All rooms have private bathrooms en-suite, gorgeous thoughtful decor and plenty of time and space for contemplation in nature.",
+    "Our favorite part is the new studio with views of the surrounding argan and olive groves. Perfect for incredible classes, introspection and peace."
+   ],
+   "instagram": null,
+   "gallery": [
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-straw-hat-beside-the-pool.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/poolsidehat.jpeg",
+     "alt": "A straw hat left beside the pool at the countryside stay near Essaouira, Morocco",
+     "shared": false
+    },
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-palms-beside-the-pool-in-essaouira.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/essapool2.jpeg",
+     "alt": "Palms beside the pool at the countryside stay near Essaouira, Morocco",
+     "shared": false
+    },
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-domed-buildings-in-the-garden.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/11/jardins.maroc_.jpg",
+     "alt": "The domed guest buildings among olive trees near Essaouira, Morocco",
+     "shared": false
+    },
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-timber-ceilinged-yoga-studio.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/11/JVM-Yoga-Shala-1-1.jpeg",
+     "alt": "The timber-ceilinged yoga studio with mats laid out near Essaouira, Morocco",
+     "shared": false
+    }
+   ]
+  }
+ ],
+ "rooms": [
+  {
+   "name": "Shared Twin Room",
+   "price_usd": 4995,
+   "price_label": "4,995usd per person",
+   "price_unit": "per person",
+   "description": "Shared Twin rooms have 2 twin beds, ensuite bathroom, and adorable details. Each room in the hotel is unique.",
+   "attrs": {
+    "bed": "Twin",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-private-room-with-an-arched-alcove.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/1.jpg",
+     "alt": "A private room with a double bed in an arched alcove, Morocco",
+     "shared": false
+    },
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-shared-twin-room-details.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/11/Screenshot-2025-01-03-at-1.25.30%E2%80%AFp.m-e1767552732809.png",
+     "alt": "Details of a shared twin room at the riad in Morocco: bed, washstand and window",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": "Private Room",
+   "price_usd": 5995,
+   "price_label": "5,995usd private",
+   "price_unit": "private room",
+   "description": "1 Double bed, ensuite bathroom, and charming details. Each room is unique.",
+   "attrs": {
+    "bed": "Double",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-private-room-with-an-arched-alcove.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/1.jpg",
+     "alt": "A private room with a double bed in an arched alcove, Morocco",
+     "shared": false
+    },
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-private-room-details.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/11/Screenshot-2025-01-03-at-1.25.43%E2%80%AFp.m-e1767553045521.png",
+     "alt": "Details of a private room in Morocco: bed, stone basin and a cushioned corner",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": "Private Room — shared bed",
+   "price_usd": 4955,
+   "price_label": "4,955usd shared bed per person",
+   "price_unit": "per person",
+   "description": "Shared-bed rate in a private room. You must provide your bedmate for this option.",
+   "attrs": {
+    "bed": "Double",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-private-room-with-an-arched-alcove.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/1.jpg",
+     "alt": "A private room with a double bed in an arched alcove, Morocco",
+     "shared": false
+    },
+    {
+     "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-private-room-details.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/11/Screenshot-2025-01-03-at-1.25.43%E2%80%AFp.m-e1767553045521.png",
+     "alt": "Details of a private room in Morocco: bed, stone basin and a cushioned corner",
+     "shared": false
+    }
+   ]
+  }
+ ],
+ "pricing_notes": [
+  "You must provide your bedmate for these options.",
+  "We will pair single travelers together looking to share a room. Roommates should book their accommodations together."
+ ],
+ "extras": [],
+ "travel_tips": [
+  {
+   "heading": "mesmerized in Morocco",
+   "items": [
+    "WHAT TO WEAR, WHAT TO BRING, WHAT TO KNOW…",
+    "DRESS :",
+    "Morocco is a progressive Muslim country with much respect and rights for women. You can see everything from full head-to-toe coverage to sheer wraps over bikinis in Morocco but the majority of foreign women wear skirts or capris, comfortable walking shoes, and a modest top. Try to stick with outfits that extend to the knee and cover the shoulders and collar bone to avoid unwanted attention.",
+    "Weather :",
+    "In Essaouira, by the coast, the days are typically breezy and perfect. You can expect weather in the 70s/20C most days. It is possible that it rains during the Spring so if you have a little umbrella or light rain jacket consider bringing it along. Fall weather is usually relatively dry. Marrakech is considerably warmer throughout the year so please pack and dress accordingly. Capris or loose fitting pants, long shorts and skirts are good options.",
+    "BRING :",
+    "We provide yoga props during the retreat in Morocco. A mat and strap will be provided for you in Marrakech. In Essaouira the studio has bolsters as well as the basics.",
+    "Feel free to bring a journal for capturing your thoughts or any art supplies to stretch your creative muscle in this very artistically inclined city.",
+    "Sunglasses, sun hat, good walking shoes, comfortable and appropriate clothing, yoga clothes, a bathing suit, as well as your camera are all good items to have with you.",
+    "A Universal Adaptor for plugs is necessary so please plan to bring one along for charging devices. Morocco has European style 2 prong outlets.",
+    "Shopping is at every turn in Morocco so it may be a good idea to pack a collapsable yet sturdy duffle bag at the bottom of your large suitcase (leave space as well for extra goodies you’ll surely pick up!). I usually pack a smaller carry on with all my items for a trip then place it inside my empty larger suitcase to check PLUS the empty duffle bag inside it all (but i LOVE to shop when in Morocco)! If that is too much for you and you find yourself in need of a bag, one can be purchased in the souks to bring back home filled with your new treasures.",
+    "Other items that might come in handy to have on you are sunscreen, probiotics, anti-diarrhea meds (Moroccan food can be heavily spiced at times–better safe than sorry), vitamin C, and any medications and toiletries that might be hard to get outside your home country.",
+    "Spa day you will want your bathing suit to enjoy the pool and the sunshine. Camel day you might want longer pants like when you ride a horse. We will be riding on the beach so if the weather is chilly that day it will be cooler on the ride. Dress accordingly please. You can bring a wrap for your head from home or pick up one on the streets in Essaouira to look the part on the camels 😉 It also keeps you cooler and protects your neck from the sun! Our amazing camel whisperer Mustafa will hook you up with the proper look…he’s the best!",
+    "Money :",
+    "I typically bring along my ATM card on international trips and take money out of the local ATM. Make sure you have an app like XE currency converter downloaded so you can know how much you’re withdrawing. Please check for yourself but the exchange rate is typically around 1usd to 10 dirham to do a rough calculation. If you can’t get money from the airport upon landing you’ll be able to get it from the main square in both cities. Many places will take a credit card for larger purchases like rugs and bags but many smaller souks or shopping stalls it’s better to have cash so you can negotiate your prices easier.",
+    "To avoid the hassle of finding ATMS you can order Moroccan Dirhams in advance and bring some with you to get started.",
+    "It’s very hard for us to tell you how much money you’ll need. It really depends on lots of things. There are some meals not included in the retreat package as well as tipping and of course how much shopping in the souks you plan to do.",
+    "We suggest you let your bank know you are traveling and all the countries you will be passing through so they don’t accidentally block your card.",
+    "Shopping :",
+    "Ohhhh Morocco! It’s our FAVE. I would definitely plan to have some extra space in your suitcase for bringing home some goodies from Morocco. I am a BIG shopper when I’m there so I bring an empty duffle bag as well to load up and check a 2nd bag on my way home. If you purchase a rug you can have them wrap it in a roll and they can check it just like that. Other items that you may find interesting to bring home. : spices, lanterns, shoes, argan oil, pottery, baskets, leather bags, overnight bags, poufs, amazing kaftans, oh the list goes on and on and on….have a blast!",
+    "Essaouira is where I like to buy my rugs and other items that I need more time to consider. Please note that there is less haggling for purchases in Essaouira as prices are a bit more fixed and the sales people are much more relaxed. Haggling is best left for Marrakech. We will show you our favorite shops in both places.",
+    "Tipping :",
+    "The staff at our Riads are amazing!! We usually collect tips before closing dinner and hand them over to the hotel manager as they distribute them to all staff involved at the end of the retreat. You will have a clean room daily, breakfasts and several dinners, spa day and the argan tour are also their properties and staff. We recommend a tip of around 600 dirham (the equivalent of around $60usd) to show your appreciation of the amazing service that Morocco is so well known for.",
+    "For your airport transfers, the drivers should be tipped directly. Dirham is preferred but they can exchange Euro or USD if that is all you have. We recommend around $10usd or 100 Dirham each way per person.",
+    "AIRLINE TICKET TIPS AND TRICKS :",
+    "1. Each time you plan to search for flights you should ‘Clear Browsing Data’ from your device. Google how to here. This deletes any previous searches from your computer so you get a fresh start with pricing out flights.",
+    "2. There is a sweet spot for buying airline tickets 6 weeks before your trip on a Tuesday.",
+    "3. I usually book my flights with Google Flights to find the best dates and rates for travel. I put an alert on the search so it keeps me updated via email when pricing is rising or falling. It’s a good way to keep an eye out and buy when the price is optimal.",
+    "PLEASE NOTE YOUR PASSPORT MUST BE VALID FOR 6 MONTHS AFTER YOU ARRIVE INTO THE COUNTRY. PLEASE DOUBLE CHECK YOUR EXPIRATION DATE PRIOR TO BOOKING.",
+    "Getting to, from, and around Morocco :",
+    "We recommend flying into and out of Marrakech’s Menara International Airport (RAK). There are many flights daily from major cities around the world. The airport is about half an hour from the medina in Marrakech and 2.5 hours from Essaouira.",
+    "Our included airport transfers utilize RAK.",
+    "Essaouira-Mogador and Casablanca both have their own airports if those are better choices for you.",
+    "Most citizens are allowed to enter Morocco without a visa if you are staying for less than 90 days. If you are a citizen of Egypt, Lebanon, Palestine, or Jordan you may need to apply for a visa. Other countries do not. Please check with us if you have any doubts.",
+    "Layovers before and after the retreat :",
+    "We expect that most retreat guests will be arriving a day or two before the retreat and spending time in either Marrakech, another European city as per their flight pattern, or coming directly to Essaouira. If you are looking to head right to the hotel and settle in please let us know and we can put you in touch directly with the hotel to see about reserving a room or maybe even getting the same one you have for the retreat if possible.",
+    "Lots of people will spend their layover in Madrid and then head to Marrakech the next morning or you could purchase separate flights and stay a few nights in Madrid (or whatever European city is cheapest to fly into from your home airport) to catch up on jet lag, then buy a separate flight to Marrakech from there. This will depend on costs and should be planned carefully as if there are delays you are responsible for each flight individually since are purchased separately, but it can be a great flying hack to a good deal on flights.",
+    "If you have an overnight in Madrid I can recommend a great Tapas, Tavernas & History walking tour in the evening that is a great way to pass some time on a layover, enjoy a bit of the culture, and experience the city with a few other likeminded travelers.",
+    "If you plan to stay in Marrakech for a few nights and want to check out a more pampering riad experience we recommend El Fenn or La Mamounia."
+   ]
+  },
+  {
+   "heading": "CULTURE & MOROCCAN NATIONALS",
+   "items": [
+    "Overall Morocco is an amazing and most hospitable country therefore women traveling alone should not be afraid, just sensible, respectful, aware, and cautious.",
+    "For the most part Moroccans are incredibly open-minded, especially in cities where tourism is common (Marrakesh, Casablanca, Fes, Essaouira, Rabat, Meknes, and Ouarzazate) and you will find it quite easy to have conversations with locals (in souks and hotels) about world politics, the cultural and historical traditions of Morocco and the economy.",
+    "Moroccans who work in the tourism industry and in the souks tend to be multi-lingual and up to date on world politics. If you are a person who enjoys conversation during your travels you will find the opportunity to discuss many things within the souks and markets while you are shopping and being offered the traditional hospitality of mint tea."
+   ]
+  },
+  {
+   "heading": "Female Travelers",
+   "items": [
+    "If you are a female traveler in Morocco there is little to worry about as long as you maintain respectful dress and carry yourself appropriately. The popularity of tourism caused the Moroccan economy to undergo a process of liberalization and modernization, consequently altering some societal values.",
+    "Today, Moroccan women are taking more active roles in the government, law, medicine, warfare, and trade. There is also an increase in university enrollment among the younger generation, ultimately, leading to a more open-minded youth and a greater tolerance for modern ideas and western influences.",
+    "Consequently, Moroccans are getting more used to seeing females (particularly tourists) visiting cafes and other places that were in the past were primarily frequented by men.",
+    "As always, follow all rules that apply to travel in any major city, watch out for your bag in crowded areas and in general be aware of your surroundings."
+   ]
+  }
+ ],
+ "gallery_title": null,
+ "gallery_intro": null,
+ "gallery": [
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-long-table-at-the-opening-dinner.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/openingdinner-1.jpg",
+   "alt": "The long candlelit table at the opening dinner of the retreat in Morocco",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-having-henna-applied.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/hennastina-1.jpg",
+   "alt": "A guest having henna applied to her hand in Morocco",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-opening-circle-with-rose-petals.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/openingcircle-1.jpg",
+   "alt": "The opening circle with rose petals on the floor at the stay near Essaouira, Morocco",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-the-group-at-the-essaouira-ramparts.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/esssagroup-1.jpg",
+   "alt": "The retreat group at the ramparts and watchtower of Essaouira, Morocco",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-laughing-over-a-glass-of-wine.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/moroccanwine-e1511817819486-1.jpg",
+   "alt": "A guest laughing over a glass of Moroccan wine on the retreat",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-by-the-poolside-together.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/goodtimes-1.jpg",
+   "alt": "Guests together at the poolside of the countryside stay near Essaouira, Morocco",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-inside-the-hammam.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/hammamtime1-1-1.jpg",
+   "alt": "The warm glow inside the hammam during a treatment in Morocco",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-sitting-at-the-pool-edge-together.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/thesegems-1-1.jpg",
+   "alt": "Two guests sitting at the edge of the pool in Morocco",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-bowls-of-salads-by-the-bread-oven.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/moroccanbbq-e1511824499824-1.jpg",
+   "alt": "Bowls of Moroccan salads laid out beside the bread oven, Morocco",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-grilled-sardines-on-a-tray.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/sardinesfrescas-1-1.jpg",
+   "alt": "A tray of grilled sardines with lemon, Essaouira, Morocco",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-the-grill-master-at-the-oven.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/grillmaster-1.jpg",
+   "alt": "A cook beside the wood-fired grill at the countryside stay in Morocco",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-three-guests-meditating-by-the-pool.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/lotuspoolside-1-1.jpg",
+   "alt": "Three guests sitting cross-legged at the poolside in Morocco",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-assisted-headstand-by-the-pool.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/headstandjeffandanj-1.jpg",
+   "alt": "A teacher supporting a guest in a headstand beside the pool in Morocco",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-bread-stall-in-the-medina.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/marriageprops-1.jpg",
+   "alt": "Guests at a bread stall in the medina in Morocco",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-rolling-dough-in-the-kitchen.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/nailinit-1.jpg",
+   "alt": "A local cook and a guest rolling dough together in the kitchen in Morocco",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-lunch-on-the-terrace.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/marnilunchtime-1-1.jpg",
+   "alt": "A guest with a plate of lunch on the terrace in Morocco",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-meeting-a-local-in-the-blue-alley.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/meandnoura-1-1.jpg",
+   "alt": "A guest and a local woman together in a blue-painted alley in Morocco",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-shopkeeper-among-the-lanterns.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/que-1-1.jpg",
+   "alt": "A shopkeeper among hanging lanterns in the souk in Morocco",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-leaning-on-the-blue-railing-in-the-garden.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/sarahsmile-1.jpg",
+   "alt": "A guest leaning on a blue railing in a bamboo garden in Marrakech, Morocco",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-breakfast-served-on-the-terrace.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/breakfasttime-1.jpg",
+   "alt": "Breakfast being served on the terrace above the sea in Essaouira, Morocco",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-riad-courtyard-from-the-roof.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/yogaeveryday-1-1.jpg",
+   "alt": "The tiled riad courtyard seen from the roof terrace in Morocco",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-practice-in-the-riad-courtyard.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/yogatime-1.jpg",
+   "alt": "A practice under way in the courtyard of the riad in Marrakech, Morocco",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-assisted-backbend-in-the-riad.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/yogawithanj-1-1.jpg",
+   "alt": "A teacher assisting a guest in a backbend in the riad courtyard in Morocco",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-resting-on-the-mat-in-savasana.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/cards-1.jpg",
+   "alt": "A guest resting on the mat on the tiled floor in Morocco",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-riding-a-camel-on-the-beach.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/thoseteeththo-1-1.jpg",
+   "alt": "A guest riding a camel on the beach at Essaouira, Morocco",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-camel-ride-along-the-dunes.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/cameltime-1-1.jpg",
+   "alt": "Guests riding camels along the dunes near Essaouira, Morocco",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-jemaa-el-fnaa-at-dusk.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/nighttimemarrakech2-1-1.jpg",
+   "alt": "The square of Jemaa el-Fnaa lit up at dusk in Marrakech, Morocco",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/morocco-nov-2026/img/yoga-retreat-morocco-the-studio-in-the-argan-groves.png",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/11/Screenshot-2025-01-03-at-5.01.11%E2%80%AFp.m.png",
+   "alt": "The glazed yoga studio standing among the argan groves near Essaouira, Morocco",
+   "shared": false,
+   "ratio": null
+  }
+ ],
+ "faqs": [
+  {
+   "question": "Do you accept bitcoin?",
+   "answer": [
+    "In addition to credit card payments we also accept wire transfers, Zelle and Bitcoin. Please inquire for more details."
+   ]
+  },
+  {
+   "question": "What is the cancellation policy?",
+   "answer": [
+    "All payments are 100% non refundable and non-transferable. We recommend that you buy trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you."
+   ]
+  },
+  {
+   "question": "What happens if my travel plans change?",
+   "answer": [
+    "There are no refunds as per our cancellation policies. We highly recommend that all of our guests secure a quality travel insurance that will cover them for any event which may cause a change of travel plans, including personal health issues or personal situations in general which may affect travel plans."
+   ]
+  },
+  {
+   "question": "Are flight delays or cancellations covered?",
+   "answer": [
+    "Not by us: transportation delays, cancellations or changes due to strikes, labor disputes, or lockouts from airlines, boats, ferries or any type of transportation are among the events we recommend covering with travel insurance."
+   ]
+  },
+  {
+   "question": "Where can I find the full terms & conditions?",
+   "answer": [
+    "The full terms and conditions are published at https://yogaadventuresworldwide.com/termsandconditions/ . By submitting payments toward your retreat you accept them."
+   ]
+  }
+ ],
+ "booking": {
+  "deposit_usd": 1000,
+  "deposit_label": "$1,000 USD per person",
+  "deposit_instructions": "Deposits of $1,000usd are due to secure your space in the retreat. Please check availability with us for accommodations before making your deposit.",
+  "balance_due_days": 90,
+  "balance_note": "The balance of your retreat (minus your $1,000usd initial deposit) is due 90 days prior to arrival. All details with instructions for settling up will be emailed to you three months prior to the retreat.",
+  "payment_methods": [
+   "Credit card",
+   "Wire transfer",
+   "Zelle",
+   "Bitcoin"
+  ],
+  "roommate_note": "Roommates should book together. If you would like to share a room and do not have a roommate we will provide one for you if possible. In the case that there is no one to share a room we ask that you take a private room instead.",
+  "cancellation_policy": [
+   "All payments are 100% non refundable and non-transferable. We recommend that you buy trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you."
+  ],
+  "booking_url": "https://yogaadventuresworldwide.com/retreat/yoga-retreat-morocco/#reserve",
+  "contact_url": "https://yogaadventuresworldwide.com/contact-about-yoga-retreats/"
+ },
+ "testimonials": null,
+ "carbon_offset": null,
+ "source_url": "https://yogaadventuresworldwide.com/retreat/yoga-retreat-morocco/",
+ "source_post_slug": "yoga-retreat-morocco",
+ "source_categories": [
+  "yoga"
+ ],
+ "source_is_shared": false,
+ "seo_title": "Morocco Yoga Retreat · Nov 2026",
+ "seo_description": "7-night yoga retreat in Marrakech & Essaouira, Morocco. November 7 - 14, 2026, with Dawn Thie — sold out.",
+ "_notes": {
+  "accommodations.gallery": "The old site runs both venues through one gallery; the photographs were looked at and split back to the venue they show.",
+  "accommodations": "The old site describes the property but never names it, so `name` is null.",
+  "faqs": "The source page has no FAQs block. These five answers are quoted from the site-wide Policies text inside the retreat page's Reserve section, matched to the five questions the template ships. They are not retreat-specific.",
+  "tier": "Not deducible: the old site's retreat_categories are topical (yoga, art-creative, yoga-food-and-wine, family-retreats) and only signature-retreats maps to a collection. Left null rather than guessed.",
+  "highlights": "The old site has no highlights block; nothing was invented to fill it.",
+  "testimonials": "The source page has an empty \"Praise\" carousel — the markup is there, the quotes are not. Left null; the template ships placeholder quotes.",
+  "carbon_offset": "No carbon-offset copy anywhere on the old site. The template's text is new site-wide copy.",
+  "seo_title": "DRAFT. Written only from this retreat's real destination, month and year.",
+  "seo_description": "DRAFT. Written only from real data: nights, location, published date range, teacher, status.",
+  "status": "From /all-upcoming-dates/ on 2026-11-12 — flag read \"sold out\".",
+  "date_start": "This edition started on 2026-11-07, before the extraction date (2026-11-12), so it is already under way. It is still listed under Upcoming Dates on the old site."
+ },
+ "_missing": [
+  "about_title",
+  "accommodations[].name",
+  "carbon_offset",
+  "extras",
+  "gallery_intro",
+  "gallery_title",
+  "highlights",
+  "not_included_footnote",
+  "optional_excursions_schedule",
+  "subtitle",
+  "teachers[Dawn Thie].instagram",
+  "teachers[Dawn Thie].role",
+  "testimonials",
+  "tier",
+  "tier_label",
+  "tier_source"
+ ]
+}

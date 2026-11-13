@@ -1,0 +1,655 @@
+{
+ "slug": "montenegro-may-2027-cordover",
+ "title": "Montenegro Magic : A Yoga & Nature Retreat",
+ "subtitle": null,
+ "destination": "Montenegro",
+ "location_label": "Bay of Kotor, Montenegro",
+ "country": "Montenegro",
+ "region": "Perast, Bay of Kotor",
+ "tier": null,
+ "tier_label": null,
+ "tier_source": null,
+ "status": "few_spaces",
+ "status_label": "1 SPACE LEFT!",
+ "urgency": {
+  "type": "scarce",
+  "label": "1 Space Left"
+ },
+ "date_start": "2027-05-22",
+ "date_end": "2027-05-28",
+ "dates_label": "May 22 - 28, 2027",
+ "season": "Spring, 2027",
+ "nights": 6,
+ "days": 7,
+ "teachers": [
+  {
+   "name": "Melanie Cordover",
+   "slug": "melanie-cordover",
+   "role": null,
+   "bio": [
+    "A native Floridian from Miami, Melanie grew up dancing and turned her love for movement into a prolific and promising yogic career. Melanie teaches dynamic yoga studio classes and traditional yin classes weekly. She has led retreats in South Florida and the Caribbean over the past 3 years, and truly loves the experience of connecting and creating memorable and meaningful moments. Melanie is a E-RYT 500 hour instructor with an advanced certification in Yin yoga.",
+    "Her yogic journey has been an incredible ride to empower yogis to find confidence and strength in their practice and to drive that beyond the mat. She aspires to inspire others by weaving thematic messages and creative flows in a mindful, beautiful and peaceful setting with her enthusiasm and invigorating energy. Join Melanie for a journey within a journey to find your passion and purpose through love, light and liberty within."
+   ],
+   "photo": {
+    "file": "retreats/_shared/teachers/img/yoga-teacher-melanie-cordover.jpg",
+    "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/09/IMG_2937-scaled-e1788482077324.jpg",
+    "alt": "Melanie Cordover, yoga teacher, among palm fronds",
+    "shared": true
+   },
+   "instagram": null,
+   "source": "https://yogaadventuresworldwide.com/team/"
+  }
+ ],
+ "teacher_unassigned": false,
+ "hero_image": {
+  "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-infinity-pool-over-the-bay-of-kotor.jpg",
+  "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/19-11.jpg",
+  "alt": "A guest at the edge of the infinity pool looking out over the Bay of Kotor, Montenegro",
+  "shared": true
+ },
+ "intro": "Escape to the stunning Bay of Kotor, Montenegro, for a transformative yoga and wellness retreat. Set in the idyllic village of Perast, this experience blends daily yoga practices with immersive adventures, creating the perfect balance of relaxation and exploration.",
+ "about_title": null,
+ "about_body": [
+  "Montenegro is a tiny country nestled into the Balkans between Croatia and Albania. Its majestic landscapes lend to epic vistas, incredible hiking, serene water activities and offer the traveler a truly unique experience. From the moment you arrive into the Bay of Kotor you’ll be transported by a medieval village overlooking the most magical waters and mystical mountain range.",
+  "Our retreat to this magical little land highlights life on the water and all that entails. We will paddle to fantastical islands, spend a day boating around the nooks and crannies visiting caves, seaside dining spots, underwater wineries and enjoying the freshest seafood available. Our historical private villa overlooks the Bay and is nestled into the most charming village of Perast, a UNESCO heritage site. Explore the town of Kotor on our walking food tour, visit a working olive oil farm at the top of the ridge, climb 1,350 steps to the top of the city to admire the bird’s eye views.",
+  "Yoga and wellness will anchor each day. Practices will be guided by our incredible instructors, pamper yourself in the hot tub or sauna overlooking the Bay and opt for nature bathing as you hike to the top of Kotor on the most stunning hike in the area.",
+  "We are SO excited to share this incredible experience with you. Space is limited and this retreat will sell out quickly! Reserve your space below."
+ ],
+ "highlights": [],
+ "includes": [
+  "6 nights in our private 16th Century luxury villa accommodations",
+  "Breakfast daily, 2 lunches & 4 dinners",
+  "High quality Yoga instruction for all levels as per itinerary",
+  "Guided walking tour to explore Kotor’s old city with lunch; Option to climb 1,350 steps to the Kotor Fortress for panoramic views of the bay, the old town and surrounding mountains",
+  "SUP or Kayaking on the water to visit Lady of the Rocks Church",
+  "Private boat tour with fabulous lunch, water time with snorkeling, blue cave & highlights from the water",
+  "Happy hour with mussels at a unique under-sea winery in the water",
+  "Use of wood-fired sauna and jacuzzi at our private villa; swimming pool time",
+  "Day trip to Lovcen National Park; visit a smokehouse, ride an alpine coaster & cable car",
+  "Free time to explore as you wish; sauna/jacuzzi time at the villa; visit surrounding villages",
+  "Expert Y&AWW facilitator to guide you through your adventure",
+  "Gift bag from us to you",
+  "All local taxes"
+ ],
+ "includes_footnote": null,
+ "not_included": [
+  "Staff gratuities",
+  "3 lunches & 2 dinners",
+  "Optional excursions and massages",
+  "Alcohol at included meals",
+  "International flights and airport transfers",
+  "Travel & Trip Cancellation insurance",
+  "Medical insurance",
+  "Secure your space"
+ ],
+ "not_included_footnote": null,
+ "itinerary": [
+  {
+   "day": 1,
+   "label": "Day 1",
+   "title": null,
+   "bullets": [
+    "3pm Arrival & check-in",
+    "5:30-7pm Grounding circle & opening class",
+    "7:30pm Dinner together at the villa"
+   ],
+   "images": [
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-bell-tower-above-the-rooftops-of-perast.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/Screenshot-2025-01-20-at-3.50.31%E2%80%AFp.m-1-e1737605797848.png",
+     "alt": "The stone bell tower rising above the rooftops of Perast and the bay, Montenegro",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-red-rooftops-above-the-bay.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/steph-smith-0kkOhXR8tys-unsplash-scaled-e1737605762435.jpg",
+     "alt": "The red rooftops of Perast dropping to the water of the Bay of Kotor, Montenegro",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "day": 2,
+   "label": "Day 2",
+   "title": null,
+   "bullets": [
+    "8am Coffee, tea & fruit available",
+    "8:30-10am Yoga Practice",
+    "10:15am Breakfast",
+    "12-2pm Guided walking tour to explore Kotor’s old city",
+    "3-5pm Lunch & happy hour of local mussels and shrimp at a unique sea winery",
+    "Free time to rest; explore; swim in the sea",
+    "Dinner on your own"
+   ],
+   "images": [
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-serving-oysters-at-the-table.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/amanda-Edited-e1737601378300.jpg",
+     "alt": "Oysters being served at the table during the retreat in the Bay of Kotor, Montenegro",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-bottles-from-the-undersea-winery.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/old-wine-Edited-e1737601496572.jpg",
+     "alt": "Encrusted bottles aged underwater at the sea winery in the Bay of Kotor, Montenegro",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "day": 3,
+   "label": "Day 3",
+   "title": null,
+   "bullets": [
+    "Coffee, tea, fruit available",
+    "7-9am SUP or kayaking on the water to visit the Lady of the Rocks Church island",
+    "9:30am Breakfast at the villa",
+    "Free time; lunch on your own; explore village; relax; massages; sauna/jacuzzi time",
+    "3-4:30pm Gentle Yoga class",
+    "5-6:45pm Special Happy Hour with a local organic farmer",
+    "7pm Dinner together at a fabulous local favorite by the water"
+   ],
+   "images": [
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-our-lady-of-the-rocks-island.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/boat-day-Edited-e1737604624739.jpg",
+     "alt": "The island church of Our Lady of the Rocks in the Bay of Kotor, Montenegro",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-the-church-tower-in-perast.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/ivan-aleksic-5pIP1uuiL34-unsplash-Edited.jpg",
+     "alt": "The stone church tower in the village of Perast, Montenegro, seen through the branches",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "day": 4,
+   "label": "Day 4",
+   "title": null,
+   "bullets": [
+    "Coffee, tea & fruit available",
+    "8:15-9:30am Morning Class",
+    "9:45am Breakfast",
+    "11am-7pm Boat Tour with snorkeling, blue cave, highlights from the water",
+    "Lunch together seaside with time for relaxing/swimming",
+    "Dinner on your own"
+   ],
+   "images": [
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-reaching-arm-in-soft-light.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/dane-wetton-AkSJQnem75Y-unsplash-2-Edited-scaled-e1737604836741.jpg",
+     "alt": "A guest reaching an arm forward in soft light during practice in Montenegro",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-boat-over-clear-water.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/water-Edited-e1737604744141.jpg",
+     "alt": "A small boat on the clear water beside the rocky shore of the Bay of Kotor, Montenegro",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "day": 5,
+   "label": "Day 5",
+   "title": null,
+   "bullets": [
+    "8am Coffee, tea & fruit available",
+    "8:15-9:30am Morning Practice",
+    "9:45am Breakfast",
+    "11am-5pm Excursion to Lovcen National Park; nature walk, visit a local smokehouse with lunch; ride an alpine coaster & cable car*",
+    "6-7:15pm Yoga practice",
+    "Dinner on your own"
+   ],
+   "images": [
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-alpine-coaster-track-above-the-clouds.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/Screenshot-2025-06-12-at-8.06.22%E2%80%AFp.m.png",
+     "alt": "The alpine coaster track running above the clouds in Lovcen National Park, Montenegro",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-montenegrin-flag-above-the-mountains.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/Screenshot-2025-06-12-at-8.07.52%E2%80%AFp.m.png",
+     "alt": "The Montenegrin flag flying above the mountains of Lovcen National Park",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "day": 6,
+   "label": "Day 6",
+   "title": null,
+   "bullets": [
+    "8am Coffee, tea & fruit available",
+    "8:30-10am Morning Practice",
+    "10:15am Breakfast",
+    "Free day to relax, massages, sauna/jacuzzi time; explore on your own",
+    "Lunch on your own",
+    "6-7:15pm Closing practice & circle",
+    "7:30pm Dinner together"
+   ],
+   "images": [
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-hands-resting-in-meditation.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/getty-images-puPbC2L7QI8-unsplash-scaled-e1737600973620.jpg",
+     "alt": "Hands resting open in meditation during a practice in Perast, Montenegro",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-dancer-pose-above-the-water.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/kateryna-hliznitsova-ENIwBQPmg3w-unsplash-Edited-scaled-e1737601169647.jpg",
+     "alt": "A guest in dancer pose on the rocks above the water in the Bay of Kotor, Montenegro",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "day": 7,
+   "label": "Day 7",
+   "title": null,
+   "bullets": [
+    "Breakfast available",
+    "Departures on your own",
+    "This itinerary is subject to adjustments, changes in times, locations, or activities as the retreat leaders and hosts see fit. Any change will be on par with our standards or an upgrade in services or location making for an even more amazing experience for the group and our guests. Thank you in advance for your flexibility and cooperation if any situation were to arise."
+   ],
+   "images": [
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-footprints-in-the-sand.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/IMG_9759-Edited.jpg",
+     "alt": "Footprints in the sand at the water's edge in Montenegro",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-laid-table-at-a-local-dinner.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/old-mill-lustica-dinner_orig-Edited-1-e1737599675738.jpg",
+     "alt": "A laid table at a dinner out by the water in the Bay of Kotor, Montenegro",
+     "shared": true
+    }
+   ]
+  }
+ ],
+ "itinerary_notes": [
+  "Weather dependent."
+ ],
+ "optional_excursions_schedule": [],
+ "accommodations": [
+  {
+   "name": null,
+   "label": null,
+   "text": [
+    "We’ll stay in a 16th century luxury villa, nestled in the charming UNESCO-protected village of Perast, in the heart of the Bay of Kotor. Surrounded by timeless stone architecture and breathtaking sea views, the villa offers complete privacy and the perfect setting to unwind.",
+    "Our 300 year old villa – painstakingly renovated to mirror the tradition and heritage of the area – provides unimpeded views across the glittering red rooftops of Perast and out on to the cool water of the bay. Each aspect has been meticulously integrated to ensure that it offers an unparalleled experience where guests are enveloped in opulence and comfort while feeling truly at home.",
+    "Our pool area, featuring an exquisite infinity pool, stands as the hallmark of our villa. With its breathtaking, uninterrupted views of the bay and neighboring islands, complemented by the serene presence of the monastery next door, it radiates an unparalleled energy that invites guests to immerse themselves in complete relaxation and tranquility, offering a sanctuary where the stresses of the world simply melt away.",
+    "Pamper yourself with the jacuzzi and sauna overlooking the bay in your free time."
+   ],
+   "instagram": null,
+   "gallery": [
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-stone-villa-above-the-bay.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/VILLA-EXT-1-300x200.jpg",
+     "alt": "The restored stone villa above the Bay of Kotor in Perast, Montenegro",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-terrace-with-parasol-over-the-bay.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/VILLA-VIEWS-1.jpeg",
+     "alt": "The villa terrace with parasols looking across the Bay of Kotor, Montenegro",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-suite-with-freestanding-bath.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/TUB-FIREPLACE.jpeg",
+     "alt": "A suite with a freestanding bath and exposed stone walls at the villa in Perast, Montenegro",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-suite-with-panelled-wall.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/SUITE-3-1-300x200.jpg",
+     "alt": "A suite with a dark panelled wall and a king bed at the villa in Perast, Montenegro",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-infinity-pool-and-the-bell-tower.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/pool3-300x200.jpg",
+     "alt": "The infinity pool looking toward the bell tower of Perast and the Bay of Kotor, Montenegro",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-pool-terrace-at-the-villa.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/pool4-300x200.jpg",
+     "alt": "The pool terrace and parasol at the villa in Perast, Montenegro",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-hot-tub-above-the-rooftops.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/SPA-300x136.jpg",
+     "alt": "The outdoor hot tub above the rooftops of Perast, looking out over the Bay of Kotor, Montenegro",
+     "shared": true
+    }
+   ]
+  }
+ ],
+ "rooms": [
+  {
+   "name": "Deluxe Suite",
+   "price_usd": 7295,
+   "price_label": "7,295usd Private",
+   "price_unit": "private room",
+   "description": "Deluxe Suites with 1 king bed, ensuite bathroom with shower and bathtub or with fireplace (first come, first served).",
+   "attrs": {
+    "bed": "King",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-deluxe-suite-with-king-bed.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/MB-LOTR-2.jpg",
+     "alt": "A deluxe suite with a king bed and ensuite at the villa in Perast, Montenegro",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-deluxe-suite-with-bath-and-fireplace.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/MB-LOTR.jpeg",
+     "alt": "A deluxe suite with a freestanding bath beside the fireplace at the villa in Perast, Montenegro",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "name": "Deluxe Suite — shared bed",
+   "price_usd": 5995,
+   "price_label": "5,995usd per person Shared Bed",
+   "price_unit": "per person",
+   "description": "Deluxe Suite shared-bed rate. You must provide your own bedmate; it is not possible to separate the king beds.",
+   "attrs": {
+    "bed": "King",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-deluxe-suite-with-king-bed.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/MB-LOTR-2.jpg",
+     "alt": "A deluxe suite with a king bed and ensuite at the villa in Perast, Montenegro",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-deluxe-suite-with-bath-and-fireplace.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/MB-LOTR.jpeg",
+     "alt": "A deluxe suite with a freestanding bath beside the fireplace at the villa in Perast, Montenegro",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "name": "Superior Room",
+   "price_usd": 6795,
+   "price_label": "6,795usd Private",
+   "price_unit": "private room",
+   "description": "Private room with 1 king bed, ensuite bathroom with shower or tub (first come, first served).",
+   "attrs": {
+    "bed": "King",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-superior-room-with-stone-walls.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/MB-SUP-2.jpeg",
+     "alt": "A superior room with stone walls and a window over the bay at the villa in Perast, Montenegro",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-superior-room-with-twin-beds.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/MB-SUP-1.jpg",
+     "alt": "A superior room made up with twin beds at the villa in Perast, Montenegro",
+     "shared": true
+    }
+   ]
+  },
+  {
+   "name": "Superior Room — shared bed",
+   "price_usd": 5725,
+   "price_label": "5,725usd per person Shared Bed",
+   "price_unit": "per person",
+   "description": "Superior Room shared-bed rate. You must provide your own bedmate; it is not possible to separate the king beds.",
+   "attrs": {
+    "bed": "King",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-superior-room-with-stone-walls.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/MB-SUP-2.jpeg",
+     "alt": "A superior room with stone walls and a window over the bay at the villa in Perast, Montenegro",
+     "shared": true
+    },
+    {
+     "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-superior-room-with-twin-beds.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/MB-SUP-1.jpg",
+     "alt": "A superior room made up with twin beds at the villa in Perast, Montenegro",
+     "shared": true
+    }
+   ]
+  }
+ ],
+ "pricing_notes": [
+  "You must provide your own bedmate. It is not possible to separate the king beds.",
+  "Please note that 4 suites have bathtubs or a jacuzzi in the room. We will allocate rooms on a first come, first served basis.",
+  "Once our main villa is full we will spill over into a nearby hotel. Please inquire for availability when you are ready to reserve.",
+  "4 suites have bathtubs or a jacuzzi in the room; rooms are allocated first come, first served. Once the main villa is full the group spills over into a nearby hotel."
+ ],
+ "extras": [],
+ "travel_tips": [
+  {
+   "heading": "Getting to Perast",
+   "items": [
+    "Perast is a picturesque village in the Bay of Kotor, easily accessible from several airports in the region. Here are your options:",
+    "Tivat Airport (TIV): The closest airport, just 20 minutes from Perast. From Tivat, you can take a taxi or pre-arranged transfer for a quick and scenic drive.",
+    "Podgorica Airport (TGD): Montenegro’s capital airport, about 1.5 hours from Perast. Taxis or private transfers are available, or you can rent a car to enjoy the drive through Montenegro’s beautiful landscapes.",
+    "Dubrovnik Airport (DBV) in Croatia: Approximately 1.5–2 hours away. Crossing the border into Montenegro is straightforward but can take extra time during peak travel seasons. Arrange a transfer or rent a car for this option."
+   ]
+  },
+  {
+   "heading": "Currency in Montenegro",
+   "items": [
+    "The currency used in Montenegro is the Euro (EUR). Credit cards are widely accepted in most places, but it’s a good idea to carry some cash for small shops, cafes, or transportation in smaller towns like Perast."
+   ]
+  },
+  {
+   "heading": "What to Bring for a Retreat in May",
+   "items": [
+    "May in Montenegro offers pleasant spring weather with mild temperatures. Here’s what to pack:",
+    "Comfortable clothing for yoga and wellness sessions (breathable and stretchable fabrics).",
+    "Layers: A light jacket, sweater, or scarf for cooler mornings and evenings.",
+    "Casual attire for exploring Perast and nearby attractions.",
+    "Hiking shoes or sturdy sneakers for trails and viewpoints.",
+    "Swimwear for kayaking, stand-up paddleboarding, or boat trips.",
+    "Sun protection: Sunscreen, sunglasses, and a wide-brimmed hat.",
+    "A reusable water bottle to stay hydrated.",
+    "Daypack or backpack for excursions and hikes.",
+    "Travel adapters (if needed) for European-style outlets (Type C or F)."
+   ]
+  },
+  {
+   "heading": "Pro Tip",
+   "items": [
+    "If flying into Dubrovnik or Podgorica, check visa requirements for crossing borders. It’s always a good idea to pre-arrange transfers for seamless travel to Perast, especially if you’re arriving late or with heavy luggage. If you would like help with airport transfers please let us know and we will try to pair travelers arriving at similar times together."
+   ]
+  }
+ ],
+ "gallery_title": null,
+ "gallery_intro": null,
+ "gallery": [
+  {
+   "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-paddleboarding-toward-the-island.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/IMG_7747-2-e1750098947827.jpeg",
+   "alt": "Guests paddleboarding toward the island church in the Bay of Kotor, Montenegro",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-guests-on-the-boat-tour.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/4ea2e283-a51f-4b4f-9c32-12c8204a291d.jpeg",
+   "alt": "Guests sitting under the canopy on the private boat tour of the Bay of Kotor, Montenegro",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-pool-above-the-rooftops-of-perast.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/15577e24-2f05-4641-bd36-7fa765ad7de2.jpeg",
+   "alt": "The villa pool above the terracotta rooftops of Perast, Montenegro",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-the-group-on-the-boat-at-sunset.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/IMG_7713-2.jpeg",
+   "alt": "The retreat group together on the boat at sunset in the Bay of Kotor, Montenegro",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-inside-the-sea-cave.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/IMG_7773.jpeg",
+   "alt": "Looking into the vaulted mouth of a sea cave from the boat in the Bay of Kotor, Montenegro",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-swimming-in-the-blue-cave.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/IMG_7822.jpeg",
+   "alt": "Guests swimming in the bright blue water of the cave in the Bay of Kotor, Montenegro",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-guests-on-the-waterfront-promenade.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/IMG_7733.jpeg",
+   "alt": "Guests on the stone waterfront promenade at Perast, the island church behind, Montenegro",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-villa-pool-seen-from-above.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/IMG_7907.jpeg",
+   "alt": "The villa pool terrace seen from above, the Bay of Kotor beyond, in Perast, Montenegro",
+   "shared": true,
+   "ratio": null
+  },
+  {
+   "file": "retreats/_shared/montenegro/img/yoga-retreat-montenegro-wood-fired-hot-tub-at-dusk.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2025/01/IMG_7925-2.jpeg",
+   "alt": "Guests in the wood-fired hot tub at dusk above the rooftops of Perast, Montenegro",
+   "shared": true,
+   "ratio": null
+  }
+ ],
+ "faqs": [
+  {
+   "question": "Do you accept bitcoin?",
+   "answer": [
+    "In addition to credit card payments we also accept wire transfers, Zelle and Bitcoin. Please inquire for more details."
+   ]
+  },
+  {
+   "question": "What is the cancellation policy?",
+   "answer": [
+    "All payments are 100% non refundable and non-transferable. We recommend that you buy trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you."
+   ]
+  },
+  {
+   "question": "What happens if my travel plans change?",
+   "answer": [
+    "There are no refunds as per our cancellation policies. We highly recommend that all of our guests secure a quality travel insurance that will cover them for any event which may cause a change of travel plans, including personal health issues or personal situations in general which may affect travel plans."
+   ]
+  },
+  {
+   "question": "Are flight delays or cancellations covered?",
+   "answer": [
+    "Not by us: transportation delays, cancellations or changes due to strikes, labor disputes, or lockouts from airlines, boats, ferries or any type of transportation are among the events we recommend covering with travel insurance."
+   ]
+  },
+  {
+   "question": "Where can I find the full terms & conditions?",
+   "answer": [
+    "The full terms and conditions are published at https://yogaadventuresworldwide.com/termsandconditions/ . By submitting payments toward your retreat you accept them."
+   ]
+  }
+ ],
+ "booking": {
+  "deposit_usd": 1000,
+  "deposit_label": "$1,000 USD per person",
+  "deposit_instructions": "Deposits of $1,000usd are due to secure your space in the retreat. Please check availability with us for accommodations before making your deposit.",
+  "balance_due_days": 90,
+  "balance_note": "The balance of your retreat (minus your $1,000usd initial deposit) is due 90 days prior to arrival. All details with instructions for settling up will be emailed to you three months prior to the retreat.",
+  "payment_methods": [
+   "Credit card",
+   "Wire transfer",
+   "Zelle",
+   "Bitcoin"
+  ],
+  "roommate_note": "Roommates should book together. If you would like to share a room and do not have a roommate we will provide one for you if possible. In the case that there is no one to share a room we ask that you take a private room instead.",
+  "cancellation_policy": [
+   "All payments are 100% non refundable and non-transferable. We recommend that you buy trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you."
+  ],
+  "booking_url": "https://yogaadventuresworldwide.com/retreat/yoga-retreat-montenegro/#reserve",
+  "contact_url": "https://yogaadventuresworldwide.com/contact-about-yoga-retreats/"
+ },
+ "testimonials": null,
+ "carbon_offset": null,
+ "source_url": "https://yogaadventuresworldwide.com/retreat/yoga-retreat-montenegro/",
+ "source_post_slug": "yoga-retreat-montenegro",
+ "source_categories": [
+  "yoga"
+ ],
+ "source_is_shared": true,
+ "seo_title": "Montenegro Yoga Retreat · May 2027",
+ "seo_description": "6-night yoga retreat in Bay of Kotor, Montenegro. May 22 - 28, 2027, with Melanie Cordover.",
+ "_notes": {
+  "about_body": " Location-level copy: shared by all 2 dates on yoga-retreat-montenegro.",
+  "intro": "Location-level copy from the top of yoga-retreat-montenegro, shared by all its dates.",
+  "includes": "Location-level list from yoga-retreat-montenegro, shared by all its dates.",
+  "itinerary": "Location-level itinerary from yoga-retreat-montenegro, shared by all its dates.",
+  "accommodations": "The old site describes the property but never names it, so `name` is null.",
+  "travel_tips": "Location-level content from yoga-retreat-montenegro, shared by all its dates.",
+  "gallery": "Location-level gallery from yoga-retreat-montenegro, shared by all its dates.",
+  "faqs": "The source page has no FAQs block. These five answers are quoted from the site-wide Policies text inside the retreat page's Reserve section, matched to the five questions the template ships. They are not retreat-specific.",
+  "tier": "Not deducible: the old site's retreat_categories are topical (yoga, art-creative, yoga-food-and-wine, family-retreats) and only signature-retreats maps to a collection. Left null rather than guessed.",
+  "hero_image": "Location-level hero from yoga-retreat-montenegro, shared by all its dates.",
+  "highlights": "The old site has no highlights block; nothing was invented to fill it.",
+  "testimonials": "The source page has an empty \"Praise\" carousel — the markup is there, the quotes are not. Left null; the template ships placeholder quotes.",
+  "carbon_offset": "No carbon-offset copy anywhere on the old site. The template's text is new site-wide copy.",
+  "seo_title": "DRAFT. Written only from this retreat's real destination, month and year.",
+  "seo_description": "DRAFT. Written only from real data: nights, location, published date range, teacher, status.",
+  "status": "From /all-upcoming-dates/ on 2026-11-12 — flag read \"1 SPACE LEFT!\"."
+ },
+ "_missing": [
+  "about_title",
+  "accommodations[].name",
+  "carbon_offset",
+  "extras",
+  "gallery_intro",
+  "gallery_title",
+  "highlights",
+  "includes_footnote",
+  "not_included_footnote",
+  "optional_excursions_schedule",
+  "subtitle",
+  "teachers[Melanie Cordover].instagram",
+  "teachers[Melanie Cordover].role",
+  "testimonials",
+  "tier",
+  "tier_label",
+  "tier_source"
+ ]
+}

@@ -1,0 +1,758 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "YAWW Retreat",
+  "description": "One concrete retreat = destination + dates + teacher(s). Derived from retreatpage-elcuyo.html: every variable piece of that template has a field here. Source: the old WordPress site (yogaadventuresworldwide.com), where retreats are grouped per location, so several retreats share one source page. Fields with no value in the old site are null, never invented. Image objects are { file, original_url, alt }: `file` is a path relative to the repo root.",
+  "version": "1.0.0",
+  "generated": "2026-11-12",
+  "type": "object",
+  "x-field-notes": {
+    "slug": "destino-mes-año, lowercase, hyphens (el-cuyo-dec-2026). Teacher surname appended when two retreats of the same destination share a month.",
+    "_notes": "Per-field provenance and caveats. Key = field name (dot notation for nested), value = note. Used above all to flag data that comes from the shared LOCATION page rather than from the individual retreat.",
+    "_missing": "Flat list of schema fields that had no source data and were left null."
+  },
+  "required": [
+    "slug",
+    "title",
+    "destination",
+    "country",
+    "date_start",
+    "date_end",
+    "status",
+    "source_url"
+  ],
+  "properties": {
+    "slug": {
+      "type": "string",
+      "description": "URL slug of the new page. Format destino-mes-año; teacher surname appended on collision."
+    },
+    "title": {
+      "type": "string",
+      "description": "Retreat name as shown in the hero h1 (.retreat-hero__title)."
+    },
+    "subtitle": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Secondary line under the title on the old site, if any."
+    },
+    "destination": {
+      "type": "string",
+      "description": "Place name used in slugs, image names and alts (El Cuyo, Santorini, Oaxaca)."
+    },
+    "location_label": {
+      "type": "string",
+      "description": "Hero location line, '<place>, <country>' (.retreat-hero__location)."
+    },
+    "country": {
+      "type": "string",
+      "description": "Country in English."
+    },
+    "region": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Sub-region / second place when the retreat moves (e.g. 'Buenos Aires & Patagonia')."
+    },
+    "tier": {
+      "enum": [
+        "deep",
+        "signature",
+        null
+      ],
+      "description": "Collection the retreat belongs to. 'signature' = Signature Collection, 'deep' = Deep Dives. null when the old site gives no basis to decide."
+    },
+    "tier_label": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Human label for the hero badge (.retreat-hero__badge): 'Signature Collection' | 'Deep Dives' | null."
+    },
+    "tier_source": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "How tier was derived, e.g. 'retreat_categories-signature-retreats on the source page'."
+    },
+    "status": {
+      "enum": [
+        "open",
+        "sold_out",
+        "few_spaces",
+        "waitlist"
+      ],
+      "description": "Booking state as published on /all-upcoming-dates/. 'few_spaces' when the site shows an N-spaces-left flag."
+    },
+    "status_label": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Verbatim flag from the old site ('sold out', '2 SPACES LEFT!', 'New Retreat')."
+    },
+    "urgency": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "Feeds the template's URGENCY var, which draws the hero meta flag.",
+      "properties": {
+        "type": {
+          "enum": [
+            "soldout",
+            "scarce",
+            "new"
+          ]
+        },
+        "label": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Text drawn in the flag; ignored when type is 'soldout'."
+        }
+      }
+    },
+    "date_start": {
+      "type": "string",
+      "description": "ISO 8601 date, first day of the retreat."
+    },
+    "date_end": {
+      "type": "string",
+      "description": "ISO 8601 date, last day (departure day) of the retreat."
+    },
+    "dates_label": {
+      "type": "string",
+      "description": "Human date range exactly as published (.retreat-hero__meta)."
+    },
+    "season": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Season grouping used on /all-upcoming-dates/, e.g. 'Winter, 2026 / 2027'."
+    },
+    "nights": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Nights of accommodation. Only set when the old site states it (usually in the Includes list)."
+    },
+    "days": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Calendar days inclusive, derived from date_start/date_end."
+    },
+    "teachers": {
+      "type": "array",
+      "description": "Teacher(s) leading this specific edition. Empty when the old site says 'a fabulous YAWW instructor' (unassigned).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string",
+            "description": "kebab-case name, for a shared teacher post type."
+          },
+          "role": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Role line from /team/ (e.g. 'Retreat Leader')."
+          },
+          "bio": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "description": "Bio paragraphs. From /team/ or the retreat page; null when neither has one."
+          },
+          "photo": {
+            "$ref": "#/definitions/image"
+          },
+          "instagram": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "URL the bio/photo came from."
+          }
+        },
+        "required": [
+          "name",
+          "slug"
+        ]
+      }
+    },
+    "teacher_unassigned": {
+      "type": "boolean",
+      "description": "true when the old site advertises the date 'with a fabulous YAWW instructor' instead of a named teacher."
+    },
+    "hero_image": {
+      "$ref": "#/definitions/image"
+    },
+    "intro": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Short teaser paragraph from the top of the location page, above the dates."
+    },
+    "about_title": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Heading of the About block (.retreat-about__title); template default 'About this retreat'."
+    },
+    "about_body": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "About paragraphs (.retreat-about__body p)."
+    },
+    "highlights": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Short bullet highlights. The old site has no dedicated highlights block; populated only where one genuinely exists."
+    },
+    "includes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "'What Includes' list items."
+    },
+    "includes_footnote": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "not_included": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "'What's Not Included' list items."
+    },
+    "not_included_footnote": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "itinerary": {
+      "type": "array",
+      "description": "Day-by-day timeline (.retreat-itinerary__list li).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "day": {
+            "type": "integer"
+          },
+          "label": {
+            "type": "string",
+            "description": "Rail label, e.g. 'Day 1'."
+          },
+          "title": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Day title where the old site gives one."
+          },
+          "bullets": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/image"
+            },
+            "description": "Per-day slider photos. Empty where the old site has none."
+          }
+        },
+        "required": [
+          "day",
+          "label",
+          "bullets"
+        ]
+      }
+    },
+    "itinerary_notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Footnotes under the itinerary (subject-to-change clauses, excursion minimums)."
+    },
+    "optional_excursions_schedule": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Timed optional-excursion lines the old site lists after the itinerary."
+    },
+    "accommodations": {
+      "type": "array",
+      "description": "One entry per hotel/house (template HOTELS).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Property name. null when the old site describes the venue but never names it."
+          },
+          "text": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Descriptive paragraphs."
+          },
+          "instagram": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "gallery": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/image"
+            }
+          },
+          "label": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Heading the old site gives this leg of the stay, e.g. '3 nights in Lisbon'. Used as the tab label when `name` is null."
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "description": "One entry per hotel/house (template HOTELS), in the order the retreat visits them."
+      }
+    },
+    "rooms": {
+      "type": "array",
+      "description": "Price per room type (template TIERS). Prices are per person in USD unless price_unit says otherwise.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "price_usd": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "price_label": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Verbatim price string from the old site, e.g. '$2,295usd per person'."
+          },
+          "price_unit": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "'per person' | 'private room' | etc."
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "attrs": {
+            "type": "object",
+            "properties": {
+              "bed": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "bath": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "view": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          },
+          "hotel": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Which accommodation this room is in."
+          },
+          "gallery": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/image"
+            }
+          }
+        },
+        "required": [
+          "name"
+        ]
+      }
+    },
+    "pricing_notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Notes under the price table (roommate pairing, excursion minimums)."
+    },
+    "extras": {
+      "type": "array",
+      "description": "Optional add-ons (template EXTRAS).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "desc": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "price_usd": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "price_label": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "unit": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "'per person' | 'each'."
+          },
+          "gallery": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/image"
+            }
+          }
+        },
+        "required": [
+          "name"
+        ]
+      }
+    },
+    "travel_tips": {
+      "type": "array",
+      "description": "Grouped travel tips (.tips__group). The old site writes prose; it is split into headed groups where the prose supports it, otherwise a single group.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "heading": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "gallery_title": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Heading of the gallery strip (.gallery__title); template default \"Where you'll be\"."
+    },
+    "gallery_intro": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Paragraph under the gallery heading."
+    },
+    "gallery": {
+      "type": "array",
+      "description": "Gallery strip photos in source order.",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/definitions/image"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "ratio": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Crop the slide is composed at, e.g. '28/17'. null = let the template decide."
+              }
+            }
+          }
+        ]
+      }
+    },
+    "faqs": {
+      "type": "array",
+      "description": "Additional-info accordion. Answers come from the retreat page's own Policies block or from the shared /faqs/ page (flagged in _notes).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string"
+          },
+          "answer": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "question",
+          "answer"
+        ]
+      }
+    },
+    "booking": {
+      "type": "object",
+      "description": "Everything the 'How to book' rail and the booking bar need.",
+      "properties": {
+        "deposit_usd": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "deposit_label": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "deposit_instructions": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "How the deposit is paid (Zelle address, QR, etc.) as published."
+        },
+        "balance_due_days": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "Days before arrival the balance falls due."
+        },
+        "balance_note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "payment_methods": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "roommate_note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cancellation_policy": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "booking_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Where 'Book now' pointed on the old site."
+        },
+        "contact_url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "testimonials": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "description": "Guest quotes. null when the old site publishes none for this retreat (the template ships placeholders).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "quote": {
+            "type": "string"
+          },
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "detail": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "photo": {
+            "$ref": "#/definitions/image"
+          }
+        }
+      }
+    },
+    "carbon_offset": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "Carbon-offset block. null when the old site has no per-retreat copy (the template text is site-wide boilerplate)."
+    },
+    "source_url": {
+      "type": "string",
+      "description": "Old-site URL this retreat was extracted from."
+    },
+    "source_post_slug": {
+      "type": "string",
+      "description": "Slug of the old-site retreat (location) post."
+    },
+    "source_categories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "retreat_categories terms on the source post."
+    },
+    "source_is_shared": {
+      "type": "boolean",
+      "description": "true when the source page covers several dates, so most content is location-level rather than retreat-level."
+    },
+    "seo_title": {
+      "type": "string",
+      "description": "<=60 chars. DRAFT, written from real retreat data only."
+    },
+    "seo_description": {
+      "type": "string",
+      "description": "<=155 chars. DRAFT, written from real retreat data only."
+    },
+    "_notes": {
+      "type": "object",
+      "description": "Field -> provenance/caveat note. See x-field-notes."
+    },
+    "_missing": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Schema fields with no source data."
+    }
+  },
+  "definitions": {
+    "image": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "file": {
+          "type": "string",
+          "description": "Repo-relative path of the downloaded file. SEO naming: yoga-retreat-<destino>-<pais>-<que-se-ve>.jpg, or yoga-teacher-<nombre-apellido>.jpg."
+        },
+        "original_url": {
+          "type": "string",
+          "description": "Absolute URL the file was downloaded from (max resolution available)."
+        },
+        "alt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "English sentence describing what is visible, naming the destination where it reads naturally."
+        },
+        "shared": {
+          "type": "boolean",
+          "description": "true when the file lives in retreats/_shared/<location>/img/ because several retreats use it."
+        }
+      },
+      "required": [
+        "file",
+        "original_url"
+      ]
+    }
+  }
+}
