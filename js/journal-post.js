@@ -56,19 +56,22 @@
            '</div>';
   }
 
-  /* A text block is one run of copy. Its inner arrays are paragraphs
-     and the strings inside them are lines separated by <br>, which is
-     how the source writes them — rendering each line as its own <p>
-     opened a 32px gap where the original has a plain line break. */
+  /* Every line gets its own <p>, spaced by CSS — deliberately NOT the
+     source's markup, which runs whole sections as a single <p> with
+     <br> between lines. Those breaks carry no spacing, so the copy
+     renders as one unbroken slab. The author wrote them as paragraphs;
+     WordPress is what flattened them, and setting them as paragraphs
+     is what long-form copy wants. The data keeps the source's grouping
+     either way, so this stays a presentation decision. */
   function bodyHTML(post) {
     return post.blocks.map(function (b) {
       if (b.type === "img") {
         return '<figure class="post__figure">' + img(b.src, b.src2x, "") + '</figure>';
       }
+      var lines = [];
+      b.paras.forEach(function (p) { lines = lines.concat(p); });
       return '<div class="post__text">' +
-        b.paras.map(function (lines) {
-          return '<p>' + lines.map(esc).join("<br>") + '</p>';
-        }).join("") +
+        lines.map(function (line) { return '<p>' + esc(line) + '</p>'; }).join("") +
       '</div>';
     }).join("");
   }

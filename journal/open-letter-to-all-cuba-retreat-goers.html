@@ -875,6 +875,10 @@ main { padding-top: 0; }
 .post__body > * { width: 65%; margin: 0; }
 .post__text { padding: 0 120px; }
 .post__body p {
+  /* 24px between paragraphs against a 28px line: 52px baseline to
+     baseline across a break versus 28px within one, which reads as a
+     paragraph without detaching it from the block. 1.5x the type size
+     is the usual range for body copy at this measure. */
   margin: 0 0 24px;
   font-family: var(--font-body);
   font-size: 16px;
@@ -1024,9 +1028,9 @@ main { padding-top: 0; }
      pages live in /journal/, which is the permalink WordPress will
      serve. Classic scripts so the prototype still works over file://. -->
 <script src="../data/locations.js?v=202611161843"></script>
-<script src="../data/journal.js?v=202611161843"></script>
+<script src="../data/journal.js?v=202611161852"></script>
 <script src="../js/retreat-cards.js?v=202611161843"></script>
-<script src="../js/journal-post.js?v=202611161843"></script>
+<script src="../js/journal-post.js?v=202611161852"></script>
 
 </head>
 
