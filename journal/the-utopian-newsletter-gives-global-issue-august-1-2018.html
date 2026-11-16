@@ -844,14 +844,22 @@ main { padding-top: 0; }
   .post__cats span { font-size: 12px; line-height: 16px; }
 }
 .post__hero {
+  /* The source wraps the hero in .container--full: max-width 100%, so
+     it spans the viewport minus the 24px gutters instead of stopping
+     at the 1440 container the rest of the article sits in. At a 1440
+     window the two are identical, which is why this went unnoticed —
+     it only shows on a wider screen. */
   width: 100%;
-  max-width: var(--container-max);
   margin: 0 auto 56px;
   padding: 0 var(--container-pad);
 }
 .post__hero img { display: block; width: 100%; height: auto; }
 
-/* The asymmetric body column. */
+/* The asymmetric body column: a flex column pinned to the right edge
+   of the 1440 container, each block at 65% of it (= 905px). Copy
+   carries 120px of inner padding and photographs do not, so the
+   reading measure is 665px while an image runs the full 905px. All
+   four numbers are the source's own. */
 .post__body,
 .post-author,
 .post-retreat {
@@ -864,15 +872,23 @@ main { padding-top: 0; }
   align-items: flex-end;
   gap: 32px;
 }
-.post__body > * { width: 100%; max-width: 905px; margin: 0; }
+.post__body > * { width: 65%; margin: 0; }
+.post__text { padding: 0 120px; }
 .post__body p {
+  margin: 0 0 24px;
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 28px;
   letter-spacing: 0.32px;
   color: var(--sea-blue);
 }
+.post__body p:last-child { margin-bottom: 0; }
 .post__figure img { display: block; width: 100%; height: auto; }
+
+/* Both drop to the full column here, and the copy loses its inset on
+   phones — again matching the source's own breakpoints. */
+@media (max-width: 1024px) { .post__body > * { width: 100%; } }
+@media (max-width: 767px)  { .post__text { padding: 0; } }
 
 /* --- about the author ------------------------------------------------- */
 .post-author { margin-top: 80px; }
@@ -1007,10 +1023,10 @@ main { padding-top: 0; }
 <!-- Journal data + the article renderer. Paths are ../ because these
      pages live in /journal/, which is the permalink WordPress will
      serve. Classic scripts so the prototype still works over file://. -->
-<script src="../data/locations.js?v=202611161807"></script>
-<script src="../data/journal.js?v=202611161807"></script>
-<script src="../js/retreat-cards.js?v=202611161807"></script>
-<script src="../js/journal-post.js?v=202611161807"></script>
+<script src="../data/locations.js?v=202611161843"></script>
+<script src="../data/journal.js?v=202611161843"></script>
+<script src="../js/retreat-cards.js?v=202611161843"></script>
+<script src="../js/journal-post.js?v=202611161843"></script>
 
 </head>
 

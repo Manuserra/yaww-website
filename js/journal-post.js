@@ -56,12 +56,20 @@
            '</div>';
   }
 
+  /* A text block is one run of copy. Its inner arrays are paragraphs
+     and the strings inside them are lines separated by <br>, which is
+     how the source writes them — rendering each line as its own <p>
+     opened a 32px gap where the original has a plain line break. */
   function bodyHTML(post) {
     return post.blocks.map(function (b) {
       if (b.type === "img") {
         return '<figure class="post__figure">' + img(b.src, b.src2x, "") + '</figure>';
       }
-      return '<p>' + esc(b.text) + '</p>';
+      return '<div class="post__text">' +
+        b.paras.map(function (lines) {
+          return '<p>' + lines.map(esc).join("<br>") + '</p>';
+        }).join("") +
+      '</div>';
     }).join("");
   }
 
