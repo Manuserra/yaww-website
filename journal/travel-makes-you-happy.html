@@ -787,7 +787,10 @@ main { padding-top: 0; }
    asymmetric editorial column rather than an accident, and it is
    reproduced here.
    ============================================================ */
-.post { padding: 56px 0 96px; }
+/* No bottom padding: .post-related is the last block and carries its
+   own 120px on a stone-300 full bleed. 96px here sat underneath it and
+   showed the page ground as a band between that block and the footer. */
+.post { padding: 56px 0 0; }
 .post__head {
   /* The source sets this to 45% of the 1392 container = 626px, with no
      padding eating into it. Ours had the container padding inside the
@@ -1105,7 +1108,7 @@ main { padding-top: 0; }
   .post-retreat__text { width: 100%; }
 }
 @media (max-width: 767px) {
-  .post { padding: 32px 0 56px; }
+  .post { padding: 32px 0 0; }
   .post__title { font-size: 26px; line-height: 36px; }
   .post__hero { margin-bottom: 32px; }
   .post__body, .post-author, .post-retreat { align-items: stretch; gap: 24px; }
