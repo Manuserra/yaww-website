@@ -441,8 +441,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   aspect-ratio: 492 / 532;         /* v2: near-square crop */
   overflow: hidden;
   border-radius: 0;
-  /* placeholder gradient set inline per-card; real photos slot in later */
+  /* A location photo when the catalog has one for that destination,
+     otherwise the placeholder gradient, set inline per-card. */
 }
+.card__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .card__badge {
   position: absolute;
   top: 16px; left: 16px;
@@ -972,6 +974,15 @@ main { padding-top: 0; }
   .footer-copy { padding: 24px 0; }
 }
 </style>
+<!-- Retreat data + the one card component every retreat card is rendered
+     by. Classic scripts so the prototype still works over file://.
+     Order matters: the catalogs load before the data, the data before
+     the component. -->
+<script src="data/locations.js"></script>
+<script src="data/teachers.js"></script>
+<script src="data/retreats.js"></script>
+<script src="js/retreat-cards.js"></script>
+
 </head>
 <body>
 
@@ -1079,9 +1090,9 @@ main { padding-top: 0; }
 
     <div class="controls">
       <div class="chips" role="group" aria-label="Filter by collection">
-        <button class="chip is-active" data-tier="all"       aria-pressed="true">All Retreats</button>
-        <button class="chip"           data-tier="deep"      aria-pressed="false">Deep Dives</button>
-        <button class="chip"           data-tier="signature" aria-pressed="false">Signature Collection</button>
+        <button class="chip is-active" data-tier="all"                  aria-pressed="true">All Retreats</button>
+        <button class="chip"           data-tier="deep-dives"           aria-pressed="false">Deep Dives</button>
+        <button class="chip"           data-tier="signature-collection" aria-pressed="false">Signature Collection</button>
       </div>
     </div>
 
@@ -1276,59 +1287,26 @@ main { padding-top: 0; }
 
 <script>
 /* ============================================================
-   Retreats data + interactive render
+   Retreats listing — organize + filter + grid/list
+
+   The data is data/retreats.js and the cards are built by
+   js/retreat-cards.js: nothing retreat-shaped is written out here, so
+   changing a retreat in one place changes it on every page.
    (tabs = organize · chips = filter · toggle = grid/list)
    ============================================================ */
-const RETREATS = [
-  // Summer 2026
-  {name:"The Paris-Champagne Experience", loc:"Paris & Champagne, France", country:"France", date:"August 30 – September 5, 2026", season:"Summer, 2026", teacher:"Amy Appel", tier:"signature", hue:30, urgency:{type:"soldout"}},
-  {name:"Beach Escape Retreat", loc:"El Cuyo, Mexico", country:"Mexico", date:"September 4 – 8, 2026", season:"Summer, 2026", teacher:"Renata Centi", tier:"deep", hue:182, urgency:{type:"scarce", label:"Filling fast"}},
-  {name:"A French Journey · A Yoga & Embodiment Retreat", loc:"Paris & Champagne, France", country:"France", date:"September 6 – 12, 2026", season:"Summer, 2026", teacher:"Dawn Thie", tier:"deep", hue:96, urgency:{type:"scarce", label:"Filling fast"}},
-  {name:"Sea, Sun & Slow Living Retreat", loc:"Santorini, Greece", country:"Greece", date:"September 13 – 19, 2026", season:"Summer, 2026", teacher:"Genevieve Morin", tier:"signature", hue:205, urgency:{type:"scarce", label:"2 spaces left"}},
-  {name:"Sea, Sun & Slow Living Retreat", loc:"Santorini, Greece", country:"Greece", date:"September 20 – 26, 2026", season:"Summer, 2026", teacher:"Genevieve Morin", tier:"deep", hue:212, urgency:{type:"soldout"}},
-  {name:"Majestic Sardinia", loc:"Sardinia, Italy", country:"Italy", date:"September 4 – 8, 2026", season:"Summer, 2026", teacher:"Renata Centi", tier:"signature", hue:194, urgency:{type:"scarce", label:"Filling fast"}},
+const Y = window.YAWW;
 
-  // Fall 2026
-  {name:"Majestic Sardinia", loc:"Sardinia, Italy", country:"Italy", date:"September 27 – October 3, 2026", season:"Fall, 2026", teacher:"Melanie Cordover", tier:"deep", hue:150, urgency:{type:"soldout"}},
-  {name:"Majestic Sardinia", loc:"Sardinia, Italy", country:"Italy", date:"September 27 – October 3, 2026", season:"Fall, 2026", teacher:"Sue Berger", tier:"signature", hue:158, urgency:{type:"scarce", label:"2 spaces left"}},
-  {name:"Between Fire & Ice", loc:"Reykjavík & Vik, Iceland", country:"Iceland", date:"September 6 – 12, 2026", season:"Fall, 2026", teacher:"Dawn Thie", tier:"signature", hue:200, urgency:{type:"scarce", label:"Filling fast"}},
-  {name:"Beach Escape Retreat", loc:"El Cuyo, Mexico", country:"Mexico", date:"October 21 – 25, 2026", season:"Fall, 2026", teacher:"Renata Centi", tier:"deep", hue:186},
-  {name:"Day of the Dead", loc:"Oaxaca, Mexico", country:"Mexico", date:"October 28 – November 24, 2026", season:"Fall, 2026", teacher:"Alicia Delaney", tier:"deep", hue:36},
-  {name:"Mesmerized in Morocco", loc:"Marrakesh & Essaouira, Morocco", country:"Morocco", date:"September 4 – 8, 2026", season:"Fall, 2026", teacher:"Renata Centi", tier:"signature", hue:24},
-
-  // Winter 2026 / 2027
-  {name:"Treasures of Thailand", loc:"Chiang Mai & Koh Yao Noi, Thailand", country:"Thailand", date:"December 1 – 10, 2026", season:"Winter, 2026 / 2027", teacher:"Amy Sennett-Starner", tier:"deep", hue:162},
-  {name:"Inner Glow Retreat", loc:"El Cuyo, Mexico", country:"Mexico", date:"December 1 – 6, 2026", season:"Winter, 2026 / 2027", teacher:"Alicia Delaney", tier:"deep", hue:20},
-  {name:"An Embodied Pause", loc:"El Cuyo, Mexico", country:"Mexico", date:"December 6 – 11, 2026", season:"Winter, 2026 / 2027", teacher:"Carie Cook", tier:"deep", hue:210},
-  {name:"Breath Body Soul Retreat", loc:"El Cuyo, Mexico", country:"Mexico", date:"January 24 – 29, 2027", season:"Winter, 2026 / 2027", teacher:"Sue Berger", tier:"deep", hue:190},
-  {name:"Radiance Retreat", loc:"El Cuyo, Mexico", country:"Mexico", date:"February 2 – 7, 2027", season:"Winter, 2026 / 2027", teacher:"Alicia Delaney", tier:"deep", hue:45},
-
-  // Spring 2027
-  {name:"Somatic Yoga & Hiking Retreat", loc:"Lisboa & Costa Vicentina, Portugal", country:"Portugal", date:"May 9 – 16, 2027", season:"Spring, 2027", teacher:"Karah Charette", tier:"signature", hue:120},
-  {name:"Inner Landscape Retreat", loc:"Lisboa & Costa Vicentina, Portugal", country:"Portugal", date:"May 16 – 23, 2027", season:"Spring, 2027", teacher:"Dawn Thie", tier:"deep", hue:40},
-  {name:"Balkan Beauty Yoga Retreat", loc:"Bay of Kotor, Montenegro", country:"Montenegro", date:"May 15 – 21, 2027", season:"Spring, 2027", teacher:"Sherry Sidoti", tier:"signature", hue:150},
-  {name:"Yoga and Reflections Retreat", loc:"Camino de Santiago, Spain", country:"Spain", date:"April 18 – 27, 2027", season:"Spring, 2027", teacher:"Jenniferlyn Chiemingo", tier:"deep", hue:35},
-
-  // Fall 2027
-  {name:"Yoga Retreat Name", loc:"Santorini, Greece", country:"Greece", date:"September 19 – 25, 2027", season:"Fall, 2027", teacher:"Sue Berger", tier:"deep", hue:200},
-  {name:"Yoga Retreat Name", loc:"Santorini, Greece", country:"Greece", date:"September 25 – October 2, 2027", season:"Fall, 2027", teacher:"a fabulous YAWW instructor", tier:"signature", hue:220},
-  {name:"Yoga and Reflections Retreat", loc:"Camino de Santiago, Spain", country:"Spain", date:"September 19 – 28, 2027", season:"Fall, 2027", teacher:"Genevieve Morin", tier:"signature", hue:38}
-];
-
-const SEASON_ORDER = ["Summer, 2026", "Fall, 2026", "Winter, 2026 / 2027", "Spring, 2027", "Fall, 2027"];
-
-function regionOf(r){
-  const parts = r.loc.split(",");
-  return parts.length > 1 ? parts[0].trim() : r.loc.trim();
-}
+/* Chronological season buckets, derived from the data rather than
+   listed by hand — a new season appears as soon as a date lands in it. */
+const SEASON_ORDER = Y.seasonOptions("listing");
 
 const state = { tab: "dates", tier: "all", view: "grid" };
 
 // Dynamic copy for the collection-intro block (placeholder — refine later)
 const COLLECTION_COPY = {
-  all:       { title: "All Retreats",         desc: "Every journey we run, in one place — from our intimate Deep Dives to the exclusive Signature Collection. Find the one that fits you." },
-  deep:      { title: "Deep Dives",           desc: "Grounded, intimate retreats in beautiful places — a focused practice and a warm community, at our most accessible price point." },
-  signature: { title: "Signature Collection", desc: "Our most exclusive journeys — rare destinations, exceptional venues, and every detail considered. Yoga Adventures at its finest." }
+  all:                     { title: "All Retreats",         desc: "Every journey we run, in one place — from our intimate Deep Dives to the exclusive Signature Collection. Find the one that fits you." },
+  "deep-dives":            { title: "Deep Dives",           desc: "Grounded, intimate retreats in beautiful places — a focused practice and a warm community, at our most accessible price point." },
+  "signature-collection":  { title: "Signature Collection", desc: "Our most exclusive journeys — rare destinations, exceptional venues, and every detail considered. Yoga Adventures at its finest." }
 };
 function updateCollectionIntro(){
   const c = COLLECTION_COPY[state.tier] || COLLECTION_COPY.all;
@@ -1338,93 +1316,47 @@ function updateCollectionIntro(){
   if (d) d.textContent = c.desc;
 }
 
-function badgeLabel(tier){ return tier === "signature" ? "Signature Collection" : "Deep Dives"; }
-function media(hue){
-  return "background: linear-gradient(155deg, hsl(" + hue + " 32% 80%), hsl(" + hue + " 26% 60%));";
-}
+/* Grouping keys read the catalogs, never the retreat itself. */
+function locOf(r){ return Y.getLocation(r.locationId); }
+function regionOf(r){ return Y.locationShortLabel(locOf(r)); }
+function countryOf(r){ const l = locOf(r); return l ? l.country : ""; }
+/* A co-taught retreat is listed under each of its teachers. */
+function teachersOf(r){ return Y.teacherNames(r); }
 
 function groupKeyAndOrder(list){
   if (state.tab === "dates"){
-    const order = SEASON_ORDER.filter(s => list.some(r => r.season === s));
-    return { key: r => r.season, order };
+    const order = SEASON_ORDER.filter(s => list.some(r => Y.seasonLabel(r, "listing") === s));
+    return { key: r => Y.seasonLabel(r, "listing"), order };
   }
   if (state.tab === "location"){
-    const pairs = [...new Map(list.map(r => [regionOf(r), r.country])).entries()];
+    const pairs = [...new Map(list.map(r => [regionOf(r), countryOf(r)])).entries()];
     pairs.sort((a, b) => a[1].localeCompare(b[1]) || a[0].localeCompare(b[0]));
     return { key: regionOf, order: pairs.map(p => p[0]) };
   }
-  const order = [...new Set(list.map(r => r.teacher))].sort();
-  return { key: r => r.teacher, order };
+  const order = [...new Set(list.flatMap(teachersOf))].sort();
+  return { key: teachersOf, order };
 }
 
-function cardFlag(r){
-  if (!r.urgency) return "";
-  if (r.urgency.type === "soldout")
-    return '<span class="card__flag card__flag--soldout">Sold out</span>';
-  return '<span class="card__flag card__flag--scarce">' + r.urgency.label + '</span>';
-}
-
-/* Which locations have a detail page built. Keyed by location, so every
-   retreat at that venue links to the same page. */
-var PAGES = {
-  "El Cuyo, Mexico":              "retreatpage-elcuyo.html",
-  "Reykjav\u00edk & Vik, Iceland": "retreatpage-iceland.html"
-};
-function pageFor(r){ return PAGES[r.loc] || ""; }
-/* Wraps a card/row in a real <a> when there is somewhere to go: keyboard
-   focus, middle-click and "open in new tab" come for free. */
-function linkWrap(r, html){
-  var href = pageFor(r);
-  return href ? '<a class="result-link" href="' + href + '">' + html + '</a>' : html;
-}
-
-function cardHTML(r){
-  return linkWrap(r,
-    '<article class="card card--narrow">' +
-      '<div class="card__media" style="' + media(r.hue) + '">' +
-        '<span class="card__badge">' + badgeLabel(r.tier) + '</span>' +
-        cardFlag(r) +
-      '</div>' +
-      '<div class="card__body">' +
-        '<div class="card__title">' + r.name + '</div>' +
-        '<div class="card__loc">' + r.loc + '</div>' +
-        '<div class="card__date">' + r.date + '</div>' +
-        '<div class="card__teacher">with ' + r.teacher + '</div>' +
-      '</div>' +
-    '</article>'
-  );
-}
-
-function rowHTML(r){
-  const soldout = r.urgency && r.urgency.type === "soldout";
-  const availText = r.urgency ? (soldout ? "Sold out" : r.urgency.label) : "";
-  return linkWrap(r,
-    '<div class="list-row">' +
-      '<div class="r-namecell">' +
-        '<span class="r-tier">' + badgeLabel(r.tier) + '</span>' +
-        '<span class="r-name">' + r.name + '</span>' +
-      '</div>' +
-      '<span class="r-loc">' + r.loc + '</span>' +
-      '<span class="r-date">' + r.date + '</span>' +
-      '<span class="r-teacher">with ' + r.teacher + '</span>' +
-      '<span class="r-avail">' + availText + '</span>' +
-    '</div>'
-  );
-}
+/* Cards on this page link out only where a location page exists — the
+   same behaviour the hardcoded PAGES map gave. */
+const CARD_OPTS = { linkOnlyWhenPage: true };
+function cardHTML(r){ return Y.renderRetreatCard(r, CARD_OPTS); }
+function rowHTML(r){ return Y.renderRetreatRow(r, CARD_OPTS); }
 
 function render(){
   const results = document.getElementById("results");
-  let list = RETREATS.filter(r => state.tier === "all" || r.tier === state.tier);
+  let list = Y.getUpcomingRetreats().filter(r => state.tier === "all" || r.collection === state.tier);
   const { key, order } = groupKeyAndOrder(list);
 
   let html = "";
   order.forEach(function(g){
-    const items = list.filter(r => key(r) === g);
+    // key() returns a string for date/location and an array for teacher.
+    const items = list.filter(r => { const k = key(r); return Array.isArray(k) ? k.indexOf(g) !== -1 : k === g; });
     if (!items.length) return;
     const titleClass = "season__title" + (state.tab === "location" ? " season__title--location" : "");
     const titleHTML = state.tab === "location"
-      ? '<span class="season__title-country">' + items[0].country.toUpperCase() + ',</span><span class="season__title-region">' + g + '</span>'
-      : g;
+      ? '<span class="season__title-country">' + Y.esc(countryOf(items[0]).toUpperCase()) + ',</span><span class="season__title-region">' + Y.esc(g) + '</span>'
+      : Y.esc(g);
     if (state.view === "grid"){
       html += '<section class="season">';
       html += '<div class="season__aside"><h2 class="' + titleClass + '">' + titleHTML + '</h2></div>';

@@ -1236,6 +1236,90 @@ html.has-lightbox { overflow: hidden; }
   text-align: center;
 }
 
+/* --- Upcoming retreats: empty state + waitlist ------------------------
+   Shown instead of the card grid when a destination has no announced
+   dates. Same stone panel, type scale and 56px control height as the
+   .filter-empty block on the home page. */
+.loc-waitlist {
+  background: var(--stone-100);
+  border: 1px solid var(--stone-300);
+  padding: 56px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  text-align: center;
+}
+.loc-waitlist__title {
+  margin: 0;
+  color: var(--sea-blue);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+}
+.loc-waitlist__body {
+  margin: 0;
+  max-width: 480px;
+  color: var(--sea-blue-300);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+}
+.loc-waitlist__form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  width: 560px;
+  max-width: 100%;
+  margin-top: 8px;
+}
+.loc-waitlist__label-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.loc-waitlist__input {
+  flex: 1 1 200px;
+  min-width: 0;
+  box-sizing: border-box;
+  height: 56px;
+  padding: 0 16px;
+  color: var(--sea-blue);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.56px;
+  background: transparent;
+  border: 1px solid var(--stone-400);
+  border-radius: 0;
+  transition: border-color 0.2s ease;
+}
+.loc-waitlist__input::placeholder { color: var(--sea-blue-200); opacity: 1; }
+.loc-waitlist__input:focus { outline: none; border-color: var(--sea-blue); }
+.loc-waitlist__submit { flex: 0 0 auto; }
+.loc-waitlist__error {
+  margin: 0;
+  color: var(--sea-blue);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 22px;
+}
+.loc-waitlist__done { outline: none; }
+.loc-waitlist__done .loc-waitlist__body { margin-inline: auto; }
+@media (max-width: 767px) {
+  .loc-waitlist { padding: 40px 24px; }
+  .loc-waitlist__title { font-size: 20px; line-height: 32px; }
+  .loc-waitlist__form { flex-direction: column; width: 100%; }
+  .loc-waitlist__submit { width: 100%; }
+}
+
 /* --- Why here: copy on 5 columns, two verticals on the right ---------- */
 .loc-why__row {
   display: grid;
@@ -1379,6 +1463,15 @@ html.has-lightbox { overflow: hidden; }
   .loc-cta__title { font-size: 24px; line-height: 36px; }
 }
 </style>
+<!-- Retreat data + the one card component every retreat card is rendered
+     by. Classic scripts so the prototype still works over file://.
+     Order matters: the catalogs load before the data, the data before
+     the component. -->
+<script src="data/locations.js"></script>
+<script src="data/teachers.js"></script>
+<script src="data/retreats.js"></script>
+<script src="js/retreat-cards.js"></script>
+
 </head>
 <body>
 
@@ -1481,46 +1574,42 @@ html.has-lightbox { overflow: hidden; }
     </div>
   </section>
 
-  <section class="loc-section loc-upcoming">
+  <section class="loc-section loc-upcoming" data-location-id="iceland">
     <div class="loc-inner">
       <h2 class="loc-section__title">Upcoming retreats in Iceland</h2>
-      <div class="loc-upcoming__grid">
-        <article class="loc-card">
-          <a class="loc-card__link" href="retreatpage-iceland.html">
-            <div class="loc-card__media"><img src="images/iceland/day3-1.jpg" alt="Between Fire and Ice in Iceland" loading="lazy"></div>
-            <h3 class="loc-card__name">Between Fire &amp; Ice</h3>
-            <p class="loc-card__where">Reykjav&iacute;k &amp; Vik</p>
-            <p class="loc-card__date">October 11&ndash;19, 2026</p>
-            <p class="loc-card__teacher">with Jenniferlyn Chiemingo</p>
-          </a>
-        </article>
-        <article class="loc-card">
-          <a class="loc-card__link" href="retreatpage-iceland.html">
-            <div class="loc-card__media"><img src="images/iceland/day5-2.jpg" alt="Between Fire and Ice in Iceland" loading="lazy"></div>
-            <h3 class="loc-card__name">Between Fire &amp; Ice</h3>
-            <p class="loc-card__where">Reykjav&iacute;k &amp; Vik</p>
-            <p class="loc-card__date">March 7&ndash;15, 2027</p>
-            <p class="loc-card__teacher">with Jenniferlyn Chiemingo</p>
-          </a>
-        </article>
-        <article class="loc-card">
-          <a class="loc-card__link" href="retreatpage-iceland.html">
-            <div class="loc-card__media"><img src="images/iceland/day9-2.jpg" alt="The Long Night in Iceland" loading="lazy"></div>
-            <h3 class="loc-card__name">The Long Night</h3>
-            <p class="loc-card__where">Vik &amp; the south coast</p>
-            <p class="loc-card__date">January 17&ndash;24, 2027</p>
-            <p class="loc-card__teacher">with Christina Thomas</p>
-          </a>
-        </article>
-        <article class="loc-card">
-          <a class="loc-card__link" href="retreatpage-iceland.html">
-            <div class="loc-card__media"><img src="images/iceland/day7-1.jpg" alt="Midnight Sun in Iceland" loading="lazy"></div>
-            <h3 class="loc-card__name">Midnight Sun</h3>
-            <p class="loc-card__where">Reykjav&iacute;k &amp; the highlands</p>
-            <p class="loc-card__date">June 20&ndash;28, 2027</p>
-            <p class="loc-card__teacher">with Christina Thomas</p>
-          </a>
-        </article>
+
+      <!-- Filled from data/retreats.js by js/retreat-cards.js. -->
+      <div class="loc-upcoming__grid" data-retreat-grid hidden></div>
+
+      <!-- Shown instead of the grid when this destination has no
+           announced dates. -->
+      <div class="loc-waitlist" data-retreat-empty hidden>
+        <p class="loc-waitlist__title">No dates scheduled yet</p>
+        <p class="loc-waitlist__body">We are still putting this one together. Leave your name and we will write to you first, before the dates go public.</p>
+
+        <!-- TODO(backend): no endpoint yet. YAWW.wireWaitlistForm() in
+             js/retreat-cards.js validates and shows the success state;
+             set YAWW.WAITLIST_ENDPOINT there and POST the payload to
+             the Zapier catch hook (or the WP REST route) to go live. -->
+        <form class="loc-waitlist__form" data-waitlist-form data-waitlist-success="locWaitlistDone" novalidate>
+          <label class="loc-waitlist__label-sr" for="locWaitlistFirst">First name</label>
+          <input class="loc-waitlist__input" id="locWaitlistFirst" name="first_name" type="text" placeholder="First name" autocomplete="given-name" required>
+
+          <label class="loc-waitlist__label-sr" for="locWaitlistEmail">Email address</label>
+          <input class="loc-waitlist__input" id="locWaitlistEmail" name="email" type="email" placeholder="Email address" autocomplete="email" required>
+
+          <!-- Which destination the signup is for; filled from
+               data-location-id so it cannot drift from the catalog. -->
+          <input type="hidden" name="location" data-waitlist-location value="">
+
+          <button class="btn btn--primary loc-waitlist__submit" type="submit">Join the waitlist</button>
+          <p class="loc-waitlist__error" data-waitlist-error role="alert" hidden></p>
+        </form>
+
+        <div class="loc-waitlist__done" id="locWaitlistDone" hidden>
+          <p class="loc-waitlist__title">You are on the list</p>
+          <p class="loc-waitlist__body">We will email you as soon as dates are announced.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -2392,6 +2481,47 @@ html.has-lightbox { overflow: hidden; }
       card.appendChild(by);
 
       grid.appendChild(card);
+    });
+  })();
+
+
+  /* Upcoming retreats in this location ----------------------------------
+     Reads data/retreats.js through the shared helpers and renders the
+     .loc-card variant of the one card component. Drop this same markup
+     and attribute on any new location page and it works — the only
+     thing that changes is data-location-id on the section.
+
+     Cards do not link to individual retreat pages (there are none yet);
+     the component sends them to the full listing rather than back to
+     this page. */
+  (function () {
+    var Y = window.YAWW;
+    if (!Y) return;
+
+    document.querySelectorAll('[data-location-id]').forEach(function (section) {
+      var id    = section.getAttribute('data-location-id');
+      var grid  = section.querySelector('[data-retreat-grid]');
+      var empty = section.querySelector('[data-retreat-empty]');
+      if (!grid) return;
+
+      var list = Y.getRetreatsByLocation(id);
+      var here = window.location.pathname.split('/').pop();
+
+      if (list.length) {
+        grid.innerHTML = list.map(function (r) {
+          return Y.renderRetreatCard(r, { variant: 'location', currentUrl: here });
+        }).join('');
+        grid.hidden = false;
+        if (empty) empty.hidden = true;
+      } else {
+        grid.hidden = true;
+        if (empty) {
+          empty.hidden = false;
+          var hidden = empty.querySelector('[data-waitlist-location]');
+          if (hidden) hidden.value = id;
+          Y.wireWaitlistForm(empty.querySelector('[data-waitlist-form]'));
+        }
+      }
     });
   })();
 

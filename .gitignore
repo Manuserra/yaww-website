@@ -20,3 +20,7 @@ Screenshot *
 # is why the `file` values in retreats/*/data.json still resolve there.
 retreats/**/img/
 retreats/_shared/
+
+# Local preview-server config for the Claude Code browser pane. Tooling,
+# not part of the site.
+.claude/

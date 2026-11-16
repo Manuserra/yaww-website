@@ -820,6 +820,7 @@ main { padding-top: 0; }
   overflow: hidden;
   background: var(--stone-300);
 }
+.card__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .card__badge {
   position: absolute;
   top: 16px; left: 16px;
@@ -2314,6 +2315,15 @@ main { padding-top: 0; }
   .footer-copy { padding: 24px 0; }
 }
 </style>
+<!-- Retreat data + the one card component every retreat card is rendered
+     by. Classic scripts so the prototype still works over file://.
+     Order matters: the catalogs load before the data, the data before
+     the component. -->
+<script src="data/locations.js"></script>
+<script src="data/teachers.js"></script>
+<script src="data/retreats.js"></script>
+<script src="js/retreat-cards.js"></script>
+
 </head>
 <body>
 
@@ -3020,80 +3030,35 @@ main { padding-top: 0; }
    "Where we're going next" — retreats rail + Teacher/Destination/
    When filter above it.
 
-   Same RETREATS dataset as retreats.html (duplicated the way every
-   other shared block on this site is — there's no build step to
-   share it from), extended with `place`/`season` so the filter can
-   match against it. Renders the --narrow card variant into the same
+   Reads the shared dataset in data/retreats.js (same data
+   retreats.html renders), projected to flat `place`/`season` values so
+   the filter can match against it. Renders the --narrow card variant,
+   built by js/retreat-cards.js, into the same
    native horizontal scroller as before; the filter only changes
    WHICH of those cards are in the track, never how the track itself
    behaves. See yaww-retreat-filter-handoff.md for the filter spec.
    ============================================================ */
 (function () {
-  var RETREATS = [
-    {name:"The Paris-Champagne Experience", loc:"Paris & Champagne, France", date:"August 30 – September 5, 2026", teacher:"Amy Appel", tier:"signature", hue:30, urgency:{type:"soldout"}, place:"France", season:"Summer 2026"},
-    {name:"Beach Escape Retreat", loc:"El Cuyo, Mexico", date:"September 4 – 8, 2026", teacher:"Renata Centi", tier:"deep", hue:182, urgency:{type:"scarce", label:"Filling fast"}, place:"El Cuyo, Mexico", season:"Summer 2026"},
-    {name:"A French Journey · A Yoga & Embodiment Retreat", loc:"Paris & Champagne, France", date:"September 6 – 12, 2026", teacher:"Dawn Thie", tier:"deep", hue:96, urgency:{type:"scarce", label:"Filling fast"}, place:"France", season:"Summer 2026"},
-    {name:"Sea, Sun & Slow Living Retreat", loc:"Santorini, Greece", date:"September 13 – 19, 2026", teacher:"Genevieve Morin", tier:"signature", hue:205, urgency:{type:"scarce", label:"2 spaces left"}, place:"Santorini, Greece", season:"Summer 2026"},
-    {name:"Sea, Sun & Slow Living Retreat", loc:"Santorini, Greece", date:"September 20 – 26, 2026", teacher:"Genevieve Morin", tier:"deep", hue:212, urgency:{type:"soldout"}, place:"Santorini, Greece", season:"Summer 2026"},
-    {name:"Majestic Sardinia", loc:"Sardinia, Italy", date:"September 4 – 8, 2026", teacher:"Renata Centi", tier:"signature", hue:194, urgency:{type:"scarce", label:"Filling fast"}, place:"Sardinia, Italy", season:"Summer 2026"},
+  /* Single source of truth: data/retreats.js, turned into markup by the
+     one card component in js/retreat-cards.js. The small view objects
+     below exist only so this filter can match on flat values — every
+     string the reader actually sees still comes out of the component,
+     so a card only ever has to be changed in one place. */
+  var Y = window.YAWW;
+  var RETREATS = Y.getUpcomingRetreats().map(function (r) {
+    var loc = Y.getLocation(r.locationId);
+    return {
+      retreat: r,
+      place: loc ? loc.name : "",
+      season: Y.seasonLabel(r, "filter"),
+      teachers: Y.teacherNames(r)
+    };
+  });
 
-    {name:"Majestic Sardinia", loc:"Sardinia, Italy", date:"September 27 – October 3, 2026", teacher:"Melanie Cordover", tier:"deep", hue:150, urgency:{type:"soldout"}, place:"Sardinia, Italy", season:"Fall 2026"},
-    {name:"Majestic Sardinia", loc:"Sardinia, Italy", date:"September 27 – October 3, 2026", teacher:"Sue Berger", tier:"signature", hue:158, urgency:{type:"scarce", label:"2 spaces left"}, place:"Sardinia, Italy", season:"Fall 2026"},
-    {name:"Between Fire & Ice", loc:"Reykjavík & Vik, Iceland", date:"September 6 – 12, 2026", teacher:"Dawn Thie", tier:"signature", hue:200, urgency:{type:"scarce", label:"Filling fast"}, place:"Iceland", season:"Fall 2026"},
-    {name:"Beach Escape Retreat", loc:"El Cuyo, Mexico", date:"October 21 – 25, 2026", teacher:"Renata Centi", tier:"deep", hue:186, place:"El Cuyo, Mexico", season:"Fall 2026"},
-    {name:"Day of the Dead", loc:"Oaxaca, Mexico", date:"October 28 – November 24, 2026", teacher:"Alicia Delaney", tier:"deep", hue:36, place:"Oaxaca, Mexico", season:"Fall 2026"},
-    {name:"Mesmerized in Morocco", loc:"Marrakesh & Essaouira, Morocco", date:"September 4 – 8, 2026", teacher:"Renata Centi", tier:"signature", hue:24, place:"Morocco", season:"Fall 2026"},
-
-    {name:"Treasures of Thailand", loc:"Chiang Mai & Koh Yao Noi, Thailand", date:"December 1 – 10, 2026", teacher:"Amy Sennett-Starner", tier:"deep", hue:162, place:"Thailand", season:"Winter 2026 / 27"},
-    {name:"Inner Glow Retreat", loc:"El Cuyo, Mexico", date:"December 1 – 6, 2026", teacher:"Alicia Delaney", tier:"deep", hue:20, place:"El Cuyo, Mexico", season:"Winter 2026 / 27"},
-    {name:"An Embodied Pause", loc:"El Cuyo, Mexico", date:"December 6 – 11, 2026", teacher:"Carie Cook", tier:"deep", hue:210, place:"El Cuyo, Mexico", season:"Winter 2026 / 27"},
-    {name:"Breath Body Soul Retreat", loc:"El Cuyo, Mexico", date:"January 24 – 29, 2027", teacher:"Sue Berger", tier:"deep", hue:190, place:"El Cuyo, Mexico", season:"Winter 2026 / 27"},
-    {name:"Radiance Retreat", loc:"El Cuyo, Mexico", date:"February 2 – 7, 2027", teacher:"Alicia Delaney", tier:"deep", hue:45, place:"El Cuyo, Mexico", season:"Winter 2026 / 27"},
-
-    {name:"Somatic Yoga & Hiking Retreat", loc:"Lisboa & Costa Vicentina, Portugal", date:"May 9 – 16, 2027", teacher:"Karah Charette", tier:"signature", hue:120, place:"Portugal", season:"Spring 2027"},
-    {name:"Inner Landscape Retreat", loc:"Lisboa & Costa Vicentina, Portugal", date:"May 16 – 23, 2027", teacher:"Dawn Thie", tier:"deep", hue:40, place:"Portugal", season:"Spring 2027"},
-    {name:"Balkan Beauty Yoga Retreat", loc:"Bay of Kotor, Montenegro", date:"May 15 – 21, 2027", teacher:"Sherry Sidoti", tier:"signature", hue:150, place:"Montenegro", season:"Spring 2027"},
-    {name:"Yoga and Reflections Retreat", loc:"Camino de Santiago, Spain", date:"April 18 – 27, 2027", teacher:"Jenniferlyn Chiemingo", tier:"deep", hue:35, place:"Camino de Santiago, Spain", season:"Spring 2027"},
-
-    {name:"Yoga Retreat Name", loc:"Santorini, Greece", date:"September 19 – 25, 2027", teacher:"Sue Berger", tier:"deep", hue:200, place:"Santorini, Greece", season:"Fall 2027"},
-    {name:"Yoga Retreat Name", loc:"Santorini, Greece", date:"September 25 – October 2, 2027", teacher:"a fabulous YAWW instructor", tier:"signature", hue:220, place:"Santorini, Greece", season:"Fall 2027"},
-    {name:"Yoga and Reflections Retreat", loc:"Camino de Santiago, Spain", date:"September 19 – 28, 2027", teacher:"Genevieve Morin", tier:"signature", hue:38, place:"Camino de Santiago, Spain", season:"Fall 2027"}
-  ];
-
-  // Only the two locations with a built detail page link out to it;
-  // everything else falls back to the full listing.
-  var PAGES = {
-    "El Cuyo, Mexico": "retreatpage-elcuyo-fluid-hero.html",
-    "Reykjavík & Vik, Iceland": "retreatpage-iceland-fluid-hero.html"
-  };
-
-  function badgeLabel(tier) { return tier === "signature" ? "Signature Collection" : "Deep Dives"; }
-  function mediaStyle(hue) { return "background: linear-gradient(155deg, hsl(" + hue + " 32% 80%), hsl(" + hue + " 26% 60%));"; }
-  function flagHTML(r) {
-    if (!r.urgency) return "";
-    if (r.urgency.type === "soldout") return '<span class="card__flag card__flag--soldout">Sold out</span>';
-    return '<span class="card__flag card__flag--scarce">' + r.urgency.label + '</span>';
-  }
-  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
-  function cardHTML(r) {
-    var href = PAGES[r.loc] || "retreats.html";
-    return (
-      '<a class="result-link" href="' + href + '">' +
-        '<article class="card card--narrow">' +
-          '<div class="card__media" style="' + mediaStyle(r.hue) + '">' +
-            '<span class="card__badge">' + badgeLabel(r.tier) + '</span>' +
-            flagHTML(r) +
-          '</div>' +
-          '<div class="card__body">' +
-            '<div class="card__title">' + esc(r.name) + '</div>' +
-            '<div class="card__loc">' + esc(r.loc) + '</div>' +
-            '<div class="card__date">' + esc(r.date) + '</div>' +
-            '<div class="card__teacher">with ' + esc(r.teacher) + '</div>' +
-          '</div>' +
-        '</article>' +
-      '</a>'
-    );
-  }
+  function esc(s) { return Y.esc(s); }
+  /* Where a card points is the component's call (location page, falling
+     back to the full listing) — see retreatHref() there. */
+  function cardHTML(v) { return Y.renderRetreatCard(v.retreat); }
 
   var track = document.getElementById('nextRetreatsTrack');
   if (!track) return;
@@ -3231,19 +3196,15 @@ main { padding-top: 0; }
   var filterBar = document.getElementById('filterBar');
   if (!filterBar) return;   // filter markup not present — rail still works standalone
 
-  // Teacher and Destination rosters are curated, not derived from the
-  // data — "Alison Buchanan" has no retreats yet on purpose, to show
-  // the 0-count / Notify-me path the handoff calls for. "a fabulous
-  // YAWW instructor" (one placeholder row above) is left out of the
-  // roster: it isn't a real name to filter by, but its retreat still
-  // surfaces through Destination/When/"Any teacher".
-  var TEACHERS = ["Alicia Delaney", "Alison Buchanan", "Amy Appel", "Amy Sennett-Starner", "Carie Cook", "Dawn Thie", "Genevieve Morin", "Jenniferlyn Chiemingo", "Karah Charette", "Melanie Cordover", "Renata Centi", "Sherry Sidoti", "Sue Berger"];
-  var PLACES = [
-    { title: "Europe", items: ["France", "Iceland", "Montenegro", "Portugal", "Santorini, Greece", "Sardinia, Italy", "Camino de Santiago, Spain"] },
-    { title: "The Americas", items: ["El Cuyo, Mexico", "Oaxaca, Mexico"] },
-    { title: "Africa & Asia", items: ["Morocco", "Thailand"] }
-  ];
-  var WHENS = ["Summer 2026", "Fall 2026", "Winter 2026 / 27", "Spring 2027", "Fall 2027"];
+  /* Rosters come out of the catalogs, not a hand-kept list. A teacher or
+     a destination with no announced dates still appears, muted, with
+     the "No dates yet" count and the notify-me path — add an entry to
+     data/teachers.js or data/locations.js and it shows up here. */
+  var TEACHERS = Y.teacherRoster().map(function (t) { return t.name; });
+  var PLACES = Y.locationGroups().map(function (g) {
+    return { title: g.title, items: g.items.map(function (l) { return l.name; }) };
+  });
+  var WHENS = Y.seasonOptions("filter");
   var SEGMENTS = [
     { key: "when", label: "When", any: "Any time", groups: [{ title: "", items: WHENS, avatar: false }] },
     { key: "place", label: "Destination", any: "Anywhere", groups: PLACES.map(function (g) { return { title: g.title, items: g.items, avatar: false }; }) },
@@ -3259,7 +3220,18 @@ main { padding-top: 0; }
     document.dispatchEvent(new CustomEvent("yaww:track", { detail: Object.assign({ event: evt }, props || {}) }));
   }
   function initials(name) { return name.split(" ").map(function (p) { return p.charAt(0); }).join("").slice(0, 2).toUpperCase(); }
-  function facetCount(key, value) { return RETREATS.filter(function (r) { return r[key] === value; }).length; }
+  /* The facet key is not always the field name — "when" matches against
+     the season label (it used to read v["when"], which is why every
+     season showed "No dates yet"). Teacher is matched against the
+     retreat's whole teacher list, so a co-taught retreat counts for
+     both of them. */
+  var FACET_FIELD = { when: "season", place: "place" };
+  function facetCount(key, value) {
+    return RETREATS.filter(function (v) {
+      if (key === "teacher") return v.teachers.indexOf(value) !== -1;
+      return v[FACET_FIELD[key] || key] === value;
+    }).length;
+  }
   function countMeta(n) { return n === 0 ? "No dates yet" : (n === 1 ? "1 retreat" : n + " retreats"); }
 
   function checkSVG() {
@@ -3350,10 +3322,10 @@ main { padding-top: 0; }
   function isMobile() { return window.matchMedia("(max-width: 767px)").matches; }
   function segByKey(key) { return SEGMENTS.filter(function (d) { return d.key === key; })[0]; }
   function filteredList() {
-    return RETREATS.filter(function (r) {
-      return (!state.teacher || r.teacher === state.teacher) &&
-             (!state.place || r.place === state.place) &&
-             (!state.when || r.season === state.when);
+    return RETREATS.filter(function (v) {
+      return (!state.teacher || v.teachers.indexOf(state.teacher) !== -1) &&
+             (!state.place || v.place === state.place) &&
+             (!state.when || v.season === state.when);
     });
   }
 
