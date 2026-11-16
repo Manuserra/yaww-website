@@ -776,41 +776,59 @@ main { padding-top: 0; }
    ============================================================ */
 .post { padding: 56px 0 96px; }
 .post__head {
+  /* The source sets this to 45% of the 1392 container = 626px, with no
+     padding eating into it. Ours had the container padding inside the
+     max-width, leaving 578px, which is what wrapped the title onto a
+     second line. */
+  width: calc(100% - 2 * var(--container-pad));
   max-width: 626px;
-  margin: 0 auto 40px;
-  padding: 0 var(--container-pad);
+  margin: 0 auto 56px;
   text-align: center;
 }
 .post__title {
-  margin: 0 0 16px;
+  margin: 0;
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 36px;
   line-height: 48px;
+  letter-spacing: 0.32px;
   color: var(--sea-blue);
 }
 .post__cats {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 16px;
+  gap: 16px;
   justify-content: center;
-  margin-bottom: 8px;
+  margin: 32px 0;
 }
 .post__cats span {
+  position: relative;
   font-family: var(--font-body);
+  font-weight: 600;
   font-size: 14px;
   line-height: 24px;
   letter-spacing: 0.56px;
   text-transform: uppercase;
-  color: var(--sea-blue-300);
+  color: var(--stone-600);
 }
+/* Bullet between categories, not after the last one. */
+.post__cats span::after {
+  content: "\2022";
+  color: var(--stone-400);
+  margin-left: 12px;
+}
+.post__cats span:last-child::after { display: none; }
 .post__date {
   margin: 0;
   font-family: var(--font-body);
+  font-weight: 400;
   font-size: 14px;
   line-height: 24px;
   letter-spacing: 0.56px;
-  color: var(--sea-blue-200);
+  color: var(--sea-blue);
+}
+@media (max-width: 1024px) {
+  .post__cats span { font-size: 12px; line-height: 16px; }
 }
 .post__hero {
   width: 100%;
