@@ -2111,6 +2111,13 @@ main { padding-top: 0; }
 .site-footer {
   background: var(--sea-blue-500);
   color: var(--stone);
+  /* The one place this belongs. Subpixel antialiasing thickens light
+     text on a dark ground; grayscale keeps the footer's stone-on-blue
+     reading at the same weight as the rest of the page. Deliberately
+     scoped here rather than on body, where it was thinning every
+     heading on the site. */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 .footer-news {
   display: flex;
