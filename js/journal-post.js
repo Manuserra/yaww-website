@@ -124,7 +124,10 @@
            '</section>';
   }
 
-  /* Three more posts, newest first, never this one. */
+  /* Three more posts, newest first, never this one. Each card carries
+     the same four parts the source gives it: image, categories, title
+     and excerpt — seven posts have no excerpt anywhere on the source,
+     and those simply go without rather than carrying filler. */
   function relatedHTML(post) {
     var others = posts().filter(function (p) { return p.slug !== post.slug; }).slice(0, 3);
     if (!others.length) return "";
@@ -134,9 +137,18 @@
                others.map(function (p) {
                  return '<a class="post-related__item" href="' + esc(url("journal/" + p.slug + ".html")) + '">' +
                           '<div class="post-related__figure">' + img(p.hero.src, p.hero.src2x, "") + '</div>' +
+                          (p.categories && p.categories.length
+                            ? '<div class="post-related__cats">' +
+                                p.categories.map(function (c) { return '<span>' + esc(c) + '</span>'; }).join("") +
+                              '</div>'
+                            : "") +
                           '<p class="post-related__title">' + esc(p.title) + '</p>' +
+                          (p.excerpt ? '<p class="post-related__excerpt">' + esc(p.excerpt) + '</p>' : "") +
                         '</a>';
                }).join("") +
+             '</div>' +
+             '<div class="post-related__foot">' +
+               '<a class="btn btn--secondary" href="' + esc(url("journal.html")) + '">Back to journal</a>' +
              '</div>' +
            '</section>';
   }

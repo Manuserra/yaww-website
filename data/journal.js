@@ -4,6 +4,7 @@
    Maps to WordPress as the `post` type it already was:
      slug        -> post slug / permalink /journal/{slug}/
      title       -> post title        date / dateISO -> post date
+     excerpt     -> post excerpt; null on the seven the source has none for
      categories  -> category terms    hero           -> featured image
      author      -> post author; authorPageUrl is set only when that
                     person has a page on this site (teachers/team)
@@ -28,6 +29,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "a-love-letter-to-basque-country",
     title: "A love letter to Basque Country",
+    excerpt: "A love-soaked journey through Basque Country, weaving nostalgia, wine, friendship, and the magic that shaped a lifetime of adventure.",
     categories: ["Journal", "Lifestyle", "Travel"],
     date: "July 12, 2025",
     dateISO: "2025-07-12",
@@ -57,6 +59,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "sitting-with-death-the-beauty-of-dia-de-muertos",
     title: "Sitting with death: The beauty of Día de Muertos",
+    excerpt: "A reflection on Día de Muertos, honoring memory, grief, and the beauty of inviting our loved ones home through ritual and remembrance.",
     categories: ["Inspo", "Journal", "Lifestyle"],
     date: "July 12, 2025",
     dateISO: "2025-07-12",
@@ -85,6 +88,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "a-somatic-journey-in-morocco",
     title: "A Somatic Journey In Morocco",
+    excerpt: "A somatic journey in Morocco to return to your body, slow down, and reconnect with presence, intuition, and inner rhythm.",
     categories: ["Journal", "Yoga"],
     date: "June 15, 2025",
     dateISO: "2025-06-15",
@@ -113,6 +117,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "the-shifting",
     title: "The shifting",
+    excerpt: "A reflection on autumn’s quiet shift, embracing slower rhythms, deeper roots, and the calming reset found in retreat experiences.",
     categories: ["Inspo", "Journal", "Lifestyle", "Travel"],
     date: "November 6, 2023",
     dateISO: "2023-11-06",
@@ -135,6 +140,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "the-gift-that-yoga-offers",
     title: "The gift that yoga offers",
+    excerpt: "A reflection on yoga as a reset—a return to breath, presence, and balance in a world moving faster than ever.",
     categories: ["Journal", "Yoga"],
     date: "March 16, 2023",
     dateISO: "2023-03-16",
@@ -154,6 +160,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "finding-stillness-a-practice",
     title: "Finding Stillness: A Practice",
+    excerpt: "A reflection on finding stillness through nature, yoga, silence, and the gentle pauses that ground us in a busy world.",
     categories: ["Asana", "Guides", "Inspo", "Journal", "Lifestyle"],
     date: "February 7, 2023",
     dateISO: "2023-02-07",
@@ -177,6 +184,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "getting-to-know-you-amy-appel",
     title: "Getting to know you… Amy Appel",
+    excerpt: "A heartfelt portrait of a yogi, traveler, mother, and seeker embracing change, connection, and the practice that carries her through life.",
     categories: ["Journal", "Yoga"],
     date: "January 18, 2023",
     dateISO: "2023-01-18",
@@ -200,6 +208,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "travel-makes-you-happy",
     title: "Travel Makes You Happy",
+    excerpt: "Travel boosts happiness, connection, confidence, and well-being—and yoga retreats deepen the journey of discovering yourself.",
     categories: ["Inspo", "Journal", "Lifestyle", "Travel"],
     date: "July 13, 2022",
     dateISO: "2022-07-13",
@@ -223,6 +232,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "why-we-love-santorini",
     title: "Why we love Santorini",
+    excerpt: "Why have we chosen to host our yoga retreats in Santorini versus any of the other hundreds of islands in the country?",
     categories: ["Journal", "Travel"],
     date: "July 12, 2022",
     dateISO: "2022-07-12",
@@ -255,6 +265,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "open-letter-to-all-cuba-retreat-goers",
     title: "Open Letter to all Cuba Retreat goers…",
+    excerpt: "A heartfelt letter on the beauty, resilience, and complexity of Cuba—and the deep gratitude and connection retreats there inspire.",
     categories: ["Inspo", "Journal", "Lifestyle", "Travel"],
     date: "May 22, 2022",
     dateISO: "2022-05-22",
@@ -278,6 +289,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "why-go-on-a-yoga-retreat",
     title: "Why go on a Yoga Retreat?",
+    excerpt: "A yoga retreat resets your soul—rest, clarity, community, and reconnection that helps you return to life feeling renewed and aligned.",
     categories: ["Inspo", "Journal", "Lifestyle", "Travel", "Yoga"],
     date: "May 16, 2022",
     dateISO: "2022-05-16",
@@ -301,6 +313,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "listening-to-joy",
     title: "Listening to Joy",
+    excerpt: "A meditation on slowing down, reconnecting with simple joys, and letting yoga anchor us in presence, steadiness, and true joy.",
     categories: ["Journal", "Lifestyle"],
     date: "June 12, 2019",
     dateISO: "2019-06-12",
@@ -321,6 +334,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "yogis-guide-how-to-meditate",
     title: "yogi’s guide: how to meditate",
+    excerpt: "A simple guide to prepare the body and mind for meditation through gentle asana, breath, and the calming Ham Sa mantra.",
     categories: ["Guides", "Journal"],
     date: "June 12, 2019",
     dateISO: "2019-06-12",
@@ -337,6 +351,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "virgo-full-moon",
     title: "Virgo Full Moon",
+    excerpt: "A Virgo Supermoon calling for order, clarity, new habits, and the courage to realign with your most authentic, grounded self.",
     categories: ["Astrology & Tarot", "Journal"],
     date: "February 19, 2019",
     dateISO: "2019-02-19",
@@ -353,6 +368,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "new-moon-in-aquarius",
     title: "New Moon in Aquarius",
+    excerpt: "An Aquarius New Moon calling for awakening, change, truth, and a collective shift toward intuition, justice, and higher awareness.",
     categories: ["Astrology & Tarot", "Journal"],
     date: "February 4, 2019",
     dateISO: "2019-02-04",
@@ -369,6 +385,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "the-utopian-newsletter-eat-drink-be-merry-issue-august-8-2018",
     title: "The Utopian Newsletter: Eat, Drink & Be Merry Issue August 8, 2018",
+    excerpt: null,
     categories: ["Journal", "Newsletter"],
     date: "August 8, 2018",
     dateISO: "2018-08-08",
@@ -409,6 +426,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "the-utopian-newsletter-gives-global-issue-august-1-2018",
     title: "The Utopian Newsletter: Gives Global Issue August 1, 2018",
+    excerpt: null,
     categories: ["Journal", "Newsletter"],
     date: "August 1, 2018",
     dateISO: "2018-08-01",
@@ -438,6 +456,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "the-utopian-newsletter-cuban-revolution-issue",
     title: "The Utopian Newsletter: Cuban Revolution Issue July 25, 2018",
+    excerpt: "A clear, accessible look at the Cuban Revolution, its politics, and the powerful women who shaped a movement within a movement.",
     categories: ["Journal", "Newsletter"],
     date: "July 25, 2018",
     dateISO: "2018-07-25",
@@ -460,6 +479,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "the-utopian-newsletter-henna-issue-july-18-2018",
     title: "The Utopian Newsletter: Henna Issue  July 18, 2018",
+    excerpt: "Darcy Vasudev’s iconic henna artistry and the 5,000-year tradition behind it—its history, symbolism, healing roots, and the beauty of connection.",
     categories: ["Journal", "Newsletter"],
     date: "July 18, 2018",
     dateISO: "2018-07-18",
@@ -485,6 +505,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "the-utopian-newsletter-art-issue-july-11-2018",
     title: "The Utopian Newsletter: Art Issue July 11, 2018",
+    excerpt: null,
     categories: ["Journal", "Newsletter"],
     date: "July 11, 2018",
     dateISO: "2018-07-11",
@@ -522,6 +543,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "summer-solstice-2018",
     title: "Summer Solstice 2018",
+    excerpt: "A Summer Solstice in Cancer calling for expansion, balance, truth, and deep connection under powerful cosmic influences.",
     categories: ["Astrology & Tarot", "Journal"],
     date: "June 21, 2018",
     dateISO: "2018-06-21",
@@ -538,6 +560,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "i-include-myself-gay-havana",
     title: "I Include Myself: Gay Havana",
+    excerpt: null,
     categories: ["Journal", "Lifestyle"],
     date: "June 20, 2018",
     dateISO: "2018-06-20",
@@ -561,6 +584,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "harness-the-overwhelm",
     title: "Harness the Overwhelm",
+    excerpt: "Overwhelm is a modern baseline—but with the right resets, it can shift from depletion to clarity, connection, and aligned direction.",
     categories: ["Journal", "Lifestyle"],
     date: "June 4, 2018",
     dateISO: "2018-06-04",
@@ -582,6 +606,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "on-strong-hearts",
     title: "On Strong Hearts…",
+    excerpt: "Strength creates the safety that allows true openness—choosing to let life break your heart wide open instead of closed is the real practice.",
     categories: ["Asana", "Journal"],
     date: "May 30, 2018",
     dateISO: "2018-05-30",
@@ -606,6 +631,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "following-my-heart",
     title: "Following my heart",
+    excerpt: "A story of trusting intuition, leaving New York behind, and letting life in Tulum unfold into purpose, community, motherhood, and unexpected magic.",
     categories: ["Journal", "Lifestyle"],
     date: null,
     dateISO: null,
@@ -630,6 +656,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "libra-full-moon",
     title: "Libra Full Moon",
+    excerpt: "A Libra full moon reflection on balance, healing, relationships, and the courage to reset into harmony with yourself and others.",
     categories: ["Astrology & Tarot", "Journal"],
     date: null,
     dateISO: null,
@@ -650,6 +677,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "namaste-and-mean-it",
     title: "Namaste, and mean it",
+    excerpt: null,
     categories: ["Journal", "Lifestyle"],
     date: null,
     dateISO: null,
@@ -666,6 +694,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "synergy-of-travel-and-retreats",
     title: "Synergy of Travel And Retreats",
+    excerpt: "Travel sharpens the senses and yoga tunes the inner compass—together they open the heart to presence, perspective, and deeper living.",
     categories: ["Journal", "Travel"],
     date: null,
     dateISO: null,
@@ -687,6 +716,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "tacos-are-life",
     title: "Tacos are life",
+    excerpt: "A local favorite in Tulum: handmade tacos at Honorio and a fresh chaya green juice — the perfect morning combo in Mexico.",
     categories: ["Foodies", "Journal"],
     date: null,
     dateISO: null,
@@ -709,6 +739,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "the-smart-yogis-travel-guide-to-cuba-september-2018",
     title: "The Smart Yogi’s Travel Guide to Cuba: September 2018",
+    excerpt: "Why Cuba is worth the effort: how to go legally, feel safe, and dive deep into Havana’s art, history, nightlife, food, and soul.",
     categories: ["Guides", "Journal"],
     date: null,
     dateISO: null,
@@ -736,6 +767,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "the-utopian-newsletter-interior-design-issue-september-12-2018",
     title: "The Utopian Newsletter: Interior Design Issue September 12, 2018",
+    excerpt: "Design inspiration from Morocco to Istanbul—interiors, culture, and the soulful spaces that shape our retreats around the world.",
     categories: ["Inspo", "Journal", "Newsletter"],
     date: null,
     dateISO: null,
@@ -777,6 +809,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "the-utopian-newsletter-shopping-issue-august-22-2018",
     title: "The Utopian Newsletter: Shopping Issue August 22, 2018",
+    excerpt: null,
     categories: ["Inspo", "Journal", "Newsletter"],
     date: null,
     dateISO: null,
@@ -814,6 +847,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "the-utopian-newsletter-summer-issue-2018",
     title: "The Utopian Newsletter: Summer Issue 2018",
+    excerpt: null,
     categories: ["Journal", "Newsletter"],
     date: null,
     dateISO: null,
@@ -840,6 +874,7 @@ window.YAWW_JOURNAL = [
   {
     slug: "yoga-retreat-travel-musts",
     title: "Yoga Retreat Travel Musts",
+    excerpt: "Simple ways to travel more consciously—from offsetting carbon and choosing eco-friendly gear to investing in ethical, durable travel essentials.",
     categories: ["Journal", "Lifestyle", "Travel"],
     date: null,
     dateISO: null,
