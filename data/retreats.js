@@ -14,7 +14,16 @@
      status      -> ACF select, see STATUS below
      spacesLeft  -> ACF number, only when status === "spaces_left"
      collection  -> ACF select: "deep-dives" | "signature-collection"
+     image       -> ACF image, the card thumbnail at 312x408
+     image2x     -> the same frame at 624x816, for retina
      url         -> permalink, /retreats/{slug}/
+
+   IMAGES. Both sizes are listed explicitly rather than derived from
+   one path, so they map onto two registered WordPress image sizes and
+   a missing retina file can never 404 behind a browser's back. A
+   retreat with no image of its own falls back to its location's photo
+   (data/locations.js), and then to the gradient placeholder — see
+   retreatMedia() in js/retreat-cards.js.
 
    Nothing display-shaped lives here on purpose:
      · the italic location line comes from the location catalog
@@ -48,6 +57,8 @@ window.YAWW_RETREATS = [
     endDate: "2026-12-06",
     status: "spaces_left",
     spacesLeft: 2,
+    image: "images/retreat-cards/el-cuyo-dec-2026-delaney.webp",
+    image2x: "images/retreat-cards/el-cuyo-dec-2026-delaney@2x.webp",
     collection: "deep-dives",
     url: "/retreats/el-cuyo-dec-2026-delaney/"
   },
@@ -72,6 +83,8 @@ window.YAWW_RETREATS = [
     startDate: "2027-01-24",
     endDate: "2027-01-29",
     status: "filling_fast",
+    image: "images/retreat-cards/el-cuyo-jan-2027-berger.webp",
+    image2x: "images/retreat-cards/el-cuyo-jan-2027-berger@2x.webp",
     collection: "deep-dives",
     url: "/retreats/el-cuyo-jan-2027-berger/"
   },
@@ -84,6 +97,8 @@ window.YAWW_RETREATS = [
     startDate: "2027-01-29",
     endDate: "2027-02-02",
     status: "available",
+    image: "images/retreat-cards/el-cuyo-jan-2027-coffey.webp",
+    image2x: "images/retreat-cards/el-cuyo-jan-2027-coffey@2x.webp",
     collection: "deep-dives",
     url: "/retreats/el-cuyo-jan-2027-coffey/"
   },
@@ -96,6 +111,8 @@ window.YAWW_RETREATS = [
     startDate: "2027-02-02",
     endDate: "2027-02-07",
     status: "filling_fast",
+    image: "images/retreat-cards/el-cuyo-feb-2027-delaney.webp",
+    image2x: "images/retreat-cards/el-cuyo-feb-2027-delaney@2x.webp",
     collection: "deep-dives",
     url: "/retreats/el-cuyo-feb-2027-delaney/"
   },
@@ -108,6 +125,8 @@ window.YAWW_RETREATS = [
     startDate: "2027-02-14",
     endDate: "2027-02-20",
     status: "available",
+    image: "images/retreat-cards/el-cuyo-feb-2027-morin-gray.webp",
+    image2x: "images/retreat-cards/el-cuyo-feb-2027-morin-gray@2x.webp",
     collection: "deep-dives",
     url: "/retreats/el-cuyo-feb-2027-morin-gray/"
   },
@@ -121,6 +140,8 @@ window.YAWW_RETREATS = [
     endDate: "2027-03-19",
     status: "spaces_left",
     spacesLeft: 2,
+    image: "images/retreat-cards/argentina-mar-2027.webp",
+    image2x: "images/retreat-cards/argentina-mar-2027@2x.webp",
     collection: "signature-collection",
     url: "/retreats/argentina-mar-2027/"
   },
@@ -134,6 +155,8 @@ window.YAWW_RETREATS = [
     endDate: "2027-04-27",
     status: "spaces_left",
     spacesLeft: 2,
+    image: "images/retreat-cards/camino-de-santiago-apr-2027.webp",
+    image2x: "images/retreat-cards/camino-de-santiago-apr-2027@2x.webp",
     collection: "signature-collection",
     url: "/retreats/camino-de-santiago-apr-2027/"
   },
@@ -146,6 +169,8 @@ window.YAWW_RETREATS = [
     startDate: "2027-05-15",
     endDate: "2027-05-21",
     status: "available",
+    image: "images/retreat-cards/montenegro-may-2027-erickson.webp",
+    image2x: "images/retreat-cards/montenegro-may-2027-erickson@2x.webp",
     collection: "signature-collection",
     url: "/retreats/montenegro-may-2027-erickson/"
   },
@@ -158,6 +183,8 @@ window.YAWW_RETREATS = [
     startDate: "2027-05-16",
     endDate: "2027-05-23",
     status: "available",
+    image: "images/retreat-cards/portugal-may-2027.webp",
+    image2x: "images/retreat-cards/portugal-may-2027@2x.webp",
     collection: "signature-collection",
     url: "/retreats/portugal-may-2027/"
   },
@@ -171,6 +198,8 @@ window.YAWW_RETREATS = [
     endDate: "2027-05-28",
     status: "spaces_left",
     spacesLeft: 1,
+    image: "images/retreat-cards/montenegro-may-2027-cordover.webp",
+    image2x: "images/retreat-cards/montenegro-may-2027-cordover@2x.webp",
     collection: "signature-collection",
     url: "/retreats/montenegro-may-2027-cordover/"
   },
@@ -183,6 +212,8 @@ window.YAWW_RETREATS = [
     startDate: "2027-05-23",
     endDate: "2027-05-29",
     status: "available",
+    image: "images/retreat-cards/santorini-may-2027.webp",
+    image2x: "images/retreat-cards/santorini-may-2027@2x.webp",
     collection: "signature-collection",
     url: "/retreats/santorini-may-2027/"
   },
@@ -207,6 +238,8 @@ window.YAWW_RETREATS = [
     startDate: "2027-09-19",
     endDate: "2027-09-28",
     status: "available",
+    image: "images/retreat-cards/camino-de-santiago-sep-2027.webp",
+    image2x: "images/retreat-cards/camino-de-santiago-sep-2027@2x.webp",
     collection: "signature-collection",
     url: "/retreats/camino-de-santiago-sep-2027/"
   },

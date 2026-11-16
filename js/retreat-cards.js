@@ -224,6 +224,25 @@
       .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   }
 
+  /* Where a card's picture comes from, in order: the retreat's own
+     thumbnail, then its location's photo, then nothing (the caller
+     paints the gradient placeholder). Returns the 1x source plus the
+     retina one when there is a separate file for it. */
+  function retreatMedia(retreat, location) {
+    if (retreat && retreat.image) return { src: retreat.image, src2x: retreat.image2x || null };
+    if (location && location.image) return { src: location.image, src2x: null };
+    return null;
+  }
+  /* srcset lets a non-retina screen skip the double-size file, which
+     is most of the page weight on a grid of these. */
+  function imgHTML(media, alt) {
+    var srcset = media.src2x
+      ? ' srcset="' + esc(media.src) + ' 1x, ' + esc(media.src2x) + ' 2x"'
+      : '';
+    return '<img src="' + esc(media.src) + '"' + srcset +
+           ' alt="' + esc(alt) + '" loading="lazy" decoding="async">';
+  }
+
   function placeholderStyle(location) {
     var hue = (location && location.placeholderHue != null) ? location.placeholderHue : 200;
     return "background: linear-gradient(155deg, hsl(" + hue + " 32% 80%), hsl(" + hue + " 26% 60%));";
@@ -238,18 +257,14 @@
   function narrowCardHTML(retreat, opts) {
     var loc = getLocation(retreat.locationId);
     var alt = retreat.officialName + (loc ? " — " + loc.displayName : "");
+    var media = retreatMedia(retreat, loc);
+    var overlay = '<span class="card__badge">' + esc(collectionLabel(retreat.collection)) + '</span>' +
+                  flagHTML(retreat);
     var inner =
       '<article class="card card--narrow">' +
-        (loc && loc.image
-          ? '<div class="card__media">' +
-              '<img src="' + esc(loc.image) + '" alt="' + esc(alt) + '" loading="lazy">' +
-              '<span class="card__badge">' + esc(collectionLabel(retreat.collection)) + '</span>' +
-              flagHTML(retreat) +
-            '</div>'
-          : '<div class="card__media" style="' + placeholderStyle(loc) + '">' +
-              '<span class="card__badge">' + esc(collectionLabel(retreat.collection)) + '</span>' +
-              flagHTML(retreat) +
-            '</div>') +
+        (media
+          ? '<div class="card__media">' + imgHTML(media, alt) + overlay + '</div>'
+          : '<div class="card__media" style="' + placeholderStyle(loc) + '">' + overlay + '</div>') +
         '<div class="card__body">' +
           '<div class="card__title">' + esc(retreat.officialName) + '</div>' +
           '<div class="card__loc">' + esc(loc ? loc.displayName : "") + '</div>' +
@@ -267,9 +282,10 @@
     var loc = getLocation(retreat.locationId);
     var alt = retreat.officialName + (loc ? " in " + loc.name : "");
     var href = retreatHref(retreat, opts);
+    var lMedia = retreatMedia(retreat, loc);
     var body =
-      (loc && loc.image
-        ? '<div class="loc-card__media"><img src="' + esc(loc.image) + '" alt="' + esc(alt) + '" loading="lazy"></div>'
+      (lMedia
+        ? '<div class="loc-card__media">' + imgHTML(lMedia, alt) + '</div>'
         : '<div class="loc-card__media" style="' + placeholderStyle(loc) + '"></div>') +
       '<h3 class="loc-card__name">' + esc(retreat.officialName) + '</h3>' +
       '<p class="loc-card__where">' + esc(locationShortLabel(loc)) + '</p>' +
@@ -425,6 +441,7 @@
   YAWW.teacherNames           = teacherNames;
   YAWW.teacherLine            = teacherLine;
   YAWW.retreatHref            = retreatHref;
+  YAWW.retreatMedia           = retreatMedia;
   YAWW.renderRetreatCard      = renderRetreatCard;
   YAWW.renderRetreatRow       = renderRetreatRow;
   YAWW.wireWaitlistForm       = wireWaitlistForm;

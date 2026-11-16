@@ -24,3 +24,8 @@ retreats/_shared/
 # Local preview-server config for the Claude Code browser pane. Tooling,
 # not part of the site.
 .claude/
+
+# Retreat thumbnail masters: 12 PNGs, 120 MB, dropped in by hand to be
+# processed. images/retreat-cards/ holds what the site actually serves
+# (312x408 and 624x816 WebP, ~1.3 MB for both sets together).
+images/Retreats/
