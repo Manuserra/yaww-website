@@ -118,7 +118,7 @@
                  '<p class="post-retreat__title">' + esc(r.title) + '</p>' +
                  (r.subtitle ? '<p class="post-retreat__sub">' + esc(r.subtitle) + '</p>' : "") +
                  (r.text ? '<p class="post-retreat__desc">' + esc(r.text) + '</p>' : "") +
-                 '<a class="btn btn--primary" href="' + esc(href) + '">Explore retreat</a>' +
+                 '<a class="btn btn--primary post-retreat__cta" href="' + esc(href) + '">Explore retreat</a>' +
                '</div>' +
              '</div>' +
            '</section>';
