@@ -1320,8 +1320,10 @@
   .rail--quotes { --card-w: min(420px, calc(100vw - 2 * 16px - 32px)); --card-h: auto; }
   .quote-card { flex-direction: column; height: auto; }
   .quote-card__divider { width: auto; height: 1px; align-self: stretch; border-left: none; border-top: 1px solid var(--stone-300); }
-  /* Portrait photos cropped to 3:2 — keep the top, where the faces are. */
-  .quote-card__photo { align-self: stretch; aspect-ratio: 3 / 2; object-position: center 20%; }
+  /* Portrait photos cropped to 3:2. Each <img> sets its own --focus-y
+     so the three pairs of eyes land on the same line, ~40% down the
+     frame, with some air above the head. */
+  .quote-card__photo { align-self: stretch; aspect-ratio: 3 / 2; object-position: center var(--focus-y, 20%); }
 }
 
 /* ============================================================
