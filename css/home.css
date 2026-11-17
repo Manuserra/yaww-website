@@ -1301,6 +1301,9 @@
 /* The <picture> wrapper stays out of layout, so the <img> is still the
    card's flex item. */
 .quote-card picture { display: contents; }
+/* ...which also lifts its <source> into the flex row as an empty item,
+   adding a second 24px gap before the photo. */
+.quote-card source { display: none; }
 .quote-card__photo {
   flex: 1 1 0;
   min-width: 0;
