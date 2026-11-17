@@ -450,10 +450,19 @@
   .r-avail { text-align: left; align-self: start; margin-top: 6px; }
 }
 
-/* v2 sidebar — stack on smaller screens */
-@media (max-width: 1024px) {
+/* v2 sidebar — stack as soon as it no longer fits beside full-size cards.
+   312 sidebar + 48 gap + 3×312 cards + 2×48 gaps = 1392, the content
+   width at a 1440 viewport. Below that the sidebar used to keep its 312px
+   and squeeze the cards instead (down to ~173px at 1025, tag and badge
+   overlapping). With the title on top, the grid view is held to the same
+   3×312 + 2×48 = 1032 block and centred, so the cards stay 312px (down to
+   ~294 at 1025) instead of jumping up to fill the freed width. */
+@media (max-width: 1439px) {
   .season { grid-template-columns: 1fr; }
   .season__title { position: static; margin-bottom: 24px; }
+}
+@media (min-width: 1025px) and (max-width: 1439px) {
+  .season:not(.season--list) { max-width: 1032px; margin-inline: auto; }
 }
 
 /* Dynamic collection intro (between chips and content) */
