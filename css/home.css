@@ -690,7 +690,7 @@
 .tiers2__title { color: var(--stone); text-wrap: balance; }
 .tiers2__row {
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;   /* equal-height cards, so the links can share a line */
   gap: 48px;
   align-self: stretch;
   width: 100%;
@@ -880,21 +880,22 @@
   font-weight: 400;
   line-height: 24px;
   letter-spacing: 0.32px;
+  text-wrap: pretty;   /* no single word left alone on the last line */
 }
+/* margin-top: auto pins the link to the foot of its (equal-height)
+   card, so the three links sit on one line however many lines each
+   paragraph runs to. The 56px card gap stays as the minimum. A CTA
+   label is never truncated: if it ever doesn't fit it wraps. */
 .tiers2__link {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   gap: 24px;
   max-width: 100%;
+  margin-top: auto;
   color: var(--stone);
 }
 .tiers2__link-text {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 14px;
@@ -908,8 +909,39 @@
 }
 .tiers2__link:focus-visible { outline: 2px solid var(--stone); outline-offset: 4px; }
 @media (prefers-reduced-motion: reduce) { .tiers2__link svg { transition: none; } }
+/* Three columns only while each one keeps a readable measure: 340px
+   (~40+ characters a line) is reached at a 1164 viewport. Below that the
+   columns used to shrink to 214px — 8-line paragraphs, headlines split
+   in two, CTA labels cut with an ellipsis. */
+@media (max-width: 1163px) {
+  .tiers2__row { flex-direction: column; align-items: center; gap: 64px; }
+}
+/* Tablet: one row per collection — postcards left, copy and link right,
+   left-aligned and centred on the stack's height. */
+@media (min-width: 768px) and (max-width: 1163px) {
+  .tiers2__row { max-width: 960px; }
+  .tiers2__card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: 1fr auto auto 1fr;
+    grid-template-areas: "image ." "image text" "image link" "image .";
+    column-gap: 48px;
+    row-gap: 0;
+    width: 100%;
+  }
+  .tiers2__intro { display: contents; }
+  .tiers2__image { grid-area: image; align-self: center; justify-self: center; }
+  .tiers2__text { grid-area: text; }
+  .tiers2__link { grid-area: link; justify-self: start; margin-top: 32px; }
+  .kicker.tiers2__eyebrow,
+  .tiers2__headline,
+  .tiers2__body { text-align: left; }
+  .tiers2__body { margin: 0; }
+}
+/* Phone: stacked, and centred in the band (the row used to leave each
+   432px card against the left edge). */
 @media (max-width: 767px) {
-  .tiers2__row { flex-direction: column; gap: 48px; }
+  .tiers2__row { gap: 48px; }
   .tiers2__card { width: 100%; max-width: 432px; }
 }
 
