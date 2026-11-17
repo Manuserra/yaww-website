@@ -1210,21 +1210,16 @@
   padding: 72px 0 56px;
   background: var(--stone);
 }
-/* Caps the title at two lines (clipped with an ellipsis past that)
-   and at 996px so it never spans the full 1392px content row even on
-   a short one-line heading — same idea as .tiers2__body's max-width,
-   just wide enough for a heading instead of a paragraph. Keeps its own
+/* Caps the title at 996px so it never spans the full 1392px content
+   row — same idea as .tiers2__body's max-width, just wide enough for a
+   heading instead of a paragraph. A heading is never truncated. Keeps its own
    side padding same as .home-next > .section-title: only the rail
    itself goes edge-to-edge so its cards can peek past the margin. */
 .quotes > .section-title {
   max-width: 996px;
   margin-inline: auto;
   padding-inline: var(--container-pad);
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  text-wrap: balance;
 }
 /* Reuses the site's one rail/carousel component (.rail, see HOME ·
    NEXT UP's own comment above) rather than inventing a second scroller
@@ -1232,6 +1227,17 @@
    "1 whole card shown, peek on both sides", which is exactly the
    spec: nothing quotes-specific to tune. */
 .rail--quotes { --card-w: 722px; --card-h: 458px; }
+/* Stops on whole cards, by arrow or by swipe: every card lands flush
+   with the page gutter, never cut in half. */
+.rail--quotes .rail__track {
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--container-pad);
+}
+.rail--quotes .quote-card { scroll-snap-align: start; }
+/* Centred on the rail itself rather than on --card-h, which is auto
+   once the card stacks — calc(auto / 2) is invalid, and the arrows used
+   to fall back to their static spots (top-left / bottom-right). */
+.rail--quotes .rail__arrow { top: 50%; }
 .quote-card {
   display: flex;
   align-items: flex-start;
@@ -1306,13 +1312,16 @@
      step-down — lost when .quotes__grid's rules were rewritten for
      the rail, restored here. */
   .quotes { padding: 40px 0; gap: 32px; }
-  /* No explicit mobile spec was given (the Figma frames are 1440-only)
-     — stacks text above photo and fits the card to the viewport rather
-     than force the 722px desktop width into a horizontal squeeze. */
+}
+/* The 722px side-by-side card only while it fits with the next one
+   still peeking (at 768 it showed 1% of it). Below 900 it stacks text
+   above photo at up to 420px, so tablets show a card and a half. */
+@media (max-width: 899px) {
   .rail--quotes { --card-w: min(420px, calc(100vw - 2 * 16px - 32px)); --card-h: auto; }
   .quote-card { flex-direction: column; height: auto; }
   .quote-card__divider { width: auto; height: 1px; align-self: stretch; border-left: none; border-top: 1px solid var(--stone-300); }
-  .quote-card__photo { align-self: stretch; aspect-ratio: 3 / 2; }
+  /* Portrait photos cropped to 3:2 — keep the top, where the faces are. */
+  .quote-card__photo { align-self: stretch; aspect-ratio: 3 / 2; object-position: center 20%; }
 }
 
 /* ============================================================

@@ -11,8 +11,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css" crossorigin="anonymous">
 
-<link rel="stylesheet" href="css/base.css?v=202611172000">
-<link rel="stylesheet" href="css/home.css?v=202611172000">
+<link rel="stylesheet" href="css/base.css?v=202611172100">
+<link rel="stylesheet" href="css/home.css?v=202611172100">
 <!-- Retreat data + the one card component every retreat card is rendered
      by. Classic scripts so the prototype still works over file://.
      Order matters: the catalogs load before the data, the data before
@@ -1254,7 +1254,9 @@
      first click stranded re-centering the already-mostly-visible
      middle card instead of making progress toward the one still
      fully offscreen — going straight to the scroll end instead gets
-     the hidden card fully into view in exactly one click. */
+     the hidden card fully into view in exactly one click. That broke
+     below ~1100px, where the middle card was never shown whole, so
+     the arrows now step one card at a time (see stops() below). */
   (function () {
     var track = document.getElementById('quotesTrack');
     if (!track) return;
@@ -1276,8 +1278,26 @@
       setArrow(prevBtn, track.scrollLeft > EPS);
       setArrow(nextBtn, track.scrollLeft < maxScroll() - EPS);
     }
-    function goNext() { track.scrollTo({ left: maxScroll(), behavior: 'smooth' }); }
-    function goPrev() { track.scrollTo({ left: 0, behavior: 'smooth' }); }
+    // One card per click: the next/previous card's left edge, lined up
+    // with the track's own padding (the same spot scroll-snap rests on).
+    var cards = Array.prototype.slice.call(track.querySelectorAll('.quote-card'));
+    function stops() {
+      var pad = parseFloat(getComputedStyle(track).paddingLeft) || 0;
+      var origin = track.getBoundingClientRect().left - track.scrollLeft;
+      return cards.map(function (c) {
+        return Math.min(c.getBoundingClientRect().left - origin - pad, maxScroll());
+      });
+    }
+    function goNext() {
+      var x = track.scrollLeft;
+      var target = stops().filter(function (s) { return s > x + EPS; })[0];
+      track.scrollTo({ left: target === undefined ? maxScroll() : target, behavior: 'smooth' });
+    }
+    function goPrev() {
+      var x = track.scrollLeft;
+      var before = stops().filter(function (s) { return s < x - EPS; });
+      track.scrollTo({ left: before.length ? before[before.length - 1] : 0, behavior: 'smooth' });
+    }
 
     updateArrows();
 
@@ -1289,13 +1309,8 @@
       }
     }, { passive: true });
 
-    window.addEventListener('resize', function () {
-      // Only two resting points, so a resize just needs scrollLeft to
-      // stay valid — "was at start" stays 0, "was anywhere past it"
-      // snaps back flush to the (possibly new) end.
-      if (track.scrollLeft > EPS) track.scrollLeft = maxScroll();
-      updateArrows();
-    });
+    // scroll-snap re-settles on a whole card by itself after a resize.
+    window.addEventListener('resize', updateArrows);
 
     prevBtn.addEventListener('click', goPrev);
     nextBtn.addEventListener('click', goNext);
