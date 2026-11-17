@@ -1,0 +1,235 @@
+/* ============================================================
+   YAWW · TEACHERS & TEAM
+   Loaded after base.css by teachers.html, team.html and every
+   teacher-*.html / team-*.html profile.
+   ============================================================ */
+
+/* ============================================================
+   PEOPLE — team + teachers index grids and profile pages
+   The card is the .location card at a different column count: same
+   672/888 photo, same heading and body scale. Four across, which is
+   how the reference lays the team out.
+   ============================================================ */
+.people {
+  padding: 56px var(--container-pad) 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.people__head { max-width: 760px; text-align: center; margin-bottom: 64px; }
+.people__lede {
+  margin: 16px 0 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue-300);
+}
+.people-grid {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 56px 48px;
+}
+@media (max-width: 1024px) { .people-grid { grid-template-columns: repeat(3, 1fr); gap: 56px 24px; } }
+@media (max-width: 767px)  { .people-grid { grid-template-columns: repeat(2, 1fr); gap: 40px 16px; }
+                             .people { padding: 40px 16px 56px; }
+                             .people__head { margin-bottom: 40px; } }
+
+.person { margin: 0; }
+.person__link { display: block; text-decoration: none; color: var(--sea-blue); }
+.person__image { aspect-ratio: 672 / 888; overflow: hidden; background: var(--stone-300); }
+.person__image img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* No photograph yet — the flat stone block, never a broken image. */
+.person__image--empty { background: var(--stone-300); }
+.person__name {
+  margin: 16px 0 8px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue);
+}
+@media (max-width: 1024px) { .person__name { font-size: 18px; } }
+.person__link:hover .person__name { text-decoration: underline; text-underline-offset: 3px; }
+.person__link:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 4px; }
+.person__bio {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue);
+}
+.person__bio--pending { color: var(--sea-blue-200); font-style: italic; }
+
+/* --- profile page -------------------------------------------------- */
+.person-page {
+  padding: 56px var(--container-pad) 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.person-page__photo {
+  width: 572px;
+  max-width: 100%;
+  aspect-ratio: 672 / 888;
+  overflow: hidden;
+  background: var(--stone-300);
+}
+.person-page__photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.person-page__name {
+  margin: 40px 0 32px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 44px;
+  color: var(--sea-blue);
+  text-align: center;
+}
+/* A reading measure, left-aligned: the reference justifies this column,
+   which opens rivers at this width. Everything else about the block
+   matches it. */
+.person-page__bio { max-width: 760px; }
+.person-page__bio p {
+  margin: 0 0 24px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue);
+}
+.person-page__bio p:last-child { margin-bottom: 0; }
+/* Shown when a teacher has retreats on sale but no bio written yet. */
+.person-page__pending {
+  max-width: 560px;
+  background: var(--stone-100);
+  border: 1px solid var(--stone-300);
+  padding: 32px;
+  text-align: center;
+}
+.person-page__pending p {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--sea-blue-300);
+}
+.person-page__pending-title {
+  margin: 0 0 8px !important;
+  font-family: var(--font-heading) !important;
+  font-weight: 700;
+  font-size: 20px !important;
+  line-height: 32px !important;
+  color: var(--sea-blue) !important;
+}
+@media (max-width: 767px) {
+  .person-page { padding: 40px 16px 56px; }
+  .person-page__name { font-size: 26px; line-height: 36px; margin: 32px 0 24px; }
+}
+
+/* --- a teacher's upcoming retreats, under her bio ------------------- */
+.person-retreats {
+  padding: 0 var(--container-pad) 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.person-retreats__title {
+  margin: 0 0 40px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+  color: var(--sea-blue);
+  text-align: center;
+}
+.person-retreats__grid {
+  width: 100%;
+  max-width: var(--container-max);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px;
+}
+@media (max-width: 1024px) { .person-retreats__grid { grid-template-columns: repeat(3, 1fr); gap: 24px; } }
+@media (max-width: 767px)  { .person-retreats__grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+                             .person-retreats { padding: 0 16px 56px; } }
+
+/* The retreat card itself, same component the listing uses. */
+.result-link { display: block; height: 100%; color: inherit; text-decoration: none; }
+.result-link:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 4px; }
+.result-link:hover .card__title { text-decoration: underline; text-underline-offset: 3px; }
+.card { display: flex; flex-direction: column; height: 100%; }
+.card--narrow .card__media { aspect-ratio: 312 / 408; }
+.card__media {
+  position: relative;
+  aspect-ratio: 492 / 532;
+  overflow: hidden;
+  background: var(--stone-300);
+}
+.card__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.card__badge {
+  position: absolute;
+  top: 16px; left: 16px;
+  z-index: 2;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: var(--stone-100);
+  color: var(--sea-blue);
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+.card__flag {
+  position: absolute;
+  top: 16px; right: 16px;
+  z-index: 2;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.card__flag--scarce,
+.card__flag--soldout { background: var(--sea-blue); color: var(--stone); }
+.card__body {
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+.card__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--sea-blue);
+}
+.card__loc {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--sea-blue);
+}
+.card__date,
+.card__teacher {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--sea-blue);
+}
+
+

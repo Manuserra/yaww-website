@@ -1,0 +1,298 @@
+/* ============================================================
+   YAWW · ABOUT PAGE
+   Loaded after base.css by about.html.
+   ============================================================ */
+
+/* ============================================================
+   ABOUT PAGE
+   Built on the page grid the rest of the site uses: 12 columns,
+   24px margins, 48px gutter. Every width below is a whole number
+   of columns, so the sections line up with each other and with
+   the retreat pages.
+   ============================================================ */
+.about-section { padding: 56px 24px; }
+.about-inner {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 48px;
+  align-items: start;
+}
+/* The shared .kicker and .section-title carry the eyebrow and heading
+   treatments; only the body size is local. .section-title is centred by
+   default, so the two split sections undo that. */
+.about-body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue);
+}
+/* Justified, as drawn. It only holds on a measure this wide — the
+   narrow columns further down stay ragged. */
+.about-prose { display: flex; flex-direction: column; gap: 24px; }
+.about-prose .about-body { text-align: justify; }
+/* figure carries a 40px inline margin from the user agent, which would
+   eat 80px off every picture column. */
+.about-intro__figure,
+.about-split__media,
+.about-card__media,
+.about-person__media,
+.about-teachers__media { margin: 0; }
+.about-img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* --- Intro ------------------------------------------------- */
+.about-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 56px 24px 0;
+  text-align: center;
+}
+.about-intro__title {
+  margin: 0;
+  max-width: 760px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 36px;      /* Desktop/H2-bold */
+  line-height: 48px;
+  color: var(--sea-blue);
+}
+.about-intro__lede { max-width: 700px; }
+.about-intro__figure {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 32px auto 0;
+  aspect-ratio: 1392 / 718;
+}
+
+/* --- Our story / Founder: five columns of picture, five of text,
+       with the two gutter columns between them left empty. ------ */
+.about-split__media { grid-column: 1 / span 5; aspect-ratio: 552 / 725; }
+.about-split__text  { grid-column: 8 / span 5; display: flex; flex-direction: column; gap: 24px; }
+/* The founder block mirrors it — text first, picture on the right. */
+.about-split--mirror .about-split__text  { grid-column: 1 / span 5; }
+.about-split--mirror .about-split__media { grid-column: 8 / span 5; }
+.about-split__head { display: flex; flex-direction: column; gap: 8px; }
+.about-split__head .section-title,
+.about-teachers__title { text-align: left; }
+
+/* --- How we work: four cards of three columns each ---------- */
+.about-how { display: flex; flex-direction: column; align-items: center; gap: 40px; }
+.about-how__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 48px;
+  width: 100%;
+  max-width: var(--container-max);
+}
+.about-card { display: flex; flex-direction: column; gap: 16px; }
+.about-card__media { aspect-ratio: 3 / 4; }
+.about-card__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  color: var(--sea-blue);
+}
+.about-card__text {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--sea-blue);
+}
+/* Pinned to the foot so the four buttons line up however long the
+   titles and copy run. */
+.about-card .btn { margin-top: auto; width: 100%; }
+
+/* --- The team: three cards of four columns each ------------- */
+.about-team { display: flex; flex-direction: column; align-items: center; gap: 40px; }
+.about-team__head { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+.about-team__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 48px;
+  width: 100%;
+  max-width: var(--container-max);
+}
+.about-person { display: flex; flex-direction: column; gap: 12px; }
+.about-person__media { aspect-ratio: 1 / 1; }
+.about-person__role {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--sea-blue-200);
+}
+.about-person__name {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 32px;
+  color: var(--sea-blue);
+}
+.about-person__text {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--sea-blue);
+}
+
+/* --- Guest quotes ------------------------------------------- */
+.about-quotes { display: flex; flex-direction: column; align-items: center; gap: 40px; }
+.about-quotes__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 48px;
+  width: 100%;
+  max-width: var(--container-max);
+}
+.about-quote {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 0;
+  padding: 24px;
+  background: var(--stone-100);
+  border: 1px solid var(--stone-300);
+}
+.about-quote__text {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 32px;
+  color: var(--sea-blue);
+}
+/* The attribution sits at the foot so the three rows of names align
+   whatever length the quotes run to. */
+.about-quote__by { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+.about-quote__avatar {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--stone-300);
+}
+.about-quote__name,
+.about-quote__where {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 20px;
+}
+.about-quote__name { color: var(--sea-blue); }
+.about-quote__where { color: var(--sea-blue-200); }
+.about-quotes__rating {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--sea-blue);
+  text-align: center;
+}
+
+/* --- For teachers: its own ground, so the pitch reads as an aside
+       rather than as the next part of the story. ---------------- */
+.about-teachers { background: var(--stone-300); padding: 72px 24px; }
+.about-teachers__media { grid-column: 1 / span 6; aspect-ratio: 672 / 413; }
+.about-teachers__text  { grid-column: 8 / span 5; display: flex; flex-direction: column; gap: 24px; }
+.about-teachers__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+  color: var(--sea-blue);
+}
+.about-teachers__text .btn { align-self: flex-start; }
+
+
+/* --- Tablet -------------------------------------------------- */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .about-intro__title { font-size: 32px; line-height: 44px; }
+  .about-how__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 32px; }
+  .about-quotes__grid { gap: 32px; }
+  .about-team__grid { gap: 32px; }
+  .about-teachers { padding: 56px 24px; }
+}
+
+/* --- Phone: every split stacks, picture first except where the
+       text is the thing being introduced. ---------------------- */
+@media (max-width: 767px) {
+  .about-section { padding: 48px 16px; }
+  .about-intro { padding: 48px 16px 0; }
+  .about-intro__title { font-size: 26px; line-height: 36px; }
+  .about-intro__figure { aspect-ratio: 3 / 2; margin-top: 24px; }
+
+  .about-grid { grid-template-columns: minmax(0, 1fr); row-gap: 32px; }
+  .about-split__media,
+  .about-split__text,
+  .about-teachers__media,
+  .about-teachers__text { grid-column: 1; }
+  .about-split__media { aspect-ratio: 4 / 3; }
+  /* Ragged below this width: justified text on a narrow measure opens
+     rivers of white space between the words. */
+  .about-prose .about-body { text-align: left; }
+
+  .about-how__grid,
+  .about-team__grid,
+  .about-quotes__grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .about-card__media { aspect-ratio: 4 / 3; }
+  .about-person__media { aspect-ratio: 4 / 3; }
+
+  .about-teachers { padding: 48px 16px; }
+  .about-teachers__media { aspect-ratio: 3 / 2; }
+
+  }
+
+/* --- Split image reveal -------------------------------------------------
+   Both split sections fit inside one screen (the figure is 725px tall and
+   the text shorter still), so there is no room for a pinned-column scroll
+   effect: the taller column would have 245px and 101px of travel to pin
+   against, less than one wheel flick. A reveal on entry is what reads at
+   this size — the figure lifts 16px and fades as it crosses in.
+
+   .js-reveal is added by script, never written into the HTML, so the
+   figures render visible if that script never runs. Only transform and
+   opacity animate. --ease-out, not --ease-in-out: this enters rather than
+   moving across while mounted. Reduced motion keeps the fade and drops
+   the lift, the same trade the tier postcards make.
+
+   It sits on the <figure>, not the <img>, so it layers over the existing
+   load fade on img.img-reveal rather than competing with it.
+
+   The transition is declared on .is-revealed and not on the hidden state
+   on purpose. Script adds .js-reveal to a figure the browser has already
+   laid out at full opacity, so a transition sitting on that state would
+   animate the figure OUT over 600ms before ever bringing it back in.
+   Declared this way the hide is instantaneous and only the entrance
+   animates. */
+@media (prefers-reduced-motion: no-preference) {
+  .about-split__media.js-reveal { opacity: 0; transform: translateY(16px); }
+  .about-split__media.js-reveal.is-revealed {
+    opacity: 1;
+    transform: none;
+    transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-split__media.js-reveal { opacity: 0; }
+  .about-split__media.js-reveal.is-revealed { opacity: 1; transition: opacity 300ms ease; }
+}
+

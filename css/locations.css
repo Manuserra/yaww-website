@@ -1,0 +1,99 @@
+/* ============================================================
+   YAWW · LOCATIONS PAGE
+   Loaded after base.css by locations.html.
+   ============================================================ */
+
+/* ============================================================
+   LOCATIONS PAGE
+   The grid is lifted from the reference build at
+   diegodelbono.com/yoga/retreats/#locations: three 1fr columns with a
+   56px row / 48px column gap, dropping to two columns (56/24) at 1024
+   and one (48) at 767. Those are the reference's own breakpoints, and
+   they are the two this site already uses everywhere else.
+
+   The card is the reference's structure — image, title, caption — on
+   this site's tokens, which it turns out already match it exactly: the
+   title is the 20px/32px Libre Baskerville 700 of .booking__label, the
+   caption the 16px/24px Raleway of .booking__body, both --sea-blue at
+   0.32px tracking. The reference drops the title to 18px below 1024;
+   kept.
+
+   One deliberate difference. The reference leaves its <img> at
+   object-fit: fill on a natural 672x888, which stretches any source
+   that isn't exactly that ratio. Here the wrapper holds the ratio and
+   the image covers it: identical geometry for a 672x888 source, and
+   still correct for one that isn't — which matters while these are
+   stand-ins.
+
+   The reference's Locations / Upcoming Dates tabs are deliberately
+   absent; they belong to the older model this page replaces.
+   ============================================================ */
+.locations { padding: 56px var(--container-pad) 96px; }
+.locations__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  max-width: 700px;
+  margin: 0 auto 72px;
+  text-align: center;
+}
+.locations__lede {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue);
+}
+.locations-grid {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 56px 48px;
+}
+@media (max-width: 1024px) {
+  .locations-grid { grid-template-columns: repeat(2, 1fr); gap: 56px 24px; }
+}
+@media (max-width: 767px) {
+  .locations-grid { grid-template-columns: repeat(1, 1fr); gap: 48px; }
+  .locations { padding: 40px 16px 56px; }
+  .locations__head { margin-bottom: 48px; }
+}
+.location { margin: 0; }
+.location__link {
+  display: block;
+  text-decoration: none;
+  color: var(--sea-blue);
+}
+.location__image {
+  aspect-ratio: 672 / 888;
+  overflow: hidden;
+}
+.location__image img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.location__title {
+  margin: 16px 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue);
+}
+/* Declared after the base rule, not up with the grid's own media
+   query: same specificity, so source order is what decides it. */
+@media (max-width: 1024px) { .location__title { font-size: 18px; } }
+.location__caption {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue);
+  text-align: left;
+}
+

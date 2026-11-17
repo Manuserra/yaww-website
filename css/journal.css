@@ -1,0 +1,259 @@
+/* ============================================================
+   YAWW · JOURNAL INDEX
+   Loaded after base.css by journal.html.
+   ============================================================ */
+
+/* ============================================================
+   SITE TABS
+   The retreats page's tab component, reused as-is: same bar,
+   same type, same sliding indicator.
+   ============================================================ */
+/* The active-tab indicator is one element per bar that slides, rather than a
+   rule drawn under whichever tab is active. 320ms is the top of the band
+   that still reads as immediate; paired with a strong ease-out it leaves
+   decisively and settles softly, which is the pace this brand wants without
+   crossing into sluggish. */
+.tabs__indicator,
+.tabbar__indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--sea-blue);
+  transform: translate(0, 0);
+  pointer-events: none;
+}
+/* The transition is carried by a class the bar puts on for a click and takes
+   off for a resize, rather than by toggling an inline transition around the
+   write — turning it off and on inside one tick does not reliably produce a
+   jump, and the indicator ends up animating from a stale position. */
+.is-sliding-ready .tabs__indicator,
+.is-sliding-ready .tabbar__indicator {
+  transition: transform .32s cubic-bezier(.32, .72, 0, 1),
+              width     .32s cubic-bezier(.32, .72, 0, 1);
+}
+/* the per-tab rule steps aside once a sliding one exists */
+.is-sliding .tabs__item.is-active::after,
+.is-sliding .tab.is-active::after { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .is-sliding-ready .tabs__indicator,
+  .is-sliding-ready .tabbar__indicator { transition: none; }
+}
+
+.tabbar {
+  border-bottom: 1px solid var(--stone-400);   /* full-width divider — reads as one bar with the nav */
+}
+.tabbar .container {
+  position: relative;
+  display: flex;
+  justify-content: center;      /* 3×216 = 648, centered */
+  /* Same 55px as the nav row above, and the tabs stretch to fill it so the
+     labels stay optically centred instead of sinking to the bottom edge. */
+  min-height: 55px;
+  align-items: stretch;
+}
+.tabs {
+  display: flex;
+}
+.tab {
+  cursor: pointer;
+  position: relative;
+  width: 216px;                     /* Figma inspect */
+  padding: 12px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 24px;
+  letter-spacing: 0.48px;           /* normalized (active showed 1.08 — anomaly) */
+  text-transform: uppercase;
+  color: var(--sea-blue-100);
+  white-space: nowrap;
+}
+/* Hover on an unselected tab. Only the label moves, deepening to the same
+   sea-blue the selected one carries — the affordance is "this is where you
+   are going", which the sliding indicator then completes. Faster than the
+   indicator's 320ms: a colour arriving under the cursor should feel like a
+   response, while travel across the bar is a journey.
+   Scoped to real pointers so a tap on a phone does not leave a tab looking
+   half-selected after the finger lifts. */
+@media (hover: hover) and (pointer: fine) {
+  .tabs__item:not(.is-active):hover,
+  .tab:not(.is-active):hover { color: var(--sea-blue); }
+}
+.tabs__item,
+.tab { transition: color .18s ease; }
+@media (prefers-reduced-motion: reduce) {
+  .tabs__item, .tab { transition: none; }
+}
+
+.tab.is-active { color: var(--sea-blue); }
+.tab.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;   /* full tab width (216) — cuts at the edges */
+  height: 2px;
+  background: var(--sea-blue);
+}
+.tab:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
+
+/* ============================================================
+   JOURNAL PAGE
+   1:1 port of diegodelbono.com/yoga/journal/ (theme
+   yoga-adventures-2.2.0, css/app.css). Every value below is the
+   reference's own: the type scale it applies through its
+   heading-* and text-* utility classes, the .main-journal paddings,
+   and the .journal-grid geometry. The one substitution is the
+   topic filter, which uses this site's own .tabbar/.tab
+   component (see SITE TABS above) instead of the reference's
+   .tabs__nav, so the control reads the same here as on the
+   retreats page.
+   ============================================================ */
+
+/* --- Reference type scale -------------------------------------------
+   The reference sets body type on `*` and layers utility classes over
+   it. Scoped to the page here so the site's own components keep their
+   tokens. Ratios and breakpoints are verbatim: note that the H4/H5
+   768–1024 rule and the >=1024 rule both match at exactly 1024px, and
+   the later (desktop) one wins — reproduced in that order. */
+.main-journal {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue);
+}
+@media only screen and (max-width: 1024px) {
+  .main-journal { font-size: 16px; line-height: 24px; letter-spacing: 0.32px; }
+}
+.main-journal p { margin: 0 0 16px; }
+.main-journal img { display: block; width: 100%; max-width: 100%; height: auto; }
+
+.main-journal .heading-h4,
+.main-journal .heading-h4 * {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  line-height: 24px;
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .main-journal .heading-h4, .main-journal .heading-h4 * { font-size: 18px; line-height: 24px; }
+}
+@media only screen and (min-width: 1024px) {
+  .main-journal .heading-h4, .main-journal .heading-h4 * { font-size: 24px; line-height: 40px; }
+}
+
+.main-journal .heading-h5,
+.main-journal .heading-h5 * {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  line-height: 24px;
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .main-journal .heading-h5, .main-journal .heading-h5 * { font-size: 16px; line-height: 16px; }
+}
+@media only screen and (min-width: 1024px) {
+  .main-journal .heading-h5, .main-journal .heading-h5 * { font-size: 20px; line-height: 32px; }
+}
+
+.main-journal .text-small,
+.main-journal .text-small * { font-size: 16px; line-height: 24px; letter-spacing: 0.32px; }
+@media only screen and (max-width: 1024px) {
+  .main-journal .text-small, .main-journal .text-small * { font-size: 14px; line-height: 24px; letter-spacing: 0.32px; }
+}
+
+.main-journal .text-caption,
+.main-journal .text-caption * { font-size: 14px; line-height: 24px; letter-spacing: 0.56px; }
+@media only screen and (max-width: 1024px) {
+  .main-journal .text-caption, .main-journal .text-caption * { font-size: 12px; line-height: 16px; letter-spacing: 0.56px; }
+}
+
+/* slug = the category line: 14/24, 4% tracking, semibold, uppercase, stone-600 */
+.main-journal .text-slug,
+.main-journal .text-slug * {
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.56px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--stone-600);
+}
+@media only screen and (max-width: 1024px) {
+  .main-journal .text-slug, .main-journal .text-slug * { font-size: 12px; line-height: 16px; letter-spacing: 0.56px; }
+}
+
+.main-journal .text-bold,   .main-journal .text-bold *   { font-weight: 700; }
+.main-journal .text-left,   .main-journal .text-left *   { text-align: left; }
+.main-journal .text-center, .main-journal .text-center * { text-align: center; }
+
+/* --- Page frame ------------------------------------------------------ */
+.main-journal { padding-top: 24px; }
+
+.main-journal .main__header--small { padding: 56px 152px; }
+@media only screen and (max-width: 1024px) {
+  .main-journal .main__header--small { padding: 56px 0; }
+}
+@media only screen and (max-width: 767px) {
+  .main-journal .main__header--small { padding: 48px 0; }
+}
+.main__header--title { margin: 0; }
+
+/* 16px header -> filter bar (reference: .main-journal .tabs) and 56px
+   filter bar -> grid (reference: .tabs__nav margin-bottom), with the
+   reference's 160px tail below the grid (.main__content). */
+.main-journal .tabbar { margin-top: 16px; }
+.main-journal .main__content { margin-top: 56px; margin-bottom: 160px; }
+@media only screen and (max-width: 767px) {
+  .main-journal .main__content { margin-top: 48px; }
+}
+
+/* --- Topic filter (this site's tab component) ------------------------
+   Ten topics do not fit the 216px fixed tab the three-tab retreats bar
+   uses, so here the tabs size to their own label — same paddings, type
+   and sliding indicator, only the fixed width dropped. `margin: auto`
+   on the row centres it while there is room and still lets it scroll
+   from the start once it overflows, which `justify-content: center`
+   on its own cannot do. */
+.main-journal .tabbar .container {
+  justify-content: flex-start;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.main-journal .tabbar .container::-webkit-scrollbar { display: none; }
+.main-journal .tabs { margin-inline: auto; }
+.main-journal .tab { width: auto; }
+
+/* --- Grid ------------------------------------------------------------
+   2 columns in the 1392px content width with a 48px gutter = 672px per
+   card, which is exactly the image crop the cards are served at. */
+.journal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 56px 48px;
+}
+@media only screen and (max-width: 1024px) {
+  .journal-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+}
+@media only screen and (max-width: 767px) {
+  .journal-grid { grid-template-columns: repeat(1, 1fr); }
+}
+
+.journal-grid .journal__cat { display: flex; gap: 16px; margin-top: 16px; }
+.journal-grid .journal__title { margin: 16px 0; }
+
+/* Keyboard affordance only — the reference gives the card no hover or
+   pressed state, and none is invented here. */
+.journal__link:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 4px; }
+
+/* A topic with nothing in it cannot happen with the current set, but a
+   filter that can empty needs something to say. */
+.journal-empty {
+  margin: 0;
+  padding: 48px 0;
+  text-align: center;
+  color: var(--sea-blue-200);
+}
+

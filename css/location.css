@@ -1,0 +1,316 @@
+/* ============================================================
+   YAWW · LOCATION PAGE
+   Loaded after base.css and retreat.css by locationpage-*.html:
+   the hero framing and the six modules this page adds.
+   ============================================================ */
+
+/* --- Hero ------------------------------------------------------------
+   Frames the photo at the container's width instead of filling the
+   screen with it: the retreat page's full-bleed treatment belongs to a
+   single date; this page is the doorway to several, so the photo
+   introduces rather than takes over. The photograph itself is set inline
+   on the element (background-image), as on the retreat pages. */
+.retreat-hero { padding-inline: var(--container-pad); }
+.retreat-hero__image {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  aspect-ratio: 1392 / 720;
+  height: auto;
+  background: var(--stone-200) center / cover no-repeat;
+}
+
+/* ============================================================
+   LOCATION PAGE — modules this page adds on top of the retreat
+   page's components.
+
+   Everything already built is reused rather than rebuilt: the hero,
+   the gallery slider and its lightbox, the FAQ accordion, the quote
+   cards, the newsletter and the footer all come from
+   retreatpage-iceland.html untouched. What follows is only the six
+   modules the location page introduces.
+
+   All of them sit on the same 1392px / 24px-gutter container the rest
+   of the site uses, and on the column maths from the design: 4x312+48
+   and 3x432+48 and 2x324+24 all resolve to 1392.
+   ============================================================ */
+.loc-section { padding: 56px var(--container-pad); }
+.loc-section__title {
+  margin: 0 0 40px;
+  color: var(--sea-blue);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+  text-align: center;
+}
+.loc-inner {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+}
+
+/* --- Upcoming retreats: four cards on the 312 column ------------------- */
+.loc-upcoming__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px;
+}
+.loc-card { display: flex; flex-direction: column; }
+.loc-card__link { display: block; text-decoration: none; color: inherit; }
+.loc-card__media { aspect-ratio: 312 / 337; overflow: hidden; margin-bottom: 16px; }
+.loc-card__media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.loc-card__name {
+  margin: 0 0 4px;
+  color: var(--sea-blue);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 28px;
+  text-align: center;
+}
+.loc-card__where {
+  margin: 0 0 8px;
+  color: var(--sea-blue);
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 15px;
+  line-height: 24px;
+  text-align: center;
+}
+.loc-card__date,
+.loc-card__teacher {
+  margin: 0;
+  color: var(--sea-blue-200);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+}
+
+/* --- Upcoming retreats: empty state + waitlist ------------------------
+   Shown instead of the card grid when a destination has no announced
+   dates. Same stone panel, type scale and 56px control height as the
+   .filter-empty block on the home page. */
+.loc-waitlist {
+  background: var(--stone-100);
+  border: 1px solid var(--stone-300);
+  padding: 56px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  text-align: center;
+}
+.loc-waitlist__title {
+  margin: 0;
+  color: var(--sea-blue);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+}
+.loc-waitlist__body {
+  margin: 0;
+  max-width: 480px;
+  color: var(--sea-blue-300);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+}
+.loc-waitlist__form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  width: 560px;
+  max-width: 100%;
+  margin-top: 8px;
+}
+.loc-waitlist__label-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.loc-waitlist__input {
+  flex: 1 1 200px;
+  min-width: 0;
+  box-sizing: border-box;
+  height: 56px;
+  padding: 0 16px;
+  color: var(--sea-blue);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.56px;
+  background: transparent;
+  border: 1px solid var(--stone-400);
+  border-radius: 0;
+  transition: border-color 0.2s ease;
+}
+.loc-waitlist__input::placeholder { color: var(--sea-blue-200); opacity: 1; }
+.loc-waitlist__input:focus { outline: none; border-color: var(--sea-blue); }
+.loc-waitlist__submit { flex: 0 0 auto; }
+.loc-waitlist__error {
+  margin: 0;
+  color: var(--sea-blue);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 22px;
+}
+.loc-waitlist__done { outline: none; }
+.loc-waitlist__done .loc-waitlist__body { margin-inline: auto; }
+@media (max-width: 767px) {
+  .loc-waitlist { padding: 40px 24px; }
+  .loc-waitlist__title { font-size: 20px; line-height: 32px; }
+  .loc-waitlist__form { flex-direction: column; width: 100%; }
+  .loc-waitlist__submit { width: 100%; }
+}
+
+/* --- Why here: copy on 5 columns, two verticals on the right ---------- */
+.loc-why__row {
+  display: grid;
+  grid-template-columns: 552px 1fr;
+  gap: 168px;
+  align-items: center;
+}
+.loc-why__copy { display: flex; flex-direction: column; gap: 16px; }
+.loc-why__copy h2 { margin: 0 0 8px; }
+.loc-why__copy p {
+  margin: 0;
+  color: var(--sea-blue);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+}
+.loc-why__pair { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+.loc-why__fig { margin: 0; aspect-ratio: 324 / 380; overflow: hidden; }
+/* The second column hangs 48px lower, the offset the design uses to keep
+   the pair from reading as one block. */
+.loc-why__fig--low { margin-top: 48px; }
+.loc-why__fig img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* --- Beyond the mat: three square cards ------------------------------- */
+.loc-mat__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; }
+.loc-mat__fig { margin: 0; aspect-ratio: 1 / 1; overflow: hidden; }
+.loc-mat__fig img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.loc-mat__name {
+  margin: 16px 0 0;
+  color: var(--sea-blue);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+}
+.loc-mat__body {
+  margin: 8px 0 0;
+  color: var(--sea-blue);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+}
+
+/* --- Where you stay / The people we know: image beside a column ------- */
+.loc-split {
+  display: grid;
+  align-items: center;
+  gap: 48px;
+}
+.loc-split--stay { grid-template-columns: 792px 1fr; }
+.loc-split--person { grid-template-columns: 312px 1fr; gap: 168px; }
+.loc-split__fig { margin: 0; overflow: hidden; }
+.loc-split--stay .loc-split__fig { aspect-ratio: 792 / 460; }
+.loc-split--person .loc-split__fig { aspect-ratio: 312 / 320; }
+.loc-split__fig img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.loc-split__eyebrow {
+  margin: 0 0 8px;
+  color: var(--sea-blue-200);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+}
+.loc-split__title {
+  margin: 0 0 16px;
+  color: var(--sea-blue);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+}
+.loc-split__body {
+  margin: 0;
+  color: var(--sea-blue);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+}
+.loc-split__note {
+  margin: 16px 0 0;
+  color: var(--sea-blue-200);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 22px;
+}
+.loc-split__quote {
+  margin: 0 0 16px;
+  color: var(--sea-blue);
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 24px;
+  line-height: 36px;
+}
+.loc-split__attr {
+  margin: 0;
+  color: var(--sea-blue-200);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* --- Final CTA -------------------------------------------------------- */
+.loc-cta { padding: 72px var(--container-pad); text-align: center; }
+.loc-cta__title {
+  margin: 0 0 32px;
+  color: var(--sea-blue);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 48px;
+}
+.loc-cta__btns { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.loc-cta__alt {
+  display: inline-block;
+  margin-top: 24px;
+  color: var(--sea-blue-200);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 18px;
+}
+
+@media (max-width: 1024px) {
+  .loc-upcoming__grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .loc-why__row { grid-template-columns: 1fr; gap: 40px; }
+  .loc-mat__grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .loc-split--stay,
+  .loc-split--person { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 767px) {
+  .loc-section { padding: 40px 16px; }
+  .loc-upcoming__grid { grid-template-columns: 1fr; gap: 40px; }
+  .loc-mat__grid { grid-template-columns: 1fr; gap: 40px; }
+  .loc-why__pair { gap: 16px; }
+  .loc-why__fig--low { margin-top: 0; }
+  .loc-cta { padding: 48px 16px; }
+  .loc-cta__title { font-size: 24px; line-height: 36px; }
+}
+

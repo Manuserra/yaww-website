@@ -1,0 +1,489 @@
+/* ============================================================
+   YAWW · RETREATS LISTING
+   Loaded after base.css by retreats.html.
+   ============================================================ */
+
+/* ============================================================
+   RETREATS PAGE
+   ============================================================ */
+.retreats { }
+
+/* --- Hero / intro ---------------------------------------- */
+.retreats-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+  padding: 96px 152px 56px;   /* Figma: 96 152 56 152 */
+}
+.retreats-hero h1 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;          /* Desktop H4 bold */
+  color: var(--sea-blue);
+}
+.retreats-hero p {
+  margin: 0;
+  max-width: 672px;           /* Figma: content block 672 wide -> 2 lines */
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;          /* Caption regular 14/24 (matches 112px block) */
+  letter-spacing: 0.56px;     /* caption tracking (4%) */
+  color: var(--sea-blue-200); /* inferred muted tone */
+}
+
+/* --- Controls (tabs + toggle + chips) -------------------- */
+.controls { display: flex; flex-direction: column; }
+
+/* The active-tab indicator is one element per bar that slides, rather than a
+   rule drawn under whichever tab is active. 320ms is the top of the band
+   that still reads as immediate; paired with a strong ease-out it leaves
+   decisively and settles softly, which is the pace this brand wants without
+   crossing into sluggish. */
+.tabs__indicator,
+.tabbar__indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--sea-blue);
+  transform: translate(0, 0);
+  pointer-events: none;
+}
+/* The transition is carried by a class the bar puts on for a click and takes
+   off for a resize, rather than by toggling an inline transition around the
+   write — turning it off and on inside one tick does not reliably produce a
+   jump, and the indicator ends up animating from a stale position. */
+.is-sliding-ready .tabs__indicator,
+.is-sliding-ready .tabbar__indicator {
+  transition: transform .32s cubic-bezier(.32, .72, 0, 1),
+              width     .32s cubic-bezier(.32, .72, 0, 1);
+}
+/* the per-tab rule steps aside once a sliding one exists */
+.is-sliding .tabs__item.is-active::after,
+.is-sliding .tab.is-active::after { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .is-sliding-ready .tabs__indicator,
+  .is-sliding-ready .tabbar__indicator { transition: none; }
+}
+
+.tabbar {
+  border-bottom: 1px solid var(--stone-400);   /* full-width divider — reads as one bar with the nav */
+}
+.tabbar .container {
+  position: relative;
+  display: flex;
+  justify-content: center;      /* 3×216 = 648, centered */
+  /* Same 55px as the nav row above, and the tabs stretch to fill it so the
+     labels stay optically centred instead of sinking to the bottom edge. */
+  min-height: 55px;
+  align-items: stretch;
+}
+.tabs {
+  display: flex;
+}
+.tab {
+  cursor: pointer;
+  position: relative;
+  width: 216px;                     /* Figma inspect */
+  padding: 12px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 24px;
+  letter-spacing: 0.48px;           /* normalized (active showed 1.08 — anomaly) */
+  text-transform: uppercase;
+  color: var(--sea-blue-100);
+  white-space: nowrap;
+}
+/* Hover on an unselected tab. Only the label moves, deepening to the same
+   sea-blue the selected one carries — the affordance is "this is where you
+   are going", which the sliding indicator then completes. Faster than the
+   indicator's 320ms: a colour arriving under the cursor should feel like a
+   response, while travel across the bar is a journey.
+   Scoped to real pointers so a tap on a phone does not leave a tab looking
+   half-selected after the finger lifts. */
+@media (hover: hover) and (pointer: fine) {
+  .tabs__item:not(.is-active):hover,
+  .tab:not(.is-active):hover { color: var(--sea-blue); }
+}
+.tabs__item,
+.tab { transition: color .18s ease; }
+@media (prefers-reduced-motion: reduce) {
+  .tabs__item, .tab { transition: none; }
+}
+
+.tab.is-active { color: var(--sea-blue); }
+.tab.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;   /* full tab width (216) — cuts at the edges */
+  height: 2px;
+  background: var(--sea-blue);
+}
+.tab:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
+
+.view-toggle {
+  position: absolute;
+  right: 0;
+  bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.view-toggle button { display: inline-flex; color: var(--sea-blue-100); }
+.view-toggle button.is-active { color: var(--sea-blue); }
+.view-toggle button:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; border-radius: 4px; }
+
+/* Two instances: desktop keeps the toggle inside the tabbar (top-right);
+   tablet/mobile show a centered row below the tabs instead. */
+.view-toggle--compact { display: none; }
+
+.chips {
+  display: flex;
+  justify-content: center;
+  gap: 12px;                        /* group = 564 = 3×180 + 2×12 */
+  margin-top: 40px;
+}
+.chip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 180px;                     /* all chips same size */
+  padding: 8px 16px;                /* -> 42px tall */
+  white-space: nowrap;              /* keep one line when selected (600) */
+  border-radius: 63px;
+  border: 1px solid var(--sea-blue-100);
+  background: transparent;
+  font-family: var(--font-body);
+  font-weight: 400;                 /* Caption-Regular */
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.56px;
+  text-align: center;
+  color: var(--sea-blue-100);
+}
+.chip.is-active {
+  border-color: var(--sea-blue);
+  color: var(--sea-blue);
+  font-weight: 600;                 /* Caption-Semibold */
+}
+.chip:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
+
+/* --- Results (season groups + cards) --------------------- */
+.results { padding-bottom: 160px; }
+/* v2: each season = 12-col row -> 3-col sticky title + 9-col cards */
+.season {
+  display: grid;
+  grid-template-columns: 312px 1fr;   /* 3 cols (312) · gutter · 9 cols (1032) */
+  column-gap: 48px;
+  margin-top: 64px;                    /* between groups */
+}
+.season:first-child { margin-top: 56px; }  /* block -> first content */
+.season__title {
+  position: sticky;
+  top: 88px;                           /* pins below the 55px sticky nav */
+  margin: 0;
+  text-align: left;
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 20px;
+  line-height: 32px;                   /* inferred — no explicit v2 title spec */
+  color: var(--sea-blue);
+}
+/* list view: full width, title not sticky */
+.season--list { display: block; }
+.season--list .season__title { position: static; margin-bottom: 24px; }
+
+/* "By location" title: COUNTRY, / Region (italic) — two lines */
+.season__title--location { font-style: normal; }
+.season__title-country { display: block; font-style: normal; }
+.season__title-region { display: block; font-style: italic; }
+
+/* Grid view — 3 narrow cards per row (312px) inside the 9-col/1032px
+   area: (1032 - 2*48) / 3 = 312, which is exactly .card--narrow's own
+   width (see .card--narrow below) — the whole row is the same 4-equal-
+   column system as .season itself (312 sidebar + 3×312 cards + 3×48
+   gaps = 1392, the page's standard content width), just continued one
+   column further instead of being its own, unrelated 2-up split. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 48px;
+  row-gap: 48px;
+}
+/* Same narrow crop as the home rail's cards (.card--narrow there) —
+   reused verbatim, not redefined, so every instance of this card
+   stays the one component regardless of which page renders it. */
+.card--narrow .card__media { aspect-ratio: 312 / 408; }
+/* Cards/rows for retreats that have a detail page are wrapped in an <a>.
+   The anchor becomes the grid item, so it takes over the card's stretch. */
+.result-link { display: block; height: 100%; color: inherit; text-decoration: none; }
+.result-link:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 4px; }
+/* the only clickability cue — deliberately quiet, matching the flat style */
+.result-link:hover .card__title,
+.result-link:hover .r-name { text-decoration: underline; text-underline-offset: 3px; }
+.card { display: flex; flex-direction: column;  height: 100%;}
+.card__media {
+  position: relative;
+  aspect-ratio: 492 / 532;         /* v2: near-square crop */
+  overflow: hidden;
+  border-radius: 0;
+  /* A location photo when the catalog has one for that destination,
+     otherwise the placeholder gradient, set inline per-card. */
+}
+.card__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.card__badge {
+  position: absolute;
+  top: 16px; left: 16px;
+  z-index: 2;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: var(--stone-100);
+  color: var(--sea-blue);
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* --- Urgency overlay (opposite corner from the tier badge) --- */
+.card__flag {
+  position: absolute;
+  top: 16px; right: 16px;
+  z-index: 2;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+/* Scarcity and sold out both read as normal, active state — solid dark, no new hue. */
+/* Brand primary on the secondary stone — 6.72:1 */
+.card__flag--scarce,
+.card__flag--soldout { background: var(--sea-blue); color: var(--stone); }
+
+.card__body {
+  padding-top: 16px;               /* Figma: image -> title 16 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;                        /* Figma: 4 between text lines */
+  text-align: center;
+}
+.card__title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-style: normal;
+  font-size: 16px;                 /* Libre Baskerville Bold 16/24 */
+  line-height: 24px;
+  color: var(--sea-blue);
+}
+.card__loc {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;                 /* Libre Baskerville Italic 16/24 */
+  line-height: 24px;
+  color: var(--sea-blue);
+}
+.card__date,
+.card__teacher {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;                 /* Raleway Regular 14/24 */
+  line-height: 24px;
+  color: var(--sea-blue);
+}
+
+/* List view — kicker (tier) is an overline pinned above the title, out of flow,
+   so the row has a single vertical anchor: the title's baseline. */
+.list { display: flex; flex-direction: column; }
+.list-row {
+  display: grid;
+  grid-template-columns:
+    /* Fixed, not minmax(...,max-content): each row is its own grid, so a
+       content-sized last column makes the two rows with the longest label
+       ('2 spaces left', 108px) wider than the rest and nudges every other
+       column out of line. 112 clears the longest label we use. */
+    minmax(0, 2.2fr) minmax(0, 1.5fr) minmax(0, 1.4fr) minmax(0, 1.3fr) 112px;
+  grid-template-areas: "namecell loc date teacher avail";
+  column-gap: 32px;
+  align-items: baseline;
+  padding: 30px 0 22px;                        /* extra top clears the overline */
+  border-bottom: 1px solid var(--stone-300);
+  cursor: pointer;                             /* whole row → retreat page (sold out → waitlist) */
+  transition: background-color .15s ease;
+}
+.list-row:hover { background: rgba(225, 220, 214, 0.40); }   /* Stone-300 @ 40% */
+
+.r-namecell { grid-area: namecell; position: relative; min-width: 0; }
+.r-loc     { grid-area: loc;     min-width: 0; }
+.r-date    { grid-area: date;    min-width: 0; }
+.r-teacher { grid-area: teacher; min-width: 0; }
+.r-avail   { grid-area: avail;   text-align: right; white-space: nowrap; }
+
+/* tier = overline, out of flow → never pushes the other columns */
+.r-tier {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  margin-bottom: 2px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.72px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--sea-blue-100);
+}
+.r-name {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 18px;                 /* Figma H6-bold */
+  line-height: 24px;
+  color: var(--sea-blue);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.r-loc {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: var(--sea-blue);
+}
+.r-date, .r-teacher {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue);
+}
+/* urgency: 14px (caption token); emphasis via weight + color, not size */
+.r-avail {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+  color: var(--sea-blue-500);
+}
+/* sold out: list view shows no distinct state at all — same styling as any other row */
+
+/* --- Responsive ------------------------------------------ */
+@media (max-width: 1024px) {
+  .retreats-hero { padding: 72px 24px 48px; }
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 40px 24px; }
+  .list-row {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) 112px;
+    grid-template-areas:
+      "namecell date    avail"
+      "loc      teacher avail";
+    column-gap: 24px;
+    row-gap: 4px;
+    align-items: baseline;
+    padding: 30px 0 22px;
+  }
+  .r-avail { align-self: center; }
+  .view-toggle--desktop { display: none; }
+  .view-toggle--compact {
+    display: flex;
+    position: static;
+    justify-content: center;
+    padding-top: 24px;
+  }
+}
+@media (max-width: 767px) {
+  .retreats-hero { padding: 48px 16px 40px; gap: 24px; }
+  .retreats-hero h1 { font-size: 24px; line-height: 32px; }
+  .tabbar .container {
+    justify-content: center;
+    align-items: flex-end;
+    overflow-x: auto;               /* safety net if tabs ever don't fit on very narrow screens */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .tabbar .container::-webkit-scrollbar { display: none; }
+  .tabs { flex-wrap: nowrap; }
+  .tab { flex: none; width: auto; padding: 12px 16px; letter-spacing: 0.4px; }
+  .chips { flex-wrap: wrap; gap: 12px; }
+  .chip { width: auto; }
+  .grid { grid-template-columns: 1fr; gap: 32px; }
+  .season__title { font-size: 24px; line-height: 32px; }
+
+  .list-row {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "namecell"
+      "loc"
+      "date"
+      "teacher"
+      "avail";
+    align-items: start;
+    row-gap: 2px;
+    padding: 30px 0 20px;
+  }
+  .r-name { white-space: normal; overflow: visible; }   /* allow 2 lines on mobile */
+  .r-loc { margin-top: 6px; }
+  .r-teacher { margin-top: 6px; }
+  .r-avail { text-align: left; align-self: start; margin-top: 6px; }
+}
+
+/* v2 sidebar — stack on smaller screens */
+@media (max-width: 1024px) {
+  .season { grid-template-columns: 1fr; }
+  .season__title { position: static; margin-bottom: 24px; }
+}
+
+/* Dynamic collection intro (between chips and content) */
+.collection-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;                    /* H6 -> description */
+  margin-top: 56px;            /* chips -> block */
+}
+.collection-intro__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;           /* Desktop H6 bold */
+  color: var(--sea-blue);
+}
+.collection-intro__desc {
+  margin: 0;
+  max-width: 672px;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.56px;      /* Desktop Caption-Regular */
+  color: var(--sea-blue);
+}
+
+/* hero removed — tabs sit flush under the nav's bottom border */
+main { padding-top: 0; }
+

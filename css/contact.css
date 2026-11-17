@@ -1,0 +1,151 @@
+/* ============================================================
+   YAWW · CONTACT PAGE
+   Loaded after base.css by contact.html.
+   ============================================================ */
+
+/* ============================================================
+   CONTACT — one page, three forms behind a tab bar
+
+   Four deliberate departures from the source, all in the form itself:
+
+   1. Labels are visible. The source sets .form__label{display:none}
+      and leaves the placeholder as a field's only name, so it vanishes
+      the moment someone types — and that placeholder sits at 4.15:1
+      against this background, under the 4.5:1 minimum.
+   2. 28px between fields, not 56. At 56 the gap was larger than the
+      control itself and a seven-field form ran 1122px tall.
+   3. Input text at 16px in normal case, not 12px uppercase. Caps make
+      an address or a name impossible to proofread, and anything under
+      16px makes iOS Safari zoom the page on focus.
+   4. Controls 56px tall, which is what every other input and button
+      on this site already is.
+
+   The parts that make it look like YAWW — underline fields, centred
+   column, full-width submit, the tab bar — are the source's.
+   ============================================================ */
+.contact { padding: 56px var(--container-pad) 120px; }
+.contact__head { text-align: center; margin-bottom: 56px; }
+.contact__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue);
+}
+
+/* --- tab bar ---------------------------------------------------------- */
+.cf__tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 56px;
+}
+.cf__tab {
+  min-width: 215px;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 24px;
+  letter-spacing: 1.08px;
+  text-transform: uppercase;
+  color: var(--sea-blue-100);
+  border-bottom: 1px solid var(--stone-400);
+  transition: color .3s ease, border-color .3s ease;
+}
+.cf__tab:hover { color: var(--sea-blue); }
+.cf__tab:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: -2px; }
+.cf__tab.is-active {
+  color: var(--sea-blue);
+  border-bottom: 2px solid var(--sea-blue);
+}
+
+/* --- the form --------------------------------------------------------- */
+.cf__panel {
+  width: 100%;
+  max-width: 480px;
+  margin-inline: auto;
+}
+.cf__title {
+  margin: 0 0 32px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue);
+  text-align: center;
+}
+.cf__field { margin-bottom: 28px; }
+.cf__label {
+  display: block;
+  margin-bottom: 8px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 24px;
+  letter-spacing: 1.08px;
+  text-transform: uppercase;
+  color: var(--stone-600);
+}
+.cf__req { color: var(--sea-blue-200); }
+.cf__input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 56px;
+  padding: 0 8px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--sea-blue-300);
+  border-radius: 0;
+  outline: 0;
+  transition: border-color .2s ease;
+}
+.cf__input--area { height: auto; padding: 12px 8px; resize: vertical; min-height: 140px; }
+.cf__input::placeholder { color: var(--sea-blue-200); opacity: 1; }
+.cf__input:hover { border-bottom-color: var(--sea-blue); }
+.cf__input:focus { border-bottom-color: var(--sea-blue); border-bottom-width: 2px; }
+.cf__submit { width: 100%; margin-top: 8px; }
+.cf__error {
+  margin: 0 0 16px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--sea-blue);
+}
+.cf__done {
+  outline: none;
+  background: var(--stone-100);
+  border: 1px solid var(--stone-300);
+  padding: 40px 32px;
+  text-align: center;
+}
+.cf__done .cf__title { margin-bottom: 8px; }
+.cf__done-body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--sea-blue-300);
+}
+
+@media (max-width: 767px) {
+  .contact { padding: 40px 16px 72px; }
+  .contact__head { margin-bottom: 40px; }
+  .cf__tabs { margin-bottom: 40px; }
+  /* Three 215px tabs cannot sit in a row here; they stack full width. */
+  .cf__tab { min-width: 0; width: 100%; }
+}
+
+
