@@ -253,6 +253,17 @@ main { padding-top: 0; }
 .btn--light:hover,
 .btn--light:active { background: var(--stone-300); border-color: var(--stone-300); }
 @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+/* One width for every standalone button: 304px is just past the longest
+   label on the site ("Explore upcoming retreats", 295px), so in practice
+   every button reads the same width and only a longer future label would
+   grow past it. Buttons whose width belongs to their container (card columns,
+   form rows, the booking bar) set their own. On phones every button
+   takes the content width instead: the viewport minus the 16px side
+   gutters. */
+.btn { min-width: 304px; }
+@media (max-width: 767px) {
+  .btn { width: 100%; min-width: 0; }
+}
 
 /* ============================================================
    SECTION TITLE (shared heading treatment — same scale used for
@@ -353,19 +364,14 @@ main { padding-top: 0; }
   letter-spacing: 0.32px;
   color: var(--stone-100);
 }
-/* Forcing the hero's fixed 286px width broke here: "Explore upcoming
-   retreats" doesn't fit on one line at that width, so it wrapped to
-   two and grew taller than the hero's own buttons — the opposite of
-   matching them. white-space: nowrap + auto width keeps every button
-   on this row at the same single-line height as the hero's (both use
-   the same .btn base, so the height is identical whenever neither one
-   wraps), even though the two buttons end up different widths. */
+/* nowrap keeps both buttons on one line, so they share the hero's
+   height; the shared 304px minimum already fits the longest label. */
 .home-cta__btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
 .home-cta__btns .btn { white-space: nowrap; }
 @media (max-width: 767px) {
   .home-cta { padding: 56px 16px; gap: 24px; }
   .home-cta__title { font-size: 26px; line-height: 34px; }
-  .home-cta__btns { flex-direction: column; width: 100%; max-width: 320px; }
+  .home-cta__btns { flex-direction: column; width: 100%; }
   .home-cta__btns .btn { width: 100%; white-space: normal; }
 }
 
@@ -475,6 +481,7 @@ main { padding-top: 0; }
 .footer-news__input:focus { outline: none; border-color: var(--stone); }
 .footer-news__submit {
   flex: 0 0 auto;
+  min-width: 0;
   height: 56px;
   padding: 0 32px;
   font-family: var(--font-body);

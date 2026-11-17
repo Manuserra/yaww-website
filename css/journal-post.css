@@ -244,7 +244,6 @@
   font-weight: 400;
   letter-spacing: 0.56px;
   padding: 16px;
-  min-width: 286px;
   /* .btn's 1px border is the same colour as its fill, so dropping it
      changes nothing visually and lands the button on the source's
      56px instead of 58. */

@@ -389,6 +389,7 @@
   color: var(--sea-blue-300);
 }
 .filter-empty__ctas { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 8px; }
+@media (max-width: 767px) { .filter-empty__ctas { flex-direction: column; } }
 
 /* Three fixed-360px segments plus their borders need 1082px, so three
    of them never actually fit until the viewport clears 1082 + 2 ×
@@ -472,7 +473,7 @@
   cursor: pointer;
   white-space: nowrap;
 }
-.filter-sheet__confirm { flex: 1 1 auto; }
+.filter-sheet__confirm { flex: 1 1 auto; min-width: 0; }
 
 /* Sized off two custom properties, same idea as .gallery__track's own
    --slide-w/--gap: the breakpoints below only ever change these two
@@ -629,6 +630,9 @@
 }
 
 .home-next__foot {
+  /* Spans the section so its button can take the full content width on
+     phones, instead of shrinking to the label. */
+  align-self: stretch;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -997,10 +1001,6 @@
    the collision entirely: the shared .btn--secondary:hover rule is
    free to fill it on hover, same as every other secondary button
    (hero included). */
-.pillar__copy .btn--secondary {
-  padding: 16px 24px;
-  border-width: 1.4px;
-}
 
 @media (max-width: 900px) {
   /* .pillar--reverse .pillar__row's own 432px/1fr columns (specificity

@@ -11,6 +11,9 @@
    introduces rather than takes over. The photograph itself is set inline
    on the element (background-image), as on the retreat pages. */
 .retreat-hero { padding-inline: var(--container-pad); }
+/* The hero already carries the gutter here, so its buttons don't add
+   retreat.css's phone padding on top of it. */
+.retreat-hero .retreat-hero__ctas { padding-inline: 0; }
 .retreat-hero__image {
   max-width: var(--container-max);
   margin-inline: auto;
@@ -154,7 +157,7 @@
 }
 .loc-waitlist__input::placeholder { color: var(--sea-blue-200); opacity: 1; }
 .loc-waitlist__input:focus { outline: none; border-color: var(--sea-blue); }
-.loc-waitlist__submit { flex: 0 0 auto; }
+.loc-waitlist__submit { flex: 0 0 auto; min-width: 0; }
 .loc-waitlist__error {
   margin: 0;
   color: var(--sea-blue);
@@ -311,6 +314,7 @@
   .loc-why__pair { gap: 16px; }
   .loc-why__fig--low { margin-top: 0; }
   .loc-cta { padding: 48px 16px; }
+  .loc-cta__btns { flex-direction: column; }
   .loc-cta__title { font-size: 24px; line-height: 36px; }
 }
 
