@@ -532,13 +532,28 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .site-footer {
   background: var(--sea-blue-500);
   color: var(--stone);
-  /* The one place this belongs. Subpixel antialiasing thickens light
-     text on a dark ground; grayscale keeps the footer's stone-on-blue
-     reading at the same weight as the rest of the page. Deliberately
-     scoped here rather than on body, where it was thinning every
-     heading on the site. */
+}
+
+/* Grayscale antialiasing on every surface where light type sits on a
+   dark ground, not just the footer. Subpixel rendering thickens
+   light-on-dark specifically, which is what makes the collections
+   band read muddy; the light sections are deliberately left on auto,
+   because there the same switch only thinned the type. Selectors a
+   given page does not use cost nothing. */
+.site-footer,
+.tiers2,
+.home-cta__content,
+.btn--primary,
+.card__flag {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+/* ...except a light button sitting inside one of those bands: its own
+   fill is pale and its label dark, so it belongs back on auto. */
+.btn--light,
+.btn--secondary {
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
 }
 
 /* The newsletter is the footer's one conversion point, so it is built to be
