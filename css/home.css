@@ -1697,7 +1697,14 @@
    past the centre line and ends on the shared content edge. */
 .lead {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  /* Each half caps at half the content max plus one gutter (744px),
+     so past ~1488px the pair stops growing and centres: the photo's
+     outer edge then lands exactly on the shared content edge (240px in
+     at 1920), the square tops out at 696px, and the band never
+     outweighs the closing CTA on wide monitors. Below that cap the two
+     halves are exactly half the screen. */
+  grid-template-columns: repeat(2, minmax(0, calc(var(--container-max) / 2 + var(--container-pad))));
+  justify-content: center;
   align-items: center;
   background: var(--stone-300);
 }
@@ -1718,7 +1725,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
-  padding: 56px max(var(--container-pad), calc((100vw - var(--container-max)) / 2)) 56px 24px;
+  padding: 56px var(--container-pad) 56px 24px;
 }
 /* Same 480px measure the pillar copy uses, so lines stay readable even
    though the half is wider than that. */
@@ -1766,7 +1773,7 @@
 /* Stacks at the same point as the pillars: photo on top, edge to edge,
    copy below inside the normal side margins. */
 @media (max-width: 900px) {
-  .lead { grid-template-columns: minmax(0, 1fr); }
+  .lead { grid-template-columns: minmax(0, 1fr); justify-content: stretch; }
   .lead__media { padding: var(--container-pad) var(--container-pad) 0; }
   .lead__photo { aspect-ratio: 3 / 2; }
   .lead__copy { padding: 40px var(--container-pad); }
