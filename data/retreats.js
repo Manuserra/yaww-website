@@ -17,6 +17,10 @@
      image       -> ACF image, the card thumbnail at 312x408
      image2x     -> the same frame at 624x816, for retina
      url         -> permalink, /retreats/{slug}/
+     pageUrl     -> the page built for this edition, where one exists. Only
+                    three of the seventeen have one so far; the rest fall
+                    back to their location page and then to the listing,
+                    which is what retreatHref() in js/retreat-cards.js does.
 
    IMAGES. Both sizes are listed explicitly rather than derived from
    one path, so they map onto two registered WordPress image sizes and
@@ -50,6 +54,7 @@ window.YAWW_RETREATS = [
   {
     id: "el-cuyo-dec-2026-delaney",
     slug: "el-cuyo-dec-2026-delaney",
+    pageUrl: "retreatpage-el-cuyo-dec-2026-delaney.html",
     officialName: "Inner Glow Retreat",
     locationId: "el-cuyo",
     teacherIds: ["alicia-delaney"],
@@ -148,6 +153,7 @@ window.YAWW_RETREATS = [
   {
     id: "camino-de-santiago-apr-2027",
     slug: "camino-de-santiago-apr-2027",
+    pageUrl: "retreatpage-camino-de-santiago-apr-2027.html",
     officialName: "A Journey Home to Yourself",
     locationId: "camino-de-santiago",
     teacherIds: ["jenniferlyn-chiemingo"],
@@ -246,6 +252,7 @@ window.YAWW_RETREATS = [
   {
     id: "santorini-sep-2027-berger",
     slug: "santorini-sep-2027-berger",
+    pageUrl: "retreatpage-santorini-sep-2027-berger.html",
     officialName: "Breath Body Soul Retreat in Santorini",
     locationId: "santorini",
     teacherIds: ["sue-berger"],

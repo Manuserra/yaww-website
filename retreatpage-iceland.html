@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/base.css?v=202611181910">
-<link rel="stylesheet" href="css/retreat.css?v=202611181609">
+<link rel="stylesheet" href="css/retreat.css?v=202611181710">
 </head>
 <body>
 
@@ -139,45 +139,65 @@
   <section class="retreat-about">
     <h2 class="retreat-about__title">About this retreat</h2>
     <div class="retreat-about__body">
-      <!-- Retreat-specific copy only: what THIS edition (teacher + place +
-           dates) offers. Description of Iceland itself lives on the
-           location page and is linked from "Where you'll be".
-           DRAFT — confirm with JL before publishing. -->
-      <p>Nine days in October, when Iceland’s nights grow long enough for the northern lights and the days are still mild enough to spend outside. JL built this trip around that turn of the season: a grounding vinyasa practice most mornings to warm you up for the cold, then the rest of the day out in it.</p>
-      <p>The week moves from the geothermal country around Reykjavík to the glaciers near Vik. You’ll hike on the ice with a guide, cross the glacier lagoon by amphibian boat, spend a night in a turf house on a horse farm and ride Icelandic horses along the river the next morning.</p>
-      <p>New to yoga or practising for years, you’ll find a class that fits. Come on your own or with a friend: most dinners are shared, and the free days are yours.</p>
+      <!-- The route, pace and stays of THIS trip, in the original voice,
+           plus what only this edition adds (October, JL, the specific
+           experiences). DRAFT — confirm with JL before publishing. -->
+      <p>There’s a rhythm to Iceland that feels otherworldly: shifting skies, endless horizons, and the quiet pulse of earth beneath your feet. This journey follows that rhythm. Over eight nights we travel from the geothermal waters of the Blue Lagoon and the Golden Circle, through Reykjavík, and along the south coast to the edge of Vatnajökull, Europe’s largest glacier.</p>
+      <p>Our days unfold at an unhurried pace. JL leads a grounding vinyasa practice most mornings, before scenic drives through lava fields and coastal villages and long pauses at waterfalls and black-sand beaches. Along the way you’ll hike on the glacier with a guide, cross the iceberg lagoon by amphibian boat and ride Icelandic horses along the river.</p>
+      <p>Evenings bring soft light, shared meals, and stillness. We stay in carefully chosen hotels close to nature, plus one night in a turf house on a horse farm. There’s free time too: a full day for Reykjavík’s quiet creativity and, in October, nights long enough for a real chance at the Northern Lights.</p>
+      <p>This retreat is not about escape. It is about presence. About seeing a place that feels both wild and deliberate, and meeting yourself there, steady and awake to the world.</p>
     </div>
   </section>
 
   <!-- =========================================================
        ABOUT TEACHER (node 115-42277)
        ========================================================= -->
-  <!-- YOUR HOSTS — teacher leads (she sells the trip), facilitator sits
-       below at a smaller scale (she removes the risk). When the teacher
-       also facilitates, drop .retreat-teacher__host entirely. -->
+  <!-- YOUR HOSTS — one card component for both people, so they read as a
+       team. The teacher still leads: she comes first and carries more
+       copy. When the teacher also facilitates, keep a single card. -->
   <section class="retreat-teacher" aria-labelledby="hosts-title">
     <h2 class="retreat-teacher__title" id="hosts-title">Your hosts</h2>
-    <div class="retreat-teacher__row">
-      <img class="retreat-teacher__photo" src="images/teachers/jenniferlyn-chiemingo.jpg" alt="Jenniferlyn Chiemingo" loading="lazy">
-      <div class="retreat-teacher__text">
-        <p class="retreat-teacher__eyebrow">Your teacher</p>
-        <h3 class="retreat-teacher__name">Jenniferlyn Chiemingo</h3>
-        <p class="retreat-teacher__meta">Vinyasa · E-RYT · Teaching since 2002</p>
-        <p>Known to her students as JL, Jenniferlyn teaches a flowing, grounding vinyasa that links breath and movement. She trained at Kripalu and with Shiva Rea, taught for more than 22 years in Seattle and the Bay Area, and has led international retreats for over 15. Her classes support people new to yoga while giving regular practitioners somewhere deeper to go.</p>
-        <!-- Retreat-specific line. DRAFT — confirm with JL. -->
-        <p class="retreat-teacher__note"><strong>On this trip:</strong> morning flows that warm you up before the day’s adventure and leave you steady for whatever the weather decides.</p>
-        <a class="retreat-teacher__link" href="teacher-jenniferlyn-chiemingo.html">Meet Jenniferlyn <span aria-hidden="true">→</span></a>
+    <!-- One slot, two people. The teacher is in the slot in the markup, so
+         the block reads complete with scripting off; js/hosts.js swaps the
+         contents when a tab is pressed.
+         Facilitator confirmed for Iceland Oct 2026. -->
+    <div class="hosts" data-hosts>
+      <div class="hosts__tabs" role="tablist" aria-label="Your hosts">
+        <button class="hosts__tab" type="button" role="tab" data-host-tab="teacher" aria-selected="true" tabindex="0">Teacher</button>
+        <button class="hosts__tab" type="button" role="tab" data-host-tab="facilitator" aria-selected="false" tabindex="-1">Facilitator</button>
       </div>
-    </div>
 
-    <!-- PLACEHOLDER facilitator — confirm who travels on Iceland Oct 2026. -->
-    <div class="retreat-teacher__host">
-      <img class="retreat-teacher__host-photo" src="images/team/marina-coria.jpg" alt="" loading="lazy">
-      <div class="retreat-teacher__host-text">
-        <p class="retreat-teacher__eyebrow">With you on the ground</p>
-        <p class="retreat-teacher__host-name">Marina Coria <span>· YAWW retreat facilitator</span></p>
-        <p class="retreat-teacher__host-bio">Marina travels with the group and handles every transfer, booking and change of plan, so the only thing you have to keep track of is your mat.</p>
+      <div class="hosts__slot" data-host-slot>
+        <img class="host__photo" src="images/teachers/jenniferlyn-chiemingo.jpg" alt="Jenniferlyn Chiemingo" loading="lazy">
+        <div class="host">
+        <p class="host__role">Your teacher</p>
+        <h3 class="host__name">Jenniferlyn Chiemingo</h3>
+        <p class="host__meta">Vinyasa &middot; E-RYT &middot; Teaching since 2002</p>
+        <p class="host__bio">Known to her students as JL, Jenniferlyn teaches a flowing, grounding vinyasa that links breath and movement. She trained at Kripalu and with Shiva Rea, and has led international retreats for more than 15 years. Her classes support people new to yoga while giving regular practitioners somewhere deeper to go.</p>
+        <a class="host__link" href="teacher-jenniferlyn-chiemingo.html">Meet Jenniferlyn <span aria-hidden="true">&rarr;</span></a>
+        </div>
       </div>
+
+      <template data-host="teacher">
+        <img class="host__photo" src="images/teachers/jenniferlyn-chiemingo.jpg" alt="Jenniferlyn Chiemingo" loading="lazy">
+        <div class="host">
+        <p class="host__role">Your teacher</p>
+        <h3 class="host__name">Jenniferlyn Chiemingo</h3>
+        <p class="host__meta">Vinyasa &middot; E-RYT &middot; Teaching since 2002</p>
+        <p class="host__bio">Known to her students as JL, Jenniferlyn teaches a flowing, grounding vinyasa that links breath and movement. She trained at Kripalu and with Shiva Rea, and has led international retreats for more than 15 years. Her classes support people new to yoga while giving regular practitioners somewhere deeper to go.</p>
+        <a class="host__link" href="teacher-jenniferlyn-chiemingo.html">Meet Jenniferlyn <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </template>
+      <template data-host="facilitator">
+        <img class="host__photo" src="images/team/christina-thomas.jpg" alt="Christina Thomas" loading="lazy">
+        <div class="host">
+        <p class="host__role">Your facilitator</p>
+        <h3 class="host__name">Christina Thomas</h3>
+        <p class="host__meta">Founder of YAWW &middot; Hosting retreats since 2009</p>
+        <p class="host__bio">Christina founded YAWW in 2010 and has been planning and hosting retreats around the world since 2009 &mdash; she is the creator, and often the host, of every trip on this map. She travels with the group from the first transfer to the last goodbye, and prefers to be on the mat as a student rather than at the front of the room.</p>
+        <a class="host__link" href="team-christina-thomas.html">Meet Christina <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </template>
     </div>
   </section>
 
@@ -678,7 +698,7 @@
     <div class="gallery__head">
       <h2 class="gallery__title">Where you&rsquo;ll be</h2>
       <p class="gallery__intro">Reykjav&iacute;k for the first days, then south to Vik, where the beaches are black and the waterfalls come straight off the road. The photographs are from past retreats: the ice, the horses, and the sky on the nights it decides to perform.</p>
-      <a class="retreat-teacher__link gallery__more" href="locationpage-iceland.html">More about Iceland <span aria-hidden="true">→</span></a>
+      <a class="gallery__more" href="locationpage-iceland.html">More about Iceland <span aria-hidden="true">→</span></a>
       <div class="gallery__nav">
         <button class="gallery__arrow gallery__arrow--prev" aria-label="Previous photos">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
@@ -2124,5 +2144,6 @@
   })();
 </script>
 
+<script src="js/hosts.js?v=202611181711" defer></script>
 </body>
 </html>

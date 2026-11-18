@@ -209,9 +209,16 @@
      page avoid linking a card straight back to itself. */
   function retreatHref(retreat, opts) {
     opts = opts || {};
+    /* The edition's own page first — that is the thing the card is
+       actually about. Then the destination's page, then the listing. A
+       card never links to the page it is already on, which is what
+       currentUrl is for: on a retreat page the rail of other dates must
+       not offer the reader a link back to where they are. */
     var loc = getLocation(retreat.locationId);
-    var href = loc && loc.pageUrl ? loc.pageUrl : null;
-    if (href && opts.currentUrl && href === opts.currentUrl) href = null;
+    var href = retreat.pageUrl || (loc && loc.pageUrl) || null;
+    if (href && opts.currentUrl && href === opts.currentUrl) {
+      href = (loc && loc.pageUrl !== href && loc.pageUrl) || null;
+    }
     if (!href && opts.linkOnlyWhenPage) return "";
     return href || opts.fallbackUrl || "retreats.html";
   }

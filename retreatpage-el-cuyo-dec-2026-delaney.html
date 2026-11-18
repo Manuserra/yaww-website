@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/base.css?v=202611181910">
-<link rel="stylesheet" href="css/retreat.css?v=202611181609">
+<link rel="stylesheet" href="css/retreat.css?v=202611181710">
 </head>
 <body>
 <!-- Generated from retreats/el-cuyo-dec-2026-delaney/data.json on 2026-11-12 by filling retreatpage-elcuyo.html.
@@ -150,18 +150,51 @@
   <!-- =========================================================
        ABOUT TEACHER (node 115-42277)
        ========================================================= -->
-  <section class="retreat-teacher">
-    <h2 class="retreat-teacher__title">Yoga with Alicia Delaney</h2>
-    <div class="retreat-teacher__row">
-      <div class="retreat-teacher__photo" role="img" aria-label="Alicia Delaney, yoga teacher, among plants and a small Buddha statue" style="background-image: url('retreats/_shared/teachers/img/yoga-teacher-alicia-delaney.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
-      <div class="retreat-teacher__text">
-        <p>Alicia Delaney (E-RYT 200, YACEP) has a deep appreciation for quiet. A natural nurturer and teacher, she is steeped in the work of helping others cultivate more pause in their busy lives, and making their lives less busy in the process. Alicia’s nervous system-informed understanding of yoga and pranayama lend her offerings a consistent quality of gentleness. Gathering in circle to amplify these practices allows students to tenderly meet themselves with more compassion and grace again and again and again.</p>
-        <p>Her mission is to guide students toward ease and delight in their bodies through relaxed pacing, open choice sequencing, and invitational language. When practicing together, you can expect contemplation, curiosity, laughter, and empowering movement with only a little sweat. Her classes are an exploration of the slower and spiritual side of yoga, an opportunity to step out of our habits of rushing and performance so we can really hear what our bodies have to teach us. Uncovering what we so often hide about ourselves, from ourselves, can be a transformative experience. But doing so with the support of a group of like-minded friends in a beautiful setting on retreat? Life-changing.</p>
-        <p>Always seeking out the medicine of rest and ways to share it with the world, Alicia has studied with internationally-renowned yoga therapist, Jillian Pransky, is attuned as an Usui Reiki practitioner, holds certification as a yoga nidra guide from the Shiva Shakti School of Yoga &amp; Healing Arts, and is trained in Hot Stone Restorative Yoga and its applications for deeper states of ease.</p>
-        <p>When she is not teaching in a studio in the heart of the midwest, Alicia is sharing the magic of relaxation through her platform, Slow &amp; Steady Yoga. Join her to create a retreat rich with reverence, rest, reflection, and joy that’ll make your cheeks hurt from smiling.</p>
+  <section class="retreat-teacher" aria-labelledby="hosts-title">
+    <h2 class="retreat-teacher__title" id="hosts-title">Your hosts</h2>
+    <!-- One slot, two people. The teacher is in the slot in the markup, so
+         the block reads complete with scripting off; js/hosts.js swaps the
+         contents when a tab is pressed.
+         PLACEHOLDER facilitator — Renata is the team member whose own bio
+         ties her to El Cuyo, but who travels on Dec 2026 is unconfirmed. -->
+    <div class="hosts" data-hosts>
+      <div class="hosts__tabs" role="tablist" aria-label="Your hosts">
+        <button class="hosts__tab" type="button" role="tab" data-host-tab="teacher" aria-selected="true" tabindex="0">Teacher</button>
+        <button class="hosts__tab" type="button" role="tab" data-host-tab="facilitator" aria-selected="false" tabindex="-1">Facilitator</button>
       </div>
-    </div>
 
+      <div class="hosts__slot" data-host-slot>
+        <img class="host__photo" src="retreats/_shared/teachers/img/yoga-teacher-alicia-delaney.jpg" alt="Alicia Delaney" loading="lazy">
+        <div class="host">
+        <p class="host__role">Your teacher</p>
+        <h3 class="host__name">Alicia Delaney</h3>
+        <p class="host__meta">E-RYT 200 &middot; YACEP &middot; Restorative &amp; yoga nidra</p>
+        <p class="host__bio">Alicia has a deep appreciation for quiet, and a nervous-system-informed understanding of yoga and pranayama that lends her teaching a consistent gentleness. Expect relaxed pacing, open-choice sequencing and invitational language &mdash; contemplation, curiosity and laughter with only a little sweat.</p>
+        <a class="host__link" href="teacher-alicia-delaney.html">Meet Alicia <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+
+      <template data-host="teacher">
+        <img class="host__photo" src="retreats/_shared/teachers/img/yoga-teacher-alicia-delaney.jpg" alt="Alicia Delaney" loading="lazy">
+        <div class="host">
+        <p class="host__role">Your teacher</p>
+        <h3 class="host__name">Alicia Delaney</h3>
+        <p class="host__meta">E-RYT 200 &middot; YACEP &middot; Restorative &amp; yoga nidra</p>
+        <p class="host__bio">Alicia has a deep appreciation for quiet, and a nervous-system-informed understanding of yoga and pranayama that lends her teaching a consistent gentleness. Expect relaxed pacing, open-choice sequencing and invitational language &mdash; contemplation, curiosity and laughter with only a little sweat.</p>
+        <a class="host__link" href="teacher-alicia-delaney.html">Meet Alicia <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </template>
+      <template data-host="facilitator">
+        <img class="host__photo" src="images/team/renata-centi.jpg" alt="Renata Centi" loading="lazy">
+        <div class="host">
+        <p class="host__role">Your facilitator</p>
+        <h3 class="host__name">Renata Centi</h3>
+        <p class="host__meta">YAWW team &middot; El Cuyo &amp; Sardinia</p>
+        <p class="host__bio">Renata brings warm presence and steady care to our retreats in El Cuyo. A teacher and therapist herself, she travels with the group and supports each guest with clarity, ease and quiet strength, so the only thing you have to keep track of is your mat.</p>
+        <a class="host__link" href="team-renata-centi.html">Meet Renata <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </template>
+    </div>
   </section>
 
   <!-- =========================================================
@@ -2151,5 +2184,6 @@
   })();
 </script>
 
+<script src="js/hosts.js?v=202611181711" defer></script>
 </body>
 </html>

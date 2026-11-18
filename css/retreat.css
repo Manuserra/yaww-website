@@ -244,11 +244,79 @@
 }
 .retreat-teacher__text p { margin: 0; }
 
-/* "Your hosts" — the teacher card leads; the facilitator sits under it
-   at a smaller scale. The teacher is the reason to book, the facilitator
-   is the reason not to worry, and the hierarchy says so. */
-img.retreat-teacher__photo { display: block; object-fit: cover; }
-.retreat-teacher__eyebrow {
+/* "Your hosts" — one slot, two people, a segmented control between them.
+
+   The pair used to sit side by side at equal weight. This block is the
+   third section of the page, not the close, so its job is to say who is
+   leading and let the reader move on: at 369px against 652 it costs
+   roughly half the scroll, and it makes the pairing explicit — you pick
+   which half to read rather than scanning two columns to work out how
+   they relate.
+
+   The cost, stated so nobody rediscovers it: you never see both at once,
+   and the facilitator sits behind a tab that some readers will not press.
+   That is the trade this layout makes on purpose. */
+.hosts { width: 100%; max-width: 884px; }
+
+.hosts__tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+.hosts__tab {
+  padding: 10px 24px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--sea-blue-100);
+  border-bottom: 1px solid var(--stone-400);
+  transition: color .18s var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .hosts__tab:hover { color: var(--sea-blue); }
+}
+.hosts__tab:focus-visible { outline: 2px solid var(--sea-blue); outline-offset: -2px; }
+/* 2px against the 1px rest, so the active tab is heavier without moving
+   anything: the row keeps one baseline. */
+.hosts__tab[aria-selected="true"] {
+  color: var(--sea-blue);
+  border-bottom: 2px solid var(--sea-blue);
+}
+
+.hosts__slot {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 48px;
+  align-items: center;
+}
+/* The crossfade. transform + opacity only, 220ms on the shared ease-out —
+   short, because this is a swap inside a section the reader is scanning,
+   not an entrance. */
+@keyframes host-swap {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+.hosts__slot.is-swapping > * { animation: host-swap .22s var(--ease-out) both; }
+@media (prefers-reduced-motion: reduce) {
+  .hosts__slot.is-swapping > * { animation: none; }
+}
+
+.host { display: flex; flex-direction: column; gap: 8px; font-family: var(--font-body); color: var(--sea-blue); }
+.host p { margin: 0; }
+.hosts__slot .host__photo {
+  width: 300px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 0;
+}
+.host__photo { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; margin-bottom: 16px; }
+.host__role {
   font-size: 12px;
   line-height: 16px;
   font-weight: 600;
@@ -256,24 +324,20 @@ img.retreat-teacher__photo { display: block; object-fit: cover; }
   text-transform: uppercase;
   color: var(--stone-600);
 }
-.retreat-teacher__text .retreat-teacher__eyebrow { margin-bottom: -8px; }
-.retreat-teacher__name {
+.host__name {
   margin: 0;
   font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
-  font-size: 20px;
-  line-height: 28px;
+  font-size: 26px;
+  line-height: 34px;
   color: var(--sea-blue);
 }
-.retreat-teacher__text .retreat-teacher__meta {
-  margin-top: -12px;
-  font-size: 14px;
-  line-height: 20px;
-  color: var(--sea-blue-200);
-}
-.retreat-teacher__note strong { font-weight: 600; }
-.retreat-teacher__link {
+.host__meta { font-size: 14px; line-height: 20px; color: var(--sea-blue-200); }
+.host__bio { margin-top: 8px !important; font-size: 16px; line-height: 26px; letter-spacing: 0.32px; }
+.host__link,
+.gallery__more {
   align-self: flex-start;
+  margin-top: 8px;
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 20px;
@@ -286,41 +350,20 @@ img.retreat-teacher__photo { display: block; object-fit: cover; }
   text-underline-offset: 6px;
   transition: text-decoration-color 0.2s var(--ease-out);
 }
-.retreat-teacher__link:hover { text-decoration-color: currentColor; }
-.retreat-teacher__link:focus-visible { outline: 2px solid var(--sea-blue); outline-offset: 4px; }
-.gallery__more { align-self: center; }
+.host__link:hover, .gallery__more:hover { text-decoration-color: currentColor; }
+.host__link:focus-visible, .gallery__more:focus-visible { outline: 2px solid var(--sea-blue); outline-offset: 4px; }
+.host__link span { display: inline-block; transition: transform .2s var(--ease-out); }
+.host__link:hover span { transform: translateX(3px); }
+.gallery__more { align-self: center; margin-top: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .host__link span, .host__link { transition: none; }
+}
+@media (max-width: 767px) {
+  .hosts__slot { grid-template-columns: 1fr; gap: 24px; }
+  .hosts__slot .host__photo { width: 100%; }
+  .hosts__tab { flex: 1 1 0; padding: 10px 12px; }
+}
 
-.retreat-teacher__host {
-  display: flex;
-  align-items: flex-start;
-  gap: 24px;
-  width: 100%;
-  max-width: 884px;
-  padding-top: 32px;
-  border-top: 1px solid var(--hairline);
-  font-family: var(--font-body);
-  color: var(--sea-blue);
-}
-.retreat-teacher__host-photo {
-  flex: none;
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-.retreat-teacher__host-text { display: flex; flex-direction: column; gap: 4px; }
-.retreat-teacher__host-text p { margin: 0; }
-.retreat-teacher__host-name {
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 600;
-}
-.retreat-teacher__host-name span { font-weight: 400; color: var(--sea-blue-200); }
-.retreat-teacher__host-bio {
-  font-size: 15px;
-  line-height: 22px;
-  letter-spacing: 0.3px;
-}
 
 /* --- Tabs (shared component) -------------------------------------------
    Includes and Accommodations were two near-identical copies of this, and
