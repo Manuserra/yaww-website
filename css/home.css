@@ -551,8 +551,8 @@
    right at the breakpoint, which is exactly what should never happen.) */
 @media (max-width: 767px) {
   .rail { --gap: 16px; }
-  .rail__arrow { width: 36px; height: 36px; }
-  .rail__arrow svg { width: 15px; height: 15px; }
+  /* Arrows keep their 44px tap size on phones, same as every other
+     round control on the page. */
   .rail__arrow--prev { left: 10px; }
 }
 
@@ -1525,21 +1525,23 @@
   letter-spacing: 0.04em;
   color: var(--sea-blue);
 }
-.who__signer-text { display: flex; flex-direction: column; gap: 2px; }
+/* Same signer type as the testimonials carousel (.quote-card__name /
+   __detail): one testimonial signature style on the page, not two. */
+.who__signer-text { display: flex; flex-direction: column; gap: 0; }
 .who__name {
   font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 19px;
-  letter-spacing: 0.6px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
   color: var(--sea-blue);
 }
 .who__place {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 14px;
-  line-height: 16px;
-  letter-spacing: 0.04em;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
   color: var(--sea-blue-300);
 }
 .who__card-media { position: relative; min-width: 0; }
@@ -1580,8 +1582,8 @@
   font-family: var(--font-body);
   font-weight: 400;
   font-size: 14px;
-  line-height: 16px;
-  letter-spacing: 0.04em;
+  line-height: 24px;
+  letter-spacing: 0.56px;
   color: var(--sea-blue);
 }
 .who__play {
