@@ -52,7 +52,7 @@
 }
 .retreat-hero__title {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 36px;   /* Desktop/H2-bold */
   line-height: 48px;
@@ -60,7 +60,7 @@
 }
 .retreat-hero__location {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-style: italic;
   font-weight: 400;
   font-size: 28px;   /* Desktop/H3-regular */
@@ -168,7 +168,7 @@
 }
 .retreat-about__title {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 24px;
   line-height: 40px;
@@ -201,7 +201,7 @@
 }
 .retreat-teacher__title {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 24px;
   line-height: 40px;
@@ -345,7 +345,7 @@
 }
 .retreat-includes__title {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 24px;
   line-height: 40px;
@@ -367,7 +367,7 @@
 }
 .rooms__title {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 24px;
   line-height: 40px;
@@ -406,7 +406,7 @@
 }
 .rooms__aside-title {
   margin: 0 0 20px;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 20px;
   line-height: 28px;
@@ -542,7 +542,7 @@
 }
 .rooms__tier-name {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 20px;
   line-height: 28px;
@@ -665,7 +665,7 @@
 }
 .extras__title {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 24px;
   line-height: 40px;
@@ -687,7 +687,7 @@
 .extras__media { grid-column: 6 / span 7; }
 .extras__name {
   margin: 0 0 24px;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 24px;
   line-height: 32px;
@@ -761,7 +761,7 @@
 }
 .tips__title {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 24px;
   line-height: 40px;
@@ -850,7 +850,7 @@
 }
 .carbon__title {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 24px;
   line-height: 40px;
@@ -917,7 +917,7 @@
 }
 .faq-section__title {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 24px;
   line-height: 40px;
@@ -1103,7 +1103,7 @@
 .gallery__nav { margin-top: 16px; }
 .gallery__title {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 24px;
   line-height: 40px;
@@ -1436,7 +1436,7 @@ html.has-lightbox { overflow: hidden; }
 }
 .retreat-accom__title {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 24px;
   line-height: 40px;
@@ -1483,7 +1483,7 @@ html.has-lightbox { overflow: hidden; }
 }
 .retreat-accom__name {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 20px;
   line-height: 32px;
@@ -1575,7 +1575,7 @@ html.has-lightbox { overflow: hidden; }
 }
 .retreat-itinerary__title {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 24px;
   line-height: 40px;
@@ -2015,7 +2015,7 @@ html.has-lightbox { overflow: hidden; }
 }
 .quotes__title {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 24px;
   line-height: 40px;
@@ -2055,7 +2055,7 @@ html.has-lightbox { overflow: hidden; }
    name, which is where the page already speaks rather than labels. */
 .quote-card__quote {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-style: italic;
   font-weight: 400;
   font-size: 18px;
@@ -2138,7 +2138,7 @@ html.has-lightbox { overflow: hidden; }
 .booking-bar__id { min-width: 0; }
 .booking-bar__name {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 18px;
   line-height: 24px;

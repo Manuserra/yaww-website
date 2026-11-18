@@ -89,7 +89,7 @@
 .home-hero__copy { display: flex; flex-direction: column; align-items: center; gap: 16px; max-width: 760px; }
 .home-hero__title {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
   font-style: italic;
   font-size: 56px;
@@ -236,7 +236,7 @@
 }
 .filter-seg__value {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-size: 18px;
   line-height: 24px;
   white-space: nowrap;
@@ -309,7 +309,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-size: 13px;
   color: var(--sea-blue);
 }
@@ -342,7 +342,7 @@
 }
 .filter-summary__text {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-style: italic;
   font-size: 18px;
   line-height: 24px;
@@ -374,7 +374,7 @@
 }
 .filter-empty__title {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 24px;
   line-height: 40px;
@@ -440,7 +440,7 @@
 }
 .filter-sheet__title {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
   font-size: 20px;
   line-height: 32px;
@@ -606,14 +606,14 @@
   text-align: center;
 }
 .card__title {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
   color: var(--sea-blue);
 }
 .card__loc {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-style: italic;
   font-weight: 400;
   font-size: 16px;
@@ -863,7 +863,7 @@
   align-self: stretch;
   color: var(--stone);
   text-align: center;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-style: italic;
   font-weight: 400;
   font-size: 24px;
@@ -998,7 +998,7 @@
 .pillar__copy h2 {
   margin: 0;
   max-width: 480px;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 24px;
   line-height: 40px;
@@ -1187,7 +1187,7 @@
   margin: 0;
   align-self: stretch;
   color: var(--sea-blue);
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 20px;
   line-height: 32px;
@@ -1276,7 +1276,7 @@
 }
 .quote-card__quote {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-style: italic;
   font-weight: 400;
   font-size: 20px;
@@ -1367,7 +1367,7 @@
   max-width: 996px;
   text-align: center;
   color: var(--sea-blue);
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 24px;
   line-height: 40px;
@@ -1430,7 +1430,7 @@
   font-family: inherit;
 }
 .who__tab-title {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 20px;
   line-height: 32px;
@@ -1498,7 +1498,7 @@
 }
 .who__quote {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-style: italic;
   font-weight: 400;
   font-size: 20px;
@@ -1697,7 +1697,7 @@
 .lead__title {
   margin: 0;
   color: var(--sea-blue);
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 24px;
   line-height: 40px;
@@ -1743,7 +1743,7 @@
 }
 .faq-section__title {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 24px;
   line-height: 40px;

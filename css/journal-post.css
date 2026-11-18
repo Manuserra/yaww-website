@@ -27,7 +27,7 @@
 }
 .post__title {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 36px;
   line-height: 48px;
@@ -160,7 +160,7 @@
 }
 .post-author__name {
   margin: 16px 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 20px;
   line-height: 32px;
@@ -188,7 +188,7 @@
 .post-retreat__head {
   margin: 0;
   padding-bottom: 56px;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 24px;
   line-height: 40px;
@@ -211,7 +211,7 @@
 .post-retreat__text { width: 40%; }
 .post-retreat__title {
   margin: 0 0 8px;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 20px;
   line-height: 32px;
@@ -220,7 +220,7 @@
 }
 .post-retreat__sub {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-style: italic;
   font-weight: 400;
   font-size: 20px;
@@ -263,7 +263,7 @@
 .post-related__head {
   margin: 0;
   padding: 0 var(--container-pad);
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 24px;
   line-height: 40px;
@@ -300,7 +300,7 @@
 }
 .post-related__title {
   margin: 16px 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 18px;
   line-height: 24px;

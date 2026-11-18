@@ -64,14 +64,13 @@ body {
   background: var(--page-bg);
   color: var(--sea-blue);
   font-family: var(--font-body);
-  /* No -webkit-font-smoothing: antialiased here on purpose. On macOS it
-     swaps subpixel antialiasing for grayscale, which renders every
-     weight visibly thinner — Libre Baskerville 700 in particular came
-     out looking like a lighter cut than the same file does elsewhere.
-     text-rendering is left at auto for the same reason: matching how
-     this type is drawn everywhere else it appears. Neither property
-     moves a single pixel of layout; the title's measured width is
-     identical with and without them. */
+  /* Smoothing is split by typeface, not set here. Raleway stays on
+     the browser default: on macOS that draws it heavier, which it
+     needs (antialiased made it look too thin). Libre Baskerville goes
+     the other way — on the default it came out too heavy compared to
+     Figma — so every rule that sets font-family: var(--font-heading)
+     also sets antialiased/grayscale right next to it. Neither property
+     moves a pixel of layout. */
 }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; margin: 0; padding: 0; }
@@ -271,7 +270,7 @@ main { padding-top: 0; }
    ============================================================ */
 .section-title {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 24px;
   line-height: 40px;
@@ -348,7 +347,7 @@ main { padding-top: 0; }
 }
 .home-cta__title {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
   font-style: italic;
   font-size: 36px;
@@ -426,7 +425,7 @@ main { padding-top: 0; }
 .footer-news__title {
   margin: 0;
   max-width: 620px;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
   font-style: italic;
   font-size: 36px;

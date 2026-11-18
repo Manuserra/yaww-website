@@ -58,7 +58,7 @@
 .about-intro__title {
   margin: 0;
   max-width: 760px;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 36px;      /* Desktop/H2-bold */
   line-height: 48px;
@@ -96,7 +96,7 @@
 .about-card__media { aspect-ratio: 3 / 4; }
 .about-card__title {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 20px;
   line-height: 28px;
@@ -137,7 +137,7 @@
 }
 .about-person__name {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 22px;
   line-height: 32px;
@@ -171,7 +171,7 @@
 }
 .about-quote__text {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-style: italic;
   font-weight: 400;
   font-size: 18px;
@@ -214,7 +214,7 @@
 .about-teachers__text  { grid-column: 8 / span 5; display: flex; flex-direction: column; gap: 24px; }
 .about-teachers__title {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 24px;
   line-height: 40px;

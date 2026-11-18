@@ -19,7 +19,7 @@
 }
 .retreats-hero h1 {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 24px;
   line-height: 40px;          /* Desktop H4 bold */
@@ -194,7 +194,7 @@
   top: 88px;                           /* pins below the 55px sticky nav */
   margin: 0;
   text-align: left;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
   font-style: italic;
   font-size: 20px;
@@ -286,7 +286,7 @@
   text-align: center;
 }
 .card__title {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-style: normal;
   font-size: 16px;                 /* Libre Baskerville Bold 16/24 */
@@ -294,7 +294,7 @@
   color: var(--sea-blue);
 }
 .card__loc {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-style: italic;
   font-weight: 400;
   font-size: 16px;                 /* Libre Baskerville Italic 16/24 */
@@ -354,7 +354,7 @@
 }
 .r-name {
   display: block;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 18px;                 /* Figma H6-bold */
   line-height: 24px;
@@ -364,7 +364,7 @@
   text-overflow: ellipsis;
 }
 .r-loc {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-style: italic;
   font-weight: 400;
   font-size: 18px;
@@ -476,7 +476,7 @@
 }
 .collection-intro__title {
   margin: 0;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
   font-size: 18px;
   line-height: 24px;           /* Desktop H6 bold */
