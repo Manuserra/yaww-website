@@ -11,7 +11,7 @@
   flex-direction: column;
   align-items: center;
   gap: 24px;
-  padding: 24px;
+  padding: var(--container-pad);
   text-align: center;
 }
 .home-hero__media {
@@ -952,7 +952,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 56px 24px 24px;
+  padding: 56px var(--container-pad) 24px;
   gap: 56px;
   background: var(--stone);
 }
@@ -1103,8 +1103,19 @@
 .movement__media--short { aspect-ratio: 432 / 423; }
 @media (max-width: 767px) {
   .movement { padding: 40px 16px; gap: 40px; }
-  .movement__gallery { flex-direction: column; align-items: stretch; gap: 16px; }
-  .movement__media { flex: none; width: 100%; }
+  /* Mosaic instead of a vertical stack: the poolside photo runs the
+     full height of a wider left column, the other two sit square on
+     the right. All three stay visible at once (about a quarter of the
+     height the stack took) and keep the desktop idea of mixed sizes
+     reading as one composition. */
+  .movement__gallery {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 16px;
+  }
+  .movement__media { width: 100%; height: 100%; }
+  .movement__media:first-child { grid-row: span 2; aspect-ratio: auto; min-height: 0; }
+  .movement__media:not(:first-child) { aspect-ratio: 1; }
 }
 
 /* ============================================================
@@ -1601,7 +1612,7 @@
   flex-direction: column;
   align-items: center;
   gap: 48px;
-  padding: 48px 24px;
+  padding: 48px var(--container-pad);
   background: var(--stone-300);
 }
 .lead__intro {
@@ -1662,7 +1673,7 @@
   flex-direction: column;
   align-items: center;
   gap: 40px;
-  padding: 56px 24px;
+  padding: 56px var(--container-pad);
   background: var(--stone);
 }
 .faq-section__title {
