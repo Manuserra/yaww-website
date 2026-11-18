@@ -1587,6 +1587,45 @@
   outline-offset: 2px;
 }
 
+/* From tablet up the controls live under the profile list, not under
+   the postcard: the list already is this module's navigation (active
+   profile, progress bar, clickable tabs), so play/pause and the arrows
+   join it there and the postcard stands clean. The counter is dropped
+   here because the list itself shows which one of how many. On mobile
+   the list scrolls out of view above the card, so the controls (and the
+   counter) stay under the card in DOM order.
+   .who__postcards is flattened with display:contents so the stack and
+   the controls become grid items of the row; the left track's
+   min(432px, 45%) reproduces the old flex 432/520 shrink closely. */
+@media (min-width: 768px) {
+  .who__row {
+    display: grid;
+    grid-template-columns: min(432px, 45%) minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    column-gap: 48px;
+    row-gap: 0;
+    align-items: start;
+  }
+  .who__profiles { grid-column: 1; grid-row: 1; }
+  .who__postcards { display: contents; }
+  .who__stack { grid-column: 2; grid-row: 1 / span 2; justify-self: center; }
+  /* 24px up = the stack's own bottom padding (room for the fanned
+     cards behind), so the buttons sit on the front card's bottom edge. */
+  .who__controls {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: end;
+    justify-content: flex-start;
+    margin-bottom: 24px;
+    padding-top: 24px;
+  }
+  .who__counter { display: none; }
+  /* The play button's 48px box has no border, so its icon would sit
+     12px in from the column edge; pull it back so the icon lines up
+     with the tab titles above. */
+  .who__play { margin-left: -16px; margin-right: -8px; }
+}
+
 @media (max-width: 1024px) {
   .who__title { font-size: 18px; line-height: 24px; }
   .who__tab-title, .who__quote { font-size: 16px; line-height: 24px; }
