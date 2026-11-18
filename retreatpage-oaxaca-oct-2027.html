@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/base.css?v=202611181910">
-<link rel="stylesheet" href="css/retreat.css?v=202611190200">
+<link rel="stylesheet" href="css/retreat.css?v=202611190430">
 </head>
 <body>
 <!-- Built by retreats/_tools/build_page.py from data/retreats.js and retreats/oaxaca-oct-2027/data.json,
@@ -1160,6 +1160,7 @@
     var HOTELS = [
       {
         name: 'Private villa near Oaxaca City',
+        tab: 'Private villa near Oaxaca City',
         gallery: ['images/retreat-photos/oaxaca/yoga-retreat-oaxaca-mexico-the-villa-and-its-lawn-at-dusk.webp', 'images/retreat-photos/oaxaca/yoga-retreat-oaxaca-mexico-villa-arcade-under-the-big-tree.webp', 'images/retreat-photos/oaxaca/yoga-retreat-oaxaca-mexico-villa-sitting-room.webp', 'images/retreat-photos/oaxaca/yoga-retreat-oaxaca-mexico-villa-dining-room.webp', 'images/retreat-photos/oaxaca/yoga-retreat-oaxaca-mexico-garden-with-a-stone-fountain.webp', 'images/retreat-photos/oaxaca/yoga-retreat-oaxaca-mexico-garden-lit-at-dusk.webp', 'images/retreat-photos/oaxaca/yoga-retreat-oaxaca-mexico-terracotta-corridor-with-lanterns.webp', 'images/retreat-photos/oaxaca/yoga-retreat-oaxaca-mexico-pool-and-frangipani-tree.webp'],
         text: [
           'Step into the charm of a bygone era with our exclusive private accommodations in a stately mansion built in the last century. Nestled just 15 minutes from the heart of Oaxaca City, this extraordinary property is one of the few that retains its original furnishings, offering a unique and authentic experience.',
@@ -1183,7 +1184,7 @@
       tab.setAttribute('role', 'tab');
       tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
       tab.setAttribute('aria-controls', id);
-      tab.textContent = hotel.name;
+      tab.textContent = hotel.tab || hotel.name;
       tabsEl.appendChild(tab);
 
       var panel = document.createElement('div');
@@ -1272,7 +1273,7 @@
       tab.setAttribute('role', 'tab');
       tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
       tab.setAttribute('aria-controls', id);
-      tab.textContent = x.name;
+      tab.textContent = x.tab || x.name;
       tabsEl.appendChild(tab);
 
       var panel = document.createElement('div');
@@ -1672,7 +1673,12 @@
         move(active(), false);
         bar.addEventListener('click', function (e) {
           var t = e.target.closest(kind.item);
-          if (t && bar.contains(t)) move(t, !reduce);
+          if (t && bar.contains(t)) {
+            move(t, !reduce);
+            if (bar.scrollWidth > bar.clientWidth) {
+              bar.scrollTo({ left: t.offsetLeft - (bar.clientWidth - t.offsetWidth) / 2, behavior: reduce ? 'auto' : 'smooth' });
+            }
+          }
         });
         /* Observe the bar, not the window: the tabs can rewrap or change
            width without the viewport doing anything, and a resize listener

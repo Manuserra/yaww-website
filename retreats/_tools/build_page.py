@@ -45,7 +45,7 @@ import page_content as PC  # noqa: E402
 REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 TPL = os.path.join(REPO, "retreatpage-elcuyo.html")
 HOSTS_JS = '<script src="js/hosts.js?v=202611181717" defer></script>'
-CSS_VERSION = "202611190200"   # bump with any change to css/retreat.css
+CSS_VERSION = "202611190430"   # bump with any change to css/retreat.css
 
 # The El Cuyo editions that run the standard 5-night week the template was
 # written for: same itinerary, same includes, same extras.
@@ -443,7 +443,9 @@ def build(rid, cat, assets, template):
 
     # --------------------------------------------------------------- about
     if not standard:
-        paras = [tidy(p) for p in d["about_body"] if tidy(p)]
+        # Drop scraped dividers ("______") — a run of underscores is one
+        # unbreakable word and pushes the page wider than a phone.
+        paras = [tidy(p) for p in d["about_body"] if re.search(r"[A-Za-z0-9]", tidy(p))]
         if d.get("subtitle"):
             paras.insert(0, d["subtitle"] + ".")
         doc = cut(doc, '<div class="retreat-about__body">', "\n    </div>\n  </section>",
@@ -539,10 +541,11 @@ def build(rid, cat, assets, template):
         hotels = []
         for a in d["accommodations"]:
             vname = a.get("name") or a.get("label") or PC.VENUE_NAMES.get(loc) or f"Where you stay in {location.get('name', loc)}"
-            venues.append(vname)
+            short = PC.VENUE_TABS.get(a.get("label") or "", vname)
+            venues.append(short)
             gal = [assets.web(g["file"], Assets.SLIDE, loc) for g in usable(a.get("gallery"))]
-            hotels.append("      {\n        name: %s,\n        gallery: [%s],\n        text: [\n%s\n        ]\n      }" % (
-                jstr(vname), ", ".join(jstr(g) for g in gal),
+            hotels.append("      {\n        name: %s,\n        tab: %s,\n        gallery: [%s],\n        text: [\n%s\n        ]\n      }" % (
+                jstr(vname), jstr(short), ", ".join(jstr(g) for g in gal),
                 ",\n".join("          " + jstr(esc(tidy(p))) for p in a.get("text") or [])))
         doc = cut(doc, "    var HOTELS = [", "\n    ];", "\n" + ",\n".join(hotels), "HOTELS")
 
@@ -624,8 +627,8 @@ def build(rid, cat, assets, template):
             price = f"{int(x['price_usd'])} USD"
         else:
             price = re.sub(r"(?i)\s*each$", "", tidy(x["price_label"])).replace("euro", "EUR")
-        extras.append("      {\n        name: %s,\n        desc: %s,\n        price: %s, unit: %s,\n        gallery: [%s]\n      }" % (
-            jstr(nm), jstr(desc_html), jstr(price), jstr(x.get("unit") or "each"), ", ".join(jstr(g) for g in gal)))
+        extras.append("      {\n        name: %s,\n        tab: %s,\n        desc: %s,\n        price: %s, unit: %s,\n        gallery: [%s]\n      }" % (
+            jstr(nm), jstr(PC.EXTRA_TABS.get(nm, nm)), jstr(desc_html), jstr(price), jstr(x.get("unit") or "each"), ", ".join(jstr(g) for g in gal)))
     if extras:
         doc = cut(doc, "    var EXTRAS = [", "\n    ];", "\n" + ",\n".join(extras), "EXTRAS")
     else:
@@ -698,6 +701,19 @@ def build(rid, cat, assets, template):
 def patch_template_js(doc):
     """Small behaviour changes every built page needs and the template does
     not (it only ever showed per-person USD prices with a photo per extra)."""
+    # A tab may carry a shorter label than the panel's heading, so long
+    # venue and excursion names do not push a tab bar onto two rows.
+    doc = swap(doc, "      tab.textContent = hotel.name;", "      tab.textContent = hotel.tab || hotel.name;", "hotel tab")
+    doc = swap(doc, "      tab.textContent = x.name;", "      tab.textContent = x.tab || x.name;", "extra tab")
+    # A tab bar that scrolls sideways (see .tabs--hug) brings the tab you
+    # pressed fully into view, so a half-visible label never stays cut off.
+    doc = swap(doc, "          if (t && bar.contains(t)) move(t, !reduce);",
+               "          if (t && bar.contains(t)) {\n"
+               "            move(t, !reduce);\n"
+               "            if (bar.scrollWidth > bar.clientWidth) {\n"
+               "              bar.scrollTo({ left: t.offsetLeft - (bar.clientWidth - t.offsetWidth) / 2, behavior: reduce ? 'auto' : 'smooth' });\n"
+               "            }\n"
+               "          }", "tab scroll")
     doc = swap(doc, """      price.appendChild(el('p', 'rooms__price-amount', tier.priceUSD.toLocaleString('en-US') + ' USD'));
       price.appendChild(el('p', 'rooms__price-unit', 'per person'));""",
                """      /* A price may not be published yet, and is per person or per room. */

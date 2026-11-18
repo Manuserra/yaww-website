@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/base.css?v=202611181910">
-<link rel="stylesheet" href="css/retreat.css?v=202611190200">
+<link rel="stylesheet" href="css/retreat.css?v=202611190430">
 </head>
 <body>
 <!-- Built by retreats/_tools/build_page.py from data/retreats.js and retreats/montenegro-may-2027-cordover/data.json,
@@ -1106,6 +1106,7 @@
     var HOTELS = [
       {
         name: '16th-century villa in Perast',
+        tab: '16th-century villa in Perast',
         gallery: ['images/retreat-photos/montenegro/yoga-retreat-montenegro-stone-villa-above-the-bay.webp', 'images/retreat-photos/montenegro/yoga-retreat-montenegro-terrace-with-parasol-over-the-bay.webp', 'images/retreat-photos/montenegro/yoga-retreat-montenegro-suite-with-freestanding-bath.webp', 'images/retreat-photos/montenegro/yoga-retreat-montenegro-suite-with-panelled-wall.webp', 'images/retreat-photos/montenegro/yoga-retreat-montenegro-infinity-pool-and-the-bell-tower.webp', 'images/retreat-photos/montenegro/yoga-retreat-montenegro-pool-terrace-at-the-villa.webp', 'images/retreat-photos/montenegro/yoga-retreat-montenegro-hot-tub-above-the-rooftops.webp'],
         text: [
           'We’ll stay in a 16th century luxury villa, nestled in the charming UNESCO-protected village of Perast, in the heart of the Bay of Kotor. Surrounded by timeless stone architecture and breathtaking sea views, the villa offers complete privacy and the perfect setting to unwind.',
@@ -1130,7 +1131,7 @@
       tab.setAttribute('role', 'tab');
       tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
       tab.setAttribute('aria-controls', id);
-      tab.textContent = hotel.name;
+      tab.textContent = hotel.tab || hotel.name;
       tabsEl.appendChild(tab);
 
       var panel = document.createElement('div');
@@ -1219,7 +1220,7 @@
       tab.setAttribute('role', 'tab');
       tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
       tab.setAttribute('aria-controls', id);
-      tab.textContent = x.name;
+      tab.textContent = x.tab || x.name;
       tabsEl.appendChild(tab);
 
       var panel = document.createElement('div');
@@ -1607,7 +1608,12 @@
         move(active(), false);
         bar.addEventListener('click', function (e) {
           var t = e.target.closest(kind.item);
-          if (t && bar.contains(t)) move(t, !reduce);
+          if (t && bar.contains(t)) {
+            move(t, !reduce);
+            if (bar.scrollWidth > bar.clientWidth) {
+              bar.scrollTo({ left: t.offsetLeft - (bar.clientWidth - t.offsetWidth) / 2, behavior: reduce ? 'auto' : 'smooth' });
+            }
+          }
         });
         /* Observe the bar, not the window: the tabs can rewrap or change
            width without the viewport doing anything, and a resize listener

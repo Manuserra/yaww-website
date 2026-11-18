@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/base.css?v=202611181910">
-<link rel="stylesheet" href="css/retreat.css?v=202611190200">
+<link rel="stylesheet" href="css/retreat.css?v=202611190430">
 </head>
 <body>
 <!-- Built by retreats/_tools/build_page.py from data/retreats.js and retreats/portugal-may-2027/data.json,
@@ -1146,6 +1146,7 @@
     var HOTELS = [
       {
         name: '3 nights in Lisbon : a boutique stay in São Bento',
+        tab: 'Lisbon',
         gallery: ['images/retreat-photos/portugal/yoga-retreat-portugal-lisbon-hotel-lounge.webp', 'images/retreat-photos/portugal/yoga-retreat-portugal-lisbon-hotel-breakfast-room.webp', 'images/retreat-photos/portugal/yoga-retreat-portugal-lisbon-guidebook-on-the-table.webp', 'images/retreat-photos/portugal/yoga-retreat-portugal-breakfast-buffet-in-lisbon.webp', 'images/retreat-photos/portugal/yoga-retreat-portugal-lisbon-double-room.webp', 'images/retreat-photos/portugal/yoga-retreat-portugal-black-tiled-bathroom-in-lisbon.webp', 'images/retreat-photos/portugal/yoga-retreat-portugal-bathroom-with-green-marble.webp', 'images/retreat-photos/portugal/yoga-retreat-portugal-twin-room-with-red-walls.webp'],
         text: [
           'Tucked into Lisbon’s São Bento neighborhood, our boutique stay feels both intimate and quietly distinctive. Each space is thoughtfully designed, blending contemporary lines with artistic details that reflect the creative energy of the area.',
@@ -1155,6 +1156,7 @@
       },
       {
         name: '4 nights in Costa Vicentina : a secluded boutique stay',
+        tab: 'Costa Vicentina',
         gallery: ['images/retreat-photos/portugal/yoga-retreat-portugal-farmhouse-living-room.webp', 'images/retreat-photos/portugal/yoga-retreat-portugal-yoga-class-in-the-timber-studio.webp', 'images/retreat-photos/portugal/yoga-retreat-portugal-dipping-bread-into-soup.webp', 'images/retreat-photos/portugal/yoga-retreat-portugal-goats-in-the-field-at-golden-hour.webp', 'images/retreat-photos/portugal/yoga-retreat-portugal-whitewashed-farmhouse-with-a-pool.webp', 'images/retreat-photos/portugal/yoga-retreat-portugal-farmhouse-room-opening-to-the-terrace.webp', 'images/retreat-photos/portugal/yoga-retreat-portugal-farmhouse-twin-room.webp'],
         text: [
           'The second half of our experience unfolds in a quietly extraordinary retreat set within a protected valley on Portugal’s wild southwest coast. Surrounded by rolling hills, eucalyptus groves, and open fields that stretch toward the sea, the property feels both grounded and expansive—deeply connected to the land it rests on.',
@@ -1178,7 +1180,7 @@
       tab.setAttribute('role', 'tab');
       tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
       tab.setAttribute('aria-controls', id);
-      tab.textContent = hotel.name;
+      tab.textContent = hotel.tab || hotel.name;
       tabsEl.appendChild(tab);
 
       var panel = document.createElement('div');
@@ -1267,7 +1269,7 @@
       tab.setAttribute('role', 'tab');
       tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
       tab.setAttribute('aria-controls', id);
-      tab.textContent = x.name;
+      tab.textContent = x.tab || x.name;
       tabsEl.appendChild(tab);
 
       var panel = document.createElement('div');
@@ -1446,12 +1448,12 @@
       priceUnit: 'per room',
       hotels: [
         {
-          name: '3 nights in Lisbon : a boutique stay in São Bento',
+          name: 'Lisbon',
           chips: ['Double bed', 'Private bath'],
           gallery: ['images/retreat-photos/portugal/yoga-retreat-portugal-lisbon-double-room.webp', 'images/retreat-photos/portugal/yoga-retreat-portugal-black-tiled-bathroom-in-lisbon.webp', 'images/retreat-photos/portugal/yoga-retreat-portugal-farmhouse-room-opening-to-the-terrace.webp', 'images/retreat-photos/portugal/yoga-retreat-portugal-bathroom-with-green-marble.webp']
         },
         {
-          name: '4 nights in Costa Vicentina : a secluded boutique stay',
+          name: 'Costa Vicentina',
           chips: [],
           gallery: []
         }
@@ -1463,12 +1465,12 @@
       priceUnit: 'per person',
       hotels: [
         {
-          name: '3 nights in Lisbon : a boutique stay in São Bento',
+          name: 'Lisbon',
           chips: ['King or 2 twins', 'Private bath'],
           gallery: ['images/retreat-photos/portugal/yoga-retreat-portugal-twin-room-with-red-walls.webp', 'images/retreat-photos/portugal/yoga-retreat-portugal-black-tiled-bathroom-in-lisbon.webp', 'images/retreat-photos/portugal/yoga-retreat-portugal-farmhouse-twin-room.webp', 'images/retreat-photos/portugal/yoga-retreat-portugal-bathroom-with-green-marble.webp']
         },
         {
-          name: '4 nights in Costa Vicentina : a secluded boutique stay',
+          name: 'Costa Vicentina',
           chips: [],
           gallery: []
         }
@@ -1641,7 +1643,12 @@
         move(active(), false);
         bar.addEventListener('click', function (e) {
           var t = e.target.closest(kind.item);
-          if (t && bar.contains(t)) move(t, !reduce);
+          if (t && bar.contains(t)) {
+            move(t, !reduce);
+            if (bar.scrollWidth > bar.clientWidth) {
+              bar.scrollTo({ left: t.offsetLeft - (bar.clientWidth - t.offsetWidth) / 2, behavior: reduce ? 'auto' : 'smooth' });
+            }
+          }
         });
         /* Observe the bar, not the window: the tabs can rewrap or change
            width without the viewport doing anything, and a resize listener

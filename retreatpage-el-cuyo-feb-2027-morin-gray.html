@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/base.css?v=202611181910">
-<link rel="stylesheet" href="css/retreat.css?v=202611190200">
+<link rel="stylesheet" href="css/retreat.css?v=202611190430">
 </head>
 <body>
 <!-- Built by retreats/_tools/build_page.py from data/retreats.js and retreats/el-cuyo-feb-2027-morin-gray/data.json,
@@ -149,7 +149,6 @@
       <p>– Marking a transition — newlyweds, newly single, post-divorce, postpartum, healing</p>
       <p>– Exploring visibility and self-expression in a grounded, supported environment</p>
       <p>No experience required — just curiosity, comfort, and a willingness to be met exactly where you are.</p>
-      <p>__________________________________________________________________________________________</p>
       <p>Rachel Gray is an internationally recognized photographer, who has worked with leading brands such as Tiffany, Netflix, Time Magazine, and more. Based in Malibu, her work is rooted in both a fine-art foundation and a capacity to capture with presence and sensitivity.</p>
       <p>Her work centers on connection — the quiet, unguarded moments where people reveal how they inhabit their bodies and relationships. Clients often describe the experience of working with her as grounding and fun, noting her ability to “conjure vulnerability without imposition.”</p>
       <p>During this retreat, you will be guided through an intimate portrait experience that results in an image designed to be treasured for a lifetime. Rachel’s version of boudoir photography is rooted in a light hearted, and playful openness. Participants co-create based on their comfort level and the resulting image is a reflection of each person’s inner landscape.</p>
@@ -1173,7 +1172,7 @@
       tab.setAttribute('role', 'tab');
       tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
       tab.setAttribute('aria-controls', id);
-      tab.textContent = hotel.name;
+      tab.textContent = hotel.tab || hotel.name;
       tabsEl.appendChild(tab);
 
       var panel = document.createElement('div');
@@ -1221,6 +1220,7 @@
     var EXTRAS = [
       {
         name: 'Massages',
+        tab: 'Massages',
         desc: 'Additional 75 minute massages.',
         price: '140 USD', unit: 'each',
         gallery: ['images/extra4-1.jpg', 'images/extra4-2.jpg']
@@ -1243,7 +1243,7 @@
       tab.setAttribute('role', 'tab');
       tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
       tab.setAttribute('aria-controls', id);
-      tab.textContent = x.name;
+      tab.textContent = x.tab || x.name;
       tabsEl.appendChild(tab);
 
       var panel = document.createElement('div');
@@ -1643,7 +1643,12 @@
         move(active(), false);
         bar.addEventListener('click', function (e) {
           var t = e.target.closest(kind.item);
-          if (t && bar.contains(t)) move(t, !reduce);
+          if (t && bar.contains(t)) {
+            move(t, !reduce);
+            if (bar.scrollWidth > bar.clientWidth) {
+              bar.scrollTo({ left: t.offsetLeft - (bar.clientWidth - t.offsetWidth) / 2, behavior: reduce ? 'auto' : 'smooth' });
+            }
+          }
         });
         /* Observe the bar, not the window: the tabs can rewrap or change
            width without the viewport doing anything, and a resize listener

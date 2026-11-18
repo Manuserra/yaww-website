@@ -176,6 +176,11 @@
   color: var(--sea-blue);
   text-align: center;
 }
+/* Copy on these pages comes from the old site, so a long URL or a run of
+   characters with no break opportunity can turn up anywhere. Let it wrap
+   instead of widening the page. Only words that cannot fit are broken. */
+main { overflow-wrap: break-word; }
+
 .retreat-about__body {
   display: flex;
   flex-direction: column;
@@ -367,6 +372,12 @@
   .hosts__slot .host__photo { width: 100%; }
   .hosts__tab { flex: 1 1 0; padding: 10px 12px; }
 }
+/* Three hosts (teacher, photographer, facilitator) do not fit as equal
+   thirds of a phone: "Photographer" alone is wider than a third. Each tab
+   takes its own width instead, and the spacing tightens a little. */
+@media (max-width: 480px) {
+  .hosts__tab { flex: 1 1 auto; padding: 10px 6px; letter-spacing: 0.6px; }
+}
 
 
 /* --- Tabs (shared component) -------------------------------------------
@@ -411,17 +422,43 @@
 
 /* Two equal slots: the labels are short and never change (Includes). */
 .tabs--fixed .tabs__item { width: 216px; gap: 16px; white-space: nowrap; }
-/* Labels are names of arbitrary length (Accommodations), so the tabs hug
-   their text and the row wraps instead of clipping. */
-.tabs--hug { gap: 10px; }
-.tabs--hug .tabs__item { min-width: 216px; }
+/* Labels are names of arbitrary length (Accommodations, Extras), so the tabs
+   hug their text: 216px each while there is room, down to their own label
+   width when there is not, and past that the row scrolls sideways instead
+   of wrapping. Wrapping is what it used to do, and five Extras on a tablet
+   came out as rows of 3 + 2 or 2 + 2 + 1 with the active line under only
+   one of them.
+   The hairline is an inset shadow plus 1px of padding rather than a
+   border: a scrolling box clips at its padding edge, and the sliding
+   indicator sits astride the line, so with a border its lower half would
+   be cut off. Same line, same place, same 2px indicator. */
+.tabs--hug {
+  gap: 10px;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  border-bottom: 0;
+  padding-bottom: 1px;
+  box-shadow: inset 0 -1px 0 var(--stone-400);
+}
+.tabs--hug::-webkit-scrollbar { display: none; }
+/* width (not flex-basis) carries the 216: a bar that hugs its tabs sizes
+   itself from their widths, and would ignore a basis. */
+.tabs--hug .tabs__item { flex: 0 1 auto; width: 216px; min-width: max-content; white-space: nowrap; }
+/* auto margins centre the row while it fits; unlike justify-content:
+   center they never push the first tab out of reach once it overflows */
+.tabs--hug .tabs__item:first-of-type { margin-left: auto; }
+.tabs--hug .tabs__item:last-of-type { margin-right: auto; }
 
 @media (max-width: 767px) {
   .tabs--fixed { width: 100%; }
   .tabs--fixed .tabs__item { width: auto; flex: 1 1 0; padding: 12px 8px; }
 }
 @media (max-width: 480px) {
-  .tabs--hug .tabs__item { min-width: 0; padding: 12px 8px; }
+  .tabs--hug .tabs__item { padding: 12px 12px; }
 }
 
 /* --- Includes (node "Includes" · 1440x759 bg photo + white card) ------- */
@@ -1886,6 +1923,12 @@ html.has-lightbox { overflow: hidden; }
   flex-direction: column;
   gap: 8px;
 }
+/* Under 480 the section's left padding drops to 4px so the rail can sit
+   near the edge; the notes are not on the rail, so they take the 16px
+   gutter back and line up with the photos above them. */
+@media (max-width: 480px) {
+  .retreat-itinerary__notes { padding-left: 12px; box-sizing: border-box; }
+}
 .retreat-itinerary__note {
   margin: 0;
   color: var(--sea-blue);
@@ -1922,6 +1965,10 @@ html.has-lightbox { overflow: hidden; }
   transition: transform .4s ease;
 }
 .photo-slider__slide { flex: none; width: 100%; height: 100%; }
+/* One photo: nothing to page through, so no arrows and no lone dot. The
+   buttons stay in the markup because the slider script binds to them. */
+.photo-slider:has(> .photo-slider__track > .photo-slider__slide:only-child) .photo-slider__arrow,
+.photo-slider:has(> .photo-slider__track > .photo-slider__slide:only-child) .photo-slider__dots { display: none; }
 .photo-slider__slide img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 /* Arrows/dots: solid stone-100 chips (same tone as the .card__badge pill

@@ -256,3 +256,23 @@ HOST_META = {
 HOST_ROLE = {
     "rachel-gray": ("Photographer", "Your photographer"),
 }
+
+# Short tab labels. The panel heading keeps the full name; the tab only has
+# to tell two or five options apart, and on a tablet a long label wraps the
+# whole bar onto a second row. Keyed by the venue's label in data.json.
+VENUE_TABS = {
+    "Buenos Aires boutique hotel": "Buenos Aires",
+    "Villa La Angostura lake front hotel": "Villa La Angostura",
+    "3 nights in Lisbon : a boutique stay in São Bento": "Lisbon",
+    "4 nights in Costa Vicentina : a secluded boutique stay": "Costa Vicentina",
+    "5 nights in Chiang Mai Old City": "Chiang Mai",
+    "4 nights beachfront on Koh Yao Noi": "Koh Yao Noi",
+}
+
+EXTRA_TABS = {
+    "Excursion to Las Coloradas": "Las Coloradas",
+    "Kayaking in Nature": "Kayaking",
+    "Yucatan Peninsula day trip": "Yucatan day trip",
+    "Temazcal Ceremony": "Temazcal",
+    "Optional healing massage at the villa": "Healing massage",
+}

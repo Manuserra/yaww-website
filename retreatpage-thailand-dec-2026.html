@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/base.css?v=202611181910">
-<link rel="stylesheet" href="css/retreat.css?v=202611190200">
+<link rel="stylesheet" href="css/retreat.css?v=202611190430">
 </head>
 <body>
 <!-- Built by retreats/_tools/build_page.py from data/retreats.js and retreats/thailand-dec-2026/data.json,
@@ -1292,6 +1292,7 @@
     var HOTELS = [
       {
         name: '5 nights in Chiang Mai Old City',
+        tab: 'Chiang Mai',
         gallery: ['images/retreat-photos/thailand/yoga-retreat-thailand-carved-gateway-of-the-chiang-mai-hotel.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-saltwater-pool-along-the-carved-wall.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-teak-screen-onto-the-pool.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-bathtub-looking-into-the-room.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-robes-and-bath-products-on-a-tray.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-balcony-over-the-pool.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-superior-room-with-a-carved-headboard.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-twin-superior-room-in-chiang-mai.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-superior-room-with-a-carved-headboard.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-stone-basin-in-the-bathroom.webp'],
         text: [
           'Our first 5 nights will be enjoyed tucked inside the Old City walls in a stunning, classical Thai hotel with saltwater swimming pool and intricate details throughout.',
@@ -1302,6 +1303,7 @@
       },
       {
         name: '4 nights beachfront on Koh Yao Noi',
+        tab: 'Koh Yao Noi',
         gallery: ['images/retreat-photos/thailand/yoga-retreat-thailand-koh-yao-noi-bay-from-the-air.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-hillside-villas-above-the-sea.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-practice-in-the-thatched-shala.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-beach-and-jungle-hillside.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-superior-studio-with-a-thatched-ceiling.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-studio-balcony-with-a-swing-seat.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-studio-bed-under-a-mosquito-net.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-terrace-with-swing-chairs.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-sea-view-room-with-a-canopy-bed.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-open-air-shower-with-a-blue-jar.webp'],
         text: [
           'Then we make our way to the stunning beaches of southern Thailand on the island of Koh Yao Noi where we will be staying beachfront at a secluded, gorgeous and scenic hotel for our final four nights. Yoga daily, spa services available, kayaking, beaches and villages to explore nearby.',
@@ -1324,7 +1326,7 @@
       tab.setAttribute('role', 'tab');
       tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
       tab.setAttribute('aria-controls', id);
-      tab.textContent = hotel.name;
+      tab.textContent = hotel.tab || hotel.name;
       tabsEl.appendChild(tab);
 
       var panel = document.createElement('div');
@@ -1413,7 +1415,7 @@
       tab.setAttribute('role', 'tab');
       tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
       tab.setAttribute('aria-controls', id);
-      tab.textContent = x.name;
+      tab.textContent = x.tab || x.name;
       tabsEl.appendChild(tab);
 
       var panel = document.createElement('div');
@@ -1592,12 +1594,12 @@
       priceUnit: 'per room',
       hotels: [
         {
-          name: '5 nights in Chiang Mai Old City',
+          name: 'Chiang Mai',
           chips: ['Private bath'],
           gallery: ['images/retreat-photos/thailand/yoga-retreat-thailand-superior-room-with-a-carved-headboard.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-stone-basin-in-the-bathroom.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-sea-view-room-with-a-canopy-bed.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-open-air-shower-with-a-blue-jar.webp']
         },
         {
-          name: '4 nights beachfront on Koh Yao Noi',
+          name: 'Koh Yao Noi',
           chips: [],
           gallery: []
         }
@@ -1609,12 +1611,12 @@
       priceUnit: 'per person',
       hotels: [
         {
-          name: '5 nights in Chiang Mai Old City',
+          name: 'Chiang Mai',
           chips: ['Double bed', 'Private bath'],
           gallery: ['images/retreat-photos/thailand/yoga-retreat-thailand-superior-room-with-a-carved-headboard.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-stone-basin-in-the-bathroom.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-sea-view-room-with-a-canopy-bed.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-open-air-shower-with-a-blue-jar.webp']
         },
         {
-          name: '4 nights beachfront on Koh Yao Noi',
+          name: 'Koh Yao Noi',
           chips: [],
           gallery: []
         }
@@ -1626,12 +1628,12 @@
       priceUnit: 'per person',
       hotels: [
         {
-          name: '5 nights in Chiang Mai Old City',
+          name: 'Chiang Mai',
           chips: ['Queen bed', 'Private bath'],
           gallery: ['images/retreat-photos/thailand/yoga-retreat-thailand-teak-screen-onto-the-pool.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-bathtub-looking-into-the-room.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-robes-and-bath-products-on-a-tray.webp']
         },
         {
-          name: '4 nights beachfront on Koh Yao Noi',
+          name: 'Koh Yao Noi',
           chips: [],
           gallery: []
         }
@@ -1643,12 +1645,12 @@
       priceUnit: 'per person',
       hotels: [
         {
-          name: '5 nights in Chiang Mai Old City',
+          name: 'Chiang Mai',
           chips: ['Twin bed', 'Private bath'],
           gallery: ['images/retreat-photos/thailand/yoga-retreat-thailand-bathtub-looking-into-the-room.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-robes-and-bath-products-on-a-tray.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-balcony-over-the-pool.webp']
         },
         {
-          name: '4 nights beachfront on Koh Yao Noi',
+          name: 'Koh Yao Noi',
           chips: [],
           gallery: []
         }
@@ -1821,7 +1823,12 @@
         move(active(), false);
         bar.addEventListener('click', function (e) {
           var t = e.target.closest(kind.item);
-          if (t && bar.contains(t)) move(t, !reduce);
+          if (t && bar.contains(t)) {
+            move(t, !reduce);
+            if (bar.scrollWidth > bar.clientWidth) {
+              bar.scrollTo({ left: t.offsetLeft - (bar.clientWidth - t.offsetWidth) / 2, behavior: reduce ? 'auto' : 'smooth' });
+            }
+          }
         });
         /* Observe the bar, not the window: the tabs can rewrap or change
            width without the viewport doing anything, and a resize listener

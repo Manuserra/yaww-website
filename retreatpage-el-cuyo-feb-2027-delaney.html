@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/base.css?v=202611181910">
-<link rel="stylesheet" href="css/retreat.css?v=202611190200">
+<link rel="stylesheet" href="css/retreat.css?v=202611190430">
 </head>
 <body>
 <!-- Built by retreats/_tools/build_page.py from data/retreats.js and retreats/el-cuyo-feb-2027-delaney/data.json,
@@ -1153,7 +1153,7 @@
       tab.setAttribute('role', 'tab');
       tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
       tab.setAttribute('aria-controls', id);
-      tab.textContent = hotel.name;
+      tab.textContent = hotel.tab || hotel.name;
       tabsEl.appendChild(tab);
 
       var panel = document.createElement('div');
@@ -1201,30 +1201,35 @@
     var EXTRAS = [
       {
         name: 'Excursion to Las Coloradas',
+        tab: 'Las Coloradas',
         desc: 'Excursion to Las Coloradas to see flamingos and pink lagoons; dip in a secluded beach &amp; lunch at a local fish joint.',
         price: '155 USD', unit: 'per person',
         gallery: ['images/extra1-3.jpg', 'images/extra1-1.jpg', 'images/extra1-2.jpg']
       },
       {
         name: 'Kayaking in Nature',
+        tab: 'Kayaking',
         desc: 'Excursion to our local nature preserve to kayak amongst the mangroves and lily pads. A true nature bath experience.',
         price: '85 USD', unit: 'per person',
         gallery: ['images/extra2-1.jpg', 'images/extra2-2.jpg']
       },
       {
         name: 'Yucatan Peninsula day trip',
+        tab: 'Yucatan day trip',
         desc: 'Yucatan Peninsula day trip: Ruins of Ek Balam, cenote swim, lunch &amp; colonial city of Valladolid. *Minimum participation of 4 guests to host the excursion.',
         price: '195 USD', unit: 'per person',
         gallery: ['images/extra3-1.jpg', 'images/extra3-2.jpg', 'images/extra3-3.jpg']
       },
       {
         name: 'Temazcal Ceremony',
+        tab: 'Temazcal',
         desc: 'A powerful ancestral practice of release, transformation, and rebirth.',
         price: '95 USD', unit: 'per person',
         gallery: []
       },
       {
         name: 'Massages',
+        tab: 'Massages',
         desc: 'Additional 75 minute massages.',
         price: '140 USD', unit: 'each',
         gallery: ['images/extra4-1.jpg', 'images/extra4-2.jpg']
@@ -1247,7 +1252,7 @@
       tab.setAttribute('role', 'tab');
       tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
       tab.setAttribute('aria-controls', id);
-      tab.textContent = x.name;
+      tab.textContent = x.tab || x.name;
       tabsEl.appendChild(tab);
 
       var panel = document.createElement('div');
@@ -1647,7 +1652,12 @@
         move(active(), false);
         bar.addEventListener('click', function (e) {
           var t = e.target.closest(kind.item);
-          if (t && bar.contains(t)) move(t, !reduce);
+          if (t && bar.contains(t)) {
+            move(t, !reduce);
+            if (bar.scrollWidth > bar.clientWidth) {
+              bar.scrollTo({ left: t.offsetLeft - (bar.clientWidth - t.offsetWidth) / 2, behavior: reduce ? 'auto' : 'smooth' });
+            }
+          }
         });
         /* Observe the bar, not the window: the tabs can rewrap or change
            width without the viewport doing anything, and a resize listener

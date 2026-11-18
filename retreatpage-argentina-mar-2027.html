@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/base.css?v=202611181910">
-<link rel="stylesheet" href="css/retreat.css?v=202611190200">
+<link rel="stylesheet" href="css/retreat.css?v=202611190430">
 </head>
 <body>
 <!-- Built by retreats/_tools/build_page.py from data/retreats.js and retreats/argentina-mar-2027/data.json,
@@ -1196,6 +1196,7 @@
     var HOTELS = [
       {
         name: 'Buenos Aires boutique hotel',
+        tab: 'Buenos Aires',
         gallery: ['images/retreat-photos/argentina/yoga-retreat-argentina-hotel-restaurant-in-palermo.webp', 'images/retreat-photos/argentina/yoga-retreat-argentina-hotel-room-with-pink-floor.webp', 'images/retreat-photos/argentina/yoga-retreat-argentina-breakfast-laid-on-a-wooden-table.webp', 'images/retreat-photos/argentina/yoga-retreat-argentina-hotel-pool-from-above.webp'],
         text: [
           '3 nights in Buenos Aires’ Palermo neighborhood charming boutique hotel.'
@@ -1203,6 +1204,7 @@
       },
       {
         name: 'Villa La Angostura lake front hotel',
+        tab: 'Villa La Angostura',
         gallery: ['images/retreat-photos/argentina/yoga-retreat-argentina-lakeside-lodge-among-the-birches.webp', 'images/retreat-photos/argentina/yoga-retreat-argentina-fire-burning-in-the-lodge-lounge.webp', 'images/retreat-photos/argentina/yoga-retreat-argentina-lodge-pool-above-the-lake.webp', 'images/retreat-photos/argentina/yoga-retreat-argentina-twin-room-with-breakfast-tray.webp'],
         text: [
           '4 nights in Villa La Angostura lake front accommodations. Dry sauna, heated pool, hammam and hotel gym are available for use.'
@@ -1224,7 +1226,7 @@
       tab.setAttribute('role', 'tab');
       tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
       tab.setAttribute('aria-controls', id);
-      tab.textContent = hotel.name;
+      tab.textContent = hotel.tab || hotel.name;
       tabsEl.appendChild(tab);
 
       var panel = document.createElement('div');
@@ -1313,7 +1315,7 @@
       tab.setAttribute('role', 'tab');
       tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
       tab.setAttribute('aria-controls', id);
-      tab.textContent = x.name;
+      tab.textContent = x.tab || x.name;
       tabsEl.appendChild(tab);
 
       var panel = document.createElement('div');
@@ -1492,12 +1494,12 @@
       priceUnit: null,
       hotels: [
         {
-          name: 'Buenos Aires boutique hotel',
+          name: 'Buenos Aires',
           chips: ['King bed', 'Private bath', 'City views in Buenos Aires'],
           gallery: ['images/retreat-photos/argentina/yoga-retreat-argentina-standard-room-in-buenos-aires.webp', 'images/retreat-photos/argentina/yoga-retreat-argentina-standard-room-with-a-lake-view.webp']
         },
         {
-          name: 'Villa La Angostura lake front hotel',
+          name: 'Villa La Angostura',
           chips: [],
           gallery: []
         }
@@ -1509,12 +1511,12 @@
       priceUnit: null,
       hotels: [
         {
-          name: 'Buenos Aires boutique hotel',
+          name: 'Buenos Aires',
           chips: ['King bed', 'Private bath', 'City views in Buenos Aires'],
           gallery: ['images/retreat-photos/argentina/yoga-retreat-argentina-hotel-room-with-pink-floor.webp', 'images/retreat-photos/argentina/yoga-retreat-argentina-lake-view-room-in-villa-la-angostura.webp']
         },
         {
-          name: 'Villa La Angostura lake front hotel',
+          name: 'Villa La Angostura',
           chips: [],
           gallery: []
         }
@@ -1526,12 +1528,12 @@
       priceUnit: null,
       hotels: [
         {
-          name: 'Buenos Aires boutique hotel',
+          name: 'Buenos Aires',
           chips: ['King bed', 'Private bath', 'Garden views in Buenos Aires'],
           gallery: ['images/retreat-photos/argentina/yoga-retreat-argentina-breakfast-laid-on-a-wooden-table.webp', 'images/retreat-photos/argentina/yoga-retreat-argentina-hotel-pool-from-above.webp', 'images/retreat-photos/argentina/yoga-retreat-argentina-hotel-restaurant-in-palermo.webp']
         },
         {
-          name: 'Villa La Angostura lake front hotel',
+          name: 'Villa La Angostura',
           chips: [],
           gallery: []
         }
@@ -1704,7 +1706,12 @@
         move(active(), false);
         bar.addEventListener('click', function (e) {
           var t = e.target.closest(kind.item);
-          if (t && bar.contains(t)) move(t, !reduce);
+          if (t && bar.contains(t)) {
+            move(t, !reduce);
+            if (bar.scrollWidth > bar.clientWidth) {
+              bar.scrollTo({ left: t.offsetLeft - (bar.clientWidth - t.offsetWidth) / 2, behavior: reduce ? 'auto' : 'smooth' });
+            }
+          }
         });
         /* Observe the bar, not the window: the tabs can rewrap or change
            width without the viewport doing anything, and a resize listener
