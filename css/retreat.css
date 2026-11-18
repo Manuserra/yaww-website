@@ -187,7 +187,9 @@
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.32px;
-  text-align: justify;
+  /* Left, not justified: at this measure justification opens visible
+     rivers between words. */
+  text-align: left;
   color: var(--sea-blue);
 }
 
@@ -233,7 +235,7 @@
   gap: 16px;
   flex: 1 0 0;
   color: var(--sea-blue);
-  text-align: justify;
+  text-align: left;
   font-family: var(--font-body);
   font-size: 16px;
   font-weight: 400;
@@ -241,6 +243,84 @@
   letter-spacing: 0.32px;
 }
 .retreat-teacher__text p { margin: 0; }
+
+/* "Your hosts" — the teacher card leads; the facilitator sits under it
+   at a smaller scale. The teacher is the reason to book, the facilitator
+   is the reason not to worry, and the hierarchy says so. */
+img.retreat-teacher__photo { display: block; object-fit: cover; }
+.retreat-teacher__eyebrow {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--stone-600);
+}
+.retreat-teacher__text .retreat-teacher__eyebrow { margin-bottom: -8px; }
+.retreat-teacher__name {
+  margin: 0;
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  color: var(--sea-blue);
+}
+.retreat-teacher__text .retreat-teacher__meta {
+  margin-top: -12px;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--sea-blue-200);
+}
+.retreat-teacher__note strong { font-weight: 600; }
+.retreat-teacher__link {
+  align-self: flex-start;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--sea-blue);
+  text-decoration: underline;
+  text-decoration-color: var(--stone-400);
+  text-underline-offset: 6px;
+  transition: text-decoration-color 0.2s var(--ease-out);
+}
+.retreat-teacher__link:hover { text-decoration-color: currentColor; }
+.retreat-teacher__link:focus-visible { outline: 2px solid var(--sea-blue); outline-offset: 4px; }
+.gallery__more { align-self: center; }
+
+.retreat-teacher__host {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  width: 100%;
+  max-width: 884px;
+  padding-top: 32px;
+  border-top: 1px solid var(--hairline);
+  font-family: var(--font-body);
+  color: var(--sea-blue);
+}
+.retreat-teacher__host-photo {
+  flex: none;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.retreat-teacher__host-text { display: flex; flex-direction: column; gap: 4px; }
+.retreat-teacher__host-text p { margin: 0; }
+.retreat-teacher__host-name {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+}
+.retreat-teacher__host-name span { font-weight: 400; color: var(--sea-blue-200); }
+.retreat-teacher__host-bio {
+  font-size: 15px;
+  line-height: 22px;
+  letter-spacing: 0.3px;
+}
 
 /* --- Tabs (shared component) -------------------------------------------
    Includes and Accommodations were two near-identical copies of this, and
@@ -1072,6 +1152,12 @@
   padding: 56px 0;
   background: var(--stone);
   overflow: hidden;   /* the strip's own overhang must not scroll the page */
+  /* One clock and one curve for the whole module. Declared here, on the
+     common ancestor, because the progress mark is a sibling of the track
+     and would not inherit them from the rail — and the three have to agree
+     or they stop reading as one movement. */
+  --gallery-dur: .46s;
+  --gallery-ease: cubic-bezier(.22, .61, .36, 1);
 }
 /* Heading, then a short paragraph, then the controls. "Gallery" was a label
    for the component rather than a name for what the reader is looking at —
@@ -1159,15 +1245,25 @@
   touch-action: pan-y;
 }
 
-/* 500ms is the reference's own pace and it is the point of the module: long
-   enough that the strip glides rather than snaps, which is the difference
-   between a photo essay and a control. Plain `ease` — symmetric, no
-   overshoot, nothing calling attention to itself. */
+/* The strip still glides rather than snaps — that is the point of the
+   module — but it now leaves on the press instead of easing into it.
+
+   Plain `ease` is symmetric, and symmetry is wrong for something a press
+   starts: it spends the first three frames barely moving (9% of the travel
+   in 50ms, 30% in 100ms), which reads as the control hesitating before it
+   obeys. Decelerating instead puts 29% in the first 50ms and 54% by 100ms,
+   so the answer is immediate, and keeps a long tail — 95% at 300ms, still
+   settling at 460 — so the strip arrives rather than stops.
+
+   460ms rather than 500: with the start no longer wasted, the same journey
+   wants slightly less clock. --gallery-ease and --gallery-dur are shared by
+   the slide fade and the progress mark below, which must stay on exactly
+   this curve or the three read as separate events. */
 .gallery__rail {
   display: flex;
   align-items: center;
   gap: var(--gap);
-  transition: transform .5s ease;
+  transition: transform var(--gallery-dur) var(--gallery-ease);
   will-change: transform;
 }
 /* The loop jump: one set backwards onto an identical photo. It must not be
@@ -1204,7 +1300,7 @@
   aspect-ratio: var(--r, 28 / 17);
   background: var(--stone-200);
   opacity: .4;
-  transition: opacity .5s ease;
+  transition: opacity var(--gallery-dur) var(--gallery-ease);
 }
 .gallery__slide.is-whole { opacity: 1; }
 .is-jumping .gallery__slide { transition: none; }
@@ -1264,7 +1360,8 @@
   height: 1px;
   background: var(--stone-600);
   transform: translateX(0);
-  transition: transform .5s ease, width .5s ease;
+  transition: transform var(--gallery-dur) var(--gallery-ease),
+              width var(--gallery-dur) var(--gallery-ease);
 }
 .gallery__progress.is-jumping .gallery__progress-bar { transition: none; }
 @media (prefers-reduced-motion: reduce) {

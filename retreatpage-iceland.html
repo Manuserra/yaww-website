@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/base.css?v=202611181910">
-<link rel="stylesheet" href="css/retreat.css?v=202611181910">
+<link rel="stylesheet" href="css/retreat.css?v=202611181609">
 </head>
 <body>
 
@@ -139,23 +139,44 @@
   <section class="retreat-about">
     <h2 class="retreat-about__title">About this retreat</h2>
     <div class="retreat-about__body">
-      <p>There’s a rhythm to Iceland that feels otherworldly: shifting skies, endless horizons, and the quiet pulse of earth beneath your feet. This journey follows that rhythm. Over seven nights, we’ll travel across the island’s south coast, tracing a path from the iconic Blue Lagoon to the raw beauty of Vatnajökull Glacier.</p>
-      <p>Our days unfold at an unhurried pace: morning practices that ground you, scenic drives through lava fields and coastal villages, long pauses in the presence of waterfalls and volcanic sands. Each stop offers a different expression of Iceland’s character: geothermal warmth, ancient ice, and the simplicity of local life.</p>
-      <p>Evenings bring soft light, shared meals, and stillness. We’ll stay in carefully chosen hotels that blend comfort with proximity to nature, allowing the landscape to remain the true luxury. There’s time built in for exploration too, including Reykjavik’s quiet creativity, the surreal glow of the Golden Circle, and perhaps a glimpse of the Northern Lights.</p>
-      <p>This retreat is not about escape. It is about presence. About seeing a place that feels both wild and deliberate, and meeting yourself there, steady and awake to the world.</p>
+      <!-- Retreat-specific copy only: what THIS edition (teacher + place +
+           dates) offers. Description of Iceland itself lives on the
+           location page and is linked from "Where you'll be".
+           DRAFT — confirm with JL before publishing. -->
+      <p>Nine days in October, when Iceland’s nights grow long enough for the northern lights and the days are still mild enough to spend outside. JL built this trip around that turn of the season: a grounding vinyasa practice most mornings to warm you up for the cold, then the rest of the day out in it.</p>
+      <p>The week moves from the geothermal country around Reykjavík to the glaciers near Vik. You’ll hike on the ice with a guide, cross the glacier lagoon by amphibian boat, spend a night in a turf house on a horse farm and ride Icelandic horses along the river the next morning.</p>
+      <p>New to yoga or practising for years, you’ll find a class that fits. Come on your own or with a friend: most dinners are shared, and the free days are yours.</p>
     </div>
   </section>
 
   <!-- =========================================================
        ABOUT TEACHER (node 115-42277)
        ========================================================= -->
-  <section class="retreat-teacher">
-    <h2 class="retreat-teacher__title">Yoga with Jenniferlyn Chiemingo</h2>
+  <!-- YOUR HOSTS — teacher leads (she sells the trip), facilitator sits
+       below at a smaller scale (she removes the risk). When the teacher
+       also facilitates, drop .retreat-teacher__host entirely. -->
+  <section class="retreat-teacher" aria-labelledby="hosts-title">
+    <h2 class="retreat-teacher__title" id="hosts-title">Your hosts</h2>
     <div class="retreat-teacher__row">
-      <div class="retreat-teacher__photo" role="img" aria-label="Jenniferlyn Chiemingo"></div>
+      <img class="retreat-teacher__photo" src="images/teachers/jenniferlyn-chiemingo.jpg" alt="Jenniferlyn Chiemingo" loading="lazy">
       <div class="retreat-teacher__text">
-        <p>Lorem ipsum dolor sit amet consectetur. Vitae consequat tristique massa malesuada eu sit arcu purus. Pulvinar ultricies egestas tristique aliquet ac tempor elit consectetur. A tempus id pulvinar orci diam morbi. Mauris tempus in quam erat. Luctus aliquet sit in luctus vel ut neque. Porta mauris at urna mauris dui volutpat vestibulum feugiat sapien. Ac convallis neque lacus tincidunt.</p>
-        <p>Ut purus ullamcorper libero enim velit felis elementum lorem tempus. Feugiat in tellus rhoncus pharetra. Rutrum consectetur nec turpis morbi lacus elementum eu. Nisl diam pharetra lectus montes ut vitae sagittis libero. Amet et mi ornare suspendisse in at interdum tortor vel.</p>
+        <p class="retreat-teacher__eyebrow">Your teacher</p>
+        <h3 class="retreat-teacher__name">Jenniferlyn Chiemingo</h3>
+        <p class="retreat-teacher__meta">Vinyasa · E-RYT · Teaching since 2002</p>
+        <p>Known to her students as JL, Jenniferlyn teaches a flowing, grounding vinyasa that links breath and movement. She trained at Kripalu and with Shiva Rea, taught for more than 22 years in Seattle and the Bay Area, and has led international retreats for over 15. Her classes support people new to yoga while giving regular practitioners somewhere deeper to go.</p>
+        <!-- Retreat-specific line. DRAFT — confirm with JL. -->
+        <p class="retreat-teacher__note"><strong>On this trip:</strong> morning flows that warm you up before the day’s adventure and leave you steady for whatever the weather decides.</p>
+        <a class="retreat-teacher__link" href="teacher-jenniferlyn-chiemingo.html">Meet Jenniferlyn <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+
+    <!-- PLACEHOLDER facilitator — confirm who travels on Iceland Oct 2026. -->
+    <div class="retreat-teacher__host">
+      <img class="retreat-teacher__host-photo" src="images/team/marina-coria.jpg" alt="" loading="lazy">
+      <div class="retreat-teacher__host-text">
+        <p class="retreat-teacher__eyebrow">With you on the ground</p>
+        <p class="retreat-teacher__host-name">Marina Coria <span>· YAWW retreat facilitator</span></p>
+        <p class="retreat-teacher__host-bio">Marina travels with the group and handles every transfer, booking and change of plan, so the only thing you have to keep track of is your mat.</p>
       </div>
     </div>
   </section>
@@ -657,6 +678,7 @@
     <div class="gallery__head">
       <h2 class="gallery__title">Where you&rsquo;ll be</h2>
       <p class="gallery__intro">Reykjav&iacute;k for the first days, then south to Vik, where the beaches are black and the waterfalls come straight off the road. The photographs are from past retreats: the ice, the horses, and the sky on the nights it decides to perform.</p>
+      <a class="retreat-teacher__link gallery__more" href="locationpage-iceland.html">More about Iceland <span aria-hidden="true">→</span></a>
       <div class="gallery__nav">
         <button class="gallery__arrow gallery__arrow--prev" aria-label="Previous photos">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
@@ -1662,9 +1684,24 @@
     }
 
     function setX(x) { rail.style.transform = 'translate3d(' + x + 'px, 0, 0)'; }
+    /* Where the rail actually is this frame, read off the computed
+       transform rather than the inline one. Mid-transition the inline value
+       is already the destination, so normalise() would have shifted from a
+       place the strip had not reached yet and snapped it there. Reading the
+       live matrix is what lets a press land while another is still running.
+       While dragging the two agree, so nothing changes there. */
     function currentX() {
-      var m = /translate3d\((-?[\d.]+)px/.exec(rail.style.transform);
-      return m ? parseFloat(m[1]) : edge() - along(at);
+      var t = getComputedStyle(rail).transform;
+      if (t && t !== 'none') {
+        var m = /matrix(3d)?\(([^)]+)\)/.exec(t);
+        if (m) {
+          var parts = m[2].split(',');
+          var v = parseFloat(m[1] ? parts[12] : parts[4]);
+          if (!isNaN(v)) return v;
+        }
+      }
+      var inline = /translate3d\((-?[\d.]+)px/.exec(rail.style.transform);
+      return inline ? parseFloat(inline[1]) : edge() - along(at);
     }
 
     /* One frame of the strip. Both halves of it — where the rail sits and
@@ -1773,11 +1810,14 @@
        photos the reader has only half seen, which is exactly the ones the
        dimming is inviting them towards.
 
-       The press is refused while one is already running. Queueing them would
-       let a reader outrun the movement and land the strip somewhere no frame
-       was ever composed for. */
+       A press that lands while one is still running now re-aims instead of
+       being dropped. Refusing it was costing every press inside the half
+       second after the last one, so pressing through the strip at any pace
+       above slow felt like the arrow was ignoring you. It cannot land
+       anywhere uncomposed: render() always goes to edge() - along(at), the
+       same frame a resting strip would be in, and the rail simply
+       transitions there from wherever it has got to. */
     function step(dir) {
-      if (moving) return;
       go(dir);
     }
     prev.addEventListener('click', function () { step(-1); });
@@ -1853,10 +1893,19 @@
     // held in a variable so it is not collected while the section is alive
     var ro = null;
     if (window.ResizeObserver) { ro = new ResizeObserver(relayout); ro.observe(track); }
-    // the slides are aspect-ratio boxes, so layout is right before the photos
-    // arrive; this only corrects for a font or scrollbar shift
+    /* The slides are aspect-ratio boxes, so the layout is already right
+       before the photos arrive; the only thing an arriving photo can move
+       is the page's scrollbar. This used to call silently(render), which
+       kills the transition and snaps the rail to its resting position — and
+       the photos are lazy, so they finish downloading exactly while the
+       reader is pressing through them. A press would travel 77% of the way
+       and then jump the rest, at a different point every time depending on
+       what the network did. That was the strip feeling stuck.
+
+       relayout() is the same correction with the guard already written: it
+       returns immediately unless the track's width really changed. */
     slides.forEach(function (s) {
-      s.querySelector('img').addEventListener('load', function () { silently(render); });
+      s.querySelector('img').addEventListener('load', relayout);
     });
 
     /* The crop is the strip's composition; the lightbox is the photograph.

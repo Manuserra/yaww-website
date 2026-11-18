@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/base.css?v=202611181910">
-<link rel="stylesheet" href="css/retreat.css?v=202611181910">
+<link rel="stylesheet" href="css/retreat.css?v=202611181609">
 </head>
 <body>
 <!-- Generated from retreats/santorini-sep-2027-berger/data.json on 2026-11-12 by filling retreatpage-elcuyo.html.
@@ -1718,9 +1718,24 @@
     }
 
     function setX(x) { rail.style.transform = 'translate3d(' + x + 'px, 0, 0)'; }
+    /* Where the rail actually is this frame, read off the computed
+       transform rather than the inline one. Mid-transition the inline value
+       is already the destination, so normalise() would have shifted from a
+       place the strip had not reached yet and snapped it there. Reading the
+       live matrix is what lets a press land while another is still running.
+       While dragging the two agree, so nothing changes there. */
     function currentX() {
-      var m = /translate3d\((-?[\d.]+)px/.exec(rail.style.transform);
-      return m ? parseFloat(m[1]) : edge() - along(at);
+      var t = getComputedStyle(rail).transform;
+      if (t && t !== 'none') {
+        var m = /matrix(3d)?\(([^)]+)\)/.exec(t);
+        if (m) {
+          var parts = m[2].split(',');
+          var v = parseFloat(m[1] ? parts[12] : parts[4]);
+          if (!isNaN(v)) return v;
+        }
+      }
+      var inline = /translate3d\((-?[\d.]+)px/.exec(rail.style.transform);
+      return inline ? parseFloat(inline[1]) : edge() - along(at);
     }
 
     /* One frame of the strip. Both halves of it — where the rail sits and
@@ -1829,11 +1844,14 @@
        photos the reader has only half seen, which is exactly the ones the
        dimming is inviting them towards.
 
-       The press is refused while one is already running. Queueing them would
-       let a reader outrun the movement and land the strip somewhere no frame
-       was ever composed for. */
+       A press that lands while one is still running now re-aims instead of
+       being dropped. Refusing it was costing every press inside the half
+       second after the last one, so pressing through the strip at any pace
+       above slow felt like the arrow was ignoring you. It cannot land
+       anywhere uncomposed: render() always goes to edge() - along(at), the
+       same frame a resting strip would be in, and the rail simply
+       transitions there from wherever it has got to. */
     function step(dir) {
-      if (moving) return;
       go(dir);
     }
     prev.addEventListener('click', function () { step(-1); });
@@ -1909,10 +1927,19 @@
     // held in a variable so it is not collected while the section is alive
     var ro = null;
     if (window.ResizeObserver) { ro = new ResizeObserver(relayout); ro.observe(track); }
-    // the slides are aspect-ratio boxes, so layout is right before the photos
-    // arrive; this only corrects for a font or scrollbar shift
+    /* The slides are aspect-ratio boxes, so the layout is already right
+       before the photos arrive; the only thing an arriving photo can move
+       is the page's scrollbar. This used to call silently(render), which
+       kills the transition and snaps the rail to its resting position — and
+       the photos are lazy, so they finish downloading exactly while the
+       reader is pressing through them. A press would travel 77% of the way
+       and then jump the rest, at a different point every time depending on
+       what the network did. That was the strip feeling stuck.
+
+       relayout() is the same correction with the guard already written: it
+       returns immediately unless the track's width really changed. */
     slides.forEach(function (s) {
-      s.querySelector('img').addEventListener('load', function () { silently(render); });
+      s.querySelector('img').addEventListener('load', relayout);
     });
 
     /* The crop is the strip's composition; the lightbox is the photograph.
