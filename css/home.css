@@ -962,8 +962,8 @@
    track stays a fixed 432px down to the point this collapses to a
    single column. Reversed pillars get the same two widths in the
    opposite order — DOM order already puts copy before media there, so
-   no .pillar--reverse-specific child reordering is needed, just a
-   column-track swap. */
+   on desktop it's just a column-track swap (once stacked, the media is
+   reordered back to the top — see the 900px query). */
 .pillar__row {
   width: 100%;
   max-width: var(--container-max);
@@ -1042,6 +1042,10 @@
      pillars too. */
   .pillar__row,
   .pillar--reverse .pillar__row { grid-template-columns: 1fr; gap: 24px; }
+  /* Stacked, every pillar reads photo → copy, so the reversed one
+     (copy first in the DOM for the desktop zig-zag) pulls its photo
+     back to the top instead of breaking the rhythm. */
+  .pillar--reverse .pillar__media { order: -1; }
   .pillar__copy p { max-width: none; }
 }
 @media (max-width: 767px) {
