@@ -149,17 +149,29 @@
   flex-direction: column;
   align-items: center;
   gap: 40px;
-  /* Plus the hero's own bottom padding (the container gutter) = the
-     96px module rhythm at every width. */
-  padding: calc(96px - var(--container-pad)) 0 48px;
+  /* The section opens with the results line ("17 retreats coming up")
+     for the filter bar that closes the hero above, so the two read as
+     one control: 32px from the bar to that line (24px on phones), not
+     the 96px module rhythm. Plus the hero's own bottom padding (the
+     container gutter) = 32px at every width. */
+  padding: calc(32px - var(--container-pad)) 0 48px;
 }
 /* Module rhythm: modules on the same stone background each carry 48px
    top and bottom (32px on phones), so any two neighbours sit 96px
    (64px) apart — pillars, movement, booking, who, quotes and the FAQ
    all follow it. Bands with their own background keep their own
-   padding. */
+   padding. (This section's top edge is the one exception, see above.) */
 @media (max-width: 767px) {
-  .home-next { padding: calc(64px - var(--container-pad)) 0 32px; }
+  .home-next { padding: calc(24px - var(--container-pad)) 0 32px; }
+}
+/* Results line → cards: 16px (12px on phones) to the rail's box, so the
+   line sits closer to the cards it counts than to the bar above. The
+   section's own 40px gap still separates the rail from its footer, so
+   the line pulls the rail up by the difference rather than the gap
+   changing for everything. */
+.home-next > .filter-summary { margin-bottom: calc(16px - 40px); }
+@media (max-width: 767px) {
+  .home-next > .filter-summary { margin-bottom: calc(12px - 40px); }
 }
 /* Only the rail itself goes edge-to-edge; the heading, the filter bar
    and the closing button/copy keep the page's own side margin so they
@@ -350,12 +362,15 @@
   justify-content: space-between;
   gap: 16px;
 }
+/* A results line, not a section title: the same Raleway 14/24 as
+   .card__date, tracked like the hero's proof labels (0.56px). */
 .filter-summary__text {
   margin: 0;
-  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
-  font-style: italic;
-  font-size: 18px;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
   line-height: 24px;
+  letter-spacing: 0.56px;
   color: var(--sea-blue);
 }
 .filter-summary__clear {
