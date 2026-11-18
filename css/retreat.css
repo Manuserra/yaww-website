@@ -1499,12 +1499,12 @@
   padding: 24px;
   box-sizing: border-box;
 }
-/* Grows with the viewport, with a ceiling. The source files are 912×560, so
-   1280 is a 1.4× upscale — about as far as a photograph stretches before it
-   starts to look soft. Past that the lightbox would be showing invented
-   pixels, which reads as worse quality, not as a bigger picture. If the
-   1824×1120 originals ever get exported, raising --lightbox-max is the only
-   change needed. */
+/* Grows with the viewport, with a ceiling. The gallery sources are now
+   exported at 1280 wide for exactly this ceiling, so the lightbox shows
+   the photograph at its own size and never invents a pixel — it used to
+   stretch 912×560 files by 1.4×. Raising --lightbox-max past 1280 would
+   put the upscale back; the export width in the image pipeline has to
+   move first. */
 .lightbox__img {
   display: block;
   /* The width is computed, not merely capped — max-width alone can only
