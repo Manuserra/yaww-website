@@ -152,6 +152,109 @@
   }
 }
 
+/* ------------------------------------------------------------------
+   Overlay hero (index-video.html): the copy sits on the clip instead
+   of under it. Same media box, same gutter, same viewport-height
+   rule — the clip just becomes the backdrop, with the title, the
+   description and the proof row centred on it and a chevron cue at
+   the bottom edge. Type values are the Figma hero spec: title
+   Libre Baskerville 64 italic on 60px, description Raleway 16/24
+   medium, proof Raleway 14/24 (semibold values, regular labels),
+   all in --stone / white on a light scrim.
+   ------------------------------------------------------------------ */
+.home-hero--overlay .home-hero__media {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+}
+/* The footage leaves the flow so the copy can centre in the box. */
+.home-hero--overlay .home-hero__media video,
+.home-hero--overlay .home-hero__media img {
+  position: absolute;
+  inset: 0;
+}
+/* Scrim: heaviest across the middle band, where the copy sits over
+   the clip's brightest frames (whitewashed walls, sunlit stone), and
+   lighter at the top and bottom edges so the footage still reads as
+   colour rather than a dimmed background. */
+.home-hero--overlay .home-hero__media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(40, 49, 57, 0.28) 0%,
+    rgba(40, 49, 57, 0.46) 35%,
+    rgba(40, 49, 57, 0.46) 65%,
+    rgba(40, 49, 57, 0.28) 100%
+  );
+  pointer-events: none;
+}
+.home-hero--overlay .home-hero__copy {
+  position: relative;
+  z-index: 1;
+  gap: 48px;
+  max-width: 760px;
+}
+.home-hero--overlay .home-hero__title {
+  font-size: 64px;
+  line-height: 60px;
+  color: var(--stone);
+}
+.home-hero--overlay .home-hero__desc {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.288px;
+  color: #fff;
+}
+/* Proof row loses its card: no background, no anchoring to the
+   bottom edge — it is the last line of the copy stack now. */
+.home-hero--overlay .home-hero__proof {
+  position: static;
+  transform: none;
+  width: auto;
+  padding: 0;
+  gap: 56px;
+  background: none;
+}
+.home-hero--overlay .home-hero__proof-item { flex: 0 0 auto; }
+.home-hero--overlay .home-hero__proof-value,
+.home-hero--overlay .home-hero__proof-label { color: var(--stone); }
+/* Scroll cue: a 44px target holding a 24px chevron, centred on the
+   bottom edge, pointing at the retreats section it links to. */
+.home-hero__cue {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  transform: translateX(-50%);
+  color: var(--stone);
+  opacity: 0.9;
+  transition: opacity 160ms var(--ease-out), transform 160ms var(--ease-out);
+}
+.home-hero__cue:hover { opacity: 1; transform: translateX(-50%) translateY(2px); }
+.home-hero__cue:focus-visible { outline: 2px solid var(--stone); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .home-hero__cue { transition: none; } }
+@media (max-width: 767px) {
+  .home-hero--overlay .home-hero__media { padding: 16px; }
+  .home-hero--overlay .home-hero__copy { gap: 32px; }
+  .home-hero--overlay .home-hero__title { font-size: 40px; line-height: 44px; }
+  /* The desktop line breaks go (the markup keeps a space before each
+     <br> so the sentences still read on one flow). */
+  .home-hero--overlay .home-hero__desc br { display: none; }
+  .home-hero--overlay .home-hero__proof { width: 100%; gap: 16px; }
+  .home-hero--overlay .home-hero__proof-item { flex: 1 1 0; }
+  .home-hero__cue { bottom: 24px; }
+}
+
 /* ============================================================
    HOME · WHERE WE'RE GOING NEXT
    Reuses the retreat-card component from the retreats grid: same
@@ -194,6 +297,26 @@
 .home-next > .filter-summary { margin-bottom: calc(16px - 40px); }
 @media (max-width: 767px) {
   .home-next > .filter-summary { margin-bottom: calc(12px - 40px); }
+}
+/* Headed form (index-video.html): with the bar out of the hero, the
+   section opens with kicker + title, then the bar, then the results
+   line. 48px from the hero to the heading (32px on phones), the
+   section's 40px gap heading → bar, and bar → results line pulled to
+   the same 32px/24px index.html gives it under the hero's bar. */
+.home-next--headed { padding-top: calc(48px - var(--container-pad)); }
+.home-next__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding-inline: var(--container-pad);
+  text-align: center;
+}
+.kicker.home-next__kicker { color: var(--stone-600); text-align: center; }
+.home-next--headed > .filter-summary { margin-top: -8px; }
+@media (max-width: 767px) {
+  .home-next--headed { padding-top: calc(32px - var(--container-pad)); }
+  .home-next--headed > .filter-summary { margin-top: -16px; }
 }
 /* Only the rail itself goes edge-to-edge; the heading, the filter bar
    and the closing button/copy keep the page's own side margin so they
