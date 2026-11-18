@@ -1661,11 +1661,23 @@
 /* No type-size steps here on purpose: the title, tab titles, quote and
    body keep the site-wide scale (24/40 section title, 20/32 display,
    16/24 body) at every width, same as every other module. */
+.who__card-kicker { display: none; }
+/* Phones: the list and the card can't share one screen (≈1200px
+   together), so the list goes and each card names its own profile in
+   a kicker above the quote. No autoplay here (see the script), so no
+   play/pause either — swipe or the arrows, with the counter showing
+   where you are. A 16:9 photo keeps even the longest card (Mimi's)
+   within a phone screen. */
 @media (max-width: 767px) {
-  .who { padding: 40px 16px; gap: 40px; }
+  .who { padding: 40px 16px; gap: 32px; }
   .who__row { flex-direction: column; }
-  .who__profiles,
-  .who__postcards { flex: 1 1 auto; width: 100%; }
+  .who__profiles { display: none; }
+  .who__postcards { flex: 1 1 auto; width: 100%; gap: 16px; }
+  .who__stack { touch-action: pan-y; }
+  .who__card-kicker { display: block; color: var(--stone-600); margin-bottom: -8px; }
+  .who__card-media::before { padding-top: 56.25%; }
+  .who__play { display: none; }
+  .who__controls { justify-content: space-between; }
 }
 
 /* ============================================================

@@ -11,8 +11,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css" crossorigin="anonymous">
 
-<link rel="stylesheet" href="css/base.css?v=202611181430">
-<link rel="stylesheet" href="css/home.css?v=202611181430">
+<link rel="stylesheet" href="css/base.css?v=202611181500">
+<link rel="stylesheet" href="css/home.css?v=202611181500">
 <!-- Retreat data + the one card component every retreat card is rendered
      by. Classic scripts so the prototype still works over file://.
      Order matters: the catalogs load before the data, the data before
@@ -1428,7 +1428,12 @@
     var nextBtn = document.getElementById('whoNextBtn');
     if (!profilesEl || !stackEl) return;
 
-    var state = { index: 0, hover: false, stopped: false };
+    // On phones the profile list is hidden (it and the card can't share
+    // one screen) and each card carries its own profile title, so the
+    // stack starts stopped: the visitor swipes or taps the arrows, the
+    // component never changes a card they may be halfway through reading.
+    var mobileMq = window.matchMedia('(max-width: 767px)');
+    var state = { index: 0, hover: false, stopped: mobileMq.matches };
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
@@ -1475,6 +1480,7 @@
           '<article class="who__card" id="whoCard' + k + '" role="tabpanel" aria-labelledby="whoTab' + k + '">' +
             '<div class="who__card-row">' +
               '<div class="who__card-message">' +
+                '<p class="kicker who__card-kicker">' + esc(d.title) + '</p>' +
                 '<blockquote class="who__quote">&ldquo;' + esc(d.quote) + '&rdquo;</blockquote>' +
                 '<div class="who__signer">' +
                   (d.avatar
@@ -1569,6 +1575,27 @@
       renderPlayBtn();
       applyPauseState();
     });
+
+    var onMq = function (e) { if (e.matches) { stopAuto(); applyPauseState(); } };
+    if (mobileMq.addEventListener) mobileMq.addEventListener('change', onMq);
+    else if (mobileMq.addListener) mobileMq.addListener(onMq);
+
+    // Horizontal swipe on the card stack = prev/next. Only a clearly
+    // horizontal gesture counts, so vertical page scrolling over the
+    // card is never hijacked.
+    var touchX = null, touchY = null;
+    stackEl.addEventListener('touchstart', function (e) {
+      if (e.touches.length !== 1) { touchX = null; return; }
+      touchX = e.touches[0].clientX; touchY = e.touches[0].clientY;
+    }, { passive: true });
+    stackEl.addEventListener('touchend', function (e) {
+      if (touchX === null) return;
+      var t = e.changedTouches[0], dx = t.clientX - touchX, dy = t.clientY - touchY;
+      touchX = null;
+      if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+      stopAuto();
+      go(state.index + (dx < 0 ? 1 : -1));
+    }, { passive: true });
 
     renderPlayBtn();
     renderProfiles();
