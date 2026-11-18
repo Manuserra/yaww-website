@@ -178,40 +178,51 @@
 }
 /* Scrim: heaviest across the middle band, where the copy sits over
    the clip's brightest frames (whitewashed walls, sunlit stone), and
-   lighter at the top and bottom edges so the footage still reads as
-   colour rather than a dimmed background. */
+   lighter at the top and bottom edges. Blended with multiply rather
+   than laid over as a flat wash: multiply pulls the highlights down
+   by the same amount but leaves the shadows where they are, so the
+   footage keeps its contrast and colour instead of going milky. */
 .home-hero--overlay .home-hero__media::before {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    rgba(40, 49, 57, 0.34) 0%,
-    rgba(40, 49, 57, 0.52) 35%,
-    rgba(40, 49, 57, 0.52) 65%,
-    rgba(40, 49, 57, 0.34) 100%
+    rgba(40, 49, 57, 0.40) 0%,
+    rgba(40, 49, 57, 0.60) 35%,
+    rgba(40, 49, 57, 0.60) 65%,
+    rgba(40, 49, 57, 0.40) 100%
   );
+  mix-blend-mode: multiply;
   pointer-events: none;
   /* The clip is absolutely positioned too and comes later in the DOM,
      so without an explicit layer it paints over the scrim and the
      scrim does nothing. Scrim 1, copy 2, cue 2. */
   z-index: 1;
 }
+/* Type scales with the viewport width between two anchors — the
+   Figma values at 1440 (title 64/60, description 16/24, proof 14/24)
+   and a phone floor at 375 — then keeps growing on wider screens up
+   to a cap, so a 27" iMac gets a ~90px title rather than the 1440
+   one stranded in a 2500px-wide frame. Each clamp() is the straight
+   line through those two anchors; the caps land around 2860px wide.
+   Spacing and tracking scale with the type (em) so the stack keeps
+   its proportions. */
 .home-hero--overlay .home-hero__copy {
   position: relative;
   z-index: 2;
-  gap: 48px;
-  max-width: 760px;
+  gap: clamp(32px, 12px + 2.5vw, 64px);
+  max-width: clamp(760px, 52.8vw, 960px);
 }
 .home-hero--overlay .home-hero__title {
-  font-size: 64px;
-  line-height: 60px;
+  font-size: clamp(40px, 31.5px + 2.254vw, 96px);   /* 40 @375 · 64 @1440 · 89 @2560 */
+  line-height: 0.94;                                  /* Figma's 60.168/64 */
   color: var(--stone);
 }
 .home-hero--overlay .home-hero__desc {
-  font-size: 16px;
+  font-size: clamp(16px, 11.3px + 0.326vw, 20px);    /* 16 @1440 · 19.6 @2560 */
   font-weight: 500;
-  line-height: 24px;
-  letter-spacing: 0.288px;
+  line-height: 1.5;
+  letter-spacing: 0.018em;                            /* Figma's 0.288/16 */
   color: #fff;
 }
 /* Proof row loses its card: no background, no anchoring to the
@@ -221,12 +232,17 @@
   transform: none;
   width: auto;
   padding: 0;
-  gap: 56px;
+  gap: clamp(40px, 27px + 2vw, 72px);                 /* 56 @1440 · 72 @2250+ */
   background: none;
 }
 .home-hero--overlay .home-hero__proof-item { flex: 0 0 auto; }
 .home-hero--overlay .home-hero__proof-value,
-.home-hero--overlay .home-hero__proof-label { color: var(--stone); }
+.home-hero--overlay .home-hero__proof-label {
+  font-size: clamp(14px, 11.43px + 0.1786vw, 16px);  /* 14 @1440 · 16 @2560 */
+  line-height: 1.7143;                                /* Figma's 24/14 */
+  letter-spacing: 0.04em;                             /* Figma's 0.56/14 */
+  color: var(--stone);
+}
 /* Scroll cue, lifted from evaneos.es's hero and kept to its numbers:
    a 48px button 48px off the bottom edge, the arrow glyph filling it,
    on a 4s ease-in-out loop — in from slightly above at 0 opacity,
@@ -264,13 +280,22 @@
 @media (prefers-reduced-motion: reduce) { .home-hero__cue { animation: none; } }
 @media (max-width: 767px) {
   .home-hero--overlay .home-hero__media { padding: 16px; }
-  .home-hero--overlay .home-hero__copy { gap: 32px; }
-  .home-hero--overlay .home-hero__title { font-size: 40px; line-height: 44px; }
+  /* Two-line title on a phone: 0.94 leading would let the lines
+     touch, so it opens up to 1.05. */
+  .home-hero--overlay .home-hero__title { line-height: 1.05; }
   /* The desktop line breaks go (the markup keeps a space before each
      <br> so the sentences still read on one flow). */
   .home-hero--overlay .home-hero__desc br { display: none; }
-  .home-hero--overlay .home-hero__proof { width: 100%; gap: 16px; }
-  .home-hero--overlay .home-hero__proof-item { flex: 1 1 0; }
+  /* Three columns at 375px are ~100px each, and "Exploring together"
+     does not fit one — so the row becomes a column of pairs, value and
+     label on one line, rather than three columns of ragged wraps. */
+  .home-hero--overlay .home-hero__proof { flex-direction: column; gap: 4px; }
+  .home-hero--overlay .home-hero__proof-item {
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+    gap: 8px;
+  }
 }
 
 /* ============================================================
