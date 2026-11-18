@@ -11,8 +11,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css" crossorigin="anonymous">
 
-<link rel="stylesheet" href="css/base.css?v=202611181520">
-<link rel="stylesheet" href="css/home.css?v=202611181520">
+<link rel="stylesheet" href="css/base.css?v=202611181600">
+<link rel="stylesheet" href="css/home.css?v=202611181600">
 <!-- Retreat data + the one card component every retreat card is rendered
      by. Classic scripts so the prototype still works over file://.
      Order matters: the catalogs load before the data, the data before
@@ -457,15 +457,21 @@
        11 · LEAD A RETREAT WITH US
        ========================================================= -->
   <section class="lead">
-    <div class="lead__intro">
-      <h2 class="lead__title">Lead a retreat with us</h2>
-      <p class="lead__body">Bring your students somewhere new.<br>We plan the itinerary, book the hotels, run the logistics and help fill your spots, so you can focus on teaching.</p>
-    </div>
-    <!-- TODO: route to the teach-with-us page -->
-    <a class="btn btn--secondary" href="#">Plan your retreat</a>
     <div class="lead__media">
-      <img class="lead__photo" src="images/lead-group-terrace.jpg" alt="A teacher leading a discussion with her group seated on a terrace overlooking the bay">
-      <img class="lead__photo" src="images/lead-yoga-stretch.jpg" alt="A teacher guiding students through a lunging stretch in a sunlit studio">
+      <img class="lead__photo" src="images/lead-group-terrace.jpg" alt="A teacher leading a discussion with her group seated on a terrace overlooking the bay" loading="lazy">
+    </div>
+    <div class="lead__copy">
+      <p class="kicker lead__kicker">For teachers</p>
+      <h2 class="lead__title">Lead a retreat with us</h2>
+      <p class="lead__body">Bring your students somewhere new. We take care of everything else, so you can focus on teaching.</p>
+      <ul class="lead__list">
+        <li>We plan the itinerary</li>
+        <li>We book the hotels</li>
+        <li>We run the logistics</li>
+        <li>We help fill your spots</li>
+      </ul>
+      <!-- TODO: route to the teach-with-us page -->
+      <a class="btn btn--secondary" href="#">Plan your retreat</a>
     </div>
   </section>
 

@@ -1685,22 +1685,41 @@
 /* ============================================================
    HOME · LEAD A RETREAT WITH US
    ============================================================ */
+/* Split, not centred: one photo (the teacher leading her group, which
+   tells this module's story on its own) bleeds to the viewport's left
+   edge and runs the band's full height; the copy sits in the grid on
+   the right, at the same 432px text width as the pillars. The bleed is
+   what sets it apart from the pillars (whose photos stay inside the
+   container) and marks the switch to a different audience. */
 .lead {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 432px;
+  column-gap: 48px;
   align-items: center;
-  gap: 48px;
-  padding: 48px var(--container-pad);
+  /* Right edge lines up with every other module's content edge: the
+     container pad, or half the leftover once the viewport passes the
+     1440 content max. */
+  padding-right: max(var(--container-pad), calc((100% - var(--container-max)) / 2));
   background: var(--stone-300);
 }
-.lead__intro {
+.lead__media { align-self: stretch; min-width: 0; }
+.lead__photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 480px;
+  max-height: 680px;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+.lead__copy {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
-  max-width: 996px;
-  text-align: center;
+  padding-block: 56px;
 }
+.kicker.lead__kicker { color: var(--stone-600); }
 .lead__title {
   margin: 0;
   color: var(--sea-blue);
@@ -1708,6 +1727,7 @@
   font-weight: 700;
   font-size: 24px;
   line-height: 40px;
+  text-wrap: balance;
 }
 .lead__body {
   margin: 0;
@@ -1717,20 +1737,34 @@
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.32px;
+  text-wrap: pretty;
 }
-.lead__media {
+/* What a teacher is actually weighing, as a scannable list rather than
+   buried in the sentence — hairlines in the same language as the
+   "Who comes" profile list, one step darker for this darker band. */
+.lead__list {
   width: 100%;
-  max-width: var(--container-max);
-  display: flex;
-  gap: 48px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--stone-400);
 }
-/* Same ratio as the pillar photos above — flex:1 1 0 + aspect-ratio,
-   no fixed width/height, so the box resolves from whatever space the
-   row actually gives it instead of fighting the flex layout. */
-.lead__photo { flex: 1 1 0; min-width: 0; aspect-ratio: 3 / 2; display: block; width: 100%; height: 100%; object-fit: cover; }
-@media (max-width: 767px) {
-  .lead { padding: 40px 16px; gap: 32px; }
-  .lead__media { flex-direction: column; }
+.lead__list li {
+  padding: 12px 0;
+  border-top: 1px solid var(--stone-400);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue);
+}
+.lead__copy > .btn { margin-top: 16px; }
+/* Stacks at the same point as the pillars: photo on top, edge to edge,
+   copy below inside the normal side margins. */
+@media (max-width: 900px) {
+  .lead { grid-template-columns: minmax(0, 1fr); padding-right: 0; }
+  .lead__photo { min-height: 0; max-height: none; height: auto; }
+  .lead__copy { padding: 40px var(--container-pad); }
 }
 
 /* ============================================================
