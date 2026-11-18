@@ -185,16 +185,20 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    rgba(40, 49, 57, 0.28) 0%,
-    rgba(40, 49, 57, 0.46) 35%,
-    rgba(40, 49, 57, 0.46) 65%,
-    rgba(40, 49, 57, 0.28) 100%
+    rgba(40, 49, 57, 0.34) 0%,
+    rgba(40, 49, 57, 0.52) 35%,
+    rgba(40, 49, 57, 0.52) 65%,
+    rgba(40, 49, 57, 0.34) 100%
   );
   pointer-events: none;
+  /* The clip is absolutely positioned too and comes later in the DOM,
+     so without an explicit layer it paints over the scrim and the
+     scrim does nothing. Scrim 1, copy 2, cue 2. */
+  z-index: 1;
 }
 .home-hero--overlay .home-hero__copy {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   gap: 48px;
   max-width: 760px;
 }
@@ -223,26 +227,41 @@
 .home-hero--overlay .home-hero__proof-item { flex: 0 0 auto; }
 .home-hero--overlay .home-hero__proof-value,
 .home-hero--overlay .home-hero__proof-label { color: var(--stone); }
-/* Scroll cue: a 44px target holding a 24px chevron, centred on the
-   bottom edge, pointing at the retreats section it links to. */
+/* Scroll cue, lifted from evaneos.es's hero and kept to its numbers:
+   a 48px button 48px off the bottom edge, the arrow glyph filling it,
+   on a 4s ease-in-out loop — in from slightly above at 0 opacity,
+   full at the midpoint, out 100% lower — that pauses while hovered.
+   The translate(-50%) in each keyframe is the horizontal centring,
+   which is why the base transform repeats it. */
 .home-hero__cue {
   position: absolute;
   left: 50%;
-  bottom: 40px;
-  z-index: 1;
+  bottom: 48px;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  transform: translateX(-50%);
-  color: var(--stone);
-  opacity: 0.9;
-  transition: opacity 160ms var(--ease-out), transform 160ms var(--ease-out);
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #fff;
+  cursor: pointer;
+  transform: translate(-50%);
+  animation: home-hero-scroll-down 4s ease-in-out infinite;
 }
-.home-hero__cue:hover { opacity: 1; transform: translateX(-50%) translateY(2px); }
+.home-hero__cue svg { display: block; width: 48px; height: 48px; }
+.home-hero__cue:hover { animation-play-state: paused; }
 .home-hero__cue:focus-visible { outline: 2px solid var(--stone); outline-offset: 2px; }
-@media (prefers-reduced-motion: reduce) { .home-hero__cue { transition: none; } }
+@keyframes home-hero-scroll-down {
+  0%   { opacity: 0; transform: translate(-50%, -10%); }
+  50%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, 100%); }
+}
+/* Site-wide convention, not Evaneos's: no loop for someone who asked
+   the OS for less motion — the arrow just sits there. */
+@media (prefers-reduced-motion: reduce) { .home-hero__cue { animation: none; } }
 @media (max-width: 767px) {
   .home-hero--overlay .home-hero__media { padding: 16px; }
   .home-hero--overlay .home-hero__copy { gap: 32px; }
@@ -252,7 +271,6 @@
   .home-hero--overlay .home-hero__desc br { display: none; }
   .home-hero--overlay .home-hero__proof { width: 100%; gap: 16px; }
   .home-hero--overlay .home-hero__proof-item { flex: 1 1 0; }
-  .home-hero__cue { bottom: 24px; }
 }
 
 /* ============================================================

@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css" crossorigin="anonymous">
 
 <link rel="stylesheet" href="css/base.css?v=202611181940">
-<link rel="stylesheet" href="css/home.css?v=202611182040">
+<link rel="stylesheet" href="css/home.css?v=202611182110">
 <!-- Retreat data + the one card component every retreat card is rendered
      by. Classic scripts so the prototype still works over file://.
      Order matters: the catalogs load before the data, the data before
@@ -162,9 +162,13 @@
           </div>
         </div>
       </div>
-      <a class="home-hero__cue" href="#next-retreats" aria-label="Scroll to upcoming retreats">
-        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      <!-- Scroll cue, ported from evaneos.es's hero: a 48px button with
+           Material's keyboard_arrow_down filling it, a 4s loop that
+           fades in near the top and fades out drifting down, paused on
+           hover; a click scrolls one viewport down, smoothly. -->
+      <button type="button" class="home-hero__cue" aria-label="Scroll down">
+        <svg viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true"><path d="M480-361q-8 0-15-2.5t-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5Z"/></svg>
+      </button>
     </div>
   </section>
 
@@ -1666,6 +1670,12 @@
         if (e.matches) stopForReducedMotion(); else video.play().catch(function () {});
       });
     }
+
+    /* Scroll cue: same handler as evaneos.es — one viewport down. */
+    var cue = document.querySelector('.home-hero__cue');
+    if (cue) cue.addEventListener('click', function () {
+      window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+    });
 
     if (!('IntersectionObserver' in window)) return;
     new IntersectionObserver(function (entries) {
