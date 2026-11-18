@@ -1,171 +1,512 @@
 # -*- coding: utf-8 -*-
-"""Fill retreatpage-elcuyo.html with a retreat's data.json.
+"""Build one retreat page per edition listed in data/retreats.js.
 
-Proof that the schema carries enough to drive the template. The template is
-read, never written: every edit is a replacement of one marked region, so the
-CSS, the scripts and the layout stay exactly as they are.
+    python3 retreats/_tools/build_page.py            # every listed edition
+    python3 retreats/_tools/build_page.py <id> ...   # just these
+
+Each page is retreatpage-elcuyo.html with its variable regions replaced. The
+template is read, never written: its CSS, scripts and layout carry over
+untouched, and it stays where it is as the design reference.
+
+Where the content comes from, in order of precedence:
+
+  data/retreats.js      the listing's own record of the edition — name,
+                        dates, teachers, status, collection. The page agrees
+                        with the card that links to it because both read this.
+  data/teachers.js,     names, photos, short bios, page links for the hosts.
+  data/team.js
+  retreats/<id>/data.json
+                        everything scraped from the old site: about copy,
+                        includes, itinerary, rooms and prices, extras, FAQs,
+                        booking terms. Cleaned on the way in (see clean_*).
+  page_content.py       the editorial layer: Travel Tips in the template's
+                        shape, venue names, facilitators.
+  the template itself   for El Cuyo. The template IS an El Cuyo page, and
+                        its photographs, accommodation copy, gallery and the
+                        standard week's itinerary are the hand-finished
+                        versions of what data.json holds, so an El Cuyo
+                        edition keeps them rather than the raw scrape.
+
+Photographs are exported from the masters under retreats/ (git-ignored) to
+images/retreat-photos/<location>/ as WebP at the width each one is shown at
+— see Assets — and only when the file is missing or too narrow.
 """
-import json, os, re, sys, datetime
+import datetime
+import html as htmllib
+import json
+import os
+import re
+import subprocess
+import sys
 
-REPO = "/Users/manuelserra/Documents/02_Clients/01_YAWW/Website/yaww-website"
-TPL = REPO + "/retreatpage-elcuyo.html"
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import page_content as PC  # noqa: E402
 
+REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+TPL = os.path.join(REPO, "retreatpage-elcuyo.html")
+HOSTS_JS = '<script src="js/hosts.js?v=202611181717" defer></script>'
+CSS_VERSION = "202611190200"   # bump with any change to css/retreat.css
+
+# The El Cuyo editions that run the standard 5-night week the template was
+# written for: same itinerary, same includes, same extras.
+EL_CUYO_STANDARD = {"el-cuyo-dec-2026-delaney", "el-cuyo-jan-2027-berger", "el-cuyo-feb-2027-delaney"}
+
+MONTHS = ["January", "February", "March", "April", "May", "June", "July",
+          "August", "September", "October", "November", "December"]
+
+
+# ---------------------------------------------------------------- helpers --
 
 def esc(s):
-    if s is None: return ""
-    return (str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-            .replace('"', "&quot;"))
+    if s is None:
+        return ""
+    return htmllib.escape(str(s), quote=True)
 
 
 def jstr(s):
-    """A JS single-quoted string literal."""
-    if s is None: return "null"
+    """A JS single-quoted string literal (the template's own style)."""
+    if s is None:
+        return "null"
     return "'" + str(s).replace("\\", "\\\\").replace("'", "\\'").replace("\n", " ") + "'"
 
 
-def cut(html, start, end, new, label):
-    """Replace html[start_marker .. end_marker) keeping both markers."""
-    i = html.find(start)
-    if i < 0: raise SystemExit(f"[{label}] start marker not found: {start[:60]!r}")
-    j = html.find(end, i + len(start))
-    if j < 0: raise SystemExit(f"[{label}] end marker not found: {end[:60]!r}")
-    return html[:i + len(start)] + new + html[j:]
+def cut(doc, start, end, new, label):
+    """Replace what lies between two markers, keeping both markers."""
+    i = doc.find(start)
+    if i < 0:
+        raise SystemExit(f"[{label}] start marker not found: {start[:70]!r}")
+    j = doc.find(end, i + len(start))
+    if j < 0:
+        raise SystemExit(f"[{label}] end marker not found: {end[:70]!r}")
+    return doc[:i + len(start)] + new + doc[j:]
 
 
-def bgstyle(im):
-    if not im or not im.get("file"): return ""
-    return (f" style=\"background-image: url('{im['file']}'); background-size: cover; "
-            f"background-position: center; background-repeat: no-repeat;\"")
+def swap(doc, old, new, label):
+    if old not in doc:
+        raise SystemExit(f"[{label}] text not found: {old[:70]!r}")
+    return doc.replace(old, new, 1)
 
 
-def slider(images, label, fallback_alt):
-    """The template's photo-slider markup, for any number of photos."""
+def section(doc, cls):
+    """The full <section class="cls">…</section> block."""
+    m = re.search(r'  <section class="%s"[^>]*>.*?\n  </section>' % re.escape(cls), doc, re.S)
+    if not m:
+        raise SystemExit(f"section {cls} not found")
+    return m
+
+
+def date_range(a, b):
+    """Same output as YAWW.formatDateRange() in js/retreat-cards.js."""
+    y1, m1, d1 = (int(x) for x in a.split("-"))
+    y2, m2, d2 = (int(x) for x in b.split("-"))
+    if y1 != y2:
+        return f"{MONTHS[m1-1]} {d1}, {y1} – {MONTHS[m2-1]} {d2}, {y2}"
+    if m1 != m2:
+        return f"{MONTHS[m1-1]} {d1} – {MONTHS[m2-1]} {d2}, {y2}"
+    return f"{MONTHS[m1-1]} {d1} – {d2}, {y2}"
+
+
+def load_catalogs():
+    """The site's data files are browser scripts; run them in node's vm."""
+    js = ("const vm=require('vm'),fs=require('fs');const c={window:{}};vm.createContext(c);"
+          "for(const f of ['data/locations.js','data/teachers.js','data/team.js','data/retreats.js'])"
+          "vm.runInContext(fs.readFileSync(f,'utf8'),c);"
+          "const w=c.window;process.stdout.write(JSON.stringify({locations:w.YAWW_LOCATIONS,"
+          "teachers:w.YAWW_TEACHERS,team:w.YAWW_TEAM,retreats:w.YAWW_RETREATS}))")
+    out = subprocess.run(["node", "-e", js], cwd=REPO, capture_output=True, text=True, check=True)
+    return json.loads(out.stdout)
+
+
+# ----------------------------------------------------------------- assets --
+
+class Assets:
+    """Maps a master under retreats/ to the WebP the page serves, and
+    remembers the widest size any page asked of it. Widths are the ones the
+    first three pages were exported at, measured from the layout: 2784 hero,
+    1280 gallery (the lightbox's ceiling), 1152 sliders and room photos,
+    624 portraits."""
+    HERO, GALLERY, SLIDE, PORTRAIT, BAND = 2784, 1280, 1152, 624, 1920
+
+    def __init__(self):
+        self.want = {}
+
+    def web(self, src, width, loc):
+        if not src:
+            return None
+        if src.startswith("images/"):
+            return src                       # already a served file
+        base = os.path.splitext(os.path.basename(src))[0] + ".webp"
+        m = re.match(r"retreats/_shared/([^/]+)/img/", src)
+        folder = m.group(1) if m else loc
+        out = f"images/retreat-photos/{folder}/{base}"
+        self.want[out] = (src, max(width, self.want.get(out, (src, 0))[1]))
+        return out
+
+    def export(self):
+        from PIL import Image, ImageOps
+        made = 0
+        for out, (src, width) in sorted(self.want.items()):
+            sp, op = os.path.join(REPO, src), os.path.join(REPO, out)
+            if not os.path.exists(sp):
+                raise SystemExit(f"master missing: {src}")
+            with Image.open(sp) as im:
+                im = ImageOps.exif_transpose(im)
+                target = min(width, im.width)
+                if os.path.exists(op):
+                    with Image.open(op) as have:
+                        if have.width >= target:
+                            continue
+                if im.mode not in ("RGB", "RGBA"):
+                    im = im.convert("RGBA" if "A" in im.getbands() else "RGB")
+                if im.width > target:
+                    im = im.resize((target, round(im.height * target / im.width)), Image.LANCZOS)
+                os.makedirs(os.path.dirname(op), exist_ok=True)
+                im.save(op, "WEBP", quality=82, method=6)
+                made += 1
+        return made
+
+
+def usable(images):
+    """Drop the handful of photos that only survive at thumbnail size on the
+    old server (see _REPORT.md §5), unless nothing else is left."""
+    good = [im for im in images or []
+            if not (im.get("low_resolution") and (im["low_resolution"].get("width") or 9999) < 800)]
+    return good or list(images or [])
+
+
+# --------------------------------------------------------------- cleaning --
+
+CTA = re.compile(r"^(reserve|book this|secure your space|reserve my space|reserve your space)\b", re.I)
+SUBJECT_TO = re.compile(r"^(this|our) itinerary (is|may be) subject", re.I)
+
+
+def tidy(s):
+    s = re.sub(r"\s+", " ", s or "").strip()
+    s = re.sub(r"\s*[;,]\s*$", "", s)                  # dangling list punctuation
+    s = re.sub(r"\s*[*+]+\s*$", "", s)                 # footnote markers…
+    s = re.sub(r"^[*+]+\s*", "", s)                    # …at either end
+    s = re.sub(r"(\d)\s*usd\b", r"\1 USD", s, flags=re.I)
+    s = s.replace(" : ", ": ").replace("Y&AWW", "YAWW")
+    return s
+
+
+def clean_list(items, join=True):
+    """Scraped <li> runs: drop calls to action, glue continuation lines
+    ("tips are preferred in Mexican pesos please", "(taxis are …)") and
+    "heading :" lines back onto their neighbours. Itinerary bullets can
+    legitimately start lower-case ("by 8am …"), so they pass join=False."""
+    out = []
+    for raw in items or []:
+        s = tidy(raw)
+        if s.endswith(" :"):
+            s = s[:-2] + ":"
+        if not s or CTA.match(s):
+            continue
+        if join and out and (s[0].islower() or s.startswith("(")):
+            out[-1] = out[-1] + ("; " if s[0].islower() else " ") + s
+            continue
+        if out and out[-1].endswith(":"):
+            out[-1] = out[-1] + " " + s
+            continue
+        out.append(s)
+    return out
+
+
+def title_case(t):
+    t = tidy(re.sub(r"^[–-]\s*", "", t or ""))
+    if t.isupper():
+        t = t.capitalize()
+        t = re.sub(r"\b(koh yao noi|chiang mai|buenos aires|vla)\b",
+                   lambda m: {"vla": "VLA"}.get(m.group(0), m.group(0).title()), t, flags=re.I)
+    return t
+
+
+def clean_itinerary(d):
+    notes = [tidy(n) for n in d.get("itinerary_notes") or []]
+    days = []
+    for day in d["itinerary"]:
+        bullets = []
+        for b in clean_list(day["bullets"], join=False):
+            if SUBJECT_TO.match(b) or len(b) > 220:
+                if b not in notes:
+                    notes.append(b)
+                continue
+            bullets.append(b)
+        days.append({"label": day["label"], "title": title_case(day.get("title")),
+                     "bullets": bullets, "images": day.get("images") or []})
+    # the "subject to change" disclaimer reads best last
+    notes.sort(key=lambda n: 1 if SUBJECT_TO.match(n) else 0)
+    return days, notes
+
+
+def clean_includes(d, loc):
+    inc = clean_list(d["includes"])
+    notinc = clean_list(d["not_included"])
+    foot = [tidy(x) for x in (d.get("includes_footnote"), d.get("not_included_footnote")) if x]
+
+    if loc == "camino-de-santiago":
+        # The old page pairs every heading with a sentence of description;
+        # the list keeps the headings, the way every other retreat reads.
+        inc = inc[0::2]
+    if loc == "portugal":
+        keep = []
+        for x in inc:
+            if x.lower().startswith(("airport transfer schedule", "leaving to lisbon", "any transfers outside")):
+                continue
+            keep.append(x)
+        inc = keep
+        foot.append("The group leaves the Costa Vicentina for Lisbon airport at 7am on the last day "
+                    "(about 2.5 hours without traffic). Transfers at other times are private rides, "
+                    "approximately 250 euro, and not included.")
+    if loc == "thailand":
+        flight = [x for x in notinc if re.match(r"^(FOR OUR|DECEMBER 6|Thai AirAsia|Make sure you book|Likely you)", x)]
+        notinc = [x for x in notinc if x not in flight]
+        foot.append("For the December 1 – 10, 2026 retreat, book Thai AirAsia FD 3162 on December 6, "
+                    "leaving Chiang Mai (CNX) at 12:40pm and arriving in Phuket (HKT) at 2:50pm. "
+                    "Book your flight home out of Phuket or Krabi after 1pm, to allow for the boat "
+                    "transfer from the island.")
+    if loc == "argentina":
+        inc = [x for x in inc if not x.startswith("Expert YAWW facilitator onsite")]   # listed twice
+        moved = [x for x in notinc if x.startswith(("We will advise flight times", "Please see the Travel Tips"))]
+        notinc = [x for x in notinc if x not in moved]
+        foot.append("You buy the round-trip domestic flights yourself, as well as your airport "
+                    "transfers on opening and closing day; we advise flight times and details "
+                    "about 4 months before the retreat.")
+
+    # Lines that are really notes about transfers, not things excluded.
+    for x in list(notinc):
+        if x.startswith(("Pricing will depend on how many", "If you need a private ride")):
+            notinc.remove(x)
+            if foot:
+                foot[0] = foot[0].rstrip(".") + ". " + x
+            else:
+                foot.append(x)
+    return inc, notinc, foot
+
+
+def chips(attrs):
+    out = []
+    bed, bath, view = (attrs or {}).get("bed"), (attrs or {}).get("bath"), (attrs or {}).get("view")
+    if bed:
+        out.append(bed if re.search(r"\bbeds?$|\bor\b", bed, re.I) else bed + " bed")
+    if bath:
+        out.append(bath + " bath")
+    if view:
+        out.append(view if "view" in view.lower() else view + " view")
+    return out
+
+
+def price_unit(r):
+    u = r.get("price_unit")
+    return {"per person": "per person", "private room": "per room"}.get(u, u)
+
+
+# ---------------------------------------------------------------- markup --
+
+SLIDER_ARROWS = (
+    '\n              <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">'
+    '\n                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>'
+    '\n              </button>'
+    '\n              <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">'
+    '\n                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>'
+    '\n              </button>')
+
+
+def day_slider(images, label):
+    """The template's itinerary slider. Arrows are always written: the
+    slider script binds to them unconditionally."""
     if not images:
         return ""
     slides = "".join(
-        f'\n                <div class="photo-slider__slide"><img src="{im["file"]}" '
-        f'alt="{esc(im.get("alt") or fallback_alt)}" loading="lazy"></div>'
-        for im in images)
+        f'\n                <div class="photo-slider__slide"><img src="{src}" alt="{esc(alt)}" loading="lazy"></div>'
+        for src, alt in images)
     dots = "".join(
-        f'\n                <button class="photo-slider__dot{" is-active" if i == 0 else ""}" '
-        f'aria-label="Photo {i+1}"></button>' for i in range(len(images)))
-    arrows = ('\n              <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">'
-              '\n                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>'
-              '\n              </button>'
-              '\n              <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">'
-              '\n                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>'
-              '\n              </button>') if len(images) > 1 else ""
-    return (f'\n            <div class="photo-slider retreat-itinerary__slider" role="group" '
+        f'\n                <button class="photo-slider__dot{" is-active" if i == 0 else ""}" aria-label="Photo {i + 1}"></button>'
+        for i in range(len(images)))
+    return (f'\n\n            <div class="photo-slider retreat-itinerary__slider" role="group" '
             f'aria-roledescription="carousel" aria-label="{esc(label)}">'
-            f'\n              <div class="photo-slider__track">{slides}\n              </div>'
-            f'{arrows}'
+            f'\n              <div class="photo-slider__track">{slides}\n              </div>{SLIDER_ARROWS}'
             f'\n              <div class="photo-slider__dots">{dots}\n              </div>'
             f'\n            </div>')
 
 
-def js_gallery(images, fallback_alt):
-    if not images: return "[]"
-    return "[" + ", ".join(
-        "{src: %s, alt: %s}" % (jstr(im["file"]), jstr(im.get("alt") or fallback_alt))
-        for im in images) + "]"
+def host_html(h, indent="        "):
+    photo = (f'<img class="host__photo" src="{h["photo"]}" alt="{esc(h["name"])}" loading="lazy">'
+             if h.get("photo") else '<div class="host__photo host__photo--empty" aria-hidden="true"></div>')
+    meta = f'\n{indent}<p class="host__meta">{esc(h["meta"])}</p>' if h.get("meta") else ""
+    bio = f'\n{indent}<p class="host__bio">{esc(h["bio"])}</p>' if h.get("bio") else ""
+    link = (f'\n{indent}<a class="host__link" href="{h["href"]}">{esc(h["link"])} <span aria-hidden="true">&rarr;</span></a>'
+            if h.get("href") else "")
+    return (f'{indent}{photo}\n{indent}<div class="host">'
+            f'\n{indent}<p class="host__role">{esc(h["role"])}</p>'
+            f'\n{indent}<h3 class="host__name">{esc(h["name"])}</h3>{meta}{bio}{link}'
+            f'\n{indent}</div>')
 
 
-def build(slug):
-    d = json.load(open(f"{REPO}/retreats/{slug}/data.json", encoding="utf-8"))
-    html = open(TPL, encoding="utf-8").read()
-    dest = d["destination"]
+def hosts_section(hosts, placeholder_note):
+    first = hosts[0]
+    if len(hosts) == 1:
+        return f'''  <section class="retreat-teacher" aria-labelledby="hosts-title">
+    <h2 class="retreat-teacher__title" id="hosts-title">{"Your host" if first["key"] != "teacher" else "Your teacher"}</h2>
+    <div class="hosts" data-hosts>
+      <div class="hosts__slot" data-host-slot>
+{host_html(first)}
+      </div>
+    </div>
+  </section>'''
+    tabs = "".join(
+        f'\n        <button class="hosts__tab" type="button" role="tab" data-host-tab="{h["key"]}" '
+        f'aria-selected="{"true" if i == 0 else "false"}" tabindex="{0 if i == 0 else -1}">{esc(h["tab"])}</button>'
+        for i, h in enumerate(hosts))
+    tpls = "".join(f'\n      <template data-host="{h["key"]}">\n{host_html(h)}\n      </template>' for h in hosts)
+    note = f"\n         {placeholder_note}" if placeholder_note else ""
+    return f'''  <section class="retreat-teacher" aria-labelledby="hosts-title">
+    <h2 class="retreat-teacher__title" id="hosts-title">Your hosts</h2>
+    <!-- One slot, several people. The first is in the slot in the markup, so
+         the block reads complete with scripting off; js/hosts.js swaps the
+         contents when a tab is pressed.{note} -->
+    <div class="hosts" data-hosts>
+      <div class="hosts__tabs" role="tablist" aria-label="Your hosts">{tabs}
+      </div>
+      <div class="hosts__slot" data-host-slot>
+{host_html(first)}
+      </div>{tpls}
+    </div>
+  </section>'''
+
+
+def first_sentences(paragraph, limit=260):
+    """A host blurb from a full bio: whole sentences, as many as fit."""
+    parts = re.split(r"(?<=[.!?])\s+", (paragraph or "").strip())
+    out = ""
+    for p in parts:
+        if len(out) >= 120 and len(out) + len(p) + 1 > limit:
+            break
+        out = (out + " " + p).strip()
+    return out
+
+
+# ------------------------------------------------------------------ build --
+
+def build(rid, cat, assets, template):
+    r = next(x for x in cat["retreats"] if x["id"] == rid)
+    d = json.load(open(os.path.join(REPO, "retreats", rid, "data.json"), encoding="utf-8"))
+    loc = r["locationId"]
+    location = next((x for x in cat["locations"] if x["id"] == loc), {})
+    is_cuyo = loc == "el-cuyo"
+    standard = rid in EL_CUYO_STANDARD
+    teachers = {t["id"]: t for t in cat["teachers"]}
+    team = {t["id"]: t for t in cat["team"]}
+    doc = template
     place = d["location_label"]
-    galt = f"{dest}, {d['country']}"
+    name = r["officialName"]
+    dates = date_range(r["startDate"], r["endDate"])
+    tids = [t for t in r["teacherIds"] if t != "tbd"]
+    who = " & ".join(teachers[t]["name"] for t in tids)
 
-    # ---------------- head -------------------------------------------------
-    html = html.replace("<title>YAWW · Beach Escape Retreat</title>",
-                        f"<title>{esc(d['seo_title'])}</title>\n"
-                        f'<meta name="description" content="{esc(d["seo_description"])}">', 1)
+    # ---------------------------------------------------------------- head
+    nights = (datetime.date.fromisoformat(r["endDate"]) - datetime.date.fromisoformat(r["startDate"])).days
+    desc = (f"{nights}-night yoga retreat in {place}, {dates}"
+            + (f", with {who}." if who else ". Teacher to be announced."))
+    doc = swap(doc, "<title>YAWW · Beach Escape Retreat</title>",
+               f"<title>YAWW · {esc(name)}</title>\n<meta name=\"description\" content=\"{esc(desc)}\">", "title")
+    # The built pages use rules the template predates (day titles, notes,
+    # empty host photo), so they ask for the current stylesheet.
+    doc = re.sub(r"css/retreat\.css\?v=\d+", "css/retreat.css?v=" + CSS_VERSION, doc, count=1)
+    doc = swap(doc, "<body>\n",
+               f"<body>\n<!-- Built by retreats/_tools/build_page.py from data/retreats.js and "
+               f"retreats/{rid}/data.json,\n     on the retreatpage-elcuyo.html template. Edit the data, "
+               f"not this file. -->\n", "stamp")
 
-    # ---------------- hero -------------------------------------------------
-    teach = d["teachers"]
-    who = (" & ".join(t["name"] for t in teach) if teach else "a fabulous YAWW instructor")
-    badge = (f'\n      <p class="retreat-hero__badge">{esc(d["tier_label"])}</p>'
-             if d.get("tier_label") else "")
-    hero_new = f'''
-    <div class="retreat-hero__image" role="img" aria-label="{esc(d['hero_image']['alt'] if d.get('hero_image') and d['hero_image'].get('alt') else d['title'] + ' — ' + place)}"{bgstyle(d.get("hero_image"))}></div>
+    # ---------------------------------------------------------------- hero
+    hero = d.get("hero_image") or {}
+    hero_src = assets.web(hero.get("file"), Assets.HERO, loc)
+    hero_alt = hero.get("alt") or f"{name} — {place}"
+    doc = swap(doc, '<div class="retreat-hero__image" role="img" aria-label="Beach Escape Retreat — El Cuyo, Mexico"></div>',
+               f'<div class="retreat-hero__image" role="img" aria-label="{esc(hero_alt)}"'
+               + (f" style=\"background-image: url('{hero_src}'); background-size: cover; background-position: center; background-repeat: no-repeat;\""
+                  if hero_src else "") + "></div>", "hero image")
+    doc = swap(doc, '<h1 class="retreat-hero__title">Beach Escape Retreat</h1>',
+               f'<h1 class="retreat-hero__title">{esc(name)}</h1>', "hero title")
+    doc = swap(doc, '<p class="retreat-hero__location">El Cuyo, Mexico</p>',
+               f'<p class="retreat-hero__location">{esc(place)}</p>', "hero location")
+    coll = {"signature-collection": "Signature Collection", "deep-dives": "Deep Dives"}.get(r.get("collection"))
+    doc = swap(doc, '      <p class="retreat-hero__badge">Signature Collection</p>\n',
+               f'      <p class="retreat-hero__badge">{coll}</p>\n' if coll else "", "badge")
+    doc = swap(doc, "<span>September 4-8, 2026</span>", f"<span>{esc(dates)}</span>", "hero date")
+    doc = swap(doc, "<span>with Renata Centi</span>",
+               f"<span>with {esc(who)}</span>" if who else "<span>Teacher to be announced</span>", "hero who")
+    doc = swap(doc, '''      <button class="btn btn--primary" type="button">Book now</button>
+      <button class="btn btn--secondary" type="button">I want more info</button>''',
+               '''      <a class="btn btn--primary" href="#rooms">Book now</a>
+      <a class="btn btn--secondary" href="contact.html#general-inquiry">I want more info</a>''', "hero ctas")
 
-    <div class="retreat-hero__copy">
-      <h1 class="retreat-hero__title">{esc(d['title'])}</h1>
-      <p class="retreat-hero__location">{esc(place)}</p>{badge}
-      <p class="retreat-hero__meta">
-        <span>{esc(d['dates_label'])}</span>
-        <span class="retreat-hero__meta-dot" aria-hidden="true">·</span>
-        <span>with {esc(who)}</span>
-      </p>
-    </div>
-'''
-    html = cut(html, '<section class="retreat-hero">', '    <div class="retreat-hero__ctas">',
-               hero_new, "hero")
+    # --------------------------------------------------------------- about
+    if not standard:
+        paras = [tidy(p) for p in d["about_body"] if tidy(p)]
+        if d.get("subtitle"):
+            paras.insert(0, d["subtitle"] + ".")
+        doc = cut(doc, '<div class="retreat-about__body">', "\n    </div>\n  </section>",
+                  "".join(f"\n      <p>{esc(p)}</p>" for p in paras), "about")
 
-    # ---------------- about ------------------------------------------------
-    about = "".join(f"\n      <p>{esc(p)}</p>" for p in d["about_body"])
-    html = cut(html, '<div class="retreat-about__body">', '\n    </div>\n  </section>',
-               about, "about")
-    if d.get("about_title"):
-        html = html.replace('<h2 class="retreat-about__title">About this retreat</h2>',
-                            f'<h2 class="retreat-about__title">{esc(d["about_title"])}</h2>', 1)
+    # --------------------------------------------------------------- hosts
+    hosts = []
+    for i, tid in enumerate(tids):
+        t = teachers[tid]
+        dt = next((x for x in d["teachers"] if x.get("slug") == tid), {})
+        photo = t.get("photo") or assets.web((dt.get("photo") or {}).get("file"), Assets.PORTRAIT, "teachers")
+        bio = t.get("shortBio") or first_sentences((dt.get("bio") or [""])[0])
+        tab, role = PC.HOST_ROLE.get(tid, ("Teacher", "Your teacher"))
+        hosts.append({"key": "teacher" if i == 0 else tid, "tab": tab,
+                      "role": role, "name": t["name"], "photo": photo, "meta": PC.HOST_META.get(tid),
+                      "bio": bio, "href": t.get("pageUrl"), "link": f"Meet {t['name'].split()[0]}"})
+    if not hosts:
+        hosts.append({"key": "teacher", "tab": "Teacher", "role": "Your teacher", "name": "To be announced",
+                      "bio": "The teacher for these dates has not been announced yet. Ask us and we’ll let you know as soon as it’s confirmed.",
+                      "href": "contact.html#general-inquiry", "link": "Ask about these dates"})
+    note = ""
+    fid = PC.FACILITATORS.get(loc)
+    if fid:
+        f = team[fid]
+        hosts.append({"key": "facilitator", "tab": "Facilitator", "role": "Your facilitator", "name": f["name"],
+                      "photo": f.get("photo"), "meta": PC.HOST_META.get(fid), "bio": f.get("shortBio"),
+                      "href": f.get("pageUrl"), "link": f"Meet {f['name'].split()[0]}"})
+        note = (f"PLACEHOLDER facilitator — {f['name']} is the team member whose own bio ties\n"
+                f"         her to {location.get('name', loc)}, but who travels on these dates is unconfirmed.")
+    m = section(doc, "retreat-teacher")
+    doc = doc[:m.start()] + hosts_section(hosts, note) + doc[m.end():]
 
-    # ---------------- teacher ----------------------------------------------
-    lead = teach[0] if teach else None
-    if lead and lead.get("bio"):
-        bio = "".join(f"\n        <p>{esc(p)}</p>" for p in lead["bio"])
-        others = [t for t in teach[1:]]
-        for t in others:
-            role = f" — {t['role']}" if t.get("role") else ""
-            bio += (f'\n        <p><strong>{esc(t["name"])}{esc(role)}</strong> joins this edition. '
-                    f'The old site publishes no biography for them.</p>')
-        tsec = f'''
-    <h2 class="retreat-teacher__title">Yoga with {esc(lead['name'])}</h2>
-    <div class="retreat-teacher__row">
-      <div class="retreat-teacher__photo" role="img" aria-label="{esc((lead.get('photo') or {}).get('alt') or lead['name'])}"{bgstyle(lead.get('photo'))}></div>
-      <div class="retreat-teacher__text">{bio}
-      </div>
-    </div>
-'''
+    # ------------------------------------------------------------ includes
+    if standard:
+        doc = swap(doc, "<li>Toes-in-the-sand dinner party with salsa music, open bar and dinner</li>",
+                   "<li>Toes-in-the-sand dinner party at a local venue, with salsa music, a margarita and dinner</li>",
+                   "open bar")
     else:
-        tsec = f'''
-    <h2 class="retreat-teacher__title">Your teacher</h2>
-    <div class="retreat-teacher__row">
-      <div class="retreat-teacher__text">
-        <p>{esc("This date is advertised with a fabulous YAWW instructor — the teacher has not been announced yet." if not teach else "No biography for " + who + " is published on the old site.")}</p>
-      </div>
-    </div>
-'''
-    html = cut(html, '<section class="retreat-teacher">', '\n  </section>', tsec, "teacher")
+        inc, notinc, foot = clean_includes(d, loc)
+        doc = cut(doc, '<div class="retreat-includes__panel" data-panel="includes" role="tabpanel">\n          <ul class="retreat-includes__list">',
+                  "\n          </ul>", "".join(f"\n            <li>{esc(x)}</li>" for x in inc), "includes")
+        m = re.search(r'(<div class="retreat-includes__panel is-hidden" data-panel="not-included"[^>]*>\n)(.*?)(\n        </div>)', doc, re.S)
+        body = ('          <ul class="retreat-includes__list">'
+                + "".join(f"\n            <li>{esc(x)}</li>" for x in notinc) + "\n          </ul>"
+                + "".join(f'\n          <p class="retreat-includes__footnote">{esc(x)}</p>' for x in foot))
+        doc = doc[:m.start(2)] + body + doc[m.end(2):]
+        if not is_cuyo:
+            band = usable(d["gallery"])[0] if d["gallery"] else hero
+            src = assets.web(band.get("file"), Assets.BAND, loc)
+            doc = swap(doc, '<div class="retreat-includes__bg" aria-hidden="true"></div>',
+                       f'<div class="retreat-includes__bg" aria-hidden="true" style="background-image: '
+                       f'url(\'{src}\'), linear-gradient(155deg, hsl(150 20% 68%), hsl(150 24% 38%));"></div>', "band")
 
-    # ---------------- includes ---------------------------------------------
-    inc = "".join(f"\n            <li>{esc(x)}</li>" for x in d["includes"])
-    html = cut(html, '<div class="retreat-includes__panel" data-panel="includes" role="tabpanel">\n          <ul class="retreat-includes__list">',
-               '\n          </ul>', inc, "includes")
-    notinc = "".join(f"\n            <li>{esc(x)}</li>" for x in d["not_included"])
-    html = cut(html, '<ul class="retreat-includes__list">\n            <li>Airfare and airport transfers*</li>',
-               '\n          </ul>', "", "notinc-clear")
-    html = html.replace('<ul class="retreat-includes__list">\n            <li>Airfare and airport transfers*</li>',
-                        '<ul class="retreat-includes__list">' + notinc, 1)
-    foot = d.get("not_included_footnote") or d.get("includes_footnote")
-    html = re.sub(r'<p class="retreat-includes__footnote">.*?</p>',
-                  (f'<p class="retreat-includes__footnote">{esc(foot)}</p>' if foot else ""),
-                  html, count=1, flags=re.S)
-    # the includes background band
-    bg = (d["gallery"][0] if d["gallery"] else d.get("hero_image"))
-    if bg and bg.get("file"):
-        html = html.replace('<div class="retreat-includes__bg" aria-hidden="true"></div>',
-                            f'<div class="retreat-includes__bg" aria-hidden="true" style="background-image: '
-                            f'url(\'{bg["file"]}\'), linear-gradient(155deg, hsl(150 20% 68%), hsl(150 24% 38%));"></div>', 1)
-
-    # ---------------- itinerary --------------------------------------------
-    days = ""
-    for day in d["itinerary"]:
-        bullets = "".join(f"\n                <li>{esc(b)}</li>" for b in day["bullets"])
-        title = (f'\n              <h3 class="retreat-itinerary__day-title">{esc(day["title"])}</h3>'
-                 if day.get("title") else "")
-        days += f'''
+    # ----------------------------------------------------------- itinerary
+    if not standard:
+        days, notes = clean_itinerary(d)
+        out = ""
+        for day in days:
+            title = (f'\n                <li class="retreat-itinerary__day-title">{esc(day["title"])}</li>'
+                     if day["title"] else "")
+            pics = [(assets.web(im["file"], Assets.SLIDE, loc), im.get("alt") or f"{day['label']} — {place}")
+                    for im in usable(day["images"])]
+            out += f'''
         <li class="retreat-itinerary__day">
           <div class="retreat-itinerary__rail">
             <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
@@ -175,134 +516,161 @@ def build(slug):
 
           <div class="retreat-itinerary__content">
             <div class="retreat-itinerary__text">
-              <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">{esc(day["label"])}</span></div>{title}
+              <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">{esc(day["label"])}</span></div>
 
-              <ul class="retreat-itinerary__bullets">{bullets}
+              <ul class="retreat-itinerary__bullets">{title}{"".join(f"{chr(10)}                <li>{esc(b)}</li>" for b in day["bullets"])}
               </ul>
-            </div>
-{slider(day.get("images") or [], f'{day["label"]} photos', f'{day["label"]} of the retreat in {galt}')}
+            </div>{day_slider(pics, day["label"] + " photos")}
           </div>
         </li>
 '''
-    html = cut(html, '<ol class="retreat-itinerary__list">', '\n      </ol>', days, "itinerary")
-    if d.get("itinerary_notes"):
-        notes = "".join(f'\n      <p class="retreat-itinerary__note">{esc(n)}</p>'
-                        for n in d["itinerary_notes"])
-        html = html.replace('\n      </ol>', '\n      </ol>' + notes, 1)
+        doc = cut(doc, '<ol class="retreat-itinerary__list">\n', "\n      </ol>", out, "itinerary")
+        if notes:
+            doc = swap(doc, "\n      </ol>\n    </div>\n  </section>",
+                       "\n      </ol>\n    </div>\n    <div class=\"retreat-itinerary__notes\">"
+                       + "".join(f'\n      <p class="retreat-itinerary__note">{esc(n)}</p>' for n in notes)
+                       + "\n    </div>\n  </section>", "itinerary notes")
 
-    # ---------------- accommodations (HOTELS) ------------------------------
-    hotels = []
-    for h in d["accommodations"]:
-        name = h.get("name") or h.get("label") or f"Where you stay in {dest}"
-        text = ", ".join(jstr(p) for p in (h.get("text") or []))
-        gal = ", ".join(jstr(g["file"]) for g in (h.get("gallery") or []))
-        hotels.append("      {\n        name: %s,\n        gallery: [%s],\n        text: [%s]\n      }"
-                      % (jstr(name), gal, text))
-    html = cut(html, "    var HOTELS = [", "\n    ];", "\n" + ",\n".join(hotels), "HOTELS")
-
-    # ---------------- rooms (TIERS) ----------------------------------------
-    tiers = []
-    for r in d["rooms"]:
-        attrs = ", ".join(f"{k}: {jstr(v)}" for k, v in (r.get("attrs") or {}).items() if v)
-        gal = ", ".join(jstr(g["file"]) for g in (r.get("gallery") or []))
-        hotel = (d["accommodations"][0].get("name") or d["accommodations"][0].get("label")
-                 or f"Where you stay in {dest}")
-        price = r["price_usd"] if r.get("price_usd") is not None else "null"
-        tiers.append(
-            "    {\n      name: %s,\n      priceUSD: %s,\n      priceLabel: %s,\n      priceUnit: %s,\n"
-            "      hotels: [\n        {\n          name: %s,\n          attrs: { %s },\n          gallery: [%s]\n        }\n      ]\n    }"
-            % (jstr(r["name"]), price, jstr(r.get("price_label")), jstr(r.get("price_unit")),
-               jstr(hotel), attrs, gal))
-    html = cut(html, "  var TIERS = [", "\n  ];", "\n" + ",\n".join(tiers), "TIERS")
-
-    # ---------------- urgency ----------------------------------------------
-    u = d.get("urgency")
-    html = re.sub(r"var URGENCY = \{[^}]*\};",
-                  ("var URGENCY = { type: %s, label: %s };" % (jstr(u["type"]), jstr(u.get("label")))
-                   if u else "var URGENCY = null;"),
-                  html, count=1)
-
-    # ---------------- extras ----------------------------------------------
-    ex = []
-    for x in d["extras"]:
-        gal = ", ".join(jstr(g["file"]) for g in (x.get("gallery") or []))
-        ex.append("      {\n        name: %s,\n        desc: %s,\n        price: %s, unit: %s,\n        gallery: [%s]\n      }"
-                  % (jstr(x["name"]), jstr(x.get("desc")),
-                     jstr(x.get("price_label") or (f"{int(x['price_usd'])} USD" if x.get("price_usd") else None)),
-                     jstr(x.get("unit")), gal))
-    html = cut(html, "    var EXTRAS = [", "\n    ];", "\n" + ",\n".join(ex), "EXTRAS")
-    if not d["extras"]:
-        html = html.replace('<section class="extras">',
-                            '<section class="extras" hidden data-empty="no optional extras published for this retreat">', 1)
-
-    # ---------------- travel tips -----------------------------------------
-    if d["travel_tips"]:
-        groups = ""
-        for g in d["travel_tips"]:
-            items = "".join(f"\n          <li>{esc(i)}</li>" for i in g["items"])
-            head = (f'\n        <h3 class="tips__heading">{esc(g["heading"])}</h3>'
-                    if g.get("heading") else "")
-            groups += f'''
-      <div class="tips__group">{head}
-        <ul class="tips__list">{items}
-        </ul>
-      </div>
-'''
-        html = cut(html, '<div class="tips__body">', '\n    </div>\n  </section>', groups, "tips")
+    # ------------------------------------------------------ accommodations
+    venues = []
+    if is_cuyo:
+        venues = ["Utopia Guesthouse & Yoga Studio"]        # the template's HOTELS stand
     else:
-        html = re.sub(r'<section class="tips">.*?</section>',
-                      '<!-- Travel Tips: the old site publishes none for this retreat. -->',
-                      html, count=1, flags=re.S)
+        hotels = []
+        for a in d["accommodations"]:
+            vname = a.get("name") or a.get("label") or PC.VENUE_NAMES.get(loc) or f"Where you stay in {location.get('name', loc)}"
+            venues.append(vname)
+            gal = [assets.web(g["file"], Assets.SLIDE, loc) for g in usable(a.get("gallery"))]
+            hotels.append("      {\n        name: %s,\n        gallery: [%s],\n        text: [\n%s\n        ]\n      }" % (
+                jstr(vname), ", ".join(jstr(g) for g in gal),
+                ",\n".join("          " + jstr(esc(tidy(p))) for p in a.get("text") or [])))
+        doc = cut(doc, "    var HOTELS = [", "\n    ];", "\n" + ",\n".join(hotels), "HOTELS")
 
-    # ---------------- gallery ---------------------------------------------
-    RAT = ["28/17", "1/1", "28/17", "5/4", "28/17", "1/1", "28/17", "5/4", "1/1", "28/17"]
-    slides = ""
-    for i, g in enumerate(d["gallery"][:10]):
-        slides += (f'\n        <figure class="gallery__slide" style="--r: {RAT[i % len(RAT)]}">'
-                   f'<img src="{g["file"]}" alt="{esc(g.get("alt") or galt)}" loading="lazy"></figure>')
-    html = cut(html, '<div class="gallery__rail">', '\n      </div>', slides, "gallery")
-    html = html.replace('aria-label="Photos from El Cuyo"', f'aria-label="Photos from {esc(dest)}"', 1)
-    html = re.sub(r'<h2 class="gallery__title">.*?</h2>',
-                  f'<h2 class="gallery__title">{esc(d.get("gallery_title") or "Where you&rsquo;ll be")}</h2>',
-                  html, count=1, flags=re.S)
-    intro = d.get("gallery_intro") or f"Photographs from past retreats in {place}."
-    html = re.sub(r'<p class="gallery__intro">.*?</p>',
-                  f'<p class="gallery__intro">{esc(intro)}</p>', html, count=1, flags=re.S)
+    # ---------------------------------------------------------------- rooms
+    tiers = []
+    # A room type the old site shows no photo for takes three of the
+    # property's own, starting at a different one per card so a grid of
+    # them does not repeat the same picture.
+    pool = []
+    if d["accommodations"] and d["accommodations"][0].get("gallery"):
+        pool = [assets.web(g["file"], Assets.SLIDE, loc) for g in usable(d["accommodations"][0]["gallery"])]
+    for ri, room in enumerate(d["rooms"]):
+        fallback = (pool[ri % len(pool):] + pool[:ri % len(pool)])[:3] if pool else []
+        gal = [assets.web(g["file"], Assets.SLIDE, loc) for g in usable(room.get("gallery"))] or fallback
+        rows = []
+        for vi, v in enumerate(venues):
+            rows.append("        {\n          name: %s,\n          chips: [%s],\n          gallery: [%s]\n        }" % (
+                jstr(v), ", ".join(jstr(c) for c in (chips(room.get("attrs")) if vi == 0 else [])),
+                ", ".join(jstr(g) for g in (gal if vi == 0 else []))))
+        tiers.append("    {\n      name: %s,\n      priceUSD: %s,\n      priceUnit: %s,\n      hotels: [\n%s\n      ]\n    }" % (
+            jstr(room["name"]), room["price_usd"] if room.get("price_usd") is not None else "null",
+            jstr(price_unit(room)), ",\n".join(rows)))
+    doc = cut(doc, "  var TIERS = [", "\n  ];", "\n" + ",\n".join(tiers), "TIERS")
 
-    # ---------------- how to book -----------------------------------------
+    # -------------------------------------------------------------- urgency
+    st = r.get("status")
+    urg = {"sold_out": "{ type: 'soldout' }",
+           "filling_fast": "{ type: 'scarce', label: 'Filling fast' }",
+           "new": "{ type: 'scarce', label: 'New retreat' }",
+           "spaces_left": "{ type: 'scarce', label: '%s' }" % (
+               f"{r.get('spacesLeft')} space{'s' if r.get('spacesLeft') != 1 else ''} left")}.get(st, "null")
+    doc = swap(doc, "var URGENCY = { type: 'scarce', label: 'Filling fast' };", f"var URGENCY = {urg};", "urgency")
+
+    # --------------------------------------------------------- how to book
     b = d["booking"]
-    steps = f'''
-          <li>
-            <strong>Choose your room</strong>
-            <span>{esc("Every price is per person, in USD." if any(r.get("price_usd") for r in d["rooms"]) else "Prices for these dates are not published yet.")}</span>
-          </li>
-          <li>
-            <strong>Secure your space</strong>
-            <span>{esc((("A $%s deposit per person holds your place. " % f"{int(b['deposit_usd']):,}") if b.get("deposit_usd") else "") + "It comes off your total — it is not an extra.")}</span>
-          </li>
-          <li>
-            <strong>Pay the balance later</strong>
-            <span>{esc("The rest is due %s days before the retreat." % b["balance_due_days"] if b.get("balance_due_days") else "The rest is due before the retreat.")}</span>
-          </li>
-'''
-    html = cut(html, '<ol class="rooms__steps">', '\n        </ol>', steps, "steps")
-    canc = (b.get("cancellation_policy") or [None])[0]
-    html = re.sub(r'<!-- TODO: add the refund policy line here.*?-->',
-                  (f'<p class="rooms__aside-note">{esc(canc)}</p>' if canc else ""),
-                  html, count=1, flags=re.S)
-    html = re.sub(r'<p class="rooms__aside-note">Sharing a room\?.*?</p>',
-                  f'<p class="rooms__aside-note">{esc(b.get("roommate_note") or "")}</p>',
-                  html, count=1, flags=re.S)
+    priced = [x for x in d["rooms"] if x.get("price_usd") is not None]
+    units = {price_unit(x) for x in priced}
+    step1 = ("Prices for these dates are coming soon." if not priced
+             else "Every price is per person, in USD." if units == {"per person"}
+             else "Prices are in USD, per person or per room as marked.")
+    doc = swap(doc, "<span>Every price is per person, in USD.</span>", f"<span>{step1}</span>", "step1")
+    dep = b.get("deposit_usd")
+    doc = swap(doc, "<span>A $1,000 deposit per person holds your place. It comes off your total &mdash; it is not an extra.</span>",
+               f"<span>A ${dep:,} deposit per person holds your place. It comes off your total &mdash; it is not an extra.</span>"
+               if dep else "<span>A deposit per person holds your place. It comes off your total &mdash; it is not an extra.</span>",
+               "step2")
+    days_due = b.get("balance_due_days")
+    doc = swap(doc, "<span>The rest is due 90 days before the retreat.</span>",
+               f"<span>The rest is due {days_due} days before the retreat.</span>" if days_due
+               else "<span>The rest is due before the retreat.</span>", "step3")
+    doc = re.sub(r"        <!-- TODO: add the refund policy line here.*?-->\n",
+                 '        <p class="rooms__aside-note">All payments are non-refundable and non-transferable, '
+                 "so we recommend trip cancellation insurance from the day you pay your deposit.</p>\n",
+                 doc, count=1, flags=re.S)
+    doc = swap(doc, '''          <button class="btn btn--primary" type="button">Reserve your space</button>
+          <button class="btn btn--secondary" type="button">I want more info</button>''',
+               '''          <a class="btn btn--primary" href="contact.html#general-inquiry">Reserve your space</a>
+          <a class="btn btn--secondary" href="contact.html#general-inquiry">I want more info</a>''', "rooms ctas")
+    doc = swap(doc, '<section class="rooms">', '<section class="rooms" id="rooms">', "rooms id")
 
-    # ---------------- faqs -------------------------------------------------
+    # --------------------------------------------------------------- extras
+    tpl_extras = {
+        "Excursion to Las Coloradas": ("Excursion to Las Coloradas", "Excursion to Las Coloradas to see flamingos and pink lagoons; dip in a secluded beach &amp; lunch at a local fish joint.", ["images/extra1-3.jpg", "images/extra1-1.jpg", "images/extra1-2.jpg"]),
+        "Kayaking in Nature": ("Kayaking in Nature", "Excursion to our local nature preserve to kayak amongst the mangroves and lily pads. A true nature bath experience.", ["images/extra2-1.jpg", "images/extra2-2.jpg"]),
+        "Yucatan Peninsula day trip": ("Yucatan Peninsula day trip", "Yucatan Peninsula day trip: Ruins of Ek Balam, cenote swim, lunch &amp; colonial city of Valladolid. *Minimum participation of 4 guests to host the excursion.", ["images/extra3-1.jpg", "images/extra3-2.jpg", "images/extra3-3.jpg"]),
+        "Additional 75 minute massages": ("Massages", "Additional 75 minute massages.", ["images/extra4-1.jpg", "images/extra4-2.jpg"]),
+    }
+    extras = []
+    order = ["Excursion to Las Coloradas", "Kayaking in Nature", "Yucatan Peninsula day trip",
+             "Temazcal Ceremony", "Additional 75 minute massages"]
+    src = sorted(d["extras"], key=lambda x: order.index(x["name"]) if x["name"] in order else 99)
+    for x in src:
+        if x.get("price_usd") is None and not x.get("price_label"):
+            continue                       # e.g. "airport transfers": a note, not an extra
+        nm, desc_html, gal = tpl_extras.get(x["name"], (x["name"], esc(tidy(x.get("desc"))), []))
+        if not is_cuyo:
+            gal = []                       # the template's photos are of El Cuyo
+        if x.get("price_usd") is not None:
+            price = f"{int(x['price_usd'])} USD"
+        else:
+            price = re.sub(r"(?i)\s*each$", "", tidy(x["price_label"])).replace("euro", "EUR")
+        extras.append("      {\n        name: %s,\n        desc: %s,\n        price: %s, unit: %s,\n        gallery: [%s]\n      }" % (
+            jstr(nm), jstr(desc_html), jstr(price), jstr(x.get("unit") or "each"), ", ".join(jstr(g) for g in gal)))
+    if extras:
+        doc = cut(doc, "    var EXTRAS = [", "\n    ];", "\n" + ",\n".join(extras), "EXTRAS")
+    else:
+        m = section(doc, "extras")
+        doc = doc[:m.start()] + "  <!-- Optional Extras: none published for this retreat. -->" + doc[m.end():]
+
+    # ---------------------------------------------------------- travel tips
+    tips = PC.TRAVEL_TIPS.get(loc)
+    if tips and not is_cuyo:
+        groups = "\n".join(
+            f'      <div class="tips__group">\n        <h3 class="tips__heading">{esc(h)}</h3>\n'
+            f'        <ul class="tips__list">' + "".join(f"\n          <li>{esc(i)}</li>" for i in items)
+            + "\n        </ul>\n      </div>\n" for h, items in tips)
+        doc = cut(doc, '<div class="tips__body">\n', "    </div>\n  </section>", groups, "tips")
+    elif not tips:
+        m = section(doc, "tips")
+        doc = doc[:m.start()] + "  <!-- Travel Tips: none published for this destination. -->" + doc[m.end():]
+
+    # -------------------------------------------------------------- gallery
+    if not is_cuyo:
+        ratios = ["28/17", "1/1", "28/17", "5/4", "28/17", "1/1", "28/17", "5/4", "1/1", "28/17"]
+        pics = usable(d["gallery"])[:10]
+        slides = "".join(
+            f'\n        <figure class="gallery__slide" style="--r: {ratios[i]}"><img src="{assets.web(g["file"], Assets.GALLERY, loc)}" '
+            f'alt="{esc(g.get("alt") or place)}" loading="lazy"></figure>' for i, g in enumerate(pics))
+        doc = cut(doc, '<div class="gallery__rail">', "\n      </div>", slides, "gallery")
+        doc = swap(doc, 'aria-label="Photos from El Cuyo"', f'aria-label="Photos from {esc(location.get("name", place))}"', "gallery label")
+        doc = re.sub(r'<p class="gallery__intro">.*?</p>',
+                     f'<p class="gallery__intro">Photographs from past retreats in {esc(place)}.</p>', doc, count=1, flags=re.S)
+
+    # ------------------------------------------------------------------ faq
     faqs = ""
     for i, f in enumerate(d["faqs"], 1):
-        ans = "".join(f"\n            <p>{esc(p)}</p>" for p in f["answer"])
+        ans = ""
+        for p in f["answer"]:
+            p = esc(tidy(p))
+            p = re.sub(r"(https?://[^\s<]+?)(\s*[.,]?)(?=\s|$)",
+                       lambda m: f'<a href="{m.group(1)}">{m.group(1).split("//")[1].rstrip("/")}</a>{m.group(2).strip()}', p)
+            p = p.replace(" .", ".")
+            ans += f"\n            <p>{p}</p>"
         faqs += f'''
       <div class="faq">
         <h3 class="faq__heading">
           <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="faq-{i}">
-            <span class="faq__q">{esc(f["question"])}</span>
+            <span class="faq__q">{esc(tidy(f["question"]))}</span>
             <svg class="faq__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
           </button>
         </h3>
@@ -310,33 +678,102 @@ def build(slug):
           <div class="faq__answer" id="faq-{i}" role="region">{ans}
           </div>
         </div>
-      </div>
-'''
-    html = cut(html, '<div class="faq-list">', '\n    </div>\n  </section>', faqs, "faqs")
+      </div>'''
+    doc = cut(doc, '<div class="faq-list">', "\n    </div>\n  </section>", faqs, "faqs")
+    doc = swap(doc, "       Answers are PLACEHOLDER lorem until the real copy arrives.\n",
+               "       Answers quoted from the old site's policies for this retreat.\n", "faq comment")
 
-    # ---------------- testimonials ----------------------------------------
-    if not d.get("testimonials"):
-        html = html.replace('<section class="quotes">',
-                            '<section class="quotes" hidden data-empty="the old site publishes no guest quotes for this retreat">', 1)
+    # --------------------------------------------------------- testimonials
+    # The template's quotes are labelled placeholders with stock faces; an
+    # invented testimonial must never ship, and the old site has none.
+    doc = swap(doc, '<section class="quotes">',
+               '<section class="quotes" hidden data-empty="no guest quotes published for this retreat yet">', "quotes")
 
-    # ---------------- carbon ----------------------------------------------
-    if not d.get("carbon_offset"):
-        html = html.replace('<section class="carbon">',
-                            '<section class="carbon" hidden data-empty="no carbon-offset copy on the old site">', 1)
+    doc = swap(doc, "\n</body>", "\n" + HOSTS_JS + "\n</body>", "hosts js")
+    return f"retreatpage-{rid}.html", doc, d
 
-    # ---------------- provenance banner -----------------------------------
-    stamp = (f"\n<!-- Generated from retreats/{slug}/data.json on "
-             f"{datetime.date.today().isoformat()} by filling retreatpage-elcuyo.html.\n"
-             f"     Test page: it exists to prove the schema covers the template. -->\n")
-    html = html.replace("<body>", "<body>" + stamp, 1)
 
-    out = f"{REPO}/retreatpage-{slug}.html"
-    open(out, "w", encoding="utf-8").write(html)
-    return out, d
+# ----------------------------------------------------------- template js --
+
+def patch_template_js(doc):
+    """Small behaviour changes every built page needs and the template does
+    not (it only ever showed per-person USD prices with a photo per extra)."""
+    doc = swap(doc, """      price.appendChild(el('p', 'rooms__price-amount', tier.priceUSD.toLocaleString('en-US') + ' USD'));
+      price.appendChild(el('p', 'rooms__price-unit', 'per person'));""",
+               """      /* A price may not be published yet, and is per person or per room. */
+      price.appendChild(el('p', 'rooms__price-amount', tier.priceUSD == null
+        ? 'Coming soon' : tier.priceUSD.toLocaleString('en-US') + ' USD'));
+      if (tier.priceUSD != null && tier.priceUnit) price.appendChild(el('p', 'rooms__price-unit', tier.priceUnit));""",
+               "price render")
+    doc = swap(doc, """        var chips = [
+          attrs.bed && attrs.bed + ' bed',""",
+               """        var chips = hotel.chips || [
+          attrs.bed && attrs.bed + ' bed',""", "chips")
+    doc = swap(doc, """    var prices = (typeof TIERS !== 'undefined' ? TIERS : []).map(function (t) { return t.priceUSD; });
+    if (!prices.length) return;
+    var from = Math.min.apply(null, prices);""",
+               """    var priced = (typeof TIERS !== 'undefined' ? TIERS : []).filter(function (t) { return t.priceUSD != null; });
+    if (!priced.length) return;
+    var cheapest = priced.reduce(function (a, t) { return t.priceUSD < a.priceUSD ? t : a; });
+    var from = cheapest.priceUSD;""", "bar prices")
+    doc = swap(doc, "    unit.textContent = ' · per person';",
+               "    unit.textContent = cheapest.priceUnit ? ' · ' + cheapest.priceUnit : '';", "bar unit")
+    doc = swap(doc, """    var cta = document.createElement('button');
+    cta.className = 'btn btn--primary';
+    cta.type = 'button';""",
+               """    var cta = document.createElement('a');
+    cta.className = 'btn btn--primary';
+    cta.href = '#rooms';""", "bar cta")
+    doc = swap(doc, """        '<div class="extras__media">' +
+          '<div class="photo-slider extras__slider" data-lightbox role="group" aria-roledescription="carousel" aria-label="' + x.name + ' photos">' +""",
+               """        (!x.gallery.length ? '' :
+        '<div class="extras__media">' +
+          '<div class="photo-slider extras__slider" data-lightbox role="group" aria-roledescription="carousel" aria-label="' + x.name + ' photos">' +""",
+               "extras media open")
+    doc = swap(doc, """            '</div>' +
+          '</div>' +
+        '</div>';
+      panelsEl.appendChild(panel);
+
+      tab.addEventListener('click', function () {
+        tabsEl.querySelectorAll('.extras__tab')""",
+               """            '</div>' +
+          '</div>' +
+        '</div>');
+      panelsEl.appendChild(panel);
+
+      tab.addEventListener('click', function () {
+        tabsEl.querySelectorAll('.extras__tab')""", "extras media close")
+    return doc
+
+
+def update_listing(ids):
+    """Give every edition its pageUrl in data/retreats.js, so every card on
+    the site (home, listing, teacher pages) links to the edition's page."""
+    p = os.path.join(REPO, "data", "retreats.js")
+    src = open(p, encoding="utf-8").read()
+    for rid in ids:
+        if f'pageUrl: "retreatpage-{rid}.html"' in src:
+            continue
+        src = swap(src, f'    slug: "{rid}",\n', f'    slug: "{rid}",\n    pageUrl: "retreatpage-{rid}.html",\n', f"pageUrl {rid}")
+    open(p, "w", encoding="utf-8").write(src)
+
+
+def main(argv):
+    cat = load_catalogs()
+    ids = argv or [r["id"] for r in cat["retreats"]]
+    template = patch_template_js(open(TPL, encoding="utf-8").read())
+    assets = Assets()
+    built = []
+    for rid in ids:
+        fname, doc, d = build(rid, cat, assets, template)
+        open(os.path.join(REPO, fname), "w", encoding="utf-8").write(doc)
+        built.append(fname)
+        print(f"{fname:52} rooms={len(d['rooms'])} days={len(d['itinerary'])} extras={len(d['extras'])}")
+    made = assets.export()
+    print(f"photos: {len(assets.want)} referenced, {made} exported")
+    update_listing(ids)
 
 
 if __name__ == "__main__":
-    for slug in sys.argv[1:]:
-        out, d = build(slug)
-        print(f"{os.path.basename(out):48} rooms={len(d['rooms'])} days={len(d['itinerary'])} "
-              f"gal={len(d['gallery'])} faqs={len(d['faqs'])} tips={len(d['travel_tips'])}")
+    main(sys.argv[1:])

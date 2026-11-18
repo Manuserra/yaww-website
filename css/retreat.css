@@ -129,6 +129,7 @@
   border: 1px solid transparent;
   border-radius: 0;
   cursor: pointer;
+  text-decoration: none;   /* the retreat pages' CTAs are links, not buttons */
   /* colour only — nothing that shifts layout or moves under the cursor */
   transition: background-color .18s ease, color .18s ease, border-color .18s ease;
 }
@@ -316,6 +317,9 @@
   margin-bottom: 0;
 }
 .host__photo { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; margin-bottom: 16px; }
+/* A host with no portrait yet keeps the slot's shape, in the same green
+   placeholder the template's teacher block used. */
+.host__photo--empty { background: linear-gradient(155deg, hsl(96 26% 74%), hsl(96 20% 52%)); }
 .host__role {
   font-size: 12px;
   line-height: 16px;
@@ -1868,6 +1872,29 @@ html.has-lightbox { overflow: hidden; }
 }
 .retreat-itinerary__bullets li { position: relative; padding-left: 20px; }
 .retreat-itinerary__bullets li::before { content: "\2022"; position: absolute; left: 4px; }
+/* Multi-stop retreats name each day's place ("Vigo → Redondela"). It leads
+   the list as its first line, unbulleted, so the day keeps one column. */
+.retreat-itinerary__bullets li.retreat-itinerary__day-title { padding-left: 0; font-weight: 600; }
+.retreat-itinerary__bullets li.retreat-itinerary__day-title::before { content: none; }
+
+/* The small print under the timeline: "subject to change", transfers. Same
+   voice as the Includes footnote, held to the timeline's measure. */
+.retreat-itinerary__notes {
+  width: 100%;
+  max-width: 884px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.retreat-itinerary__note {
+  margin: 0;
+  color: var(--sea-blue);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-style: italic;
+  line-height: 20px;
+  letter-spacing: 0.26px;
+}
 
 /* Slider — 672×408 at 1440, then scales on its aspect ratio as the row
    tightens (see the bullets rule above for the shrink split). Height follows

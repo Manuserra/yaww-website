@@ -17,10 +17,11 @@
      image       -> ACF image, the card thumbnail at 312x408
      image2x     -> the same frame at 624x816, for retina
      url         -> permalink, /retreats/{slug}/
-     pageUrl     -> the page built for this edition, where one exists. Only
-                    three of the seventeen have one so far; the rest fall
-                    back to their location page and then to the listing,
-                    which is what retreatHref() in js/retreat-cards.js does.
+     pageUrl     -> the page built for this edition by
+                    retreats/_tools/build_page.py. Every edition has one;
+                    retreatHref() in js/retreat-cards.js still falls back
+                    to the location page and then to the listing for any
+                    row added without one.
 
    IMAGES. Both sizes are listed explicitly rather than derived from
    one path, so they map onto two registered WordPress image sizes and
@@ -70,6 +71,7 @@ window.YAWW_RETREATS = [
   {
     id: "thailand-dec-2026",
     slug: "thailand-dec-2026",
+    pageUrl: "retreatpage-thailand-dec-2026.html",
     officialName: "Treasures of Thailand : A Yoga + Wellness Retreat",
     locationId: "thailand",
     teacherIds: ["amy-sennett-starner"],
@@ -82,6 +84,7 @@ window.YAWW_RETREATS = [
   {
     id: "el-cuyo-jan-2027-berger",
     slug: "el-cuyo-jan-2027-berger",
+    pageUrl: "retreatpage-el-cuyo-jan-2027-berger.html",
     officialName: "Breath Body Soul Retreat",
     locationId: "el-cuyo",
     teacherIds: ["sue-berger"],
@@ -96,6 +99,7 @@ window.YAWW_RETREATS = [
   {
     id: "el-cuyo-jan-2027-coffey",
     slug: "el-cuyo-jan-2027-coffey",
+    pageUrl: "retreatpage-el-cuyo-jan-2027-coffey.html",
     officialName: "Revive & Renew : A Mini Yoga Retreat",
     locationId: "el-cuyo",
     teacherIds: ["jamie-coffey"],
@@ -110,6 +114,7 @@ window.YAWW_RETREATS = [
   {
     id: "el-cuyo-feb-2027-delaney",
     slug: "el-cuyo-feb-2027-delaney",
+    pageUrl: "retreatpage-el-cuyo-feb-2027-delaney.html",
     officialName: "Radiance Retreat",
     locationId: "el-cuyo",
     teacherIds: ["alicia-delaney"],
@@ -124,6 +129,7 @@ window.YAWW_RETREATS = [
   {
     id: "el-cuyo-feb-2027-morin-gray",
     slug: "el-cuyo-feb-2027-morin-gray",
+    pageUrl: "retreatpage-el-cuyo-feb-2027-morin-gray.html",
     officialName: "Embodied: The Art of Being Seen",
     locationId: "el-cuyo",
     teacherIds: ["genevieve-morin", "rachel-gray"],
@@ -138,6 +144,7 @@ window.YAWW_RETREATS = [
   {
     id: "argentina-mar-2027",
     slug: "argentina-mar-2027",
+    pageUrl: "retreatpage-argentina-mar-2027.html",
     officialName: "Strong at Heart : A Yoga & Culture Retreat",
     locationId: "argentina",
     teacherIds: ["alison-buchanan"],
@@ -169,6 +176,7 @@ window.YAWW_RETREATS = [
   {
     id: "montenegro-may-2027-erickson",
     slug: "montenegro-may-2027-erickson",
+    pageUrl: "retreatpage-montenegro-may-2027-erickson.html",
     officialName: "Into the Fire : A Yoga & Nature Retreat",
     locationId: "montenegro",
     teacherIds: ["bonnie-erickson"],
@@ -183,6 +191,7 @@ window.YAWW_RETREATS = [
   {
     id: "portugal-may-2027",
     slug: "portugal-may-2027",
+    pageUrl: "retreatpage-portugal-may-2027.html",
     officialName: "Inner Landscape Retreat",
     locationId: "portugal",
     teacherIds: ["dawn-thie"],
@@ -197,6 +206,7 @@ window.YAWW_RETREATS = [
   {
     id: "montenegro-may-2027-cordover",
     slug: "montenegro-may-2027-cordover",
+    pageUrl: "retreatpage-montenegro-may-2027-cordover.html",
     officialName: "Come As You Are : A Yoga & Nature Retreat",
     locationId: "montenegro",
     teacherIds: ["melanie-cordover"],
@@ -212,6 +222,7 @@ window.YAWW_RETREATS = [
   {
     id: "santorini-may-2027",
     slug: "santorini-may-2027",
+    pageUrl: "retreatpage-santorini-may-2027.html",
     officialName: "Goddess Off Duty",
     locationId: "santorini",
     teacherIds: ["yessica-puebla"],
@@ -226,6 +237,7 @@ window.YAWW_RETREATS = [
   {
     id: "santorini-sep-2027-erickson",
     slug: "santorini-sep-2027-erickson",
+    pageUrl: "retreatpage-santorini-sep-2027-erickson.html",
     officialName: "Yoga Retreat Greece",
     locationId: "santorini",
     teacherIds: ["bonnie-erickson"],
@@ -238,6 +250,7 @@ window.YAWW_RETREATS = [
   {
     id: "camino-de-santiago-sep-2027",
     slug: "camino-de-santiago-sep-2027",
+    pageUrl: "retreatpage-camino-de-santiago-sep-2027.html",
     officialName: "The Pace of Your Own Footsteps",
     locationId: "camino-de-santiago",
     teacherIds: ["genevieve-morin"],
@@ -267,6 +280,7 @@ window.YAWW_RETREATS = [
     // the two editions apart (and will keep the two WP posts apart).
     id: "santorini-sep-2027-d26",
     slug: "santorini-sep-2027-d26",
+    pageUrl: "retreatpage-santorini-sep-2027-d26.html",
     officialName: "Yoga Retreat Greece",
     locationId: "santorini",
     teacherIds: ["tbd"],
@@ -279,6 +293,7 @@ window.YAWW_RETREATS = [
   {
     id: "oaxaca-oct-2027",
     slug: "oaxaca-oct-2027",
+    pageUrl: "retreatpage-oaxaca-oct-2027.html",
     officialName: "Day of the Dead Yoga + Reverence Retreat Oaxaca",
     locationId: "oaxaca",
     teacherIds: ["tbd"],

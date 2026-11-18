@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>El Cuyo Yoga Retreat · Dec 2026</title>
-<meta name="description" content="5-night yoga retreat in El Cuyo, Mexico. December 1 - 6, 2026, with Alicia Delaney.">
+<title>YAWW · Inner Glow Retreat</title>
+<meta name="description" content="5-night yoga retreat in El Cuyo, Mexico, December 1 – 6, 2026, with Alicia Delaney.">
 
 <!-- Fonts: Libre Baskerville (headings) + Raleway (body) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,12 +12,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/base.css?v=202611181910">
-<link rel="stylesheet" href="css/retreat.css?v=202611181726">
+<link rel="stylesheet" href="css/retreat.css?v=202611190200">
 </head>
 <body>
-<!-- Generated from retreats/el-cuyo-dec-2026-delaney/data.json on 2026-11-12 by filling retreatpage-elcuyo.html.
-     Test page: it exists to prove the schema covers the template. -->
-
+<!-- Built by retreats/_tools/build_page.py from data/retreats.js and retreats/el-cuyo-dec-2026-delaney/data.json,
+     on the retreatpage-elcuyo.html template. Edit the data, not this file. -->
 
 <!-- Logo sprite: defined once, referenced via <use> from both the desktop
      brand row and the mobile nav-row logo (avoids duplicating the path data). -->
@@ -121,17 +120,19 @@
     <div class="retreat-hero__image" role="img" aria-label="Mats laid out in the open-air yoga shala at the guesthouse in El Cuyo, Mexico" style="background-image: url('images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-open-air-yoga-shala.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
 
     <div class="retreat-hero__copy">
-      <h1 class="retreat-hero__title">Yucatán Yoga &amp; Spa Beach Retreat</h1>
+      <h1 class="retreat-hero__title">Inner Glow Retreat</h1>
       <p class="retreat-hero__location">El Cuyo, Mexico</p>
+      <p class="retreat-hero__badge">Deep Dives</p>
       <p class="retreat-hero__meta">
-        <span>December 1 - 6, 2026</span>
+        <span>December 1 – 6, 2026</span>
         <span class="retreat-hero__meta-dot" aria-hidden="true">·</span>
         <span>with Alicia Delaney</span>
       </p>
     </div>
+
     <div class="retreat-hero__ctas">
-      <button class="btn btn--primary" type="button">Book now</button>
-      <button class="btn btn--secondary" type="button">I want more info</button>
+      <a class="btn btn--primary" href="#rooms">Book now</a>
+      <a class="btn btn--secondary" href="contact.html#general-inquiry">I want more info</a>
     </div>
   </section>
 
@@ -141,9 +142,10 @@
   <section class="retreat-about">
     <h2 class="retreat-about__title">About this retreat</h2>
     <div class="retreat-about__body">
-      <p>If you’re looking for a secluded beach yoga retreat in Mexico, look no further than this incredible offering in El Cuyo. This tiny fishing village located on the edge of the Yucatan peninsula is home to virgin beaches, flamingos, turtles, dolphins, countless birds and tons of sea life. Calling it paradise is not enough…the wild palm trees and dunes reach up to the edge of the sea while the gentle waves crash at the white sandy shore. A plethora of stunning seashells line the beach and you can walk for miles without any disruptions but the kite boarders gliding by on the breeze.</p>
-      <p>We are trying our best to keep this special spot under the radar and enjoy it as long as possible before the tourist droves hear about its charms and come to find out what all the fuss is about. El Cuyo is believed to be the last hidden treasure on the Gulf of Mexico. Please keep your lips sealed as much as you can but come join us to live this amazing paradise while it lasts.</p>
-      <p>El Cuyo is located in the Río Lagartos nature reserve, between Holbox Island and the famous pink lagoons of Las Coloradas. It’s a quick and easy drive from Cancun airport but far enough away to really relax and take in the beach life. Your days will be spent lounging by the sea, experiencing nature at its finest and reconnecting with your inner self on your yoga mat by the sea. We can’t think of a better way to spend your retreat.</p>
+      <p>Tucked along the quiet edge of the Yucatán, El Cuyo is where time slows to the rhythm of the sea. A small fishing village untouched by hurry, it sits between flamingo-filled lagoons and endless stretches of white sand. Here, the ocean shimmers in shades of jade and turquoise, and the air carries the soft hum of waves meeting shore.</p>
+      <p>Each morning, the water lies still — perfect for a barefoot stroll, a sunrise paddle, or simply breathing in the salt and silence. Our open-air yoga shala faces the sea, inviting you to move, soften, and return inward. Between practices, sink into slow days of rest and sun, savor local flavors prepared with care, and feel the warm pulse of this land beneath your feet.</p>
+      <p>We&rsquo;ll wander to the pink lagoons of Las Coloradas, meet the flamingos at Río Lagartos, and learn the stories woven through these Mayan lands. End your day with a healing massage or a ceremonial mud ritual by the sea — a quiet offering to body and soul.</p>
+      <p>El Cuyo is still a secret, a last hidden treasure on Mexico&rsquo;s Emerald Coast. Come before the world finds it. Come to remember what stillness feels like.</p>
     </div>
   </section>
 
@@ -152,35 +154,33 @@
        ========================================================= -->
   <section class="retreat-teacher" aria-labelledby="hosts-title">
     <h2 class="retreat-teacher__title" id="hosts-title">Your hosts</h2>
-    <!-- One slot, two people. The teacher is in the slot in the markup, so
+    <!-- One slot, several people. The first is in the slot in the markup, so
          the block reads complete with scripting off; js/hosts.js swaps the
          contents when a tab is pressed.
-         PLACEHOLDER facilitator — Renata is the team member whose own bio
-         ties her to El Cuyo, but who travels on Dec 2026 is unconfirmed. -->
+         PLACEHOLDER facilitator — Renata Centi is the team member whose own bio ties
+         her to El Cuyo, but who travels on these dates is unconfirmed. -->
     <div class="hosts" data-hosts>
       <div class="hosts__tabs" role="tablist" aria-label="Your hosts">
         <button class="hosts__tab" type="button" role="tab" data-host-tab="teacher" aria-selected="true" tabindex="0">Teacher</button>
         <button class="hosts__tab" type="button" role="tab" data-host-tab="facilitator" aria-selected="false" tabindex="-1">Facilitator</button>
       </div>
-
       <div class="hosts__slot" data-host-slot>
         <img class="host__photo" src="images/teachers/alicia-delaney.jpg" alt="Alicia Delaney" loading="lazy">
         <div class="host">
         <p class="host__role">Your teacher</p>
         <h3 class="host__name">Alicia Delaney</h3>
-        <p class="host__meta">E-RYT 200 &middot; YACEP &middot; Restorative &amp; yoga nidra</p>
-        <p class="host__bio">Alicia has a deep appreciation for quiet, and a nervous-system-informed understanding of yoga and pranayama that lends her teaching a consistent gentleness. Expect relaxed pacing, open-choice sequencing and invitational language &mdash; contemplation, curiosity and laughter with only a little sweat.</p>
+        <p class="host__meta">E-RYT 200 · YACEP · Restorative &amp; yoga nidra</p>
+        <p class="host__bio">Alicia offers gentle, nervous-system-informed yoga that centers rest and clarity. Her calm, spacious pacing helps students slow down and feel supported.</p>
         <a class="host__link" href="teacher-alicia-delaney.html">Meet Alicia <span aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
-
       <template data-host="teacher">
         <img class="host__photo" src="images/teachers/alicia-delaney.jpg" alt="Alicia Delaney" loading="lazy">
         <div class="host">
         <p class="host__role">Your teacher</p>
         <h3 class="host__name">Alicia Delaney</h3>
-        <p class="host__meta">E-RYT 200 &middot; YACEP &middot; Restorative &amp; yoga nidra</p>
-        <p class="host__bio">Alicia has a deep appreciation for quiet, and a nervous-system-informed understanding of yoga and pranayama that lends her teaching a consistent gentleness. Expect relaxed pacing, open-choice sequencing and invitational language &mdash; contemplation, curiosity and laughter with only a little sweat.</p>
+        <p class="host__meta">E-RYT 200 · YACEP · Restorative &amp; yoga nidra</p>
+        <p class="host__bio">Alicia offers gentle, nervous-system-informed yoga that centers rest and clarity. Her calm, spacious pacing helps students slow down and feel supported.</p>
         <a class="host__link" href="teacher-alicia-delaney.html">Meet Alicia <span aria-hidden="true">&rarr;</span></a>
         </div>
       </template>
@@ -189,8 +189,8 @@
         <div class="host">
         <p class="host__role">Your facilitator</p>
         <h3 class="host__name">Renata Centi</h3>
-        <p class="host__meta">YAWW team &middot; El Cuyo &amp; Sardinia</p>
-        <p class="host__bio">Renata brings warm presence and steady care to our retreats in El Cuyo. A teacher and therapist herself, she travels with the group and supports each guest with clarity, ease and quiet strength, so the only thing you have to keep track of is your mat.</p>
+        <p class="host__meta">YAWW team · El Cuyo &amp; Sardinia</p>
+        <p class="host__bio">Renata brings warm presence and steady care to our retreats in El Cuyo and Sardinia. A teacher and therapist, she supports each guest with clarity, ease, and quiet strength.</p>
         <a class="host__link" href="team-renata-centi.html">Meet Renata <span aria-hidden="true">&rarr;</span></a>
         </div>
       </template>
@@ -201,7 +201,7 @@
        INCLUDES (node "Includes" · 1440x759)
        ========================================================= -->
   <section class="retreat-includes">
-    <div class="retreat-includes__bg" aria-hidden="true" style="background-image: url('images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-the-group-above-the-ruins.webp'), linear-gradient(155deg, hsl(150 20% 68%), hsl(150 24% 38%));"></div>
+    <div class="retreat-includes__bg" aria-hidden="true"></div>
     <div class="retreat-includes__card">
       <h2 class="retreat-includes__title">Includes</h2>
 
@@ -219,7 +219,7 @@
             <li>3 dinners together by our local chef</li>
             <li>Tamale making workshop with dinner</li>
             <li>75 minute healing massage</li>
-            <li>Toes-in-the-sand dinner party with salsa music, margarita** and dinner at a local venue</li>
+            <li>Toes-in-the-sand dinner party at a local venue, with salsa music, a margarita and dinner</li>
             <li>Bicycles, Kayaks &amp; SUP boards available all the week</li>
             <li>Mexican Mud Ceremony on the beach</li>
             <li>All hotel taxes &amp; fees</li>
@@ -228,14 +228,13 @@
 
         <div class="retreat-includes__panel is-hidden" data-panel="not-included" role="tabpanel" aria-hidden="true">
           <ul class="retreat-includes__list">
-            <li>Airfare and airport transfers.*</li>
+            <li>Airfare and airport transfers*</li>
             <li>2 lunches on your own</li>
-            <li>Staff tips (suggested amount between $45usd and $75usd (750 to 1250 Mexican pesos) per person for the house staff &amp; between $10-20usd (200-400mxn) for massage);</li>
-            <li>tips are preferred in Mexican pesos please</li>
-            <li>Extra excursions and massages</li>
-            <li>Pricing will depend on how many sharing the ride.</li>
+            <li>One margarita is included at the toes-in-the-sand dinner party &mdash; additional drinks can be purchased at the bar</li>
+            <li>Staff tips &mdash; suggested between $45&ndash;75 USD (750&ndash;1250 MXN) per person for house staff, and $10&ndash;20 USD (200&ndash;400 MXN) for massage therapists; tips are preferred in Mexican pesos</li>
+            <li>Additional excursions and massages</li>
           </ul>
-          <p class="retreat-includes__footnote">One margarita is included at the toes-in-the-sand dinner party. Other drinks can be purchased at the bar. We can arrange private or shared airport transfers for you when you forward us your flight itinerary.</p>
+          <p class="retreat-includes__footnote">*We can arrange private or shared airport transfers for you when you forward us your flight itinerary. Pricing will depend on how many sharing the ride.</p>
         </div>
       </div>
     </div>
@@ -251,6 +250,7 @@
       <span class="retreat-itinerary__progress" aria-hidden="true"></span>
 
       <ol class="retreat-itinerary__list">
+
         <li class="retreat-itinerary__day">
           <div class="retreat-itinerary__rail">
             <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
@@ -263,17 +263,20 @@
               <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 1</span></div>
 
               <ul class="retreat-itinerary__bullets">
-                <li>3pm Arrival and check-in to Utopia</li>
+                <li>Arrival and check-in to Utopia</li>
                 <li>Free time, rest, beach, massages</li>
-                <li>6-7:15pm Opening Circle and yoga practice</li>
-                <li>7:30pm Dinner together at the house</li>
+                <li>Opening Circle and yoga practice</li>
+                <li>Dinner together at the house</li>
               </ul>
             </div>
 
             <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 1 photos">
               <div class="photo-slider__track">
-                <div class="photo-slider__slide"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-group-class-on-the-deck.webp" alt="A group yoga class lying in a circle on the open-air deck in El Cuyo, Mexico" loading="lazy"></div>
-                <div class="photo-slider__slide"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-sunset-over-the-seafront-road.webp" alt="Sunset over the seafront road in El Cuyo, Mexico" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day1-1.jpg" alt="Day 1 — El Cuyo retreat" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day1-2.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day1-3.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day1-4.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day1-5.jpg" alt="" loading="lazy"></div>
               </div>
               <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
@@ -284,6 +287,9 @@
               <div class="photo-slider__dots">
                 <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
                 <button class="photo-slider__dot" aria-label="Photo 2"></button>
+                <button class="photo-slider__dot" aria-label="Photo 3"></button>
+                <button class="photo-slider__dot" aria-label="Photo 4"></button>
+                <button class="photo-slider__dot" aria-label="Photo 5"></button>
               </div>
             </div>
           </div>
@@ -302,21 +308,23 @@
 
               <ul class="retreat-itinerary__bullets">
                 <li>Coffee, Tea and fruit available</li>
-                <li>8:30-10am Yoga Practice</li>
-                <li>10:15am Breakfast</li>
-                <li>11:30am Mud ceremony on the beach</li>
-                <li>2:30pm Lunch at the house</li>
+                <li>Morning Yoga Practice</li>
+                <li>Breakfast</li>
                 <li>Free time, rest, beach, massages</li>
-                <li>6:15-7:15pm Specialty workshop in the studio</li>
-                <li>7:30pm Dinner at the house</li>
+                <li>Lunch at the house</li>
+                <li>Mud ceremony on the beach</li>
+                <li>Gentle Yoga Practice</li>
+                <li>Dinner at the house</li>
               </ul>
             </div>
 
             <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 2 photos">
               <div class="photo-slider__track">
-                <div class="photo-slider__slide"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-sunscreen-and-shells-in-a-bowl.webp" alt="Sunscreen and shells in a wooden bowl beside an inflatable ring, ready for the beach in El Cuyo" loading="lazy"></div>
-                <div class="photo-slider__slide"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-swimming-in-the-shallows.webp" alt="Two guests swimming in the shallow turquoise water off the beach at El Cuyo, Mexico" loading="lazy"></div>
-                <div class="photo-slider__slide"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-tacos-and-guacamole.webp" alt="A plate of tacos with guacamole and a hibiscus flower, served at the guesthouse in El Cuyo" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day2-1.jpg" alt="Day 2 — El Cuyo retreat" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day2-2.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day2-3.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day2-4.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day2-5.jpg" alt="" loading="lazy"></div>
               </div>
               <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
@@ -328,6 +336,8 @@
                 <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
                 <button class="photo-slider__dot" aria-label="Photo 2"></button>
                 <button class="photo-slider__dot" aria-label="Photo 3"></button>
+                <button class="photo-slider__dot" aria-label="Photo 4"></button>
+                <button class="photo-slider__dot" aria-label="Photo 5"></button>
               </div>
             </div>
           </div>
@@ -345,20 +355,20 @@
               <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 3</span></div>
 
               <ul class="retreat-itinerary__bullets">
-                <li>Coffee, Tea and fruit available</li>
-                <li>8:30-10am Yoga Practice</li>
-                <li>10:15am Breakfast</li>
                 <li>Optional nature excursion</li>
                 <li>Lunch on your own; free time, rest, beach, massages</li>
-                <li>6:30-7:30pm Gentle Yoga Practice</li>
-                <li>8pm Toes-in-the-sand dinner party with salsa music, margarita** and dinner at a local venue</li>
+                <li>Gentle Yoga Practice</li>
+                <li>Toes-in-the-sand dinner party with salsa music, margarita** and dinner at a local venue</li>
               </ul>
             </div>
 
             <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 3 photos">
               <div class="photo-slider__track">
-                <div class="photo-slider__slide"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-kayaking-among-the-lily-pads.webp" alt="Guests kayaking in red kayaks among lily pads and mangroves on the nature excursion near El Cuyo" loading="lazy"></div>
-                <div class="photo-slider__slide"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-flamingos-in-the-lagoon.webp" alt="Flamingos wading in the shallow lagoon near El Cuyo, Mexico" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day3-1.jpg" alt="Day 3 — El Cuyo retreat" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day3-2.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day3-3.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day3-4.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day3-5.jpg" alt="" loading="lazy"></div>
               </div>
               <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
@@ -369,6 +379,9 @@
               <div class="photo-slider__dots">
                 <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
                 <button class="photo-slider__dot" aria-label="Photo 2"></button>
+                <button class="photo-slider__dot" aria-label="Photo 3"></button>
+                <button class="photo-slider__dot" aria-label="Photo 4"></button>
+                <button class="photo-slider__dot" aria-label="Photo 5"></button>
               </div>
             </div>
           </div>
@@ -386,21 +399,22 @@
               <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 4</span></div>
 
               <ul class="retreat-itinerary__bullets">
-                <li>Coffee, Tea and fruit available</li>
-                <li>7am Sunrise meditation</li>
-                <li>7:30-8:30am Yoga Practice</li>
-                <li>8:30-9am Breakfast</li>
-                <li>9:30am-9pm Optional day trip to Yucatan Peninsula including Mayan ruins, cenote &amp; colonial city of Valladolid</li>
+                <li>Sunrise meditation</li>
+                <li>Yoga Practice</li>
+                <li>Breakfast</li>
+                <li>Optional day trip to Yucatan Peninsula including Mayan ruins, cenote &amp; colonial city of Valladolid</li>
                 <li>Lunch on your own; Free time, rest, beach, massages</li>
-                <li>7:30pm Dinner at the house (9pm for excursion people)</li>
+                <li>Dinner at the house (9pm for excursion people)</li>
               </ul>
             </div>
 
             <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 4 photos">
               <div class="photo-slider__track">
-                <div class="photo-slider__slide"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-resting-on-the-white-sand.webp" alt="A guest resting on the white sand under a palm on the beach at El Cuyo, Mexico" loading="lazy"></div>
-                <div class="photo-slider__slide"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-walking-the-seafront-at-dusk.webp" alt="Guests walking the seafront path in El Cuyo, Mexico, at dusk" loading="lazy"></div>
-                <div class="photo-slider__slide"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-palms-against-the-evening-sky.webp" alt="Coconut palms against the pale evening sky in El Cuyo, Mexico" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day4-1.jpg" alt="Day 4 — El Cuyo retreat" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day4-2.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day4-3.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day4-4.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day4-5.jpg" alt="" loading="lazy"></div>
               </div>
               <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
@@ -412,6 +426,8 @@
                 <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
                 <button class="photo-slider__dot" aria-label="Photo 2"></button>
                 <button class="photo-slider__dot" aria-label="Photo 3"></button>
+                <button class="photo-slider__dot" aria-label="Photo 4"></button>
+                <button class="photo-slider__dot" aria-label="Photo 5"></button>
               </div>
             </div>
           </div>
@@ -429,23 +445,21 @@
               <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 5</span></div>
 
               <ul class="retreat-itinerary__bullets">
-                <li>Coffee, Tea and fruit available</li>
-                <li>8am SUP/Kayaks on the beach</li>
-                <li>9-10am Yoga Practice</li>
-                <li>10:15am Breakfast</li>
-                <li>Free time, rest, beach, massages</li>
-                <li>2:30pm Lunch at the house</li>
-                <li>4pm Tamale making workshop</li>
-                <li>5:30-7pm Closing circle &amp; gentle Yoga Practice</li>
-                <li>7:30pm Tamale dinner together at the house</li>
+                <li>SUP/Kayaks on the beach</li>
+                <li>Yoga Practice</li>
+                <li>Tamale making workshop</li>
+                <li>Closing circle &amp; gentle Yoga Practice</li>
+                <li>Tamale dinner together at the house</li>
               </ul>
             </div>
 
             <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 5 photos">
               <div class="photo-slider__track">
-                <div class="photo-slider__slide"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-meditation-facing-the-sea.webp" alt="Three guests sitting in meditation on the deck facing the sea in El Cuyo, Mexico" loading="lazy"></div>
-                <div class="photo-slider__slide"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-guesthouse-from-the-beach.webp" alt="The two-storey beachfront guesthouse in El Cuyo seen from the sand, hammocks strung on the terrace" loading="lazy"></div>
-                <div class="photo-slider__slide"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-tamale-making-workshop.webp" alt="A local cook and a guest preparing food together at the tamale making workshop in El Cuyo" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day5-1.jpg" alt="Day 5 — El Cuyo retreat" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day5-2.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day5-3.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day5-4.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day5-5.jpg" alt="" loading="lazy"></div>
               </div>
               <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
@@ -457,6 +471,8 @@
                 <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
                 <button class="photo-slider__dot" aria-label="Photo 2"></button>
                 <button class="photo-slider__dot" aria-label="Photo 3"></button>
+                <button class="photo-slider__dot" aria-label="Photo 4"></button>
+                <button class="photo-slider__dot" aria-label="Photo 5"></button>
               </div>
             </div>
           </div>
@@ -475,24 +491,17 @@
 
               <ul class="retreat-itinerary__bullets">
                 <li>Breakfast available</li>
-                <li>Departures +</li>
+                <li>Departures</li>
               </ul>
             </div>
 
             <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 6 photos">
               <div class="photo-slider__track">
-                <div class="photo-slider__slide"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-mexican-breakfast-plate.webp" alt="A Mexican breakfast of eggs in salsa with black beans and avocado at the guesthouse in El Cuyo" loading="lazy"></div>
-                <div class="photo-slider__slide"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-arrival-at-the-guesthouse.webp" alt="A suitcase and a wide straw hat by the picket fence outside the guesthouse in El Cuyo" loading="lazy"></div>
-                <div class="photo-slider__slide"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-group-on-the-seafront-at-sunset.webp" alt="The retreat group together on the seafront wall at sunset in El Cuyo, Mexico" loading="lazy"></div>
-                <div class="photo-slider__slide"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-guests-at-the-ek-balam-ruins.webp" alt="Guests sitting on the stone terraces at the Mayan ruins of Ek Balam, on the day trip from El Cuyo" loading="lazy"></div>
-                <div class="photo-slider__slide"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-cenote-with-a-waterfall.webp" alt="A cenote with falling water and deep blue pools, visited on the Yucatan day trip from El Cuyo" loading="lazy"></div>
-                <div class="photo-slider__slide"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-drinking-coconuts-by-the-bicycles.webp" alt="Two guests drinking from coconuts beside the bicycles in El Cuyo, Mexico" loading="lazy"></div>
-                <div class="photo-slider__slide"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-kayaking-through-the-mangrove-channel.webp" alt="A guide leading red kayaks through a mangrove channel near El Cuyo, Mexico" loading="lazy"></div>
-                <div class="photo-slider__slide"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-kayaks-among-the-lily-pads.webp" alt="Red kayaks spread across a lagoon covered in lily pads near El Cuyo, Mexico" loading="lazy"></div>
-                <div class="photo-slider__slide"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-kayaking-at-sunset.webp" alt="A guest paddling a red kayak at sunset on the lagoon near El Cuyo, Mexico" loading="lazy"></div>
-                <div class="photo-slider__slide"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-pink-lagoons-of-las-coloradas.webp" alt="The pink lagoons of Las Coloradas under a wide blue sky, near El Cuyo, Mexico" loading="lazy"></div>
-                <div class="photo-slider__slide"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-riding-to-las-coloradas.webp" alt="Guests riding together in an open vehicle on the excursion from El Cuyo, Mexico" loading="lazy"></div>
-                <div class="photo-slider__slide"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-flamingos-among-the-mangroves.webp" alt="A pair of flamingos in the shallows among the mangroves near El Cuyo, Mexico" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day6-1.jpg" alt="Day 6 — El Cuyo retreat" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day6-2.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day6-3.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day6-4.jpg" alt="" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/day6-5.jpg" alt="" loading="lazy"></div>
               </div>
               <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
@@ -506,22 +515,12 @@
                 <button class="photo-slider__dot" aria-label="Photo 3"></button>
                 <button class="photo-slider__dot" aria-label="Photo 4"></button>
                 <button class="photo-slider__dot" aria-label="Photo 5"></button>
-                <button class="photo-slider__dot" aria-label="Photo 6"></button>
-                <button class="photo-slider__dot" aria-label="Photo 7"></button>
-                <button class="photo-slider__dot" aria-label="Photo 8"></button>
-                <button class="photo-slider__dot" aria-label="Photo 9"></button>
-                <button class="photo-slider__dot" aria-label="Photo 10"></button>
-                <button class="photo-slider__dot" aria-label="Photo 11"></button>
-                <button class="photo-slider__dot" aria-label="Photo 12"></button>
               </div>
             </div>
           </div>
         </li>
 
       </ol>
-      <p class="retreat-itinerary__note">+We can arrange private or shared airport transfers for you when you forward us your flight itinerary. Pricing will depend on how many sharing the ride.</p>
-      <p class="retreat-itinerary__note">Our itinerary may be subject to change depending on weather conditions and circumstances beyond our control while on retreat. In any case, we will take measures to provide a similar experience of the same high quality. Thank you for your flexibility if it becomes necessary.</p>
-      <p class="retreat-itinerary__note">One margarita is included at the toes-in-the-sand dinner party. Other drinks can be purchased at the bar.</p>
     </div>
   </section>
 
@@ -537,7 +536,7 @@
   <!-- =========================================================
        TESTIMONIALS ("What guests say") — rendered from JS
        ========================================================= -->
-  <section class="quotes" hidden data-empty="the old site publishes no guest quotes for this retreat">
+  <section class="quotes" hidden data-empty="no guest quotes published for this retreat yet">
     <h2 class="quotes__title">What guests say</h2>
     <div class="quotes__grid" id="quotes-grid"></div>
   </section>
@@ -545,7 +544,7 @@
   <!-- =========================================================
        ROOMS PRICING (one card per tier) — rendered from JS
        ========================================================= -->
-  <section class="rooms">
+  <section class="rooms" id="rooms">
     <h2 class="rooms__title">Rooms pricing</h2>
     <div class="rooms__inner">
       <div class="rooms__grid" id="rooms-grid"></div>
@@ -555,23 +554,22 @@
         <ol class="rooms__steps">
           <li>
             <strong>Choose your room</strong>
-            <span>Every price is per person, in USD.</span>
+            <span>Prices are in USD, per person or per room as marked.</span>
           </li>
           <li>
             <strong>Secure your space</strong>
-            <span>A $750 deposit per person holds your place. It comes off your total — it is not an extra.</span>
+            <span>A $750 deposit per person holds your place. It comes off your total &mdash; it is not an extra.</span>
           </li>
           <li>
             <strong>Pay the balance later</strong>
             <span>The rest is due 90 days before the retreat.</span>
           </li>
-
         </ol>
-        <p class="rooms__aside-note">All payments are 100% non refundable and non-transferable. We recommend that you buy trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you.</p>
-        <p class="rooms__aside-note">Roommates should book together. If you would like to share a room and do not have a roommate we will provide one for you if possible. In the case that there is no one to share a room we ask that you take a private room instead.</p>
+        <p class="rooms__aside-note">All payments are non-refundable and non-transferable, so we recommend trip cancellation insurance from the day you pay your deposit.</p>
+        <p class="rooms__aside-note">Sharing a room? Book together with your roommate. If you don&rsquo;t have one we&rsquo;ll pair you when we can &mdash; and if nobody is available, we&rsquo;ll move you to a private room.</p>
         <div class="rooms__actions">
-          <button class="btn btn--primary" type="button">Reserve your space</button>
-          <button class="btn btn--secondary" type="button">I want more info</button>
+          <a class="btn btn--primary" href="contact.html#general-inquiry">Reserve your space</a>
+          <a class="btn btn--secondary" href="contact.html#general-inquiry">I want more info</a>
         </div>
       </aside>
     </div>
@@ -599,18 +597,45 @@
     <h2 class="tips__title">Travel Tips</h2>
     <div class="tips__body">
       <div class="tips__group">
-        <h3 class="tips__heading">Yucatán Yoga &amp; Spa Beach Retreat</h3>
+        <h3 class="tips__heading">Arrival &amp; Time Zone</h3>
         <ul class="tips__list">
-          <li>Fly into Cancun International airport (CUN). Please note that Cancun is in the state of Quintana Roo and El Cuyo is in the state of Yucatan and a one hour time difference applies year round. Cancun being one hour LATER than El Cuyo. Please make sure to double check the time zones well as you plan your travel.</li>
-          <li>From Cancun Airport to El Cuyo, travel time is approximately 2.5 hours door to door. Our drivers are very safe and reliable and we can arrange transfers from the airport to our beach house if you like. Please send along your full flight details and we will try to pair you with others traveling on a similar schedule to and from the retreat. Pricing depends on how many are in the ride.</li>
-          <li>Taxis are not allowed to wait outside the Cancun International airport at arrivals so a transfer needs to be arranged for a private car service pick up in advance or there is a local bus that takes you to El Cuyo.</li>
-          <li>For traveling on your own by bus to and from El Cuyo the easiest option is to combine the bus with a taxi. From CUN airport you could take a bus to Tizimin and from there get a taxi to Utopia in El Cuyo and vice versa on the way back. OR you can take a series of local buses between El Cuyo and Tizimin if you want to avoid the $50usd taxi ride. To consult the bus schedule ADO is the most reliable.</li>
-          <li>There are no ATMS in El Cuyo and everything is better paid in cash as most places do not accept credit cards. Please plan to take out cash in Mexican pesos at the airport ATM upon arrival, pre-order currency from your bank back home and bring it with you or exchange your currency at the airport for Mexican pesos. Some places accept credit cards but it’s always a better idea to have cash just in case. That said there is not a lot of shopping in El Cuyo as it is a quiet town with beach and chill. Cash tips for staff are appreciated</li>
-          <li>Wifi is not the most reliable and does come in and out at times along with the electricity though it is getting better. If it does go out it usually comes back fairly quickly and offers a nice chance to sit back and relax and watch the stars. If you need super reliable internet please let us know to discuss this further. The idea is to unplug and be offline as much as possible.</li>
-          <li>There are no specialized stores and although there are a few pharmacies in the town if a specific drug is required, you would have to travel by car to the city of Tizimín about an hour and a half away so please plan on bringing everything you might think you will need with you from home.</li>
+          <li>Fly into Cancun International Airport (CUN).</li>
+          <li>Cancun is one hour ahead of El Cuyo&mdash;double-check time zones when booking flights.</li>
         </ul>
       </div>
 
+      <div class="tips__group">
+        <h3 class="tips__heading">Getting to El Cuyo</h3>
+        <ul class="tips__list">
+          <li>Private Transfer: Direct ride from the airport (2.5 hours). We can arrange this for you.</li>
+          <li>Bus + Taxi (Budget Option): Take an ADO bus to Tizimin, then a taxi to El Cuyo (~$50 USD).</li>
+          <li>Local Bus: The slowest option but available if needed.</li>
+        </ul>
+      </div>
+
+      <div class="tips__group">
+        <h3 class="tips__heading">Money &amp; Payments</h3>
+        <ul class="tips__list">
+          <li>No ATMs in El Cuyo &ndash; bring Mexican Pesos with you.</li>
+          <li>Some places accept credit cards, but cash is preferred.</li>
+        </ul>
+      </div>
+
+      <div class="tips__group">
+        <h3 class="tips__heading">Internet &amp; Connectivity</h3>
+        <ul class="tips__list">
+          <li>WiFi is unreliable and may cut out at times.</li>
+          <li>If you need a strong connection, let us know in advance.</li>
+        </ul>
+      </div>
+
+      <div class="tips__group">
+        <h3 class="tips__heading">Shops &amp; Essentials</h3>
+        <ul class="tips__list">
+          <li>No large stores in El Cuyo&mdash;bring everything you might need.</li>
+          <li>Few pharmacies available, but for specific medications, you&rsquo;d need to travel 1.5 hours to Tizim&iacute;n.</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -628,8 +653,8 @@
        ========================================================= -->
   <section class="gallery">
     <div class="gallery__head">
-      <h2 class="gallery__title">Where you&amp;rsquo;ll be</h2>
-      <p class="gallery__intro">Photographs from past retreats in El Cuyo, Mexico.</p>
+      <h2 class="gallery__title">Where you&rsquo;ll be</h2>
+      <p class="gallery__intro">A fishing town at the end of a long road, with flamingos in the lagoon and almost nobody on the beach. The photographs are from past retreats: the rooms, the cenotes, and the long slow middle of the day.</p>
       <div class="gallery__nav">
         <button class="gallery__arrow gallery__arrow--prev" aria-label="Previous photos">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
@@ -642,16 +667,16 @@
 
     <div class="gallery__track" role="group" aria-roledescription="carousel" aria-label="Photos from El Cuyo">
       <div class="gallery__rail">
-        <figure class="gallery__slide" style="--r: 28/17"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-the-group-above-the-ruins.webp" alt="The group resting above the stone ruins of Ek Balam on the Yucatan day trip from El Cuyo" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 1/1"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-group-on-the-seafront-at-sunset.webp" alt="The retreat group together on the seafront wall at sunset in El Cuyo, Mexico" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 28/17"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-meditation-facing-the-sea.webp" alt="Three guests sitting in meditation on the deck facing the sea in El Cuyo, Mexico" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 5/4"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-wading-in-the-emerald-shallows.webp" alt="Guests wading in the emerald shallows off the beach at El Cuyo, Mexico" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 28/17"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-sun-hat-on-the-beach.webp" alt="A guest in a wide black sun hat on the beach at El Cuyo, Mexico" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 1/1"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-outdoor-shower-with-patterned-tiles.webp" alt="The outdoor shower, tiled in green and screened with palm thatch, at the guesthouse in El Cuyo" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 28/17"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-bicycles-under-the-palms.webp" alt="Red rental bicycles parked under the palms in the town of El Cuyo, Mexico" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 5/4"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-pink-lagoons-of-las-coloradas.webp" alt="The pink lagoons of Las Coloradas under a wide blue sky, near El Cuyo, Mexico" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 1/1"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-the-group-at-the-el-cuyo-sign.webp" alt="The retreat group together at the El Cuyo letters on the beachfront, Mexico" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 28/17"><img src="images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-cenote-with-a-waterfall.webp" alt="A cenote with falling water and deep blue pools, visited on the Yucatan day trip from El Cuyo" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 28/17"><img src="images/day1-3.jpg" alt="The beach at El Cuyo in the late afternoon" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 1/1"><img src="images/day3-1.jpg" alt="Morning light in a doorway at the guesthouse" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 28/17"><img src="images/extra1-3.jpg" alt="The pink lagoons of Las Coloradas" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 5/4"><img src="images/day4-1.jpg" alt="A painted street in the colonial centre of Valladolid" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 28/17"><img src="images/Hotel-Utopia-Template-1824x1120x2_1-912x560.jpg" alt="Utopia Guesthouse seen from the beach" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 1/1"><img src="images/day6-1.jpg" alt="A handstand on the sand at sunrise" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 28/17"><img src="images/day2-5.jpg" alt="Sunrise over the water on the Yucatán coast" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 5/4"><img src="images/day5-1.jpg" alt="Palms around the pool at the guesthouse" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 1/1"><img src="images/day3-4.jpg" alt="A table laid for lunch" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 28/17"><img src="images/extra3-1.jpg" alt="The convent at Izamal" loading="lazy"></figure>
       </div>
     </div>
 
@@ -663,7 +688,7 @@
   <!-- =========================================================
        CARBON OFFSET
        ========================================================= -->
-  <section class="carbon" hidden data-empty="no carbon-offset copy on the old site">
+  <section class="carbon">
     <h2 class="carbon__title">Offset Your Carbon Footprint</h2>
     <p class="carbon__text">Every trip has an environmental impact. If you&rsquo;d like to offset your carbon footprint, you can contribute to climate projects through trusted organizations.</p>
     <p class="carbon__text"><a class="carbon__link" href="#">Learn More About Carbon Offsetting</a></p>
@@ -671,7 +696,7 @@
 
   <!-- =========================================================
        ADDITIONAL INFO (FAQ)
-       Answers are PLACEHOLDER lorem until the real copy arrives.
+       Answers quoted from the old site's policies for this retreat.
        ========================================================= -->
   <section class="faq-section">
     <h2 class="faq-section__title">Additional info</h2>
@@ -689,7 +714,6 @@
           </div>
         </div>
       </div>
-
       <div class="faq">
         <h3 class="faq__heading">
           <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="faq-2">
@@ -703,7 +727,6 @@
           </div>
         </div>
       </div>
-
       <div class="faq">
         <h3 class="faq__heading">
           <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="faq-3">
@@ -717,7 +740,6 @@
           </div>
         </div>
       </div>
-
       <div class="faq">
         <h3 class="faq__heading">
           <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="faq-4">
@@ -731,7 +753,6 @@
           </div>
         </div>
       </div>
-
       <div class="faq">
         <h3 class="faq__heading">
           <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="faq-5">
@@ -741,11 +762,10 @@
         </h3>
         <div class="faq__panel">
           <div class="faq__answer" id="faq-5" role="region">
-            <p>The full terms and conditions are published at https://yogaadventuresworldwide.com/termsandconditions/ . By submitting payments toward your retreat you accept them.</p>
+            <p>The full terms and conditions are published at <a href="https://yogaadventuresworldwide.com/termsandconditions/">yogaadventuresworldwide.com/termsandconditions</a>. By submitting payments toward your retreat you accept them.</p>
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -1110,9 +1130,12 @@
   (function () {
     var HOTELS = [
       {
-        name: 'Utopia Guesthouse & Yoga Studio : El Cuyo',
-        gallery: ['images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-guesthouse-from-the-sandy-street.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-porch-with-rocking-chairs.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-guesthouse-from-the-beach.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-living-room-with-hat-wall.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-mantel-detail-with-glass-float.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-dining-room-long-table.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-private-interior-queen-room.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-beachfront-queen-room.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-shared-double-room.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-tower-room-king-bed.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-tower-room-dressing-area.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-tower-room-twin-beds.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-bathroom-with-wooden-washstand.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-double-sink-wash-area.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-shower-behind-a-linen-curtain.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-outdoor-shower-with-patterned-tiles.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-upstairs-corner-with-green-cabinet.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-coconut-shell-shower-head.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-headstand-on-the-yoga-deck.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-candlelit-evening-practice.webp'],
-        text: ['Utopia Guesthouse & Yoga Studio : El Cuyo is the 3rd incarnation of a series of retreat houses that we have created to host retreat groups over the years.', 'The main living area shares a sitting room and a dining area indoors. There are porches both on the front side of the house and the beach side.', 'Bedrooms are simple and cozy with neutral tones, natural textures from local sources and some with ocean views.', 'The house has 8 bedrooms (5 privates with a queen bed each and 3 shared with 2 twin beds).', 'Bathrooms are shared amongst the house. There are three full bathrooms plus a double sink wash area upstairs and an outdoor shower with doors on the beach.', 'Our yoga studio has ocean views from the second story terrace of the house. Yoga mats, blankets, straps and blocks are available.']
+        name: 'Utopia Guesthouse & Yoga Studio',
+        gallery: ['images/Hotel-Utopia-Template-1824x1120x2_1-912x560.jpg', 'images/Hotel-Utopia-Template-1824x1120x2_10-912x560.jpg', 'images/Hotel-Utopia-Template-1824x1120x2_13-912x560.jpg', 'images/Hotel-Utopia-Template-1824x1120x2_14-912x560.jpg', 'images/Hotel-Utopia-Template-1824x1120x2_16-912x560.jpg', 'images/Hotel-Utopia-Template-1824x1120x2_15-912x560.jpg', 'images/Hotel-Utopia-Template-1824x1120x2_12-912x560.jpg', 'images/Hotel-Utopia-Template-1824x1120x2_6-912x560.jpg', 'images/Hotel-Utopia-Template-1824x1120x2_7-912x560.jpg', 'images/Hotel-Utopia-Template-1824x1120x2_8-912x560.jpg', 'images/Hotel-Utopia-Template-1824x1120x2_9-912x560.jpg'],
+        text: [
+          'Tucked along the quiet beaches of El Cuyo, Utopia Guesthouse &amp; Yoga Studio is a tranquil seaside home created to host retreat groups in an intimate, soulful setting. The house features eight bedrooms &mdash; five private with queen beds and three shared with twin beds &mdash; all simple and cozy, dressed in soft neutrals and natural textures sourced locally.',
+          'The shared living and dining areas flow between indoor and open-air spaces, with porches on both the garden and beach sides of the house. Three full bathrooms, a double-sink wash area, and an outdoor shower by the sea offer a relaxed, communal rhythm. From the second-floor terrace, our yoga studio opens to sweeping ocean views &mdash; a serene space to greet each sunrise. Mats, blankets, straps, and blocks are provided, inviting every practice to unfold with ease and presence.'
+        ]
       }
     ];
 
@@ -1178,33 +1201,33 @@
     var EXTRAS = [
       {
         name: 'Excursion to Las Coloradas',
-        desc: 'Excursion to Las Coloradas to see flamingos and pink lagoons; dip in a secluded beach & lunch at a local fish joint.',
-        price: '$155usd per person', unit: 'per person',
-        gallery: []
-      },
-      {
-        name: 'Yucatan Peninsula day trip',
-        desc: 'Yucatan Peninsula day trip : Ruins of Ek Balam, colonial city of Valladolid & cenote; lunch included.',
-        price: '$195usd per person', unit: 'per person',
-        gallery: []
+        desc: 'Excursion to Las Coloradas to see flamingos and pink lagoons; dip in a secluded beach &amp; lunch at a local fish joint.',
+        price: '155 USD', unit: 'per person',
+        gallery: ['images/extra1-3.jpg', 'images/extra1-1.jpg', 'images/extra1-2.jpg']
       },
       {
         name: 'Kayaking in Nature',
-        desc: 'Sunset kayaking amongst the lilypads & mangroves. Guide and transportation included.',
-        price: '$85usd per person', unit: 'per person',
-        gallery: []
+        desc: 'Excursion to our local nature preserve to kayak amongst the mangroves and lily pads. A true nature bath experience.',
+        price: '85 USD', unit: 'per person',
+        gallery: ['images/extra2-1.jpg', 'images/extra2-2.jpg']
+      },
+      {
+        name: 'Yucatan Peninsula day trip',
+        desc: 'Yucatan Peninsula day trip: Ruins of Ek Balam, cenote swim, lunch &amp; colonial city of Valladolid. *Minimum participation of 4 guests to host the excursion.',
+        price: '195 USD', unit: 'per person',
+        gallery: ['images/extra3-1.jpg', 'images/extra3-2.jpg', 'images/extra3-3.jpg']
       },
       {
         name: 'Temazcal Ceremony',
         desc: 'A powerful ancestral practice of release, transformation, and rebirth.',
-        price: '$95usd per person', unit: 'per person',
+        price: '95 USD', unit: 'per person',
         gallery: []
       },
       {
-        name: 'Additional 75 minute massages',
+        name: 'Massages',
         desc: 'Additional 75 minute massages.',
-        price: '$140usd each', unit: 'each',
-        gallery: []
+        price: '140 USD', unit: 'each',
+        gallery: ['images/extra4-1.jpg', 'images/extra4-2.jpg']
       }
     ];
 
@@ -1241,6 +1264,7 @@
             '<span class="extras__price-unit">' + x.unit + '</span>' +
           '</p>' +
         '</div>' +
+        (!x.gallery.length ? '' :
         '<div class="extras__media">' +
           '<div class="photo-slider extras__slider" data-lightbox role="group" aria-roledescription="carousel" aria-label="' + x.name + ' photos">' +
             '<div class="photo-slider__track">' +
@@ -1256,7 +1280,7 @@
               }).join('') +
             '</div>' +
           '</div>' +
-        '</div>';
+        '</div>');
       panelsEl.appendChild(panel);
 
       tab.addEventListener('click', function () {
@@ -1385,7 +1409,7 @@
      {type:'scarce', label:'...'}, {type:'soldout'}, or null for none.
      This one matches the Beach Escape row in index.html, which carries the
      same retreat on the same dates — keep the two in step. */
-  var URGENCY = null;
+  var URGENCY = { type: 'scarce', label: '2 spaces left' };
 
   /* The page's room data. Lives out here rather than inside the pricing
      module because the sticky booking bar reads it too — both need the
@@ -1399,12 +1423,11 @@
     {
       name: 'Shared Double rooms',
       priceUSD: 2295,
-      priceLabel: '$2,295usd per person',
       priceUnit: 'per person',
       hotels: [
         {
-          name: 'Utopia Guesthouse & Yoga Studio : El Cuyo',
-          attrs: { bed: 'Twin', bath: 'Shared' },
+          name: 'Utopia Guesthouse & Yoga Studio',
+          chips: ['Twin bed', 'Shared bath'],
           gallery: ['images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-shared-double-room.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-bathroom-with-round-basin.webp']
         }
       ]
@@ -1412,12 +1435,11 @@
     {
       name: 'Shared Tower Room',
       priceUSD: 2365,
-      priceLabel: '$2,365usd per person',
       priceUnit: 'per person',
       hotels: [
         {
-          name: 'Utopia Guesthouse & Yoga Studio : El Cuyo',
-          attrs: { bed: 'King or 2 twins', bath: 'Shared' },
+          name: 'Utopia Guesthouse & Yoga Studio',
+          chips: ['King or 2 twins', 'Shared bath'],
           gallery: ['images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-tower-room-king-bed.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-tower-room-dressing-area.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-tower-room-twin-beds.webp']
         }
       ]
@@ -1425,12 +1447,11 @@
     {
       name: 'Private Interior rooms',
       priceUSD: 2435,
-      priceLabel: '$2,435usd private room',
-      priceUnit: 'private room',
+      priceUnit: 'per room',
       hotels: [
         {
-          name: 'Utopia Guesthouse & Yoga Studio : El Cuyo',
-          attrs: { bed: 'Queen', bath: 'Shared' },
+          name: 'Utopia Guesthouse & Yoga Studio',
+          chips: ['Queen bed', 'Shared bath'],
           gallery: ['images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-private-interior-queen-room.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-interior-passage-to-the-rooms.webp']
         }
       ]
@@ -1438,12 +1459,11 @@
     {
       name: 'Private ocean view room — second floor',
       priceUSD: 2535,
-      priceLabel: '$2,535usd SECOND FLOOR ROOMS',
-      priceUnit: 'private room',
+      priceUnit: 'per room',
       hotels: [
         {
-          name: 'Utopia Guesthouse & Yoga Studio : El Cuyo',
-          attrs: { bed: 'Queen', bath: 'Shared', view: 'Ocean' },
+          name: 'Utopia Guesthouse & Yoga Studio',
+          chips: ['Queen bed', 'Shared bath', 'Ocean view'],
           gallery: ['images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-ocean-view-room-open-to-the-beach.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-beachfront-room-with-green-doors.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-queen-room-under-a-vaulted-ceiling.webp']
         }
       ]
@@ -1451,12 +1471,11 @@
     {
       name: 'Private ocean view room — beachfront',
       priceUSD: 2595,
-      priceLabel: '$2,595usd BEACHFRONT ROOM',
-      priceUnit: 'private room',
+      priceUnit: 'per room',
       hotels: [
         {
-          name: 'Utopia Guesthouse & Yoga Studio : El Cuyo',
-          attrs: { bed: 'Queen', bath: 'Shared', view: 'Beachfront' },
+          name: 'Utopia Guesthouse & Yoga Studio',
+          chips: ['Queen bed', 'Shared bath', 'Beachfront view'],
           gallery: ['images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-ocean-view-room-open-to-the-beach.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-beachfront-room-with-green-doors.webp', 'images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-queen-room-under-a-vaulted-ceiling.webp']
         }
       ]
@@ -1547,8 +1566,10 @@
       var head = el('div', 'rooms__head');
       head.appendChild(el('h3', 'rooms__tier-name', tier.name));
       var price = el('div', 'rooms__price');
-      price.appendChild(el('p', 'rooms__price-amount', tier.priceUSD.toLocaleString('en-US') + ' USD'));
-      price.appendChild(el('p', 'rooms__price-unit', 'per person'));
+      /* A price may not be published yet, and is per person or per room. */
+      price.appendChild(el('p', 'rooms__price-amount', tier.priceUSD == null
+        ? 'Coming soon' : tier.priceUSD.toLocaleString('en-US') + ' USD'));
+      if (tier.priceUSD != null && tier.priceUnit) price.appendChild(el('p', 'rooms__price-unit', tier.priceUnit));
       head.appendChild(price);
       body.appendChild(head);
 
@@ -1569,7 +1590,7 @@
         text.appendChild(el('p', 'rooms__hotel-name', hotel.name));
 
         var attrs = hotel.attrs || {};
-        var chips = [
+        var chips = hotel.chips || [
           attrs.bed && attrs.bed + ' bed',
           attrs.bath && attrs.bath + ' bath',
           attrs.view && attrs.view + ' view'
@@ -2035,9 +2056,10 @@
     var rooms = document.querySelector('.rooms');
     if (!hero || !rooms || !window.IntersectionObserver) return;
 
-    var prices = (typeof TIERS !== 'undefined' ? TIERS : []).map(function (t) { return t.priceUSD; });
-    if (!prices.length) return;
-    var from = Math.min.apply(null, prices);
+    var priced = (typeof TIERS !== 'undefined' ? TIERS : []).filter(function (t) { return t.priceUSD != null; });
+    if (!priced.length) return;
+    var cheapest = priced.reduce(function (a, t) { return t.priceUSD < a.priceUSD ? t : a; });
+    var from = cheapest.priceUSD;
 
     var name = hero.querySelector('.retreat-hero__title');
     var date = hero.querySelector('.retreat-hero__meta span');
@@ -2067,11 +2089,11 @@
     priceEl.appendChild(document.createTextNode('From ' + from.toLocaleString('en-US') + ' USD'));
     var unit = document.createElement('span');
     unit.className = 'booking-bar__price-unit';
-    unit.textContent = ' · per person';
+    unit.textContent = cheapest.priceUnit ? ' · ' + cheapest.priceUnit : '';
     priceEl.appendChild(unit);
-    var cta = document.createElement('button');
+    var cta = document.createElement('a');
     cta.className = 'btn btn--primary';
-    cta.type = 'button';
+    cta.href = '#rooms';
     cta.textContent = 'Book now';
     act.appendChild(priceEl);
     act.appendChild(cta);

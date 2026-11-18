@@ -8,7 +8,8 @@ sitio viejo cambie una fecha o un precio, no haya que hacerlo todo a mano otra v
 | `editions.py` | las 19 ediciones abiertas, transcritas de `/all-upcoming-dates/` el 2026-11-12, y el mapeo location → destino/país/región |
 | `curation.py` | alojamientos, tipos de habitación con precio y extras opcionales, **transcritos a mano** de cada página: el HTML viejo intercala nombre, precio y descripción en un orden que cambia de página a página y una lectura automática mezclaba precios entre habitaciones |
 | `gen.py` | arma los `<slug>/data.json` combinando lo de arriba con el texto scrapeado (includes, itinerario, travel tips, políticas) y con la asignación de imágenes |
-| `build_page.py` | llena `retreatpage-elcuyo.html` con un `data.json`. Sólo **lee** la plantilla: reemplaza las regiones variables y deja CSS y scripts intactos |
+| `build_page.py` | construye una página por cada retiro de `data/retreats.js` (`retreatpage-<id>.html`) sobre `retreatpage-elcuyo.html`, que sólo **lee**: reemplaza las regiones variables y deja CSS y scripts intactos. Exporta las fotos que falten a `images/retreat-photos/` en WebP y le pone `pageUrl` a cada retiro. `python3 retreats/_tools/build_page.py [id ...]` |
+| `page_content.py` | la capa editorial: Travel Tips por destino en el formato de la plantilla, nombres de alojamiento que el sitio viejo no da, facilitadores |
 
 `gen.py` espera en su directorio de trabajo los intermedios del scrapeo
 (`structured.json`, `img_sections.json`, `img_assign.json`, `teachers.json`), que no se

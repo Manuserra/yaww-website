@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Camino de Santiago Yoga Retreat · Apr 2027</title>
-<meta name="description" content="9-night yoga retreat in Camino de Santiago, Spain. April 18 - 27, 2027, with Jenniferlyn Chiemingo.">
+<title>YAWW · A Journey Home to Yourself</title>
+<meta name="description" content="9-night yoga retreat in Camino de Santiago, Spain, April 18 – 27, 2027, with Jenniferlyn Chiemingo.">
 
 <!-- Fonts: Libre Baskerville (headings) + Raleway (body) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,12 +12,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/base.css?v=202611181910">
-<link rel="stylesheet" href="css/retreat.css?v=202611181726">
+<link rel="stylesheet" href="css/retreat.css?v=202611190200">
 </head>
 <body>
-<!-- Generated from retreats/camino-de-santiago-apr-2027/data.json on 2026-11-12 by filling retreatpage-elcuyo.html.
-     Test page: it exists to prove the schema covers the template. -->
-
+<!-- Built by retreats/_tools/build_page.py from data/retreats.js and retreats/camino-de-santiago-apr-2027/data.json,
+     on the retreatpage-elcuyo.html template. Edit the data, not this file. -->
 
 <!-- Logo sprite: defined once, referenced via <use> from both the desktop
      brand row and the mobile nav-row logo (avoids duplicating the path data). -->
@@ -121,18 +120,19 @@
     <div class="retreat-hero__image" role="img" aria-label="The cathedral of Santiago de Compostela seen through the iron gates at the end of the Camino, Spain" style="background-image: url('images/retreat-photos/camino-de-santiago/yoga-retreat-camino-de-santiago-spain-santiago-cathedral-behind-the-gates.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
 
     <div class="retreat-hero__copy">
-      <h1 class="retreat-hero__title">Camino de Santiago : A Yoga &amp; Reflections Retreat</h1>
+      <h1 class="retreat-hero__title">A Journey Home to Yourself</h1>
       <p class="retreat-hero__location">Camino de Santiago, Spain</p>
       <p class="retreat-hero__badge">Signature Collection</p>
       <p class="retreat-hero__meta">
-        <span>April 18 - 27, 2027</span>
+        <span>April 18 – 27, 2027</span>
         <span class="retreat-hero__meta-dot" aria-hidden="true">·</span>
         <span>with Jenniferlyn Chiemingo</span>
       </p>
     </div>
+
     <div class="retreat-hero__ctas">
-      <button class="btn btn--primary" type="button">Book now</button>
-      <button class="btn btn--secondary" type="button">I want more info</button>
+      <a class="btn btn--primary" href="#rooms">Book now</a>
+      <a class="btn btn--secondary" href="contact.html#general-inquiry">I want more info</a>
     </div>
   </section>
 
@@ -161,18 +161,19 @@
   <!-- =========================================================
        ABOUT TEACHER (node 115-42277)
        ========================================================= -->
-  <section class="retreat-teacher">
-    <h2 class="retreat-teacher__title">Yoga with Jenniferlyn Chiemingo</h2>
-    <div class="retreat-teacher__row">
-      <div class="retreat-teacher__photo" role="img" aria-label="Jenniferlyn Chiemingo, yoga teacher, laughing outdoors in bright light" style="background-image: url('images/retreat-photos/teachers/yoga-teacher-jenniferlyn-chiemingo.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
-      <div class="retreat-teacher__text">
-        <p>Jenniferlyn is known affectionately by her students + friends as JL…and the words joy, love, and yoga surely describe her best!</p>
-        <p>Through yoga on the mat and in travel, JL’s goal is to provide her students with the opportunity to experience genuine joy, love, and connection (a.k.a. yoga). JL’s unique yoga teaching style is a creation all her own and an experience from which all can benefit. They are flowing, grounding, spiritual and inspiring. When you step away from one of her Vinyasa classes, you will feel more connected to yourself and the world around you. She provides loving support to newbies while continually challenging regular practitioners to find greater depths in their practice.</p>
-        <p>JL first experienced yoga in 2000 when she was looking for a way to escape the daily stress from her job as a TV news producer in northern California. That was when yoga started to change her life. Overcome by the power and benefits of yoga in her own life, JL decided to move her career from the newsroom to the yoga mat in 2002. With curiosity and ambition, she followed her dream and began her training at Kripalu Center for Yoga &amp; Health with an emphasis in Integrative Yoga Therapy. JL continued her training with Shiva Rea, embracing Vinyasa yoga. Through Vinyasa, she learned the powerful energizing and cleansing benefits of linking breath with movement.</p>
-        <p>JL is listed E-RYT with Yoga Alliance and has taught for more than 22 years in Seattle and the Bay Area. After more than 15 years leading international yoga retreats she partnered with Yoga &amp; Adventures Worldwide in 2021 to bring travelers on our bespoke yoga adventures and beyond. These intimate getaways have the potential to change your life if you are open to the possibility…</p>
+  <section class="retreat-teacher" aria-labelledby="hosts-title">
+    <h2 class="retreat-teacher__title" id="hosts-title">Your teacher</h2>
+    <div class="hosts" data-hosts>
+      <div class="hosts__slot" data-host-slot>
+        <img class="host__photo" src="images/teachers/jenniferlyn-chiemingo.jpg" alt="Jenniferlyn Chiemingo" loading="lazy">
+        <div class="host">
+        <p class="host__role">Your teacher</p>
+        <h3 class="host__name">Jenniferlyn Chiemingo</h3>
+        <p class="host__bio">JL teaches joyful, grounding vinyasa with warmth and clarity, supporting connection and depth in every retreat experience.</p>
+        <a class="host__link" href="teacher-jenniferlyn-chiemingo.html">Meet Jenniferlyn <span aria-hidden="true">&rarr;</span></a>
+        </div>
       </div>
     </div>
-
   </section>
 
   <!-- =========================================================
@@ -192,27 +193,16 @@
         <div class="retreat-includes__panel" data-panel="includes" role="tabpanel">
           <ul class="retreat-includes__list">
             <li>9 nights in characterful hotels, pazos and a parador</li>
-            <li>No two nights look quite the same — from traditional Galician stays and garden retreats to a beautiful finish in Santiago de Compostela.</li>
             <li>Daily luggage transfer</li>
-            <li>Your bags travel ahead each morning. You walk with only a day pack and what you need for the trail.</li>
             <li>Daily yoga, meditation &amp; journaling</li>
-            <li>Thoughtful practices designed around the rhythm of the walk — movement to begin the day, restoration and reflection to close it.</li>
             <li>An expert YAWW facilitator throughout the journey</li>
-            <li>With you from Vigo to Santiago, taking care of the details so you can stay present for the experience.</li>
             <li>Opening &amp; closing circles</li>
-            <li>Time to arrive together, set an intention for the journey, and mark what has shifted before we go home.</li>
             <li>Breakfast daily, 2 lunches &amp; 8 dinners</li>
-            <li>From long dinners after a day on the trail to some of the flavors Galicia is known for.</li>
             <li>Two-hour Pilgrim Ritual Spa treatment &amp; water circuits</li>
-            <li>A well-earned ritual of restoration once we reach Santiago. Floatarium session, deep tissue back massage, and targeted relief for tired legs and aching feet.</li>
             <li>Your official pilgrim credential</li>
-            <li>Carry it along the Camino and collect stamps as you make your way toward Compostela.</li>
             <li>Support whenever you need it</li>
-            <li>A taxi is available on any stretch of the walk, if you need it. Walk every kilometer or listen to your body along the way.</li>
             <li>A full rest day in Caldas de Reis</li>
-            <li>A pause in the journey for gardens, pool time and water circuits, reading, sleeping, wandering — or simply doing nothing at all.</li>
             <li>A journal &amp; YAWW gift bag</li>
-            <li>A few thoughtful things from us to accompany you on the journey.</li>
             <li>All local taxes</li>
           </ul>
         </div>
@@ -230,7 +220,6 @@
             <li>Anything you’d like to carry home</li>
             <li>Staff gratuities (we suggest between $60–95 USD for the team looking after you)</li>
           </ul>
-          
         </div>
       </div>
     </div>
@@ -246,6 +235,7 @@
       <span class="retreat-itinerary__progress" aria-hidden="true"></span>
 
       <ol class="retreat-itinerary__list">
+
         <li class="retreat-itinerary__day">
           <div class="retreat-itinerary__rail">
             <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
@@ -256,9 +246,9 @@
           <div class="retreat-itinerary__content">
             <div class="retreat-itinerary__text">
               <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 1</span></div>
-              <h3 class="retreat-itinerary__day-title">– Vigo, Spain</h3>
 
               <ul class="retreat-itinerary__bullets">
+                <li class="retreat-itinerary__day-title">Vigo, Spain</li>
                 <li>Arrival, and the first evening together</li>
                 <li>Check into our accommodations on the water in Vigo</li>
                 <li>Early arrivals: leave your bags at reception, walk the seafront, find a coffee</li>
@@ -296,9 +286,9 @@
           <div class="retreat-itinerary__content">
             <div class="retreat-itinerary__text">
               <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 2</span></div>
-              <h3 class="retreat-itinerary__day-title">– Vigo → Redondela</h3>
 
               <ul class="retreat-itinerary__bullets">
+                <li class="retreat-itinerary__day-title">Vigo → Redondela</li>
                 <li>The first full day on the trail, out along the ría and up into the hills.</li>
                 <li>8:15am Morning movement and warm-up (30 minutes)</li>
                 <li>9am Breakfast</li>
@@ -338,9 +328,9 @@
           <div class="retreat-itinerary__content">
             <div class="retreat-itinerary__text">
               <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 3</span></div>
-              <h3 class="retreat-itinerary__day-title">– Redondela → Arcade</h3>
 
               <ul class="retreat-itinerary__bullets">
+                <li class="retreat-itinerary__day-title">Redondela → Arcade</li>
                 <li>A short, forgiving day — and the best oysters in Galicia at the end of it.</li>
                 <li>by 8am Suitcases to reception</li>
                 <li>Yoga practice and journaling</li>
@@ -382,9 +372,9 @@
           <div class="retreat-itinerary__content">
             <div class="retreat-itinerary__text">
               <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 4</span></div>
-              <h3 class="retreat-itinerary__day-title">– Arcade → Pontevedra</h3>
 
               <ul class="retreat-itinerary__bullets">
+                <li class="retreat-itinerary__day-title">Arcade → Pontevedra</li>
                 <li>Today we walk in silence.</li>
                 <li>by 8am Suitcases to reception</li>
                 <li>Breakfast at the hotel</li>
@@ -426,9 +416,9 @@
           <div class="retreat-itinerary__content">
             <div class="retreat-itinerary__text">
               <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 5</span></div>
-              <h3 class="retreat-itinerary__day-title">– Pontevedra → Caldas de Reis</h3>
 
               <ul class="retreat-itinerary__bullets">
+                <li class="retreat-itinerary__day-title">Pontevedra → Caldas de Reis</li>
                 <li>A long, beautiful day that ends at a river and a garden.</li>
                 <li>by 8am Suitcases to reception</li>
                 <li>Breakfast</li>
@@ -471,9 +461,9 @@
           <div class="retreat-itinerary__content">
             <div class="retreat-itinerary__text">
               <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 6</span></div>
-              <h3 class="retreat-itinerary__day-title">– Caldas de Reis / rest day</h3>
 
               <ul class="retreat-itinerary__bullets">
+                <li class="retreat-itinerary__day-title">Caldas de Reis / rest day</li>
                 <li>No walking. This is the day the week rearranges itself around.</li>
                 <li>Yoga and movement class</li>
                 <li>Breakfast</li>
@@ -513,9 +503,9 @@
           <div class="retreat-itinerary__content">
             <div class="retreat-itinerary__text">
               <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 7</span></div>
-              <h3 class="retreat-itinerary__day-title">– Caldas de Reis → Padrón</h3>
 
               <ul class="retreat-itinerary__bullets">
+                <li class="retreat-itinerary__day-title">Caldas de Reis → Padrón</li>
                 <li>Rested legs, vineyards, and the last night before Santiago.</li>
                 <li>by 8am Suitcases to reception</li>
                 <li>Breakfast, then a leg warm-up on the terrace</li>
@@ -556,9 +546,9 @@
           <div class="retreat-itinerary__content">
             <div class="retreat-itinerary__text">
               <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 8</span></div>
-              <h3 class="retreat-itinerary__day-title">– Padrón → Santiago de Compostela</h3>
 
               <ul class="retreat-itinerary__bullets">
+                <li class="retreat-itinerary__day-title">Padrón → Santiago de Compostela</li>
                 <li>The longest day, and the one you’ll remember.</li>
                 <li>by 8am Suitcases to reception</li>
                 <li>Breakfast</li>
@@ -574,7 +564,7 @@
             <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 8 photos">
               <div class="photo-slider__track">
                 <div class="photo-slider__slide"><img src="images/retreat-photos/camino-de-santiago/yoga-retreat-camino-de-santiago-spain-carved-stone-vaulting.webp" alt="Carved stone vaulting and a sculpted portal in Santiago de Compostela, Spain" loading="lazy"></div>
-                <div class="photo-slider__slide"><img src="images/retreat-photos/camino-de-santiago/yoga-retreat-camino-de-santiago-spain-scallop-shells-on-a-table.webp" alt="Scallop shells on red cords, the pilgrim's badge of the Camino de Santiago, Spain" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/retreat-photos/camino-de-santiago/yoga-retreat-camino-de-santiago-spain-scallop-shells-on-a-table.webp" alt="Scallop shells on red cords, the pilgrim&#x27;s badge of the Camino de Santiago, Spain" loading="lazy"></div>
               </div>
               <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
@@ -600,15 +590,15 @@
           <div class="retreat-itinerary__content">
             <div class="retreat-itinerary__text">
               <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 9</span></div>
-              <h3 class="retreat-itinerary__day-title">– Santiago de Compostela</h3>
 
               <ul class="retreat-itinerary__bullets">
+                <li class="retreat-itinerary__day-title">Santiago de Compostela</li>
                 <li>A day to be still in the place you walked to.</li>
                 <li>Yoga practice</li>
                 <li>Breakfast</li>
                 <li>Two hour Pilgrim Ritual at the Spa</li>
                 <li>Lunch at the hotel</li>
-                <li>Afternoon free : wander Compostela, or stay with the spa and the gardens</li>
+                <li>Afternoon free: wander Compostela, or stay with the spa and the gardens</li>
                 <li>Closing circle and final yoga practice</li>
                 <li>Farewell dinner together</li>
               </ul>
@@ -643,15 +633,13 @@
           <div class="retreat-itinerary__content">
             <div class="retreat-itinerary__text">
               <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 10</span></div>
-              <h3 class="retreat-itinerary__day-title">– Departure</h3>
 
               <ul class="retreat-itinerary__bullets">
+                <li class="retreat-itinerary__day-title">Departure</li>
                 <li>Breakfast</li>
                 <li>Check out and onward travel</li>
-                <li>Reserve my space</li>
               </ul>
             </div>
-
           </div>
         </li>
 
@@ -671,7 +659,7 @@
   <!-- =========================================================
        TESTIMONIALS ("What guests say") — rendered from JS
        ========================================================= -->
-  <section class="quotes" hidden data-empty="the old site publishes no guest quotes for this retreat">
+  <section class="quotes" hidden data-empty="no guest quotes published for this retreat yet">
     <h2 class="quotes__title">What guests say</h2>
     <div class="quotes__grid" id="quotes-grid"></div>
   </section>
@@ -679,7 +667,7 @@
   <!-- =========================================================
        ROOMS PRICING (one card per tier) — rendered from JS
        ========================================================= -->
-  <section class="rooms">
+  <section class="rooms" id="rooms">
     <h2 class="rooms__title">Rooms pricing</h2>
     <div class="rooms__inner">
       <div class="rooms__grid" id="rooms-grid"></div>
@@ -689,23 +677,22 @@
         <ol class="rooms__steps">
           <li>
             <strong>Choose your room</strong>
-            <span>Every price is per person, in USD.</span>
+            <span>Prices are in USD, per person or per room as marked.</span>
           </li>
           <li>
             <strong>Secure your space</strong>
-            <span>A $1,000 deposit per person holds your place. It comes off your total — it is not an extra.</span>
+            <span>A $1,000 deposit per person holds your place. It comes off your total &mdash; it is not an extra.</span>
           </li>
           <li>
             <strong>Pay the balance later</strong>
             <span>The rest is due 90 days before the retreat.</span>
           </li>
-
         </ol>
-        <p class="rooms__aside-note">All payments are 100% non refundable and non-transferable. We recommend that you buy trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you.</p>
-        <p class="rooms__aside-note">Roommates should book together. If you would like to share a room and do not have a roommate we will provide one for you if possible. In the case that there is no one to share a room we ask that you take a private room instead.</p>
+        <p class="rooms__aside-note">All payments are non-refundable and non-transferable, so we recommend trip cancellation insurance from the day you pay your deposit.</p>
+        <p class="rooms__aside-note">Sharing a room? Book together with your roommate. If you don&rsquo;t have one we&rsquo;ll pair you when we can &mdash; and if nobody is available, we&rsquo;ll move you to a private room.</p>
         <div class="rooms__actions">
-          <button class="btn btn--primary" type="button">Reserve your space</button>
-          <button class="btn btn--secondary" type="button">I want more info</button>
+          <a class="btn btn--primary" href="contact.html#general-inquiry">Reserve your space</a>
+          <a class="btn btn--secondary" href="contact.html#general-inquiry">I want more info</a>
         </div>
       </aside>
     </div>
@@ -715,11 +702,7 @@
   <!-- =========================================================
        OPTIONAL EXTRAS (tabs + gallery) — rendered from JS
        ========================================================= -->
-  <section class="extras" hidden data-empty="no optional extras published for this retreat">
-    <h2 class="extras__title">Optional Extras</h2>
-    <div class="tabs tabs--hug extras__tabs" role="tablist" aria-label="Optional extras"></div>
-    <div class="extras__panels"></div>
-  </section>
+  <!-- Optional Extras: none published for this retreat. -->
 
 
 
@@ -733,91 +716,75 @@
     <h2 class="tips__title">Travel Tips</h2>
     <div class="tips__body">
       <div class="tips__group">
+        <h3 class="tips__heading">Arrival &amp; Airports</h3>
         <ul class="tips__list">
-          <li>Camino de Santiago :</li>
+          <li>We begin in Vigo and finish in Santiago de Compostela — book into one and out of the other.</li>
+          <li>Vigo (VGO) is the closest airport to our first hotel, around 20 minutes away.</li>
+          <li>Santiago (SCQ), Lisbon (LIS) and Porto (OPO) are often better value. From Porto, trains and buses reach Vigo in 2 – 2.5 hours.</li>
+          <li>Arrive a day or three early if you can: starting a walking week jet-lagged is hard.</li>
         </ul>
       </div>
 
       <div class="tips__group">
-        <h3 class="tips__heading">Arrival &amp; airports</h3>
+        <h3 class="tips__heading">Preparing Your Body</h3>
         <ul class="tips__list">
-          <li>We begin in Vigo and finish in Santiago de Compostela — two different cities, so book into one and out of the other.</li>
-          <li>Vigo (VGO) is the closest airport to our starting hotel, around 20 minutes away.</li>
-          <li>Santiago (SCQ), Lisbon (LIS) and Porto (OPO) are well connected and often better value; from Porto, there are direct trains and buses to Vigo in around 2–2.5 hours. A private taxi ride could be arranged to simplify the process. Pricing will depend on how many in the ride. Inquire for more.</li>
-          <li>For the return, Santiago airport is about 15 minutes from our final hotel.</li>
-          <li>Arrive a day or three early if you can. Starting a walking week jet-lagged is a hard way to begin.</li>
-        </ul>
-      </div>
-
-      <div class="tips__group">
-        <h3 class="tips__heading">Preparing your body</h3>
-        <ul class="tips__list">
-          <li>This is not a technical trail, but it is six days of consecutive walking. Come with some kilometers already in your legs.</li>
-          <li>In the months before, build up to walking 15–20 km comfortably, ideally on back-to-back days.</li>
-          <li>Break everything in properly. Nothing new on day one — not shoes, not socks, not a pack.</li>
-          <li>Trail runners or light hiking shoes both work well; heavy boots are usually not necessary for the Portuguese Way route.</li>
+          <li>Not a technical trail, but six days of consecutive walking. Come with kilometres in your legs.</li>
+          <li>Build up to 15 – 20 km comfortably, ideally on back-to-back days.</li>
+          <li>Nothing new on day one: break in your shoes, socks and pack properly.</li>
         </ul>
       </div>
 
       <div class="tips__group">
         <h3 class="tips__heading">Packing</h3>
         <ul class="tips__list">
-          <li>Your suitcase travels between hotels each day, so pack it however you like — you’ll only carry a small day pack on the trail.</li>
-          <li>In the day pack: water bottle, sun protection, hat, a rain layer, snacks, blister care, and your journal (part of our gift to you). We will send a full packing list prior to the retreat.</li>
-          <li>Layers. Galicia is green because Galicia rains — a proper waterproof jacket earns its place in both seasons.</li>
-          <li>Two pairs of walking shoes if you have them, and more socks than feels reasonable. A comfy pair of squishy slides or Birks for when you’re not on the trail are essential.</li>
-          <li>A swimsuit for the pools, thermal baths and spas along the way.</li>
-          <li>One nicer outfit for the farewell dinner in Santiago.</li>
+          <li>Your suitcase travels between hotels each day; you carry only a day pack.</li>
+          <li>A proper waterproof jacket, layers, two pairs of walking shoes and plenty of socks.</li>
+          <li>A swimsuit for pools and thermal baths, and one nicer outfit for the farewell dinner.</li>
+          <li>We send a full packing list before the retreat.</li>
         </ul>
       </div>
 
       <div class="tips__group">
         <h3 class="tips__heading">Weather</h3>
         <ul class="tips__list">
-          <li>April: green, fresh and changeable. Expect 54-66°F, wildflowers, and a decent chance of rain.</li>
-          <li>September: warmer and more settled, around 63–75°F, with the harvest underway and long evenings.</li>
-          <li>Either way, mornings are cool and afternoons can be warm. Layers do most of the work.</li>
+          <li>April: green, fresh and changeable, around 54 – 66°F, with a fair chance of rain.</li>
+          <li>September: warmer and more settled, around 63 – 75°F.</li>
+          <li>Mornings are cool and afternoons can be warm: layers do most of the work.</li>
         </ul>
       </div>
 
       <div class="tips__group">
-        <h3 class="tips__heading">Yoga &amp; props</h3>
+        <h3 class="tips__heading">Yoga &amp; Props</h3>
         <ul class="tips__list">
-          <li>Mats and props are provided at the hotels where we practice.</li>
-          <li>If you prefer your own mat, bring a light travel mat such as a Liforme (save 20% here).</li>
+          <li>Mats and props are provided at the hotels where we practise.</li>
           <li>Practices are designed around a walking body — accessible, restorative and always optional.</li>
-          <li>Part of our gift to you at opening circle will be a journal and a pen.</li>
         </ul>
       </div>
 
       <div class="tips__group">
-        <h3 class="tips__heading">Food &amp; dietary notes</h3>
+        <h3 class="tips__heading">Food &amp; Water</h3>
         <ul class="tips__list">
-          <li>Galician cooking is seafood-forward and exceptional: percebes, pulpo, oysters at Arcade, Padrón peppers, Albariño.</li>
-          <li>Vegetarian and vegan options can be arranged with advance notice.</li>
-          <li>Gluten-free and allergy-friendly meals are possible, though cross-contamination may occur.</li>
-          <li>If you have a serious allergy, bring two epi-pens and let our team know where they are.</li>
-          <li>Meals on your own can be eaten along the trail under the shade of a tree or in a cafe made for pilgrims; dinners are available at or close to the hotels.</li>
-          <li>Tap water throughout Galicia is safe to drink, and we recommend bringing a refillable water bottle to fill at the hotels each morning and along the Camino where you’ll also find public fountains — just look for those marked “agua potable” (drinking water) and avoid drinking from unmarked natural springs.</li>
+          <li>Galician cooking is seafood-forward: pulpo, oysters at Arcade, Padrón peppers, Albariño.</li>
+          <li>Vegetarian and vegan meals can be arranged with advance notice. With a serious allergy, bring two epi-pens.</li>
+          <li>Tap water is safe to drink. Refill from fountains marked “agua potable”.</li>
         </ul>
       </div>
 
       <div class="tips__group">
-        <h3 class="tips__heading">Your credential</h3>
+        <h3 class="tips__heading">Your Credential</h3>
         <ul class="tips__list">
-          <li>Every pilgrim carries a credential — a small folded passport stamped at hotels, cafés and churches along the way.</li>
-          <li>Because we walk more than the final 100 kilometres, you’re eligible to collect your certificate on arrival in Santiago.</li>
-          <li>Collect at least two stamps a day. It’s a small ritual, and it becomes one of the things you keep.</li>
+          <li>Every pilgrim carries a credential, stamped at hotels, cafés and churches along the way.</li>
+          <li>We walk more than the final 100 km, so you can collect your certificate in Santiago.</li>
         </ul>
       </div>
 
       <div class="tips__group">
-        <h3 class="tips__heading">Travel &amp; Medical insurance</h3>
+        <h3 class="tips__heading">Insurance</h3>
         <ul class="tips__list">
-          <li>We strongly recommend purchasing travel and trip cancellation insurance as soon as you book, to protect your investment and give you peace of mind while traveling. Cover your retreat here. We require that you show proof of medical insurance in case you need to use it.</li>
+          <li>Buy travel and trip cancellation insurance as soon as you book.</li>
+          <li>Proof of medical insurance is required.</li>
         </ul>
       </div>
-
     </div>
   </section>
 
@@ -835,7 +802,7 @@
        ========================================================= -->
   <section class="gallery">
     <div class="gallery__head">
-      <h2 class="gallery__title">Where you&amp;rsquo;ll be</h2>
+      <h2 class="gallery__title">Where you&rsquo;ll be</h2>
       <p class="gallery__intro">Photographs from past retreats in Camino de Santiago, Spain.</p>
       <div class="gallery__nav">
         <button class="gallery__arrow gallery__arrow--prev" aria-label="Previous photos">
@@ -870,7 +837,7 @@
   <!-- =========================================================
        CARBON OFFSET
        ========================================================= -->
-  <section class="carbon" hidden data-empty="no carbon-offset copy on the old site">
+  <section class="carbon">
     <h2 class="carbon__title">Offset Your Carbon Footprint</h2>
     <p class="carbon__text">Every trip has an environmental impact. If you&rsquo;d like to offset your carbon footprint, you can contribute to climate projects through trusted organizations.</p>
     <p class="carbon__text"><a class="carbon__link" href="#">Learn More About Carbon Offsetting</a></p>
@@ -878,7 +845,7 @@
 
   <!-- =========================================================
        ADDITIONAL INFO (FAQ)
-       Answers are PLACEHOLDER lorem until the real copy arrives.
+       Answers quoted from the old site's policies for this retreat.
        ========================================================= -->
   <section class="faq-section">
     <h2 class="faq-section__title">Additional info</h2>
@@ -896,7 +863,6 @@
           </div>
         </div>
       </div>
-
       <div class="faq">
         <h3 class="faq__heading">
           <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="faq-2">
@@ -910,7 +876,6 @@
           </div>
         </div>
       </div>
-
       <div class="faq">
         <h3 class="faq__heading">
           <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="faq-3">
@@ -924,7 +889,6 @@
           </div>
         </div>
       </div>
-
       <div class="faq">
         <h3 class="faq__heading">
           <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="faq-4">
@@ -938,7 +902,6 @@
           </div>
         </div>
       </div>
-
       <div class="faq">
         <h3 class="faq__heading">
           <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="faq-5">
@@ -952,7 +915,6 @@
           </div>
         </div>
       </div>
-
       <div class="faq">
         <h3 class="faq__heading">
           <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="faq-6">
@@ -966,7 +928,6 @@
           </div>
         </div>
       </div>
-
       <div class="faq">
         <h3 class="faq__heading">
           <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="faq-7">
@@ -980,7 +941,6 @@
           </div>
         </div>
       </div>
-
       <div class="faq">
         <h3 class="faq__heading">
           <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="faq-8">
@@ -994,7 +954,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -1359,9 +1318,15 @@
   (function () {
     var HOTELS = [
       {
-        name: 'Where you stay in Camino de Santiago',
+        name: 'Hotels, pazos & a parador',
         gallery: ['images/retreat-photos/camino-de-santiago/yoga-retreat-camino-de-santiago-spain-hotel-lounge-with-a-picture-wall.webp', 'images/retreat-photos/camino-de-santiago/yoga-retreat-camino-de-santiago-spain-twin-room-with-wooden-floors.webp', 'images/retreat-photos/camino-de-santiago/yoga-retreat-camino-de-santiago-spain-beamed-room-under-the-eaves.webp', 'images/retreat-photos/camino-de-santiago/yoga-retreat-camino-de-santiago-spain-pazo-sitting-room.webp', 'images/retreat-photos/camino-de-santiago/yoga-retreat-camino-de-santiago-spain-pazo-gardens-and-the-river.webp', 'images/retreat-photos/camino-de-santiago/yoga-retreat-camino-de-santiago-spain-parador-at-dusk.webp', 'images/retreat-photos/camino-de-santiago/yoga-retreat-camino-de-santiago-spain-corridor-with-stone-walls.webp', 'images/retreat-photos/camino-de-santiago/yoga-retreat-camino-de-santiago-spain-room-with-patterned-wallpaper.webp'],
-        text: ['Part of the pleasure of this route is that no two nights look alike.', 'We stay in casas rurales with their own particular charm — family-run, unhurried, the kind of place where breakfast is whatever came out of the garden.', 'We stay in traditional Galician pazos, stone manor houses with walled gardens and centuries of weather on them.', 'And we finish in Compostela at a Relais & Châteaux hotel with a spa, for two nights of proper pampering at the end of the walk.', 'All stays are the most charming along this route. Each is unique, well appointed and comfortable with ensuite bathrooms.']
+        text: [
+          'Part of the pleasure of this route is that no two nights look alike.',
+          'We stay in casas rurales with their own particular charm — family-run, unhurried, the kind of place where breakfast is whatever came out of the garden.',
+          'We stay in traditional Galician pazos, stone manor houses with walled gardens and centuries of weather on them.',
+          'And we finish in Compostela at a Relais &amp; Châteaux hotel with a spa, for two nights of proper pampering at the end of the walk.',
+          'All stays are the most charming along this route. Each is unique, well appointed and comfortable with ensuite bathrooms.'
+        ]
       }
     ];
 
@@ -1425,7 +1390,31 @@
      before the slider loop so arrows and dots get wired. */
   (function () {
     var EXTRAS = [
-
+      {
+        name: 'Excursion to Las Coloradas',
+        desc: 'Excursion to Las Coloradas to see flamingos and pink lagoons; dip in a secluded beach &amp; lunch at a local fish joint.',
+        price: '155 USD', unit: 'per person',
+        // the pink aerial leads: it is the photo that sells the excursion
+        gallery: ['images/extra1-3.jpg', 'images/extra1-1.jpg', 'images/extra1-2.jpg']
+      },
+      {
+        name: 'Kayaking in Nature',
+        desc: 'Excursion to our local nature preserve to kayak amongst the mangroves and lily pads. A true nature bath experience.',
+        price: '85 USD', unit: 'per person',
+        gallery: ['images/extra2-1.jpg', 'images/extra2-2.jpg']
+      },
+      {
+        name: 'Yucatan Peninsula day trip',
+        desc: 'Yucatan Peninsula day trip: Ruins of Ek Balam, cenote swim, lunch &amp; colonial city of Valladolid. *Minimum participation of 4 guests to host the excursion.',
+        price: '195 USD', unit: 'per person',
+        gallery: ['images/extra3-1.jpg', 'images/extra3-2.jpg', 'images/extra3-3.jpg']
+      },
+      {
+        name: 'Massages',
+        desc: 'Additional 75 minute massages.',
+        price: '140 USD', unit: 'each',
+        gallery: ['images/extra4-1.jpg', 'images/extra4-2.jpg']
+      }
     ];
 
     var tabsEl = document.querySelector('.extras__tabs');
@@ -1461,6 +1450,7 @@
             '<span class="extras__price-unit">' + x.unit + '</span>' +
           '</p>' +
         '</div>' +
+        (!x.gallery.length ? '' :
         '<div class="extras__media">' +
           '<div class="photo-slider extras__slider" data-lightbox role="group" aria-roledescription="carousel" aria-label="' + x.name + ' photos">' +
             '<div class="photo-slider__track">' +
@@ -1476,7 +1466,7 @@
               }).join('') +
             '</div>' +
           '</div>' +
-        '</div>';
+        '</div>');
       panelsEl.appendChild(panel);
 
       tab.addEventListener('click', function () {
@@ -1605,7 +1595,7 @@
      {type:'scarce', label:'...'}, {type:'soldout'}, or null for none.
      This one matches the Beach Escape row in index.html, which carries the
      same retreat on the same dates — keep the two in step. */
-  var URGENCY = { type: 'scarce', label: '2 Spaces Left' };
+  var URGENCY = { type: 'scarce', label: '2 spaces left' };
 
   /* The page's room data. Lives out here rather than inside the pricing
      module because the sticky booking bar reads it too — both need the
@@ -1619,12 +1609,11 @@
     {
       name: 'Private Room',
       priceUSD: 7995,
-      priceLabel: '7,995usd Private',
-      priceUnit: 'private room',
+      priceUnit: 'per room',
       hotels: [
         {
-          name: 'Where you stay in Camino de Santiago',
-          attrs: { bath: 'Private' },
+          name: 'Hotels, pazos & a parador',
+          chips: ['Private bath'],
           gallery: ['images/retreat-photos/camino-de-santiago/yoga-retreat-camino-de-santiago-spain-room-with-toile-wallpaper.webp', 'images/retreat-photos/camino-de-santiago/yoga-retreat-camino-de-santiago-spain-twin-room-with-red-runners.webp']
         }
       ]
@@ -1632,12 +1621,11 @@
     {
       name: 'Private Room — shared bed',
       priceUSD: 6995,
-      priceLabel: '6,995usd Shared Bed per person',
       priceUnit: 'per person',
       hotels: [
         {
-          name: 'Where you stay in Camino de Santiago',
-          attrs: { bath: 'Private' },
+          name: 'Hotels, pazos & a parador',
+          chips: ['Private bath'],
           gallery: ['images/retreat-photos/camino-de-santiago/yoga-retreat-camino-de-santiago-spain-room-with-toile-wallpaper.webp', 'images/retreat-photos/camino-de-santiago/yoga-retreat-camino-de-santiago-spain-twin-room-with-red-runners.webp']
         }
       ]
@@ -1645,13 +1633,12 @@
     {
       name: 'Shared Room',
       priceUSD: 6995,
-      priceLabel: '6,995usd per person',
       priceUnit: 'per person',
       hotels: [
         {
-          name: 'Where you stay in Camino de Santiago',
-          attrs: { bed: '2 separate beds', bath: 'Private' },
-          gallery: []
+          name: 'Hotels, pazos & a parador',
+          chips: ['2 separate beds', 'Private bath'],
+          gallery: ['images/retreat-photos/camino-de-santiago/yoga-retreat-camino-de-santiago-spain-beamed-room-under-the-eaves.webp', 'images/retreat-photos/camino-de-santiago/yoga-retreat-camino-de-santiago-spain-pazo-sitting-room.webp', 'images/retreat-photos/camino-de-santiago/yoga-retreat-camino-de-santiago-spain-pazo-gardens-and-the-river.webp']
         }
       ]
     }
@@ -1741,8 +1728,10 @@
       var head = el('div', 'rooms__head');
       head.appendChild(el('h3', 'rooms__tier-name', tier.name));
       var price = el('div', 'rooms__price');
-      price.appendChild(el('p', 'rooms__price-amount', tier.priceUSD.toLocaleString('en-US') + ' USD'));
-      price.appendChild(el('p', 'rooms__price-unit', 'per person'));
+      /* A price may not be published yet, and is per person or per room. */
+      price.appendChild(el('p', 'rooms__price-amount', tier.priceUSD == null
+        ? 'Coming soon' : tier.priceUSD.toLocaleString('en-US') + ' USD'));
+      if (tier.priceUSD != null && tier.priceUnit) price.appendChild(el('p', 'rooms__price-unit', tier.priceUnit));
       head.appendChild(price);
       body.appendChild(head);
 
@@ -1763,7 +1752,7 @@
         text.appendChild(el('p', 'rooms__hotel-name', hotel.name));
 
         var attrs = hotel.attrs || {};
-        var chips = [
+        var chips = hotel.chips || [
           attrs.bed && attrs.bed + ' bed',
           attrs.bath && attrs.bath + ' bath',
           attrs.view && attrs.view + ' view'
@@ -2229,9 +2218,10 @@
     var rooms = document.querySelector('.rooms');
     if (!hero || !rooms || !window.IntersectionObserver) return;
 
-    var prices = (typeof TIERS !== 'undefined' ? TIERS : []).map(function (t) { return t.priceUSD; });
-    if (!prices.length) return;
-    var from = Math.min.apply(null, prices);
+    var priced = (typeof TIERS !== 'undefined' ? TIERS : []).filter(function (t) { return t.priceUSD != null; });
+    if (!priced.length) return;
+    var cheapest = priced.reduce(function (a, t) { return t.priceUSD < a.priceUSD ? t : a; });
+    var from = cheapest.priceUSD;
 
     var name = hero.querySelector('.retreat-hero__title');
     var date = hero.querySelector('.retreat-hero__meta span');
@@ -2261,11 +2251,11 @@
     priceEl.appendChild(document.createTextNode('From ' + from.toLocaleString('en-US') + ' USD'));
     var unit = document.createElement('span');
     unit.className = 'booking-bar__price-unit';
-    unit.textContent = ' · per person';
+    unit.textContent = cheapest.priceUnit ? ' · ' + cheapest.priceUnit : '';
     priceEl.appendChild(unit);
-    var cta = document.createElement('button');
+    var cta = document.createElement('a');
     cta.className = 'btn btn--primary';
-    cta.type = 'button';
+    cta.href = '#rooms';
     cta.textContent = 'Book now';
     act.appendChild(priceEl);
     act.appendChild(cta);
@@ -2378,5 +2368,6 @@
   })();
 </script>
 
+<script src="js/hosts.js?v=202611181717" defer></script>
 </body>
 </html>
