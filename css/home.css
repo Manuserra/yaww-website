@@ -1677,7 +1677,9 @@
   .who__card-kicker { display: block; color: var(--stone-600); margin-bottom: -8px; }
   .who__card-media::before { padding-top: 56.25%; }
   .who__play { display: none; }
-  .who__controls { justify-content: space-between; }
+  /* Counter on the left, the two arrows together on the right. */
+  .who__controls { justify-content: flex-start; }
+  .who__nav--prev { margin-left: auto; }
 }
 
 /* ============================================================
