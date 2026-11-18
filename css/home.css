@@ -149,7 +149,17 @@
   flex-direction: column;
   align-items: center;
   gap: 40px;
-  padding: 56px 0;
+  /* Plus the hero's own bottom padding (the container gutter) = the
+     96px module rhythm at every width. */
+  padding: calc(96px - var(--container-pad)) 0 48px;
+}
+/* Module rhythm: modules on the same stone background each carry 48px
+   top and bottom (32px on phones), so any two neighbours sit 96px
+   (64px) apart — pillars, movement, booking, who, quotes and the FAQ
+   all follow it. Bands with their own background keep their own
+   padding. */
+@media (max-width: 767px) {
+  .home-next { padding: calc(64px - var(--container-pad)) 0 32px; }
 }
 /* Only the rail itself goes edge-to-edge; the heading, the filter bar
    and the closing button/copy keep the page's own side margin so they
@@ -952,7 +962,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 56px var(--container-pad) 24px;
+  padding: 48px var(--container-pad);
   gap: 56px;
   background: var(--stone);
 }
@@ -1049,7 +1059,7 @@
   .pillar__copy p { max-width: none; }
 }
 @media (max-width: 767px) {
-  .pillar { padding: 40px 16px 16px; gap: 40px; }
+  .pillar { padding: 32px 16px; gap: 40px; }
 }
 
 /* ============================================================
@@ -1102,7 +1112,7 @@
 .movement__media--tall { aspect-ratio: 432 / 568; }
 .movement__media--short { aspect-ratio: 432 / 423; }
 @media (max-width: 767px) {
-  .movement { padding: 40px 16px; gap: 40px; }
+  .movement { padding: 32px 16px; gap: 40px; }
   /* Mosaic instead of a vertical stack: the poolside photo runs the
      full height of a wider left column, the other two sit square on
      the right. All three stay visible at once (about a quarter of the
@@ -1126,7 +1136,7 @@
   flex-direction: column;
   align-items: center;
   gap: 56px;
-  padding: 56px var(--container-pad) 48px;
+  padding: 48px var(--container-pad);
   background: var(--stone);
 }
 .booking__intro {
@@ -1209,7 +1219,7 @@
   .booking__step { flex: 0 0 calc(50% - 24px); }
 }
 @media (max-width: 767px) {
-  .booking { padding: 40px 16px; gap: 40px; }
+  .booking { padding: 32px 16px; gap: 40px; }
   .booking__row { flex-direction: column; align-items: center; gap: 40px; }
   .booking__step { max-width: 420px; }
 }
@@ -1222,7 +1232,7 @@
   flex-direction: column;
   align-items: center;
   gap: 48px;
-  padding: 72px 0 56px;
+  padding: 48px 0;
   background: var(--stone);
 }
 /* Caps the title at 996px so it never spans the full 1392px content
@@ -1332,7 +1342,7 @@
      but the vertical rhythm matches every other section's own mobile
      step-down — lost when .quotes__grid's rules were rewritten for
      the rail, restored here. */
-  .quotes { padding: 40px 0; gap: 32px; }
+  .quotes { padding: 32px 0; gap: 32px; }
 }
 /* The 722px side-by-side card only while it fits with the next one
    still peeking (at 768 it showed 1% of it). Below 900 it stacks text
@@ -1358,7 +1368,7 @@
   flex-direction: column;
   align-items: center;
   gap: 48px;
-  padding: 56px var(--container-pad) 48px;
+  padding: 48px var(--container-pad);
   background: var(--stone);
 }
 .who__title {
@@ -1671,7 +1681,7 @@
    where you are. A 16:9 photo keeps even the longest card (Mimi's)
    within a phone screen. */
 @media (max-width: 767px) {
-  .who { padding: 40px 16px; gap: 32px; }
+  .who { padding: 32px 16px; gap: 32px; }
   .who__row { flex-direction: column; }
   .who__profiles { display: none; }
   .who__postcards { flex: 1 1 auto; width: 100%; gap: 16px; }
@@ -1793,7 +1803,7 @@
   flex-direction: column;
   align-items: center;
   gap: 40px;
-  padding: 56px var(--container-pad);
+  padding: 48px var(--container-pad);
   background: var(--stone);
 }
 .faq-section__title {
@@ -1882,7 +1892,7 @@
   color: var(--sea-blue);
 }
 @media (max-width: 767px) {
-  .faq-section { padding: 56px 16px; gap: 32px; }
+  .faq-section { padding: 32px 16px; gap: 32px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .faq__panel, .faq__answer, .faq__chev, .faq__q { transition: none; }
