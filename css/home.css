@@ -1702,7 +1702,14 @@
   padding-right: max(var(--container-pad), calc((100% - var(--container-max)) / 2));
   background: var(--stone-300);
 }
-.lead__media { align-self: stretch; min-width: 0; }
+.lead__media {
+  align-self: stretch;
+  min-width: 0;
+  /* Framed inside the band rather than flush: 24px top and bottom, the
+     site gutter on the left (same gutter the hero photo keeps). */
+  padding: 24px 0 24px var(--container-pad);
+  box-sizing: border-box;
+}
 .lead__photo {
   display: block;
   width: 100%;
@@ -1763,6 +1770,7 @@
    copy below inside the normal side margins. */
 @media (max-width: 900px) {
   .lead { grid-template-columns: minmax(0, 1fr); padding-right: 0; }
+  .lead__media { padding: var(--container-pad) var(--container-pad) 0; }
   .lead__photo { min-height: 0; max-height: none; height: auto; }
   .lead__copy { padding: 40px var(--container-pad); }
 }
