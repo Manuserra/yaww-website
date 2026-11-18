@@ -1691,32 +1691,26 @@
    the right, at the same 432px text width as the pillars. The bleed is
    what sets it apart from the pillars (whose photos stay inside the
    container) and marks the switch to a different audience. */
+/* Two equal halves of the screen: a square photo fills the left half
+   (24px frame top/bottom, the site gutter on the outer edge, 24px — half
+   the usual 48px column gap — toward the middle), the copy starts 24px
+   past the centre line and ends on the shared content edge. */
 .lead {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 432px;
-  column-gap: 48px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: center;
-  /* Right edge lines up with every other module's content edge: the
-     container pad, or half the leftover once the viewport passes the
-     1440 content max. */
-  padding-right: max(var(--container-pad), calc((100% - var(--container-max)) / 2));
   background: var(--stone-300);
 }
 .lead__media {
-  align-self: stretch;
   min-width: 0;
-  /* Framed inside the band rather than flush: 24px top and bottom, the
-     site gutter on the left (same gutter the hero photo keeps). */
-  padding: 24px 0 24px var(--container-pad);
+  padding: 24px 24px 24px var(--container-pad);
   box-sizing: border-box;
 }
 .lead__photo {
   display: block;
   width: 100%;
-  height: 100%;
-  min-height: 480px;
-  max-height: 680px;
-  aspect-ratio: 3 / 2;
+  height: auto;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
 }
 .lead__copy {
@@ -1724,8 +1718,11 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
-  padding-block: 56px;
+  padding: 56px max(var(--container-pad), calc((100vw - var(--container-max)) / 2)) 56px 24px;
 }
+/* Same 480px measure the pillar copy uses, so lines stay readable even
+   though the half is wider than that. */
+.lead__copy > * { max-width: 480px; }
 .kicker.lead__kicker { color: var(--stone-600); }
 .lead__title {
   margin: 0;
@@ -1769,9 +1766,9 @@
 /* Stacks at the same point as the pillars: photo on top, edge to edge,
    copy below inside the normal side margins. */
 @media (max-width: 900px) {
-  .lead { grid-template-columns: minmax(0, 1fr); padding-right: 0; }
+  .lead { grid-template-columns: minmax(0, 1fr); }
   .lead__media { padding: var(--container-pad) var(--container-pad) 0; }
-  .lead__photo { min-height: 0; max-height: none; height: auto; }
+  .lead__photo { aspect-ratio: 3 / 2; }
   .lead__copy { padding: 40px var(--container-pad); }
 }
 
