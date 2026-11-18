@@ -1658,13 +1658,6 @@
   .who__play { margin-left: -16px; margin-right: -8px; }
 }
 
-/* Two columns but the card has already gone photo-on-top (the
-   container query above kicks in below ~1184px): the card is now much
-   taller than the list, so pinning the controls to its bottom would
-   strand them far below the list. Here they follow the list instead. */
-@media (min-width: 768px) and (max-width: 1183px) {
-  .who__controls { align-self: start; margin-bottom: 0; }
-}
 /* No type-size steps here on purpose: the title, tab titles, quote and
    body keep the site-wide scale (24/40 section title, 20/32 display,
    16/24 body) at every width, same as every other module. */
