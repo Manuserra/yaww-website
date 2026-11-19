@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="css/base.css?v=202611192000">
 <link rel="stylesheet" href="css/filters.css?v=202611191930">
-<link rel="stylesheet" href="css/retreats.css?v=202611192000">
+<link rel="stylesheet" href="css/retreats.css?v=202611192030">
 <!-- Retreat data + the one card component every retreat card is rendered
      by. Classic scripts so the prototype still works over file://.
      Order matters: the catalogs load before the data, the data before
@@ -136,10 +136,11 @@
   <div class="container retreats">
 
     <div class="controls">
-      <div class="chips" role="group" aria-label="Filter by collection">
-        <button class="chip is-active" data-tier="all"                  aria-pressed="true">All Retreats</button>
-        <button class="chip"           data-tier="deep-dives"           aria-pressed="false">Deep Dives</button>
-        <button class="chip"           data-tier="signature-collection" aria-pressed="false">Signature Collection</button>
+      <div class="tabs" role="tablist" aria-label="Collection">
+        <button type="button" class="tabs__item is-active" data-tier="all"                  role="tab" aria-selected="true">All Retreats</button>
+        <button type="button" class="tabs__item"           data-tier="deep-dives"           role="tab" aria-selected="false">Deep Dives</button>
+        <button type="button" class="tabs__item"           data-tier="signature-collection" role="tab" aria-selected="false">Signature Collection</button>
+        <span class="tabs__indicator" aria-hidden="true"></span>
       </div>
     </div>
 
@@ -380,7 +381,7 @@
 /* ============================================================
    Retreats listing — one filter system
 
-   collection chips (tier) + When / Destination / Teacher bar (the
+   collection tabs (tier) + When / Destination / Teacher bar (the
    home's component) → results grouped by season. State lives in the
    URL so any page can deep-link into a filtered list.
    ============================================================ */
@@ -582,11 +583,29 @@ function renderIntro() {
   document.getElementById("collectionTitle").textContent = c.title;
   document.getElementById("collectionDesc").innerHTML =
     c.desc.map(line => '<span class="collection-intro__line">' + esc(line) + '</span>').join(" ");
-  document.querySelectorAll(".chip").forEach(function (b) {
+  document.querySelectorAll(".tabs__item[data-tier]").forEach(function (b) {
     const on = b.dataset.tier === state.tier;
     b.classList.toggle("is-active", on);
-    b.setAttribute("aria-pressed", on ? "true" : "false");
+    b.setAttribute("aria-selected", on ? "true" : "false");
   });
+  moveTabIndicator(tabSlide);
+  tabSlide = false;
+}
+
+/* Sliding indicator under the active collection tab. It slides only when
+   a tab is clicked (tabSlide), and jumps into place on load, on resize
+   and when fonts land. */
+let tabSlide = false;
+const REDUCE_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function moveTabIndicator(animate) {
+  const bar = document.querySelector(".tabs");
+  const tab = bar && bar.querySelector(".tabs__item.is-active");
+  const ind = bar && bar.querySelector(".tabs__indicator");
+  if (!tab || !ind || !tab.offsetWidth) return;
+  bar.classList.toggle("is-sliding-ready", !!animate && !REDUCE_MOTION);
+  ind.style.width = tab.offsetWidth + "px";
+  /* -1 so the bar sits astride the hairline */
+  ind.style.transform = "translate(" + tab.offsetLeft + "px, " + (tab.offsetTop + tab.offsetHeight - 1) + "px)";
 }
 
 const CARD_OPTS = { linkOnlyWhenPage: true };
@@ -750,9 +769,14 @@ emptyRelax.addEventListener("click", function (e) {
   if (b.dataset.relax === "tier") state.tier = "all"; else state[b.dataset.relax] = "";
   renderAll();
 });
-document.querySelectorAll(".chip").forEach(function (btn) {
-  btn.addEventListener("click", function () { state.tier = btn.dataset.tier; renderAll(); });
+document.querySelectorAll(".tabs__item[data-tier]").forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    if (state.tier === btn.dataset.tier) return;
+    state.tier = btn.dataset.tier; tabSlide = true; renderAll();
+  });
 });
+if (window.ResizeObserver) new ResizeObserver(function () { moveTabIndicator(false); }).observe(document.querySelector(".tabs"));
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { moveTabIndicator(false); });
 document.querySelectorAll(".view-toggle button").forEach(function (btn) {
   btn.addEventListener("click", function () {
     state.view = btn.dataset.view;

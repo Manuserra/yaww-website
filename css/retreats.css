@@ -36,7 +36,7 @@
   color: var(--sea-blue-200); /* inferred muted tone */
 }
 
-/* --- Controls (collection chips + view toggle) ------------ */
+/* --- Controls (collection tabs + view toggle) ------------- */
 .controls { display: flex; flex-direction: column; }
 
 
@@ -61,51 +61,63 @@
 .view-toggle button:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; border-radius: 4px; }
 
 
-.chips {
+/* Collection tabs: the same .tabs component the retreat pages use
+   (css/retreat.css), so a collection is chosen the way an accommodation
+   or an extra is everywhere else. Copied rather than shared because
+   journal.css carries its own .tabs. Three equal 216px slots, a hairline
+   under the row, a 2px sea-blue indicator that slides to the active tab. */
+.tabs {
+  position: relative;   /* the sliding indicator measures against this bar */
   display: flex;
   justify-content: center;
-  gap: 12px;                        /* group = 564 = 3×180 + 2×12 */
-  margin-top: 40px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 40px auto 0;
+  border-bottom: 1px solid var(--stone-400);
 }
-.chip {
+.tabs__item {
+  position: relative;
+  width: 216px;
+  padding: 12px 24px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 10px;
-  width: 180px;                     /* all chips same size */
-  padding: 8px 16px;                /* -> 42px tall */
-  white-space: nowrap;              /* keep one line when selected (600) */
-  border-radius: 63px;
-  border: 1px solid var(--sea-blue-100);
-  background: transparent;
+  align-items: flex-end;
+  white-space: nowrap;
   font-family: var(--font-body);
-  font-weight: 400;                 /* Caption-Regular */
-  font-size: 14px;
+  font-weight: 600;
+  font-size: 12px;
   line-height: 24px;
-  letter-spacing: 0.56px;
-  text-align: center;
+  letter-spacing: 0.48px;
+  text-transform: uppercase;
   color: var(--sea-blue-100);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transition: color .18s ease;
 }
-.chip.is-active {
-  border-color: var(--sea-blue);
-  color: var(--sea-blue);
-  font-weight: 600;                 /* Caption-Semibold */
-}
-.chip:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
-/* Hover on a collection you're not in: the pill fills with the list-row
-   wash (Stone-300 @ 40%, same as the dropdowns and view icons), and the
-   label and outline deepen to the selected sea-blue. Weight stays 400,
-   so bold still means "selected". Real pointers only. */
-.chip { cursor: pointer; transition: background-color .16s ease, border-color .16s ease, color .16s ease, transform 160ms var(--ease-out); }
-.chip:active { transform: scale(0.97); }   /* press feedback */
+.tabs__item.is-active { color: var(--sea-blue); }
+.tabs__item:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
+/* Hover: only the label moves, deepening to the selected sea-blue. */
 @media (hover: hover) and (pointer: fine) {
-  .chip:not(.is-active):hover {
-    background: rgba(225, 220, 214, 0.40);
-    border-color: var(--sea-blue);
-    color: var(--sea-blue);
-  }
+  .tabs__item:not(.is-active):hover { color: var(--sea-blue); }
 }
-@media (prefers-reduced-motion: reduce) { .chip { transition: none; } }
+.tabs__indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--sea-blue);
+  transform: translate(0, 0);
+  pointer-events: none;
+}
+.is-sliding-ready .tabs__indicator {
+  transition: transform .32s cubic-bezier(.32, .72, 0, 1),
+              width     .32s cubic-bezier(.32, .72, 0, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .tabs__item, .is-sliding-ready .tabs__indicator { transition: none; }
+}
 
 /* --- Results (season groups + cards) --------------------- */
 .results { padding-bottom: 160px; }
@@ -310,8 +322,8 @@
 @media (max-width: 767px) {
   .retreats-hero { padding: 48px 16px 40px; gap: 24px; }
   .retreats-hero h1 { font-size: 24px; line-height: 32px; }
-  .chips { flex-wrap: wrap; gap: 12px; }
-  .chip { width: auto; }
+  .tabs { width: 100%; }
+  .tabs__item { width: auto; flex: 1 1 0; padding: 12px 8px; }
   .grid { grid-template-columns: 1fr; gap: 32px; }
   .season__title { font-size: 24px; line-height: 32px; }
 
@@ -348,7 +360,7 @@
   .season:not(.season--list) { max-width: 1032px; margin-inline: auto; }
 }
 
-/* Dynamic collection intro (between chips and content).
+/* Dynamic collection intro (between tabs and content).
    The site's own page-head: the 24/40 .section-title scale every page
    opens with (Teachers, Where we go, Where we're going next) and the
    16/28 lede Teachers uses under it. */
@@ -358,7 +370,7 @@
   align-items: center;
   text-align: center;
   gap: 16px;                   /* title -> description */
-  margin-top: 56px;            /* chips -> block */
+  margin-top: 56px;            /* tabs -> block */
 }
 .collection-intro__title {
   margin: 0;
@@ -387,7 +399,7 @@ main { padding-top: 0; }
 
 
 /* --- Filter bar on the listing ---------------------------
-   collection chips → intro → When/Destination/Teacher bar → results
+   collection tabs → intro → When/Destination/Teacher bar → results
    line (count · clear · grid/list) → seasons. Component styles are in
    css/filters.css; this is only where it sits on this page. */
 .retreats > .filter-bar { margin-top: 40px; display: flex; }
