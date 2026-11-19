@@ -186,7 +186,7 @@
           <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3 13 13 M13 3 3 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
         </button>
       </div>
-      <ul role="listbox" class="filter-sheet__list" id="filterSheetList"></ul>
+      <ul role="listbox" class="filter-sheet__list" id="filterSheetList" data-lenis-prevent></ul>
       <div class="filter-sheet__foot">
         <button type="button" class="filter-sheet__clear" id="filterSheetClearBtn">Clear</button>
         <button type="button" class="btn btn--primary filter-sheet__confirm" id="filterSheetConfirmBtn"></button>
@@ -343,6 +343,8 @@
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (typeof Lenis === 'undefined') return;
 
+  /* Lenis takes over the wheel for the whole page; the filter popover and
+     the mobile sheet list carry data-lenis-prevent so they scroll natively. */
   var lenis = new Lenis({
     lerp: 0.1,
     wheelMultiplier: 0.7,
@@ -544,7 +546,7 @@ function renderFilterBar() {
         (empty ? '' : '<button type="button" class="filter-seg__clear" data-seg="' + def.key + '" aria-label="Clear ' + esc(def.label) + ' filter"><svg width="12" height="12" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3 13 13 M13 3 3 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button>') +
         '<svg class="filter-seg__chev" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 5.25 7 9.25 11 5.25" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
       '</div>' +
-      (open ? '<div class="filter-panel">' + panelHTML(def) + '</div>' : '') +
+      (open ? '<div class="filter-panel" data-lenis-prevent>' + panelHTML(def) + '</div>' : '') +
     '</div>';
   }).join("");
 }
