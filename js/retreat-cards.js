@@ -372,7 +372,8 @@
      saying so and the teacher line carrying the action, so it keeps the
      same height as its neighbours. opts.href is where it points (the
      caller decides: the filtered listing today, the destination's own
-     retreat page once those exist). */
+     retreat page once those exist). opts.action:false drops that last
+     line, for when the waitlist form sits right beside the card. */
   function waitlistParts(loc) {
     var last = getLastEdition(loc.id);
     return {
@@ -398,7 +399,7 @@
           '<div class="card__title">' + esc(p.title) + '</div>' +
           '<div class="card__loc">' + esc(loc.displayName) + '</div>' +
           '<div class="card__date">Dates to be announced</div>' +
-          '<div class="card__teacher">Join the waitlist</div>' +
+          (opts.action === false ? '' : '<div class="card__teacher">Join the waitlist</div>') +
         '</div>' +
       '</article>';
     return opts.href
@@ -416,7 +417,7 @@
         '</div>' +
         '<span class="r-loc">' + esc(loc.displayName) + '</span>' +
         '<span class="r-date">Dates to be announced</span>' +
-        '<span class="r-teacher">Join the waitlist</span>' +
+        '<span class="r-teacher">' + (opts.action === false ? '' : 'Join the waitlist') + '</span>' +
         '<span class="r-avail">Waitlist</span>' +
       '</div>';
     return opts.href
