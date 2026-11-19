@@ -141,6 +141,14 @@
 }
 .view-toggle button { display: inline-flex; color: var(--sea-blue-100); }
 .view-toggle button.is-active { color: var(--sea-blue); }
+/* Hover on the view you're not in: the icon deepens to the active
+   sea-blue, the same "this is where you'd go" cue the tabs used. Real
+   pointers only, so a tap doesn't leave the other icon looking chosen. */
+.view-toggle button { cursor: pointer; transition: color .18s ease; }
+@media (hover: hover) and (pointer: fine) {
+  .view-toggle button:not(.is-active):hover { color: var(--sea-blue); }
+}
+@media (prefers-reduced-motion: reduce) { .view-toggle button { transition: none; } }
 .view-toggle button:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; border-radius: 4px; }
 
 /* Two instances: desktop keeps the toggle inside the tabbar (top-right);
