@@ -687,10 +687,9 @@ def build(rid, cat, assets, template):
                "       Answers quoted from the old site's policies for this retreat.\n", "faq comment")
 
     # --------------------------------------------------------- testimonials
-    # The template's quotes are labelled placeholders with stock faces; an
-    # invented testimonial must never ship, and the old site has none.
-    doc = swap(doc, '<section class="quotes">',
-               '<section class="quotes" hidden data-empty="no guest quotes published for this retreat yet">', "quotes")
+    # The template's own placeholder quotes, kept on every page for now: they
+    # are labelled "Placeholder quote, to be replaced" until real guest
+    # words arrive. The old site has none to bring over.
 
     doc = swap(doc, "\n</body>", "\n" + HOSTS_JS + "\n</body>", "hosts js")
     return f"retreatpage-{rid}.html", doc, d

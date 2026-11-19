@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>YAWW · Yoga Adventures Worldwide</title>
+<!-- The official home: the looping hero clip (hero-home.mp4). Until
+     2026-11-19 this lived at index-video.html, which now redirects here;
+     the earlier photo-hero home is kept at index-classic.html. -->
 
 <!-- Fonts: Libre Baskerville (headings) + Raleway (body) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,14 +15,14 @@
 <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css" crossorigin="anonymous">
 
 <link rel="stylesheet" href="css/base.css?v=202611181940">
-<link rel="stylesheet" href="css/home.css?v=202611181940">
+<link rel="stylesheet" href="css/home.css?v=202611182140">
 <!-- Retreat data + the one card component every retreat card is rendered
      by. Classic scripts so the prototype still works over file://.
      Order matters: the catalogs load before the data, the data before
      the component. -->
 <script src="data/locations.js?v=202611161843"></script>
 <script src="data/teachers.js?v=202611161843"></script>
-<script src="data/retreats.js?v=202611190200"></script>
+<script src="data/retreats.js?v=202611191000"></script>
 <script src="js/retreat-cards.js?v=202611181712"></script>
 
 </head>
@@ -122,46 +125,70 @@
   <!-- =========================================================
        1 · HERO — Promise
        ========================================================= -->
-  <section class="home-hero">
-    <div class="home-hero__media">
-      <img src="images/hero-montenegro-yoga.jpg" alt="A group of yogis reaching upward during an outdoor class overlooking the Bay of Kotor, Montenegro" loading="lazy">
-      <div class="home-hero__proof">
-        <div class="home-hero__proof-item">
-          <span class="home-hero__proof-value">Since 2008</span>
-          <span class="home-hero__proof-label">Exploring together</span>
-        </div>
-        <div class="home-hero__proof-item">
-          <span class="home-hero__proof-value">★ 4.9</span>
-          <span class="home-hero__proof-label">Google Reviews</span>
-        </div>
-        <div class="home-hero__proof-item">
-          <span class="home-hero__proof-value">600+</span>
-          <span class="home-hero__proof-label">Retreats hosted</span>
+  <section class="home-hero home-hero--overlay">
+    <div class="home-hero__media home-hero__media--video">
+      <!-- Decorative background footage: muted, looping, no controls,
+           and playsinline so iOS doesn't take it fullscreen. preload
+           is auto (not lazy like the photo is on index.html) because
+           this is the first thing on the page — there is nothing to
+           defer it behind. The <img> inside is the fallback for a
+           browser that won't play the file at all. -->
+      <video
+        src="hero-home.mp4?v=202611182140"
+        poster="images/hero-home-poster.jpg"
+        autoplay muted loop playsinline preload="auto"
+        aria-hidden="true" tabindex="-1">
+        <img src="images/hero-home-poster.jpg" alt="Guests on a YAWW retreat swimming in open water beside two anchored sailboats">
+      </video>
+      <!-- Copy sits on the footage, behind a light scrim (see
+           .home-hero--overlay in home.css) so it stays legible on the
+           brightest frames without darkening the whole clip. -->
+      <div class="home-hero__copy">
+        <h1 class="home-hero__title">Travel that moves you</h1>
+        <p class="home-hero__desc">Thoughtfully curated journeys for curious travelers. <br>Exceptional yoga, authentic cultural experiences, incredible food, <br>and good company in some of the world's most inspiring destinations.</p>
+        <div class="home-hero__proof">
+          <div class="home-hero__proof-item">
+            <span class="home-hero__proof-value">Since 2008</span>
+            <span class="home-hero__proof-label">Exploring together</span>
+          </div>
+          <div class="home-hero__proof-item">
+            <span class="home-hero__proof-value">★ 4.9</span>
+            <span class="home-hero__proof-label">Google Reviews</span>
+          </div>
+          <div class="home-hero__proof-item">
+            <span class="home-hero__proof-value">600+</span>
+            <span class="home-hero__proof-label">Retreats hosted</span>
+          </div>
         </div>
       </div>
+      <!-- Scroll cue, ported from evaneos.es's hero: a 48px button with
+           Material's keyboard_arrow_down filling it, a 4s loop that
+           fades in near the top and fades out drifting down, paused on
+           hover; a click scrolls one viewport down, smoothly. -->
+      <button type="button" class="home-hero__cue" aria-label="Scroll down">
+        <svg viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true"><path d="M480-361q-8 0-15-2.5t-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5Z"/></svg>
+      </button>
     </div>
-    <div class="home-hero__copy">
-      <h1 class="home-hero__title">Travel that moves you</h1>
-      <p class="home-hero__desc">Thoughtfully curated journeys for curious travelers.<br>Exceptional yoga, authentic cultural experiences, incredible food,<br>and good company in some of the world's most inspiring destinations.</p>
-      <p class="home-hero__desc">YOGA. CULTURE. CONNECTION.</p>
-    </div>
-    <!-- Same filter bar as "Where we're going next" below — moved up
-         here instead of duplicated: one #filterBar, one set of JS
-         listeners, the rail further down the page re-renders live as
-         soon as a segment here is picked, same as it always did. -->
-    <div class="filter-bar" role="group" aria-label="Filter retreats" id="filterBar"></div>
   </section>
 
   <!-- =========================================================
        2 · WHERE WE'RE GOING NEXT — Producto temprano
        Reuses the retreat-card component; links to the real retreat pages.
-       The Teacher/Destination/When filter itself now lives in the hero
-       above (#filterBar) — this section is just its results. Filter
-       markup is a static shell; retreat-filter.js below renders the
-       bar, the summary, the mobile sheet and re-renders the rail's
-       own track, same as before.
+       The Teacher/Destination/When filter opens the section, under its
+       heading. Filter markup is a static shell; retreat-filter.js below
+       renders the bar, the summary, the mobile sheet and re-renders the
+       rail's own track, same as before.
        ========================================================= -->
-  <section class="home-next" id="next-retreats">
+  <section class="home-next home-next--headed" id="next-retreats">
+
+    <div class="home-next__head">
+      <p class="kicker home-next__kicker">Upcoming retreats</p>
+      <h2 class="section-title">Where we're going next</h2>
+    </div>
+    <!-- The one #filterBar: index.html keeps it in the hero, under the
+         copy; here the hero is the clip, so the bar opens this section
+         instead. Same id, same JS, same rail re-rendering below. -->
+    <div class="filter-bar" role="group" aria-label="Filter retreats" id="filterBar"></div>
 
     <div class="filter-summary">
       <p class="filter-summary__text" id="filterSummaryText"></p>
@@ -1608,6 +1635,60 @@
     renderStackOnce();
     updateStackPositions();
     renderCounter();
+  })();
+</script>
+
+<script>
+  /* index-video · hero video
+     Two jobs, both about not playing footage nobody is watching:
+     reduced-motion users get the poster frame held still, and the
+     loop pauses while the hero is scrolled off screen (the page is
+     long — there is no reason to keep decoding frames behind the
+     retreats rail). */
+  (function () {
+    var video = document.querySelector('.home-hero__media--video video');
+    if (!video) return;
+
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    function stopForReducedMotion() {
+      video.pause();
+      video.removeAttribute('autoplay');
+      try { video.currentTime = 0; } catch (e) {}
+    }
+
+    if (reduced.matches) stopForReducedMotion();
+    /* addEventListener on a MediaQueryList is the modern form;
+       addListener is the Safari < 14 fallback. */
+    if (reduced.addEventListener) {
+      reduced.addEventListener('change', function (e) {
+        if (e.matches) stopForReducedMotion(); else video.play().catch(function () {});
+      });
+    } else if (reduced.addListener) {
+      reduced.addListener(function (e) {
+        if (e.matches) stopForReducedMotion(); else video.play().catch(function () {});
+      });
+    }
+
+    /* Scroll cue: same handler as evaneos.es — one viewport down. */
+    var cue = document.querySelector('.home-hero__cue');
+    if (cue) cue.addEventListener('click', function () {
+      window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+    });
+
+    if (!('IntersectionObserver' in window)) return;
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (reduced.matches) return;
+        if (entry.isIntersecting) {
+          /* play() returns a rejected promise if the browser blocks
+             autoplay — nothing to recover from, the poster stays. */
+          video.play().catch(function () {});
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0 }).observe(video);
   })();
 </script>
 

@@ -53,6 +53,19 @@
    ============================================================ */
 window.YAWW_RETREATS = [
   {
+    id: "morocco-nov-2026",
+    slug: "morocco-nov-2026",
+    pageUrl: "retreatpage-morocco-nov-2026.html",
+    officialName: "Mesmerized in Morocco : A Yoga & Culture Retreat",
+    locationId: "morocco",
+    teacherIds: ["dawn-thie"],
+    startDate: "2026-11-07",
+    endDate: "2026-11-14",
+    status: "sold_out",
+    collection: "signature-collection",
+    url: "/retreats/morocco-nov-2026/"
+  },
+  {
     id: "el-cuyo-dec-2026-delaney",
     slug: "el-cuyo-dec-2026-delaney",
     pageUrl: "retreatpage-el-cuyo-dec-2026-delaney.html",

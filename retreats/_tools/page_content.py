@@ -228,6 +228,33 @@ TRAVEL_TIPS = {
             "Comfortable walking shoes for temples, markets and the trail.",
         ]),
     ],
+
+    # Condensed from the old site's own Morocco travel notes.
+    "morocco": [
+        ("Arrival", [
+            "Fly into Marrakech Menara (RAK), where the retreat begins.",
+            "Airport transfers to our riad are shared or private, depending on everyone’s flights. Arriving early? Meet the shuttle at the airport or come to the riad on your own.",
+        ]),
+        ("What to Wear", [
+            "Morocco is a progressive Muslim country. Outfits to the knee that cover the shoulders avoid unwanted attention.",
+            "Long pants for the camel ride on the beach, and a swimsuit for the spa day and the pool.",
+        ]),
+        ("Weather", [
+            "Essaouira is breezy, around 70°F / 20°C most days. Marrakech is considerably warmer.",
+            "Fall is usually dry; spring can bring rain, so pack a light rain jacket.",
+        ]),
+        ("What to Bring", [
+            "Mats and props are provided in both Marrakech and Essaouira.",
+            "Sunglasses, a sun hat, good walking shoes and a camera.",
+            "A universal adaptor: outlets are European, 2-prong.",
+            "A collapsible duffle for everything you’ll find in the souks.",
+            "Sunscreen, probiotics and any medication that’s hard to get abroad.",
+        ]),
+        ("Money", [
+            "The currency is the Moroccan dirham, roughly 10 to 1 USD.",
+            "Use your ATM card at local ATMs, at the airport or in the main square of either city.",
+        ]),
+    ],
 }
 
 # Tab names for properties the old site describes but never names. Each is
@@ -267,6 +294,8 @@ VENUE_TABS = {
     "4 nights in Costa Vicentina : a secluded boutique stay": "Costa Vicentina",
     "5 nights in Chiang Mai Old City": "Chiang Mai",
     "4 nights beachfront on Koh Yao Noi": "Koh Yao Noi",
+    "Riad in the Marrakech medina": "Marrakech",
+    "Countryside domes near Essaouira": "Essaouira",
 }
 
 EXTRA_TABS = {
