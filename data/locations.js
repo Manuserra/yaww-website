@@ -10,6 +10,14 @@
      region      -> parent term / ACF select  (filter grouping)
      country     -> ACF text
      pageUrl     -> permalink of the location page, null until one exists
+     program     -> only for a destination with no upcoming dates: the
+                    retreat we run there, between editions. name is its
+                    title on the old site, pageUrl its dateless retreat
+                    page (built by retreats/_tools/build_page.py in
+                    waitlist mode, where the waitlist lead is captured),
+                    image/image2x its card photo (the builder crops it
+                    from the page's hero), collection when known.
+                    Remove it once dates are out.
      image       -> ACF image  (card media; null falls back to the
                     gradient placeholder the prototype has always used)
 
@@ -103,7 +111,8 @@ window.YAWW_LOCATIONS = [
     country: "Iceland",
     pageUrl: "locationpage-iceland.html",
     image: "images/location-iceland.jpg",
-    placeholderHue: 200
+    placeholderHue: 200,
+    program: { name: "The Iceland Experience", pageUrl: "retreatpage-iceland.html", collection: "signature-collection", image: "images/retreat-cards/iceland-waitlist.webp", image2x: "images/retreat-cards/iceland-waitlist@2x.webp" }
   },
   {
     id: "france",
@@ -113,7 +122,8 @@ window.YAWW_LOCATIONS = [
     country: "France",
     pageUrl: null,
     image: "images/location-france.jpg",
-    placeholderHue: 30
+    placeholderHue: 30,
+    program: { name: "The Paris-Champagne Experience", pageUrl: "retreatpage-france.html", collection: "signature-collection", image: "images/retreat-cards/france-waitlist.webp", image2x: "images/retreat-cards/france-waitlist@2x.webp" }
   },
   {
     id: "sardinia",
@@ -123,7 +133,8 @@ window.YAWW_LOCATIONS = [
     country: "Italy",
     pageUrl: null,
     image: "images/location-sardinia.jpg",
-    placeholderHue: 194
+    placeholderHue: 194,
+    program: { name: "Majestic Sardinia : A Yoga & Nature Retreat", pageUrl: "retreatpage-sardinia.html", image: "images/retreat-cards/sardinia-waitlist.webp", image2x: "images/retreat-cards/sardinia-waitlist@2x.webp" }
   },
   {
     // PROPOSED label — destination exists on locations.html, no retreat
@@ -135,7 +146,8 @@ window.YAWW_LOCATIONS = [
     country: "Spain",
     pageUrl: null,
     image: "images/location-spain-basque-country.jpg",
-    placeholderHue: 165
+    placeholderHue: 165,
+    program: { name: "Basque Country Spain : Yoga & Gastronomy Retreat", pageUrl: "retreatpage-spain-basque-country.html", image: "images/retreat-cards/spain-basque-country-waitlist.webp", image2x: "images/retreat-cards/spain-basque-country-waitlist@2x.webp" }
   },
   {
     id: "morocco",
@@ -145,7 +157,8 @@ window.YAWW_LOCATIONS = [
     country: "Morocco",
     pageUrl: null,
     image: "images/location-morocco.jpg",
-    placeholderHue: 24
+    placeholderHue: 24,
+    program: { name: "Mesmerized in Morocco : A Yoga & Culture Retreat", pageUrl: "retreatpage-morocco.html", collection: "signature-collection", image: "images/retreat-cards/morocco-waitlist.webp", image2x: "images/retreat-cards/morocco-waitlist@2x.webp" }
   },
   {
     id: "thailand",
@@ -167,7 +180,8 @@ window.YAWW_LOCATIONS = [
     country: "Turkey",
     pageUrl: null,
     image: "images/location-turkey.jpg",
-    placeholderHue: 15
+    placeholderHue: 15,
+    program: { name: "Yoga & Culture Retreat Turkey : Istanbul & Cappadocia", pageUrl: "retreatpage-turkey.html", image: "images/retreat-cards/turkey-waitlist.webp", image2x: "images/retreat-cards/turkey-waitlist@2x.webp" }
   }
 ];
 

@@ -117,16 +117,25 @@
       }
     },
     "date_start": {
-      "type": "string",
-      "description": "ISO 8601 date, first day of the retreat."
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "ISO 8601 date, first day of the retreat. null on a waitlist program whose page publishes no dates."
     },
     "date_end": {
-      "type": "string",
-      "description": "ISO 8601 date, last day (departure day) of the retreat."
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "ISO 8601 date, last day (departure day) of the retreat. null on a waitlist program whose page publishes no dates."
     },
     "dates_label": {
-      "type": "string",
-      "description": "Human date range exactly as published (.retreat-hero__meta)."
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Human date range exactly as published (.retreat-hero__meta). null on a waitlist program whose page publishes no dates."
     },
     "season": {
       "type": [

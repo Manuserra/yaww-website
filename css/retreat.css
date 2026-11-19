@@ -100,6 +100,8 @@
 }
 .retreat-hero__meta > :first-child { text-align: right; }
 .retreat-hero__meta > :last-child  { text-align: left; }
+/* A waitlist page has one fact, "Dates to be announced": centred across. */
+.retreat-hero__meta > :only-child { grid-column: 1 / -1; text-align: center; }
 
 /* Frame 429: CTA buttons */
 .retreat-hero__ctas { display: flex; align-items: center; gap: 16px; }
@@ -2381,3 +2383,111 @@ html.has-lightbox { overflow: hidden; }
   .booking-bar .btn { min-height: 44px; padding: 10px 24px; }
 }
 
+
+/* ============================================================
+   WAITLIST — a destination between editions
+   On the dateless retreat page (build_page.py --waitlist) this takes
+   the place of Rooms pricing: same stone band, one centred box, the
+   location page's waitlist form (css/location.css, .loc-waitlist__*)
+   restated for this sheet. The hero's "Join the waitlist" jumps here.
+   ============================================================ */
+.waitlist {
+  padding: 56px 24px;
+  background: var(--stone);
+  scroll-margin-top: 72px;              /* clear of the sticky nav */
+}
+.waitlist__inner {
+  box-sizing: border-box;
+  max-width: 720px;
+  margin-inline: auto;
+  padding: 56px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  background: var(--stone-100);
+  border: 1px solid var(--stone-300);
+}
+.waitlist__title {
+  margin: 0;
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+  color: var(--sea-blue);
+}
+.waitlist__body {
+  margin: 0;
+  max-width: 480px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--sea-blue-300);
+}
+.waitlist__form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  width: 560px;
+  max-width: 100%;
+  margin-top: 8px;
+}
+.waitlist__form[hidden], .waitlist__done[hidden] { display: none; }
+.waitlist__label-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.waitlist__input {
+  flex: 1 1 200px;
+  min-width: 0;
+  box-sizing: border-box;
+  height: 56px;
+  padding: 0 16px;
+  color: var(--sea-blue);
+  font-family: var(--font-body);
+  font-size: 16px;                      /* 16, not 14: iOS zooms into anything smaller */
+  line-height: 24px;
+  letter-spacing: 0.56px;
+  background: transparent;
+  border: 1px solid var(--stone-400);
+  border-radius: 0;
+}
+.waitlist__input::placeholder { color: var(--sea-blue-200); opacity: 1; }
+.waitlist__input:focus { outline: none; border-color: var(--sea-blue); }
+.waitlist__submit { flex: 0 0 auto; }
+.waitlist__error {
+  flex-basis: 100%;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--sea-blue);
+}
+.waitlist__done { display: flex; flex-direction: column; align-items: center; gap: 8px; outline: none; }
+.waitlist__note {
+  margin: 8px 0 0;
+  max-width: 480px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--sea-blue-200);
+}
+.waitlist__links { margin: 0; font-family: var(--font-body); font-size: 14px; line-height: 24px; letter-spacing: 0.56px; }
+.waitlist__links a { color: var(--sea-blue); text-decoration: none; border-bottom: 1px solid var(--sea-blue); padding-bottom: 2px; }
+@media (max-width: 767px) {
+  .waitlist { padding: 40px 16px; }
+  .waitlist__inner { padding: 40px 24px; }
+  .waitlist__title { font-size: 20px; line-height: 32px; }
+  .waitlist__form { flex-direction: column; width: 100%; }
+  /* In a column the 200px flex-basis would become each field's height. */
+  .waitlist__input { flex: 0 0 auto; width: 100%; }
+  .waitlist__submit { width: 100%; }
+}

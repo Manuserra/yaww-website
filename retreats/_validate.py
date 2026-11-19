@@ -99,7 +99,7 @@ def walk_images(node, path, out):
 
 
 def main():
-    idx_slugs = [r["slug"] for r in INDEX["retreats"]]
+    idx_slugs = [r["slug"] for r in INDEX["retreats"]] + [r["slug"] for r in INDEX.get("waitlist", [])]
     dirs = sorted(d for d in os.listdir(HERE)
                   if os.path.isdir(os.path.join(HERE, d)) and not d.startswith("_"))
     if set(idx_slugs) != set(dirs):
@@ -123,17 +123,19 @@ def main():
         # --- cross-checks the schema cannot express ---------------------
         if d.get("slug") != slug:
             err(where, f"slug field {d.get('slug')!r} does not match the folder name")
-        try:
-            a = datetime.date.fromisoformat(d["date_start"])
-            b = datetime.date.fromisoformat(d["date_end"])
-            if b <= a:
-                err(where, "date_end is not after date_start")
-            if d.get("nights") is not None and d["nights"] != (b - a).days:
-                err(where, f"nights={d['nights']} but the dates span {(b - a).days} nights")
-            if d.get("days") is not None and d["days"] != (b - a).days + 1:
-                err(where, f"days={d['days']} but the dates span {(b - a).days + 1} days")
-        except (KeyError, ValueError) as e:
-            err(where, f"dates not ISO 8601: {e}")
+        # A waitlist program whose page publishes no dates has none to check.
+        if not (d.get("status") == "waitlist" and d.get("date_start") is None):
+            try:
+                a = datetime.date.fromisoformat(d["date_start"])
+                b = datetime.date.fromisoformat(d["date_end"])
+                if b <= a:
+                    err(where, "date_end is not after date_start")
+                if d.get("nights") is not None and d["nights"] != (b - a).days:
+                    err(where, f"nights={d['nights']} but the dates span {(b - a).days} nights")
+                if d.get("days") is not None and d["days"] != (b - a).days + 1:
+                    err(where, f"days={d['days']} but the dates span {(b - a).days + 1} days")
+            except (KeyError, ValueError, TypeError) as e:
+                err(where, f"dates not ISO 8601: {e}")
 
         if len(d.get("seo_title") or "") > 60:
             err(where, f"seo_title is {len(d['seo_title'])} characters (max 60)")

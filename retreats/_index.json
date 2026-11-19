@@ -7,7 +7,8 @@
   "The old site groups retreats by LOCATION: one post per destination holding several dates. Each row here is one concrete edition (destination + dates + teacher), which is how the new site models a retreat. `source_post_slug` says which location post it came from and `shared_location_key` which _shared image folder it draws on.",
   "morocco-nov-2026 began on 2026-11-07, before the extraction date, so it is already under way rather than bookable. It is kept because the old site still lists it under Upcoming Dates; `started_before_today` flags it.",
   "`tier` is only set where the source post carries the retreat_categories-signature-retreats term. The old site has no Deep Dives taxonomy, so every other row is null rather than guessed. The tiers hard-coded in retreats.html are placeholder design data and were not used.",
-  "`nights` is the difference between date_start and date_end; it matches the nights each source page states in its Includes list."
+  "`nights` is the difference between date_start and date_end; it matches the nights each source page states in its Includes list.",
+  "`waitlist` lists retreats with no upcoming dates, scraped on 2026-11-19 from their old-site pages for the dateless retreat pages (build_page.py --waitlist). One row per location, folder named by location id; dates are null where the page publishes none. Morocco's waitlist page reads morocco-nov-2026."
  ],
  "retreats": [
   {
@@ -541,6 +542,73 @@
    "shared_location_key": "oaxaca",
    "started_before_today": false,
    "data": "retreats/oaxaca-oct-2027/data.json"
+  }
+ ],
+ "waitlist": [
+  {
+   "slug": "france",
+   "title": "The Paris-Champagne Experience",
+   "destination": "France",
+   "country": "France",
+   "location_label": "Paris & Champagne, France",
+   "date_start": null,
+   "date_end": null,
+   "status": "waitlist",
+   "tier": "signature",
+   "source_url": "https://yogaadventuresworldwide.com/retreat/the-paris-champagne-experience/",
+   "data": "retreats/france/data.json"
+  },
+  {
+   "slug": "iceland",
+   "title": "The Iceland Experience : From Reykjavík to the wild",
+   "destination": "Iceland",
+   "country": "Iceland",
+   "location_label": "Reykjavík & the South Coast, Iceland",
+   "date_start": null,
+   "date_end": null,
+   "status": "waitlist",
+   "tier": "signature",
+   "source_url": "https://yogaadventuresworldwide.com/retreat/yoga-retreat-in-iceland/",
+   "data": "retreats/iceland/data.json"
+  },
+  {
+   "slug": "sardinia",
+   "title": "Majestic Sardinia : A Yoga & Nature Retreat",
+   "destination": "Sardinia",
+   "country": "Italy",
+   "location_label": "Sardinia, Italy",
+   "date_start": null,
+   "date_end": null,
+   "status": "waitlist",
+   "tier": null,
+   "source_url": "https://yogaadventuresworldwide.com/retreat/yoga-food-wine-adventure-sardinia/",
+   "data": "retreats/sardinia/data.json"
+  },
+  {
+   "slug": "spain-basque-country",
+   "title": "Basque Country Spain : Yoga & Gastronomy Retreat",
+   "destination": "Basque Country",
+   "country": "Spain",
+   "location_label": "Basque Country, Spain",
+   "date_start": "2025-10-11",
+   "date_end": "2025-10-17",
+   "status": "waitlist",
+   "tier": null,
+   "source_url": "https://yogaadventuresworldwide.com/retreat/basque-country-spain-yoga-gastronomy-retreat/",
+   "data": "retreats/spain-basque-country/data.json"
+  },
+  {
+   "slug": "turkey",
+   "title": "Yoga & Culture Retreat Turkey : Istanbul & Cappadocia",
+   "destination": "Turkey",
+   "country": "Turkey",
+   "location_label": "Istanbul & Cappadocia, Turkey",
+   "date_start": null,
+   "date_end": null,
+   "status": "waitlist",
+   "tier": null,
+   "source_url": "https://yogaadventuresworldwide.com/retreat/istanbul-yoga-retreat-art/",
+   "data": "retreats/turkey/data.json"
   }
  ]
 }

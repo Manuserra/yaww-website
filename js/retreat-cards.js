@@ -350,11 +350,11 @@
   /* ---------- between editions ------------------------------------------ */
 
   /* A destination we run but that has no upcoming date right now:
-     Morocco after its November edition, Iceland before its first one.
-     It still belongs in the listing, as a waitlist card rather than a
-     date, so nobody concludes it doesn't exist. Only destinations with
-     something to show qualify: a past edition (its name and photo) or a
-     location page. The rest of the catalog still shows in the filter. */
+     Morocco after its November edition, Iceland, France and the rest
+     between theirs. It still belongs in the listing, as a waitlist card
+     rather than a date, so nobody concludes it doesn't exist. The card
+     opens the destination's dateless retreat page (location.program in
+     data/locations.js), which is where the waitlist lead is captured. */
   function getLastEdition(locationId) {
     var past = retreats().filter(function (r) {
       return r.locationId === locationId && !isUpcoming(r);
@@ -364,29 +364,37 @@
   function getWaitlistDestinations() {
     return locationGroups().reduce(function (out, g) { return out.concat(g.items); }, [])
       .filter(function (loc) {
-        return !getRetreatsByLocation(loc.id).length && (loc.pageUrl || getLastEdition(loc.id));
+        return !getRetreatsByLocation(loc.id).length && (loc.program || loc.pageUrl || getLastEdition(loc.id));
       });
+  }
+  /* Where a waitlist card points: the dateless retreat page, then the
+     location page. */
+  function waitlistHref(loc) {
+    return (loc.program && loc.program.pageUrl) || loc.pageUrl || "";
   }
 
   /* The waitlist card: the narrow card's markup with the date line
      saying so and the teacher line carrying the action, so it keeps the
-     same height as its neighbours. opts.href is where it points (the
-     caller decides: the filtered listing today, the destination's own
-     retreat page once those exist). opts.action:false drops that last
-     line, for when the waitlist form sits right beside the card. */
+     same height as its neighbours. opts.href overrides where it points
+     (default: waitlistHref). */
   function waitlistParts(loc) {
     var last = getLastEdition(loc.id);
+    var prog = loc.program || {};
+    var coll = prog.collection || (last && last.collection) || "";
     return {
       last: last,
-      title: last ? last.officialName : loc.name,
-      tier: last ? (CARD_TIER[last.collection] || "") : "",
-      sig: !!last && last.collection === "signature-collection"
+      title: prog.name || (last ? last.officialName : loc.name),
+      coll: coll,
+      tier: CARD_TIER[coll] || "",
+      sig: coll === "signature-collection"
     };
   }
   function renderWaitlistCard(loc, opts) {
     opts = opts || {};
     var p = waitlistParts(loc);
-    var media = retreatMedia(p.last, loc);
+    var href = opts.href != null ? opts.href : waitlistHref(loc);
+    var prog = loc.program || {};
+    var media = prog.image ? { src: prog.image, src2x: prog.image2x || null } : retreatMedia(p.last, loc);
     var label = '<span class="card__label' + (p.sig ? ' card__label--signature' : '') + '">' +
         (p.tier ? '<span class="card__label-tier">' + esc(p.tier) + '</span><span class="card__label-sep" aria-hidden="true"></span>' : '') +
         '<span class="card__label-status">Waitlist</span></span>';
@@ -402,17 +410,18 @@
           (opts.action === false ? '' : '<div class="card__teacher">Join the waitlist</div>') +
         '</div>' +
       '</article>';
-    return opts.href
-      ? '<a class="result-link" href="' + esc(opts.href) + '" data-waitlist-dest="' + esc(loc.id) + '">' + inner + '</a>'
+    return href
+      ? '<a class="result-link" href="' + esc(href) + '" data-waitlist-dest="' + esc(loc.id) + '">' + inner + '</a>'
       : inner;
   }
   function renderWaitlistRow(loc, opts) {
     opts = opts || {};
     var p = waitlistParts(loc);
+    var href = opts.href != null ? opts.href : waitlistHref(loc);
     var inner =
       '<div class="list-row list-row--waitlist">' +
         '<div class="r-namecell">' +
-          '<span class="r-tier">' + esc(p.last ? collectionLabel(p.last.collection) : "") + '</span>' +
+          '<span class="r-tier">' + esc(p.coll ? collectionLabel(p.coll) : "") + '</span>' +
           '<span class="r-name">' + esc(p.title) + '</span>' +
         '</div>' +
         '<span class="r-loc">' + esc(loc.displayName) + '</span>' +
@@ -420,8 +429,8 @@
         '<span class="r-teacher">' + (opts.action === false ? '' : 'Join the waitlist') + '</span>' +
         '<span class="r-avail">Waitlist</span>' +
       '</div>';
-    return opts.href
-      ? '<a class="result-link" href="' + esc(opts.href) + '" data-waitlist-dest="' + esc(loc.id) + '">' + inner + '</a>'
+    return href
+      ? '<a class="result-link" href="' + esc(href) + '" data-waitlist-dest="' + esc(loc.id) + '">' + inner + '</a>'
       : inner;
   }
 
@@ -543,6 +552,7 @@
   YAWW.wireWaitlistForm       = wireWaitlistForm;
   YAWW.getLastEdition         = getLastEdition;
   YAWW.getWaitlistDestinations = getWaitlistDestinations;
+  YAWW.waitlistHref           = waitlistHref;
   YAWW.renderWaitlistCard     = renderWaitlistCard;
   YAWW.renderWaitlistRow      = renderWaitlistRow;
   YAWW.locationGroups         = locationGroups;

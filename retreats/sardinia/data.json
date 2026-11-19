@@ -1,0 +1,706 @@
+{
+ "slug": "sardinia",
+ "title": "Majestic Sardinia : A Yoga & Nature Retreat",
+ "subtitle": null,
+ "destination": "Sardinia",
+ "location_label": "Sardinia, Italy",
+ "country": "Italy",
+ "region": "Maddalena Islands & Barbagia",
+ "tier": null,
+ "tier_label": null,
+ "tier_source": null,
+ "status": "waitlist",
+ "status_label": null,
+ "urgency": null,
+ "date_start": null,
+ "date_end": null,
+ "dates_label": null,
+ "season": null,
+ "nights": 6,
+ "days": null,
+ "teachers": [],
+ "teacher_unassigned": true,
+ "hero_image": {
+  "file": "retreats/sardinia/img/yoga-retreat-sardinia-turquoise-cove-and-granite-rocks.jpg",
+  "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/IMG_2447-3-scaled-e1666847979251.jpeg",
+  "alt": "Turquoise water in a cove ringed by granite rocks on the coast of Sardinia, Italy",
+  "shared": false
+ },
+ "intro": "One of the loveliest places we have visited, Sardinia kind of has it all! Its spectacular beaches with crystal clear waters, stunning vistas and dreamy nature baths, ancient ruins steeped with history, rich agriculture and undeniably incredible food, olive oils and wines make Sardinia a place that we are SO thrilled to share with you!",
+ "about_title": null,
+ "about_body": [
+  "We honestly had a hard time narrowing this one down but we believe we have curated a fantastic glimpse into this charming island that will wet your whistle and get you excited to learn more. Our retreat begins in the northwest corner near the Maddalena Islands, the star child of Sardinia boasting otherworldly rock formations, pristine waters and arguably the best beaches on the island. We spend three nights and three days exploring this area, enjoying the beaches, taking to the waters for a luxury boating excursion, checking out the nooks and crannies in kayaks or paddle boats and finally a day hike in the breath taking Moon Valley at that golden hour when the light makes everything just magical.",
+  "We feel any trip to Sardinia wouldn’t be complete without a perspective shift to the majestic mountain landscapes in the middle of the island. We fell in LOVE with the central east coast and are so thrilled to take you to our favorite farmhouse and art hotel to enjoy their authentic experiences, mouth watering cuisine, and hiking and excursions to round out the experience."
+ ],
+ "highlights": [],
+ "includes": [
+  "3 nights in beach front hotel with garden accommodations near the Maddalena Islands",
+  "3 nights in a mountain farmstead with sweeping views & authentic experiences",
+  "Outdoor yoga practices as per itinerary",
+  "Delicious Sardinian buffet style breakfasts daily",
+  "All lunches and dinners (except 1 of each) including haute cuisine and farm-to-table dining",
+  "Traditional Sardinian cooking class making pasta and ceremony bread by hand with lunch",
+  "Ruins Excursion with hiking, caves and lunch with the shepherds (hiking levels for all)",
+  "Luxury boating excursion to the Maddalena Islands with lunch",
+  "Guided Moon Valley Hiking excursion",
+  "Wine Tasting in the mountains",
+  "Shared airport transfer shuttle as per itinerary below*",
+  "All hotel taxes & fees"
+ ],
+ "includes_footnote": "Arrival group shuttle leaving Olbia airport at 2:30pm on opening day of the retreat. Departure group shuttle leaving our mountain hotel at 9am on the final day of the retreat. If you need a private ride outside these times we can arrange a private transfer for you for 250 euro each way.",
+ "not_included": [
+  "Spa services at the beach hotel",
+  "Kayak, SUP, peddle boats and dingy rentals at the beach hotel",
+  "Additional activities at the mountain hotel in your free time",
+  "Alcohol is on your own",
+  "Airfare",
+  "1 lunch & 1 dinner",
+  "Gratuities for hotel staff, servers and tour guides"
+ ],
+ "not_included_footnote": null,
+ "itinerary": [
+  {
+   "day": 1,
+   "label": "Day 1",
+   "title": null,
+   "bullets": [
+    "2:30pm Arrival group shuttle leaving Olbia airport*",
+    "3:45pm Hotel arrival, check-in & settle",
+    "5:30-6:45pm Opening circle and Yoga practice",
+    "7pm Welcome cocktail or mocktail",
+    "7:30pm Dinner at beach front hotel"
+   ],
+   "images": [
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-beach-hotel-pool-deck.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/Hotel-La-Coluccia-pool-area.webp",
+     "alt": "The pool deck and sunshades at the beachfront hotel in Sardinia",
+     "shared": false
+    },
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-table-under-straw-umbrellas-on-the-beach.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/IMG_2442-2-scaled-e1666549748718.jpeg",
+     "alt": "A table on the sand beneath straw umbrellas by the sea in Sardinia",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 2,
+   "label": "Day 2",
+   "title": null,
+   "bullets": [
+    "7:30am Coffee, Tea and fruit",
+    "8-9:15am Yoga practice",
+    "9:30am Breakfast",
+    "Free time; relax, beach, spa services",
+    "2-7pm Boat tour of Maddalena Islands; lunch on the boat",
+    "7:30pm Dinner at beach front hotel"
+   ],
+   "images": [
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-breakfast-on-a-blue-table.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/IMG_2596-2-scaled.jpeg",
+     "alt": "Breakfast of fruit, cured meats and coffee on a blue table",
+     "shared": false
+    },
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-path-through-the-pines-to-the-sea.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/IMG_2441-2-scaled.jpeg",
+     "alt": "A path through the pine trees leading down to the sea in Sardinia",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 3,
+   "label": "Day 3",
+   "title": null,
+   "bullets": [
+    "7:30am Coffee, Tea and fruit",
+    "8:30-10am Yoga practice",
+    "10:15am Breakfast",
+    "11:30am – 3pm Free time to relax by the sea, massages",
+    "Lunch included at the hotel (eat when you like)",
+    "3-5:30pm Moon Valley guided hike",
+    "6pm Dinner together after the hike (not included)"
+   ],
+   "images": [
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-moon-valley-granite-formations.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/moon-valley-hike-rocks.jpeg",
+     "alt": "Granite rock formations above a small inlet in Moon Valley, Sardinia",
+     "shared": false
+    },
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-moon-valley-trail-to-the-sea.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/moon-valley-hike.jpeg",
+     "alt": "A trail through scrub and granite down to the sea in Moon Valley, Sardinia",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 4,
+   "label": "Day 4",
+   "title": null,
+   "bullets": [
+    "7:30am Coffee, Tea and fruit",
+    "8-9:15am Yoga practice",
+    "9:30am breakfast",
+    "11am Beach hotel check out",
+    "11:30-2:30p Drive to mountain hotel with stop in an adorable town for shopping and cafe",
+    "3pm Hotel Check in/Settle; Lunch on your own",
+    "6-7:30pm Wine tasting",
+    "8pm Dinner at mountain hotel"
+   ],
+   "images": [
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-bench-under-hanging-ceramics.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/IMG_2516-scaled.jpeg",
+     "alt": "A whitewashed bench with green cushions beneath hanging ceramic jugs",
+     "shared": false
+    },
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-mountain-road-through-the-hills.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/mountains-scaled.jpeg",
+     "alt": "A road winding through green hills beneath limestone cliffs in Sardinia",
+     "shared": false
+    },
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-flatbread-tomatoes-and-cured-ham.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/IMG_2658-scaled-e1666479578962.jpeg",
+     "alt": "Flatbread, tomatoes and cured ham on a wooden table",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 5,
+   "label": "Day 5",
+   "title": null,
+   "bullets": [
+    "7:30am Coffee, Tea and fruit",
+    "8-9:15am Yoga practice",
+    "9:30am Breakfast",
+    "11:30am-5pm Nature excursion to valley of Lanaitho with hiking, caves & ruins and lunch with the shepherds. Hiking is for all levels.",
+    "Free time",
+    "8pm Special dinner at mountain hotel"
+   ],
+   "images": [
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-heart-opening-stretch-in-a-doorway.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2018/05/anj-heart-pose-1.jpg",
+     "alt": "A woman in a heart-opening stretch in a sunlit doorway",
+     "shared": false
+    },
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-hiking-through-a-rocky-gorge.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/Screen-Shot-2022-10-22-at-18.06.39-e1666480078615.png",
+     "alt": "Hikers climbing through a narrow rocky gorge",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 6,
+   "label": "Day 6",
+   "title": null,
+   "bullets": [
+    "7:30am Coffee, Tea and fruit",
+    "8-9:15am Yoga practice",
+    "9:30am Breakfast",
+    "11:30-3pm Sardinian pasta making workshop with lunch to follow",
+    "3-6:30pm Free time for hiking, relaxing, pool time, tennis, kayaking; spa services; art/embroidery workshops",
+    "6:30-7:45pm Closing circle with gentle yoga",
+    "8pm Dinner at mountain hotel"
+   ],
+   "images": [
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-terrace-overlooking-the-hills.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/IMG_2536-2-scaled.jpeg",
+     "alt": "A wooden terrace with floor cushions overlooking wooded hills",
+     "shared": false
+    },
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-bread-baking-in-a-wood-oven.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/nido-del-pan-scaled.jpeg",
+     "alt": "Bread being baked in a wood-fired oven",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 7,
+   "label": "Day 7",
+   "title": null,
+   "bullets": [
+    "8am Breakfast & Check outs",
+    "9am Group departure shuttle to Olbia airport*",
+    "Departures"
+   ],
+   "images": [
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-picnic-above-a-mountain-lake.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/CEDRINO_CARASSALE-e1666549606686.jpeg",
+     "alt": "A picnic set in a meadow above a lake and mountains in Sardinia",
+     "shared": false
+    },
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-terrace-with-mountain-views.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/Screen-Shot-2022-10-22-at-19.39.05.png",
+     "alt": "A whitewashed terrace with lounge chairs looking out to the mountains",
+     "shared": false
+    }
+   ]
+  }
+ ],
+ "itinerary_notes": [
+  "Arrival group shuttle leaving Olbia airport at 2:30pm on opening day of the retreat.",
+  "Departure group shuttle leaving our mountain hotel at 9am on the final day of the retreat.",
+  "If you need a private ride outside these times we can arrange a private transfer for you for 250 euro each way."
+ ],
+ "optional_excursions_schedule": [],
+ "accommodations": [
+  {
+   "name": null,
+   "label": "Beachfront hotel near the Maddalena Islands",
+   "text": [
+    "Our adventure will take us to the northwest corner of the island near the world renowned Maddalena Islands to enjoy the finest of the Sardinian coastline.",
+    "Modern beachfront accommodations will be our home for three nights as we enjoy the stunning beauty of the Mediterranean Sea right outside our door. We decided that the oceanfront rooms were too expensive to include in the package because you’re not really in your room that often but if you’d like to upgrade please let us know and we will check availability.",
+    "Enjoy the beachfront loungers, beach bar, kayak and paddleboat rentals, swimming pool and spa in your free time.",
+    "Clean, modern rooms, fabulous haute Sardinian cuisine, local wines and friendly staff make this beachfront hotel our choice for this incredible adventure."
+   ],
+   "instagram": null,
+   "gallery": [
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-hammock-facing-the-sea.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/Screen-Shot-2022-10-23-at-14.05.29.png",
+     "alt": "A hammock strung between pines on a lawn facing the sea at the beach hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-lawn-and-pines-by-the-sea.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/Screen-Shot-2022-10-23-at-14.03.11-e1666844511114.png",
+     "alt": "A boardwalk across the lawn to the pines and the sea at the beach hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-beach-hotel-room-details.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/la-C-decor-detail.png",
+     "alt": "Bed and woven textile details in a room at the beach hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-beach-hotel-bathroom.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/la-c-bathrooms.png",
+     "alt": "A stone basin and walk-in shower in a bathroom at the beach hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-beach-hotel-pool.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/gruppo-felix-hotels-la-coluccia-ambienti-piscina-10-2.jpeg",
+     "alt": "The swimming pool at the beach hotel, with pines and the sea beyond",
+     "shared": false
+    },
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-beach-hotel-spa.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/gruppo-felix-hotels-la-coluccia-servizi-spa-6-2.jpeg",
+     "alt": "A guest resting in the dimly lit spa at the beach hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-poolside-lunch-table.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/RISTORANTE-4.jpeg",
+     "alt": "A lunch table set with rosé beside the pool",
+     "shared": false
+    },
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-rose-and-small-plates.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/RISTORANTE-2.jpeg",
+     "alt": "Glasses of rosé and small bites on a terrace table",
+     "shared": false
+    },
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-plated-squid-with-peas.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/RISTORANTE-5.jpeg",
+     "alt": "A plated dish of squid with peas and herbs",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": null,
+   "label": "Farmhouse & art hotel in Barbagia",
+   "text": [
+    "Moving on to the mountains for a stark contrast to the crisp and clean experience in the north, we will enjoy our last three nights at an experience, art hotel nestled in Barbagia.",
+    "Authentic Sardinian cooking techniques, art workshops and unique decor make this hotel the most intriguing stay.",
+    "Charming accommodations with single or twin beds and ensuite bathrooms are tucked into each corner of the property.",
+    "A different dining experience each night, yoga with a view, and plenty of places to tuck in and take in the Sardinian lifestyle await."
+   ],
+   "instagram": null,
+   "gallery": [
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-mountain-hotel-terrace.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/Su-G-Terrace-e1666398184345.webp",
+     "alt": "A white terrace with a shade sail looking out to the mountains of Barbagia",
+     "shared": false
+    },
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-mountain-hotel-garden-pool.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/Su-G-pool-e1666399589921.webp",
+     "alt": "The garden pool with parasols at the hotel in Barbagia",
+     "shared": false
+    },
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-rustic-dining-room-with-copper-pans.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/Screen-Shot-2022-10-22-at-19.37.57.png",
+     "alt": "A rustic dining room hung with copper pans beside an open hearth",
+     "shared": false
+    },
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-women-baking-bread-at-the-oven.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/making-bread.jpeg",
+     "alt": "Two women baking traditional bread at a wood-fired oven",
+     "shared": false
+    },
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-mountain-hotel-bedroom-with-tapestry.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/Su-G-private.jpg",
+     "alt": "A whitewashed bedroom with woven tapestries above the bed",
+     "shared": false
+    },
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-rustic-room-with-copper-pots.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/IMG_2531.jpeg",
+     "alt": "A rustic room with copper pots, wooden tools and a tree trunk at its centre",
+     "shared": false
+    },
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-terrace-overlooking-the-hills.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/IMG_2536-2-scaled.jpeg",
+     "alt": "A wooden terrace with floor cushions overlooking wooded hills",
+     "shared": false
+    },
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-candlelit-terrace-at-dusk.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/Screen-Shot-2022-10-22-at-19.38.15.png",
+     "alt": "A candlelit terrace under a white canopy at dusk, with mountains behind",
+     "shared": false
+    }
+   ]
+  }
+ ],
+ "rooms": [
+  {
+   "name": "Deluxe King Room",
+   "price_usd": 8495,
+   "price_label": "8,495usd Private",
+   "price_unit": "private room",
+   "description": "One king bed with ensuite bathroom.",
+   "attrs": {
+    "bed": "King",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-deluxe-king-room.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/22-camera-design-230616-69944967-8_room_carousel.png",
+     "alt": "A bright room with a king bed at the beach hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-king-room-with-red-cushions.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/private-su-gol-room.jpg",
+     "alt": "A whitewashed room with a double bed and red cushions at the hotel in Barbagia",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": "Deluxe King Room — shared bed",
+   "price_usd": 6995,
+   "price_label": "6,995usd Per Person Shared bed*",
+   "price_unit": "per person",
+   "description": "One king bed with ensuite bathroom.",
+   "attrs": {
+    "bed": "King",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-deluxe-king-room.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/22-camera-design-230616-69944967-8_room_carousel.png",
+     "alt": "A bright room with a king bed at the beach hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-king-room-with-red-cushions.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/private-su-gol-room.jpg",
+     "alt": "A whitewashed room with a double bed and red cushions at the hotel in Barbagia",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": "Deluxe Shared Twin Room",
+   "price_usd": 8295,
+   "price_label": "8,295usd Per Person",
+   "price_unit": "per person",
+   "description": "A larger space to spread out with two separate twin beds and ensuite bathroom.",
+   "attrs": {
+    "bed": "Twin",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-twin-room-at-the-beach-hotel.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/coluccia-twin-room.avif",
+     "alt": "A twin room with a round white table at the beach hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/sardinia/img/yoga-retreat-sardinia-twin-room-in-barbagia.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/Su-Gol-room-with-2-beds.jpg",
+     "alt": "A twin room with orange cushions and a balcony door at the hotel in Barbagia",
+     "shared": false
+    }
+   ]
+  }
+ ],
+ "pricing_notes": [
+  "All pricing is in USD.",
+  "Rooms have unique designs. The images above are examples of the room type. Decor and layout varies.",
+  "We can pair roommates together looking to share a room with two twin beds. Images shown are examples.",
+  "If you book a room with 2 twins the beds are separated.",
+  "If a roommate is not available you will be required to take a private accommodation.",
+  "If you’d like a room with a seaview at the first hotel please let us know and we check for availability and send you the upgraded rate."
+ ],
+ "extras": [
+  {
+   "name": "Private airport transfer",
+   "price_usd": null,
+   "price_label": "250 euro each way",
+   "unit": "each way",
+   "desc": "If you need a private ride outside these times we can arrange a private transfer for you for 250 euro each way.",
+   "gallery": []
+  }
+ ],
+ "travel_tips": [
+  {
+   "heading": "Travel Tips",
+   "items": [
+    "OLB Olbia Airport is the most convenient airport to arrive into for our adventure. The first hotel is about an hour from there and we can pair travelers coming in on similar flight itineraries together. There is another airport about three hours away in the south of the island called Cagliari which you might consider if you are looking to extend your stay in Sardinia and explore beyond our retreat locations. Shared airport transfers to and from Olbia Airport are included in your retreat package as per the details in the Includes & Itinerary sections.",
+    "You will need an adaptor to plug your devices into the European outlets. They can be picked up at most airports or you can order online.",
+    "Sardinia is very good about gluten free diets for those who have an intolerance. YEAH!",
+    "Our hiking excursions require proper hiking boots to protect your ankles whether you are doing the easy or the moderate",
+    "We require you to have medical insurance coverage while on retreat. If your policy covers you outside your home country please submit proof of that coverage to us or you may purchase travel medical insurance just for your trip with our insurance partners Insubuy.",
+    "Yoga mats are provided for you on this retreat."
+   ]
+  }
+ ],
+ "gallery_title": null,
+ "gallery_intro": null,
+ "gallery": [
+  {
+   "file": "retreats/sardinia/img/yoga-retreat-sardinia-group-in-a-pine-forest.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/04/sardinia-mtn-hike-scaled.jpeg",
+   "alt": "Retreat guests together on a track through a pine forest in Sardinia",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/sardinia/img/yoga-retreat-sardinia-guide-holding-a-tortoise.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/2023.05.16_YogaAdventures_AraiMoleri_487-scaled.jpg",
+   "alt": "A guide showing a tortoise to guests on a coastal hike",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/sardinia/img/yoga-retreat-sardinia-granite-rocks-above-a-cove.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/2023.05.16_YogaAdventures_AraiMoleri_289-scaled.jpg",
+   "alt": "Wind-carved granite rocks above a small cove in Sardinia",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/sardinia/img/yoga-retreat-sardinia-making-pasta-by-hand.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/2023.05.18_YogaAdventures_AraiMoleri_IMG_6940-scaled.jpg",
+   "alt": "Hands shaping fresh pasta on wooden boards",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/sardinia/img/yoga-retreat-sardinia-baking-at-the-wood-oven.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/2023.05.17_YogaAdventures_AraiMoleri_IMG_6828-scaled.jpg",
+   "alt": "A woman tending a wood-fired oven while another prepares dough",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/sardinia/img/yoga-retreat-sardinia-embrace-on-the-yoga-mat.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/2023.05.17_YogaAdventures_AraiMoleri_IMG_6819-scaled.jpg",
+   "alt": "Two guests embracing on a yoga mat on a terrace",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/sardinia/img/yoga-retreat-sardinia-lunch-spread-in-the-woods.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/2023.05.17_YogaAdventures_AraiMoleri_IMG_6788-scaled.jpg",
+   "alt": "A lunch spread laid out on a stone wall in the woods",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/sardinia/img/yoga-retreat-sardinia-carving-roast-meat-outdoors.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/2023.05.17_YogaAdventures_AraiMoleri_IMG_6783-scaled.jpg",
+   "alt": "Two men carving roast meat at an outdoor table in the woods",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/sardinia/img/yoga-retreat-sardinia-group-by-a-thatched-hut.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/2023.05.17_YogaAdventures_AraiMoleri_IMG_6705-scaled.jpg",
+   "alt": "The group posing in front of a stone-and-thatch hut",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/sardinia/img/yoga-retreat-sardinia-yoga-pose-on-the-beach.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/2023.05.14_YogaAdventures_AraiMoleri_0148-scaled.jpg",
+   "alt": "A woman in a kneeling backbend on a white sand beach",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/sardinia/img/yoga-retreat-sardinia-dancing-on-the-catamaran.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/2023.05.14_YogaAdventures_AraiMoleri_0188-scaled.jpg",
+   "alt": "A guest dancing on the bow of a catamaran in a turquoise bay",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/sardinia/img/yoga-retreat-sardinia-dinghy-among-granite-rocks.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2022/10/2023.05.14_YogaAdventures_AraiMoleri_0089-scaled.jpg",
+   "alt": "Guests in a dinghy pulled up between granite boulders in clear water",
+   "shared": false,
+   "ratio": null
+  }
+ ],
+ "faqs": [
+  {
+   "question": "Do you accept bitcoin?",
+   "answer": [
+    "In addition to credit card payments we also accept wire transfers, Zelle and Bitcoin. Please inquire for more details."
+   ]
+  },
+  {
+   "question": "What is the cancellation policy?",
+   "answer": [
+    "All payments are 100% non refundable and non-transferable. We recommend that you buy Trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you."
+   ]
+  },
+  {
+   "question": "What happens if my travel plans change?",
+   "answer": [
+    "There are no refunds as per our cancellation policies. We highly recommend that all of our guests secure a quality travel insurance that will cover them for any event which may cause a change of travel plans, including personal health issues or personal situations in general which may affect travel plans."
+   ]
+  },
+  {
+   "question": "Are flight delays or cancellations covered?",
+   "answer": [
+    "Not by us: transportation delays, cancellations or changes due to strikes, labor disputes, or lockouts from airlines, boats, ferries or any type of transportation are among the events we recommend covering with travel insurance."
+   ]
+  },
+  {
+   "question": "Where can I find the full terms & conditions?",
+   "answer": [
+    "The full terms and conditions are published at https://yogaadventuresworldwide.com/termsandconditions/ . By submitting payments toward your retreat you accept them."
+   ]
+  }
+ ],
+ "booking": {
+  "deposit_usd": 1000,
+  "deposit_label": "$1,000 USD per person",
+  "deposit_instructions": "Deposits of $1,000usd are due to secure your space in the retreat. Please check availability with us for accommodations before making your deposit.",
+  "balance_due_days": 90,
+  "balance_note": "The balance of your retreat (minus your $1,000usd initial deposit) is due 90 days prior to arrival. All details with instructions for settling up will be emailed to you three months prior to the retreat.",
+  "payment_methods": [
+   "Credit card",
+   "Wire transfer",
+   "Zelle",
+   "Bitcoin"
+  ],
+  "roommate_note": "Roommates should book together. If you would like to share a room and do not have a roommate we will provide one for you if possible. In the case that there is no one to share a room we ask that you take a private room instead.",
+  "cancellation_policy": [
+   "All payments are 100% non refundable and non-transferable. We recommend that you buy Trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you."
+  ],
+  "booking_url": "https://yogaadventuresworldwide.com/retreat/yoga-food-wine-adventure-sardinia/#reserve",
+  "contact_url": "https://yogaadventuresworldwide.com/contact-about-yoga-retreats/"
+ },
+ "testimonials": null,
+ "carbon_offset": null,
+ "source_url": "https://yogaadventuresworldwide.com/retreat/yoga-food-wine-adventure-sardinia/",
+ "source_post_slug": "yoga-food-wine-adventure-sardinia",
+ "source_categories": [
+  "yoga",
+  "yoga-food-and-wine"
+ ],
+ "source_is_shared": false,
+ "seo_title": "Sardinia Yoga & Nature Retreat · Italy",
+ "seo_description": "6-night yoga retreat in Sardinia, Italy: a beachfront hotel near the Maddalena Islands, then a farmhouse and art hotel in the mountains of Barbagia.",
+ "_notes": {
+  "faqs": "The source page has no FAQs block. These five answers follow morocco-nov-2026: quoted from the site-wide Policies text inside the retreat page's Reserve section (the cancellation answer is this page's own wording). They are not retreat-specific.",
+  "testimonials": "The source page's \"Praise\" section is commented out in the markup; no quotes are published. Left null.",
+  "status": "Set to waitlist on request: the old page shows no bookable upcoming date.",
+  "teachers": "The page names no teacher or facilitator for this retreat.",
+  "carbon_offset": "No carbon-offset copy on the source page.",
+  "seo_title": "DRAFT. Written only from this retreat's real destination and data.",
+  "seo_description": "DRAFT. Written only from facts stated on the source page.",
+  "images": "Photos downloaded at the largest size the server has (WordPress size suffixes stripped when the full file exists). AVIF originals were converted to JPEG because the naming rule only allows jpg/png/webp.",
+  "date_start": "The source page publishes no dates, so date_start, date_end, dates_label and days are null (the schema requires strings: expect validator errors on these until dates are set).",
+  "nights": "From Includes: 3 nights at the beach hotel + 3 nights at the mountain farmstead.",
+  "subtitle": "The page's second line is 'in Sardinia, Italy' — a location line, used for location_label, not a subtitle.",
+  "intro": "First paragraph of the blurb. The blurb's closing paragraph ('For six nights and seven days…') appears nowhere else and is not carried.",
+  "about_body": "The About section has two paragraphs; an inline photo of Olbia airport in it is not carried (about has no image slot).",
+  "includes_footnote": "The shuttle note the asterisked Includes item points to. The page repeats it under the itinerary, so it is in itinerary_notes too.",
+  "accommodations": "The page never names either hotel. Image filenames suggest Hotel La Coluccia (beach) and Su Gologone (Barbagia); not used because the page text does not say so.",
+  "accommodations.gallery": "Skipped as small thumbnails: Su-G-rooms.jpg (768px). The Day 6 terrace photo (IMG_2536-2) also sits in the Barbagia gallery, as on the page.",
+  "itinerary": "Skipped small thumbnails: sardiniaboatday (473px, Day 2), ladies (665px, Day 5), Su-G-yarn (531px, Day 6). Day 3's two Moon Valley photos are 720px but are the only ones for that day.",
+  "rooms": "Room photos as the page shows them under each rate (one per hotel). private-su-gol-room.jpg is only 630px wide; no larger file exists. coluccia-twin-room was an AVIF original, converted to JPEG.",
+  "extras": "The private transfer is the only priced add-on (in euro, from the shuttle note). Spa, rentals and other activities are listed as not included, without prices.",
+  "tier": "retreat_categories are yoga and yoga-food-and-wine only; no basis for a collection.",
+  "gallery": "12 of 24 gallery photos (all 2560px), picked for variety across the trip, in source order.",
+  "travel_tips": "The Travel Tips bullets as one group; the link text 'Cover your retreat here!' dropped."
+ },
+ "_missing": [
+  "about_title",
+  "accommodations[].name",
+  "carbon_offset",
+  "date_end",
+  "date_start",
+  "dates_label",
+  "days",
+  "gallery_intro",
+  "gallery_title",
+  "highlights",
+  "not_included_footnote",
+  "optional_excursions_schedule",
+  "rooms[].hotel",
+  "season",
+  "status_label",
+  "subtitle",
+  "teachers",
+  "testimonials",
+  "tier",
+  "tier_label",
+  "tier_source",
+  "urgency"
+ ]
+}

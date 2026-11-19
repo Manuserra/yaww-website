@@ -12,15 +12,15 @@
 
 <link rel="stylesheet" href="css/base.css?v=202611192000">
 <link rel="stylesheet" href="css/filters.css?v=202611191930">
-<link rel="stylesheet" href="css/retreats.css?v=202611200030">
+<link rel="stylesheet" href="css/retreats.css?v=202611200200">
 <!-- Retreat data + the one card component every retreat card is rendered
      by. Classic scripts so the prototype still works over file://.
      Order matters: the catalogs load before the data, the data before
      the component. -->
-<script src="data/locations.js?v=202611161843"></script>
+<script src="data/locations.js?v=202611200400"></script>
 <script src="data/teachers.js?v=202611191930"></script>
 <script src="data/retreats.js?v=202611191000"></script>
-<script src="js/retreat-cards.js?v=202611200030"></script>
+<script src="js/retreat-cards.js?v=202611200400"></script>
 
 </head>
 <body>
@@ -168,33 +168,6 @@
       <span id="filterNoteText"></span>
       <button type="button" class="filter-note__undo" id="filterNoteUndo">Undo</button>
     </p>
-
-    <!-- The waitlist panel. Only reachable by picking something with no
-         dates at all (a destination between editions, say). It is not
-         shown here: renderWaitlist() moves it into the results grid,
-         beside that destination's waitlist card, so the pick reads like
-         any other result. -->
-    <div class="waitlist-panel" id="filterEmpty" hidden>
-      <p class="waitlist-panel__title">Join the waitlist</p>
-      <p class="waitlist-panel__body" id="filterEmptyBody"></p>
-      <!-- TODO(backend): no endpoint yet, see YAWW.WAITLIST_ENDPOINT in
-           js/retreat-cards.js. -->
-      <form class="waitlist-form" id="filterWaitlistForm" data-waitlist-form data-waitlist-success="filterWaitlistDone" novalidate>
-        <label class="waitlist-form__label-sr" for="filterWaitlistFirst">First name</label>
-        <input class="waitlist-form__input" id="filterWaitlistFirst" name="first_name" type="text" placeholder="First name" autocomplete="given-name" required>
-        <label class="waitlist-form__label-sr" for="filterWaitlistEmail">Email address</label>
-        <input class="waitlist-form__input" id="filterWaitlistEmail" name="email" type="email" placeholder="Email address" autocomplete="email" required>
-        <input type="hidden" name="location" id="filterWaitlistLocation" value="">
-        <input type="hidden" name="teacher" id="filterWaitlistTeacher" value="">
-        <button class="btn btn--primary waitlist-form__submit" type="submit">Join the waitlist</button>
-        <p class="waitlist-form__error" data-waitlist-error role="alert" hidden></p>
-      </form>
-      <div class="waitlist-form__done" id="filterWaitlistDone" hidden>
-        <p class="waitlist-panel__title">You are on the list</p>
-        <p class="waitlist-panel__body">We will write to you as soon as the dates are set.</p>
-      </div>
-      <p class="waitlist-panel__links" id="filterEmptyLinks"></p>
-    </div>
 
     <section class="results" id="results" aria-live="polite"></section>
 
@@ -632,17 +605,9 @@ function sheetItemsHTML(def) {
 const filterBar = document.getElementById("filterBar");
 const summaryText = document.getElementById("filterSummaryText");
 const clearBtn = document.getElementById("filterClearBtn");
-const emptyBlock = document.getElementById("filterEmpty");
-const emptyBody = document.getElementById("filterEmptyBody");
-const emptyLinks = document.getElementById("filterEmptyLinks");
-const waitForm = document.getElementById("filterWaitlistForm");
-const waitDone = document.getElementById("filterWaitlistDone");
-const waitLocation = document.getElementById("filterWaitlistLocation");
-const waitTeacher = document.getElementById("filterWaitlistTeacher");
 const noteEl = document.getElementById("filterNote");
 const noteText = document.getElementById("filterNoteText");
 const noteUndo = document.getElementById("filterNoteUndo");
-Y.wireWaitlistForm(waitForm);
 let waitlistFor = "";
 const results = document.getElementById("results");
 const sheet = document.getElementById("filterSheet");
@@ -724,15 +689,13 @@ function seasonsHTML(list) {
   }).join("");
 }
 /* Destinations between editions, after the last season: a card each,
-   so Morocco is still findable while it has no date. It opens that
-   destination's waitlist right here. */
-function waitlistHref(loc) { return "retreats.html?destination=" + slug(loc.name); }
-function datesToComeHTML() {
-  const locs = Y.getWaitlistDestinations();
+   so Morocco is still findable while it has no date. Each opens that
+   destination's dateless retreat page, where the waitlist is. */
+function datesToComeHTML(locs) {
   if (!locs.length) return "";
   return groupHTML("Dates to come",
-    locs.map(l => Y.renderWaitlistCard(l, { href: waitlistHref(l) })).join(""),
-    locs.map(l => Y.renderWaitlistRow(l, { href: waitlistHref(l) })).join(""),
+    locs.map(l => Y.renderWaitlistCard(l)).join(""),
+    locs.map(l => Y.renderWaitlistRow(l)).join(""),
     "season--waitlist");
 }
 
@@ -743,54 +706,23 @@ function renderNote() {
   noteUndo.hidden = !note.undo;
 }
 
-/* The waitlist for a pick with no dates, laid out like any other
-   result: a "Dates to come" group holding the destination's waitlist
-   card, with the form in the grid cells beside it (below it in list
-   view and on a phone). Every other date lists underneath, so the page
-   still sells. */
+/* A pick with no dates (a destination between editions) reads like any
+   other result: its waitlist card under "Dates to come", opening the
+   destination's retreat page where the waitlist is. Every other date
+   lists underneath, so the page still sells. */
 function renderWaitlist() {
   const loc = state.place ? LOCATION_BY_NAME[state.place] : null;
   const teacher = !loc && state.teacher ? TEACHER_BY_NAME[state.teacher] : null;
   const name = loc ? loc.name : teacher ? teacher.name : "";
   const key = (loc ? "loc:" + loc.id : "") + (teacher ? "t:" + teacher.id : "");
-  emptyBlock.hidden = false;
-  emptyBody.textContent = (loc ? "We are planning the next one in " + name + "." : "We are planning " + name + "’s next retreat.") +
-    " Leave your name and we will write to you first, before the dates go public.";
-  waitLocation.value = loc ? loc.id : "";
-  waitTeacher.value = teacher ? teacher.id : "";
+  summaryText.textContent = loc ? "No dates in " + name + " yet" : "No dates with " + name + " yet";
   if (key !== waitlistFor) {
-    /* A new destination gets a fresh form, even after a sign-up for the last one. */
     waitlistFor = key;
-    waitForm.reset();
-    waitForm.hidden = false;
-    waitDone.hidden = true;
-    const err = waitForm.querySelector("[data-waitlist-error]");
-    if (err) err.hidden = true;
-    track({ event: "waitlist_view", locationId: waitLocation.value, teacherId: waitTeacher.value });
+    track({ event: "waitlist_view", locationId: loc ? loc.id : "", teacherId: teacher ? teacher.id : "" });
   }
-  const more = loc && loc.pageUrl ? '<a href="' + esc(loc.pageUrl) + '">Read about ' + esc(name) + '</a>'
-             : teacher && teacher.pageUrl ? '<a href="' + esc(teacher.pageUrl) + '">Meet ' + esc(name) + '</a>' : "";
-  emptyLinks.innerHTML = (more ? more + '<span aria-hidden="true">·</span>' : "") + '<a href="contact.html">Talk to us</a>';
-
-  /* The card links to the destination's own page when there is one (only
-     Iceland, today). Morocco's only page is its past, dated edition, so
-     its card stays unlinked; the form beside it is the action. */
-  const cardOpts = { href: loc && loc.pageUrl ? loc.pageUrl : "", action: false };
-  const slot = '<div class="waitlist-slot' + (loc ? '' : ' waitlist-slot--alone') + '"></div>';
-  const group = loc
-    ? groupHTML("Dates to come", Y.renderWaitlistCard(loc, cardOpts) + slot, Y.renderWaitlistRow(loc, cardOpts), "season--waitlist")
-    : groupHTML("Dates to come", slot, "", "season--waitlist");
-  results.innerHTML = group +
+  results.innerHTML = (loc ? datesToComeHTML([loc]) : "") +
     '<h2 class="results__lead">Other retreats coming up</h2>' +
     seasonsHTML(ROWS.map(v => v.retreat));
-  /* In list view the slot isn't in the markup: it goes after the row. */
-  let host = results.querySelector(".waitlist-slot");
-  if (!host) {
-    host = document.createElement("div");
-    host.className = "waitlist-slot waitlist-slot--below";
-    results.querySelector(".season--waitlist").appendChild(host);
-  }
-  host.appendChild(emptyBlock);
 }
 
 function renderResults() {
@@ -809,12 +741,10 @@ function renderResults() {
     writeURL();
     return;
   }
-  emptyBlock.hidden = true;
-  if (emptyBlock.parentNode) emptyBlock.parentNode.removeChild(emptyBlock);
   waitlistFor = "";
 
   const browsing = state.tier === "all" && !FACETS.some(k => state[k]);
-  results.innerHTML = seasonsHTML(list) + (browsing ? datesToComeHTML() : "");
+  results.innerHTML = seasonsHTML(list) + (browsing ? datesToComeHTML(Y.getWaitlistDestinations()) : "");
   writeURL();
 }
 
@@ -926,20 +856,6 @@ noteUndo.addEventListener("click", function () {
   tabSlide = true;
   renderAll();
   track({ event: "filter_pick_undo" });
-});
-/* A "Dates to come" card opens that destination's waitlist in place. */
-results.addEventListener("click", function (e) {
-  const a = e.target.closest("[data-waitlist-dest]");
-  if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
-  const loc = Y.getLocation(a.dataset.waitlistDest);
-  if (!loc) return;
-  e.preventDefault();
-  pick("place", loc.name);
-  renderAll();
-  /* Jump (no glide: Lenis owns smooth scroll here) to the results line,
-     clear of the sticky nav. */
-  const top = document.querySelector(".filter-summary").getBoundingClientRect().top + window.scrollY - 120;
-  window.scrollTo(0, Math.max(0, top));
 });
 document.querySelectorAll(".tabs__item[data-tier]").forEach(function (btn) {
   btn.addEventListener("click", function () {

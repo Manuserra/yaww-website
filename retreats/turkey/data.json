@@ -1,0 +1,719 @@
+{
+ "slug": "turkey",
+ "title": "Yoga & Culture Retreat Turkey : Istanbul & Cappadocia",
+ "subtitle": "The Beauty Between Retreat",
+ "destination": "Turkey",
+ "location_label": "Istanbul & Cappadocia, Turkey",
+ "country": "Turkey",
+ "region": "Istanbul & Cappadocia",
+ "tier": null,
+ "tier_label": null,
+ "tier_source": null,
+ "status": "waitlist",
+ "status_label": null,
+ "urgency": null,
+ "date_start": null,
+ "date_end": null,
+ "dates_label": null,
+ "season": null,
+ "nights": 8,
+ "days": null,
+ "teachers": [],
+ "teacher_unassigned": true,
+ "hero_image": {
+  "file": "retreats/turkey/img/yoga-retreat-turkey-mosque-domes-and-minarets.jpg",
+  "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/beyza-kaplan-qyozN9v78PY-unsplash-scaled.jpg",
+  "alt": "A grand mosque with cascading domes and slender minarets against a pale sky",
+  "shared": false
+ },
+ "intro": "Istanbul is our muse. A city straddling continents and conversations—European elegance living its coolest life on the Asian shore. Think luminous mosques and modern galleries, hip coffee houses, boutique studios, the hush of a hammam, and the electricity of the Grand Bazaar. Days begin grounded with deep, soulful yoga; move into art, design, and slow wandering; and end at tables dressed in spice, meze, and excellent wine. It’s inspiration you can feel.",
+ "about_title": "What to expect",
+ "about_body": [
+  "Istanbul is our muse. A city straddling continents and conversations—European elegance living its coolest life on the Asian shore. Think luminous mosques and modern galleries, hip coffee houses, boutique studios, the hush of a hammam, and the electricity of the Grand Bazaar. Days begin grounded with deep, soulful yoga; move into art, design, and slow wandering; and end at tables dressed in spice, meze, and excellent wine. It’s inspiration you can feel.",
+  "Then: Cappadocia. Two nights of otherworldly calm—cave suites, sculpted valleys, and a sunrise that lifts you by hot-air balloon over rippled stone. We’ll taste local wines, hike the Red Valley, and let the silence do what only silence can. This is a retreat for seekers of beauty, culture, and connection—crafted to move you and designed to bring you home."
+ ],
+ "highlights": [
+  "Morning yoga that steadies the nervous system and opens the body",
+  "Curated art + design moments: galleries, ateliers, and hidden studios",
+  "Time for the ritual of hammam and the joy of long, leisurely meals",
+  "Cappadocia immersion: cave dwellings, local wine, Red Valley hike, sunrise balloons",
+  "Small group, high-touch hosting, boutique stays"
+ ],
+ "includes": [
+  "8 nights : 6 in Istanbul’s coolest neighborhood + 2 in a cave hotel in Cappadocia",
+  "Breakfast daily, 2 lunches, 4 dinners",
+  "High quality Yoga instruction for all levels",
+  "Traditional Turkish bath (hammam)",
+  "Classic City Sites walking tour of Basilica Cistern, Hagia Sophia, Topkapi Palace, Blue Mosque with lunch",
+  "Bosphorus Boat cruise seeing the stunning city highlights from the water (with bubbles of course)",
+  "Traditional cooking class with local sisters exploring their foodie neighborhood and cooking in their home",
+  "Turkish Coffee & Fortune Telling workshop",
+  "Whirling Dervish workshop & Ceremony",
+  "Hot air balloon rides* at sunrise with champagne and epic views",
+  "Private Wine Country Tour in Cappadocia with lunch",
+  "Hike in the Red Valley, Cappadocia",
+  "Free time to explore as you wish; shop the Grand Bazaar; climb the Galata tower; visit the Asian side; rest",
+  "Transit card for getting around the city",
+  "Airport transfers",
+  "Expert Y&AWW facilitator to guide you through your adventure",
+  "Gift bag from us to you",
+  "All local taxes & staff gratuities"
+ ],
+ "includes_footnote": "Please note that if the weather is not favorable for flight we will do our best to reschedule the ride for the following morning (please try to get later flights to IST in this case). If a reschedule is not possible, you will be refunded for the hot air balloon ride.",
+ "not_included": [
+  "6 lunches, 4 dinners & alcoholic beverages beyond what is included",
+  "International flights",
+  "Travel & Trip Cancellation insurance",
+  "Medical insurance"
+ ],
+ "not_included_footnote": "YOUR DOMESTIC FLIGHT FROM IST TO NAV IS NOT INCLUDED IN THE PACKAGE. We will advise which flight to purchase when you book the retreat. Approx cost 150-200usd",
+ "itinerary": [
+  {
+   "day": 1,
+   "label": "Day 1",
+   "title": null,
+   "bullets": [
+    "3:00pm Hotel check-in; arrive and settle",
+    "4:30-5:45pm Opening circle & grounding yoga practice",
+    "7:30pm Dinner together as a group"
+   ],
+   "images": [
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-meditating-on-a-wooden-floor.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/getty-images-puPbC2L7QI8-unsplash.jpg",
+     "alt": "A woman in white meditating on a wooden floor",
+     "shared": false
+    },
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-minaret-against-the-sky.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/beyza-kaplan-KLHKzQzXvQE-unsplash-scaled.jpg",
+     "alt": "A stone minaret against a pale sky",
+     "shared": false
+    },
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-rolling-out-thin-dough.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/ahmed-dCvLbjgtW8I-unsplash-scaled.jpg",
+     "alt": "Thin dough being rolled out with a long rolling pin, seen from above",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 2,
+   "label": "Day 2",
+   "title": null,
+   "bullets": [
+    "Coffee & Tea in your room",
+    "7:30-9am Morning Yoga Practice",
+    "9:15am Breakfast",
+    "11:30am-5pm Authentic Cooking Class and foodie walking tour w/ lunch",
+    "7-8:30pm Turkish Bath Experience",
+    "Dinner on your own"
+   ],
+   "images": [
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-assisted-childs-pose.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/ave-calvar-Lkqi2XckvwU-unsplash-scaled.jpg",
+     "alt": "A yoga teacher adjusting a student in child's pose",
+     "shared": false
+    },
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-old-houses-and-church-tower.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/sena-aykut-8GXpuXfmSwA-unsplash-scaled.jpg",
+     "alt": "Old wooden-fronted houses beside a stone church tower",
+     "shared": false
+    },
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-hammam-basin-and-copper-bowl.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/getty-images-AltPhZ-7NmA-unsplash-1-scaled-e1725306709495.jpg",
+     "alt": "A woman at a marble hammam basin with a copper bowl",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 3,
+   "label": "Day 3",
+   "title": null,
+   "bullets": [
+    "Coffee & Tea in your room",
+    "7:30-8:45am Morning Yoga Practice",
+    "9am Breakfast",
+    "Full Day Classic City Sites adventure : Basilica Cistern, Hagia Sophia and Topkapi Palace, Blue Mosque with lunch",
+    "Dinner together at a local classic"
+   ],
+   "images": [
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-assisted-yoga-stretch.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/ave-calvar-M512gDk6i2I-unsplash-scaled.jpg",
+     "alt": "A yoga teacher assisting a student in a supported leg stretch",
+     "shared": false
+    },
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-mosque-and-minarets-across-the-park.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/tiphaine-qmzLF_xhoQ0-unsplash-scaled.jpg",
+     "alt": "A mosque with several minarets seen across a park with benches",
+     "shared": false
+    },
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-vaulted-stone-arches.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/semenay-erdogan-2xvOvxK7PCI-unsplash-scaled.jpg",
+     "alt": "Vaulted stone arches in warm light",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 4,
+   "label": "Day 4",
+   "title": null,
+   "bullets": [
+    "Coffee & Tea in your room",
+    "8:15-9:45am Morning Yoga Practice",
+    "10am Breakfast",
+    "Free time to explore, rest, shop; Climb the Galata tower; Lunch on your own",
+    "6-8pm Sunset Cruise along the Bosphorus",
+    "Dinner together with bubbles and views"
+   ],
+   "images": [
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-galata-tower.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/hasan-akbas-5N9HJsESLx4-unsplash-scaled.jpg",
+     "alt": "The Galata Tower in Istanbul framed by trees",
+     "shared": false
+    },
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-cat-on-a-stone-step.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/polina-kuzovkova-M7Pmd5OB7Us-unsplash-scaled.jpg",
+     "alt": "A black-and-white cat sitting on a stone step",
+     "shared": false
+    },
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-mosque-dome-above-the-water.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/beyza-kaplan-rOHbAyNcx0k-unsplash-scaled-e1725307191695.jpg",
+     "alt": "A mosque dome and minaret above the water, with a ship beyond",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 5,
+   "label": "Day 5",
+   "title": null,
+   "bullets": [
+    "Coffee & Tea in your room",
+    "7:30-9am Morning Yoga Practice",
+    "9:30am Breakfast",
+    "1-3pm Turkish Coffee & Fortune Telling workshop",
+    "Lunch together at the most authentic spot",
+    "Free time to shop at the Grand Bazaar; relax; explore the neighborhood",
+    "Dinner on your own"
+   ],
+   "images": [
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-carpet-shop.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/polina-kuzovkova-qhieUAgQg1I-unsplash-1-1-scaled.jpg",
+     "alt": "A carpet shop with rugs piled high",
+     "shared": false
+    },
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-turkish-coffee-and-copper-pot.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/mathilde-langevin-WpOXH1j1itw-unsplash-scaled.jpg",
+     "alt": "Turkish coffee in two small cups beside a copper pot",
+     "shared": false
+    },
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-avrupa-pasaji-arcade.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/youssef-mohamed-h6p6KWH0nGM-unsplash-scaled-e1725495182327.jpg",
+     "alt": "The entrance to the Avrupa Pasajı arcade",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 6,
+   "label": "Day 6",
+   "title": null,
+   "bullets": [
+    "Coffee & Tea in your room",
+    "8:15-9:45am Morning Yoga Practice",
+    "10am Breakfast",
+    "Free time to take an artistic workshop; rest; spa services; Lunch on your own",
+    "5:30pm Whirling Dervish Workshop learning the spiritual practices & philosophies of Rumi",
+    "7pm Whirling Dervish Ceremony",
+    "Dinner on your own; Pack for travel tomorrow"
+   ],
+   "images": [
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-cobra-pose-on-the-mat.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/ave-calvar-2IZmKLHedQM-unsplash-scaled.jpg",
+     "alt": "A woman in cobra pose on a yoga mat",
+     "shared": false
+    },
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-ebru-marbled-paper.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/pawel-czerwinski-YlcsALop3yI-unsplash-scaled-e1725495330756.jpg",
+     "alt": "Marbled ebru paper swirled in gold and grey",
+     "shared": false
+    },
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-whirling-dervish.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/emir-egricesu-rEkA6ZwYIpM-unsplash-scaled.jpg",
+     "alt": "A whirling dervish in a white robe and tall felt hat",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 7,
+   "label": "Day 7",
+   "title": null,
+   "bullets": [
+    "Morning flights to Cappadocia NAV from IST Airport",
+    "Arrive and drop bags at the hotel",
+    "Private tour through wine country with lunch",
+    "Dinner on your own at the hotel or in town"
+   ],
+   "images": [
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-cappadocia-valley-from-above.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/valley-circle-e1760677287439.jpg",
+     "alt": "Looking down over a rocky valley in Cappadocia",
+     "shared": false
+    },
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-vineyard-below-the-rock-formations.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/vineyards-capp-e1760677329529.jpeg",
+     "alt": "A vineyard beneath tall rock formations in Cappadocia",
+     "shared": false
+    },
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-wine-in-a-cave-restaurant.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/wine-capp-e1760677367703.png",
+     "alt": "Wine glasses on a table in a cave restaurant",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 8,
+   "label": "Day 8",
+   "title": null,
+   "bullets": [
+    "4:30-9am Sunrise Hot Air Balloon Rides* with champagne breakfast",
+    "Time to rest, relax, hike in the Red Valley",
+    "Lunch on your own",
+    "Optional hammam treatments; Ebru workshops; shopping",
+    "4-6pm Closing Circle & final Yoga practice",
+    "7pm Dinner together"
+   ],
+   "images": [
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-hot-air-balloons-at-sunrise.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/timur-garifov-p2RbLnqWPVY-unsplash-e1740148982945.jpg",
+     "alt": "Hot air balloons rising over a Cappadocia valley at sunrise",
+     "shared": false
+    },
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-evil-eye-charms-on-a-tree.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/polina-kuzovkova-RwHWcj_UbzA-unsplash-scaled.jpg",
+     "alt": "Blue evil eye charms hanging from tree branches",
+     "shared": false
+    },
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-mirrored-marbled-pattern.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/susan-wilkinson-Ha6DewCN-2Y-unsplash-scaled.jpg",
+     "alt": "A mirrored marbled pattern in red, green and cream",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 9,
+   "label": "Day 9",
+   "title": null,
+   "bullets": [
+    "Breakfast as you like",
+    "Departures on your own"
+   ],
+   "images": [
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-hammam-basin-and-copper-bowl.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/getty-images-AltPhZ-7NmA-unsplash-1-scaled-e1725306709495.jpg",
+     "alt": "A woman at a marble hammam basin with a copper bowl",
+     "shared": false
+    },
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-rock-formations-in-cappadocia.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/ahmed-w-2r0de-MOg-unsplash-scaled.jpg",
+     "alt": "Rock formations rising from the hills in Cappadocia",
+     "shared": false
+    },
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-carpet-shop.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/polina-kuzovkova-qhieUAgQg1I-unsplash-1-1-scaled.jpg",
+     "alt": "A carpet shop with rugs piled high",
+     "shared": false
+    }
+   ]
+  }
+ ],
+ "itinerary_notes": [
+  "Please note that if the weather is not favorable for flight we will do our best to reschedule the ride for the following morning (please try to get later flights to IST in this case). If a reschedule is not possible, you will be refunded for the hot air balloon ride.",
+  "This itinerary is subject to adjustments, changes in times, locations, or activities as the retreat leaders and hosts see fit. Any change will be on par with our standards or an upgrade in services or location making for an even more amazing experience for the group and our guests. Thank you in advance for your flexibility and cooperation if any situation were to arise."
+ ],
+ "optional_excursions_schedule": [],
+ "accommodations": [
+  {
+   "name": null,
+   "label": "Hotel in Beyoğlu, Istanbul",
+   "text": [
+    "Our hotel reprieve located on the European side of Istanbul’s most current neighborhood, Beyoğlu."
+   ],
+   "instagram": null,
+   "gallery": [
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-beyoglu-hotel-on-its-street.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/ext-hotel.jpeg",
+     "alt": "The hotel's lit entrance on a sloping street in Beyoğlu, Istanbul",
+     "shared": false
+    },
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-beyoglu-hotel-breakfast-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/IST-hotel-5.jpeg",
+     "alt": "The hotel's breakfast room with brick walls and wooden tables, Istanbul",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": null,
+   "label": "Cave hotel in Cappadocia",
+   "text": [
+    "Our cave hotel in Cappadocia is stylish, comfortable and in a fantastic location!"
+   ],
+   "instagram": null,
+   "gallery": [
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-cave-hotel-courtyard.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/cave-hotel-Coutyard.avif",
+     "alt": "The courtyard of the cave hotel in Cappadocia, with rooms built into the rock",
+     "shared": false
+    },
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-cave-hotel-entrance.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/cave-hotel-kapadokya-ic3.avif",
+     "alt": "The entrance of the cave hotel in Cappadocia beneath rock formations",
+     "shared": false
+    }
+   ]
+  }
+ ],
+ "rooms": [
+  {
+   "name": "King Room",
+   "price_usd": 8395,
+   "price_label": "8,395usd Private Room",
+   "price_unit": "private room",
+   "description": "King bed with ensuite bathroom in both locations",
+   "attrs": {
+    "bed": "King",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-istanbul-king-room.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/Screenshot-2025-10-16-at-10.31.32-p.m-scaled-e1760675795530.png",
+     "alt": "A king room with a low platform bed and open shelving at the Istanbul hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-cappadocia-cave-king-room.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/Screenshot-2025-10-16-at-10.14.05-p.m-scaled-e1760674698408.png",
+     "alt": "A cave room with a king bed under a draped canopy in Cappadocia",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": "King Room — shared bed",
+   "price_usd": 7495,
+   "price_label": "7,495usd Shared Bed* per person",
+   "price_unit": "per person",
+   "description": "King bed with ensuite bathroom in both locations",
+   "attrs": {
+    "bed": "King",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-istanbul-king-room.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/Screenshot-2025-10-16-at-10.31.32-p.m-scaled-e1760675795530.png",
+     "alt": "A king room with a low platform bed and open shelving at the Istanbul hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-cappadocia-cave-king-room.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/Screenshot-2025-10-16-at-10.14.05-p.m-scaled-e1760674698408.png",
+     "alt": "A cave room with a king bed under a draped canopy in Cappadocia",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": "Twin Room",
+   "price_usd": 7595,
+   "price_label": "7,595usd per person*",
+   "price_unit": "per person",
+   "description": "Two twin beds with ensuite bathroom in both locations",
+   "attrs": {
+    "bed": "Twin",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-istanbul-room-with-balcony-window.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/Screenshot-2025-10-16-at-10.30.39-p.m-scaled-e1760675651237.png",
+     "alt": "A guest room with a bed, TV and balcony window at the Istanbul hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/turkey/img/yoga-retreat-turkey-cappadocia-cave-twin-room.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/Screenshot-2025-10-16-at-10.14.18-p.m-scaled-e1760675580152.png",
+     "alt": "A cave room with two twin beds under a draped canopy in Cappadocia",
+     "shared": false
+    }
+   ]
+  }
+ ],
+ "pricing_notes": [
+  "We will try to pair single travelers together looking to share a room. If we are not able to book a roommate for you, a private accommodation will be required.",
+  "We are not able to pair roommates sharing a bed. Roommates should book their accommodations together."
+ ],
+ "extras": [],
+ "travel_tips": [
+  {
+   "heading": "Arriving into Istanbul",
+   "items": [
+    "We HIGHLY recommend arriving into Istanbul International Airport (IST).",
+    "We will coordinate rides arriving at similar times to share costs into the city where possible. Otherwise, we can plan a private ride for you. If you plan to arrive or depart outside of retreat dates you should coordinate your own transportation to and from your hotel with its concierge. Any arrivals and departures on retreat dates we will coordinate for you with others on similar flight itineraries.",
+    "Turkish Airlines is a very reputable airline and has many direct flights into IST."
+   ]
+  },
+  {
+   "heading": "Travel Basics",
+   "items": [
+    "Please plan to sleep well on the plane or arrive a day or two early in order to acclimate yourself to the change in time. If you will stay in Turkey for a few days upon arrival we recommend staying at our hotel if you’ll stay in Istanbul or if you’re up for the adventure, Cappadocia is a unique a gorgeous area of Turkey that is worth the travel.",
+    "Bring along your basic toiletries and medicine kit to keep yourself healthy and optimized while you are on retreat. We recommend having probiotics, vitamin C, pain medicine, antihistamines, band-aides, anti-biotic ointment, and the like all within reach just in case any of them become necessary.",
+    "The hotel provides bath products but it’s always nice to have what you are accustomed to using handy though this is at your discretion. Please consult with your airline on carry-on limits and make sure you pack what you place into your checked luggage with care to avoid spillage and explosions."
+   ]
+  },
+  {
+   "heading": "What to Bring & what to wear in Turkey",
+   "items": [
+    "We will be using yoga props at the local studio where we will practice during the retreat. Only if you enjoy using your own mat and props should you plan to bring them along.",
+    "Istanbul is a VERY modern Muslim city. You will find a pretty even mix amongst the locals of very traditional dress and typical European street clothes like in any major city in the world. As tourists, you can plan to dress as you would at home. For the whirling dervish ceremony modest dress is required. Weather should be quite lovely at this time of year but please check the forecast closer to dates to prepare your suitcase accordingly.",
+    "When entering the mosques you should have shoulders and collarbones covered.",
+    "When entering the hammams, towels will be provided for you and bathing suits are optional as there are separate rooms for men and women bathing together. Our experience will be quite interesting but please plan to bring/wear whatever you feel comfortable in inside the hammam. Keep in mind it is an exfoliation bath so the less you have on the better for the attendant. Most people find that a bathing suit bottom is enough but you are free to wear more or less of your bathing as your comfort level dictates. Keep in mind that no one is looking 😉 We will discuss more of this in the group email prior to the retreat.",
+    "Sunrise hot air balloon rides are chilly! It’s early and cold so bring a coat and scarf and warm layers to shed as the day goes on. Hiking in the sun will be comfortable and warm."
+   ]
+  }
+ ],
+ "gallery_title": null,
+ "gallery_intro": null,
+ "gallery": [
+  {
+   "file": "retreats/turkey/img/yoga-retreat-turkey-engraved-brass-plates.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/rumman-amin-6yidLh6hsqc-unsplash-scaled.jpg",
+   "alt": "Engraved brass plates with Arabic calligraphy",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/turkey/img/yoga-retreat-turkey-galata-tower-above-the-city.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/ahmed-BZl9xSaRWuM-unsplash-scaled.jpg",
+   "alt": "The Galata Tower above Istanbul's rooftops and the water beyond",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/turkey/img/yoga-retreat-turkey-mosque-interior-with-chandeliers.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/ahmed-Yc5SkeQ4Vdw-unsplash-scaled.jpg",
+   "alt": "The interior of a mosque with ring chandeliers and striped arches",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/turkey/img/yoga-retreat-turkey-yellow-curtain-on-a-tiled-roof.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/hans-isaacson-pCSCaOcBfBM-unsplash-scaled.jpg",
+   "alt": "A yellow curtain blowing from a window in a terracotta tiled roof",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/turkey/img/yoga-retreat-turkey-cappadocia-valley-at-sunset.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/getty-images-pabMe0mauxo-unsplash-scaled.jpg",
+   "alt": "Rock formations in a Cappadocia valley at sunset",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/turkey/img/yoga-retreat-turkey-turkish-coffee-over-the-bins.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/getty-images-DeJUPOeTWHQ-unsplash.jpg",
+   "alt": "A cup of Turkish coffee held over bins of dried flowers and tea",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/turkey/img/yoga-retreat-turkey-woman-rolling-dough.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/ahmed-s4lvaXKUyxU-unsplash-scaled.jpg",
+   "alt": "A woman in a headscarf rolling out thin dough",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/turkey/img/yoga-retreat-turkey-square-below-the-domes.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/svetlana-gumerova-Di0T0BM1DxI-unsplash-scaled.jpg",
+   "alt": "A square with café umbrellas below mosque domes and minarets",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/turkey/img/yoga-retreat-turkey-painted-mosque-dome.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/yunus-tug-cGRzMd1FYI0-unsplash-scaled.jpg",
+   "alt": "A painted mosque dome seen from below",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/turkey/img/yoga-retreat-turkey-whirling-dervishes.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/svklimkin-inJ0URyO-Ww-unsplash-1-scaled.jpg",
+   "alt": "Whirling dervishes in white robes during a ceremony",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/turkey/img/yoga-retreat-turkey-evil-eye-charms-over-the-valley.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/polina-kuzovkova-hAF1TtQjluc-unsplash-scaled.jpg",
+   "alt": "Evil eye charms and a clay jug hanging above a rocky valley",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/turkey/img/yoga-retreat-turkey-galata-tower-and-seagulls.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/anna-berdnik-0n0AHB1fgTQ-unsplash.jpg",
+   "alt": "The Galata Tower above the hillside, with seagulls in the sky",
+   "shared": false,
+   "ratio": null
+  }
+ ],
+ "faqs": [
+  {
+   "question": "Do you accept bitcoin?",
+   "answer": [
+    "In addition to credit card payments we also accept wire transfers, Zelle and Bitcoin. Please inquire for more details."
+   ]
+  },
+  {
+   "question": "What is the cancellation policy?",
+   "answer": [
+    "All payments are 100% non refundable and non-transferable. We recommend that you buy Trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you."
+   ]
+  },
+  {
+   "question": "What happens if my travel plans change?",
+   "answer": [
+    "There are no refunds as per our cancellation policies. We highly recommend that all of our guests secure a quality travel insurance that will cover them for any event which may cause a change of travel plans, including personal health issues or personal situations in general which may affect travel plans."
+   ]
+  },
+  {
+   "question": "Are flight delays or cancellations covered?",
+   "answer": [
+    "Not by us: transportation delays, cancellations or changes due to strikes, labor disputes, or lockouts from airlines, boats, ferries or any type of transportation are among the events we recommend covering with travel insurance."
+   ]
+  },
+  {
+   "question": "Where can I find the full terms & conditions?",
+   "answer": [
+    "The full terms and conditions are published at https://yogaadventuresworldwide.com/termsandconditions/ . By submitting payments toward your retreat you accept them."
+   ]
+  }
+ ],
+ "booking": {
+  "deposit_usd": 1000,
+  "deposit_label": "$1,000 USD per person",
+  "deposit_instructions": "Deposits of 1,000usd are due to secure your space in the retreat. Please check availability with us for accommodations before making your deposit.",
+  "balance_due_days": 90,
+  "balance_note": "The balance of your retreat (minus your $1,000usd initial deposit) is due 90 days prior to arrival. All details with instructions for settling up will be emailed to you three months prior to the retreat.",
+  "payment_methods": [
+   "Credit card",
+   "Wire transfer",
+   "Zelle",
+   "Bitcoin"
+  ],
+  "roommate_note": "Roommates should book together. If you would like to share a room and do not have a roommate we will provide one for you if possible. In the case that there is no one to share a room we ask that you take a private room instead.",
+  "cancellation_policy": [
+   "All payments are 100% non refundable and non-transferable. We recommend that you buy Trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you."
+  ],
+  "booking_url": "https://yogaadventuresworldwide.com/retreat/istanbul-yoga-retreat-art/#reserve",
+  "contact_url": "https://yogaadventuresworldwide.com/contact-about-yoga-retreats/"
+ },
+ "testimonials": null,
+ "carbon_offset": null,
+ "source_url": "https://yogaadventuresworldwide.com/retreat/istanbul-yoga-retreat-art/",
+ "source_post_slug": "istanbul-yoga-retreat-art",
+ "source_categories": [
+  "art-creative",
+  "yoga"
+ ],
+ "source_is_shared": false,
+ "seo_title": "Istanbul & Cappadocia Yoga Retreat · Turkey",
+ "seo_description": "8-night yoga & culture retreat in Turkey: six nights in Istanbul's Beyoğlu, two in a Cappadocia cave hotel, with a sunrise hot air balloon ride.",
+ "_notes": {
+  "faqs": "The source page has no FAQs block. These five answers follow morocco-nov-2026: quoted from the site-wide Policies text inside the retreat page's Reserve section (the cancellation answer is this page's own wording). They are not retreat-specific.",
+  "testimonials": "The source page's \"Praise\" section is commented out in the markup; no quotes are published. Left null.",
+  "status": "Set to waitlist on request: the old page shows no bookable upcoming date.",
+  "teachers": "The page names no teacher or facilitator for this retreat.",
+  "carbon_offset": "No carbon-offset copy on the source page.",
+  "seo_title": "DRAFT. Written only from this retreat's real destination and data.",
+  "seo_description": "DRAFT. Written only from facts stated on the source page.",
+  "images": "Photos downloaded at the largest size the server has (WordPress size suffixes stripped when the full file exists). AVIF originals were converted to JPEG because the naming rule only allows jpg/png/webp.",
+  "date_start": "The source page publishes no dates, so date_start, date_end, dates_label and days are null (the schema requires strings: expect validator errors on these until dates are set).",
+  "nights": "From Includes: '8 nights : 6 in Istanbul's coolest neighborhood + 2 in a cave hotel in Cappadocia'.",
+  "subtitle": "'The Beauty Between Retreat' is the heading the page repeats in the blurb and every section. Note build_page.py prints the subtitle as the first About paragraph.",
+  "about_body": "The page's About section is only a 'What to expect' bullet list (now in highlights, with about_title). The prose is the two blurb paragraphs above the section tabs; intro repeats the first of them.",
+  "not_included_footnote": "The domestic IST to NAV flight line and its cost note, kept as the page writes them (capitals included).",
+  "itinerary": "Day 7's three photos are small (506, 602, 498px) but are the only ones for that day. Day 9 reuses two earlier photos, as the page does.",
+  "accommodations": "The page names neither hotel. Both venue photos are small: the Istanbul ones are 425px (no larger file exists) and the Cappadocia ones 800 and 600px AVIF originals, converted to JPEG.",
+  "rooms": "'in both locations': each rate covers both hotels, so hotel is null; photos show one room per hotel, as on the page.",
+  "tier": "retreat_categories are art-creative and yoga only; no basis for a collection.",
+  "gallery": "12 of 16 gallery photos; the hero photo (also first in the gallery) and three others left out."
+ },
+ "_missing": [
+  "accommodations[].name",
+  "carbon_offset",
+  "date_end",
+  "date_start",
+  "dates_label",
+  "days",
+  "extras",
+  "gallery_intro",
+  "gallery_title",
+  "optional_excursions_schedule",
+  "rooms[].hotel",
+  "season",
+  "status_label",
+  "teachers",
+  "testimonials",
+  "tier",
+  "tier_label",
+  "tier_source",
+  "urgency"
+ ]
+}

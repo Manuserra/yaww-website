@@ -1,0 +1,905 @@
+{
+ "slug": "spain-basque-country",
+ "title": "Basque Country Spain : Yoga & Gastronomy Retreat",
+ "subtitle": null,
+ "destination": "Basque Country",
+ "location_label": "Basque Country, Spain",
+ "country": "Spain",
+ "region": "San Sebastian & Rioja",
+ "tier": null,
+ "tier_label": null,
+ "tier_source": null,
+ "status": "waitlist",
+ "status_label": null,
+ "urgency": null,
+ "date_start": "2025-10-11",
+ "date_end": "2025-10-17",
+ "dates_label": "October 11-17, 2025",
+ "season": null,
+ "nights": 6,
+ "days": 7,
+ "teachers": [],
+ "teacher_unassigned": true,
+ "hero_image": {
+  "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-promenade-railing-above-the-bay.jpg",
+  "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/lucian-alexe-maCNBAhdG_w-unsplash-scaled-e1697269189853.jpg",
+  "alt": "A man and his dog at the white railing of the promenade above the bay of San Sebastián, Spain",
+  "shared": false
+ },
+ "intro": "This is the best yoga retreat in Spain, so get ready to unroll your yoga mats and uncork your wine bottles because we’ve got something incredibly special curated just for you! Imagine finding yourself amidst the lush hills and coastal cliffs of the Basque Country in Spain, then savoring the world-renowned wines of Rioja—yes, it’s all happening in one extraordinary retreat. Our upcoming yoga and culinary adventure in Spain is designed to engage all your senses.",
+ "about_title": null,
+ "about_body": [
+  "Imagine waking up to the scenic vistas of Spain’s Basque Country, where rugged cliffs meet the azure Atlantic. Your mornings begin with soulful yoga sessions led by our fabulous instructors, prepping your body and mind for the adventures ahead. As the sun climbs, you’re off to explore—from San Sebastián’s picturesque beaches to the rolling vineyards of Rioja and an optional experience in Bilbao’s iconic Guggenheim Museum. But wait, there’s more!",
+  "You’ll get to experience Spanish wine country like never before—amidst sprawling vineyards and historic wineries. Savor exclusive winery tours and, of course, tastings of some of the finest wines Spain has to offer. It’s a holistic journey for your senses, connecting your mind, body, and palate. And don’t even get us started on the food. Expect culinary delights like pintxos crawls and intimate chef-led cooking classes and super special insider connections. We even visit French Basque Country to explore the food markets, fabulous shopping and charming seaside towns.",
+  "There’s something so fabulous about the warmth of a community brought together by a shared love for travel, food, and yoga. This is more than a retreat; it’s an adventure of a lifetime. Ready for some good vibes and unforgettable experiences? Let’s make it happen!"
+ ],
+ "highlights": [],
+ "includes": [
+  "3 nights in a beach front boutique hotel in San Sebastian/Donostia",
+  "3 nights in a 17th Century posada tucked into the charming village of Laguardia",
+  "Yoga classes as per the itinerary",
+  "Delicious Spanish style breakfasts daily & three lunches*",
+  "All dinners including pinxtos, cooking experience, Chuleton and traditional Basque cuisine dining*",
+  "Opening dinner at 2 Michelin star restaurant Amelia*",
+  "Two exclusive wine tastings in wine country",
+  "Basque Cooking Class*",
+  "Walking day tour exploring the Old Town, nature and the beauty of San Sebastian/Donostia",
+  "Walking city pintxos tour in San Sebastian*",
+  "Transportation from San Sebastian to Rioja and from Laguardia to Bilbao Airport",
+  "All hotel taxes & fees"
+ ],
+ "includes_footnote": "Because of the nature of the cuisine in Basque country, accommodating vegetarian and vegan diets is not possible. Pescatarian, gluten free and specific allergies will be easier to consider but anything serious will be difficult to control given the risk of cross-contamination in the small kitchens while preparing meals. Ideally guests have no dietary restrictions in order to fully enjoy the scope of the gastronomic experience.",
+ "not_included": [
+  "Water and two glasses of wine are included with each dinner, any other beverages will be on your own",
+  "Airport transfers to San Sebastian hotel and from Bilbao hotel (if you add the extra night) to your return airport",
+  "International Airfare",
+  "One lunch in Rioja",
+  "Optional day trip exploring French Basque Country (lunch, transportation, market and guide included) see PRICING tab",
+  "Optional wine tastings during free time",
+  "Gratuities for hotel staff, servers, drivers and guides",
+  "Additional night : Exclusive experiences at the Guggenheim Museum in Bilbao (includes hotel with breakfast, lunch and dinner with private guided tour of the museum) see PRICING tab"
+ ],
+ "not_included_footnote": "You can arrive on your own to the hotel in San Sebastian. A group shuttle will leave Laguardia on closing day to arrive at Bilbao airport around 12:30pm.",
+ "itinerary": [
+  {
+   "day": 1,
+   "label": "Day 1",
+   "title": null,
+   "bullets": [
+    "3pm Arrival to our oceanfront San Sebastian hotel, check-in & settle",
+    "4:45-6:15pm Opening circle and yoga practice",
+    "7:30pm Opening dinner at Amelia by Paulo Airaudo, 2 Michelin starred dining experience with wine pairing"
+   ],
+   "images": [
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-beach-and-island-in-the-bay.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW1-4.jpg",
+     "alt": "The beach and the wooded island in the bay of San Sebastián",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-dinner-in-a-warmly-lit-restaurant.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW2-80.jpg",
+     "alt": "Guests at dinner in a warmly lit restaurant",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 2,
+   "label": "Day 2",
+   "title": null,
+   "bullets": [
+    "Coffee in room",
+    "9am-10:15am Yoga in local studio",
+    "10:30 Breakfast at hotel",
+    "12pm-5pm Walking Day Tour through the Old Town + Pintxo tour",
+    "Free evening to explore San Sebastian; rest; enjoy La Perla spa",
+    "Dinner on your own"
+   ],
+   "images": [
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-group-yoga-pose-in-the-street.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/06/IMG_5345.jpeg",
+     "alt": "The group striking a yoga pose on a street in San Sebastián",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-lunch-at-a-long-table.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW4-181.jpeg",
+     "alt": "Guests at a long table being served",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 3,
+   "label": "Day 3",
+   "title": null,
+   "bullets": [
+    "Coffee in room",
+    "8-9:15am Yoga practice at a local studio",
+    "9:30am Gourmet breakfast at hotel",
+    "Free day to relax, explore, beach or excursion",
+    "11:30am – 6:30pm Optional day trip to visit the French Basque Country; market stop, shopping, lunch and guide included",
+    "8-11pm Basque Country Cooking Class"
+   ],
+   "images": [
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-villa-on-the-rocky-coast.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW4-114.jpeg",
+     "alt": "A turreted villa on the rocky coast under a big sky",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-walking-a-street-of-basque-houses.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW4-36.jpeg",
+     "alt": "Guests walking a street of red-shuttered Basque houses",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 4,
+   "label": "Day 4",
+   "title": null,
+   "bullets": [
+    "Coffee in room",
+    "8:15-9:30am Yoga practice at a local studio",
+    "10am Breakfast",
+    "12pm check out of hotel",
+    "12:15-2:15pm Leave for Laguardia",
+    "2:30pm Posada check in and bag drop",
+    "3pm Lunch together in Laguardia",
+    "7pm Exclusive wine tasting at Posada winery",
+    "8:30pm Dinner together at the posada"
+   ],
+   "images": [
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-wine-tasting-among-the-barrels.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW5-25.jpeg",
+     "alt": "A wine tasting beside large oak barrels in a winery",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-sharing-grilled-steak.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW5-78.jpg",
+     "alt": "Guests sharing a dish of grilled steak at the table",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 5,
+   "label": "Day 5",
+   "title": null,
+   "bullets": [
+    "Coffee & fruit",
+    "8:30-10am Yoga practice",
+    "10:15am Breakfast",
+    "Free time to explore the village; walk through the surrounding vineyards",
+    "1-5pm Exclusive wine tasting, vineyard tour & lunch in wine country",
+    "7-8:15pm Specialty workshop",
+    "8:30pm Dinner together at the posada"
+   ],
+   "images": [
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-yoga-in-a-beamed-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW6-23.jpeg",
+     "alt": "Guests in a standing yoga pose with arms raised in a beamed room",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-rose-tasting-under-the-trees.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW6-153.jpg",
+     "alt": "Bottles of rosé and glasses set out for a tasting under the trees",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 6,
+   "label": "Day 6",
+   "title": null,
+   "bullets": [
+    "Coffee & fruit",
+    "8:30-9:45am Yoga practice",
+    "10am Breakfast together at the posada",
+    "Free time; optional tastings at nearby bodegas (on your own); Lunch on your own",
+    "4:45pm Walking tour in Laguardia and the Church of Santa María de los Reyes",
+    "7pm Closing Circle",
+    "8pm Dinner together at the posada"
+   ],
+   "images": [
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-arriving-at-a-rioja-winery.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW7-46.jpg",
+     "alt": "Guests walking up to a winery with a wave-shaped roof below the mountains",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-garden-by-old-stone-walls.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW7-22.jpg",
+     "alt": "A guest in a hedged garden beside old stone walls",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 7,
+   "label": "Day 7",
+   "title": null,
+   "bullets": [
+    "8:45am Breakfast",
+    "10:30am Check out of posada in Laguardia",
+    "10:30am -12pm Group shuttle to Bilbao Airport (plan to arrive by 12:30pm)"
+   ],
+   "images": [
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-candlelit-dining-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW6-37-scaled.jpg",
+     "alt": "A table laid in a candlelit dining room",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-legs-raised-in-yoga-class.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW6-35-scaled.jpg",
+     "alt": "A guest with legs raised during a yoga class",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-vintage-suitcases-and-lamp.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW5-19-scaled.jpg",
+     "alt": "Vintage suitcases stacked beneath a lamp",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 8,
+   "label": "Day 8",
+   "title": null,
+   "bullets": [
+    "Breakfast",
+    "Free time to explore the area",
+    "11am Check out",
+    "Departures on your own"
+   ],
+   "images": [
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-walking-to-the-bilbao-hotel.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW8-11.jpeg",
+     "alt": "Two guests walking toward a hotel building in Bilbao",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-weathered-steel-sculpture.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW8-57.jpeg",
+     "alt": "A towering weathered-steel sculpture in a gallery",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-yoga-in-the-vineyard.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/06/IMG_5344.jpeg",
+     "alt": "A woman in a yoga pose among vineyards with mountains behind",
+     "shared": false
+    }
+   ]
+  }
+ ],
+ "itinerary_notes": [
+  "Please note: the retreat is officially 6 nights long (3 nights in San Sebastian and 3 nights in wine country).",
+  "There is an optional additional night added to the end of each retreat (making it 7 nights if you choose to add the Guggenheim experience in Bilbao).",
+  "Dates listed on the website INCLUDE the extra night.",
+  "For example: October 11-17, 2025 (official retreat) + optional night of October 17 in Bilbao = retreat plus the extra night ends on October 18 after breakfast"
+ ],
+ "optional_excursions_schedule": [
+  "OPTIONAL GUGGENHEIM EXPERIENCE",
+  "1:15pm Arrive Bilbao hotel; drop bags/check in",
+  "2pm Walk over to the Guggenheim",
+  "2:30pm Lunch at Bistró Guggenheim Bilbao — tasting menu",
+  "4:30-7pm Exclusive private guided tour of the museum",
+  "7:30pm Dinner together at the wonderful restaurant in our hotel"
+ ],
+ "accommodations": [
+  {
+   "name": null,
+   "label": "Donostia – San Sebastian Hotel",
+   "text": [
+    "At the end of the 19th century, little by little and under the heat of the court, the bay of La Concha was surrounded by elegant European-style villas, like a diadem of diamonds. And time, one by one, took them away too. To all, except one. The last town on the bay. The last jewel of the diadem. The most special. The favourite.",
+    "For the first three nights of our retreat we will stay at this gem of a property.",
+    "On one side of the glass, one of the most beautiful promenades in the world: the La Concha promenade in San Sebastián . On the other, the intimacy and charm of an original 19th century villa: a luxury hotel. On one side, life, light, sea and salt spray. On the other, two Michelin stars, a few good days and a cozy corner where you can enjoy the passage of time.",
+    "A cozy environment, a special place, where everything has been created around the same idea: that each day among us is unique.",
+    "Your room window opens to the heart of the city, to the best possible location on the bay.",
+    "We offer you a proposal of haute cuisine in each service, created by the award-winning chef Paulo Airaudo. In addition, the hotel has in its facilities the Amelia by Paulo Airaudo restaurant, with two Michelin stars."
+   ],
+   "instagram": null,
+   "gallery": [
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-bay-view-from-the-san-sebastian-hotel.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/villa-favorita-galeria-05-1024x683-1.jpeg",
+     "alt": "The bay of San Sebastián and a clock tower seen past an armchair at the hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-san-sebastian-hotel-terrace.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/villa-favorita-galeria-06b-1024x683-1.jpeg",
+     "alt": "A terrace with white wrought-iron furniture and orchids at the San Sebastián hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-san-sebastian-hotel-hall.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/villa-favorita-galeria-03-1024x683-1.jpeg",
+     "alt": "A hall with a grandfather clock and lanterns at the San Sebastián hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-san-sebastian-hotel-bar.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/villa-favorita-galeria-02-1024x683-1.jpeg",
+     "alt": "The gilded bar lined with wine fridges at the San Sebastián hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-san-sebastian-hotel-sitting-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/villa-favorita-galeria-08-1024x674-1.jpeg",
+     "alt": "A sitting room with a fireplace and a window onto the bay at the San Sebastián hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-san-sebastian-hotel-bedroom.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/villa-favorita-galeria-10-1024x683-1.jpeg",
+     "alt": "A bedroom with an upholstered headboard at the San Sebastián hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-san-sebastian-hotel-bathroom.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/villa-favorita-galeria-17-1024x683-1.jpeg",
+     "alt": "A marble bathroom with a glass shower at the San Sebastián hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-plated-beef-and-green-pepper.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/amelia-restaurant-san-sebastian-starred-3.jpeg",
+     "alt": "A plated dish of beef with a green pepper and sauce",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": "Mayor de Migueloa",
+   "label": "Laguardia Posada & Winery",
+   "text": [
+    "For the last half of the retreat we will travel to Spain’s world-renowned wine country to stay in the Old Viana palace built in 1619 nestled into the heart of Laguardia, a fortified hilltop village in the Rioja Alavesa Wine Route. The posada is one of the most interesting historical buildings in Laguardia as it is still operational, producing incredible wines in the antique methods right in the cellar of the building, inside the town.",
+    "It was declared a heritage site of historical and cultural interest by the Government of the Basque Country. Rehabilitated in 1988 by Jaime Gutiérrez and Mery González, pioneers in Spanish wine tourism, Mayor de Migueloa offers a space full of history and full of corners where you can evoke flavors from other times and enjoy the environment, the local products and the nobility of the people.",
+    "In keeping with the idea of tradition, the hotel respect the architectural style of the palace with the original floors, wooden beams, stone walls and a staircase made with ashlar stones that show the wear and tear of thousands of footsteps over more than four hundred years. Seeking essence, not perfection, is the motto of this incredible gem.",
+    "The decoration in each of the eight unique guest rooms respects the style of the era, with antique furnishings and other decorative elements adorning the property. Guests are made to feel that they are staying in a seventeenth century nobleman’s palace but with the modern amenities of the 21st century. It is indeed a magical experience.",
+    "To complement the incredible wines that are still being made within these walls, the restaurant onsite produces some of the best traditional cuisine in the Basque Country. Highlighting quality ingredients and simplicity, dishes range from classic croquetas, tomato salad and seasonal vegetables to fresh seafood in the Rioja style and their famous dry-aged beef cuts of Chuleton.",
+    "Keeping with the family tradition of award winning wine making, Javier sources the vast majority of his grapes from right within Laguardia. He is the only winery in the town bringing grapes down the ancient streets, into a working cellar and creating incredible old and new style Rioja wines as he learned from his father."
+   ],
+   "instagram": null,
+   "gallery": [
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-posada-entrance-on-a-stone-street.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/ext-mayor.jpeg",
+     "alt": "The hotel and restaurant entrance on a stone street in Laguardia",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-posada-cellar-stairway.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/Escaleras-Calado-scaled.jpeg",
+     "alt": "A stone stairway leading down into the arched cellar of the posada",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-posada-dining-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/resto-mig-e1697316684611.jpeg",
+     "alt": "The posada dining room with wooden beams and stone walls",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-posada-wine-cellar.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/Mayor-de-Migueloa-bodega-hotel-restaurante-980x698-1.jpeg",
+     "alt": "Oak barrels lining the vaulted stone cellar of the posada",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-posada-room-with-stone-wall.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/posada-room-1.webp",
+     "alt": "A guest room with a stone wall and a double bed at the posada",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-posada-room-under-the-beams.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/Screen-Shot-2023-10-14-at-16.54.31.png",
+     "alt": "A guest room under wooden beams at the posada",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-tomato-salad-and-grilled-steak.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/IMG_1421-1.jpeg",
+     "alt": "Tomato salad and grilled steak on the table",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-chef-and-winemaker-in-the-cellar.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/fiestras1-kJ0B-U120539073687EtE-1248x770@El-Correo.webp",
+     "alt": "A chef and a winemaker raising glasses among the barrels in the cellar",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-mayor-wine-bottles.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/IMG_1577-2-1-scaled-e1697406588933.jpeg",
+     "alt": "Bottles of the posada's Mayor wines on a table",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": null,
+   "label": "Bilbao Guggenheim Museum Hotel",
+   "text": [
+    "For our OPTIONAL additional night and Guggenheim Museum experience we will stay very close to the museum, within walking distance and eye sight.",
+    "For May dates our hotel will be as follows. Comfortable rooms with Molton Brown bath products, delicious breakfast buffet and comfortable lobby and amenities.",
+    "You won’t be in the room for much time."
+   ],
+   "instagram": null,
+   "gallery": [
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-bilbao-hotel-lobby.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/Lobby.png",
+     "alt": "The bright double-height lobby of the Bilbao hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-bilbao-hotel-lounge.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/hotel-miro-baja-2.jpeg",
+     "alt": "Leather armchairs in the lounge of the Bilbao hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-bilbao-hotel-bar.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/honestN-scaled-1.jpeg",
+     "alt": "The bar and bookshelves at the Bilbao hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-breakfast-spread-from-above.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/Desayuno-3.jpeg",
+     "alt": "Breakfast dishes shared across a white table, seen from above",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-bilbao-hotel-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/hotelmiro-190.jpeg",
+     "alt": "A double room with red cushions at the Bilbao hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-bilbao-hotel-bathroom.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/hotelmiro-236.jpeg",
+     "alt": "A black marble bathroom at the Bilbao hotel",
+     "shared": false
+    }
+   ]
+  }
+ ],
+ "rooms": [
+  {
+   "name": "Standard City View Room",
+   "price_usd": 8795,
+   "price_label": "$8,795usd Private",
+   "price_unit": "private room",
+   "description": "Standard rooms at each property with one king bed and ensuite bathroom. In San Sebastian rooms have city views.",
+   "attrs": {
+    "bed": "King",
+    "bath": "Private",
+    "view": "City (San Sebastian)"
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-standard-room-san-sebastian.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/villa-favorita-galeria-11-1024x683-1.jpeg",
+     "alt": "A standard room with a window over the city at the San Sebastián hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-standard-room-laguardia.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/Screen-Shot-2023-10-14-at-16.55.00.png",
+     "alt": "A standard room with framed maps above the bed at the posada",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": "Standard City View Room — shared",
+   "price_usd": 7595,
+   "price_label": "$7,595usd per person Shared*",
+   "price_unit": "per person",
+   "description": "Standard rooms at each property with one king bed and ensuite bathroom. In San Sebastian rooms have city views.",
+   "attrs": {
+    "bed": "King",
+    "bath": "Private",
+    "view": "City (San Sebastian)"
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-standard-room-san-sebastian.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/villa-favorita-galeria-11-1024x683-1.jpeg",
+     "alt": "A standard room with a window over the city at the San Sebastián hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-standard-room-laguardia.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/Screen-Shot-2023-10-14-at-16.55.00.png",
+     "alt": "A standard room with framed maps above the bed at the posada",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": "Deluxe Bay View Room",
+   "price_usd": 9495,
+   "price_label": "$9,495usd Private",
+   "price_unit": "private room",
+   "description": "Deluxe rooms at each property with one king or two twin beds and ensuite bathroom. In San Sebastian rooms have bay views.",
+   "attrs": {
+    "bed": "King or two twins",
+    "bath": "Private",
+    "view": "Bay (San Sebastian)"
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-deluxe-bay-view-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/villafavoria-habitaciones-sirimiri-general2-1.jpeg",
+     "alt": "A deluxe room with a sea view through tall windows at the San Sebastián hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-posada-room-under-the-beams.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/Screen-Shot-2023-10-14-at-16.54.31.png",
+     "alt": "A guest room under wooden beams at the posada",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": "Deluxe Bay View Room — shared",
+   "price_usd": 7795,
+   "price_label": "$7,795usd per person Shared*",
+   "price_unit": "per person",
+   "description": "Deluxe rooms at each property with one king or two twin beds and ensuite bathroom. In San Sebastian rooms have bay views.",
+   "attrs": {
+    "bed": "King or two twins",
+    "bath": "Private",
+    "view": "Bay (San Sebastian)"
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-deluxe-bay-view-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/villafavoria-habitaciones-sirimiri-general2-1.jpeg",
+     "alt": "A deluxe room with a sea view through tall windows at the San Sebastián hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-posada-room-under-the-beams.png",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/Screen-Shot-2023-10-14-at-16.54.31.png",
+     "alt": "A guest room under wooden beams at the posada",
+     "shared": false
+    }
+   ]
+  }
+ ],
+ "pricing_notes": [
+  "All pricing is in USD.",
+  "We can pair roommates together looking to share a room with two twin beds. If a roommate is not available you will be required to take a private accommodation."
+ ],
+ "extras": [
+  {
+   "name": "Optional Guggenheim Experience — private room",
+   "price_usd": 895,
+   "price_label": "ADD $895usd Private room",
+   "unit": "private room",
+   "desc": "Additional night (post-retreat) in Bilbao within steps of the Guggenheim Museum. This add-on package includes one night accommodation, breakfast at the hotel, lunch tasting menu at Bistró Guggenheim Bilbao, Exclusive private guided tour of the museum, Dinner together at a fantastic farm-to-table restaurant, tasting menu with wine steps from the hotel. Package includes the taxi to the hotel. Return airport transfers are on your own.",
+   "gallery": [
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-flower-puppy-outside-the-guggenheim.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW8-30-scaled.jpg",
+     "alt": "The giant flower-covered puppy sculpture outside the Guggenheim in Bilbao",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-outside-the-guggenheim.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW8-76.jpeg",
+     "alt": "Guests outside the titanium-clad Guggenheim Museum in Bilbao",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-giant-flower-sculpture-in-the-museum.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW8-82.jpeg",
+     "alt": "Visitors beneath a giant white flower sculpture in a museum gallery",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": "Optional Guggenheim Experience — shared room",
+   "price_usd": 675,
+   "price_label": "ADD $675USD Per Person Shared ROOM*",
+   "unit": "per person",
+   "desc": "Additional night (post-retreat) in Bilbao within steps of the Guggenheim Museum. This add-on package includes one night accommodation, breakfast at the hotel, lunch tasting menu at Bistró Guggenheim Bilbao, Exclusive private guided tour of the museum, Dinner together at a fantastic farm-to-table restaurant, tasting menu with wine steps from the hotel. Package includes the taxi to the hotel. Return airport transfers are on your own.",
+   "gallery": [
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-flower-puppy-outside-the-guggenheim.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW8-30-scaled.jpg",
+     "alt": "The giant flower-covered puppy sculpture outside the Guggenheim in Bilbao",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-outside-the-guggenheim.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW8-76.jpeg",
+     "alt": "Guests outside the titanium-clad Guggenheim Museum in Bilbao",
+     "shared": false
+    },
+    {
+     "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-giant-flower-sculpture-in-the-museum.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW8-82.jpeg",
+     "alt": "Visitors beneath a giant white flower sculpture in a museum gallery",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": "Optional French Basque Country Excursion",
+   "price_usd": 395,
+   "price_label": "$395usd per person",
+   "unit": "per person",
+   "desc": "11:30am – 6:30pm Optional day trip to visit the French Basque Country; market stop, shopping, lunch and guide included",
+   "gallery": []
+  }
+ ],
+ "travel_tips": [
+  {
+   "heading": "AIRPORT OPTIONS",
+   "items": [
+    "The cheapest international airport to fly into is Bilbao (BIO). It is located approximately one hour from our hotel in San Sebastian. Alternatively you can fly directly into San Sebastian (EAS)."
+   ]
+  },
+  {
+   "heading": "AIRPORT TRANSFERS",
+   "items": [
+    "We can help with airport transfers from Bilbao to San Sebastian (also known as Donostia-San Sebastian) at an additional cost depending on how many people are in the ride. We will do our best to pair travelers arriving at a similar time but most guests plan to arrive a day or two before the retreat starts in order to try and adjust to the new time zone. If we have others arriving on your time table we are happy to help organize this service or you can use Uber.com on your own. A taxi should cost you between 155-200 euro depending on the day and time of your trip. You can negotiate at the airport with one if you like."
+   ]
+  },
+  {
+   "heading": "ALT TRANSPORTATION ON YOUR OWN",
+   "items": [
+    "If you’d like to save a bit on travel between the two cities, the main bus companies which run services between Bilbao and San Sebastian are ALSA and PESA. ALSA has up to 3 buses an hour, taking between 1hr10m and 2hrs with two different classes of travel, and PESA has a bus every hour on the hour and sometimes also on the half hour, again taking between 1hr10 and 1hr30."
+   ]
+  },
+  {
+   "heading": "WEATHER",
+   "items": [
+    "San Sebastian can be rainy so please bring along a rain jacket and a collapsable umbrella in case of showers. May temps range from the high 60s during the day to high 50s at night, while October is in the low 70s during the day and the high 50s at night."
+   ]
+  },
+  {
+   "heading": "WHAT TO PACK",
+   "items": [
+    "Layers are always recommended to transition from sunny days to cooler evenings. Jeans, light sweaters or jackets should be handy for cooler evenings while day time can be sunny and mild. Comfortable shoes are recommended and heels should be carefully considered because of the uneven cobblestone streets that you will surely encounter. We will be near the beach so if you would like to take a swim bring along your bathing suit and something to lay on top of in the sand or your beach chair. Bring a rain jacket and umbrella just in case. We will be hiking in nature so something sturdy for this walk is recommended. Don’t forget your yoga mat!"
+   ]
+  },
+  {
+   "heading": "YOGA PROPS",
+   "items": [
+    "We will be practicing at a studio in San Sebastian so mats and props are provided. In wine country and Bilbao you will need to bring along your own yoga mat and any props you like to use while in class. We find that folding our mat flat in the bottom of our suitcase is the most space efficient way to travel. If you are looking for an amazing travel mat we highly recommend Liforme mats and knee pads."
+   ]
+  },
+  {
+   "heading": "DIETARY CONCERNS",
+   "items": [
+    "Because of the nature of the cuisine in Basque country, accommodating vegetarian and vegan diets is not possible. Pescatarian, gluten free and specific allergies will be easier to consider but anything serious will be difficult to control given the risk of cross-contamination in the small kitchens while preparing meals. Ideally guests have no dietary restrictions in order to fully enjoy the scope of the gastronomic experience."
+   ]
+  },
+  {
+   "heading": "TRAVEL INSURANCE AND TRIP CANCELLATION COVERAGE",
+   "items": [
+    "We highly recommend you cover your investment by immediately purchasing insurance that includes Trip Cancellation coverage in case anything should go awry with your travel plans."
+   ]
+  }
+ ],
+ "gallery_title": null,
+ "gallery_intro": null,
+ "gallery": [
+  {
+   "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-group-with-umbrellas-above-the-bay.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2024/06/IMG_5343.jpeg",
+   "alt": "The group with umbrellas on the promenade above the bay of San Sebastián",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-group-in-a-museum-gallery.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW8-101.jpeg",
+   "alt": "The group in a museum gallery with colourful paintings and balloon sculptures",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-cheese-counter-at-the-market.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW4-32-scaled.jpg",
+   "alt": "Guests browsing a cheese counter at a covered market",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-beach-and-island-from-the-shore.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW2-13-scaled.jpg",
+   "alt": "The beach and island in the bay of San Sebastián",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-guests-under-a-flower-sculpture.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW8-81.jpeg",
+   "alt": "Guests gathered beneath a giant white flower sculpture in a museum",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-guests-in-a-gallery-of-portraits.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW8-92.jpeg",
+   "alt": "Guests in a gallery hung with rows of portraits beside a mirrored sculpture",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-riverside-walk-in-bilbao.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW8-74.jpeg",
+   "alt": "Guests on a riverside walk beside a red bridge in Bilbao",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-photographing-red-roses.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW6-84.jpeg",
+   "alt": "A guest leaning into red roses while a friend takes a photo",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-yoga-class-in-a-beamed-room.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW6-24.jpeg",
+   "alt": "A yoga class on rugs in a beamed room",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-cooking-class-in-aprons.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW4-151.jpeg",
+   "alt": "Guests in aprons at a cooking class",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-hug-in-the-kitchen.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW4-147.jpeg",
+   "alt": "Two women hugging in a kitchen, glasses of wine in hand",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/spain-basque-country/img/yoga-retreat-basque-country-group-in-the-winery.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2023/10/YAWW5-54.jpeg",
+   "alt": "The group gathered among barrels and steel tanks in a winery",
+   "shared": false,
+   "ratio": null
+  }
+ ],
+ "faqs": [
+  {
+   "question": "Do you accept bitcoin?",
+   "answer": [
+    "In addition to credit card payments we also accept wire transfers, Zelle and Bitcoin. Please inquire for more details."
+   ]
+  },
+  {
+   "question": "What is the cancellation policy?",
+   "answer": [
+    "All payments are 100% non refundable and non-transferable. We recommend that you buy Trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you."
+   ]
+  },
+  {
+   "question": "What happens if my travel plans change?",
+   "answer": [
+    "There are no refunds as per our cancellation policies. We highly recommend that all of our guests secure a quality travel insurance that will cover them for any event which may cause a change of travel plans, including personal health issues or personal situations in general which may affect travel plans."
+   ]
+  },
+  {
+   "question": "Are flight delays or cancellations covered?",
+   "answer": [
+    "Not by us: transportation delays, cancellations or changes due to strikes, labor disputes, or lockouts from airlines, boats, ferries or any type of transportation are among the events we recommend covering with travel insurance."
+   ]
+  },
+  {
+   "question": "Where can I find the full terms & conditions?",
+   "answer": [
+    "The full terms and conditions are published at https://yogaadventuresworldwide.com/termsandconditions/ . By submitting payments toward your retreat you accept them."
+   ]
+  }
+ ],
+ "booking": {
+  "deposit_usd": 1000,
+  "deposit_label": "$1,000 USD per person",
+  "deposit_instructions": "Deposits of $1,000usd are due to secure your space in the retreat. Please check availability with us for accommodations before making your deposit.",
+  "balance_due_days": 90,
+  "balance_note": "The balance of your retreat (minus your $1,000usd initial deposit) is due 90 days prior to arrival. All details with instructions for settling up will be emailed to you three months prior to the retreat.",
+  "payment_methods": [
+   "Credit card",
+   "Wire transfer",
+   "Zelle",
+   "Bitcoin"
+  ],
+  "roommate_note": "Roommates should book together. If you would like to share a room and do not have a roommate we will provide one for you if possible. In the case that there is no one to share a room we ask that you take a private room instead.",
+  "cancellation_policy": [
+   "All payments are 100% non refundable and non-transferable. We recommend that you buy Trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you."
+  ],
+  "booking_url": "https://yogaadventuresworldwide.com/retreat/basque-country-spain-yoga-gastronomy-retreat/#reserve",
+  "contact_url": "https://yogaadventuresworldwide.com/contact-about-yoga-retreats/"
+ },
+ "testimonials": null,
+ "carbon_offset": null,
+ "source_url": "https://yogaadventuresworldwide.com/retreat/basque-country-spain-yoga-gastronomy-retreat/",
+ "source_post_slug": "basque-country-spain-yoga-gastronomy-retreat",
+ "source_categories": [
+  "yoga",
+  "yoga-food-and-wine"
+ ],
+ "source_is_shared": true,
+ "seo_title": "Basque Country Yoga & Gastronomy Retreat · Oct 2025",
+ "seo_description": "6-night yoga & gastronomy retreat in San Sebastian and Rioja wine country, Spain. October 11-17, 2025, with an optional Guggenheim night in Bilbao.",
+ "_notes": {
+  "faqs": "The source page has no FAQs block. These five answers follow morocco-nov-2026: quoted from the site-wide Policies text inside the retreat page's Reserve section (the cancellation answer is this page's own wording). They are not retreat-specific.",
+  "testimonials": "The source page's \"Praise\" section is commented out in the markup; no quotes are published. Left null.",
+  "status": "Set to waitlist on request: the old page shows no bookable upcoming date.",
+  "teachers": "The page names no teacher or facilitator for this retreat.",
+  "carbon_offset": "No carbon-offset copy on the source page.",
+  "seo_title": "DRAFT. Written only from this retreat's real destination and data.",
+  "seo_description": "DRAFT. Written only from facts stated on the source page.",
+  "images": "Photos downloaded at the largest size the server has (WordPress size suffixes stripped when the full file exists). AVIF originals were converted to JPEG because the naming rule only allows jpg/png/webp.",
+  "date_start": "The page lists three editions: October 5-11, 2024, October 12-18, 2024 and October 11-17, 2025 ('official retreat', 6 nights). The latest, 2025, is used; all are past. The page also says 'Dates listed on the website INCLUDE the extra night' (the optional Bilbao night).",
+  "source_is_shared": "true: the page covers several dated editions.",
+  "itinerary": "Days 1-7 are the official retreat; Day 8 belongs to the optional extra night in Bilbao (see itinerary_notes). The page's 'OPTIONAL GUGGENHEIM EXPERIENCE' block on the afternoon of Day 7 is in optional_excursions_schedule; its three photos are on the Guggenheim extras.",
+  "itinerary_notes": "The six-night note as the Includes section words it (with only the 2025 example); the Itinerary and Travel Tips sections repeat it with the 2024 examples too.",
+  "accommodations": "Only the Laguardia posada is named in the page text (Mayor de Migueloa). The San Sebastian and Bilbao hotels are not named (filenames suggest Villa Favorita and Hotel Miró). Labels are the page's own headings.",
+  "accommodations[2].text": "The Bilbao text says 'For May dates our hotel will be as follows', while the only published dates are in October. Kept verbatim; worth checking with the client.",
+  "accommodations.gallery": "Skipped small thumbnails (<800px): happy-hour, desayuno-bar, desayuno-zumo, gastro (San Sebastian); a coat-of-arms carving, door knocker, fish dinner, kitchen, street with grape crates, grape harvest (Laguardia).",
+  "rooms": "Each room type has a private and a shared rate on the page, so each appears twice. 'Standard rooms at each property'; the view applies to San Sebastian only.",
+  "extras": "The Guggenheim add-on has two published prices (private / shared room), so it appears twice. The French Basque excursion is the Day 3 optional day trip.",
+  "travel_tips": "One group per labelled tip. Dropped the affiliate-link sentence 'You can use this link to get a 5% discount on your order.' The six-night note at the top is in itinerary_notes instead.",
+  "tier": "retreat_categories are yoga and yoga-food-and-wine only; no basis for a collection.",
+  "gallery": "12 of 25 gallery photos, avoiding ones already used in the itinerary.",
+  "about_body": "The About section's six-night / extra-night note is not repeated here (it is in itinerary_notes)."
+ },
+ "_missing": [
+  "about_title",
+  "accommodations[].name",
+  "carbon_offset",
+  "gallery_intro",
+  "gallery_title",
+  "highlights",
+  "rooms[].hotel",
+  "season",
+  "status_label",
+  "subtitle",
+  "teachers",
+  "testimonials",
+  "tier",
+  "tier_label",
+  "tier_source",
+  "urgency"
+ ]
+}

@@ -3,6 +3,16 @@
 
     python3 retreats/_tools/build_page.py            # every listed edition
     python3 retreats/_tools/build_page.py <id> ...   # just these
+    python3 retreats/_tools/build_page.py --waitlist [<location> ...]
+
+--waitlist builds the dateless page of a destination between editions,
+one per location with a `program` in data/locations.js (or just the ones
+named): retreatpage-<location>.html. Same template and same content as an
+edition (about, includes, itinerary, stay, gallery, FAQs), from that
+program's data.json (WAITLIST_SOURCE says which), but no dates, teacher,
+rooms or prices: the hero says "Dates to be announced" and the pricing
+block is replaced by the waitlist form, which is where the lead is
+captured. Listing cards link here through location.program.pageUrl.
 
 Each page is retreatpage-elcuyo.html with its variable regions replaced. The
 template is read, never written: its CSS, scripts and layout carry over
@@ -45,7 +55,12 @@ import page_content as PC  # noqa: E402
 REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 TPL = os.path.join(REPO, "retreatpage-elcuyo.html")
 HOSTS_JS = '<script src="js/hosts.js?v=202611191130" defer></script>'
-CSS_VERSION = "202611191230"   # bump with any change to css/retreat.css
+CSS_VERSION = "202611200330"   # bump with any change to css/retreat.css
+CARDS_JS = '<script src="js/retreat-cards.js?v=202611200400"></script>'
+
+# Which data.json a waitlist page reads: the location's own scrape, or for
+# Morocco the November 2026 edition (same retreat, last time it ran).
+WAITLIST_SOURCE = {"morocco": "morocco-nov-2026"}
 
 # The El Cuyo editions that run the standard 5-night week the template was
 # written for: same itinerary, same includes, same extras.
@@ -148,6 +163,8 @@ class Assets:
         for out, (src, width) in sorted(self.want.items()):
             sp, op = os.path.join(REPO, src), os.path.join(REPO, out)
             if not os.path.exists(sp):
+                if os.path.exists(op):
+                    continue                 # served copy already exported; masters live outside the repo
                 raise SystemExit(f"master missing: {src}")
             with Image.open(sp) as im:
                 im = ImageOps.exif_transpose(im)
@@ -431,11 +448,57 @@ def first_sentences(paragraph, limit=260):
     return out
 
 
+def waitlist_section(location, last_edition):
+    """Where the rooms and prices go on a dated page. The form posts through
+    YAWW.wireWaitlistForm (js/retreat-cards.js), tagged with the location."""
+    when = ""
+    start = (last_edition or {}).get("date_start")
+    if start and datetime.date.fromisoformat(start) < datetime.date.today():
+        y, m, _ = (int(x) for x in start.split("-"))
+        when = f" in {MONTHS[m-1]} {y}"
+    note = (f"The itinerary, inclusions and stay on this page are from our last retreat here{when}; "
+            "the next one may differ, and its dates, teacher and prices come out together.")
+    return f'''  <!-- =========================================================
+       WAITLIST (in place of Rooms pricing: no dates yet). The lead is
+       captured here. TODO(backend): YAWW.WAITLIST_ENDPOINT.
+       ========================================================= -->
+  <section class="waitlist" id="waitlist" aria-labelledby="waitlist-title">
+    <div class="waitlist__inner">
+      <h2 class="waitlist__title" id="waitlist-title">Join the waitlist</h2>
+      <p class="waitlist__body">We are planning the next retreat in {esc(location["name"])}. Leave your name and we will write to you first, before the dates go public.</p>
+      <form class="waitlist__form" data-waitlist-form data-waitlist-success="waitlist-done" novalidate>
+        <label class="waitlist__label-sr" for="waitlist-first">First name</label>
+        <input class="waitlist__input" id="waitlist-first" name="first_name" type="text" placeholder="First name" autocomplete="given-name" required>
+        <label class="waitlist__label-sr" for="waitlist-email">Email address</label>
+        <input class="waitlist__input" id="waitlist-email" name="email" type="email" placeholder="Email address" autocomplete="email" required>
+        <input type="hidden" name="location" value="{esc(location["id"])}">
+        <button class="btn btn--primary waitlist__submit" type="submit">Join the waitlist</button>
+        <p class="waitlist__error" data-waitlist-error role="alert" hidden></p>
+      </form>
+      <div class="waitlist__done" id="waitlist-done" hidden>
+        <p class="waitlist__title">You are on the list</p>
+        <p class="waitlist__body">We will write to you as soon as the dates are set.</p>
+      </div>
+      <p class="waitlist__note">{esc(note)}</p>
+      <p class="waitlist__links"><a href="contact.html#general-inquiry">Questions? Talk to us</a></p>
+    </div>
+  </section>'''
+
+
 # ------------------------------------------------------------------ build --
 
-def build(rid, cat, assets, template):
-    r = next(x for x in cat["retreats"] if x["id"] == rid)
-    d = json.load(open(os.path.join(REPO, "retreats", rid, "data.json"), encoding="utf-8"))
+def build(rid, cat, assets, template, waitlist=False):
+    if waitlist:
+        # rid is a location id; the "edition" is the program between dates.
+        location = next(x for x in cat["locations"] if x["id"] == rid)
+        prog = location["program"]
+        r = {"id": rid, "officialName": prog["name"], "locationId": rid, "teacherIds": [],
+             "collection": prog.get("collection"), "status": None}
+        src_dir = WAITLIST_SOURCE.get(rid, rid)
+    else:
+        r = next(x for x in cat["retreats"] if x["id"] == rid)
+        src_dir = rid
+    d = json.load(open(os.path.join(REPO, "retreats", src_dir, "data.json"), encoding="utf-8"))
     loc = r["locationId"]
     location = next((x for x in cat["locations"] if x["id"] == loc), {})
     is_cuyo = loc == "el-cuyo"
@@ -445,27 +508,33 @@ def build(rid, cat, assets, template):
     doc = template
     place = d["location_label"]
     name = r["officialName"]
-    dates = date_range(r["startDate"], r["endDate"])
+    dates = "Dates to be announced" if waitlist else date_range(r["startDate"], r["endDate"])
     tids = [t for t in r["teacherIds"] if t != "tbd"]
     who = " & ".join(teachers[t]["name"] for t in tids)
 
     # ---------------------------------------------------------------- head
-    nights = (datetime.date.fromisoformat(r["endDate"]) - datetime.date.fromisoformat(r["startDate"])).days
-    desc = (f"{nights}-night yoga retreat in {place}, {dates}"
-            + (f", with {who}." if who else ". Teacher to be announced."))
+    if waitlist:
+        desc = (f"{name}, a yoga retreat in {place}. The next dates are being planned: "
+                f"join the waitlist to hear first.")
+    else:
+        nights = (datetime.date.fromisoformat(r["endDate"]) - datetime.date.fromisoformat(r["startDate"])).days
+        desc = (f"{nights}-night yoga retreat in {place}, {dates}"
+                + (f", with {who}." if who else ". Teacher to be announced."))
     doc = swap(doc, "<title>YAWW · Beach Escape Retreat</title>",
                f"<title>YAWW · {esc(name)}</title>\n<meta name=\"description\" content=\"{esc(desc)}\">", "title")
     # The built pages use rules the template predates (day titles, notes,
     # empty host photo), so they ask for the current stylesheet.
     doc = re.sub(r"css/retreat\.css\?v=\d+", "css/retreat.css?v=" + CSS_VERSION, doc, count=1)
     doc = swap(doc, "<body>\n",
-               f"<body>\n<!-- Built by retreats/_tools/build_page.py from data/retreats.js and "
-               f"retreats/{rid}/data.json,\n     on the retreatpage-elcuyo.html template. Edit the data, "
+               f"<body>\n<!-- Built by retreats/_tools/build_page.py"
+               + (f" --waitlist from data/locations.js (program) and" if waitlist else " from data/retreats.js and")
+               + f" retreats/{src_dir}/data.json,\n     on the retreatpage-elcuyo.html template. Edit the data, "
                f"not this file. -->\n", "stamp")
 
     # ---------------------------------------------------------------- hero
     hero = d.get("hero_image") or {}
     hero_src = assets.web(hero.get("file"), Assets.HERO, loc)
+    d["_hero_web"] = hero_src
     hero_alt = hero.get("alt") or f"{name} — {place}"
     doc = swap(doc, '<div class="retreat-hero__image" role="img" aria-label="Beach Escape Retreat — El Cuyo, Mexico"></div>',
                f'<div class="retreat-hero__image" role="img" aria-label="{esc(hero_alt)}"'
@@ -478,12 +547,21 @@ def build(rid, cat, assets, template):
     coll = {"signature-collection": "Signature Collection", "deep-dives": "Deep Dives"}.get(r.get("collection"))
     doc = swap(doc, '      <p class="retreat-hero__badge">Signature Collection</p>\n',
                f'      <p class="retreat-hero__badge">{coll}</p>\n' if coll else "", "badge")
-    doc = swap(doc, "<span>September 4-8, 2026</span>", f"<span>{esc(dates)}</span>", "hero date")
-    doc = swap(doc, "<span>with Renata Centi</span>",
-               f"<span>with {esc(who)}</span>" if who else "<span>Teacher to be announced</span>", "hero who")
-    doc = swap(doc, '''      <button class="btn btn--primary" type="button">Book now</button>
+    if waitlist:
+        doc = swap(doc, '''        <span>September 4-8, 2026</span>
+        <span class="retreat-hero__meta-dot" aria-hidden="true">·</span>
+        <span>with Renata Centi</span>''', "        <span>Dates to be announced</span>", "hero meta")
+        doc = swap(doc, '''      <button class="btn btn--primary" type="button">Book now</button>
       <button class="btn btn--secondary" type="button">I want more info</button>''',
-               '''      <a class="btn btn--primary" href="#rooms">Book now</a>
+                   '''      <a class="btn btn--primary" href="#waitlist">Join the waitlist</a>
+      <a class="btn btn--secondary" href="contact.html#general-inquiry">I want more info</a>''', "hero ctas")
+    else:
+        doc = swap(doc, "<span>September 4-8, 2026</span>", f"<span>{esc(dates)}</span>", "hero date")
+        doc = swap(doc, "<span>with Renata Centi</span>",
+                   f"<span>with {esc(who)}</span>" if who else "<span>Teacher to be announced</span>", "hero who")
+        doc = swap(doc, '''      <button class="btn btn--primary" type="button">Book now</button>
+      <button class="btn btn--secondary" type="button">I want more info</button>''',
+                   '''      <a class="btn btn--primary" href="#rooms">Book now</a>
       <a class="btn btn--secondary" href="contact.html#general-inquiry">I want more info</a>''', "hero ctas")
 
     # --------------------------------------------------------------- about
@@ -491,7 +569,7 @@ def build(rid, cat, assets, template):
         # Drop scraped dividers ("______") — a run of underscores is one
         # unbreakable word and pushes the page wider than a phone.
         paras = [tidy(p) for p in d["about_body"] if re.search(r"[A-Za-z0-9]", tidy(p))]
-        if d.get("subtitle"):
+        if d.get("subtitle") and not waitlist:
             paras.insert(0, d["subtitle"] + ".")
         doc = cut(doc, '<div class="retreat-about__body">', "\n    </div>\n  </section>",
                   "".join(f"\n      <p>{esc(p)}</p>" for p in paras), "about")
@@ -521,7 +599,12 @@ def build(rid, cat, assets, template):
         note = (f"PLACEHOLDER facilitator — {f['name']} is the team member whose own bio ties\n"
                 f"         her to {location.get('name', loc)}, but who travels on these dates is unconfirmed.")
     m = section(doc, "retreat-teacher")
-    doc = doc[:m.start()] + hosts_section(hosts, note) + doc[m.end():]
+    if waitlist:
+        # Who teaches the next one is not announced; the page says nothing
+        # rather than naming last time's teacher.
+        doc = doc[:m.start()] + "  <!-- Hosts: announced with the next dates. -->" + doc[m.end():]
+    else:
+        doc = doc[:m.start()] + hosts_section(hosts, note) + doc[m.end():]
 
     # ------------------------------------------------------------ includes
     if standard:
@@ -613,7 +696,7 @@ def build(rid, cat, assets, template):
         tiers.append("    {\n      name: %s,\n      priceUSD: %s,\n      priceUnit: %s,\n      hotels: [\n%s\n      ]\n    }" % (
             jstr(room["name"]), room["price_usd"] if room.get("price_usd") is not None else "null",
             jstr(price_unit(room)), ",\n".join(rows)))
-    doc = cut(doc, "  var TIERS = [", "\n  ];", "\n" + ",\n".join(tiers), "TIERS")
+    doc = cut(doc, "  var TIERS = [", "\n  ];", "" if waitlist else "\n" + ",\n".join(tiers), "TIERS")
 
     # -------------------------------------------------------------- urgency
     st = r.get("status")
@@ -622,6 +705,8 @@ def build(rid, cat, assets, template):
            "new": "{ type: 'scarce', label: 'New retreat' }",
            "spaces_left": "{ type: 'scarce', label: '%s' }" % (
                f"{r.get('spacesLeft')} space{'s' if r.get('spacesLeft') != 1 else ''} left")}.get(st, "null")
+    if waitlist:
+        urg = "{ type: 'scarce', label: 'Waitlist' }"   # the same word as its card
     doc = swap(doc, "var URGENCY = { type: 'scarce', label: 'Filling fast' };", f"var URGENCY = {urg};", "urgency")
 
     # --------------------------------------------------------- how to book
@@ -650,6 +735,9 @@ def build(rid, cat, assets, template):
                '''          <a class="btn btn--primary" href="contact.html#general-inquiry">Reserve your space</a>
           <a class="btn btn--secondary" href="contact.html#general-inquiry">I want more info</a>''', "rooms ctas")
     doc = swap(doc, '<section class="rooms">', '<section class="rooms" id="rooms">', "rooms id")
+    if waitlist:
+        m = section(doc, "rooms")
+        doc = doc[:m.start()] + waitlist_section(location, d) + doc[m.end():]
 
     # --------------------------------------------------------------- extras
     tpl_extras = {
@@ -672,6 +760,9 @@ def build(rid, cat, assets, template):
             price = f"{int(x['price_usd'])} USD"
         else:
             price = re.sub(r"(?i)\s*each$", "", tidy(x["price_label"])).replace("euro", "EUR")
+            unit = x.get("unit") or ""
+            if unit and price.lower().endswith(" " + unit.lower()):
+                price = price[:-len(unit)].rstrip()          # "250 EUR each way" + unit "each way"
         extras.append("      {\n        name: %s,\n        tab: %s,\n        desc: %s,\n        price: %s, unit: %s,\n        gallery: [%s]\n      }" % (
             jstr(nm), jstr(PC.EXTRA_TABS.get(nm, nm)), jstr(desc_html), jstr(price), jstr(x.get("unit") or "each"), ", ".join(jstr(g) for g in gal)))
     if extras:
@@ -736,7 +827,12 @@ def build(rid, cat, assets, template):
     # are labelled "Placeholder quote, to be replaced" until real guest
     # words arrive. The old site has none to bring over.
 
-    doc = swap(doc, "\n</body>", "\n" + HOSTS_JS + "\n</body>", "hosts js")
+    if waitlist:
+        doc = swap(doc, "\n</body>", "\n" + CARDS_JS +
+                   "\n<script>YAWW.wireWaitlistForm(document.querySelector('[data-waitlist-form]'));</script>\n</body>",
+                   "waitlist js")
+    else:
+        doc = swap(doc, "\n</body>", "\n" + HOSTS_JS + "\n</body>", "hosts js")
     return f"retreatpage-{rid}.html", doc, d
 
 
@@ -807,6 +903,30 @@ def patch_template_js(doc):
     return doc
 
 
+def waitlist_card(lid, hero_web):
+    """The listing card's photo for a destination between editions: the
+    retreat's own hero, centre-cropped to the card's 312x408 frame, at 1x
+    and 2x like every edition's card (images/retreat-cards/). Returns the
+    two paths for location.program.image / image2x."""
+    from PIL import Image
+    if not hero_web:
+        return None
+    one, two = f"images/retreat-cards/{lid}-waitlist.webp", f"images/retreat-cards/{lid}-waitlist@2x.webp"
+    with Image.open(os.path.join(REPO, hero_web)) as im:
+        im = im.convert("RGB")
+        w, h = im.size
+        ratio = 312 / 408
+        if w / h > ratio:
+            cw = round(h * ratio)
+            im = im.crop(((w - cw) // 2, 0, (w - cw) // 2 + cw, h))
+        else:
+            ch = round(w / ratio)
+            im = im.crop((0, (h - ch) // 2, w, (h - ch) // 2 + ch))
+        for path, size in ((two, (624, 816)), (one, (312, 408))):
+            im.resize(size, Image.LANCZOS).save(os.path.join(REPO, path), "WEBP", quality=82, method=6)
+    return one, two
+
+
 def update_listing(ids):
     """Give every edition its pageUrl in data/retreats.js, so every card on
     the site (home, listing, teacher pages) links to the edition's page."""
@@ -821,18 +941,30 @@ def update_listing(ids):
 
 def main(argv):
     cat = load_catalogs()
-    ids = argv or [r["id"] for r in cat["retreats"]]
+    waitlist = bool(argv) and argv[0] == "--waitlist"
+    if waitlist:
+        argv = argv[1:]
+        ids = argv or [l["id"] for l in cat["locations"] if l.get("program")]
+    else:
+        ids = argv or [r["id"] for r in cat["retreats"]]
     template = patch_template_js(open(TPL, encoding="utf-8").read())
     assets = Assets()
     built = []
+    heroes = []
     for rid in ids:
-        fname, doc, d = build(rid, cat, assets, template)
+        fname, doc, d = build(rid, cat, assets, template, waitlist)
         open(os.path.join(REPO, fname), "w", encoding="utf-8").write(doc)
         built.append(fname)
+        heroes.append((rid, d.get("_hero_web")))
         print(f"{fname:52} rooms={len(d['rooms'])} days={len(d['itinerary'])} extras={len(d['extras'])}")
     made = assets.export()
     print(f"photos: {len(assets.want)} referenced, {made} exported")
-    update_listing(ids)
+    if waitlist:
+        for rid, hero_web in heroes:
+            card = waitlist_card(rid, hero_web)
+            print(f"card {rid}: {card[0] if card else 'no hero'}")
+    if not waitlist:
+        update_listing(ids)
 
 
 if __name__ == "__main__":

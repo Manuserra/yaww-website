@@ -1,0 +1,803 @@
+{
+ "slug": "iceland",
+ "title": "The Iceland Experience : From Reykjavík to the wild",
+ "subtitle": "Designed to move you",
+ "destination": "Iceland",
+ "location_label": "Reykjavík & the South Coast, Iceland",
+ "country": "Iceland",
+ "region": "Reykjavík & the South Coast",
+ "tier": "signature",
+ "tier_label": "Signature Collection",
+ "tier_source": "retreat_categories-signature-retreats on the source page",
+ "status": "waitlist",
+ "status_label": null,
+ "urgency": null,
+ "date_start": null,
+ "date_end": null,
+ "dates_label": null,
+ "season": null,
+ "nights": 8,
+ "days": null,
+ "teachers": [],
+ "teacher_unassigned": true,
+ "hero_image": {
+  "file": "retreats/iceland/img/yoga-retreat-iceland-icelandic-horses-below-misty-hills.jpg",
+  "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/fabian-burghardt-A81818EFqGQ-unsplash-scaled.jpg",
+  "alt": "Three Icelandic horses in a meadow below misty hills, Iceland",
+  "shared": false
+ },
+ "intro": "Iceland invites you into something vast.",
+ "about_title": "About The Iceland Experience",
+ "about_body": [
+  "This is a moving journey—designed to experience the country as it unfolds, not from a single place, but through its shifting landscapes, textures, and rhythms. From Reykjavík to the south coast, each stop reveals a different side of Iceland—raw, quiet, powerful.",
+  "We begin with moments of ease—geothermal waters, time in the city, space to arrive. From there, the landscape opens: waterfalls, black sand beaches, glacial terrain, and the vastness that defines this place. We follow the natural flow of the land, traveling with intention and without rush.",
+  "Along the way, you’ll experience Iceland’s culture in subtle, meaningful ways—shared meals, local flavors, and time to explore Reykjavík at your own pace.",
+  "Yoga is woven into the experience—morning practices, evening resets, and moments to ground into where you are. It’s not the focus, but the thread that connects it all.",
+  "This retreat is designed to move—gently, intentionally—allowing you to see more, feel more, and experience Iceland in its full depth. We travel light, stay in places that reflect the spirit of the land, and create space for both connection and independence.",
+  "In the landscapes. In the way it stays with you.",
+  "This retreat is for those who want more than a place to go.",
+  "For those drawn to landscapes that shift your perspective—and experiences that stay with you.",
+  "You value thoughtful travel. You notice the details. You’re as interested in how something feels as where you are.",
+  "You’re open to movement—both in the journey itself and in your own experience.",
+  "A retreat that changes locations, energy, and pace feels expansive, not overwhelming.",
+  "You enjoy being part of a group, but also value space to take things in on your own.",
+  "You don’t need everything to be explained or structured—you trust the experience to unfold.",
+  "And you’re not just looking for a break—you’re looking to feel something again."
+ ],
+ "highlights": [],
+ "includes": [
+  "Eight nights in carefully selected accommodations, moving through Reykjavík and along the South Coast.",
+  "Daily breakfast, six dinners and three lunches—a mix of local flavors, shared tables, and memorable settings.",
+  "Yoga woven throughout the experience—grounding each day without defining it.",
+  "Private transportation as we travel through Iceland’s changing landscapes.",
+  "The Blue Lagoon, with silica mud mask and time to unwind",
+  "The Golden Circle, including Geysir, Gullfoss, and a curated food experience",
+  "A guided Reykjavík walk through its food, culture, and creative scene",
+  "Time to explore the city at your own pace",
+  "The black sand beaches of Vík",
+  "A guided hike on Europe’s largest glacier",
+  "Glacier Lagoon with amphibian boat experience, and Diamond Beach",
+  "Waterfalls, open landscapes, and moments you don’t plan for",
+  "A visit to an Icelandic horse farm, with riding experience (weather permitting)",
+  "The possibility of the Northern Lights, if conditions align",
+  "All taxes and gratuities for included meals"
+ ],
+ "includes_footnote": null,
+ "not_included": [
+  "International airfare",
+  "Airport transfers",
+  "Alcohol",
+  "Two dinners and five lunches",
+  "Travel insurance",
+  "Optional activities and personal shopping"
+ ],
+ "not_included_footnote": null,
+ "itinerary": [
+  {
+   "day": 1,
+   "label": "Day 1",
+   "title": null,
+   "bullets": [
+    "Arrive and settle into accommodations",
+    "Explore the city, lunch on your own; Rest",
+    "Opening circle and Yoga Practice",
+    "Opening dinner together"
+   ],
+   "images": [
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-reykjavik-at-sunset.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/einar-h-reynis-geYUKmAKZp0-unsplash-scaled-e1773952852960.jpg",
+     "alt": "Reykjavík and the Hallgrímskirkja church at sunset, with mountains across the bay",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-reykjavik-hotel-breakfast-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/hotel-rey-3.avif",
+     "alt": "A breakfast room with a green banquette at the Reykjavík hotel",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 2,
+   "label": "Day 2",
+   "title": null,
+   "bullets": [
+    "Yoga Practice",
+    "Breakfast",
+    "Free time to rest, shop, walk around the city",
+    "Lunch on your own",
+    "Experience the Blue Lagoon geothermal waters",
+    "Dinner together"
+   ],
+   "images": [
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-blue-lagoon-and-lava-field.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/blue-lagoon-surroundings.jpg",
+     "alt": "Steam over the Blue Lagoon beside a lava field and boardwalk",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 3,
+   "label": "Day 3",
+   "title": null,
+   "bullets": [
+    "Breakfast",
+    "Golden Circle & Foodie Adventure (with lunch and geo-thermally brewed beer included)",
+    "Dinner on your own"
+   ],
+   "images": [
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-geyser-erupting.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/getty-images-9lth_lTKHaE-unsplash.jpg",
+     "alt": "A geyser erupting from a steaming geothermal field",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-gullfoss-waterfall.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/sarah-thorenz-2ALdMuvRD0w-unsplash.jpg",
+     "alt": "The Gullfoss waterfall pouring into its canyon",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 4,
+   "label": "Day 4",
+   "title": null,
+   "bullets": [
+    "Yoga Practice",
+    "Breakfast",
+    "Guided walking city tour of Reykjavik with a focus on local cuisine and culture; Lunch included",
+    "Free time to explore the city, check out Sky Lagoon, shopping, Opera House",
+    "Dinner on your own"
+   ],
+   "images": [
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-hallgrimskirkja-and-leif-eriksson-statue.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/tucker-monticelli-lWz1ttERC5s-unsplash-scaled-e1773965768795.jpg",
+     "alt": "The Hallgrímskirkja tower and the Leif Eriksson statue in Reykjavík",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-hot-dogs-in-reykjavik.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/hot-dogs.jpg",
+     "alt": "Friends eating hot dogs at a street stand in Reykjavík",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 5,
+   "label": "Day 5",
+   "title": null,
+   "bullets": [
+    "Yoga Practice",
+    "Breakfast",
+    "Travel to Vik",
+    "Visit Black Beach; lunch included",
+    "Travel to Hoff; new hotel check-in",
+    "Cocktail Hour optional",
+    "Dinner together"
+   ],
+   "images": [
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-road-toward-a-snowy-mountain.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/jeremy-goldberg-WKVGmz7o0O4-unsplash.jpg",
+     "alt": "An empty road toward a snow-capped mountain with geothermal steam alongside",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-basalt-columns-on-the-black-beach.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/vik.jpg",
+     "alt": "Basalt columns and sea stacks on a black sand beach",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 6,
+   "label": "Day 6",
+   "title": null,
+   "bullets": [
+    "Breakfast",
+    "Guided Glacier Hike",
+    "Lunch on your own",
+    "Happy Hour optional",
+    "Dinner together"
+   ],
+   "images": [
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-group-on-the-glacier.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/IMG_6503.jpg",
+     "alt": "A guide's selfie with the group on the glacier",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-hiking-across-the-glacier.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/IMG_4484-e1571555096273.jpg",
+     "alt": "Hikers in a line crossing the glacier ice",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 7,
+   "label": "Day 7",
+   "title": null,
+   "bullets": [
+    "Breakfast",
+    "Glacier Lagoon amphibian boat ride; check out Diamond Beach",
+    "Lunch oyo",
+    "Visit Fjaðrárgljúfur canyon for an easy hike with views",
+    "Travel towards Hella",
+    "Arrive Icelandic Horse Farm & check in to Turf House accommodations",
+    "Gentle Yoga with the horses",
+    "Dinner together"
+   ],
+   "images": [
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-life-jackets-at-the-glacier-lagoon.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/IMG_2129-2.jpg",
+     "alt": "The group in orange life jackets at the glacier lagoon",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-icebergs-in-the-glacier-lagoon.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/IMG_3663.jpg",
+     "alt": "Blue icebergs floating in the glacier lagoon",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 8,
+   "label": "Day 8",
+   "title": null,
+   "bullets": [
+    "Yoga Practice",
+    "Breakfast",
+    "Icelandic Horse ride along the river (weather permitting)",
+    "Lunch on your own",
+    "Travel to Reykjavik; hotel check-in",
+    "Closing circle & final yoga practice",
+    "Dinner together"
+   ],
+   "images": [
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-horse-ride-across-the-moor.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/IMG_3341.jpg",
+     "alt": "Riding Icelandic horses in a line across open moorland",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-in-the-stables.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/IMG_2194.jpg",
+     "alt": "Guests in the stables at the horse farm, in black and white",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "day": 9,
+   "label": "Day 9",
+   "title": null,
+   "bullets": [
+    "Breakfast available",
+    "Departures"
+   ],
+   "images": [
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-yoga-pose-in-the-stables.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/IMG_7738.jpg",
+     "alt": "A guest in a balancing yoga pose in the long stable at the horse farm",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-arms-raised-among-the-ice.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/IMG_1968.jpg",
+     "alt": "A guest with arms raised among chunks of ice on a black sand beach",
+     "shared": false
+    }
+   ]
+  }
+ ],
+ "itinerary_notes": [],
+ "optional_excursions_schedule": [],
+ "accommodations": [
+  {
+   "name": null,
+   "label": "Hotel in the heart of Reykjavík",
+   "text": [
+    "Our first 4 nights and final night in Iceland will be enjoyed at a lovely hotel right in the heart of Reykjavik.",
+    "Rooms can accommodate singles or shared doubles.",
+    "We will finish the retreat back where we started in Reykjavik for the closing circle and one last amazing meal together."
+   ],
+   "instagram": null,
+   "gallery": [
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-reykjavik-hotel-lounge.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/hotel-rey-1.avif",
+     "alt": "A lounge with abstract art and an open staircase at the Reykjavík hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-reykjavik-hotel-breakfast-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/hotel-rey-3.avif",
+     "alt": "A breakfast room with a green banquette at the Reykjavík hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-reykjavik-hotel-breakfast-counter.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/breakfast-rey-2.avif",
+     "alt": "The breakfast counter with juices and toppings at the Reykjavík hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-reykjavik-hotel-breakfast-by-the-window.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/hotel-iceland-breakfast.avif",
+     "alt": "Breakfast laid out by a large window at the Reykjavík hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-reykjavik-hotel-twin-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/ICELAND-SHARED-DBL-ROOM-1.avif",
+     "alt": "A twin room with two beds and a patterned rug at the Reykjavík hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-reykjavik-hotel-double-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/ICELAND-PRIVATE-ROOM.avif",
+     "alt": "A double room with a tufted headboard and blue curtains at the Reykjavík hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-reykjavik-hotel-room-with-armchair.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/ICELAND-SHARED-DBL-ROOM-2.avif",
+     "alt": "A room with an armchair, wardrobe and wall-mounted TV at the Reykjavík hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-reykjavik-hotel-room-with-desk.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/ICELAND-PRIVATE-ROOM-2.avif",
+     "alt": "A room with a desk and blue curtains at the Reykjavík hotel",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": null,
+   "label": "Hotel near the Vatnajökull glacier",
+   "text": [
+    "Nights 5 & 6 we will hit the South Ring Road and travel towards the Vatnajökull glacier for our hiking excursion and glacier lagoon experience. The scenery along the way is spectacular with waterfalls, landscape changes, rainbows, and tons of animals along the open road. Truly a treat for the senses as we travel.",
+    "Not only does our stop-over offer convenience, this hotel is super stylish with amazing interiors and chic design.",
+    "Happy hour is not to be missed with unique mixologists on the case and a sweet spot to wind down after a day on the ice!",
+    "Rooms for private or shared occupancy in sleek and stylish accommodations will be our home base for a few nights."
+   ],
+   "instagram": null,
+   "gallery": [
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-glacier-hotel-in-the-snow.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/GLACIER-LAGOON-HOTEL-EXT.jpg",
+     "alt": "The hotel near the Vatnajökull glacier beneath snow-covered mountains",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-glacier-hotel-hot-tubs.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/GLACIER-LAGOON-HOT-TUBS.jpg",
+     "alt": "Steaming outdoor hot tubs at sunset at the glacier hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-glacier-hotel-spiral-staircase.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/GH-INTERIOR.jpg",
+     "alt": "A spiral staircase under a slatted wooden ceiling at the glacier hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-glacier-hotel-by-the-lake.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/GH-VIEWS.jpg",
+     "alt": "The glacier hotel's buildings beside a still lake reflecting a mountain",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-glacier-hotel-bar.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/GL-BAR.jpg",
+     "alt": "A bartender at work behind the bar at the glacier hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-pink-cocktail-at-happy-hour.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/GLACIER-LAGOON-HAPPY-HOUR.jpg",
+     "alt": "A bartender garnishing a pink cocktail",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-glacier-hotel-lounge.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/GLACIER-LAGOON-HOTEL-LOUNGE-2.jpg",
+     "alt": "A lounge with sheepskin chairs and a wide window onto the landscape at the glacier hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-glacier-hotel-dining-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/GLACIER-LAGOON-DINING.jpg",
+     "alt": "The dining room with green banquettes at the glacier hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-glacier-hotel-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/GLACIER-LAGOON-PRIVATE-HOTEL-ROOM.jpg",
+     "alt": "A guest room with a window onto the mountains at the glacier hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-glacier-hotel-bathroom.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/GLACIER-LAGOON-HOTEL-BATHROOM.jpg",
+     "alt": "A bathroom with an oval mirror at the glacier hotel",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": null,
+   "label": "Turf guesthouse on a horse farm near Hella",
+   "text": [
+    "And for our second to last night on our way back to the first hotel and the airport we will stay in a very unique and special traditional turf guesthouse on an Icelandic horse farm just outside the town of Hella.",
+    "Our yoga practice will be in the stables and we will take an hour horseback ride by the river following class. No experience is necessary and there are tons of animals to love on at the farm if riding horses isn’t your thing! But these gorgeous, gentle creatures are well trained and relaxed for all types of riders."
+   ],
+   "instagram": null,
+   "gallery": [
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-turf-house-on-the-horse-farm.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/exterior2.jpg",
+     "alt": "A turf-roofed guesthouse on the horse farm near Hella",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-turf-house-bunk-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/turfhouse-bunks-e1524935744129.jpg",
+     "alt": "Wooden beds and a ladder inside the turf guesthouse",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-riders-seen-past-a-horses-mane.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/IMG_2381.jpg",
+     "alt": "Riders on Icelandic horses seen past a horse's mane at the farm",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-group-dinner-at-the-long-table.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/IMG_6171-scaled-e1631148955798.jpg",
+     "alt": "The group at dinner around a long candlelit table",
+     "shared": false
+    }
+   ]
+  }
+ ],
+ "rooms": [
+  {
+   "name": "Shared Double Room",
+   "price_usd": 10265,
+   "price_label": "10,265usd per person",
+   "price_unit": "per person",
+   "description": "These rooms have 2 individual beds with en-suite bathroom.",
+   "attrs": {
+    "bed": "Two individual beds",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-reykjavik-hotel-twin-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/ICELAND-SHARED-DBL-ROOM-1.avif",
+     "alt": "A twin room with two beds and a patterned rug at the Reykjavík hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-glacier-hotel-twin-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/GLACIER-HOTEL-SHARED-DOUBLE-ROOM.jpg",
+     "alt": "A twin room with a mountain view at the glacier hotel",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": "Private Room",
+   "price_usd": 11295,
+   "price_label": "11,295usd Single Occupancy",
+   "price_unit": "private room",
+   "description": "These rooms have 1 king size bed with en-suite bathroom.",
+   "attrs": {
+    "bed": "King",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-reykjavik-hotel-double-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/ICELAND-PRIVATE-ROOM.avif",
+     "alt": "A double room with a tufted headboard and blue curtains at the Reykjavík hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-glacier-hotel-private-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/GLACIER-HOTEL-PRIVATE.jpg",
+     "alt": "A private room with a view of the valley at the glacier hotel",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": "Private Room — shared bed",
+   "price_usd": 9865,
+   "price_label": "9,865usd Shared Bed Per Person",
+   "price_unit": "per person",
+   "description": "These rooms have 1 king size bed with en-suite bathroom.",
+   "attrs": {
+    "bed": "King",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-reykjavik-hotel-double-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/ICELAND-PRIVATE-ROOM.avif",
+     "alt": "A double room with a tufted headboard and blue curtains at the Reykjavík hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/iceland/img/yoga-retreat-iceland-glacier-hotel-private-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/GLACIER-HOTEL-PRIVATE.jpg",
+     "alt": "A private room with a view of the valley at the glacier hotel",
+     "shared": false
+    }
+   ]
+  }
+ ],
+ "pricing_notes": [
+  "You may request space in a shared room and we will pair travelers together when possible. If there is noone to share with you will be required to take a private room.",
+  "Please note : For 1 night we will stay in a common space altogether as a group in a traditional turf house. The only option for this night is shared with the group.",
+  "Please note : For 1 night we will have special and unique accommodations in a traditional turf house on a horse farm where the group will sleep in a big space, Icelandic style for the night in individual beds. There is no option for a private space for this night."
+ ],
+ "extras": [],
+ "travel_tips": [
+  {
+   "heading": "what to expect",
+   "items": [
+    "We have decided to make this retreat longer than most of our retreats in order to experience as much of the country as possible that feels comfortable while traveling with a group and also making time to absorb the landscapes and the culture. We will spend 8 nights in the southwest of Iceland exploring from the Blue Lagoon to the Jökulsárlón glacier lagoon.",
+    "Our first 4 nights will be at the same hotel in Reykjavik, our next 2 nights will be spent at a hotel near the Vatnajökull glacier. Night number 7 will be spent at a unique and traditional turf house on an Icelandic horse farm near the town of Hella where we will pile into individual beds and spend the night like local families in this traditional construction meant to manage the cold using natural insulation. The final night of the retreat will be enjoyed back where we started at the same hotel as our first 4 nights about 1 hour from the Keflavik International Airport."
+   ]
+  },
+  {
+   "heading": "How to pack for this adventure",
+   "items": [
+    "Iceland’s weather changes literally from minute to minute. You will experience sunshine, rain, fog, wind, rainbows, and dramatic changes in scenery and landscape every few miles. The best way to plan your wardrobe for October in Iceland is to dress in layers. We recommend at least one thin layer underneath your sweater and pants, thick winter socks, winter boots, warm scarf, gloves and a warm hat that covers your neck and ears, and a warm (preferably waterproof) winter coat. Packing a rain jacket or waterproof outer layer would be prudent for getting close to waterfalls and for any sightseeing where we encounter rain. Keep in mind that we will be both outside in the cold and inside warm restaurants so layers are key to staying comfortable.",
+    "We will be taking a guided hike on the Vatnajökull glacier which is the largest and most voluminous in Iceland and one of the largest in area in Europe. This experience is for all levels, you just need to have warm clothes as mentioned above and hard hiking boots (if you don’t have them you can rent them from the outfitter for around $10usd). Crampons and a pickax will be provided.",
+    "Yoga mats are NOT provided on this trip so please make sure to bring one along. I find that folding mine in quarters at the bottom of my suitcase is the most efficient way to travel as a yogi. If you use blocks in your practice please bring those along as well. We will provide straps during the retreat classes as needed. Yoga attire as usual for winter weather with a hoodie or sweater will suffice.",
+    "Icelandic tap water is some of the most delicious water I’ve tasted! It comes out freezing cold and is served freely at restaurants. Make sure you bring a reusable water bottle to fill and stay hydrated during our retreat (and to fill up from the top of the glacier!!).",
+    "Don’t forget to pack a bathing suit for the Blue Lagoon. Towels are provided. You can upgrade to a robe and slipper package as well as add spa services in advance or onsite if you like.",
+    "While this sounds like a lot of gear and clothing, most of it you will have on your person during the retreat. We ask that you only bring a medium size suitcase with you on the retreat so we can easily fit everyone’s luggage into the vans as we move from our first hotel to the others and back again. Timing will be critical when we are on the move so being able to get yourself packed up and ready to go with ease is optimal. There are plenty of places to buy something warmer in Iceland if you need it (but make sure you have your credit card handy because that Icelandic wool is gorgeous AND expensive!)"
+   ]
+  },
+  {
+   "heading": "What’s up with the Northern Lights?",
+   "items": [
+    "We wish we could guarantee that we’ll see the Aurora Borealis spectacle every night but it’s virtually impossible to promise. There are many factors that need to be in place in order for the lights to be visible from the land. That said we have chosen the optimal timing to be in Iceland in order to have the chance to experience this natural phenomenon. From end of August to mid-April there is night time in the country and the lights could make their appearance if several key factors are in place; strong solar activity, clear skies, and darkness without light pollution.",
+    "While green is the most prominent color for the Northern Lights there are others that we might be able to see :",
+    "Green: Particles collide with oxygen at 90-200 km height. This is the most common color as the eye is also the most sensitive to the color green.",
+    "Dark Red: Particles collide with oxygen at a height more than 200 km. Dark red colors are most often seen the highest in the lights caused by electronically charged molecules that have excited the oxygen atom.",
+    "Bright Red: Nitrogen within 90 km. A common color when the solar winds get strong and very charged electrons excite the molecules.",
+    "Purple & Blue: Active Nitrogen.",
+    "Pink & Yellow When red and green lights mix together.",
+    "Icelanders have their finger on the pulse when it comes to the activity levels of the lights and when and where the best chances are to see them. We will have our hotels alert us when there are lights and you will have the option to have a look out your window or venture into the night to see them dance overhead.",
+    "If you are interested in optimally capturing the Northern Lights with your camera there are some tips below to help if you can take your eyes off them long enough to set your equipment up!",
+    "Put the camera on the tripod, take filters off of any and turn off the no shake",
+    "ISO should be adjusted to 800-3200.",
+    "The diaphragm should be as big as the lens provides.",
+    "Shutter speed should be 4-15 seconds.",
+    "White Balance adjusted to auto white balance",
+    "Take extra batteries with you, because it will empty fast in the cold.",
+    "Flashlight if possible so you can see what you are doing while adjusting the settings on the camera."
+   ]
+  },
+  {
+   "heading": "How much money should i bring along?",
+   "items": [
+    "Iceland operates on their own currency called Krona which at time of writing was about $1usd to 150kr so 3,000kr is about 20usd. You will be able to use your credit and debit cards nearly everywhere on the island as well as have access to ATMS in both the airport on arrival and in Reykjavik when you have free time in the city on day 4. I would encourage you to have a little cash for snacks, lunch items, and any shopping you’d like to do but typically your card will work and it’s better to not have to convert currency back if it can be avoided so you don’t lose money in the transactions.",
+    "Please keep in mind that Iceland is EXPENSIVE. Everything they consume has to either be carefully and specially grown in the country or shipped in from other countries around Europe and their price tags reflect that. You can expect a glass of delicious wine to run you around $20usd and a gorgeous Icelandic wool sweater to be anywhere from $250usd to $400usd depending on quality and design."
+   ]
+  },
+  {
+   "heading": "how long will we be in the van?",
+   "items": [
+    "From the airport to our first hotel of 4 nights in Reykjavik the drive is approximately 1 hour door to door. We will be able to pair you with others arriving and departing at similar times if you’d like help with your airport transfers. There is also the option to take a bus on your own which is affordable and simple. Book in advance to secure your space. Our Reykjavik hotel location will be provided closer to dates.",
+    "The Blue Lagoon is about 1 hour from our hotel. We will take a public bus to arrive and you can return when you like. Buses run with regularity to and from the city.",
+    "The Golden Circle & Food Tour excursion that we will enjoy is a full day in and out of the car from 9:30am to around 9pm.",
+    "The drive from Reykjavik to our next hotel where we spend 2 nights is 4.5 hours in the car with stops along the way to see the black beach in Vik, have lunch, and likely a few stops for checking out waterfalls and rainbows too.",
+    "The drive from our hotel in Hof to the glacier and glacier lagoon is about 30 minutes each way.",
+    "The drive from Hof to Hella and the turf house and horse farm is approximately 3 hours.",
+    "Our final drive from Hella back to Reykjavik is approximately 2 hours.",
+    "Returns to the airport from our first and last hotel is approximately 1 hour.",
+    "We have tried our best to space out the trip and to condense the driving into sections so there is plenty of time between being on the road and being in the van. Yoga will also help with that!"
+   ]
+  }
+ ],
+ "gallery_title": null,
+ "gallery_intro": null,
+ "gallery": [
+  {
+   "file": "retreats/iceland/img/yoga-retreat-iceland-icelandic-breakfast.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/vikbreakfast.jpg",
+   "alt": "Breakfast of bread with cucumber and cheese, a croissant, coffee and juice",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/iceland/img/yoga-retreat-iceland-laughing-at-the-bra-fence.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/IMG_2129-1-scaled.jpg",
+   "alt": "A guest laughing as she hangs a bra on a fence full of bras below the cliffs",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/iceland/img/yoga-retreat-iceland-headstand-above-the-canyon.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/IMG_3740-scaled-e1631144415714.jpg",
+   "alt": "A guest doing a headstand on the edge of a green canyon",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/iceland/img/yoga-retreat-iceland-holding-glacier-ice.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/IMG_1923-scaled-e1631144967159.jpg",
+   "alt": "A guest holding a chunk of glacier ice to her face",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/iceland/img/yoga-retreat-iceland-group-in-front-of-the-icebergs.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/IMG_1910-scaled-e1631145523744.jpg",
+   "alt": "The group in orange life jackets in front of the icebergs",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/iceland/img/yoga-retreat-iceland-group-at-the-blue-lagoon-sign.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/IMG_1121-scaled.jpg",
+   "alt": "The group in front of the Blue Lagoon sign",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/iceland/img/yoga-retreat-iceland-glacier-hike-at-sunset.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/DAB1C686-EF81-42F2-97AA-535024364AB3-scaled-e1631144924787.jpg",
+   "alt": "Hikers on the glacier at sunset",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/iceland/img/yoga-retreat-iceland-river-through-a-mossy-canyon.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/IMG_3733-scaled.jpg",
+   "alt": "A river winding through a deep, mossy canyon",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/iceland/img/yoga-retreat-iceland-posing-in-the-stables.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2017/03/IMG_2221-e1631145434193.jpg",
+   "alt": "A guest posing beside the horse stalls in the stables",
+   "shared": false,
+   "ratio": null
+  }
+ ],
+ "faqs": [
+  {
+   "question": "Do you accept bitcoin?",
+   "answer": [
+    "In addition to credit card payments we also accept wire transfers, Zelle and Bitcoin. Please inquire for more details."
+   ]
+  },
+  {
+   "question": "What is the cancellation policy?",
+   "answer": [
+    "All payments are 100% non refundable and non-transferable. We recommend that you buy Trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you."
+   ]
+  },
+  {
+   "question": "What happens if my travel plans change?",
+   "answer": [
+    "There are no refunds as per our cancellation policies. We highly recommend that all of our guests secure a quality travel insurance that will cover them for any event which may cause a change of travel plans, including personal health issues or personal situations in general which may affect travel plans."
+   ]
+  },
+  {
+   "question": "Are flight delays or cancellations covered?",
+   "answer": [
+    "Not by us: transportation delays, cancellations or changes due to strikes, labor disputes, or lockouts from airlines, boats, ferries or any type of transportation are among the events we recommend covering with travel insurance."
+   ]
+  },
+  {
+   "question": "Where can I find the full terms & conditions?",
+   "answer": [
+    "The full terms and conditions are published at https://yogaadventuresworldwide.com/termsandconditions/ . By submitting payments toward your retreat you accept them."
+   ]
+  }
+ ],
+ "booking": {
+  "deposit_usd": 1000,
+  "deposit_label": "$1,000 USD per person",
+  "deposit_instructions": "Deposits of 1,000usd are due to secure your space in the retreat. Please check availability with us for accommodations before making your deposit.",
+  "balance_due_days": 90,
+  "balance_note": "The balance of your retreat (minus your $1,000usd initial deposit) is due 90 days prior to arrival. All details with instructions for settling up will be emailed to you three months prior to the retreat.",
+  "payment_methods": [
+   "Credit card",
+   "Wire transfer",
+   "Zelle",
+   "Bitcoin"
+  ],
+  "roommate_note": "Roommates should book together. If you would like to share a room and do not have a roommate we will provide one for you if possible. In the case that there is no one to share a room we ask that you take a private room instead.",
+  "cancellation_policy": [
+   "All payments are 100% non refundable and non-transferable. We recommend that you buy Trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you."
+  ],
+  "booking_url": "https://yogaadventuresworldwide.com/retreat/yoga-retreat-in-iceland/#reserve",
+  "contact_url": "https://yogaadventuresworldwide.com/contact-about-yoga-retreats/"
+ },
+ "testimonials": null,
+ "carbon_offset": null,
+ "source_url": "https://yogaadventuresworldwide.com/retreat/yoga-retreat-in-iceland/",
+ "source_post_slug": "yoga-retreat-in-iceland",
+ "source_categories": [
+  "signature-retreats",
+  "yoga"
+ ],
+ "source_is_shared": false,
+ "seo_title": "The Iceland Experience · Yoga Retreat",
+ "seo_description": "8-night yoga retreat in Iceland, from Reykjavík along the South Coast: Blue Lagoon, Golden Circle, a glacier hike, the glacier lagoon and a horse farm.",
+ "_notes": {
+  "faqs": "The source page has no FAQs block. These five answers follow morocco-nov-2026: quoted from the site-wide Policies text inside the retreat page's Reserve section (the cancellation answer is this page's own wording). They are not retreat-specific.",
+  "testimonials": "The source page's \"Praise\" section is commented out in the markup; no quotes are published. Left null.",
+  "status": "Set to waitlist on request: the old page shows no bookable upcoming date.",
+  "teachers": "The page names no teacher or facilitator for this retreat.",
+  "carbon_offset": "No carbon-offset copy on the source page.",
+  "seo_title": "DRAFT. Written only from this retreat's real destination and data.",
+  "seo_description": "DRAFT. Written only from facts stated on the source page.",
+  "images": "Photos downloaded at the largest size the server has (WordPress size suffixes stripped when the full file exists). AVIF originals were converted to JPEG because the naming rule only allows jpg/png/webp.",
+  "date_start": "The source page publishes no dates, so date_start, date_end, dates_label and days are null (the schema requires strings: expect validator errors on these until dates are set). The Travel Tips speak of packing 'for October in Iceland'.",
+  "nights": "From Includes: 'Eight nights in carefully selected accommodations'.",
+  "subtitle": "'Designed to move you.' (trailing period dropped because build_page.py adds one).",
+  "intro": "First line of the blurb ('Iceland invites you into something vast.'); the rest of the blurb is not carried.",
+  "about_body": "About section paragraphs, then its 'Who This Retreat Is For…' block without the heading; the closing line 'If this feels like you, continue on.' is treated as a CTA and dropped.",
+  "includes": "The page groups Includes under Stay / Meals / Practice / Movement / Experiences / Included; flattened in order, headings dropped, line breaks joined. Its intro line ('A thoughtfully designed journey through Iceland…') is not carried.",
+  "itinerary": "Most day photos are small (478-640px) old uploads; they are the only photos for those days. Day 2's 640px Blue Lagoon swim photo was skipped (Day 2 has a 2000px one). Day 7 bullet 'Lunch oyo' is verbatim (on your own).",
+  "accommodations": "The page never names the hotels. Reykjavík text includes the page's closing line about finishing back in Reykjavík. Skipped small thumbnails: great-looking-lobby (550px), sandhotel-exterior (754px). Room photos that were AVIF originals were converted to JPEG.",
+  "rooms": "The pricing photos ICELAND-SHARED-DBL-ROOM-1-1 and ICELAND-PRIVATE-ROOM-1 are copies of the Reykjavík room photos already downloaded, so those files are reused.",
+  "pricing_notes": "Both rate blocks note the one shared night in the turf house.",
+  "travel_tips": "Headings as the page writes them. Dropped link debris 'Details can be found here.'.",
+  "gallery": "9 photos: the gallery's photos that are at least 800px wide, minus ones already used elsewhere on the page. The other gallery photos are 480-640px."
+ },
+ "_missing": [
+  "accommodations[].name",
+  "carbon_offset",
+  "date_end",
+  "date_start",
+  "dates_label",
+  "days",
+  "extras",
+  "gallery_intro",
+  "gallery_title",
+  "highlights",
+  "includes_footnote",
+  "itinerary_notes",
+  "not_included_footnote",
+  "optional_excursions_schedule",
+  "rooms[].hotel",
+  "season",
+  "status_label",
+  "teachers",
+  "testimonials",
+  "urgency"
+ ]
+}

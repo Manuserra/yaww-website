@@ -1,0 +1,522 @@
+{
+ "slug": "france",
+ "title": "The Paris-Champagne Experience",
+ "subtitle": "A week of movement, culture, and celebration",
+ "destination": "France",
+ "location_label": "Paris & Champagne, France",
+ "country": "France",
+ "region": "Paris & Champagne",
+ "tier": "signature",
+ "tier_label": "Signature Collection",
+ "tier_source": "retreat_categories-signature-retreats on the source page",
+ "status": "waitlist",
+ "status_label": null,
+ "urgency": null,
+ "date_start": null,
+ "date_end": null,
+ "dates_label": null,
+ "season": null,
+ "nights": 6,
+ "days": null,
+ "teachers": [],
+ "teacher_unassigned": true,
+ "hero_image": {
+  "file": "retreats/france/img/yoga-retreat-france-paris-rooftops-above-a-carousel.jpg",
+  "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/laura-adai-Is6ioeSdg_Q-unsplash-scaled-e1775336497126.jpg",
+  "alt": "Haussmann facades and Paris rooftops rising above the roof of a vintage carousel, France",
+  "shared": false
+ },
+ "intro": "There’s a certain rhythm to France. Mornings that begin slowly. Afternoons shaped by movement, conversation, and curiosity. Evenings that stretch—over wine, over meals, over moments you don’t rush.",
+ "about_title": null,
+ "about_body": [
+  "In Paris, you’re based on the Left Bank—where mornings begin just outside your door with cafés, bookstores, and the quiet rhythm of Saint-Germain. The hotel itself carries that same understated elegance: classic architecture, thoughtful interiors, and the kind of atmosphere that makes it feel like you’ve stepped into the city rather than just arrived in it.",
+  "From here, the days unfold naturally—morning practice, long brunches, then out into the neighborhood or beyond. Evenings bring a different layer of Paris to life, from a walking food experience—tasting your way through its history and flavors—to a hands-on look at French cuisine that deepens your appreciation for what’s on the plate.",
+  "There’s also a curated fashion walk through the city’s most stylish corners, offering a more intimate look at the details that define Parisian style.",
+  "Then, in Champagne, everything softens. You settle into a modern, design-forward retreat surrounded by vineyards and forest—floor-to-ceiling windows, open views, and a sense of quiet that immediately shifts your pace.",
+  "Days here are shaped by contrast: movement in the morning, followed by spa time—sauna, steam, and space to unwind—then out into the region for curated tastings that feel personal and unhurried. This is Champagne experienced with intention, from vineyard walks to small producer visits, each one selected to feel less like a stop and more like an invitation."
+ ],
+ "highlights": [],
+ "includes": [
+  "3 nights in modern, stylish Paris accommodations in Saint-Germain-des-Prés",
+  "3 nights in a stunning countryside spa hotel on a scenic hill near Épernay, Champagne",
+  "Yoga classes as per itinerary",
+  "Guided walking food tour with neighborhood exploration and classic French bites",
+  "Walking city tour of Paris with a focus on fashion & art",
+  "Breakfast daily, 2 lunches & 6 dinners",
+  "Spa experience in Champagne : 60 minute massage, hammam & sauna",
+  "Champagne vineyard tour & tasting of family run houses with picnic",
+  "Round trip fast train transportation between Paris and Champagne",
+  "Optional photoshoot with pro photographer at sunrise",
+  "Expert Y&AWW facilitator to guide you through your adventure",
+  "Gift bag from us to you",
+  "All hotel taxes, fees and gratuities"
+ ],
+ "includes_footnote": null,
+ "not_included": [
+  "Optional photoshoot with pro photographer",
+  "4 lunches",
+  "Additional spa services and massages",
+  "For dinners we will offer the first 2 glasses of wine, beyond that any additional alcohol will be on your own",
+  "International flights and airport transfers",
+  "Travel & Trip Cancellation insurance",
+  "Medical insurance"
+ ],
+ "not_included_footnote": null,
+ "itinerary": [
+  {
+   "day": 1,
+   "label": "Day 1",
+   "title": "Paris",
+   "bullets": [
+    "Arrival and check in Paris hotel",
+    "3pm Welcome circle & opening yoga",
+    "Dinner together"
+   ],
+   "images": []
+  },
+  {
+   "day": 2,
+   "label": "Day 2",
+   "title": "Paris",
+   "bullets": [
+    "Optional early morning photoshoot",
+    "Coffee",
+    "Morning Yoga",
+    "Brunch",
+    "Walking city tour highlighting fashion and art",
+    "Dinner together"
+   ],
+   "images": []
+  },
+  {
+   "day": 3,
+   "label": "Day 3",
+   "title": "Paris",
+   "bullets": [
+    "Coffee",
+    "Morning Yoga",
+    "Brunch",
+    "Free time for exploring, shopping; rest",
+    "Walking Food Tour",
+    "Dinner together"
+   ],
+   "images": []
+  },
+  {
+   "day": 4,
+   "label": "Day 4",
+   "title": "Travel day",
+   "bullets": [
+    "Coffee",
+    "Morning Yoga",
+    "Breakfast",
+    "Paris hotel check out",
+    "Fast train to Champagne; lunch and tasting included",
+    "Hotel check in",
+    "Dinner together"
+   ],
+   "images": []
+  },
+  {
+   "day": 5,
+   "label": "Day 5",
+   "title": "Champagne",
+   "bullets": [
+    "Breakfast",
+    "Morning Yoga",
+    "Guided Champagne tours with tastings at family run houses & picnic lunch",
+    "Dinner together"
+   ],
+   "images": []
+  },
+  {
+   "day": 6,
+   "label": "Day 6",
+   "title": "Champagne",
+   "bullets": [
+    "Breakfast",
+    "Morning Yoga",
+    "Spa Day : 60 minute massage; pool, sauna & hammam",
+    "Lunch on your own",
+    "Closing circle",
+    "Dinner together"
+   ],
+   "images": []
+  },
+  {
+   "day": 7,
+   "label": "Day 7",
+   "title": "Departures",
+   "bullets": [
+    "Hotel check out",
+    "Taxi to train station in Champagne",
+    "8:58am Fast train to CDG airport Terminal 2 arrival at 9:29am (included in package*)"
+   ],
+   "images": []
+  }
+ ],
+ "itinerary_notes": [
+  "If you would like to change your train ticket return time to another option you may; as well as arrange alternative taxi/transport with the hotel on your own. Your train tickets will be sent to you closer to dates.",
+  "This itinerary is subject to adjustments, changes in times, locations, or activities as the retreat leaders and hosts see fit. Any change will be on par with our standards or an upgrade in services or location making for an even more amazing experience for the group and our guests. Thank you in advance for your flexibility and cooperation if any situation were to arise."
+ ],
+ "optional_excursions_schedule": [],
+ "accommodations": [
+  {
+   "name": null,
+   "label": "Boutique hotel in Saint-Germain-des-Prés, Paris",
+   "text": [
+    "A cozy Parisian cocoon, where each room whispers the history of Saint-Germain-des-Prés. Located on the Paris left bank, behind an elegant Haussmann façade, lies an address full of charm and nobility, the preferred pied-à-terre of discerning traveler.",
+    "Our charming boutique hotel welcomes you to the epicenter of Parisian culture where artists and intellectuals have always rubbed shoulders.",
+    "Each of the rooms has a chic, hushed atmosphere. Publisher’s textiles, quality woods, thick carpeting on the floor. Remembering that Paris hotel rooms are cozy, this charming boutique hotel has paid attention to every detail. Comfortable bedding, beautiful decor and perfectly located. Your place to land while we are in Paris."
+   ],
+   "instagram": null,
+   "gallery": [
+    {
+     "file": "retreats/france/img/yoga-retreat-france-paris-hotel-lounge.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/paris-hotel.jpg",
+     "alt": "The wood-panelled lounge with framed portraits at the boutique hotel in Saint-Germain-des-Prés, Paris",
+     "shared": false
+    },
+    {
+     "file": "retreats/france/img/yoga-retreat-france-paris-hotel-bar.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/paris-hotel-1.jpg",
+     "alt": "The bar with tall leather stools at the boutique hotel in Saint-Germain-des-Prés, Paris",
+     "shared": false
+    },
+    {
+     "file": "retreats/france/img/yoga-retreat-france-paris-hotel-classic-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/paris-hotel-room1.jpg",
+     "alt": "A classic room with a large bed and a writing desk at the Paris hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/france/img/yoga-retreat-france-paris-hotel-petit-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/paris-hotel-room-2.jpg",
+     "alt": "A petit room at the Paris hotel, with a glass shower beside the bed",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": null,
+   "label": "Countryside spa hotel near Épernay, Champagne",
+   "text": [
+    "Bordering on a forest and the endless sea of vines, our hotel in Champagne sits on a scenic hill near Épernay. Witness naturality reinvented and celebrate savoir vivre.",
+    "Enjoy well appointed rooms, a spa club with outdoor pool, brasserie and bar."
+   ],
+   "instagram": null,
+   "gallery": [
+    {
+     "file": "retreats/france/img/yoga-retreat-france-champagne-hotel-lounge-with-fireplace.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/champs-hotel.webp",
+     "alt": "The lounge of the hotel near Épernay, with a hanging fireplace and floor-to-ceiling windows, Champagne",
+     "shared": false
+    },
+    {
+     "file": "retreats/france/img/yoga-retreat-france-champagne-hotel-outdoor-pool.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/pool-area-e1775338508977.jpeg",
+     "alt": "Sun loungers along the outdoor pool, looking over the countryside near Épernay, Champagne",
+     "shared": false
+    },
+    {
+     "file": "retreats/france/img/yoga-retreat-france-champagne-hotel-spa-and-sauna.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/sauna.webp",
+     "alt": "The spa at the Champagne hotel, with a wood-lined sauna behind glass",
+     "shared": false
+    },
+    {
+     "file": "retreats/france/img/yoga-retreat-france-champagne-hotel-relaxation-room.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/lounge.webp",
+     "alt": "Loungers facing tall windows onto the countryside in the spa relaxation room, Champagne",
+     "shared": false
+    },
+    {
+     "file": "retreats/france/img/yoga-retreat-france-champagne-hotel-room.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/champ-room.webp",
+     "alt": "A room with a large bed and green cushions at the hotel in Champagne",
+     "shared": false
+    }
+   ]
+  }
+ ],
+ "rooms": [
+  {
+   "name": "Petit Room",
+   "price_usd": 8995,
+   "price_label": "8,995usd",
+   "price_unit": "private room",
+   "description": "Private accommodations w/ individual bed & ensuite bathroom. Smaller footprint in Paris (12 sq meters); more spacious in the countryside of Champagne.",
+   "attrs": {
+    "bed": "Individual",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/france/img/yoga-retreat-france-paris-hotel-petit-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/paris-hotel-room-2.jpg",
+     "alt": "A petit room at the Paris hotel, with a glass shower beside the bed",
+     "shared": false
+    },
+    {
+     "file": "retreats/france/img/yoga-retreat-france-champagne-hotel-room.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/champ-room.webp",
+     "alt": "A room with a large bed and green cushions at the hotel in Champagne",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": "Classic Room",
+   "price_usd": 9375,
+   "price_label": "9,375usd",
+   "price_unit": "private room",
+   "description": "Private accommodations w/ king bed & ensuite bathroom. Smaller footprint in Paris (14 sq. meters); more spacious in the countryside of Champagne.",
+   "attrs": {
+    "bed": "King",
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/france/img/yoga-retreat-france-paris-hotel-classic-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/paris-hotel-room1.jpg",
+     "alt": "A classic room with a large bed and a writing desk at the Paris hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/france/img/yoga-retreat-france-champagne-hotel-room.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/champ-room.webp",
+     "alt": "A room with a large bed and green cushions at the hotel in Champagne",
+     "shared": false
+    }
+   ]
+  },
+  {
+   "name": "Classic Room — shared bed",
+   "price_usd": 7495,
+   "price_label": "7,495usd per person or 8,295usd per person depending on availability",
+   "price_unit": "per person",
+   "description": "Shared bed (2 twins when possible)",
+   "attrs": {
+    "bed": null,
+    "bath": "Private",
+    "view": null
+   },
+   "hotel": null,
+   "gallery": [
+    {
+     "file": "retreats/france/img/yoga-retreat-france-paris-hotel-classic-room.jpg",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/paris-hotel-room1.jpg",
+     "alt": "A classic room with a large bed and a writing desk at the Paris hotel",
+     "shared": false
+    },
+    {
+     "file": "retreats/france/img/yoga-retreat-france-champagne-hotel-room.webp",
+     "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/champ-room.webp",
+     "alt": "A room with a large bed and green cushions at the hotel in Champagne",
+     "shared": false
+    }
+   ]
+  }
+ ],
+ "pricing_notes": [
+  "You must provide your own bedmate."
+ ],
+ "extras": [],
+ "travel_tips": [],
+ "gallery_title": null,
+ "gallery_intro": null,
+ "gallery": [
+  {
+   "file": "retreats/france/img/yoga-retreat-france-embroidered-dresses-on-display.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/dcps-chloe-GvNF0ezTOU0-unsplash-scaled.jpg",
+   "alt": "White dresses with red embroidery displayed on mannequins",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/france/img/yoga-retreat-france-pink-vintage-car-on-cobblestones.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/robin-benzrihem-IyMKYQiH_BI-unsplash-scaled.jpg",
+   "alt": "A pale pink vintage Fiat 500 parked on a cobbled courtyard",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/france/img/yoga-retreat-france-marble-sculpture-of-embracing-lovers.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/sara-darcaj-YzamNB_T4WQ-unsplash-scaled.jpg",
+   "alt": "A marble sculpture of two winged lovers embracing, lit from a window",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/france/img/yoga-retreat-france-carved-coffered-arch-ceiling.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/marcos-pena-jr-8ohnIIVEQ30-unsplash-scaled.jpg",
+   "alt": "A carved coffered ceiling with rosettes inside a stone arch",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/france/img/yoga-retreat-france-pont-alexandre-iii-over-the-seine.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/ionut-dobre-nnlVXi1lp3k-unsplash-scaled.jpg",
+   "alt": "The Pont Alexandre III and its gilded statues over the Seine in Paris",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/france/img/yoga-retreat-france-old-paris-street-sign.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/getty-images-0GNTOeRuf24-unsplash-scaled-e1775327500917.jpg",
+   "alt": "An old sign reading Paris on a stone wall",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/france/img/yoga-retreat-france-rose-garden-with-a-statue.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/daphne-be-frenchie-atTJIQ5kk3E-unsplash-scaled.jpg",
+   "alt": "Roses in bloom around a stone statue in a garden",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/france/img/yoga-retreat-france-cafe-terrace-on-a-street-corner.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/alex-harmuth-bOICdD-Gulk-unsplash-scaled.jpg",
+   "alt": "Diners on a busy café terrace on a street corner",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/france/img/yoga-retreat-france-paris-rooftops-at-sunset.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/davey-gravy-JkcYTtNfFgw-unsplash-scaled-e1775332790321.jpg",
+   "alt": "Paris rooftops and chimneys under a pink sunset sky",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/france/img/yoga-retreat-france-bistro-chairs-and-tables.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/bistro-2-scaled.jpg",
+   "alt": "Woven bistro chairs and small marble tables inside a café",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/france/img/yoga-retreat-france-narrow-lane-with-climbing-plants.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2026/04/olivie-strauss-keaUDblp4ts-unsplash-scaled.jpg",
+   "alt": "A narrow stone lane lined with climbing plants and a hanging lantern",
+   "shared": false,
+   "ratio": null
+  },
+  {
+   "file": "retreats/france/img/yoga-retreat-france-assisted-yoga-stretch.jpg",
+   "original_url": "https://yogaadventuresworldwide.com/wp-content/uploads/2019/05/ave-calvar-M512gDk6i2I-unsplash-scaled.jpg",
+   "alt": "A yoga teacher assisting a student in a supported leg stretch on the mat",
+   "shared": false,
+   "ratio": null
+  }
+ ],
+ "faqs": [
+  {
+   "question": "Do you accept bitcoin?",
+   "answer": [
+    "In addition to credit card payments we also accept wire transfers, Zelle and Bitcoin. Please inquire for more details."
+   ]
+  },
+  {
+   "question": "What is the cancellation policy?",
+   "answer": [
+    "All payments are 100% non refundable and non-transferable. We recommend that you buy Trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you."
+   ]
+  },
+  {
+   "question": "What happens if my travel plans change?",
+   "answer": [
+    "There are no refunds as per our cancellation policies. We highly recommend that all of our guests secure a quality travel insurance that will cover them for any event which may cause a change of travel plans, including personal health issues or personal situations in general which may affect travel plans."
+   ]
+  },
+  {
+   "question": "Are flight delays or cancellations covered?",
+   "answer": [
+    "Not by us: transportation delays, cancellations or changes due to strikes, labor disputes, or lockouts from airlines, boats, ferries or any type of transportation are among the events we recommend covering with travel insurance."
+   ]
+  },
+  {
+   "question": "Where can I find the full terms & conditions?",
+   "answer": [
+    "The full terms and conditions are published at https://yogaadventuresworldwide.com/termsandconditions/ . By submitting payments toward your retreat you accept them."
+   ]
+  }
+ ],
+ "booking": {
+  "deposit_usd": 1000,
+  "deposit_label": "$1,000 USD per person",
+  "deposit_instructions": "Deposits of $1,000usd are due to secure your space in the retreat. Please check availability with us for accommodations before making your deposit.",
+  "balance_due_days": 90,
+  "balance_note": "The balance of your retreat (minus your $1,000usd initial deposit) is due 90 days prior to arrival. All details with instructions for settling up will be emailed to you three months prior to the retreat.",
+  "payment_methods": [
+   "Credit card",
+   "Wire transfer",
+   "Zelle",
+   "Bitcoin"
+  ],
+  "roommate_note": "Roommates should book together. If you would like to share a room and do not have a roommate we will provide one for you if possible. In the case that there is no one to share a room we ask that you take a private room instead.",
+  "cancellation_policy": [
+   "All payments are 100% non refundable and non-transferable. We recommend that you buy Trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you."
+  ],
+  "booking_url": "https://yogaadventuresworldwide.com/retreat/the-paris-champagne-experience/#reserve",
+  "contact_url": "https://yogaadventuresworldwide.com/contact-about-yoga-retreats/"
+ },
+ "testimonials": null,
+ "carbon_offset": null,
+ "source_url": "https://yogaadventuresworldwide.com/retreat/the-paris-champagne-experience/",
+ "source_post_slug": "the-paris-champagne-experience",
+ "source_categories": [
+  "signature-retreats",
+  "yoga"
+ ],
+ "source_is_shared": false,
+ "seo_title": "Paris & Champagne Yoga Retreat · France",
+ "seo_description": "6-night yoga retreat in Paris & Champagne, France: Saint-Germain mornings, a spa day and family-run Champagne houses near Épernay.",
+ "_notes": {
+  "faqs": "The source page has no FAQs block. These five answers follow morocco-nov-2026: quoted from the site-wide Policies text inside the retreat page's Reserve section (the cancellation answer is this page's own wording). They are not retreat-specific.",
+  "testimonials": "The source page's \"Praise\" section is commented out in the markup; no quotes are published. Left null.",
+  "status": "Set to waitlist on request: the old page shows no bookable upcoming date.",
+  "teachers": "The page names no teacher or facilitator for this retreat.",
+  "carbon_offset": "No carbon-offset copy on the source page.",
+  "seo_title": "DRAFT. Written only from this retreat's real destination and data.",
+  "seo_description": "DRAFT. Written only from facts stated on the source page.",
+  "images": "Photos downloaded at the largest size the server has (WordPress size suffixes stripped when the full file exists). AVIF originals were converted to JPEG because the naming rule only allows jpg/png/webp.",
+  "date_start": "The source page publishes no dates, so date_start, date_end, dates_label and days are null (the schema requires strings: expect validator errors on these until dates are set).",
+  "nights": "From Includes: 3 nights in Paris + 3 nights in Champagne.",
+  "intro": "First paragraph of the blurb above the section tabs. The blurb's other five paragraphs are not carried; the About section is in about_body.",
+  "accommodations": "The old site describes both hotels but never names them, so `name` is null.",
+  "accommodations.gallery": "One photo of the Champagne hotel (champs-hotel-3.webp, 715px wide, two bathrobes in a bathroom) was skipped as a small thumbnail.",
+  "rooms": "The Classic Room shared-bed rate is published as '7,495usd per person or 8,295usd per person depending on availability'; price_usd holds the lower figure, price_label the full text. The bedmate line is the page's own pricing footnote. Room photos reuse the hotel photos the page shows under each rate.",
+  "extras": "The optional sunrise photoshoot is listed as not included, without a price, so it is not an extra.",
+  "gallery": "First 12 of 15 gallery photos, in source order. The last three (ave-calvar-*, uploaded 2019/05) are the same yoga-studio stock photos the Istanbul page uses; one of them (F34) is in this selection.",
+  "travel_tips": "The page has no Travel Tips section."
+ },
+ "_missing": [
+  "about_title",
+  "accommodations[].name",
+  "carbon_offset",
+  "date_end",
+  "date_start",
+  "dates_label",
+  "days",
+  "extras",
+  "gallery_intro",
+  "gallery_title",
+  "highlights",
+  "includes_footnote",
+  "not_included_footnote",
+  "optional_excursions_schedule",
+  "rooms[].hotel",
+  "season",
+  "status_label",
+  "teachers",
+  "testimonials",
+  "travel_tips",
+  "urgency"
+ ]
+}
