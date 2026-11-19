@@ -188,8 +188,9 @@
   color: var(--sea-blue);
 }
 /* A teacher's photo sits over her initials, so a missing or broken
-   photo simply leaves the initials showing. Portraits are 3:4 with the
-   face in the upper third, hence the raised focal point. */
+   photo simply leaves the initials showing. The square avatar crops are
+   already centred on the face; the raised focal point only matters
+   for a teacher who still falls back to her 3:4 portrait. */
 .filter-option__avatar { position: relative; overflow: hidden; }
 .filter-option__photo {
   position: absolute; inset: 0;

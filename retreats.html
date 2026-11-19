@@ -11,14 +11,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/base.css?v=202611191800">
-<link rel="stylesheet" href="css/filters.css?v=202611191800">
+<link rel="stylesheet" href="css/filters.css?v=202611191930">
 <link rel="stylesheet" href="css/retreats.css?v=202611191900">
 <!-- Retreat data + the one card component every retreat card is rendered
      by. Classic scripts so the prototype still works over file://.
      Order matters: the catalogs load before the data, the data before
      the component. -->
 <script src="data/locations.js?v=202611161843"></script>
-<script src="data/teachers.js?v=202611161843"></script>
+<script src="data/teachers.js?v=202611191930"></script>
 <script src="data/retreats.js?v=202611191000"></script>
 <script src="js/retreat-cards.js?v=202611181712"></script>
 
@@ -416,10 +416,12 @@ const ROWS = Y.getUpcomingRetreats().map(function (r) {
 });
 
 const TEACHERS = Y.teacherRoster().map(t => t.name);
-/* Teacher photos for the dropdown avatars, keyed by name. A teacher
-   without a photo (or whose photo fails to load) keeps her initials. */
+/* Teacher photos for the dropdown avatars, keyed by name: the square,
+   face-centred `avatar` crop when there is one, else the portrait. A
+   teacher without either (or whose image fails to load) keeps her
+   initials. */
 const TEACHER_PHOTO = {};
-Y.teacherRoster().forEach(t => { if (t.photo) TEACHER_PHOTO[t.name] = t.photo; });
+Y.teacherRoster().forEach(t => { const img = t.avatar || t.photo; if (img) TEACHER_PHOTO[t.name] = img; });
 const PLACES = Y.locationGroups().map(g => ({ title: g.title, items: g.items.map(l => l.name) }));
 const WHENS = Y.seasonOptions("filter");
 const SEGMENTS = [

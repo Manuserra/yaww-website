@@ -7,6 +7,7 @@
    Maps to WordPress as a `teacher` CPT:
      id / slug  -> post slug          bio       -> post content (array of paragraphs)
      name       -> post title         photo     -> featured image
+     avatar     -> ACF image (square, face-centred crop for small circles)
      shortBio   -> ACF text (the card blurb)
      pageUrl    -> permalink
 
@@ -25,6 +26,7 @@ window.YAWW_TEACHERS = [
     name: "Alicia Delaney",
     slug: "alicia-delaney",
     photo: "images/teachers/alicia-delaney.jpg",
+    avatar: "images/teachers/avatars/alicia-delaney.jpg",
     pageUrl: "teacher-alicia-delaney.html",
     shortBio: "Alicia offers gentle, nervous-system-informed yoga that centers rest and clarity. Her calm, spacious pacing helps students slow down and feel supported.",
     bio: [
@@ -39,6 +41,7 @@ window.YAWW_TEACHERS = [
     name: "Alison Buchanan",
     slug: "alison-buchanan",
     photo: "images/teachers/alison-buchanan.jpg",
+    avatar: "images/teachers/avatars/alison-buchanan.jpg",
     pageUrl: "teacher-alison-buchanan.html",
     shortBio: "Alison blends strength, alignment, and mindful pacing with clear, grounded teaching. Her classes balance challenge and ease, offering steady support throughout.",
     bio: [
@@ -73,6 +76,7 @@ window.YAWW_TEACHERS = [
     name: "Dawn Thie",
     slug: "dawn-thie",
     photo: "images/teachers/dawn-thie.jpg",
+    avatar: "images/teachers/avatars/dawn-thie.jpg",
     pageUrl: "teacher-dawn-thie.html",
     shortBio: "Dawn offers grounded, clear guidance rooted in breath and intention. She creates spacious, trauma-informed classes that support deeper self-connection.",
     bio: [
@@ -86,6 +90,7 @@ window.YAWW_TEACHERS = [
     name: "Genevieve Morin",
     slug: "genevieve-morin",
     photo: "images/teachers/genevieve-morin.jpg",
+    avatar: "images/teachers/avatars/genevieve-morin.jpg",
     pageUrl: "teacher-genevieve-morin.html",
     shortBio: "Genevieve brings clarity, warmth, and cultural fluency to every retreat. Trilingual and intuitive, she creates welcoming spaces for genuine connection.",
     bio: [
@@ -110,6 +115,7 @@ window.YAWW_TEACHERS = [
     name: "Jenniferlyn Chiemingo",
     slug: "jenniferlyn-chiemingo",
     photo: "images/teachers/jenniferlyn-chiemingo.jpg",
+    avatar: "images/teachers/avatars/jenniferlyn-chiemingo.jpg",
     pageUrl: "teacher-jenniferlyn-chiemingo.html",
     shortBio: "JL teaches joyful, grounding vinyasa with warmth and clarity, supporting connection and depth in every retreat experience.",
     bio: [
@@ -124,6 +130,7 @@ window.YAWW_TEACHERS = [
     name: "Melanie Cordover",
     slug: "melanie-cordover",
     photo: "images/teachers/melanie-cordover.jpg",
+    avatar: "images/teachers/avatars/melanie-cordover.jpg",
     pageUrl: "teacher-melanie-cordover.html",
     shortBio: "Melanie teaches dynamic and yin practices with clarity and warmth, offering creative guidance that supports confidence.",
     bio: [
@@ -146,6 +153,7 @@ window.YAWW_TEACHERS = [
     name: "Sue Berger",
     slug: "sue-berger",
     photo: "images/teachers/sue-berger.jpg",
+    avatar: "images/teachers/avatars/sue-berger.jpg",
     pageUrl: "teacher-sue-berger.html",
     shortBio: "Sue teaches with warmth, energy, and clear encouragement, blending movement and music to create accessible, uplifting classes for all levels.",
     bio: [
