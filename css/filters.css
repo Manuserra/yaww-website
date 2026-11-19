@@ -90,14 +90,14 @@
   color: var(--sea-blue);
 }
 .filter-seg__value.is-empty { font-style: italic; color: var(--sea-blue-200); }
-/* Hover: a closed segment fills with stone-200, the same wash the nav
-   links and the dropdown's own options use, and an empty value ("Any
+/* Hover: a closed segment fills with Stone-300 @ 40%, the same wash as
+   a list row and the view icons, and an empty value ("Any
    time") deepens a step. An open segment keeps its own state. Real
    pointers only, so a tap never leaves a segment looking hovered. */
 .filter-seg__btn { cursor: pointer; }
 .filter-seg__value { transition: color .16s ease; }
 @media (hover: hover) and (pointer: fine) {
-  .filter-seg:not(.is-open) .filter-seg__btn:hover { background: var(--stone-200); }
+  .filter-seg:not(.is-open) .filter-seg__btn:hover { background: rgba(225, 220, 214, 0.40); }   /* same wash as .list-row:hover (Stone-300 @ 40%) */
   .filter-seg:not(.is-open) .filter-seg__btn:hover .filter-seg__value.is-empty { color: var(--sea-blue-300); }
 }
 .filter-seg__chev { flex-shrink: 0; color: var(--sea-blue); transition: transform .16s ease; }
