@@ -1,7 +1,7 @@
 /* ============================================================
    YAWW — "Your hosts"
 
-   One slot, two people, a segmented control between them. The markup
+   One slot, two people, the shared .tabs component between them. The markup
    ships with the teacher already in the slot, so the block is complete
    and readable before this file runs — and stays readable if it never
    does. Each host's content lives in a <template> next to the tabs;
@@ -27,6 +27,9 @@
       tabs.forEach(function (t) {
         var on = t.getAttribute("data-host-tab") === who;
         t.setAttribute("aria-selected", on ? "true" : "false");
+        // is-active is what the shared .tabs component styles and what its
+        // sliding indicator re-measures on resize.
+        t.classList.toggle("is-active", on);
         // Only the selected tab stays in the tab order, which is how a
         // tablist is meant to behave.
         t.tabIndex = on ? 0 : -1;
@@ -54,7 +57,9 @@
         if (!next) return;
         e.preventDefault();
         next.focus();
-        show(next.getAttribute("data-host-tab"));
+        // A click, not show(): the tab bar's sliding indicator listens for
+        // clicks, so the keyboard moves it the same way the mouse does.
+        next.click();
       });
     });
   }

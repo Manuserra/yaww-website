@@ -44,8 +44,8 @@ import page_content as PC  # noqa: E402
 
 REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 TPL = os.path.join(REPO, "retreatpage-elcuyo.html")
-HOSTS_JS = '<script src="js/hosts.js?v=202611181717" defer></script>'
-CSS_VERSION = "202611190430"   # bump with any change to css/retreat.css
+HOSTS_JS = '<script src="js/hosts.js?v=202611191130" defer></script>'
+CSS_VERSION = "202611191200"   # bump with any change to css/retreat.css
 
 # The El Cuyo editions that run the standard 5-night week the template was
 # written for: same itinerary, same includes, same extras.
@@ -355,7 +355,6 @@ def host_html(h, indent="        "):
     link = (f'\n{indent}<a class="host__link" href="{h["href"]}">{esc(h["link"])} <span aria-hidden="true">&rarr;</span></a>'
             if h.get("href") else "")
     return (f'{indent}{photo}\n{indent}<div class="host">'
-            f'\n{indent}<p class="host__role">{esc(h["role"])}</p>'
             f'\n{indent}<h3 class="host__name">{esc(h["name"])}</h3>{meta}{bio}{link}'
             f'\n{indent}</div>')
 
@@ -372,7 +371,7 @@ def hosts_section(hosts, placeholder_note):
     </div>
   </section>'''
     tabs = "".join(
-        f'\n        <button class="hosts__tab" type="button" role="tab" data-host-tab="{h["key"]}" '
+        f'\n        <button class="tabs__item hosts__tab{" is-active" if i == 0 else ""}" type="button" role="tab" data-host-tab="{h["key"]}" '
         f'aria-selected="{"true" if i == 0 else "false"}" tabindex="{0 if i == 0 else -1}">{esc(h["tab"])}</button>'
         for i, h in enumerate(hosts))
     tpls = "".join(f'\n      <template data-host="{h["key"]}">\n{host_html(h)}\n      </template>' for h in hosts)
@@ -383,7 +382,7 @@ def hosts_section(hosts, placeholder_note):
          the block reads complete with scripting off; js/hosts.js swaps the
          contents when a tab is pressed.{note} -->
     <div class="hosts" data-hosts>
-      <div class="hosts__tabs" role="tablist" aria-label="Your hosts">{tabs}
+      <div class="tabs tabs--hug hosts__tabs" role="tablist" aria-label="Your hosts">{tabs}
       </div>
       <div class="hosts__slot" data-host-slot>
 {host_html(first)}

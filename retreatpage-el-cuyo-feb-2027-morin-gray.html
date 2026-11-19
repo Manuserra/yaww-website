@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/base.css?v=202611181910">
-<link rel="stylesheet" href="css/retreat.css?v=202611190430">
+<link rel="stylesheet" href="css/retreat.css?v=202611191200">
 </head>
 <body>
 <!-- Built by retreats/_tools/build_page.py from data/retreats.js and retreats/el-cuyo-feb-2027-morin-gray/data.json,
@@ -166,15 +166,14 @@
          PLACEHOLDER facilitator — Renata Centi is the team member whose own bio ties
          her to El Cuyo, but who travels on these dates is unconfirmed. -->
     <div class="hosts" data-hosts>
-      <div class="hosts__tabs" role="tablist" aria-label="Your hosts">
-        <button class="hosts__tab" type="button" role="tab" data-host-tab="teacher" aria-selected="true" tabindex="0">Teacher</button>
-        <button class="hosts__tab" type="button" role="tab" data-host-tab="rachel-gray" aria-selected="false" tabindex="-1">Photographer</button>
-        <button class="hosts__tab" type="button" role="tab" data-host-tab="facilitator" aria-selected="false" tabindex="-1">Facilitator</button>
+      <div class="tabs tabs--hug hosts__tabs" role="tablist" aria-label="Your hosts">
+        <button class="tabs__item hosts__tab is-active" type="button" role="tab" data-host-tab="teacher" aria-selected="true" tabindex="0">Teacher</button>
+        <button class="tabs__item hosts__tab" type="button" role="tab" data-host-tab="rachel-gray" aria-selected="false" tabindex="-1">Photographer</button>
+        <button class="tabs__item hosts__tab" type="button" role="tab" data-host-tab="facilitator" aria-selected="false" tabindex="-1">Facilitator</button>
       </div>
       <div class="hosts__slot" data-host-slot>
         <img class="host__photo" src="images/teachers/genevieve-morin.jpg" alt="Genevieve Morin" loading="lazy">
         <div class="host">
-        <p class="host__role">Your teacher</p>
         <h3 class="host__name">Genevieve Morin</h3>
         <p class="host__bio">Genevieve brings clarity, warmth, and cultural fluency to every retreat. Trilingual and intuitive, she creates welcoming spaces for genuine connection.</p>
         <a class="host__link" href="teacher-genevieve-morin.html">Meet Genevieve <span aria-hidden="true">&rarr;</span></a>
@@ -183,7 +182,6 @@
       <template data-host="teacher">
         <img class="host__photo" src="images/teachers/genevieve-morin.jpg" alt="Genevieve Morin" loading="lazy">
         <div class="host">
-        <p class="host__role">Your teacher</p>
         <h3 class="host__name">Genevieve Morin</h3>
         <p class="host__bio">Genevieve brings clarity, warmth, and cultural fluency to every retreat. Trilingual and intuitive, she creates welcoming spaces for genuine connection.</p>
         <a class="host__link" href="teacher-genevieve-morin.html">Meet Genevieve <span aria-hidden="true">&rarr;</span></a>
@@ -192,7 +190,6 @@
       <template data-host="rachel-gray">
         <img class="host__photo" src="images/retreat-photos/teachers/yoga-teacher-rachel-gray.webp" alt="Rachel Gray" loading="lazy">
         <div class="host">
-        <p class="host__role">Your photographer</p>
         <h3 class="host__name">Rachel Gray</h3>
         <p class="host__meta">Boudoir &amp; portrait photographer</p>
         <p class="host__bio">Rachel Gray is an internationally recognized photographer, who has worked with leading brands such as Tiffany, Netflix, Time Magazine, and more.</p>
@@ -202,7 +199,6 @@
       <template data-host="facilitator">
         <img class="host__photo" src="images/team/renata-centi.jpg" alt="Renata Centi" loading="lazy">
         <div class="host">
-        <p class="host__role">Your facilitator</p>
         <h3 class="host__name">Renata Centi</h3>
         <p class="host__meta">YAWW team · El Cuyo &amp; Sardinia</p>
         <p class="host__bio">Renata brings warm presence and steady care to our retreats in El Cuyo and Sardinia. A teacher and therapist, she supports each guest with clarity, ease, and quiet strength.</p>
@@ -2207,6 +2203,6 @@
   })();
 </script>
 
-<script src="js/hosts.js?v=202611181717" defer></script>
+<script src="js/hosts.js?v=202611191130" defer></script>
 </body>
 </html>

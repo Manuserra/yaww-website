@@ -264,34 +264,19 @@ main { overflow-wrap: break-word; }
    That is the trade this layout makes on purpose. */
 .hosts { width: 100%; max-width: 884px; }
 
+/* The tabs are the shared .tabs.tabs--hug component, the same one as
+   Accommodations and Extras: 216px per tab, the sliding indicator, a
+   sideways scroll when a phone runs out of room. Only placement is local:
+   fit-content makes the hairline hug the tabs, as it does there. */
 .hosts__tabs {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 32px;
+  width: fit-content;
+  margin: 0 auto 40px;
 }
-.hosts__tab {
-  padding: 10px 24px;
-  border: 0;
-  background: none;
-  cursor: pointer;
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  color: var(--sea-blue-100);
-  border-bottom: 1px solid var(--stone-400);
-  transition: color .18s var(--ease-out);
-}
-@media (hover: hover) and (pointer: fine) {
-  .hosts__tab:hover { color: var(--sea-blue); }
-}
-.hosts__tab:focus-visible { outline: 2px solid var(--sea-blue); outline-offset: -2px; }
-/* 2px against the 1px rest, so the active tab is heavier without moving
-   anything: the row keeps one baseline. */
-.hosts__tab[aria-selected="true"] {
-  color: var(--sea-blue);
-  border-bottom: 2px solid var(--sea-blue);
+/* Teacher + Photographer + Facilitator come to 4px more than a 360px phone
+   holds with the 10px gaps, which would leave the last label clipped
+   behind a scroll. The tabs' own padding already separates them. */
+@media (max-width: 480px) {
+  .tabs--hug.hosts__tabs { gap: 0; }
 }
 
 .hosts__slot {
@@ -325,14 +310,6 @@ main { overflow-wrap: break-word; }
 /* A host with no portrait yet keeps the slot's shape, in the same green
    placeholder the template's teacher block used. */
 .host__photo--empty { background: linear-gradient(155deg, hsl(96 26% 74%), hsl(96 20% 52%)); }
-.host__role {
-  font-size: 12px;
-  line-height: 16px;
-  font-weight: 600;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  color: var(--stone-600);
-}
 .host__name {
   margin: 0;
   font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
@@ -370,13 +347,6 @@ main { overflow-wrap: break-word; }
 @media (max-width: 767px) {
   .hosts__slot { grid-template-columns: 1fr; gap: 24px; }
   .hosts__slot .host__photo { width: 100%; }
-  .hosts__tab { flex: 1 1 0; padding: 10px 12px; }
-}
-/* Three hosts (teacher, photographer, facilitator) do not fit as equal
-   thirds of a phone: "Photographer" alone is wider than a third. Each tab
-   takes its own width instead, and the spacing tightens a little. */
-@media (max-width: 480px) {
-  .hosts__tab { flex: 1 1 auto; padding: 10px 6px; letter-spacing: 0.6px; }
 }
 
 
