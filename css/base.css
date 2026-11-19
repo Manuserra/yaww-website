@@ -226,8 +226,10 @@ main { padding-top: 0; }
   border: 1px solid transparent;
   border-radius: 0;
   cursor: pointer;
-  transition: background-color .18s ease, color .18s ease, border-color .18s ease;
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease, transform 160ms var(--ease-out);
 }
+/* Press feedback: every button answers the moment it is pressed. */
+.btn:active { transform: scale(0.97); }
 .btn:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
 .btn--primary {
   background: var(--sea-blue);
@@ -377,7 +379,7 @@ main { padding-top: 0; }
 /* --- Image reveal ------------------------------------------------------
    Images fade in as they load instead of snapping in. */
 @media (prefers-reduced-motion: no-preference) {
-  img.img-reveal { opacity: 0; transition: opacity 500ms ease-in-out; }
+  img.img-reveal { opacity: 0; transition: opacity 300ms var(--ease-out); }
   img.img-reveal.is-loaded { opacity: 1; }
 }
 
