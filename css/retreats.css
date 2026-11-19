@@ -496,3 +496,26 @@
 /* hero removed — tabs sit flush under the nav's bottom border */
 main { padding-top: 0; }
 
+
+/* --- Filter bar on the listing ---------------------------
+   collection chips → intro → When/Destination/Teacher bar → results
+   line (count · clear · grid/list) → seasons. Component styles are in
+   css/filters.css; this is only where it sits on this page. */
+.retreats > .filter-bar { margin-top: 40px; display: flex; }
+.retreats .filter-summary { max-width: none; padding-inline: 0; margin-top: 32px; align-items: center; }
+.filter-summary__left { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+.view-toggle.view-toggle--inline { position: static; display: flex; }
+.retreats .filter-empty { max-width: 720px; margin-top: 40px; padding: 56px 48px; }
+.filter-empty__relax { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.filter-empty__relax button {
+  font-family: var(--font-body); font-size: 14px; line-height: 24px; letter-spacing: 0.56px;
+  color: var(--sea-blue); background: transparent;
+  border: 1px solid var(--sea-blue-100); border-radius: 63px; padding: 8px 20px; cursor: pointer;
+}
+.filter-empty__relax button:hover { border-color: var(--sea-blue); }
+.retreats .results { margin-top: 32px; }
+.retreats .results > .season:first-child { margin-top: 0; }
+@media (max-width: 767px) {
+  .retreats > .filter-bar { width: 100%; max-width: 100%; }
+  .retreats .filter-empty { padding: 40px 24px; }
+}

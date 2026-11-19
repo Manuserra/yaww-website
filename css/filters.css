@@ -1,0 +1,324 @@
+/* ============================================================
+   FILTER BAR — When / Destination / Teacher
+   The one way to narrow retreats on this site. Lives on
+   retreats.html (and the alternate home drafts that still carry it).
+   Segments, popover, results line, empty state and mobile sheet.
+   ============================================================ */
+.filter-summary,
+.filter-empty {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+  box-sizing: border-box;
+}
+/* Sized to its own content — three fixed-width segments, same width as
+   the popover each one opens — rather than stretching to fill the
+   container like .filter-summary/.filter-empty do; centred, and capped
+   so it's never closer than --container-pad to the viewport edge even
+   on a viewport narrower than its natural width. */
+.filter-bar {
+  width: fit-content;
+  max-width: calc(100% - (var(--container-pad) * 2));
+  margin-inline: auto;
+  box-sizing: border-box;
+}
+
+/* ------------------------------------------------------------------
+   Teacher / Destination / When filter — sits above the rail and
+   narrows which of its cards render, it doesn't replace the rail.
+   Resolved against yaww-tokens.json rather than the hi-fi handoff's
+   own inline styles (Dropdowns.dc.html / DropdownsMobile.dc.html /
+   yaww-retreat-filter-handoff.md) — its own "Tipografía" table flags
+   which prototype numbers weren't real tokens (14/16 .12em eyebrow,
+   12/16 .14em labels, 11px group titles, 13px meta text, #FFFFFF
+   panels…); each is resolved to its nearest token below.
+   ------------------------------------------------------------------ */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  background: var(--stone-100);
+  border: 1px solid var(--stone-300);
+  box-shadow: 0 1px 2px rgba(40, 49, 57, 0.04);
+}
+.filter-seg { position: relative; width: 360px; flex: 0 0 auto; min-width: 0; }
+.filter-seg + .filter-seg { border-left: 1px solid var(--stone-300); }
+/* .filter-seg__btn is the row, and the thing clicks delegate off of
+   (it carries data-seg too): a trigger button wrapping just the label
+   + value (opens the panel/sheet), then — once a value is picked — a
+   clear button, then the chevron last, in that visual order, same as
+   it's always sat at the row's trailing edge. The chevron and clear
+   button are siblings of the trigger, not nested inside it, so the x
+   stays independently clickable; clicking the chevron still opens the
+   panel because the click bubbles up to this row's own listener. */
+.filter-seg__btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 80px;
+  padding: 16px 24px;
+  transition: background-color .16s ease, box-shadow .16s ease;
+}
+.filter-seg.is-open .filter-seg__btn {
+  background: var(--stone-100);
+  box-shadow: inset 0 -2px 0 var(--sea-blue);
+}
+.filter-seg__trigger {
+  flex: 1 1 auto;
+  min-width: 0;
+  text-align: left;
+}
+.filter-seg__text { display: flex; flex-direction: column; gap: 4px; min-width: 0; text-align: left; }
+.filter-seg__label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--stone-600);
+}
+.filter-seg__value {
+  margin: 0;
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-size: 18px;
+  line-height: 24px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--sea-blue);
+}
+.filter-seg__value.is-empty { font-style: italic; color: var(--sea-blue-200); }
+.filter-seg__chev { flex-shrink: 0; color: var(--sea-blue); transition: transform .16s ease; }
+.filter-seg.is-open .filter-seg__chev { transform: rotate(180deg); }
+.filter-seg__clear {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--sea-blue-300);
+  transition: background-color .12s ease, color .12s ease;
+}
+.filter-seg__clear:hover { background: var(--stone-200); color: var(--sea-blue); }
+@media (prefers-reduced-motion: reduce) {
+  .filter-seg__btn, .filter-seg__chev, .filter-seg__clear { transition: none; }
+}
+
+.filter-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: -1px;
+  z-index: 20;
+  width: 360px;
+  max-width: calc(100vw - 32px);
+  background: var(--stone-100);
+  border: 1px solid var(--stone-300);
+  box-shadow: 0 16px 40px rgba(40, 49, 57, 0.14), 0 2px 6px rgba(40, 49, 57, 0.06);
+  max-height: 420px;
+  overflow-y: auto;
+  padding-block: 8px;
+}
+.filter-group { padding-block: 4px; }
+.filter-group__title {
+  margin: 0;
+  padding: 12px 16px 8px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sea-blue-300);
+}
+.filter-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background: transparent;
+  text-align: left;
+  transition: background-color .12s ease;
+}
+.filter-option:hover { background: var(--stone-200); }
+.filter-option.is-selected { background: var(--stone-200); }
+.filter-option__avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--stone-300);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-size: 13px;
+  color: var(--sea-blue);
+}
+.filter-option__text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.filter-option__name { font-family: var(--font-body); font-size: 16px; line-height: 24px; color: var(--sea-blue-500); }
+.filter-option__name.is-muted { color: var(--sea-blue-200); }
+.filter-option.is-selected .filter-option__name { font-weight: 600; }
+.filter-option__meta {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  color: var(--sea-blue-300);
+}
+.filter-option__check { flex-shrink: 0; color: var(--sea-blue-500); }
+.filter-option:focus-visible,
+.filter-seg__trigger:focus-visible,
+.filter-seg__clear:focus-visible,
+.filter-summary__clear:focus-visible {
+  outline: 2px solid var(--sea-blue-300);
+  outline-offset: -2px;
+}
+
+.filter-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+/* A results line, not a section title: the same Raleway 14/24 as
+   .card__date, tracked like the hero's proof labels (0.56px). */
+.filter-summary__text {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.56px;
+  color: var(--sea-blue);
+}
+.filter-summary__clear {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  color: var(--sea-blue);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--sea-blue);
+  padding: 4px 0;
+  cursor: pointer;
+}
+
+.filter-empty {
+  background: var(--stone-100);
+  border: 1px solid var(--stone-300);
+  padding: 56px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  text-align: center;
+}
+.filter-empty__title {
+  margin: 0;
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+  color: var(--sea-blue);
+}
+.filter-empty__body {
+  margin: 0;
+  max-width: 480px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--sea-blue-300);
+}
+.filter-empty__ctas { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 8px; }
+@media (max-width: 767px) { .filter-empty__ctas { flex-direction: column; } }
+
+/* Three fixed-360px segments plus their borders need 1082px, so three
+   of them never actually fit until the viewport clears 1082 + 2 ×
+   --container-pad(24) = 1130px. Short of that there's still plenty of
+   width to work with down to 768 (the site's own mobile breakpoint,
+   where the nav itself switches to a hamburger) — compressing the row
+   reads better here than stacking three segments early, with most of
+   the screen still empty either side, would. So segments shrink/grow
+   to fill a single row instead; only below 768, where there's
+   genuinely no width left to compress into, does it stack. */
+@media (max-width: 1129px) {
+  .filter-bar { width: 100%; }
+  .filter-seg { width: auto; flex: 1 1 240px; }
+}
+/* Properly mobile: stacks in a column and goes full width — same
+   inset-from-the-edge box as .filter-summary/.filter-empty, with the
+   segment's own min-height/padding tightened to match. */
+@media (max-width: 767px) {
+  .filter-bar {
+    flex-direction: column;
+    width: calc(100% - (var(--container-pad) * 2));
+  }
+  .filter-seg { flex: 0 0 auto; width: auto; }
+  .filter-seg + .filter-seg { border-left: 0; border-top: 1px solid var(--stone-300); }
+  .filter-seg__btn { min-height: 64px; padding: 16px; }
+}
+
+.filter-sheet { position: fixed; inset: 0; z-index: 100; display: none; }
+.filter-sheet.is-open { display: block; }
+.filter-sheet__scrim { position: absolute; inset: 0; background: rgba(40, 49, 57, 0.42); }
+.filter-sheet__panel {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  max-height: 80vh;
+  background: var(--stone-100);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 -12px 32px rgba(40, 49, 57, 0.18);
+}
+.filter-sheet__grabber-row { display: flex; justify-content: center; padding: 8px 0 4px; }
+.filter-sheet__grabber { width: 40px; height: 4px; border-radius: 2px; background: var(--stone-400); }
+.filter-sheet__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px 16px;
+  border-bottom: 1px solid var(--stone-300);
+}
+.filter-sheet__title {
+  margin: 0;
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
+  color: var(--sea-blue);
+}
+.filter-sheet__close {
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  background: none; border: 0; color: var(--sea-blue);
+}
+.filter-sheet__list { flex: 1 1 auto; overflow-y: auto; padding-block: 8px; }
+.filter-sheet__foot {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 16px;
+  border-top: 1px solid var(--stone-300);
+  background: var(--stone-100);
+}
+.filter-sheet__clear {
+  font-family: var(--font-body);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sea-blue);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--sea-blue);
+  padding: 4px 0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.filter-sheet__confirm { flex: 1 1 auto; min-width: 0; }

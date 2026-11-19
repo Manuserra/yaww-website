@@ -10,8 +10,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/base.css?v=202611181910">
-<link rel="stylesheet" href="css/retreats.css?v=202611181910">
+<link rel="stylesheet" href="css/base.css?v=202611191200">
+<link rel="stylesheet" href="css/filters.css?v=202611191200">
+<link rel="stylesheet" href="css/retreats.css?v=202611191200">
 <!-- Retreat data + the one card component every retreat card is rendered
      by. Classic scripts so the prototype still works over file://.
      Order matters: the catalogs load before the data, the data before
@@ -122,26 +123,17 @@
   </nav>
 
 <main>
-  <div class="tabbar">
-    <div class="container">
-      <div class="tabs" role="tablist" aria-label="Organize retreats">
-        <button class="tab is-active" data-tab="dates"    role="tab" aria-selected="true">Upcoming dates</button>
-        <button class="tab"           data-tab="location" role="tab" aria-selected="false">By location</button>
-        <button class="tab"           data-tab="teacher"  role="tab" aria-selected="false">By teacher</button>
-      </div>
-      <div class="view-toggle view-toggle--desktop" aria-label="View">
-        <button class="is-active" data-view="grid" aria-label="Grid view" aria-pressed="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></button>
-        <button data-view="list" aria-label="List view" aria-pressed="false"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="4" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4" cy="18" r="1.1" fill="currentColor" stroke="none"/></svg></button>
-      </div>
-    </div>
-  </div>
-
+  <!-- One finding system for the whole site.
+       The tabs ("Upcoming dates / By location / By teacher") are gone:
+       they were groupings of the same data the home filters by. In their
+       place the When / Destination / Teacher bar from the home — the same
+       component, the same words. Order on the page:
+         collection (what kind of journey) → bar (when, where, with whom)
+         → results, always grouped by season.
+       Every choice is mirrored in the URL (?tier=&when=&destination=&teacher=),
+       so a location page or a teacher bio can link straight into a
+       filtered list, e.g. ?destination=el-cuyo or ?teacher=sue-berger. -->
   <div class="container retreats">
-
-    <div class="view-toggle view-toggle--compact" aria-label="View">
-      <button class="is-active" data-view="grid" aria-label="Grid view" aria-pressed="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></button>
-      <button data-view="list" aria-label="List view" aria-pressed="false"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="4" cy="6" r="1.1" fill="currentColor" stroke="none"/><circle cx="4" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4" cy="18" r="1.1" fill="currentColor" stroke="none"/></svg></button>
-    </div>
 
     <div class="controls">
       <div class="chips" role="group" aria-label="Filter by collection">
@@ -156,8 +148,50 @@
       <p class="collection-intro__desc" id="collectionDesc"></p>
     </div>
 
+    <div class="filter-bar" role="group" aria-label="Filter retreats" id="filterBar"></div>
+
+    <div class="filter-summary">
+      <div class="filter-summary__left">
+        <p class="filter-summary__text" id="filterSummaryText"></p>
+        <button type="button" class="filter-summary__clear" id="filterClearBtn" hidden>Clear all</button>
+      </div>
+      <div class="view-toggle view-toggle--inline" aria-label="View">
+        <button class="is-active" data-view="grid" aria-label="Grid view" aria-pressed="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></button>
+        <button data-view="list" aria-label="List view" aria-pressed="false"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1" fill="currentColor" stroke="none"/><circle cx="3.5" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="3.5" cy="18" r="1" fill="currentColor" stroke="none"/></svg></button>
+      </div>
+    </div>
+
+    <div class="filter-empty" id="filterEmpty" hidden>
+      <p class="filter-empty__title" id="filterEmptyTitle"></p>
+      <p class="filter-empty__body" id="filterEmptyBody"></p>
+      <div class="filter-empty__relax" id="filterEmptyRelax"></div>
+      <div class="filter-empty__ctas">
+        <a href="#" class="btn btn--primary">Notify me</a>
+        <a href="contact.html" class="btn btn--secondary">Talk to us</a>
+      </div>
+    </div>
+
     <section class="results" id="results" aria-live="polite"></section>
 
+  </div>
+
+  <!-- Mobile filter sheet (same component as the home) -->
+  <div class="filter-sheet" id="filterSheet" aria-hidden="true">
+    <div class="filter-sheet__scrim" id="filterSheetScrim"></div>
+    <div role="dialog" aria-modal="true" aria-labelledby="filterSheetTitle" class="filter-sheet__panel" id="filterSheetPanel">
+      <div class="filter-sheet__grabber-row"><span class="filter-sheet__grabber" aria-hidden="true"></span></div>
+      <div class="filter-sheet__head">
+        <h3 class="filter-sheet__title" id="filterSheetTitle"></h3>
+        <button type="button" class="filter-sheet__close" aria-label="Close" id="filterSheetCloseBtn">
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3 13 13 M13 3 3 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <ul role="listbox" class="filter-sheet__list" id="filterSheetList"></ul>
+      <div class="filter-sheet__foot">
+        <button type="button" class="filter-sheet__clear" id="filterSheetClearBtn">Clear</button>
+        <button type="button" class="btn btn--primary filter-sheet__confirm" id="filterSheetConfirmBtn"></button>
+      </div>
+    </div>
   </div>
 </main>
 
@@ -342,129 +376,383 @@
 
 <script>
 /* ============================================================
-   Retreats listing — organize + filter + grid/list
+   Retreats listing — one filter system
 
-   The data is data/retreats.js and the cards are built by
-   js/retreat-cards.js: nothing retreat-shaped is written out here, so
-   changing a retreat in one place changes it on every page.
-   (tabs = organize · chips = filter · toggle = grid/list)
+   collection chips (tier) + When / Destination / Teacher bar (the
+   home's component) → results grouped by season. State lives in the
+   URL so any page can deep-link into a filtered list.
    ============================================================ */
+(function () {
 const Y = window.YAWW;
-
-/* Chronological season buckets, derived from the data rather than
-   listed by hand — a new season appears as soon as a date lands in it. */
+const esc = Y.esc;
 const SEASON_ORDER = Y.seasonOptions("listing");
 
-const state = { tab: "dates", tier: "all", view: "grid" };
-
-// Dynamic copy for the collection-intro block (placeholder — refine later)
 const COLLECTION_COPY = {
   all:                     { title: "All Retreats",         desc: "Every journey we run, in one place — from our intimate Deep Dives to the exclusive Signature Collection. Find the one that fits you." },
   "deep-dives":            { title: "Deep Dives",           desc: "Grounded, intimate retreats in beautiful places — a focused practice and a warm community, at our most accessible price point." },
   "signature-collection":  { title: "Signature Collection", desc: "Our most exclusive journeys — rare destinations, exceptional venues, and every detail considered. Yoga Adventures at its finest." }
 };
-function updateCollectionIntro(){
+
+/* Flat view rows so the facets can match on plain values. */
+const ROWS = Y.getUpcomingRetreats().map(function (r) {
+  const loc = Y.getLocation(r.locationId);
+  return { retreat: r, place: loc ? loc.name : "", when: Y.seasonLabel(r, "filter"), teacher: Y.teacherNames(r), tier: r.collection };
+});
+
+const TEACHERS = Y.teacherRoster().map(t => t.name);
+const PLACES = Y.locationGroups().map(g => ({ title: g.title, items: g.items.map(l => l.name) }));
+const WHENS = Y.seasonOptions("filter");
+const SEGMENTS = [
+  { key: "when",    label: "When",        any: "Any time",    param: "when",        groups: [{ title: "", items: WHENS, avatar: false }] },
+  { key: "place",   label: "Destination", any: "Anywhere",    param: "destination", groups: PLACES.map(g => ({ title: g.title, items: g.items, avatar: false })) },
+  { key: "teacher", label: "Teacher",     any: "Any teacher", param: "teacher",     groups: [{ title: "", items: TEACHERS, avatar: true }] }
+];
+const FACETS = ["when", "place", "teacher"];
+const RELAX_LABEL = { when: "Any time", place: "Any destination", teacher: "Any teacher" };
+
+const state = { tier: "all", when: "", place: "", teacher: "", view: "grid", open: "" };
+
+/* ---------- URL <-> state ---------- */
+function slug(s) {
+  return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "")
+    .replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+function allValues(def) { return def.groups.flatMap(g => g.items); }
+function readURL() {
+  const p = new URLSearchParams(location.search);
+  const tier = p.get("tier");
+  if (tier && COLLECTION_COPY[tier]) state.tier = tier;
+  if (p.get("view") === "list") state.view = "list";
+  SEGMENTS.forEach(function (def) {
+    const v = p.get(def.param);
+    if (!v) return;
+    const hit = allValues(def).find(x => slug(x) === slug(v));
+    if (hit) state[def.key] = hit;
+  });
+}
+function writeURL() {
+  const p = new URLSearchParams();
+  if (state.tier !== "all") p.set("tier", state.tier);
+  SEGMENTS.forEach(def => { if (state[def.key]) p.set(def.param, slug(state[def.key])); });
+  if (state.view === "list") p.set("view", "list");
+  const qs = p.toString();
+  history.replaceState(null, "", location.pathname + (qs ? "?" + qs : ""));
+}
+
+/* ---------- matching ---------- */
+function matches(v, s, skip) {
+  return (s.tier === "all" || v.tier === s.tier) &&
+    (skip === "when"    || !s.when    || v.when === s.when) &&
+    (skip === "place"   || !s.place   || v.place === s.place) &&
+    (skip === "teacher" || !s.teacher || v.teacher.indexOf(s.teacher) !== -1);
+}
+function filtered(s) { return ROWS.filter(v => matches(v, s || state)); }
+/* Faceted counts: each option counts what you'd get if you picked it,
+   given everything else already chosen. */
+function facetCount(key, value) {
+  return ROWS.filter(function (v) {
+    if (!matches(v, state, key)) return false;
+    return key === "teacher" ? v.teacher.indexOf(value) !== -1 : v[key] === value;
+  }).length;
+}
+function anyCount(key) { return ROWS.filter(v => matches(v, state, key)).length; }
+function narrowed() { return state.tier !== "all" || FACETS.some(k => state[k]); }
+function countMeta(n) {
+  if (n === 0) return narrowed() ? "No matches" : "No dates yet";
+  return n === 1 ? "1 retreat" : n + " retreats";
+}
+function plural(n) { return n === 1 ? "1 retreat" : n + " retreats"; }
+
+/* ---------- filter bar markup ---------- */
+function initials(name) { return name.split(" ").map(p => p.charAt(0)).join("").slice(0, 2).toUpperCase(); }
+function checkSVG() {
+  return '<svg class="filter-option__check" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5 6.5 11.5 12.5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+}
+function anyOptionHTML(key, label) {
+  const sel = state[key] === "";
+  return '<li role="option" aria-selected="' + sel + '">' +
+    '<button type="button" class="filter-option' + (sel ? ' is-selected' : '') + '" data-key="' + key + '" data-value="">' +
+      '<span class="filter-option__text"><span class="filter-option__name">' + esc(label) + '</span>' +
+      '<span class="filter-option__meta">' + plural(anyCount(key)) + '</span></span>' +
+      (sel ? checkSVG() : '') +
+    '</button></li>';
+}
+function optionHTML(key, value, withAvatar) {
+  const n = facetCount(key, value), sel = state[key] === value, muted = n === 0;
+  return '<li role="option" aria-selected="' + sel + '">' +
+    '<button type="button" class="filter-option' + (sel ? ' is-selected' : '') + '" data-key="' + key + '" data-value="' + esc(value) + '">' +
+      (withAvatar ? '<span class="filter-option__avatar" aria-hidden="true">' + esc(initials(value)) + '</span>' : '') +
+      '<span class="filter-option__text"><span class="filter-option__name' + (muted ? ' is-muted' : '') + '">' + esc(value) + '</span>' +
+      '<span class="filter-option__meta">' + countMeta(n) + '</span></span>' +
+      (sel ? checkSVG() : '') +
+    '</button></li>';
+}
+function panelHTML(def) {
+  const ungrouped = def.groups.length === 1 && !def.groups[0].title;
+  let html = '<div class="filter-group"><ul role="listbox" aria-label="' + esc(def.label) + '">' +
+    anyOptionHTML(def.key, def.any) +
+    (ungrouped ? def.groups[0].items.map(v => optionHTML(def.key, v, def.groups[0].avatar)).join("") : "") +
+    '</ul></div>';
+  if (!ungrouped) {
+    def.groups.forEach(function (g) {
+      html += '<div class="filter-group">' + (g.title ? '<p class="filter-group__title">' + esc(g.title) + '</p>' : '') +
+        '<ul role="listbox" aria-label="' + esc(g.title || def.label) + '">' +
+        g.items.map(v => optionHTML(def.key, v, g.avatar)).join("") + '</ul></div>';
+    });
+  }
+  return html;
+}
+function sheetItemsHTML(def) {
+  let html = anyOptionHTML(def.key, def.any);
+  def.groups.forEach(function (g) {
+    if (g.title) html += '<li role="presentation" class="filter-group"><p class="filter-group__title">' + esc(g.title) + '</p></li>';
+    html += g.items.map(v => optionHTML(def.key, v, g.avatar)).join("");
+  });
+  return html;
+}
+
+const filterBar = document.getElementById("filterBar");
+const summaryText = document.getElementById("filterSummaryText");
+const clearBtn = document.getElementById("filterClearBtn");
+const emptyBlock = document.getElementById("filterEmpty");
+const emptyTitle = document.getElementById("filterEmptyTitle");
+const emptyBody = document.getElementById("filterEmptyBody");
+const emptyRelax = document.getElementById("filterEmptyRelax");
+const results = document.getElementById("results");
+const sheet = document.getElementById("filterSheet");
+const sheetScrim = document.getElementById("filterSheetScrim");
+const sheetPanel = document.getElementById("filterSheetPanel");
+const sheetTitle = document.getElementById("filterSheetTitle");
+const sheetList = document.getElementById("filterSheetList");
+const sheetCloseBtn = document.getElementById("filterSheetCloseBtn");
+const sheetClearBtn = document.getElementById("filterSheetClearBtn");
+const sheetConfirmBtn = document.getElementById("filterSheetConfirmBtn");
+
+function isMobile() { return window.matchMedia("(max-width: 767px)").matches; }
+function segByKey(key) { return SEGMENTS.find(d => d.key === key); }
+
+function renderFilterBar() {
+  filterBar.innerHTML = SEGMENTS.map(function (def) {
+    const open = state.open === def.key && !isMobile();
+    const empty = !state[def.key];
+    return '<div class="filter-seg' + (open ? ' is-open' : '') + '">' +
+      '<div class="filter-seg__btn" data-seg="' + def.key + '">' +
+        '<button type="button" class="filter-seg__trigger" data-seg="' + def.key + '" aria-haspopup="listbox" aria-expanded="' + open + '">' +
+          '<span class="filter-seg__text"><span class="filter-seg__label">' + esc(def.label) + '</span>' +
+          '<span class="filter-seg__value' + (empty ? ' is-empty' : '') + '">' + esc(state[def.key] || def.any) + '</span></span>' +
+        '</button>' +
+        (empty ? '' : '<button type="button" class="filter-seg__clear" data-seg="' + def.key + '" aria-label="Clear ' + esc(def.label) + ' filter"><svg width="12" height="12" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3 13 13 M13 3 3 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button>') +
+        '<svg class="filter-seg__chev" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 5.25 7 9.25 11 5.25" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+      '</div>' +
+      (open ? '<div class="filter-panel">' + panelHTML(def) + '</div>' : '') +
+    '</div>';
+  }).join("");
+}
+
+function renderIntro() {
   const c = COLLECTION_COPY[state.tier] || COLLECTION_COPY.all;
-  const t = document.getElementById("collectionTitle");
-  const d = document.getElementById("collectionDesc");
-  if (t) t.textContent = c.title;
-  if (d) d.textContent = c.desc;
+  document.getElementById("collectionTitle").textContent = c.title;
+  document.getElementById("collectionDesc").textContent = c.desc;
+  document.querySelectorAll(".chip").forEach(function (b) {
+    const on = b.dataset.tier === state.tier;
+    b.classList.toggle("is-active", on);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+  });
 }
 
-/* Grouping keys read the catalogs, never the retreat itself. */
-function locOf(r){ return Y.getLocation(r.locationId); }
-function regionOf(r){ return Y.locationShortLabel(locOf(r)); }
-function countryOf(r){ const l = locOf(r); return l ? l.country : ""; }
-/* A co-taught retreat is listed under each of its teachers. */
-function teachersOf(r){ return Y.teacherNames(r); }
-
-function groupKeyAndOrder(list){
-  if (state.tab === "dates"){
-    const order = SEASON_ORDER.filter(s => list.some(r => Y.seasonLabel(r, "listing") === s));
-    return { key: r => Y.seasonLabel(r, "listing"), order };
-  }
-  if (state.tab === "location"){
-    const pairs = [...new Map(list.map(r => [regionOf(r), countryOf(r)])).entries()];
-    pairs.sort((a, b) => a[1].localeCompare(b[1]) || a[0].localeCompare(b[0]));
-    return { key: regionOf, order: pairs.map(p => p[0]) };
-  }
-  const order = [...new Set(list.flatMap(teachersOf))].sort();
-  return { key: teachersOf, order };
-}
-
-/* Cards on this page link out only where a location page exists — the
-   same behaviour the hardcoded PAGES map gave. */
 const CARD_OPTS = { linkOnlyWhenPage: true };
-function cardHTML(r){ return Y.renderRetreatCard(r, CARD_OPTS); }
-function rowHTML(r){ return Y.renderRetreatRow(r, CARD_OPTS); }
 
-function render(){
-  const results = document.getElementById("results");
-  let list = Y.getUpcomingRetreats().filter(r => state.tier === "all" || r.collection === state.tier);
-  const { key, order } = groupKeyAndOrder(list);
+function renderResults() {
+  const list = filtered().map(v => v.retreat);
+  const n = list.length;
+  const parts = [];
+  if (state.teacher) parts.push("with " + state.teacher);
+  if (state.place) parts.push("in " + state.place);
+  if (state.when) parts.push(state.when);
+  summaryText.textContent = plural(n) + (parts.length ? " " + parts.join(", ") : " coming up");
+  clearBtn.hidden = !FACETS.some(k => state[k]);
 
+  if (n === 0) {
+    results.innerHTML = "";
+    emptyBlock.hidden = false;
+    const who = state.teacher ? " with " + state.teacher : "";
+    const kind = state.tier === "all" ? "retreats" : COLLECTION_COPY[state.tier].title + " retreats";
+    emptyTitle.textContent = "No " + kind + who + (state.place ? " in " + state.place : "") + (state.when ? " in " + state.when : "") + " yet";
+    /* Helpful, not a dead end: offer to loosen each active choice, with
+       the count it would bring back. */
+    const relax = [];
+    FACETS.forEach(function (k) {
+      if (!state[k]) return;
+      const c = anyCount(k);
+      if (c) relax.push('<button type="button" data-relax="' + k + '">' + esc(RELAX_LABEL[k]) + ' · ' + plural(c) + '</button>');
+    });
+    if (state.tier !== "all") {
+      const s = Object.assign({}, state, { tier: "all" });
+      const c = filtered(s).length;
+      if (c) relax.push('<button type="button" data-relax="tier">All collections · ' + plural(c) + '</button>');
+    }
+    emptyBody.textContent = relax.length
+      ? "Here's what opens up if you loosen one choice — or leave your email and we'll write when new dates are announced."
+      : "Leave your email and we'll write as soon as new dates open.";
+    emptyRelax.innerHTML = relax.join("");
+    writeURL();
+    return;
+  }
+  emptyBlock.hidden = true;
+
+  const order = SEASON_ORDER.filter(s => list.some(r => Y.seasonLabel(r, "listing") === s));
   let html = "";
-  order.forEach(function(g){
-    // key() returns a string for date/location and an array for teacher.
-    const items = list.filter(r => { const k = key(r); return Array.isArray(k) ? k.indexOf(g) !== -1 : k === g; });
-    if (!items.length) return;
-    const titleClass = "season__title" + (state.tab === "location" ? " season__title--location" : "");
-    const titleHTML = state.tab === "location"
-      ? '<span class="season__title-country">' + Y.esc(countryOf(items[0]).toUpperCase()) + ',</span><span class="season__title-region">' + Y.esc(g) + '</span>'
-      : Y.esc(g);
-    if (state.view === "grid"){
-      html += '<section class="season">';
-      html += '<div class="season__aside"><h2 class="' + titleClass + '">' + titleHTML + '</h2></div>';
-      html += '<div class="season__cards"><div class="grid">' + items.map(cardHTML).join("") + '</div></div>';
-      html += '</section>';
+  order.forEach(function (g) {
+    const items = list.filter(r => Y.seasonLabel(r, "listing") === g);
+    if (state.view === "grid") {
+      html += '<section class="season"><div class="season__aside"><h2 class="season__title">' + esc(g) + '</h2></div>' +
+        '<div class="season__cards"><div class="grid">' + items.map(r => Y.renderRetreatCard(r, CARD_OPTS)).join("") + '</div></div></section>';
     } else {
-      html += '<section class="season season--list">';
-      html += '<h2 class="' + titleClass + '">' + titleHTML + '</h2>';
-      html += '<div class="list">' + items.map(rowHTML).join("") + '</div>';
-      html += '</section>';
+      html += '<section class="season season--list"><h2 class="season__title">' + esc(g) + '</h2>' +
+        '<div class="list">' + items.map(r => Y.renderRetreatRow(r, CARD_OPTS)).join("") + '</div></section>';
     }
   });
-  results.innerHTML = html || '<p style="text-align:center;color:var(--sea-blue-200);padding:48px 0;">No retreats match this filter.</p>';
+  results.innerHTML = html;
+  writeURL();
 }
 
-/* --- wiring --- */
-document.querySelectorAll(".tab").forEach(function(btn){
-  btn.addEventListener("click", function(){
-    state.tab = btn.dataset.tab;
-    document.querySelectorAll(".tab").forEach(function(b){
-      const on = b === btn;
-      b.classList.toggle("is-active", on);
-      b.setAttribute("aria-selected", on ? "true" : "false");
-    });
-    render();
-  });
+function renderAll() { renderIntro(); renderFilterBar(); renderResults(); }
+
+/* ---------- mobile sheet ---------- */
+function renderSheetContent(key) {
+  const def = segByKey(key);
+  sheetTitle.textContent = def.label;
+  sheetList.setAttribute("aria-label", def.label);
+  sheetList.innerHTML = sheetItemsHTML(def);
+  const n = filtered().length;
+  sheetConfirmBtn.textContent = n === 1 ? "Show 1 retreat" : "Show " + n + " retreats";
+}
+function openSheet(key) {
+  state.open = key;
+  renderFilterBar();
+  renderSheetContent(key);
+  sheet.classList.add("is-open");
+  sheet.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+  requestAnimationFrame(() => sheetCloseBtn.focus());
+}
+function closeSheet() {
+  sheet.classList.remove("is-open");
+  sheet.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+  const key = state.open;
+  state.open = "";
+  renderFilterBar();
+  const b = filterBar.querySelector('.filter-seg__trigger[data-seg="' + key + '"]');
+  if (b) b.focus();
+}
+
+/* ---------- wiring ---------- */
+filterBar.addEventListener("click", function (e) {
+  const clr = e.target.closest(".filter-seg__clear");
+  if (clr) { state[clr.dataset.seg] = ""; renderFilterBar(); renderResults(); e.stopPropagation(); return; }
+  const seg = e.target.closest(".filter-seg__btn");
+  if (seg) {
+    const key = seg.dataset.seg;
+    if (isMobile()) { openSheet(key); e.stopPropagation(); return; }
+    state.open = state.open === key ? "" : key;
+    renderFilterBar();
+    if (state.open) {
+      const panel = filterBar.querySelector(".filter-panel");
+      const f = panel && (panel.querySelector(".filter-option.is-selected") || panel.querySelector(".filter-option"));
+      if (f) f.focus();
+    }
+    e.stopPropagation();
+    return;
+  }
+  const opt = e.target.closest(".filter-option");
+  if (opt) {
+    const k = opt.dataset.key, v = opt.dataset.value;
+    state[k] = state[k] === v ? "" : v;
+    state.open = "";
+    renderFilterBar(); renderResults();
+    e.stopPropagation();
+  }
 });
-document.querySelectorAll(".chip").forEach(function(btn){
-  btn.addEventListener("click", function(){
-    state.tier = btn.dataset.tier;
-    document.querySelectorAll(".chip").forEach(function(b){
-      const on = b === btn;
-      b.classList.toggle("is-active", on);
-      b.setAttribute("aria-pressed", on ? "true" : "false");
-    });
-    updateCollectionIntro();
-    render();
-  });
+filterBar.addEventListener("keydown", function (e) {
+  if (!state.open || isMobile()) return;
+  if (["ArrowDown", "ArrowUp", "Home", "End"].indexOf(e.key) === -1) return;
+  const panel = filterBar.querySelector(".filter-panel");
+  if (!panel) return;
+  const opts = Array.from(panel.querySelectorAll(".filter-option"));
+  const idx = opts.indexOf(document.activeElement);
+  e.preventDefault();
+  if (e.key === "ArrowDown") (opts[idx + 1] || opts[0]).focus();
+  else if (e.key === "ArrowUp") (opts[idx - 1] || opts[opts.length - 1]).focus();
+  else if (e.key === "Home") opts[0].focus();
+  else opts[opts.length - 1].focus();
 });
-document.querySelectorAll(".view-toggle button").forEach(function(btn){
-  btn.addEventListener("click", function(){
+document.addEventListener("click", function (e) {
+  if (!state.open || isMobile()) return;
+  if (!filterBar.contains(e.target)) { state.open = ""; renderFilterBar(); }
+});
+document.addEventListener("keydown", function (e) {
+  if (e.key !== "Escape") return;
+  if (sheet.classList.contains("is-open")) { closeSheet(); return; }
+  if (state.open) { state.open = ""; renderFilterBar(); }
+});
+sheetList.addEventListener("click", function (e) {
+  const opt = e.target.closest(".filter-option");
+  if (!opt) return;
+  const k = opt.dataset.key, v = opt.dataset.value;
+  state[k] = state[k] === v ? "" : v;
+  renderResults(); renderSheetContent(k);
+});
+sheetClearBtn.addEventListener("click", function () {
+  if (!state.open) return;
+  state[state.open] = "";
+  renderResults(); renderSheetContent(state.open);
+});
+[sheetCloseBtn, sheetScrim, sheetConfirmBtn].forEach(el => el.addEventListener("click", closeSheet));
+
+clearBtn.addEventListener("click", function () {
+  FACETS.forEach(k => { state[k] = ""; });
+  state.open = "";
+  renderFilterBar(); renderResults();
+});
+emptyRelax.addEventListener("click", function (e) {
+  const b = e.target.closest("[data-relax]");
+  if (!b) return;
+  if (b.dataset.relax === "tier") state.tier = "all"; else state[b.dataset.relax] = "";
+  renderAll();
+});
+document.querySelectorAll(".chip").forEach(function (btn) {
+  btn.addEventListener("click", function () { state.tier = btn.dataset.tier; renderAll(); });
+});
+document.querySelectorAll(".view-toggle button").forEach(function (btn) {
+  btn.addEventListener("click", function () {
     state.view = btn.dataset.view;
-    document.querySelectorAll(".view-toggle button").forEach(function(b){
+    document.querySelectorAll(".view-toggle button").forEach(function (b) {
       const on = b.dataset.view === state.view;
       b.classList.toggle("is-active", on);
       b.setAttribute("aria-pressed", on ? "true" : "false");
     });
-    render();
+    renderResults();
   });
 });
+let rt;
+window.addEventListener("resize", function () {
+  clearTimeout(rt);
+  rt = setTimeout(function () {
+    if (!isMobile() && sheet.classList.contains("is-open")) closeSheet();
+    renderFilterBar();
+  }, 150);
+});
 
-updateCollectionIntro();
-render();
+readURL();
+document.querySelectorAll(".view-toggle button").forEach(function (b) {
+  const on = b.dataset.view === state.view;
+  b.classList.toggle("is-active", on);
+  b.setAttribute("aria-pressed", on ? "true" : "false");
+});
+renderAll();
+})();
+
   /* Tabs: sliding indicator ----------------------------------------------
      Runs last, so every tab bar the modules render already exists. It reads
      the clicked tab's own box, so it does not care which module owns the
