@@ -186,6 +186,19 @@
   font-weight: 600;                 /* Caption-Semibold */
 }
 .chip:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
+/* Hover on a collection you're not in: the pill fills with the list-row
+   wash (Stone-300 @ 40%, same as the dropdowns and view icons), and the
+   label and outline deepen to the selected sea-blue. Weight stays 400,
+   so bold still means "selected". Real pointers only. */
+.chip { cursor: pointer; transition: background-color .16s ease, border-color .16s ease, color .16s ease; }
+@media (hover: hover) and (pointer: fine) {
+  .chip:not(.is-active):hover {
+    background: rgba(225, 220, 214, 0.40);
+    border-color: var(--sea-blue);
+    color: var(--sea-blue);
+  }
+}
+@media (prefers-reduced-motion: reduce) { .chip { transition: none; } }
 
 /* --- Results (season groups + cards) --------------------- */
 .results { padding-bottom: 160px; }
