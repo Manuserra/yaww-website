@@ -281,7 +281,7 @@ main { overflow-wrap: break-word; }
 
 .hosts__slot {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 312px 1fr;
   gap: 48px;
   align-items: center;
 }
@@ -299,9 +299,11 @@ main { overflow-wrap: break-word; }
 
 .host { display: flex; flex-direction: column; gap: 8px; font-family: var(--font-body); color: var(--sea-blue); }
 .host p { margin: 0; }
+/* 312 x 408, the portrait frame the template's teacher block and every
+   retreat card use, so a host reads at the same proportions everywhere. */
 .hosts__slot .host__photo {
-  width: 300px;
-  aspect-ratio: 1 / 1;
+  width: 312px;
+  aspect-ratio: 312 / 408;
   object-fit: cover;
   display: block;
   margin-bottom: 0;
@@ -341,6 +343,9 @@ main { overflow-wrap: break-word; }
 .host__link span { display: inline-block; transition: transform .2s var(--ease-out); }
 .host__link:hover span { transform: translateX(3px); }
 .gallery__more { align-self: center; margin-top: 0; }
+/* 32px from the bio to the link (8 of it is .host's gap): the link is the
+   section's way out, not one more line of the bio. */
+.host__link { margin-top: 24px; }
 @media (prefers-reduced-motion: reduce) {
   .host__link span, .host__link { transition: none; }
 }

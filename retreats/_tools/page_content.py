@@ -305,3 +305,11 @@ EXTRA_TABS = {
     "Temazcal Ceremony": "Temazcal",
     "Optional healing massage at the villa": "Healing massage",
 }
+
+# Where the face sits, as a fraction of the width, in the old site's
+# landscape teacher photos. build_page.py cuts a 312:408 portrait (the
+# host frame) around it for hosts with no portrait of their own.
+PORTRAIT_FOCUS = {
+    "amy-sennett-starner": 0.38,
+    "bonnie-erickson": 0.34,
+}

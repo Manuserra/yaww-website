@@ -45,7 +45,7 @@ import page_content as PC  # noqa: E402
 REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 TPL = os.path.join(REPO, "retreatpage-elcuyo.html")
 HOSTS_JS = '<script src="js/hosts.js?v=202611191130" defer></script>'
-CSS_VERSION = "202611191200"   # bump with any change to css/retreat.css
+CSS_VERSION = "202611191230"   # bump with any change to css/retreat.css
 
 # The El Cuyo editions that run the standard 5-night week the template was
 # written for: same itinerary, same includes, same extras.
@@ -347,6 +347,35 @@ def day_slider(images, label):
             f'\n            </div>')
 
 
+def host_portrait(master, tid):
+    """A 312:408 portrait, at 2x, from the old site's teacher photo, for a
+    host with no site portrait. Most of those photos are landscape; the
+    crop is centred on the face (PC.PORTRAIT_FOCUS) rather than the frame."""
+    if not master:
+        return None
+    from PIL import Image
+    src = os.path.join(REPO, master)
+    rel = f"images/retreat-photos/teachers/yoga-teacher-{tid}-portrait.webp"
+    out = os.path.join(REPO, rel)
+    if os.path.exists(out) and os.path.getmtime(out) >= os.path.getmtime(src):
+        return rel
+    im = Image.open(src).convert("RGB")
+    w, h = im.size
+    ratio = 312 / 408
+    if w / h > ratio:
+        cw = round(h * ratio)
+        cx = PC.PORTRAIT_FOCUS.get(tid, 0.5) * w
+        left = int(min(max(cx - cw / 2, 0), w - cw))
+        im = im.crop((left, 0, left + cw, h))
+    else:
+        ch = round(w / ratio)
+        im = im.crop((0, 0, w, ch))          # keep the top: that is where the face is
+    if im.width > 624:
+        im = im.resize((624, 816), Image.LANCZOS)
+    im.save(out, "WEBP", quality=82)
+    return rel
+
+
 def host_html(h, indent="        "):
     photo = (f'<img class="host__photo" src="{h["photo"]}" alt="{esc(h["name"])}" loading="lazy">'
              if h.get("photo") else '<div class="host__photo host__photo--empty" aria-hidden="true"></div>')
@@ -472,7 +501,7 @@ def build(rid, cat, assets, template):
     for i, tid in enumerate(tids):
         t = teachers[tid]
         dt = next((x for x in d["teachers"] if x.get("slug") == tid), {})
-        photo = t.get("photo") or assets.web((dt.get("photo") or {}).get("file"), Assets.PORTRAIT, "teachers")
+        photo = t.get("photo") or host_portrait((dt.get("photo") or {}).get("file"), tid)
         bio = t.get("shortBio") or first_sentences((dt.get("bio") or [""])[0])
         tab, role = PC.HOST_ROLE.get(tid, ("Teacher", "Your teacher"))
         hosts.append({"key": "teacher" if i == 0 else tid, "tab": tab,
