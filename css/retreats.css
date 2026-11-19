@@ -486,32 +486,35 @@
   .season:not(.season--list) { max-width: 1032px; margin-inline: auto; }
 }
 
-/* Dynamic collection intro (between chips and content) */
+/* Dynamic collection intro (between chips and content).
+   The site's own page-head: the 24/40 .section-title scale every page
+   opens with (Teachers, Where we go, Where we're going next) and the
+   16/28 lede Teachers uses under it. */
 .collection-intro {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 8px;                    /* H6 -> description */
+  gap: 16px;                   /* title -> description */
   margin-top: 56px;            /* chips -> block */
 }
 .collection-intro__title {
   margin: 0;
   font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
-  font-size: 18px;
-  line-height: 24px;           /* Desktop H6 bold */
+  font-size: 24px;
+  line-height: 40px;           /* = .section-title */
   color: var(--sea-blue);
 }
 .collection-intro__desc {
   margin: 0;
-  max-width: 672px;
+  max-width: 640px;
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: 0.56px;      /* Desktop Caption-Regular */
-  color: var(--sea-blue);
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: 0.32px;      /* = .people__lede */
+  color: var(--sea-blue-300);
 }
 
 /* hero removed — tabs sit flush under the nav's bottom border */
