@@ -254,10 +254,20 @@
     var hue = (location && location.placeholderHue != null) ? location.placeholderHue : 200;
     return "background: linear-gradient(155deg, hsl(" + hue + " 32% 80%), hsl(" + hue + " 26% 60%));";
   }
-  function flagHTML(retreat) {
+
+  /* One quiet label at the photo's foot carrying both facts: the tier
+     (singular, since a card is one retreat) and, when there is one, the
+     status — "Deep Dive · 2 spaces left", "Signature · Sold out".
+     Signature is told apart by colour alone (see .card__label--signature). */
+  var CARD_TIER = { "deep-dives": "Deep Dive", "signature-collection": "Signature" };
+  function cardLabelHTML(retreat) {
+    var sig = retreat.collection === "signature-collection";
     var badge = statusBadge(retreat);
-    if (!badge) return "";
-    return '<span class="card__flag card__flag--' + badge.flag + '">' + esc(badge.label) + '</span>';
+    return '<span class="card__label' + (sig ? ' card__label--signature' : '') + '">' +
+             '<span class="card__label-tier">' + esc(CARD_TIER[retreat.collection] || CARD_TIER["deep-dives"]) + '</span>' +
+             (badge ? '<span class="card__label-sep" aria-hidden="true"></span>' +
+                      '<span class="card__label-status">' + esc(badge.label) + '</span>' : '') +
+           '</span>';
   }
 
   /* --- variant "narrow": the .card.card--narrow design ---------------- */
@@ -265,8 +275,7 @@
     var loc = getLocation(retreat.locationId);
     var alt = retreat.officialName + (loc ? " — " + loc.displayName : "");
     var media = retreatMedia(retreat, loc);
-    var overlay = '<span class="card__badge">' + esc(collectionLabel(retreat.collection)) + '</span>' +
-                  flagHTML(retreat);
+    var overlay = cardLabelHTML(retreat);
     var inner =
       '<article class="card card--narrow">' +
         (media
