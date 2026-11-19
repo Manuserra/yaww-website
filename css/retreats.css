@@ -144,9 +144,9 @@
 /* Hover on the view you're not in: the icon deepens to the active
    sea-blue, the same "this is where you'd go" cue the tabs used. Real
    pointers only, so a tap doesn't leave the other icon looking chosen. */
-.view-toggle button { cursor: pointer; transition: color .18s ease; }
+.view-toggle button { cursor: pointer; transition: color .18s ease, background-color .16s ease; }
 @media (hover: hover) and (pointer: fine) {
-  .view-toggle button:not(.is-active):hover { color: var(--sea-blue); }
+  .view-toggle button:not(.is-active):hover { color: var(--sea-blue); background: rgba(225, 220, 214, 0.40); }   /* same wash as .list-row:hover (Stone-300 @ 40%) */
 }
 @media (prefers-reduced-motion: reduce) { .view-toggle button { transition: none; } }
 .view-toggle button:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; border-radius: 4px; }
@@ -513,6 +513,12 @@ main { padding-top: 0; }
 .retreats .filter-summary { max-width: none; padding-inline: 0; margin-top: 32px; align-items: center; }
 .filter-summary__left { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
 .view-toggle.view-toggle--inline { position: static; display: flex; }
+/* Each icon sits in a 40px square (24 + 8 padding a side) so the hover
+   has a box to fill, the same wash as a list row on hover.
+   Gap 0 keeps the icons 40px apart as before, and the -8px margin keeps
+   the right icon flush with the cards' edge. */
+.view-toggle--inline { gap: 0; margin-block: -8px; margin-right: -8px; }
+.view-toggle--inline button { padding: 8px; }
 .retreats .filter-empty { max-width: 720px; margin-top: 40px; padding: 56px 48px; }
 .filter-empty__relax { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 .filter-empty__relax button {
