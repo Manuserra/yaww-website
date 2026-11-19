@@ -428,3 +428,117 @@ main { padding-top: 0; }
   .retreats > .filter-bar { width: 100%; max-width: 100%; }
   .retreats .filter-empty { padding: 40px 24px; }
 }
+
+/* --- "We cleared X" line ----------------------------------
+   Under the results line, when the latest pick dropped an earlier one.
+   Same Raleway 14/24 as the results line, one step quieter, with Undo
+   styled like Clear all. */
+.filter-note {
+  margin: 12px 0 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.56px;
+  color: var(--sea-blue-300);
+}
+.filter-note[hidden] { display: none; }
+.filter-note__undo {
+  margin-left: 12px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  color: var(--sea-blue);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--sea-blue);
+  padding: 4px 0;
+  cursor: pointer;
+}
+.filter-note__undo[hidden] { display: none; }
+.filter-note__undo:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
+
+/* --- Waitlist (the empty state) ---------------------------
+   The same form as the location page's waitlist (css/location.css,
+   .loc-waitlist__*), restated here because this page doesn't load that
+   sheet. */
+.waitlist-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  width: 560px;
+  max-width: 100%;
+  margin-top: 8px;
+}
+.waitlist-form[hidden], .waitlist-form__done[hidden] { display: none; }
+.waitlist-form__label-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.waitlist-form__input {
+  flex: 1 1 200px;
+  min-width: 0;
+  box-sizing: border-box;
+  height: 56px;
+  padding: 0 16px;
+  color: var(--sea-blue);
+  font-family: var(--font-body);
+  font-size: 16px;            /* 16, not 14: iOS zooms into anything smaller */
+  line-height: 24px;
+  letter-spacing: 0.56px;
+  background: transparent;
+  border: 1px solid var(--stone-400);
+  border-radius: 0;
+}
+.waitlist-form__input::placeholder { color: var(--sea-blue-200); opacity: 1; }
+.waitlist-form__input:focus { outline: none; border-color: var(--sea-blue); }
+.waitlist-form__submit { flex: 0 0 auto; min-width: 0; }
+.waitlist-form__error {
+  flex-basis: 100%;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--sea-blue);
+}
+.waitlist-form__done { display: flex; flex-direction: column; gap: 8px; align-items: center; outline: none; }
+.filter-empty__links {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin: 8px 0 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.56px;
+  color: var(--sea-blue-300);
+}
+.filter-empty__links a { color: var(--sea-blue); text-decoration: none; border-bottom: 1px solid var(--sea-blue); padding-bottom: 2px; }
+
+/* "Other retreats coming up", under the waitlist: a quiet heading
+   leading into the usual season groups. */
+.results__lead {
+  margin: 72px 0 0;
+  padding-top: 40px;
+  border-top: 1px solid var(--stone-300);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 40px;
+  color: var(--sea-blue);
+}
+.retreats .results > .results__lead + .season { margin-top: 40px; }
+@media (max-width: 767px) {
+  .waitlist-form { flex-direction: column; width: 100%; }
+  /* In a column the 200px flex-basis would become each field's height. */
+  .waitlist-form__input { flex: 0 0 auto; width: 100%; }
+  .waitlist-form__submit { width: 100%; }
+  .results__lead { margin-top: 48px; padding-top: 32px; font-size: 20px; line-height: 32px; }
+}

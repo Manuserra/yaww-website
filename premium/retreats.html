@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="../css/base.css?v=202611192000">
 <link rel="stylesheet" href="../css/filters.css?v=202611191930">
-<link rel="stylesheet" href="../css/retreats.css?v=202611192030">
+<link rel="stylesheet" href="../css/retreats.css?v=202611192330">
 <!-- Retreat data + the one card component every retreat card is rendered
      by. Classic scripts so the prototype still works over file://.
      Order matters: the catalogs load before the data, the data before
@@ -21,7 +21,7 @@
 <script src="../data/teachers.js?v=202611191930"></script>
 <script src="../data/retreats.js?v=202611191000"></script>
 <script src="premium-paths.js?v=202611192300"></script>
-<script src="../js/retreat-cards.js?v=202611192000"></script>
+<script src="../js/retreat-cards.js?v=202611192330"></script>
 
 
 <link rel="stylesheet" href="premium.css?v=202611192300">
@@ -149,14 +149,36 @@
       </div>
     </div>
 
+    <!-- When a pick clashes with the others, the latest pick wins and the
+         clashing ones are dropped. This line says what went, with Undo. -->
+    <p class="filter-note" id="filterNote" role="status" hidden>
+      <span id="filterNoteText"></span>
+      <button type="button" class="filter-note__undo" id="filterNoteUndo">Undo</button>
+    </p>
+
+    <!-- Only reachable by picking something with no dates at all (a
+         destination between editions, say). It is the waitlist for that
+         thing, and the rest of the dates still list underneath. -->
     <div class="filter-empty" id="filterEmpty" hidden>
       <p class="filter-empty__title" id="filterEmptyTitle"></p>
-      <p class="filter-empty__body" id="filterEmptyBody"></p>
-      <div class="filter-empty__relax" id="filterEmptyRelax"></div>
-      <div class="filter-empty__ctas">
-        <a href="#" class="btn btn--primary">Notify me</a>
-        <a href="contact.html" class="btn btn--secondary">Talk to us</a>
+      <p class="filter-empty__body">We are planning the next one. Leave your name and we will write to you first, before the dates go public.</p>
+      <!-- TODO(backend): no endpoint yet, see YAWW.WAITLIST_ENDPOINT in
+           ../js/retreat-cards.js. -->
+      <form class="waitlist-form" id="filterWaitlistForm" data-waitlist-form data-waitlist-success="filterWaitlistDone" novalidate>
+        <label class="waitlist-form__label-sr" for="filterWaitlistFirst">First name</label>
+        <input class="waitlist-form__input" id="filterWaitlistFirst" name="first_name" type="text" placeholder="First name" autocomplete="given-name" required>
+        <label class="waitlist-form__label-sr" for="filterWaitlistEmail">Email address</label>
+        <input class="waitlist-form__input" id="filterWaitlistEmail" name="email" type="email" placeholder="Email address" autocomplete="email" required>
+        <input type="hidden" name="location" id="filterWaitlistLocation" value="">
+        <input type="hidden" name="teacher" id="filterWaitlistTeacher" value="">
+        <button class="btn btn--primary waitlist-form__submit" type="submit">Join the waitlist</button>
+        <p class="waitlist-form__error" data-waitlist-error role="alert" hidden></p>
+      </form>
+      <div class="waitlist-form__done" id="filterWaitlistDone" hidden>
+        <p class="filter-empty__title">You are on the list</p>
+        <p class="filter-empty__body">We will write to you as soon as the dates are set.</p>
       </div>
+      <p class="filter-empty__links" id="filterEmptyLinks"></p>
     </div>
 
     <section class="results" id="results" aria-live="polite"></section>
@@ -418,9 +440,17 @@ const SEGMENTS = [
   { key: "teacher", label: "Teacher",     any: "Any teacher", param: "teacher",     groups: [{ title: "", items: TEACHERS, avatar: true }] }
 ];
 const FACETS = ["when", "place", "teacher"];
-const RELAX_LABEL = { when: "Any time", place: "Any destination", teacher: "Any teacher" };
+/* Every axis a pick can clash on: the collection tabs count too. */
+const DIMS = ["tier", "when", "place", "teacher"];
+const LOCATION_BY_NAME = {};
+Y.locationGroups().forEach(g => g.items.forEach(l => { LOCATION_BY_NAME[l.name] = l; }));
+const TEACHER_BY_NAME = {};
+Y.teacherRoster().forEach(t => { TEACHER_BY_NAME[t.name] = t; });
 
 const state = { tier: "all", when: "", place: "", teacher: "", view: "grid", open: "" };
+/* The "we cleared X" line: { text, undo } where undo is the state to go
+   back to, or null when there is nothing to undo (a deep link). */
+let note = null;
 
 /* ---------- URL <-> state ---------- */
 function slug(s) {
@@ -466,12 +496,69 @@ function facetCount(key, value) {
   }).length;
 }
 function anyCount(key) { return ROWS.filter(v => matches(v, state, key)).length; }
-function narrowed() { return state.tier !== "all" || FACETS.some(k => state[k]); }
-function countMeta(n) {
-  if (n === 0) return narrowed() ? "No matches" : "No dates yet";
-  return n === 1 ? "1 retreat" : n + " retreats";
-}
 function plural(n) { return n === 1 ? "1 retreat" : n + " retreats"; }
+
+/* ---------- the latest pick wins ----------
+   With 17 dates, nine in ten combinations of these filters are empty,
+   and most people narrow by one thing at a time and then switch. So no
+   choice that has dates of its own can end in an empty list: picking it
+   keeps whatever still fits alongside it and drops what clashes, and
+   the note above the results says what went, with Undo. The only empty
+   result left is picking something with no dates at all, which is the
+   waitlist for it. */
+function snapshot(s) { return { tier: s.tier, when: s.when, place: s.place, teacher: s.teacher }; }
+function blank() { return { tier: "all", when: "", place: "", teacher: "" }; }
+function isSet(s, d) { return d === "tier" ? s.tier !== "all" : !!s[d]; }
+function countOf(s) { return filtered(s).length; }
+/* How many dates this one value has on its own, ignoring every other pick. */
+function aloneCount(key, value) { const s = blank(); s[key] = value; return countOf(s); }
+function resolvePick(key, value) {
+  const next = snapshot(state);
+  next[key] = value;
+  if (!isSet(next, key) || countOf(next)) return { next: next, cleared: [] };
+  /* Start from the new pick alone, then add back each earlier pick that
+     still leaves something to show. A pick with no dates keeps nothing. */
+  const base = blank();
+  base[key] = value;
+  const cleared = [];
+  DIMS.forEach(function (d) {
+    if (d === key || !isSet(next, d)) return;
+    const trial = Object.assign({}, base);
+    trial[d] = next[d];
+    if (countOf(base) && countOf(trial)) base[d] = next[d]; else cleared.push(d);
+  });
+  return { next: base, cleared: cleared };
+}
+function dimLabel(d, s) { return d === "tier" ? COLLECTION_COPY[s.tier].title : s[d]; }
+function listJoin(a) { return a.length < 2 ? a.join("") : a.slice(0, -1).join(", ") + " and " + a[a.length - 1]; }
+function showPhrase(key, s) {
+  if (key === "tier") return s.tier === "all" ? "every date" : COLLECTION_COPY[s.tier].title + " dates";
+  const v = s[key];
+  if (!aloneCount(key, v)) return "the waitlist for " + v;
+  return (key === "teacher" ? "dates with " : "dates in ") + v;
+}
+function track(detail) { document.dispatchEvent(new CustomEvent("yaww:track", { detail: detail })); }
+function pick(key, value, opts) {
+  const before = snapshot(state);
+  const r = resolvePick(key, value);
+  Object.assign(state, r.next);
+  note = null;
+  if (!r.cleared.length) return;
+  note = {
+    text: "We cleared " + listJoin(r.cleared.map(d => dimLabel(d, before))) + " to show " + showPhrase(key, state) + ".",
+    undo: opts && opts.noUndo ? null : before
+  };
+  track({ event: "filter_pick_cleared", key: key, value: value, cleared: r.cleared.map(d => dimLabel(d, before)) });
+}
+/* What an option's second line promises: its count with the other picks,
+   or, when it clashes, what picking it shows and what it drops. */
+function optionMeta(key, value) {
+  const n = facetCount(key, value);
+  if (n) return plural(n);
+  if (!aloneCount(key, value)) return "Waitlist";
+  const r = resolvePick(key, value);
+  return plural(countOf(r.next)) + " · clears " + listJoin(r.cleared.map(d => dimLabel(d, state)));
+}
 
 /* ---------- filter bar markup ---------- */
 function initials(name) { return name.split(" ").map(p => p.charAt(0)).join("").slice(0, 2).toUpperCase(); }
@@ -494,12 +581,12 @@ function avatarHTML(name) {
     '</span>';
 }
 function optionHTML(key, value, withAvatar) {
-  const n = facetCount(key, value), sel = state[key] === value, muted = n === 0;
+  const sel = state[key] === value;
   return '<li role="option" aria-selected="' + sel + '">' +
     '<button type="button" class="filter-option' + (sel ? ' is-selected' : '') + '" data-key="' + key + '" data-value="' + esc(value) + '">' +
       (withAvatar ? avatarHTML(value) : '') +
-      '<span class="filter-option__text"><span class="filter-option__name' + (muted ? ' is-muted' : '') + '">' + esc(value) + '</span>' +
-      '<span class="filter-option__meta">' + countMeta(n) + '</span></span>' +
+      '<span class="filter-option__text"><span class="filter-option__name">' + esc(value) + '</span>' +
+      '<span class="filter-option__meta">' + esc(optionMeta(key, value)) + '</span></span>' +
       (sel ? checkSVG() : '') +
     '</button></li>';
 }
@@ -532,8 +619,16 @@ const summaryText = document.getElementById("filterSummaryText");
 const clearBtn = document.getElementById("filterClearBtn");
 const emptyBlock = document.getElementById("filterEmpty");
 const emptyTitle = document.getElementById("filterEmptyTitle");
-const emptyBody = document.getElementById("filterEmptyBody");
-const emptyRelax = document.getElementById("filterEmptyRelax");
+const emptyLinks = document.getElementById("filterEmptyLinks");
+const waitForm = document.getElementById("filterWaitlistForm");
+const waitDone = document.getElementById("filterWaitlistDone");
+const waitLocation = document.getElementById("filterWaitlistLocation");
+const waitTeacher = document.getElementById("filterWaitlistTeacher");
+const noteEl = document.getElementById("filterNote");
+const noteText = document.getElementById("filterNoteText");
+const noteUndo = document.getElementById("filterNoteUndo");
+Y.wireWaitlistForm(waitForm);
+let waitlistFor = "";
 const results = document.getElementById("results");
 const sheet = document.getElementById("filterSheet");
 const sheetScrim = document.getElementById("filterSheetScrim");
@@ -597,6 +692,71 @@ function moveTabIndicator(animate) {
 
 const CARD_OPTS = { linkOnlyWhenPage: true };
 
+function groupHTML(title, cards, rows, extraClass) {
+  const cls = extraClass ? " " + extraClass : "";
+  return state.view === "grid"
+    ? '<section class="season' + cls + '"><div class="season__aside"><h2 class="season__title">' + esc(title) + '</h2></div>' +
+        '<div class="season__cards"><div class="grid">' + cards + '</div></div></section>'
+    : '<section class="season season--list' + cls + '"><h2 class="season__title">' + esc(title) + '</h2>' +
+        '<div class="list">' + rows + '</div></section>';
+}
+function seasonsHTML(list) {
+  return SEASON_ORDER.filter(s => list.some(r => Y.seasonLabel(r, "listing") === s)).map(function (g) {
+    const items = list.filter(r => Y.seasonLabel(r, "listing") === g);
+    return groupHTML(g,
+      items.map(r => Y.renderRetreatCard(r, CARD_OPTS)).join(""),
+      items.map(r => Y.renderRetreatRow(r, CARD_OPTS)).join(""));
+  }).join("");
+}
+/* Destinations between editions, after the last season: a card each,
+   so Morocco is still findable while it has no date. It opens that
+   destination's waitlist right here. */
+function waitlistHref(loc) { return "retreats.html?destination=" + slug(loc.name); }
+function datesToComeHTML() {
+  const locs = Y.getWaitlistDestinations();
+  if (!locs.length) return "";
+  return groupHTML("Dates to come",
+    locs.map(l => Y.renderWaitlistCard(l, { href: waitlistHref(l) })).join(""),
+    locs.map(l => Y.renderWaitlistRow(l, { href: waitlistHref(l) })).join(""),
+    "season--waitlist");
+}
+
+function renderNote() {
+  noteEl.hidden = !note;
+  if (!note) return;
+  noteText.textContent = note.text;
+  noteUndo.hidden = !note.undo;
+}
+
+/* The waitlist for a pick with no dates: the form, tagged with what it
+   is for, and every other date underneath so the page still sells. */
+function renderWaitlist() {
+  const loc = state.place ? LOCATION_BY_NAME[state.place] : null;
+  const teacher = !loc && state.teacher ? TEACHER_BY_NAME[state.teacher] : null;
+  const name = loc ? loc.name : teacher ? teacher.name : "";
+  const key = (loc ? "loc:" + loc.id : "") + (teacher ? "t:" + teacher.id : "");
+  emptyBlock.hidden = false;
+  emptyTitle.textContent = "Join the waitlist for " + name;
+  summaryText.textContent = loc ? "No dates in " + name + " yet" : "No dates with " + name + " yet";
+  waitLocation.value = loc ? loc.id : "";
+  waitTeacher.value = teacher ? teacher.id : "";
+  if (key !== waitlistFor) {
+    /* A new destination gets a fresh form, even after a sign-up for the last one. */
+    waitlistFor = key;
+    waitForm.reset();
+    waitForm.hidden = false;
+    waitDone.hidden = true;
+    const err = waitForm.querySelector("[data-waitlist-error]");
+    if (err) err.hidden = true;
+    track({ event: "waitlist_view", locationId: waitLocation.value, teacherId: waitTeacher.value });
+  }
+  const more = loc && loc.pageUrl ? '<a href="' + esc(loc.pageUrl) + '">Read about ' + esc(name) + '</a>'
+             : teacher && teacher.pageUrl ? '<a href="' + esc(teacher.pageUrl) + '">Meet ' + esc(name) + '</a>' : "";
+  emptyLinks.innerHTML = (more ? more + '<span aria-hidden="true">·</span>' : "") + '<a href="contact.html">Talk to us</a>';
+  results.innerHTML = '<h2 class="results__lead">Other retreats coming up</h2>' +
+    seasonsHTML(ROWS.map(v => v.retreat));
+}
+
 function renderResults() {
   const list = filtered().map(v => v.retreat);
   const n = list.length;
@@ -606,48 +766,18 @@ function renderResults() {
   if (state.when) parts.push(state.when);
   summaryText.textContent = plural(n) + (parts.length ? " " + parts.join(", ") : " coming up");
   clearBtn.hidden = !FACETS.some(k => state[k]);
+  renderNote();
 
   if (n === 0) {
-    results.innerHTML = "";
-    emptyBlock.hidden = false;
-    const who = state.teacher ? " with " + state.teacher : "";
-    const kind = state.tier === "all" ? "retreats" : COLLECTION_COPY[state.tier].title + " retreats";
-    emptyTitle.textContent = "No " + kind + who + (state.place ? " in " + state.place : "") + (state.when ? " in " + state.when : "") + " yet";
-    /* Helpful, not a dead end: offer to loosen each active choice, with
-       the count it would bring back. */
-    const relax = [];
-    FACETS.forEach(function (k) {
-      if (!state[k]) return;
-      const c = anyCount(k);
-      if (c) relax.push('<button type="button" data-relax="' + k + '">' + esc(RELAX_LABEL[k]) + ' · ' + plural(c) + '</button>');
-    });
-    if (state.tier !== "all") {
-      const s = Object.assign({}, state, { tier: "all" });
-      const c = filtered(s).length;
-      if (c) relax.push('<button type="button" data-relax="tier">All collections · ' + plural(c) + '</button>');
-    }
-    emptyBody.textContent = relax.length
-      ? "Here's what opens up if you loosen one choice — or leave your email and we'll write when new dates are announced."
-      : "Leave your email and we'll write as soon as new dates open.";
-    emptyRelax.innerHTML = relax.join("");
+    renderWaitlist();
     writeURL();
     return;
   }
   emptyBlock.hidden = true;
+  waitlistFor = "";
 
-  const order = SEASON_ORDER.filter(s => list.some(r => Y.seasonLabel(r, "listing") === s));
-  let html = "";
-  order.forEach(function (g) {
-    const items = list.filter(r => Y.seasonLabel(r, "listing") === g);
-    if (state.view === "grid") {
-      html += '<section class="season"><div class="season__aside"><h2 class="season__title">' + esc(g) + '</h2></div>' +
-        '<div class="season__cards"><div class="grid">' + items.map(r => Y.renderRetreatCard(r, CARD_OPTS)).join("") + '</div></div></section>';
-    } else {
-      html += '<section class="season season--list"><h2 class="season__title">' + esc(g) + '</h2>' +
-        '<div class="list">' + items.map(r => Y.renderRetreatRow(r, CARD_OPTS)).join("") + '</div></section>';
-    }
-  });
-  results.innerHTML = html;
+  const browsing = state.tier === "all" && !FACETS.some(k => state[k]);
+  results.innerHTML = seasonsHTML(list) + (browsing ? datesToComeHTML() : "");
   writeURL();
 }
 
@@ -660,7 +790,7 @@ function renderSheetContent(key) {
   sheetList.setAttribute("aria-label", def.label);
   sheetList.innerHTML = sheetItemsHTML(def);
   const n = filtered().length;
-  sheetConfirmBtn.textContent = n === 1 ? "Show 1 retreat" : "Show " + n + " retreats";
+  sheetConfirmBtn.textContent = n === 0 ? "Show the waitlist" : n === 1 ? "Show 1 retreat" : "Show " + n + " retreats";
 }
 function openSheet(key) {
   state.open = key;
@@ -685,7 +815,7 @@ function closeSheet() {
 /* ---------- wiring ---------- */
 filterBar.addEventListener("click", function (e) {
   const clr = e.target.closest(".filter-seg__clear");
-  if (clr) { state[clr.dataset.seg] = ""; renderFilterBar(); renderResults(); e.stopPropagation(); return; }
+  if (clr) { state[clr.dataset.seg] = ""; note = null; renderFilterBar(); renderResults(); e.stopPropagation(); return; }
   const seg = e.target.closest(".filter-seg__btn");
   if (seg) {
     const key = seg.dataset.seg;
@@ -703,9 +833,9 @@ filterBar.addEventListener("click", function (e) {
   const opt = e.target.closest(".filter-option");
   if (opt) {
     const k = opt.dataset.key, v = opt.dataset.value;
-    state[k] = state[k] === v ? "" : v;
     state.open = "";
-    renderFilterBar(); renderResults();
+    pick(k, state[k] === v ? "" : v);
+    renderAll();
     e.stopPropagation();
   }
 });
@@ -735,12 +865,13 @@ sheetList.addEventListener("click", function (e) {
   const opt = e.target.closest(".filter-option");
   if (!opt) return;
   const k = opt.dataset.key, v = opt.dataset.value;
-  state[k] = state[k] === v ? "" : v;
-  renderResults(); renderSheetContent(k);
+  pick(k, state[k] === v ? "" : v);
+  renderIntro(); renderResults(); renderSheetContent(k);
 });
 sheetClearBtn.addEventListener("click", function () {
   if (!state.open) return;
   state[state.open] = "";
+  note = null;
   renderResults(); renderSheetContent(state.open);
 });
 [sheetCloseBtn, sheetScrim, sheetConfirmBtn].forEach(el => el.addEventListener("click", closeSheet));
@@ -748,18 +879,35 @@ sheetClearBtn.addEventListener("click", function () {
 clearBtn.addEventListener("click", function () {
   FACETS.forEach(k => { state[k] = ""; });
   state.open = "";
+  note = null;
   renderFilterBar(); renderResults();
 });
-emptyRelax.addEventListener("click", function (e) {
-  const b = e.target.closest("[data-relax]");
-  if (!b) return;
-  if (b.dataset.relax === "tier") state.tier = "all"; else state[b.dataset.relax] = "";
+noteUndo.addEventListener("click", function () {
+  if (!note || !note.undo) return;
+  Object.assign(state, note.undo);
+  note = null;
+  tabSlide = true;
   renderAll();
+  track({ event: "filter_pick_undo" });
+});
+/* A "Dates to come" card opens that destination's waitlist in place. */
+results.addEventListener("click", function (e) {
+  const a = e.target.closest("[data-waitlist-dest]");
+  if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
+  const loc = Y.getLocation(a.dataset.waitlistDest);
+  if (!loc) return;
+  e.preventDefault();
+  pick("place", loc.name);
+  renderAll();
+  /* Jump (no glide: Lenis owns smooth scroll here) to the results line,
+     clear of the sticky nav. */
+  const top = document.querySelector(".filter-summary").getBoundingClientRect().top + window.scrollY - 120;
+  window.scrollTo(0, Math.max(0, top));
 });
 document.querySelectorAll(".tabs__item[data-tier]").forEach(function (btn) {
   btn.addEventListener("click", function () {
     if (state.tier === btn.dataset.tier) return;
-    state.tier = btn.dataset.tier; tabSlide = true; renderAll();
+    pick("tier", btn.dataset.tier); tabSlide = true; renderAll();
   });
 });
 if (window.ResizeObserver) new ResizeObserver(function () { moveTabIndicator(false); }).observe(document.querySelector(".tabs"));
@@ -785,6 +933,14 @@ window.addEventListener("resize", function () {
 });
 
 readURL();
+/* A deep link can carry a combination with no dates. Apply its picks in
+   order through the same rule, so the most specific one (teacher, then
+   destination) wins and the note says what was dropped. */
+(function () {
+  const want = snapshot(state);
+  Object.assign(state, blank());
+  DIMS.forEach(function (d) { if (isSet(want, d)) pick(d, want[d], { noUndo: true }); });
+})();
 document.querySelectorAll(".view-toggle button").forEach(function (b) {
   const on = b.dataset.view === state.view;
   b.classList.toggle("is-active", on);

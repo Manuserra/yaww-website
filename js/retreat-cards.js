@@ -347,6 +347,83 @@
     return href ? '<a class="result-link" href="' + esc(href) + '">' + inner + '</a>' : inner;
   }
 
+  /* ---------- between editions ------------------------------------------ */
+
+  /* A destination we run but that has no upcoming date right now:
+     Morocco after its November edition, Iceland before its first one.
+     It still belongs in the listing, as a waitlist card rather than a
+     date, so nobody concludes it doesn't exist. Only destinations with
+     something to show qualify: a past edition (its name and photo) or a
+     location page. The rest of the catalog still shows in the filter. */
+  function getLastEdition(locationId) {
+    var past = retreats().filter(function (r) {
+      return r.locationId === locationId && !isUpcoming(r);
+    }).sort(byStartDate);
+    return past.length ? past[past.length - 1] : null;
+  }
+  function getWaitlistDestinations() {
+    return locationGroups().reduce(function (out, g) { return out.concat(g.items); }, [])
+      .filter(function (loc) {
+        return !getRetreatsByLocation(loc.id).length && (loc.pageUrl || getLastEdition(loc.id));
+      });
+  }
+
+  /* The waitlist card: the narrow card's markup with the date line
+     saying so and the teacher line carrying the action, so it keeps the
+     same height as its neighbours. opts.href is where it points (the
+     caller decides: the filtered listing today, the destination's own
+     retreat page once those exist). */
+  function waitlistParts(loc) {
+    var last = getLastEdition(loc.id);
+    return {
+      last: last,
+      title: last ? last.officialName : loc.name,
+      tier: last ? (CARD_TIER[last.collection] || "") : "",
+      sig: !!last && last.collection === "signature-collection"
+    };
+  }
+  function renderWaitlistCard(loc, opts) {
+    opts = opts || {};
+    var p = waitlistParts(loc);
+    var media = retreatMedia(p.last, loc);
+    var label = '<span class="card__label' + (p.sig ? ' card__label--signature' : '') + '">' +
+        (p.tier ? '<span class="card__label-tier">' + esc(p.tier) + '</span><span class="card__label-sep" aria-hidden="true"></span>' : '') +
+        '<span class="card__label-status">Waitlist</span></span>';
+    var inner =
+      '<article class="card card--narrow card--waitlist">' +
+        (media
+          ? '<div class="card__media">' + imgHTML(media, p.title + " — " + loc.displayName) + label + '</div>'
+          : '<div class="card__media" style="' + placeholderStyle(loc) + '">' + label + '</div>') +
+        '<div class="card__body">' +
+          '<div class="card__title">' + esc(p.title) + '</div>' +
+          '<div class="card__loc">' + esc(loc.displayName) + '</div>' +
+          '<div class="card__date">Dates to be announced</div>' +
+          '<div class="card__teacher">Join the waitlist</div>' +
+        '</div>' +
+      '</article>';
+    return opts.href
+      ? '<a class="result-link" href="' + esc(opts.href) + '" data-waitlist-dest="' + esc(loc.id) + '">' + inner + '</a>'
+      : inner;
+  }
+  function renderWaitlistRow(loc, opts) {
+    opts = opts || {};
+    var p = waitlistParts(loc);
+    var inner =
+      '<div class="list-row list-row--waitlist">' +
+        '<div class="r-namecell">' +
+          '<span class="r-tier">' + esc(p.last ? collectionLabel(p.last.collection) : "") + '</span>' +
+          '<span class="r-name">' + esc(p.title) + '</span>' +
+        '</div>' +
+        '<span class="r-loc">' + esc(loc.displayName) + '</span>' +
+        '<span class="r-date">Dates to be announced</span>' +
+        '<span class="r-teacher">Join the waitlist</span>' +
+        '<span class="r-avail">Waitlist</span>' +
+      '</div>';
+    return opts.href
+      ? '<a class="result-link" href="' + esc(opts.href) + '" data-waitlist-dest="' + esc(loc.id) + '">' + inner + '</a>'
+      : inner;
+  }
+
   /* ---------- waitlist ------------------------------------------------- */
 
   /* Shared by the location-page empty state. No backend yet: validate,
@@ -375,6 +452,7 @@
       var first = form.elements["first_name"];
       var email = form.elements["email"];
       var loc   = form.elements["location"];
+      var teach = form.elements["teacher"];   // optional: a teacher waitlist
 
       var msg = "";
       if (!first.value.trim()) msg = "Please add your first name.";
@@ -391,11 +469,12 @@
         firstName: first.value.trim(),
         email: email.value.trim(),
         locationId: loc ? loc.value : "",
+        teacherId: teach ? teach.value : "",
         source: window.location.pathname
       };
       // Same hook every other interaction on the site dispatches.
       document.dispatchEvent(new CustomEvent("yaww:track", {
-        detail: { event: "waitlist_submit", locationId: payload.locationId }
+        detail: { event: "waitlist_submit", locationId: payload.locationId, teacherId: payload.teacherId }
       }));
 
       if (successEl) {
@@ -461,6 +540,10 @@
   YAWW.renderRetreatCard      = renderRetreatCard;
   YAWW.renderRetreatRow       = renderRetreatRow;
   YAWW.wireWaitlistForm       = wireWaitlistForm;
+  YAWW.getLastEdition         = getLastEdition;
+  YAWW.getWaitlistDestinations = getWaitlistDestinations;
+  YAWW.renderWaitlistCard     = renderWaitlistCard;
+  YAWW.renderWaitlistRow      = renderWaitlistRow;
   YAWW.locationGroups         = locationGroups;
   YAWW.teacherRoster          = teacherRoster;
   YAWW.seasonOptions          = seasonOptions;
