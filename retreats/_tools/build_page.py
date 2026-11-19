@@ -221,12 +221,29 @@ def title_case(t):
     return t
 
 
+# A clock time or range at the start of a bullet ("8:15am", "8-9:15am",
+# "6:30–7:30pm", "9:30am-9pm", a bare "6:30"). The schedule reads as a
+# sequence, so the times go and the line starts at the activity. A plain
+# number ("3 lunches") is left alone: it needs am/pm or a colon to match.
+_T = r"\d{1,2}(?::\d{2})?\s*(?:[ap]\.?m\.?)?"
+LEAD_TIME = re.compile(
+    rf"^\s*(?:(?:by|at|from|approx\.?|around|~)\s*)?(?=\d{{1,2}}(?::\d{{2}}|\s*(?:[-–—]\s*\d{{1,2}}(?::\d{{2}})?)?\s*[ap]\.?m\b))"
+    rf"{_T}(?:\s*(?:[-–—]|to)\s*{_T})?\s*[-–—:,.]?\s*", re.I)
+
+
+def strip_time(b):
+    rest = LEAD_TIME.sub("", b, count=1)
+    if rest == b or not rest:
+        return b
+    return rest[0].upper() + rest[1:]
+
+
 def clean_itinerary(d):
     notes = [tidy(n) for n in d.get("itinerary_notes") or []]
     days = []
     for day in d["itinerary"]:
         bullets = []
-        for b in clean_list(day["bullets"], join=False):
+        for b in map(strip_time, clean_list(day["bullets"], join=False)):
             if SUBJECT_TO.match(b) or len(b) > 220:
                 if b not in notes:
                     notes.append(b)
