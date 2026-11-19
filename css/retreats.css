@@ -402,7 +402,7 @@
 }
 .collection-intro__desc {
   margin: 0;
-  max-width: 640px;
+  max-width: 680px;
   font-family: var(--font-body);
   font-weight: 400;
   font-size: 16px;
@@ -410,6 +410,9 @@
   letter-spacing: 0.32px;      /* = .people__lede */
   color: var(--sea-blue-300);
 }
+/* One sentence per line: the break lands at the reader's own pause, and
+   a sentence too long for the line balances its own wrap. */
+.collection-intro__line { display: block; text-wrap: balance; }
 
 /* hero removed — the page opens straight under the nav */
 main { padding-top: 0; }

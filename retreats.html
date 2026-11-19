@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="css/base.css?v=202611191800">
 <link rel="stylesheet" href="css/filters.css?v=202611191800">
-<link rel="stylesheet" href="css/retreats.css?v=202611191800">
+<link rel="stylesheet" href="css/retreats.css?v=202611191900">
 <!-- Retreat data + the one card component every retreat card is rendered
      by. Classic scripts so the prototype still works over file://.
      Order matters: the catalogs load before the data, the data before
@@ -389,10 +389,24 @@ const Y = window.YAWW;
 const esc = Y.esc;
 const SEASON_ORDER = Y.seasonOptions("listing");
 
+/* Each description is a list of lines: every entry starts on its own
+   line, so the break falls where the reader already pauses. "\u00a0"
+   glues names and short phrases ("Deep Dives", "price point", the last
+   word) so a line never splits them or ends on a lone word. */
+const NB = "\u00a0";
 const COLLECTION_COPY = {
-  all:                     { title: "All Retreats",         desc: "Every journey we run, in one place — from our intimate Deep Dives to the exclusive Signature Collection. Find the one that fits you." },
-  "deep-dives":            { title: "Deep Dives",           desc: "Grounded, intimate retreats in beautiful places — a focused practice and a warm community, at our most accessible price point." },
-  "signature-collection":  { title: "Signature Collection", desc: "Our most exclusive journeys — rare destinations, exceptional venues, and every detail considered. Yoga Adventures at its finest." }
+  all: { title: "All Retreats", desc: [
+    "Every journey we run, in one place.",
+    "From intimate Deep" + NB + "Dives to the Signature" + NB + "Collection, find the one that fits" + NB + "you."
+  ] },
+  "deep-dives": { title: "Deep Dives", desc: [
+    "Grounded, intimate retreats in beautiful places.",
+    "A focused practice and a warm community, at our most accessible price" + NB + "point."
+  ] },
+  "signature-collection": { title: "Signature Collection", desc: [
+    "Our most exclusive journeys, in rare places and exceptional venues.",
+    "Every detail considered. Yoga" + NB + "Adventures at its" + NB + "finest."
+  ] }
 };
 
 /* Flat view rows so the facets can match on plain values. */
@@ -564,7 +578,8 @@ function renderFilterBar() {
 function renderIntro() {
   const c = COLLECTION_COPY[state.tier] || COLLECTION_COPY.all;
   document.getElementById("collectionTitle").textContent = c.title;
-  document.getElementById("collectionDesc").textContent = c.desc;
+  document.getElementById("collectionDesc").innerHTML =
+    c.desc.map(line => '<span class="collection-intro__line">' + esc(line) + '</span>').join(" ");
   document.querySelectorAll(".chip").forEach(function (b) {
     const on = b.dataset.tier === state.tier;
     b.classList.toggle("is-active", on);
