@@ -1,0 +1,324 @@
+/* Premium skin · location family. Loads after premium.css.
+   A destination page told like the home: a full-bleed photograph with
+   the place set large in the display serif over a scrim, then ruled,
+   left-aligned chapters on the 12-column grid. The gallery is the one
+   dark band. Every module keeps its markup and behaviour: the card
+   grid, the waitlist form, the gallery strip and lightbox, the FAQ. */
+
+body.p-fam-location {
+  --p-reveal: ".p-fam-location .loc-section__title, .p-fam-location .loc-card, .p-fam-location .loc-waitlist, .p-fam-location .loc-why__copy, .p-fam-location .loc-why__fig, .p-fam-location .loc-mat__grid > article, .p-fam-location .gallery__head, .p-fam-location .loc-split > *, .p-fam-location .quotes__title, .p-fam-location .quote-card, .p-fam-location .faq-section__title, .p-fam-location .faq-list, .p-fam-location .loc-cta__title";
+  /* Side padding that keeps content on the 1600 measure on wide screens. */
+  --p-side: max(var(--p-gutter), calc((100% - var(--p-max)) / 2 + var(--p-gutter)));
+}
+
+/* ------------------------------------------------------------
+   HERO — full bleed, copy over a scrim, header transparent above
+   ------------------------------------------------------------ */
+.p-fam-location .retreat-hero {
+  position: relative; overflow: hidden;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: 1fr auto;
+  align-items: end; gap: 0 40px;
+  height: 100vh; height: 100svh; min-height: 640px;
+  padding: 0 var(--p-side) clamp(32px, 6vh, 64px);
+  background: var(--p-night); color: var(--p-paper);
+}
+.p-fam-location .retreat-hero__image {
+  position: absolute; inset: 0; z-index: 0;
+  max-width: none; width: 100%; height: 100%; margin: 0; aspect-ratio: auto;
+  background-color: var(--p-night); background-position: center; background-size: cover;
+  transform: scale(1.08); animation: p-loc-settle 2.6s var(--p-ease) .1s forwards;
+}
+@keyframes p-loc-settle { to { transform: scale(1); } }
+/* Scrim: a band at the top so the transparent header reads, and a
+   weight at the foot and the left for the title. */
+.p-fam-location .retreat-hero::after {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(20,26,31,.5) 0%, rgba(20,26,31,0) 24%),
+    radial-gradient(120% 90% at 0% 100%, rgba(20,26,31,.55) 0%, rgba(20,26,31,0) 60%),
+    linear-gradient(0deg, rgba(20,26,31,.7) 0%, rgba(20,26,31,.24) 44%, rgba(20,26,31,0) 70%);
+}
+.p-fam-location .retreat-hero__copy,
+.p-fam-location .retreat-hero__ctas { position: relative; z-index: 2; grid-row: 2; }
+.p-fam-location .retreat-hero__copy {
+  grid-column: 1; align-items: flex-start; text-align: left; gap: 0; padding-inline: 0;
+  opacity: 0; animation: p-loc-fade 1.2s var(--p-ease) .3s forwards;
+}
+.p-fam-location .retreat-hero__badge {
+  order: -1; margin-bottom: clamp(18px, 3vh, 32px);
+  font-size: 11px; font-weight: 600; letter-spacing: .2em; color: rgba(247,242,240,.9);
+}
+.p-fam-location .retreat-hero__title {
+  font-weight: 400; color: var(--p-paper);
+  font-size: clamp(48px, 8.4vw, 144px); line-height: .96; letter-spacing: -0.035em;
+  text-wrap: balance; max-width: 14ch;
+}
+.p-fam-location .retreat-hero__location {
+  margin-top: clamp(14px, 2vh, 22px);
+  font-size: clamp(20px, 2vw, 30px); line-height: 1.3; letter-spacing: -0.01em; color: rgba(247,242,240,.9);
+}
+.p-fam-location .retreat-hero__meta {
+  display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: clamp(22px, 3.4vh, 36px);
+  font-size: 11px; font-weight: 600; line-height: 1.6; letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(247,242,240,.78);
+}
+.p-fam-location .retreat-hero__meta > * { text-align: left; }
+.p-fam-location .retreat-hero__ctas {
+  grid-column: 2; flex-direction: column; align-items: stretch; gap: 12px; padding: 0 0 8px;
+  opacity: 0; animation: p-loc-fade 1.2s var(--p-ease) .7s forwards;
+}
+@keyframes p-loc-fade { to { opacity: 1; } }
+.p-fam-location .retreat-hero__ctas .btn { min-width: 260px; }
+.p-fam-location .retreat-hero .btn--primary { background: var(--p-paper); color: var(--p-ink); border-color: var(--p-paper); }
+.p-fam-location .retreat-hero .btn--primary::before { background: var(--p-night); }
+.p-fam-location .retreat-hero .btn--secondary { background: transparent; color: var(--p-paper); border-color: rgba(247,242,240,.7); }
+.p-fam-location .retreat-hero .btn--secondary::before { background: var(--p-paper); }
+@media (hover: hover) {
+  .p-fam-location .retreat-hero .btn--primary:hover { color: var(--p-paper); background: var(--p-paper); border-color: var(--p-night); }
+  .p-fam-location .retreat-hero .btn--secondary:hover { color: var(--p-ink); background: transparent; border-color: var(--p-paper); }
+}
+
+/* ------------------------------------------------------------
+   Chapters
+   ------------------------------------------------------------ */
+.p-fam-location .loc-section { padding: clamp(80px, 10vw, 150px) var(--p-gutter) 0; }
+.p-fam-location .loc-inner { max-width: calc(var(--p-max) - 2 * var(--p-gutter)); }
+.p-fam-location .loc-section__title,
+.p-fam-location .loc-split__title,
+.p-fam-location .gallery__title,
+.p-fam-location .quotes__title,
+.p-fam-location .faq-section__title {
+  font-family: var(--font-heading); font-weight: 400; color: var(--p-ink);
+  font-size: clamp(34px, 4vw, 64px); line-height: 1.04; letter-spacing: -0.02em; text-align: left;
+}
+.p-fam-location .loc-section__title { margin: 0 0 clamp(40px, 5vw, 72px); max-width: 18ch; }
+.p-fam-location .loc-split__eyebrow {
+  margin: 0 0 20px; font-size: 11px; letter-spacing: .2em; color: var(--p-mute);
+  text-align: left !important;   /* overrides an inline centring in the markup */
+}
+
+/* --- Upcoming retreats: cards like the home's ------------------ */
+.p-fam-location .loc-upcoming .loc-section__title { padding-top: 28px; border-top: 1px solid var(--p-line); max-width: none; }
+.p-fam-location .loc-upcoming__grid { gap: clamp(48px, 5vw, 72px) clamp(20px, 2.4vw, 40px); }
+.p-fam-location .loc-card__link { display: flex; flex-direction: column; }
+.p-fam-location .loc-card__link:focus-visible { outline: 1px solid var(--p-ink); outline-offset: 6px; }
+.p-fam-location .loc-card__media { aspect-ratio: 4 / 5; margin-bottom: 20px; background: var(--p-paper-2); }
+.p-fam-location .loc-card__media img { transition: transform 1.6s var(--p-ease); }
+@media (hover: hover) { .p-fam-location .loc-card__link:hover .loc-card__media img { transform: scale(1.05); } }
+.p-fam-location .loc-card__date {
+  order: 1; margin-bottom: 8px; text-align: left;
+  font-size: 11px; font-weight: 600; line-height: 1.6; letter-spacing: .18em; text-transform: uppercase; color: var(--p-mute);
+}
+.p-fam-location .loc-card__name { order: 2; margin: 0 0 6px; text-align: left; font-weight: 400; font-size: 22px; line-height: 1.2; letter-spacing: -0.01em; color: var(--p-ink); }
+.p-fam-location .loc-card__where { order: 3; margin: 0 0 4px; text-align: left; font-size: 15px; color: var(--p-mute); }
+.p-fam-location .loc-card__teacher { order: 4; text-align: left; font-size: 14px; color: var(--p-ink-soft); }
+.p-fam-location .loc-card__media { order: 0; }
+
+/* --- Waitlist: ruled, underline fields ------------------------- */
+.p-fam-location .loc-waitlist {
+  background: transparent; border: 0; border-bottom: 1px solid var(--p-line);
+  padding: clamp(24px, 3vw, 40px) 0 clamp(56px, 6vw, 96px);
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px 24px;
+  align-items: start; text-align: left;
+}
+.p-fam-location .loc-waitlist > * { grid-column: 1 / span 5; }
+.p-fam-location .loc-waitlist__form,
+.p-fam-location .loc-waitlist__done { grid-column: 7 / -1; grid-row: 1 / span 2; }
+.p-fam-location .loc-waitlist__title { font-weight: 400; font-size: clamp(28px, 2.8vw, 44px); line-height: 1.1; letter-spacing: -0.02em; color: var(--p-ink); }
+.p-fam-location .loc-waitlist__body { color: var(--p-ink-soft); line-height: 1.7; }
+.p-fam-location .loc-waitlist__form { width: auto; margin: 0; gap: 20px 24px; justify-content: flex-start; align-items: flex-end; }
+.p-fam-location .loc-waitlist__input {
+  height: 52px; padding: 0; border: 0; border-bottom: 1px solid rgba(34,45,54,.32);
+  font-size: 16px; letter-spacing: 0; color: var(--p-ink);
+  transition: border-color .5s var(--p-ease);
+}
+.p-fam-location .loc-waitlist__input::placeholder { color: var(--p-mute); }
+.p-fam-location .loc-waitlist__input:focus { border-color: var(--p-ink); }
+.p-fam-location .loc-waitlist__input:focus-visible { outline: none; box-shadow: 0 1px 0 var(--p-ink); }
+.p-fam-location .loc-waitlist__error { flex-basis: 100%; color: var(--p-ink); }
+
+/* --- Why here --------------------------------------------------- */
+.p-fam-location .loc-why__row { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 0 24px; align-items: center; }
+.p-fam-location .loc-why__copy { grid-column: 1 / span 5; gap: 20px; }
+.p-fam-location .loc-why__copy .loc-section__title { margin-bottom: 16px !important; }
+.p-fam-location .loc-why__copy p { font-size: 16px; line-height: 1.7; letter-spacing: 0; color: var(--p-ink-soft); max-width: 46ch; }
+.p-fam-location .loc-why__pair { grid-column: 7 / -1; gap: clamp(16px, 2vw, 32px); }
+.p-fam-location .loc-why__fig { aspect-ratio: 3 / 4; background: var(--p-paper-2); }
+.p-fam-location .loc-why__fig--low { margin-top: clamp(48px, 8vw, 128px); }
+
+/* --- Beyond the mat -------------------------------------------- */
+.p-fam-location .loc-mat__grid { gap: clamp(48px, 5vw, 72px) clamp(20px, 2.4vw, 40px); counter-reset: mat; }
+.p-fam-location .loc-mat__grid > article { counter-increment: mat; }
+.p-fam-location .loc-mat__fig { aspect-ratio: 4 / 5; background: var(--p-paper-2); }
+.p-fam-location .loc-mat__name {
+  margin-top: 24px; padding-top: 0;
+  font-weight: 400; font-size: clamp(22px, 1.8vw, 28px); line-height: 1.2; letter-spacing: -0.01em; color: var(--p-ink);
+}
+.p-fam-location .loc-mat__name::before {
+  content: counter(mat, decimal-leading-zero); display: block;
+  padding-bottom: 14px; margin-bottom: 18px; border-bottom: 1px solid var(--p-line);
+  font-style: italic; font-size: 15px; line-height: 1; color: var(--p-mute);
+}
+.p-fam-location .loc-mat__body { margin-top: 12px; font-size: 15px; line-height: 1.7; letter-spacing: 0; color: var(--p-ink-soft); max-width: 40ch; }
+
+/* --- Gallery: the one dark band -------------------------------- */
+.p-fam-location .gallery {
+  margin-top: clamp(96px, 12vw, 180px);
+  padding: clamp(96px, 11vw, 160px) 0;
+  background: var(--p-night); color: var(--p-paper);
+}
+.p-fam-location .gallery__head {
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; align-items: end;
+  max-width: var(--p-max); margin: 0 auto clamp(48px, 6vw, 88px); padding-inline: var(--p-gutter);
+}
+.p-fam-location .gallery__title { grid-column: 1 / span 5; color: var(--p-paper); }
+.p-fam-location .gallery__intro {
+  grid-column: 6 / span 5; text-align: left; max-width: 52ch; margin: 0;
+  font-size: 15px; line-height: 1.7; letter-spacing: 0; color: rgba(247,242,240,.78);
+}
+.p-fam-location .gallery__nav { grid-column: 11 / -1; justify-self: end; margin: 0; }
+.p-fam-location .gallery__arrow {
+  width: 52px; height: 52px; border-radius: 0; border-color: var(--p-night-line); color: var(--p-paper);
+  transition: background-color .5s var(--p-ease), color .5s var(--p-ease), border-color .5s var(--p-ease), opacity .18s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .p-fam-location .gallery__arrow:hover { background: var(--p-paper); border-color: var(--p-paper); color: var(--p-night); }
+}
+.p-fam-location .gallery__arrow:focus-visible { outline: 1px solid var(--p-paper); outline-offset: 3px; }
+.p-fam-location .gallery__slide { background: rgba(247,242,240,.06); opacity: .32; }
+.p-fam-location .gallery__slide.is-whole { opacity: 1; }
+.p-fam-location .gallery__progress::before { background: var(--p-night-line); }
+.p-fam-location .gallery__progress-bar { background: var(--p-paper); }
+
+/* --- Where you stay / the people ------------------------------- */
+.p-fam-location .loc-split { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 0 24px; align-items: center; }
+.p-fam-location .loc-split--stay .loc-split__fig { grid-column: 1 / span 7; aspect-ratio: 5 / 4; background: var(--p-paper-2); }
+.p-fam-location .loc-split--stay > div { grid-column: 9 / -1; }
+.p-fam-location .loc-split__title { margin: 0 0 24px; font-size: clamp(32px, 3.4vw, 52px); }
+.p-fam-location .loc-split__body { font-size: 16px; line-height: 1.7; letter-spacing: 0; color: var(--p-ink-soft); }
+.p-fam-location .loc-split__note {
+  margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--p-line);
+  font-size: 11px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--p-mute);
+}
+.p-fam-location .loc-split--person .loc-split__fig { grid-column: 2 / span 3; aspect-ratio: 3 / 4; background: var(--p-paper-2); }
+.p-fam-location .loc-split--person > div { grid-column: 6 / span 6; }
+.p-fam-location .loc-split__quote {
+  margin: 0 0 28px; font-size: clamp(24px, 2.6vw, 40px); line-height: 1.3; letter-spacing: -0.015em; color: var(--p-ink);
+}
+.p-fam-location .loc-split__attr {
+  font-size: 11px; font-weight: 600; line-height: 1.8; letter-spacing: .18em; text-transform: uppercase; color: var(--p-mute);
+}
+.p-fam-location .loc-split__fig img { transition: transform 1.6s var(--p-ease); }
+
+/* --- Guests' words: hairline columns, no boxes ------------------ */
+.p-fam-location .quotes {
+  align-items: stretch; gap: clamp(40px, 5vw, 72px);
+  padding: clamp(80px, 10vw, 150px) var(--p-side) 0; background: transparent;
+}
+.p-fam-location .quotes__title { padding-top: 28px; border-top: 1px solid var(--p-line); }
+.p-fam-location .quotes__grid { max-width: none; gap: clamp(32px, 3vw, 48px) clamp(20px, 2.4vw, 40px); }
+.p-fam-location .quote-card {
+  background: transparent; border: 0; border-left: 1px solid var(--p-line);
+  padding: 4px 0 4px clamp(20px, 2vw, 32px); gap: 28px;
+}
+.p-fam-location .quote-card__quote { font-size: clamp(19px, 1.5vw, 22px); line-height: 1.5; color: var(--p-ink); -webkit-line-clamp: 7; }
+.p-fam-location .quote-card__photo { background: var(--p-paper-2); }
+.p-fam-location .quote-card__name { font-size: 11px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--p-ink); }
+.p-fam-location .quote-card__detail { margin-top: 6px; font-size: 14px; color: var(--p-mute); }
+
+/* --- FAQ: title left, questions right --------------------------- */
+.p-fam-location .faq-section {
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px 24px; align-items: start;
+  padding: clamp(80px, 10vw, 150px) var(--p-side) 0; background: transparent;
+}
+.p-fam-location .faq-section__title { grid-column: 1 / span 4; font-size: clamp(30px, 3vw, 48px); }
+.p-fam-location .faq-list { grid-column: 6 / -1; width: auto; border-top: 1px solid var(--p-line); }
+.p-fam-location .faq { border-bottom-color: var(--p-line); }
+.p-fam-location .faq__trigger { padding: 28px 0; }
+.p-fam-location .faq__q {
+  font-family: var(--font-heading); font-weight: 400; font-size: clamp(18px, 1.5vw, 22px); line-height: 1.35; letter-spacing: -0.005em; color: var(--p-ink);
+}
+.p-fam-location .faq__chev { color: var(--p-mute); }
+.p-fam-location .faq.is-open .faq__chev { color: var(--p-ink); }
+@media (hover: hover) and (pointer: fine) {
+  .p-fam-location .faq__trigger:hover .faq__q { color: var(--p-ink-soft); }
+  .p-fam-location .faq__trigger:hover .faq__chev { color: var(--p-ink); }
+}
+.p-fam-location .faq__trigger:focus-visible { outline: 1px solid var(--p-ink); outline-offset: 4px; }
+.p-fam-location .faq__answer p { color: var(--p-ink-soft); line-height: 1.7; }
+
+/* --- Closing CTA ----------------------------------------------- */
+.p-fam-location .loc-cta {
+  padding: clamp(120px, 14vw, 220px) var(--p-gutter);
+  display: flex; flex-direction: column; align-items: center;
+}
+.p-fam-location .loc-cta__title {
+  margin: 0 0 clamp(36px, 4vw, 56px); max-width: 16ch;
+  font-weight: 400; font-size: clamp(44px, 6.4vw, 104px); line-height: 1; letter-spacing: -0.025em; color: var(--p-ink);
+  text-wrap: balance;
+}
+.p-fam-location .loc-cta__alt {
+  margin-top: 36px; padding: 6px 0; position: relative;
+  font-size: 12px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--p-ink);
+}
+.p-fam-location .loc-cta__alt::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: currentColor;
+  transform-origin: left; transition: transform .7s var(--p-ease);
+}
+@media (hover: hover) {
+  .p-fam-location .loc-cta__alt:hover::after { transform: scaleX(0); transform-origin: right; }
+}
+
+/* ------------------------------------------------------------
+   Responsive
+   ------------------------------------------------------------ */
+@media (max-width: 1024px) {
+  .p-fam-location .loc-why__copy,
+  .p-fam-location .loc-why__pair,
+  .p-fam-location .loc-split > *,
+  .p-fam-location .loc-split--stay > div,
+  .p-fam-location .loc-split--person > div,
+  .p-fam-location .loc-split--stay .loc-split__fig,
+  .p-fam-location .loc-split--person .loc-split__fig { grid-column: 1 / -1; }
+  .p-fam-location .loc-why__row, .p-fam-location .loc-split { row-gap: 40px; }
+  .p-fam-location .loc-split--person .loc-split__fig { max-width: 320px; }
+  .p-fam-location .gallery__title { grid-column: 1 / span 6; }
+  .p-fam-location .gallery__intro { grid-column: 7 / -1; }
+  .p-fam-location .gallery__nav { grid-column: 1 / -1; justify-self: start; }
+  .p-fam-location .faq-section__title, .p-fam-location .faq-list { grid-column: 1 / -1; }
+  .p-fam-location .loc-mat__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 860px) {
+  .p-fam-location .retreat-hero { grid-template-columns: 1fr; grid-template-rows: 1fr auto auto; row-gap: 28px; }
+  .p-fam-location .retreat-hero__ctas { grid-column: 1; grid-row: 3; padding: 0; width: auto; }
+  .p-fam-location .retreat-hero__ctas .btn { min-width: 0; width: 100%; }
+  .p-fam-location .retreat-hero__meta-dot { display: inline; }
+  .p-fam-location .loc-waitlist > *,
+  .p-fam-location .loc-waitlist__form,
+  .p-fam-location .loc-waitlist__done { grid-column: 1 / -1; grid-row: auto; }
+  .p-fam-location .gallery__title, .p-fam-location .gallery__intro { grid-column: 1 / -1; }
+}
+@media (max-width: 767px) {
+  .p-fam-location .loc-section { padding: 72px var(--p-gutter) 0; }
+  .p-fam-location .loc-mat__grid { grid-template-columns: 1fr; }
+  .p-fam-location .loc-why__fig--low { margin-top: 40px; }
+  .p-fam-location .gallery { margin-top: 96px; padding: 80px 0; }
+  .p-fam-location .gallery__track { --gutter: var(--p-gutter); }
+  .p-fam-location .quotes { padding-top: 72px; }
+  .p-fam-location .quotes__grid { gap: 40px; }
+  .p-fam-location .faq-section { padding-top: 72px; }
+  .p-fam-location .loc-cta { padding: 104px var(--p-gutter); }
+  .p-fam-location .loc-cta__btns { width: 100%; }
+  .p-fam-location .loc-waitlist__form { align-items: stretch; gap: 16px; }
+  .p-fam-location .loc-waitlist__input { flex: 0 0 auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .p-fam-location .retreat-hero__image { animation: none; transform: none; }
+  .p-fam-location .retreat-hero__copy,
+  .p-fam-location .retreat-hero__ctas { animation: none; opacity: 1; }
+  .p-fam-location .loc-card__media img,
+  .p-fam-location .loc-split__fig img,
+  .p-fam-location .gallery__arrow,
+  .p-fam-location .loc-cta__alt::after { transition: none; }
+}

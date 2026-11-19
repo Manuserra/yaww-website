@@ -1,0 +1,119 @@
+/* Premium skin · contact family. Loads after premium.css.
+   contact.html as a two-column editorial page: the display title and
+   the three tabs as a hairline index on the left, the active form on
+   the right. Underline fields with a drawn focus line, tracked labels,
+   square controls. Validation stays loud: the alert line, and required
+   fields the visitor has left empty after interacting. */
+
+body.p-fam-contact { --p-error: #9A4434; }
+
+.p-fam-contact .contact {
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px;
+  grid-template-rows: auto 1fr; align-items: start;
+  max-width: var(--p-max); margin: 0 auto;
+  padding: clamp(64px, 9vw, 140px) var(--p-gutter) clamp(96px, 12vw, 180px);
+}
+.p-fam-contact .contact__head { grid-column: 1 / span 5; grid-row: 1; text-align: left; margin: 0 0 clamp(40px, 5vw, 72px); }
+.p-fam-contact .contact__title {
+  font-weight: 400; font-size: clamp(48px, 7vw, 112px); line-height: .98; letter-spacing: -0.03em;
+  color: var(--p-ink);
+}
+
+/* --- Tabs: a hairline index ------------------------------------- */
+.p-fam-contact .cf__tabs {
+  grid-column: 1 / span 4; grid-row: 2;
+  flex-direction: column; flex-wrap: nowrap; justify-content: flex-start;
+  margin: 0; border-top: 1px solid var(--p-line);
+}
+.p-fam-contact .cf__tab {
+  min-width: 0; justify-content: space-between; align-items: center; gap: 16px;
+  padding: 22px 0; position: relative;
+  font-size: 12px; font-weight: 600; letter-spacing: .18em; line-height: 1.4;
+  color: var(--p-mute);
+  border-bottom: 1px solid var(--p-line);
+  transition: color .5s var(--p-ease), padding .6s var(--p-ease);
+}
+/* Small square marker that slides in for the active tab. */
+.p-fam-contact .cf__tab::after {
+  content: ""; width: 7px; height: 7px; flex: none;
+  background: currentColor; transform: scale(0); transition: transform .5s var(--p-ease);
+}
+.p-fam-contact .cf__tab.is-active { color: var(--p-ink); border-bottom: 1px solid var(--p-ink); padding-left: 14px; }
+.p-fam-contact .cf__tab.is-active::after { transform: scale(1); }
+@media (hover: hover) { .p-fam-contact .cf__tab:hover { color: var(--p-ink); padding-left: 14px; } }
+.p-fam-contact .cf__tab:focus-visible { outline: 1px solid var(--p-ink); outline-offset: 4px; }
+
+/* --- The form ---------------------------------------------------- */
+.p-fam-contact [data-cf-panels] { grid-column: 7 / -1; grid-row: 1 / span 2; }
+.p-fam-contact .cf__panel { max-width: 720px; margin: 0; }
+.p-fam-contact .cf__title {
+  margin: 0 0 clamp(36px, 4vw, 56px); padding-bottom: 22px; border-bottom: 1px solid var(--p-line);
+  font-family: var(--font-heading); font-weight: 400; text-align: left;
+  font-size: clamp(28px, 2.6vw, 40px); line-height: 1.15; letter-spacing: -0.015em; color: var(--p-ink);
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+.p-fam-contact .cf__form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 32px; }
+.p-fam-contact .cf__form > * { grid-column: 1 / -1; }
+.p-fam-contact .cf__form > .cf__field:has(> [name="first-name"]),
+.p-fam-contact .cf__form > .cf__field:has(> [name="last-name"]) { grid-column: auto; }
+.p-fam-contact .cf__field { margin-bottom: 36px; }
+.p-fam-contact .cf__label {
+  margin-bottom: 4px;
+  font-size: 11px; font-weight: 600; letter-spacing: .2em; line-height: 1.6; color: var(--p-mute);
+  transition: color .4s var(--p-ease);
+}
+.p-fam-contact .cf__req { color: var(--p-mute); margin-left: 2px; }
+.p-fam-contact .cf__field:focus-within .cf__label { color: var(--p-ink); }
+.p-fam-contact .cf__input {
+  height: 52px; padding: 0;
+  font-size: 17px; letter-spacing: 0; color: var(--p-ink);
+  border-bottom: 1px solid var(--p-line);
+  /* The focus line is drawn from the left over the hairline. */
+  background: linear-gradient(var(--p-ink), var(--p-ink)) no-repeat left bottom / 0% 1px;
+  transition: border-color .4s var(--p-ease), background-size .7s var(--p-ease);
+}
+.p-fam-contact .cf__input--area { height: auto; min-height: 150px; padding: 14px 0; line-height: 1.6; }
+.p-fam-contact .cf__input:hover { border-bottom-color: rgba(34, 45, 54, .4); }
+.p-fam-contact .cf__input:focus { border-bottom-width: 1px; border-bottom-color: var(--p-line); background-size: 100% 1px; }
+/* Required and still empty once the visitor has tried: marked. */
+.p-fam-contact .cf__input:user-invalid { border-bottom-color: var(--p-error); }
+.p-fam-contact .cf__input:user-invalid:focus { background-image: linear-gradient(var(--p-error), var(--p-error)); }
+.p-fam-contact .cf__field:has(.cf__input:user-invalid) .cf__label { color: var(--p-error); }
+
+.p-fam-contact .cf__error {
+  margin: 0 0 28px; padding: 14px 0 14px 18px;
+  border-left: 1px solid var(--p-error);
+  font-size: 15px; line-height: 1.5; color: var(--p-error);
+}
+.p-fam-contact .cf__submit { width: auto; min-width: 240px; justify-self: start; margin-top: 4px; }
+
+.p-fam-contact .cf__done {
+  background: none; border: 0; border-bottom: 1px solid var(--p-line);
+  padding: 0 0 clamp(40px, 4vw, 64px); text-align: left;
+}
+.p-fam-contact .cf__done .cf__title { margin-bottom: 14px; padding-bottom: 0; border-bottom: 0; }
+.p-fam-contact .cf__done-body { font-size: 16px; line-height: 1.7; color: var(--p-ink-soft); }
+.p-fam-contact .cf__done:focus-visible { outline: 1px solid var(--p-ink); outline-offset: 8px; }
+
+/* --- Tablet / phone ---------------------------------------------- */
+@media (max-width: 960px) {
+  .p-fam-contact .contact { grid-template-rows: none; }
+  .p-fam-contact .contact__head,
+  .p-fam-contact .cf__tabs,
+  .p-fam-contact [data-cf-panels] { grid-column: 1 / -1; grid-row: auto; }
+  .p-fam-contact .cf__tabs { margin-bottom: clamp(56px, 8vw, 80px); }
+}
+@media (max-width: 767px) {
+  .p-fam-contact .contact { padding: 48px var(--p-gutter) 88px; }
+  .p-fam-contact .cf__tab { width: 100%; padding: 18px 0; }
+  .p-fam-contact .cf__form { grid-template-columns: minmax(0, 1fr); }
+  .p-fam-contact .cf__form > .cf__field:has(> [name="first-name"]),
+  .p-fam-contact .cf__form > .cf__field:has(> [name="last-name"]) { grid-column: 1 / -1; }
+  .p-fam-contact .cf__field { margin-bottom: 30px; }
+  .p-fam-contact .cf__submit { width: 100%; min-width: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .p-fam-contact .cf__tab, .p-fam-contact .cf__tab::after,
+  .p-fam-contact .cf__input, .p-fam-contact .cf__label { transition: none; }
+}

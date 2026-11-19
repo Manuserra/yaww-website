@@ -1,0 +1,115 @@
+/* Premium skin · person family (teacher-*.html, team-*.html).
+   Loads after premium.css. A profile spread: the portrait held on the
+   left while the bio scrolls beside it, the name at display size with a
+   tracked label, the first paragraph set as a statement; then the
+   teacher's retreats on the shared premium card. */
+
+body.p-fam-person { --p-reveal: ".person-retreats__title, .person-retreats__grid > *"; }
+
+.p-fam-person .person-page {
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px;
+  grid-template-rows: auto 1fr; align-items: start;
+  max-width: var(--p-max); margin: 0 auto;
+  padding: clamp(56px, 7vw, 112px) var(--p-gutter) clamp(96px, 12vw, 180px);
+}
+.p-fam-person .person-page__photo {
+  grid-column: 1 / span 5; grid-row: 1 / span 2;
+  width: auto; background: var(--p-paper-2);
+  position: sticky; top: calc(var(--p-header-h) + 32px);
+}
+.p-fam-person .person-page__photo--empty { background: #ECE7E1; box-shadow: inset 0 0 0 1px var(--p-line); }
+.p-fam-person .person-page__photo img { transition: transform 1.6s var(--p-ease); }
+@media (hover: hover) { .p-fam-person .person-page__photo:hover img { transform: scale(1.04); } }
+
+.p-fam-person .person-page__name {
+  grid-column: 7 / -1; grid-row: 1;
+  margin: 0 0 clamp(40px, 4.6vw, 72px); padding-bottom: clamp(28px, 3vw, 44px);
+  border-bottom: 1px solid var(--p-line);
+  font-weight: 400; font-size: clamp(44px, 6vw, 96px); line-height: 1; letter-spacing: -0.03em;
+  text-align: left; color: var(--p-ink);
+}
+.p-fam-person .person-page__name::before {
+  display: block; margin-bottom: clamp(20px, 2.4vw, 32px);
+  font-family: var(--font-body); font-size: 11px; font-weight: 600; line-height: 1.6;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--p-mute);
+}
+.p-fam-person .person-page[data-person-kind="teacher"] .person-page__name::before { content: "Teacher"; }
+.p-fam-person .person-page[data-person-kind="team"] .person-page__name::before { content: "Our team"; }
+
+.p-fam-person .person-page__bio,
+.p-fam-person .person-page__pending { grid-column: 7 / span 5; grid-row: 2; }
+.p-fam-person .person-page__bio { max-width: 60ch; }
+.p-fam-person .person-page__bio p {
+  margin-bottom: 22px; font-size: 16px; line-height: 1.75; letter-spacing: 0; color: var(--p-ink-soft);
+}
+.p-fam-person .person-page__bio p:first-child {
+  margin-bottom: 32px;
+  font-family: var(--font-heading); font-size: clamp(19px, 1.6vw, 24px); line-height: 1.55; letter-spacing: -0.005em;
+  color: var(--p-ink);
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+.p-fam-person .person-page__bio p:last-child { margin-bottom: 0; }
+.p-fam-person .person-page__bio p:only-child { margin-bottom: 0; }
+
+/* Bio not written yet: kept visible, set as a quiet note between hairlines. */
+.p-fam-person .person-page__pending {
+  max-width: 52ch; background: none; border: 0;
+  border-bottom: 1px solid var(--p-line);
+  padding: 0 0 32px; text-align: left;
+}
+.p-fam-person .person-page__pending p { font-size: 16px; line-height: 1.7; color: var(--p-ink-soft); }
+.p-fam-person .person-page__pending-title {
+  margin: 0 0 10px !important;
+  font-weight: 400; font-size: clamp(24px, 2vw, 30px) !important; line-height: 1.2 !important; letter-spacing: -0.01em;
+  color: var(--p-ink) !important;
+}
+/* "Profile could not be found": the <p> is the whole section. */
+.p-fam-person p.person-page__pending { grid-column: 1 / -1; grid-row: 1; }
+
+/* --- Upcoming retreats with … ------------------------------------ */
+.p-fam-person .person-retreats {
+  display: block;
+  max-width: var(--p-max); margin: 0 auto;
+  padding: 0 var(--p-gutter) clamp(96px, 12vw, 180px);
+}
+.p-fam-person .person-retreats[hidden] { display: none; }
+.p-fam-person .person-retreats__title {
+  margin: 0 0 clamp(48px, 6vw, 88px); padding-top: clamp(40px, 5vw, 72px);
+  border-top: 1px solid var(--p-line);
+  font-weight: 400; font-size: clamp(34px, 4.2vw, 64px); line-height: 1.05; letter-spacing: -0.02em;
+  text-align: left; color: var(--p-ink); text-wrap: balance;
+}
+.p-fam-person .person-retreats__grid { max-width: none; gap: clamp(48px, 5vw, 72px) clamp(20px, 2.4vw, 40px); }
+.p-fam-person .person-retreats__grid > :nth-child(4n+2) { --d: .08s; }
+.p-fam-person .person-retreats__grid > :nth-child(4n+3) { --d: .16s; }
+.p-fam-person .person-retreats__grid > :nth-child(4n+4) { --d: .24s; }
+.p-fam-person .result-link:focus-visible { outline: 1px solid var(--p-ink); outline-offset: 6px; }
+.p-fam-person .result-link:hover .card__title { text-decoration: none; }
+
+@media (max-width: 1024px) {
+  .p-fam-person .person-page__photo { grid-column: 1 / span 6; }
+  .p-fam-person .person-page__name,
+  .p-fam-person .person-page__bio,
+  .p-fam-person .person-page__pending { grid-column: 7 / -1; }
+}
+@media (max-width: 860px) {
+  .p-fam-person .person-page { grid-template-rows: none; }
+  .p-fam-person .person-page__photo,
+  .p-fam-person .person-page__name,
+  .p-fam-person .person-page__bio,
+  .p-fam-person .person-page__pending { grid-column: 1 / -1; grid-row: auto; }
+  .p-fam-person .person-page__photo { position: static; width: min(100%, 520px); }
+  .p-fam-person .person-page__name { margin-top: 40px; }
+}
+@media (max-width: 767px) {
+  .p-fam-person .person-page { padding: 32px var(--p-gutter) 88px; }
+  .p-fam-person .person-page__photo { width: 100%; aspect-ratio: 4 / 5; }
+  .p-fam-person .person-page__name { margin: 36px 0 32px; padding-bottom: 24px; }
+  .p-fam-person .person-retreats { padding: 0 var(--p-gutter) 88px; }
+  .p-fam-person .person-retreats__grid { grid-template-columns: minmax(0, 1fr); gap: 56px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .p-fam-person .person-page__photo img { transition: none; }
+  .p-fam-person .person-page__photo:hover img { transform: none; }
+}

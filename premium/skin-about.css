@@ -1,0 +1,263 @@
+/* Premium skin · about family. Loads after premium.css.
+   about.html set as an editorial page: a display headline on the
+   12-column grid, splits with generous air, numbered "how we work"
+   columns with drawn-underline links, guest quotes as the one dark
+   band, and the teacher pitch on the paper-2 ground. */
+
+body.p-fam-about {
+  --p-reveal: ".about-how > .section-title, .about-card, .about-team__head, .about-person, .about-quotes > .section-title, .about-quote, .about-quotes__rating, .about-teachers__media, .about-teachers__text";
+}
+
+/* ------------------------------------------------------------
+   Shared frame + type
+   ------------------------------------------------------------ */
+.p-fam-about .about-section { padding-block: clamp(96px, 12vw, 180px); padding-inline: 0; }
+.p-fam-about .about-section + .about-section { padding-top: 0; }
+.p-fam-about .about-inner { max-width: var(--p-max); padding-inline: var(--p-gutter); }
+.p-fam-about .about-grid { column-gap: 24px; }
+.p-fam-about .about-body { font-size: 16px; line-height: 1.75; letter-spacing: 0; color: var(--p-ink-soft); }
+.p-fam-about .about-prose { gap: 22px; }
+.p-fam-about .about-prose .about-body { text-align: left; max-width: 52ch; }
+
+.p-fam-about .about-intro__figure,
+.p-fam-about .about-split__media,
+.p-fam-about .about-card__media,
+.p-fam-about .about-person__media,
+.p-fam-about .about-teachers__media { overflow: hidden; background: var(--p-paper-2); }
+.p-fam-about .about-img { transition: transform 1.6s var(--p-ease); }
+@media (hover: hover) {
+  .p-fam-about .about-intro__figure:hover .about-img,
+  .p-fam-about .about-split__media:hover .about-img,
+  .p-fam-about .about-card:hover .about-img,
+  .p-fam-about .about-person:hover .about-img,
+  .p-fam-about .about-teachers__media:hover .about-img { transform: scale(1.05); }
+}
+
+/* ------------------------------------------------------------
+   Intro: label in the first three columns, display headline
+   from the fourth, lede under it, then the full-width picture
+   ------------------------------------------------------------ */
+.p-fam-about .about-intro {
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px;
+  align-items: start; text-align: left; gap: 0 24px;
+  max-width: var(--p-max); margin: 0 auto;
+  padding: clamp(64px, 9vw, 140px) var(--p-gutter) 0;
+}
+.p-fam-about .about-intro .kicker { grid-column: 1 / span 3; padding-top: 18px; }
+.p-fam-about .about-intro__title {
+  grid-column: 4 / -1; max-width: none;
+  font-weight: 400; font-size: clamp(40px, 5vw, 84px); line-height: 1.02; letter-spacing: -0.03em;
+  color: var(--p-ink);
+}
+.p-fam-about .about-intro__lede {
+  grid-column: 4 / span 5; max-width: 46ch; margin-top: clamp(32px, 3.6vw, 56px);
+  font-size: 17px; line-height: 1.7;
+}
+.p-fam-about .about-intro__figure {
+  grid-column: 1 / -1; max-width: none;
+  margin: clamp(56px, 7vw, 112px) 0 0;
+  aspect-ratio: 16 / 8;
+}
+
+/* ------------------------------------------------------------
+   Story + founder splits
+   ------------------------------------------------------------ */
+.p-fam-about .about-section:not(.about-how):not(.about-team):not(.about-quotes) .about-grid { align-items: center; }
+.p-fam-about .about-split__media { grid-column: 1 / span 5; aspect-ratio: 4 / 5; }
+.p-fam-about .about-split__text { grid-column: 7 / span 5; gap: clamp(28px, 3vw, 44px); }
+.p-fam-about .about-split--mirror .about-split__text { grid-column: 2 / span 5; }
+.p-fam-about .about-split--mirror .about-split__media { grid-column: 8 / span 5; }
+.p-fam-about .about-split__head { gap: 22px; }
+.p-fam-about .about-split__head .section-title { font-size: clamp(36px, 4.2vw, 64px); }
+/* The first paragraph of each story opens like the home's statement. */
+.p-fam-about .about-split__text .about-prose .about-body:first-child {
+  font-family: var(--font-heading); font-size: clamp(18px, 1.35vw, 21px); line-height: 1.6;
+  letter-spacing: -0.005em; color: var(--p-ink); max-width: 34ch;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+.p-fam-about .about-prose { padding-top: clamp(28px, 3vw, 44px); border-top: 1px solid var(--p-line); }
+
+/* ------------------------------------------------------------
+   How we work: four numbered columns, link instead of a button
+   ------------------------------------------------------------ */
+.p-fam-about .about-how,
+.p-fam-about .about-team,
+.p-fam-about .about-quotes {
+  align-items: stretch; gap: 0;
+  padding-inline: max(var(--p-gutter), calc((100% - var(--p-max)) / 2 + var(--p-gutter)));
+}
+.p-fam-about .about-how > .section-title,
+.p-fam-about .about-quotes > .section-title { text-align: left; margin-bottom: clamp(48px, 6vw, 88px); max-width: 14ch; }
+.p-fam-about .about-how__grid { max-width: none; gap: clamp(20px, 2.4vw, 40px); counter-reset: p-how; }
+.p-fam-about .about-card { gap: 0; counter-increment: p-how; }
+@media (min-width: 1025px) {
+  .p-fam-about .about-card:nth-child(2n) { margin-top: clamp(0px, 5vw, 80px); }
+}
+.p-fam-about .about-card__title {
+  margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--p-line);
+  font-weight: 400; font-size: clamp(21px, 1.6vw, 25px); line-height: 1.25; letter-spacing: -0.01em; color: var(--p-ink);
+}
+.p-fam-about .about-card__title::before {
+  content: counter(p-how, decimal-leading-zero);
+  display: block; margin-bottom: 14px;
+  font-style: italic; font-size: 15px; letter-spacing: 0; color: var(--p-mute);
+}
+.p-fam-about .about-card__text { margin-top: 12px; font-size: 15px; line-height: 1.65; color: var(--p-ink-soft); }
+/* .btn--secondary drawn as the home's .p-link: tracked caps, a hairline
+   that retracts on hover, and a small arrow that steps forward. */
+.p-fam-about .about-card .btn {
+  width: auto; min-height: 0; align-self: flex-start;
+  margin-top: auto; padding: 28px 30px 6px 0;
+  border: 0; background: transparent; color: var(--p-ink);
+  overflow: visible;
+}
+.p-fam-about .about-card .btn::before {
+  inset: auto 30px 0 0; height: 1px; z-index: 0;
+  background: currentColor; transform: none; transform-origin: left;
+  transition: transform .7s var(--p-ease);
+}
+.p-fam-about .about-card .btn::after {
+  content: ""; position: absolute; right: 0; bottom: 5px; width: 16px; height: 16px;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.2'%3E%3Cpath d='M1 8h13M9 3l5 5-5 5'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.2'%3E%3Cpath d='M1 8h13M9 3l5 5-5 5'/%3E%3C/svg%3E") center / contain no-repeat;
+  transition: transform .5s var(--p-ease);
+}
+@media (hover: hover) {
+  .p-page.p-fam-about .about-card .btn--secondary:hover { color: var(--p-ink); background: transparent; }
+  .p-fam-about .about-card .btn:hover::before { transform: scaleX(0); transform-origin: right; }
+  .p-fam-about .about-card .btn:hover::after { transform: translateX(4px); }
+}
+.p-fam-about .about-card .btn:focus-visible { outline: 1px solid var(--p-ink); outline-offset: 6px; }
+
+/* ------------------------------------------------------------
+   The team
+   ------------------------------------------------------------ */
+.p-fam-about .about-team__head {
+  align-items: flex-start; text-align: left; gap: 22px;
+  margin-bottom: clamp(48px, 6vw, 88px);
+}
+.p-fam-about .about-team__head .section-title { text-align: left; }
+.p-fam-about .about-team__grid { max-width: none; gap: clamp(32px, 3vw, 48px) clamp(20px, 2.4vw, 40px); }
+.p-fam-about .about-person { gap: 0; }
+.p-fam-about .about-person__media { aspect-ratio: 4 / 5; }
+.p-fam-about .about-person__role {
+  margin-top: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--p-line);
+  font-size: 11px; line-height: 1.6; letter-spacing: .2em; color: var(--p-mute);
+}
+.p-fam-about .about-person__name {
+  margin-top: 18px; font-weight: 400; font-size: clamp(24px, 2vw, 30px); line-height: 1.2; letter-spacing: -0.01em; color: var(--p-ink);
+}
+.p-fam-about .about-person__text { margin-top: 10px; font-size: 15px; line-height: 1.65; color: var(--p-ink-soft); max-width: 38ch; }
+
+/* ------------------------------------------------------------
+   Guest quotes: the page's one dark band
+   ------------------------------------------------------------ */
+.p-fam-about .about-section.about-quotes {
+  background: var(--p-night); color: var(--p-paper);
+  padding-top: clamp(96px, 12vw, 180px); padding-bottom: clamp(96px, 12vw, 180px);
+}
+.p-fam-about .about-quotes > .section-title { color: var(--p-paper); }
+.p-fam-about .about-quotes__grid {
+  max-width: none; gap: 0;
+  border-top: 1px solid var(--p-night-line);
+}
+.p-fam-about .about-quote {
+  padding: clamp(32px, 3vw, 48px) clamp(20px, 2.4vw, 40px) 0 0;
+  background: none; border: 0; gap: 40px;
+}
+.p-fam-about .about-quote + .about-quote { padding-left: clamp(20px, 2.4vw, 40px); border-left: 1px solid var(--p-night-line); }
+.p-fam-about .about-quote__text {
+  font-style: normal; font-size: clamp(22px, 1.9vw, 30px); line-height: 1.38; letter-spacing: -0.01em;
+  color: var(--p-paper);
+}
+.p-fam-about .about-quote__avatar {
+  width: 36px; height: 36px; background: transparent; border: 1px solid var(--p-night-line);
+}
+.p-fam-about .about-quote__name {
+  font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--p-paper);
+}
+.p-fam-about .about-quote__where {
+  font-family: var(--font-heading); font-style: italic; font-size: 14px; color: rgba(247, 242, 240, .6);
+}
+.p-fam-about .about-quotes__rating {
+  margin-top: clamp(56px, 6vw, 88px); padding-top: 24px; border-top: 1px solid var(--p-night-line);
+  text-align: left; font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(247, 242, 240, .7);
+}
+
+/* ------------------------------------------------------------
+   For teachers: an aside on paper-2
+   ------------------------------------------------------------ */
+.p-fam-about .about-teachers { background: var(--p-paper-2); padding: clamp(96px, 12vw, 180px) 0; }
+.p-fam-about .about-teachers .about-grid { align-items: center; }
+.p-fam-about .about-teachers__media { grid-column: 1 / span 6; aspect-ratio: 5 / 4; }
+.p-fam-about .about-teachers__text { grid-column: 8 / span 5; gap: 32px; }
+.p-page.p-fam-about .about-teachers__title {
+  font-size: clamp(30px, 3.2vw, 50px); line-height: 1.12; letter-spacing: -0.02em; font-weight: 400;
+}
+.p-fam-about .about-teachers__text .about-body { max-width: 40ch; }
+.p-fam-about .about-teachers__text .btn { margin-top: 8px; }
+
+/* ------------------------------------------------------------
+   Reveal stagger
+   ------------------------------------------------------------ */
+.p-fam-about .about-card:nth-child(2), .p-fam-about .about-person:nth-child(2), .p-fam-about .about-quote:nth-child(2) { --d: .08s; }
+.p-fam-about .about-card:nth-child(3), .p-fam-about .about-person:nth-child(3), .p-fam-about .about-quote:nth-child(3) { --d: .16s; }
+.p-fam-about .about-card:nth-child(4) { --d: .24s; }
+.p-fam-about .about-teachers__text { --d: .1s; }
+
+/* ------------------------------------------------------------
+   Tablet / phone
+   ------------------------------------------------------------ */
+@media (max-width: 1024px) {
+  .p-fam-about .about-how__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 64px; }
+  .p-fam-about .about-split__media { grid-column: 1 / span 6; }
+  .p-fam-about .about-split__text { grid-column: 7 / -1; }
+  .p-fam-about .about-split--mirror .about-split__text { grid-column: 1 / span 6; }
+  .p-fam-about .about-split--mirror .about-split__media { grid-column: 7 / -1; }
+  .p-fam-about .about-teachers__text { grid-column: 7 / -1; }
+}
+@media (max-width: 860px) {
+  .p-fam-about .about-intro .kicker,
+  .p-fam-about .about-intro__title,
+  .p-fam-about .about-intro__lede,
+  .p-fam-about .about-intro__figure { grid-column: 1 / -1; }
+  .p-fam-about .about-intro .kicker { padding-top: 0; margin-bottom: 24px; }
+  .p-fam-about .about-intro__figure { aspect-ratio: 4 / 3; }
+  .p-fam-about .about-quotes__grid { grid-template-columns: minmax(0, 1fr); }
+  .p-fam-about .about-quote { padding: 32px 0; }
+  .p-fam-about .about-quote + .about-quote { padding-left: 0; border-left: 0; border-top: 1px solid var(--p-night-line); }
+  .p-fam-about .about-team__grid { grid-template-columns: minmax(0, 1fr); gap: 64px; }
+  .p-fam-about .about-person__media { aspect-ratio: 4 / 3; }
+}
+@media (max-width: 767px) {
+  .p-fam-about .about-section { padding-block: 88px; }
+  .p-fam-about .about-section + .about-section { padding-top: 0; }
+  .p-fam-about .about-section.about-quotes { padding-top: 88px; padding-bottom: 88px; }
+  .p-fam-about .about-teachers { padding: 88px 0; }
+  .p-fam-about .about-intro { padding: 48px var(--p-gutter) 0; }
+  .p-fam-about .about-grid { row-gap: 40px; }
+  .p-fam-about .about-split__media,
+  .p-fam-about .about-split__text,
+  .p-fam-about .about-split--mirror .about-split__text,
+  .p-fam-about .about-split--mirror .about-split__media,
+  .p-fam-about .about-teachers__media,
+  .p-fam-about .about-teachers__text { grid-column: 1; }
+  .p-fam-about .about-split__media { aspect-ratio: 4 / 3; }
+  .p-fam-about .about-teachers__media { aspect-ratio: 3 / 2; }
+  .p-fam-about .about-how__grid { grid-template-columns: minmax(0, 1fr); row-gap: 64px; }
+  .p-fam-about .about-card__media { aspect-ratio: 4 / 3; }
+  .p-fam-about .about-teachers__text .btn { align-self: stretch; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .p-fam-about .about-img,
+  .p-fam-about .about-card .btn::before,
+  .p-fam-about .about-card .btn::after { transition: none; }
+  .p-fam-about .about-intro__figure:hover .about-img,
+  .p-fam-about .about-split__media:hover .about-img,
+  .p-fam-about .about-card:hover .about-img,
+  .p-fam-about .about-person:hover .about-img,
+  .p-fam-about .about-teachers__media:hover .about-img { transform: none; }
+}

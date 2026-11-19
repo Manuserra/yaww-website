@@ -1,0 +1,196 @@
+/* Premium skin · journal family. Loads after premium.css.
+   The journal index as an editorial magazine contents page: a serif
+   nameplate, hairline topic tabs, chrome-free article cards, and the
+   first visible story set as a wide feature. */
+
+body.p-fam-journal { --p-reveal: ".journal-grid > .journal"; }
+
+/* ---------- Page frame ---------- */
+.p-fam-journal .main-journal { color: var(--p-ink-soft); letter-spacing: 0; }
+.p-fam-journal .main-journal .container { max-width: var(--p-max); }
+
+/* ---------- Nameplate ---------- */
+.p-fam-journal .main-journal .main__header--small {
+  padding: clamp(56px, 8vw, 128px) 0 clamp(40px, 5vw, 80px);
+}
+.p-fam-journal .main-journal .main__header--title,
+.p-fam-journal .main-journal .main__header--title.heading-h4 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: clamp(72px, 13vw, 208px);
+  line-height: .9;
+  letter-spacing: -0.04em;
+  color: var(--p-ink);
+  text-align: center;
+}
+/* A tracked label above the nameplate, the homepage's section voice. */
+.p-fam-journal .main-journal .main__header--small::before {
+  content: "Stories · Guides · Field notes";
+  display: block;
+  margin-bottom: clamp(20px, 2.4vw, 36px);
+  font-family: var(--font-body); font-size: 11px; font-weight: 600;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--p-mute);
+  text-align: center;
+}
+
+/* ---------- Topic tabs: hairline bar, tracked labels, 1px indicator ---------- */
+.p-fam-journal .main-journal .tabbar {
+  margin-top: 0;
+  border-top: 1px solid var(--p-line);
+  border-bottom: 1px solid var(--p-line);
+}
+.p-fam-journal .main-journal .tabbar .container { min-height: 64px; }
+.p-fam-journal .main-journal .tab {
+  width: auto;
+  padding: 0 clamp(14px, 1.4vw, 22px);
+  font-size: 11px; font-weight: 600; line-height: 1.2;
+  letter-spacing: .2em;
+  color: var(--p-mute);
+  transition: color .5s var(--p-ease);
+}
+.p-fam-journal .main-journal .tab.is-active { color: var(--p-ink); }
+.p-fam-journal .main-journal .tab.is-active::after { background: var(--p-ink); height: 1px; bottom: -1px; }
+@media (hover: hover) and (pointer: fine) {
+  .p-fam-journal .main-journal .tab:not(.is-active):hover { color: var(--p-ink); }
+}
+.p-fam-journal .main-journal .tab:focus-visible { outline: 1px solid var(--p-ink); outline-offset: -6px; }
+/* The JS parks the indicator on the tab's last pixel row; a 1px margin
+   drops it onto the bar's own hairline. */
+.p-fam-journal .tabbar__indicator { height: 1px; margin-top: 1px; background: var(--p-ink); }
+.p-fam-journal .is-sliding-ready .tabbar__indicator {
+  transition: transform .6s var(--p-ease), width .6s var(--p-ease);
+}
+
+/* ---------- Grid ---------- */
+.p-fam-journal .main-journal .main__content {
+  margin-top: clamp(56px, 6vw, 104px);
+  margin-bottom: clamp(104px, 12vw, 184px);
+}
+.p-fam-journal .journal-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(64px, 6vw, 104px) clamp(20px, 2.4vw, 40px);
+}
+.p-fam-journal .journal-grid > .journal[hidden] { display: none; }
+
+/* ---------- Card: image, label, serif title, standfirst, byline ---------- */
+.p-fam-journal .journal__link { display: block; color: inherit; text-decoration: none; }
+.p-fam-journal .journal__link:focus-visible { outline: 1px solid var(--p-ink); outline-offset: 8px; }
+.p-fam-journal .journal__image {
+  position: relative; overflow: hidden;
+  aspect-ratio: 672 / 406;
+  background: var(--p-paper-2);
+}
+.p-fam-journal .journal__image img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 1.6s var(--p-ease);
+}
+@media (hover: hover) {
+  .p-fam-journal .journal__link:hover .journal__image img { transform: scale(1.05); }
+}
+
+.p-fam-journal .journal-grid .journal__cat { margin-top: 24px; gap: 0; flex-wrap: wrap; }
+.p-fam-journal .main-journal .journal__cat.text-slug,
+.p-fam-journal .main-journal .journal__cat.text-slug * {
+  font-size: 11px; line-height: 1.6; font-weight: 600;
+  letter-spacing: .2em; color: var(--p-mute);
+}
+.p-fam-journal .journal__cat > div + div::before { content: "·"; margin: 0 .7em; letter-spacing: 0; }
+
+.p-fam-journal .journal-grid .journal__title { margin: 14px 0 16px; }
+.p-fam-journal .main-journal .journal__title .heading-h5,
+.p-fam-journal .main-journal .journal__title .heading-h5.text-bold {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: clamp(22px, 1.75vw, 27px);
+  line-height: 1.22;
+  letter-spacing: -0.012em;
+  color: var(--p-ink);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .2em;
+  transition: text-decoration-color .5s var(--p-ease);
+}
+@media (hover: hover) {
+  .p-fam-journal .journal__link:hover .journal__title .heading-h5 { text-decoration-color: currentColor; }
+}
+
+.p-fam-journal .main-journal .journal__caption.text-small,
+.p-fam-journal .main-journal .journal__caption.text-small * {
+  font-size: 15px; line-height: 1.7; letter-spacing: 0; color: var(--p-ink-soft);
+}
+.p-fam-journal .main-journal .journal__caption p { margin: 0; max-width: 46ch; }
+
+.p-fam-journal .main-journal .journal__author.text-caption {
+  margin-top: 18px;
+  font-family: var(--font-heading); font-style: italic;
+  font-size: 14px; line-height: 1.5; letter-spacing: 0;
+  color: var(--p-mute);
+}
+.p-fam-journal .journal__author::before { content: "By "; }
+
+/* ---------- Feature: the first visible story spans the grid ---------- */
+.p-fam-journal .journal-grid > .journal:nth-child(1 of :not([hidden])) {
+  grid-column: 1 / -1;
+  padding-bottom: clamp(64px, 6vw, 104px);
+  border-bottom: 1px solid var(--p-line);
+}
+@media (min-width: 900px) {
+  .p-fam-journal .journal-grid > .journal:nth-child(1 of :not([hidden])) .journal__link {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: clamp(20px, 2.4vw, 40px);
+    align-content: center;
+  }
+  .p-fam-journal .journal-grid > .journal:nth-child(1 of :not([hidden])) .journal__image {
+    grid-column: 1 / span 7; grid-row: 1 / span 5;
+  }
+  .p-fam-journal .journal-grid > .journal:nth-child(1 of :not([hidden])) .journal__link > :not(.journal__image) {
+    grid-column: 9 / -1;
+  }
+  .p-fam-journal .journal-grid > .journal:nth-child(1 of :not([hidden])) .journal__cat { margin-top: 0; align-self: end; }
+}
+.p-fam-journal .journal-grid > .journal:nth-child(1 of :not([hidden])) .journal__cat::before {
+  content: "Featured"; margin-right: .7em; color: var(--p-ink);
+}
+.p-fam-journal .journal-grid > .journal:nth-child(1 of :not([hidden])) .journal__cat > div:first-child::before {
+  content: "·"; margin: 0 .7em 0 0; letter-spacing: 0;
+}
+.p-fam-journal .main-journal .journal-grid > .journal:nth-child(1 of :not([hidden])) .journal__title .heading-h5 {
+  font-size: clamp(32px, 3.6vw, 56px);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+}
+.p-fam-journal .journal-grid > .journal:nth-child(1 of :not([hidden])) .journal__title { margin: 20px 0 24px; }
+.p-fam-journal .main-journal .journal-grid > .journal:nth-child(1 of :not([hidden])) .journal__caption.text-small,
+.p-fam-journal .main-journal .journal-grid > .journal:nth-child(1 of :not([hidden])) .journal__caption.text-small * {
+  font-size: 17px; line-height: 1.7;
+}
+.p-fam-journal .journal-grid > .journal:nth-child(1 of :not([hidden])) .journal__author { align-self: start; }
+
+/* ---------- Empty state ---------- */
+.p-fam-journal .journal-empty {
+  padding: 96px 0;
+  font-family: var(--font-heading); font-style: italic;
+  font-size: 20px; color: var(--p-mute);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+  .p-fam-journal .journal-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 899px) {
+  .p-fam-journal .journal-grid > .journal:nth-child(1 of :not([hidden])) .journal__cat { margin-top: 24px; }
+}
+@media (max-width: 767px) {
+  .p-fam-journal .journal-grid { grid-template-columns: minmax(0, 1fr); row-gap: 56px; }
+  .p-fam-journal .main-journal .tabbar .container { min-height: 56px; }
+  .p-fam-journal .journal-grid > .journal:nth-child(1 of :not([hidden])) { padding-bottom: 56px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .p-fam-journal .journal__image img,
+  .p-fam-journal .main-journal .tab,
+  .p-fam-journal .journal__title .heading-h5,
+  .p-fam-journal .is-sliding-ready .tabbar__indicator { transition: none; }
+}

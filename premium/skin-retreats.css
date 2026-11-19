@@ -1,0 +1,277 @@
+/* Premium skin · retreats family. Loads after premium.css.
+   The listing reads as an editorial index: a large serif page title with
+   its lede beside it, the collections as a hairline tab row, the
+   When / Destination / Teacher bar as one ruled strip, seasons as ruled
+   chapters with a pinned italic title, and the list view as hairline
+   rows in the manner of the home's departures. */
+
+body.p-fam-retreats { --p-reveal: ".p-fam-retreats .season"; }
+
+/* ------------------------------------------------------------
+   Page frame: the container becomes one column whose order puts the
+   title first, then the collection tabs, the bar, the results line.
+   ------------------------------------------------------------ */
+.p-fam-retreats .retreats {
+  display: flex; flex-direction: column;
+  max-width: var(--p-max);
+  padding-top: clamp(56px, 8vw, 128px);
+}
+.p-fam-retreats .collection-intro { order: 1; }
+.p-fam-retreats .retreats > .controls { order: 2; }
+.p-fam-retreats .retreats > .filter-bar { order: 3; }
+.p-fam-retreats .retreats > .filter-summary { order: 4; }
+.p-fam-retreats .retreats > .filter-empty { order: 5; }
+.p-fam-retreats .retreats > .results { order: 6; }
+
+/* --- Title + lede ------------------------------------------- */
+.p-fam-retreats .collection-intro {
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px;
+  align-items: end; text-align: left; margin: 0; gap: 0 24px;
+}
+.p-fam-retreats .collection-intro::before {
+  content: "Upcoming retreats";
+  grid-column: 1 / -1; margin-bottom: clamp(20px, 3vw, 40px);
+  font-family: var(--font-body); font-size: 11px; font-weight: 600;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--p-mute);
+}
+.p-fam-retreats .collection-intro__title {
+  grid-column: 1 / span 7;
+  font-family: var(--font-heading); font-weight: 400;
+  font-size: clamp(48px, 7vw, 112px); line-height: .98; letter-spacing: -0.03em;
+  color: var(--p-ink);
+}
+.p-fam-retreats .collection-intro__desc {
+  grid-column: 9 / -1; max-width: 42ch; justify-self: end;
+  padding-bottom: .6em;
+  font-size: 16px; line-height: 1.7; letter-spacing: 0; color: var(--p-ink-soft);
+}
+.p-fam-retreats .collection-intro__line { display: inline; text-wrap: pretty; }
+
+/* --- Collection tabs: a hairline row, tracked labels ---------- */
+.p-fam-retreats .controls { margin-top: clamp(48px, 6vw, 88px); }
+.p-fam-retreats .tabs {
+  width: 100%; max-width: none; margin: 0;
+  justify-content: flex-start; gap: clamp(24px, 3.2vw, 56px);
+  border-bottom: 1px solid var(--p-line);
+}
+.p-fam-retreats .tabs__item {
+  width: auto; padding: 18px 0 16px;
+  font-size: 12px; font-weight: 600; letter-spacing: .18em; line-height: 20px;
+  color: var(--p-mute);
+  transition: color .5s var(--p-ease);
+}
+.p-fam-retreats .tabs__item.is-active { color: var(--p-ink); }
+@media (hover: hover) and (pointer: fine) {
+  .p-fam-retreats .tabs__item:not(.is-active):hover { color: var(--p-ink); }
+}
+.p-fam-retreats .tabs__item:focus-visible { outline: 1px solid var(--p-ink); outline-offset: 4px; }
+.p-fam-retreats .tabs__indicator { background: var(--p-ink); height: 2px; }
+.p-fam-retreats .is-sliding-ready .tabs__indicator {
+  transition: transform .7s var(--p-ease), width .7s var(--p-ease);
+}
+
+/* --- Filter bar: one ruled strip, no panel chrome ------------- */
+.p-fam-retreats .retreats > .filter-bar {
+  width: 100%; max-width: none; margin: 0;
+  background: transparent; border: 0; border-bottom: 1px solid var(--p-line);
+  box-shadow: none;
+}
+.p-fam-retreats .filter-seg { width: auto; flex: 1 1 0; }
+.p-fam-retreats .filter-seg + .filter-seg { border-left: 1px solid var(--p-line); }
+.p-fam-retreats .filter-seg__btn {
+  min-height: 96px; padding: 20px 24px;
+  transition: background-color .5s var(--p-ease), box-shadow .5s var(--p-ease);
+}
+.p-fam-retreats .filter-seg:first-child .filter-seg__btn { padding-left: 0; }
+.p-fam-retreats .filter-seg.is-open .filter-seg__btn { background: transparent; box-shadow: inset 0 -2px 0 var(--p-ink); }
+.p-fam-retreats .filter-seg__trigger { padding: 0; }
+.p-fam-retreats .filter-seg__text { gap: 8px; }
+.p-fam-retreats .filter-seg__label { font-size: 11px; letter-spacing: .2em; color: var(--p-mute); }
+.p-fam-retreats .filter-seg__value { font-size: 22px; line-height: 28px; letter-spacing: -0.01em; color: var(--p-ink); }
+.p-fam-retreats .filter-seg__value.is-empty { color: var(--p-ink-soft); opacity: .7; }
+.p-fam-retreats .filter-seg__chev { color: var(--p-ink); }
+.p-fam-retreats .filter-seg__clear { border-radius: 0; color: var(--p-ink-soft); }
+@media (hover: hover) and (pointer: fine) {
+  .p-fam-retreats .filter-seg:not(.is-open) .filter-seg__btn:hover { background: transparent; }
+  .p-fam-retreats .filter-seg:not(.is-open) .filter-seg__btn:hover .filter-seg__value.is-empty { color: var(--p-ink); opacity: 1; }
+  .p-fam-retreats .filter-seg__clear:hover { background: var(--p-paper-2); color: var(--p-ink); }
+}
+.p-fam-retreats .filter-seg:not(.is-open) .filter-seg__btn:active { background: transparent; }
+
+/* Dropdown panel */
+.p-fam-retreats .filter-panel {
+  top: 100%; left: 0; width: 100%;
+  background: var(--p-paper); border: 1px solid var(--p-line); border-top: 0;
+  box-shadow: 0 24px 48px rgba(34, 45, 54, .10);
+  padding-block: 12px;
+}
+.p-fam-retreats .filter-seg:first-child .filter-panel { left: 0; }
+.p-fam-retreats .filter-group__title { padding: 16px 20px 8px; font-size: 11px; letter-spacing: .2em; color: var(--p-mute); }
+.p-fam-retreats .filter-option { padding: 10px 20px; transition: background-color .3s var(--p-ease); }
+@media (hover: hover) and (pointer: fine) {
+  .p-fam-retreats .filter-option:hover { background: var(--p-paper-2); }
+}
+.p-fam-retreats .filter-option.is-selected { background: var(--p-paper-2); }
+.p-fam-retreats .filter-option__name { color: var(--p-ink); }
+.p-fam-retreats .filter-option__meta { font-size: 12px; letter-spacing: .06em; color: var(--p-mute); }
+.p-fam-retreats .filter-option__avatar { border-radius: 0; background: var(--p-paper-2); color: var(--p-ink); }
+.p-fam-retreats .filter-option__check { color: var(--p-ink); }
+
+/* --- Results line --------------------------------------------- */
+.p-fam-retreats .retreats .filter-summary { margin-top: 28px; padding-inline: 0; flex-wrap: nowrap; }
+.p-fam-retreats .filter-summary__left { min-width: 0; row-gap: 8px; }
+.p-fam-retreats .view-toggle--inline { flex: none; }
+.p-fam-retreats .filter-summary__text {
+  font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--p-mute);
+}
+.p-fam-retreats .filter-summary__clear {
+  font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--p-ink); border-bottom-color: var(--p-ink);
+}
+.p-fam-retreats .view-toggle button { color: rgba(34, 45, 54, .32); transition: color .4s var(--p-ease); }
+.p-fam-retreats .view-toggle button.is-active { color: var(--p-ink); }
+@media (hover: hover) and (pointer: fine) {
+  .p-fam-retreats .view-toggle button:not(.is-active):hover { color: var(--p-ink); background: transparent; }
+}
+.p-fam-retreats .view-toggle button:focus-visible { outline: 1px solid var(--p-ink); border-radius: 0; }
+
+/* --- Empty state ---------------------------------------------- */
+.p-fam-retreats .retreats .filter-empty {
+  max-width: none; margin-top: clamp(40px, 5vw, 72px); padding: clamp(48px, 7vw, 104px) 24px;
+  background: transparent; border: 0; border-top: 1px solid var(--p-line); border-bottom: 1px solid var(--p-line);
+  gap: 20px;
+}
+.p-fam-retreats .filter-empty__title {
+  font-weight: 400; font-size: clamp(30px, 3.2vw, 48px); line-height: 1.1; letter-spacing: -0.02em; color: var(--p-ink);
+}
+.p-fam-retreats .filter-empty__body { color: var(--p-ink-soft); line-height: 1.7; }
+.p-fam-retreats .filter-empty__relax button {
+  border-radius: 0; border-color: var(--p-line); padding: 10px 18px;
+  font-size: 11px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--p-ink);
+  transition: border-color .4s var(--p-ease);
+}
+@media (hover: hover) and (pointer: fine) {
+  .p-fam-retreats .filter-empty__relax button:hover { border-color: var(--p-ink); }
+}
+.p-fam-retreats .filter-empty__ctas { margin-top: 16px; }
+
+/* --- Seasons: ruled chapters ---------------------------------- */
+.p-fam-retreats .retreats .results { margin-top: clamp(40px, 5vw, 72px); padding-bottom: clamp(96px, 12vw, 180px); }
+.p-fam-retreats .season {
+  margin-top: clamp(72px, 8vw, 128px);
+  padding-top: 28px; border-top: 1px solid var(--p-line);
+}
+.p-fam-retreats .results > .season:first-child { margin-top: 0; }
+.p-fam-retreats .season__title {
+  font-family: var(--font-heading); font-weight: 400; font-style: italic;
+  font-size: clamp(28px, 2.4vw, 40px); line-height: 1.12; letter-spacing: -0.015em;
+  color: var(--p-ink);
+}
+.p-fam-retreats .season__title-country { font-style: normal; }
+
+/* Sidebar layout: 3 of 12 columns for the pinned title, 9 for cards.
+   The title pins below the fixed header and follows it up when the
+   header slides away on scroll down, so it never hides behind it nor
+   floats with a header-sized gap above it. */
+@media (min-width: 1200px) {
+  .p-fam-retreats .season:not(.season--list) {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); column-gap: 24px; max-width: none; margin-inline: 0;
+  }
+  .p-fam-retreats .season:not(.season--list) .season__title {
+    position: sticky; top: calc(var(--p-header-h) + 32px); margin-bottom: 0; padding-right: 24px;
+    transition: top .6s var(--p-ease);
+  }
+  .p-fam-retreats:has(.p-header.is-hidden) .season:not(.season--list) .season__title { top: 32px; }
+}
+@media (max-width: 1199px) {
+  .p-fam-retreats .season { grid-template-columns: 1fr; max-width: none; margin-inline: 0; }
+  .p-fam-retreats .season__title { position: static; margin-bottom: 32px; }
+}
+.p-fam-retreats .grid { column-gap: clamp(20px, 2.4vw, 40px); row-gap: clamp(48px, 5vw, 72px); }
+@media (max-width: 1024px) { .p-fam-retreats .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 767px)  { .p-fam-retreats .grid { grid-template-columns: 1fr; row-gap: 56px; } }
+.p-fam-retreats .card--narrow .card__media { aspect-ratio: 4 / 5; }
+@media (hover: hover) and (pointer: fine) {
+  .p-fam-retreats .result-link:hover .card__title { text-decoration: none; }
+}
+.p-fam-retreats .result-link:focus-visible { outline: 1px solid var(--p-ink); outline-offset: 6px; }
+
+/* --- List view: hairline rows, departures-style --------------- */
+.p-fam-retreats .season--list .season__title { margin-bottom: 32px; }
+.p-fam-retreats .list { border-top: 1px solid var(--p-line); }
+.p-fam-retreats .list-row {
+  column-gap: 32px; padding: 40px 0 28px;
+  border-bottom: 1px solid var(--p-line);
+  color: var(--p-ink);
+  transition: padding .6s var(--p-ease), color .4s var(--p-ease), background-color 0s;
+}
+.p-fam-retreats .r-tier { font-size: 10px; letter-spacing: .2em; color: var(--p-mute); margin-bottom: 6px; }
+.p-fam-retreats .r-name {
+  font-weight: 400; font-size: clamp(22px, 2vw, 30px); line-height: 1.2; letter-spacing: -0.015em; color: inherit;
+  white-space: normal; overflow: visible; text-wrap: balance;
+}
+@media (min-width: 1025px) {
+  .p-fam-retreats .list-row { grid-template-columns: minmax(0, 2.6fr) minmax(0, 1.5fr) minmax(0, 1.5fr) minmax(0, 1.3fr) 120px; }
+}
+.p-fam-retreats .r-loc { font-size: 17px; color: var(--p-ink-soft); }
+.p-fam-retreats .r-date {
+  font-size: 11px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--p-mute);
+}
+.p-fam-retreats .r-teacher { font-size: 15px; letter-spacing: 0; color: var(--p-ink-soft); }
+.p-fam-retreats .r-avail { font-size: 11px; letter-spacing: .18em; color: #8E6F48; }
+@media (hover: hover) and (pointer: fine) {
+  .p-fam-retreats .list-row:hover { background: transparent; }
+  .p-fam-retreats .list:hover .list-row { color: rgba(34, 45, 54, .45); }
+  .p-fam-retreats .list .list-row:hover { color: var(--p-ink); padding-left: 16px; }
+  .p-fam-retreats .result-link:hover .r-name { text-decoration: none; }
+}
+
+/* --- Mobile filter sheet: paper, square, hairlines ------------ */
+.p-fam-retreats .filter-sheet__scrim { background: rgba(40, 49, 57, .5); }
+.p-fam-retreats .filter-sheet__panel { background: var(--p-paper); box-shadow: none; border-top: 1px solid var(--p-line); }
+.p-fam-retreats .filter-sheet__grabber { border-radius: 0; height: 2px; width: 32px; background: var(--p-line); }
+.p-fam-retreats .filter-sheet__head { padding: 12px var(--p-gutter) 18px; border-bottom-color: var(--p-line); }
+.p-fam-retreats .filter-sheet__title { font-size: 26px; line-height: 1.2; letter-spacing: -0.015em; color: var(--p-ink); }
+.p-fam-retreats .filter-sheet__close { color: var(--p-ink); margin-right: -12px; }
+.p-fam-retreats .filter-sheet__list .filter-option { padding-inline: var(--p-gutter); }
+.p-fam-retreats .filter-sheet__list .filter-group__title { padding-inline: var(--p-gutter); }
+.p-fam-retreats .filter-sheet__foot { background: var(--p-paper); border-top-color: var(--p-line); padding: 16px var(--p-gutter); }
+.p-fam-retreats .filter-sheet__clear {
+  font-size: 11px; font-weight: 600; letter-spacing: .2em; color: var(--p-ink); border-bottom-color: var(--p-ink);
+}
+.p-fam-retreats .filter-sheet__confirm { width: auto; }
+
+/* ------------------------------------------------------------
+   Responsive
+   ------------------------------------------------------------ */
+@media (max-width: 960px) {
+  .p-fam-retreats .collection-intro__title,
+  .p-fam-retreats .collection-intro__desc { grid-column: 1 / -1; justify-self: start; }
+  .p-fam-retreats .collection-intro__desc { margin-top: 24px; padding-bottom: 0; }
+}
+@media (max-width: 767px) {
+  .p-fam-retreats .retreats { padding-top: 48px; }
+  .p-fam-retreats .controls { margin-top: 40px; }
+  .p-fam-retreats .tabs { gap: 0; justify-content: space-between; }
+  .p-fam-retreats .tabs__item { flex: 0 1 auto; padding: 16px 0 14px; font-size: 11px; letter-spacing: .14em; }
+  .p-fam-retreats .retreats > .filter-bar { width: 100%; border-top: 0; }
+  .p-fam-retreats .filter-seg + .filter-seg { border-left: 0; border-top: 1px solid var(--p-line); }
+  .p-fam-retreats .filter-seg__btn,
+  .p-fam-retreats .filter-seg:first-child .filter-seg__btn { min-height: 72px; padding: 14px 0; }
+  .p-fam-retreats .filter-seg__value { font-size: 19px; line-height: 26px; }
+  .p-fam-retreats .season { padding-top: 22px; }
+  .p-fam-retreats .list-row { padding: 36px 0 24px; row-gap: 4px; }
+  .p-fam-retreats .r-loc, .p-fam-retreats .r-teacher { margin-top: 4px; }
+}
+@media (max-width: 400px) {
+  .p-fam-retreats .tabs__item { font-size: 10px; letter-spacing: .1em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .p-fam-retreats .tabs__item,
+  .p-fam-retreats .is-sliding-ready .tabs__indicator,
+  .p-fam-retreats .filter-seg__btn,
+  .p-fam-retreats .list-row,
+  .p-fam-retreats .season__title,
+  .p-fam-retreats .view-toggle button { transition: none; }
+}

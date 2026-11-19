@@ -1,0 +1,78 @@
+/* Premium skin · locations family. Loads after premium.css.
+   The destinations index reads like the home's collections: a large
+   serif title with its lede beside it, then tall image frames, each
+   with an italic numeral over a hairline, the place in the display
+   serif and a short caption. The middle column hangs lower so the
+   grid reads as a spread rather than a catalogue. */
+
+body.p-fam-locations { --p-reveal: ".p-fam-locations .location"; }
+
+.p-fam-locations .locations {
+  max-width: var(--p-max); margin: 0 auto;
+  padding: clamp(56px, 8vw, 128px) var(--p-gutter) clamp(120px, 14vw, 220px);
+}
+
+/* --- Head: label, title, lede on the 12-column grid --------------- */
+.p-fam-locations .locations__head {
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px;
+  align-items: end; max-width: none; margin: 0 0 clamp(64px, 8vw, 128px);
+  text-align: left; gap: 0 24px;
+}
+.p-fam-locations .locations__head::before {
+  content: "Our destinations";
+  grid-column: 1 / -1; margin-bottom: clamp(20px, 3vw, 40px);
+  font-family: var(--font-body); font-size: 11px; font-weight: 600;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--p-mute);
+}
+.p-fam-locations .locations__head .section-title { grid-column: 1 / span 7; margin: 0; text-align: left; }
+.p-fam-locations .locations__lede {
+  grid-column: 9 / -1; justify-self: end; max-width: 42ch; padding-bottom: .5em;
+  font-size: 16px; line-height: 1.7; letter-spacing: 0; color: var(--p-ink-soft);
+}
+
+/* --- Grid ------------------------------------------------------- */
+.p-fam-locations .locations-grid {
+  max-width: none; counter-reset: loc;
+  gap: clamp(72px, 8vw, 128px) clamp(20px, 2.4vw, 40px);
+}
+.p-fam-locations .location { counter-increment: loc; }
+@media (min-width: 1025px) {
+  /* translate, not margin: the hang doesn't stretch every row, and it
+     leaves transform free for the scroll reveal. */
+  .p-fam-locations .location:nth-child(3n+2) { translate: 0 clamp(0px, 5vw, 80px); }
+}
+.p-fam-locations .location__link { display: flex; flex-direction: column; color: var(--p-ink); }
+.p-fam-locations .location__link:focus-visible { outline: 1px solid var(--p-ink); outline-offset: 6px; }
+.p-fam-locations .location__image { aspect-ratio: 4 / 5; background: var(--p-paper-2); }
+.p-fam-locations .location__image img { transition: transform 1.6s var(--p-ease); }
+@media (hover: hover) and (pointer: fine) {
+  .p-fam-locations .location__link:hover .location__image img { transform: scale(1.05); }
+}
+.p-fam-locations .location__title {
+  margin: 24px 0 0;
+  font-weight: 400; font-size: clamp(24px, 2vw, 30px); line-height: 1.2; letter-spacing: -0.01em;
+  color: var(--p-ink);
+}
+.p-fam-locations .location__title::before {
+  content: counter(loc, decimal-leading-zero);
+  display: block; padding-bottom: 16px; margin-bottom: 20px; border-bottom: 1px solid var(--p-line);
+  font-style: italic; font-size: 15px; line-height: 1; letter-spacing: 0; color: var(--p-mute);
+}
+.p-fam-locations .location__caption {
+  margin-top: 14px; max-width: 46ch;
+  font-size: 15px; line-height: 1.7; letter-spacing: 0; color: var(--p-ink-soft);
+}
+
+@media (max-width: 960px) {
+  .p-fam-locations .locations__head .section-title,
+  .p-fam-locations .locations__lede { grid-column: 1 / -1; justify-self: start; }
+  .p-fam-locations .locations__lede { margin-top: 24px; padding-bottom: 0; }
+}
+@media (max-width: 767px) {
+  .p-fam-locations .locations { padding: 48px var(--p-gutter) 96px; }
+  .p-fam-locations .locations-grid { gap: 64px; }
+  .p-fam-locations .location__image { aspect-ratio: 4 / 3; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .p-fam-locations .location__image img { transition: none; }
+}
