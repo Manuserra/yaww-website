@@ -1,0 +1,375 @@
+{
+  "key": "group_yaww_retreat",
+  "title": "YAWW \u00b7 Retreat",
+  "fields": [
+    {
+      "key": "field_yaww_retreat_subtitle",
+      "label": "Subtitle",
+      "name": "subtitle",
+      "type": "text"
+    },
+    {
+      "key": "field_yaww_retreat_location_id",
+      "label": "Location",
+      "name": "location_id",
+      "type": "post_object",
+      "post_type": [
+        "location"
+      ],
+      "return_format": "id"
+    },
+    {
+      "key": "field_yaww_retreat_teacher_ids",
+      "label": "Teachers",
+      "name": "teacher_ids",
+      "type": "relationship",
+      "post_type": [
+        "teacher"
+      ],
+      "return_format": "id"
+    },
+    {
+      "key": "field_yaww_retreat_start_date",
+      "label": "Start date (Y-m-d)",
+      "name": "start_date",
+      "type": "date_picker",
+      "display_format": "Y-m-d",
+      "return_format": "Y-m-d"
+    },
+    {
+      "key": "field_yaww_retreat_end_date",
+      "label": "End date (Y-m-d)",
+      "name": "end_date",
+      "type": "date_picker",
+      "display_format": "Y-m-d",
+      "return_format": "Y-m-d"
+    },
+    {
+      "key": "field_yaww_retreat_status",
+      "label": "Status",
+      "name": "status",
+      "type": "select",
+      "choices": {
+        "available": "available",
+        "filling_fast": "filling_fast",
+        "spaces_left": "spaces_left",
+        "sold_out": "sold_out",
+        "new": "new"
+      },
+      "return_format": "value"
+    },
+    {
+      "key": "field_yaww_retreat_spaces_left",
+      "label": "Spaces left",
+      "name": "spaces_left",
+      "type": "number"
+    },
+    {
+      "key": "field_yaww_retreat_collection",
+      "label": "Collection",
+      "name": "collection",
+      "type": "select",
+      "choices": {
+        "deep-dives": "deep-dives",
+        "signature-collection": "signature-collection"
+      },
+      "return_format": "value"
+    },
+    {
+      "key": "field_yaww_retreat_card_image",
+      "label": "Card image (312x408)",
+      "name": "card_image",
+      "type": "image",
+      "return_format": "id"
+    },
+    {
+      "key": "field_yaww_retreat_hero_image",
+      "label": "Hero image",
+      "name": "hero_image",
+      "type": "image",
+      "return_format": "id"
+    },
+    {
+      "key": "field_yaww_retreat_hotel_label",
+      "label": "Generic stay label (never a hotel name)",
+      "name": "hotel_label",
+      "type": "text"
+    },
+    {
+      "key": "field_yaww_retreat_nights",
+      "label": "Nights",
+      "name": "nights",
+      "type": "number"
+    },
+    {
+      "key": "field_yaww_retreat_includes",
+      "label": "What is included",
+      "name": "includes",
+      "type": "repeater",
+      "layout": "table",
+      "button_label": "Add",
+      "sub_fields": [
+        {
+          "key": "field_yaww_retreat_includes_value",
+          "label": "Value",
+          "name": "value",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "key": "field_yaww_retreat_not_included",
+      "label": "What is not included",
+      "name": "not_included",
+      "type": "repeater",
+      "layout": "table",
+      "button_label": "Add",
+      "sub_fields": [
+        {
+          "key": "field_yaww_retreat_not_included_value",
+          "label": "Value",
+          "name": "value",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "key": "field_yaww_retreat_itinerary",
+      "label": "Itinerary",
+      "name": "itinerary",
+      "type": "repeater",
+      "layout": "block",
+      "button_label": "Add row",
+      "sub_fields": [
+        {
+          "key": "field_yaww_retreat_itinerary_label",
+          "label": "Day label",
+          "name": "label",
+          "type": "text"
+        },
+        {
+          "key": "field_yaww_retreat_itinerary_title",
+          "label": "Title",
+          "name": "title",
+          "type": "text"
+        },
+        {
+          "key": "field_yaww_retreat_itinerary_bullets",
+          "label": "Bullets (one per line)",
+          "name": "bullets",
+          "type": "textarea"
+        },
+        {
+          "key": "field_yaww_retreat_itinerary_images",
+          "label": "Photos",
+          "name": "images",
+          "type": "gallery",
+          "return_format": "id"
+        }
+      ]
+    },
+    {
+      "key": "field_yaww_retreat_rooms",
+      "label": "Rooms",
+      "name": "rooms",
+      "type": "repeater",
+      "layout": "block",
+      "button_label": "Add row",
+      "sub_fields": [
+        {
+          "key": "field_yaww_retreat_rooms_name",
+          "label": "Room name",
+          "name": "name",
+          "type": "text"
+        },
+        {
+          "key": "field_yaww_retreat_rooms_price_usd",
+          "label": "Price (USD, per person)",
+          "name": "price_usd",
+          "type": "number"
+        },
+        {
+          "key": "field_yaww_retreat_rooms_price_unit",
+          "label": "Price unit",
+          "name": "price_unit",
+          "type": "text"
+        },
+        {
+          "key": "field_yaww_retreat_rooms_description",
+          "label": "Description",
+          "name": "description",
+          "type": "textarea"
+        },
+        {
+          "key": "field_yaww_retreat_rooms_pills",
+          "label": "Feature pills (one per line)",
+          "name": "pills",
+          "type": "textarea"
+        },
+        {
+          "key": "field_yaww_retreat_rooms_hotel_label",
+          "label": "Generic stay label",
+          "name": "hotel_label",
+          "type": "text"
+        },
+        {
+          "key": "field_yaww_retreat_rooms_gallery",
+          "label": "Photos",
+          "name": "gallery",
+          "type": "gallery",
+          "return_format": "id"
+        }
+      ]
+    },
+    {
+      "key": "field_yaww_retreat_extras",
+      "label": "Optional extras",
+      "name": "extras",
+      "type": "repeater",
+      "layout": "block",
+      "button_label": "Add row",
+      "sub_fields": [
+        {
+          "key": "field_yaww_retreat_extras_name",
+          "label": "Name",
+          "name": "name",
+          "type": "text"
+        },
+        {
+          "key": "field_yaww_retreat_extras_price_usd",
+          "label": "Price (USD)",
+          "name": "price_usd",
+          "type": "number"
+        },
+        {
+          "key": "field_yaww_retreat_extras_unit",
+          "label": "Unit",
+          "name": "unit",
+          "type": "text"
+        },
+        {
+          "key": "field_yaww_retreat_extras_desc",
+          "label": "Description",
+          "name": "desc",
+          "type": "textarea"
+        },
+        {
+          "key": "field_yaww_retreat_extras_gallery",
+          "label": "Photos",
+          "name": "gallery",
+          "type": "gallery",
+          "return_format": "id"
+        }
+      ]
+    },
+    {
+      "key": "field_yaww_retreat_travel_tips",
+      "label": "Travel tips",
+      "name": "travel_tips",
+      "type": "repeater",
+      "layout": "block",
+      "button_label": "Add row",
+      "sub_fields": [
+        {
+          "key": "field_yaww_retreat_travel_tips_heading",
+          "label": "Heading",
+          "name": "heading",
+          "type": "text"
+        },
+        {
+          "key": "field_yaww_retreat_travel_tips_items",
+          "label": "Items (one per line)",
+          "name": "items",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "key": "field_yaww_retreat_faqs",
+      "label": "Additional info / FAQ",
+      "name": "faqs",
+      "type": "repeater",
+      "layout": "block",
+      "button_label": "Add row",
+      "sub_fields": [
+        {
+          "key": "field_yaww_retreat_faqs_question",
+          "label": "Question",
+          "name": "question",
+          "type": "text"
+        },
+        {
+          "key": "field_yaww_retreat_faqs_answer",
+          "label": "Answer",
+          "name": "answer",
+          "type": "wysiwyg"
+        }
+      ]
+    },
+    {
+      "key": "field_yaww_retreat_gallery",
+      "label": "Gallery",
+      "name": "gallery",
+      "type": "gallery",
+      "return_format": "id"
+    },
+    {
+      "key": "field_yaww_retreat_gallery_title",
+      "label": "Gallery title",
+      "name": "gallery_title",
+      "type": "text"
+    },
+    {
+      "key": "field_yaww_retreat_gallery_intro",
+      "label": "Gallery intro",
+      "name": "gallery_intro",
+      "type": "textarea"
+    },
+    {
+      "key": "field_yaww_retreat_deposit_usd",
+      "label": "Deposit (USD)",
+      "name": "deposit_usd",
+      "type": "number"
+    },
+    {
+      "key": "field_yaww_retreat_balance_due_days",
+      "label": "Balance due (days before)",
+      "name": "balance_due_days",
+      "type": "number"
+    },
+    {
+      "key": "field_yaww_retreat_roommate_note",
+      "label": "Roommate note",
+      "name": "roommate_note",
+      "type": "textarea"
+    },
+    {
+      "key": "field_yaww_retreat_wetravel_url",
+      "label": "WeTravel trip URL",
+      "name": "wetravel_url",
+      "type": "url"
+    },
+    {
+      "key": "field_yaww_retreat_seo_description",
+      "label": "SEO description",
+      "name": "seo_description",
+      "type": "textarea"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "retreat"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "active": true,
+  "show_in_rest": 1,
+  "modified": 1763600000
+}

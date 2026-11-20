@@ -1,0 +1,83 @@
+{
+  "_doc": "Single source of truth for the theme's custom fields. Read by inc/fields.php (native register_post_meta) and by bin/gen-acf.py (acf-json/ + README field map). Types: text textarea wysiwyg number date bool select url image gallery post posts list rows. 'src' says where it comes from in the static site's data.",
+  "retreat": [
+    {"key":"subtitle","type":"text","label":"Subtitle","src":"retreats/*/data.json subtitle"},
+    {"key":"location_id","type":"post","post_type":"location","label":"Location","src":"retreats.js locationId"},
+    {"key":"teacher_ids","type":"posts","post_type":"teacher","label":"Teachers","src":"retreats.js teacherIds"},
+    {"key":"start_date","type":"date","label":"Start date (Y-m-d)","src":"retreats.js startDate"},
+    {"key":"end_date","type":"date","label":"End date (Y-m-d)","src":"retreats.js endDate"},
+    {"key":"status","type":"select","label":"Status","choices":["available","filling_fast","spaces_left","sold_out","new"],"src":"retreats.js status"},
+    {"key":"spaces_left","type":"number","label":"Spaces left","src":"retreats.js spacesLeft"},
+    {"key":"collection","type":"select","label":"Collection","choices":["deep-dives","signature-collection"],"src":"retreats.js collection (mirrors retreat_tier taxonomy)"},
+    {"key":"card_image","type":"image","label":"Card image (312x408)","src":"retreats.js image / image2x"},
+    {"key":"hero_image","type":"image","label":"Hero image","src":"data.json hero_image"},
+    {"key":"hotel_label","type":"text","label":"Generic stay label (never a hotel name)","src":"BRIEF s.12: e.g. boutique hotel in Chiang Mai"},
+    {"key":"nights","type":"number","label":"Nights","src":"data.json nights"},
+    {"key":"includes","type":"list","label":"What is included","src":"data.json includes"},
+    {"key":"not_included","type":"list","label":"What is not included","src":"data.json not_included"},
+    {"key":"itinerary","type":"rows","label":"Itinerary","src":"data.json itinerary","sub":[
+      {"key":"label","type":"text","label":"Day label"},
+      {"key":"title","type":"text","label":"Title"},
+      {"key":"bullets","type":"textarea","label":"Bullets (one per line)"},
+      {"key":"images","type":"gallery","label":"Photos"}]},
+    {"key":"rooms","type":"rows","label":"Rooms","src":"data.json rooms (hotel name dropped)","sub":[
+      {"key":"name","type":"text","label":"Room name"},
+      {"key":"price_usd","type":"number","label":"Price (USD, per person)"},
+      {"key":"price_unit","type":"text","label":"Price unit"},
+      {"key":"description","type":"textarea","label":"Description"},
+      {"key":"pills","type":"textarea","label":"Feature pills (one per line)"},
+      {"key":"hotel_label","type":"text","label":"Generic stay label"},
+      {"key":"gallery","type":"gallery","label":"Photos"}]},
+    {"key":"extras","type":"rows","label":"Optional extras","src":"data.json extras","sub":[
+      {"key":"name","type":"text","label":"Name"},
+      {"key":"price_usd","type":"number","label":"Price (USD)"},
+      {"key":"unit","type":"text","label":"Unit"},
+      {"key":"desc","type":"textarea","label":"Description"},
+      {"key":"gallery","type":"gallery","label":"Photos"}]},
+    {"key":"travel_tips","type":"rows","label":"Travel tips","src":"data.json travel_tips","sub":[
+      {"key":"heading","type":"text","label":"Heading"},
+      {"key":"items","type":"textarea","label":"Items (one per line)"}]},
+    {"key":"faqs","type":"rows","label":"Additional info / FAQ","src":"data.json faqs","sub":[
+      {"key":"question","type":"text","label":"Question"},
+      {"key":"answer","type":"wysiwyg","label":"Answer"}]},
+    {"key":"gallery","type":"gallery","label":"Gallery","src":"data.json gallery"},
+    {"key":"gallery_title","type":"text","label":"Gallery title","src":"data.json gallery_title"},
+    {"key":"gallery_intro","type":"textarea","label":"Gallery intro","src":"data.json gallery_intro"},
+    {"key":"deposit_usd","type":"number","label":"Deposit (USD)","src":"data.json booking.deposit_usd"},
+    {"key":"balance_due_days","type":"number","label":"Balance due (days before)","src":"data.json booking.balance_due_days"},
+    {"key":"roommate_note","type":"textarea","label":"Roommate note","src":"data.json booking.roommate_note"},
+    {"key":"wetravel_url","type":"url","label":"WeTravel trip URL","src":"window.YAWW_WETRAVEL.url (js/retreat-rooms.js)"},
+    {"key":"seo_description","type":"textarea","label":"SEO description","src":"data.json seo_description"}
+  ],
+  "location": [
+    {"key":"display_name","type":"text","label":"Display name (italic line)","src":"locations.js displayName"},
+    {"key":"region","type":"select","label":"Region","choices":["Europe","The Americas","Africa & Middle East","Asia"],"src":"locations.js region"},
+    {"key":"country","type":"text","label":"Country","src":"locations.js country"},
+    {"key":"intro","type":"textarea","label":"Intro","src":"locationpage-*.html hero copy"},
+    {"key":"hero_image","type":"image","label":"Hero image","src":"locations.js image"},
+    {"key":"card_image","type":"image","label":"Card image","src":"locations.js image"},
+    {"key":"placeholder_hue","type":"number","label":"Placeholder hue (0-360)","src":"locations.js placeholderHue"},
+    {"key":"hotel_label","type":"text","label":"Generic stay label (never a hotel name)","src":"BRIEF s.12"},
+    {"key":"travel_tips","type":"rows","label":"Travel tips","src":"page_content.py","sub":[
+      {"key":"heading","type":"text","label":"Heading"},
+      {"key":"items","type":"textarea","label":"Items (one per line)"}]},
+    {"key":"gallery","type":"gallery","label":"Gallery","src":"locationpage-*.html"}
+  ],
+  "teacher": [
+    {"key":"short_name","type":"text","label":"Short name","src":"teachers.js shortName"},
+    {"key":"role","type":"text","label":"Role (eyebrow override)","src":"teachers.js role"},
+    {"key":"short_bio","type":"textarea","label":"Card blurb","src":"teachers.js shortBio"},
+    {"key":"quote","type":"text","label":"Quote","src":"teachers.js quote"},
+    {"key":"specialties","type":"list","label":"Specialties","src":"teachers.js specialties"},
+    {"key":"video_url","type":"url","label":"Video URL","src":"teachers.js video"},
+    {"key":"spotify_url","type":"url","label":"Spotify URL","src":"teachers.js spotify"},
+    {"key":"avatar","type":"image","label":"Avatar (square)","src":"teachers.js avatar"},
+    {"key":"photo_position","type":"text","label":"Photo object-position","src":"teachers.js photoPosition"},
+    {"key":"needs_content","type":"bool","label":"Needs content (no bio/photo yet)","src":"teachers.js needsContent"}
+  ],
+  "facilitator": [
+    {"key":"role","type":"text","label":"Role","src":"team.js role"},
+    {"key":"short_bio","type":"textarea","label":"Card blurb","src":"team.js shortBio"},
+    {"key":"listed","type":"bool","label":"Listed on the Facilitators grid","src":"team.js listed"}
+  ]
+}

@@ -1,0 +1,11 @@
+/*
+Theme Name: YAWW
+Theme URI: https://yogaadventuresworldwide.com/
+Author: Yoga Adventures Worldwide
+Description: Classic PHP theme that reproduces the official static YAWW site. Styles live in assets/css (copied from the static site by bin/sync-assets.sh); this file only carries the theme header.
+Version: 0.1.0
+Requires at least: 6.0
+Requires PHP: 7.4
+License: Proprietary
+Text Domain: yaww
+*/

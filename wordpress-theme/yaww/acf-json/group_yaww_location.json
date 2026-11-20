@@ -1,0 +1,108 @@
+{
+  "key": "group_yaww_location",
+  "title": "YAWW \u00b7 Location",
+  "fields": [
+    {
+      "key": "field_yaww_location_display_name",
+      "label": "Display name (italic line)",
+      "name": "display_name",
+      "type": "text"
+    },
+    {
+      "key": "field_yaww_location_region",
+      "label": "Region",
+      "name": "region",
+      "type": "select",
+      "choices": {
+        "Europe": "Europe",
+        "The Americas": "The Americas",
+        "Africa & Middle East": "Africa & Middle East",
+        "Asia": "Asia"
+      },
+      "return_format": "value"
+    },
+    {
+      "key": "field_yaww_location_country",
+      "label": "Country",
+      "name": "country",
+      "type": "text"
+    },
+    {
+      "key": "field_yaww_location_intro",
+      "label": "Intro",
+      "name": "intro",
+      "type": "textarea"
+    },
+    {
+      "key": "field_yaww_location_hero_image",
+      "label": "Hero image",
+      "name": "hero_image",
+      "type": "image",
+      "return_format": "id"
+    },
+    {
+      "key": "field_yaww_location_card_image",
+      "label": "Card image",
+      "name": "card_image",
+      "type": "image",
+      "return_format": "id"
+    },
+    {
+      "key": "field_yaww_location_placeholder_hue",
+      "label": "Placeholder hue (0-360)",
+      "name": "placeholder_hue",
+      "type": "number"
+    },
+    {
+      "key": "field_yaww_location_hotel_label",
+      "label": "Generic stay label (never a hotel name)",
+      "name": "hotel_label",
+      "type": "text"
+    },
+    {
+      "key": "field_yaww_location_travel_tips",
+      "label": "Travel tips",
+      "name": "travel_tips",
+      "type": "repeater",
+      "layout": "block",
+      "button_label": "Add row",
+      "sub_fields": [
+        {
+          "key": "field_yaww_location_travel_tips_heading",
+          "label": "Heading",
+          "name": "heading",
+          "type": "text"
+        },
+        {
+          "key": "field_yaww_location_travel_tips_items",
+          "label": "Items (one per line)",
+          "name": "items",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "key": "field_yaww_location_gallery",
+      "label": "Gallery",
+      "name": "gallery",
+      "type": "gallery",
+      "return_format": "id"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "location"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "active": true,
+  "show_in_rest": 1,
+  "modified": 1763600000
+}

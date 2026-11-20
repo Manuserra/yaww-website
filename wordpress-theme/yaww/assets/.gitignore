@@ -1,0 +1,5 @@
+# Synced from the static site by bin/sync-assets.sh; not committed (zip the theme after syncing).
+css/
+js/
+images/
+media/
