@@ -12,8 +12,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/base.css?v=202611192000">
-<link rel="stylesheet" href="css/retreat.css?v=202611200550">
-<link rel="stylesheet" href="css/lead-modal.css?v=202611200550">
+<link rel="stylesheet" href="css/retreat.css?v=202611200600">
+<link rel="stylesheet" href="css/lead-modal.css?v=202611200600">
 </head>
 <body>
 <!-- Built by retreats/_tools/build_page.py from data/retreats.js and retreats/thailand-dec-2026/data.json,
@@ -709,14 +709,14 @@
   <section class="rooms" id="rooms">
     <h2 class="rooms__title">Rooms pricing</h2>
     <div class="rooms__inner">
-      <div class="rooms__grid" id="rooms-grid"></div>
+      <div class="rooms__list" id="rooms-grid" aria-label="Room types"></div>
 
       <aside class="rooms__aside" aria-labelledby="how-to-book">
         <h3 class="rooms__aside-title" id="how-to-book">How to book</h3>
         <ol class="rooms__steps">
           <li>
             <strong>Choose your room</strong>
-            <span>Prices are in USD, per person or per room as marked.</span>
+            <span>Prices are in USD, per person or for a private room, as marked.</span>
           </li>
           <li>
             <strong>Secure your space</strong>
@@ -730,7 +730,7 @@
         <p class="rooms__aside-note">All payments are non-refundable and non-transferable, so we recommend trip cancellation insurance from the day you pay your deposit.</p>
         <p class="rooms__aside-note">Sharing a room? Book together with your roommate. If you don&rsquo;t have one we&rsquo;ll pair you when we can &mdash; and if nobody is available, we&rsquo;ll move you to a private room.</p>
         <div class="rooms__actions">
-          <a class="btn btn--primary" href="contact.html#general-inquiry" data-lead-open data-lead-intent="reserve" data-lead-source="rooms">Reserve your space</a>
+          <a class="btn btn--primary" href="contact.html#general-inquiry" data-lead-open data-lead-intent="reserve" data-lead-source="rooms" data-wetravel>Reserve your spot</a>
           <a class="btn btn--secondary" href="contact.html#general-inquiry" data-lead-open data-lead-source="rooms">I want more info</a>
         </div>
       </aside>
@@ -1314,6 +1314,8 @@
       }
     ];
 
+    window.YAWW_HOTELS = HOTELS;   // the room modal shows each hotel too
+
     var tabsEl = document.querySelector('.retreat-accom__tabs');
     var panelsEl = document.querySelector('.retreat-accom__panels');
     if (!tabsEl || !panelsEl) return;
@@ -1610,201 +1612,41 @@
     {
       name: 'Superior — Private Room',
       priceUSD: 7455,
-      priceUnit: 'per room',
-      hotels: [
-        {
-          name: 'Chiang Mai',
-          chips: ['Private bath'],
-          gallery: ['images/retreat-photos/thailand/yoga-retreat-thailand-superior-room-with-a-carved-headboard.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-stone-basin-in-the-bathroom.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-sea-view-room-with-a-canopy-bed.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-open-air-shower-with-a-blue-jar.webp']
-        },
-        {
-          name: 'Koh Yao Noi',
-          chips: [],
-          gallery: []
-        }
-      ]
+      priceUnit: 'private room',
+      desc: 'Private bathroom & balcony in Chiang Mai; jungle view room with private bath at the beach.',
+      pills: ['Private room', 'Private bath'],
+      gallery: ['images/retreat-photos/thailand/yoga-retreat-thailand-superior-room-with-a-carved-headboard.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-stone-basin-in-the-bathroom.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-sea-view-room-with-a-canopy-bed.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-open-air-shower-with-a-blue-jar.webp']
     },
     {
       name: 'Superior — Shared Double Bed',
       priceUSD: 6495,
       priceUnit: 'per person',
-      hotels: [
-        {
-          name: 'Chiang Mai',
-          chips: ['Double bed', 'Private bath'],
-          gallery: ['images/retreat-photos/thailand/yoga-retreat-thailand-superior-room-with-a-carved-headboard.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-stone-basin-in-the-bathroom.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-sea-view-room-with-a-canopy-bed.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-open-air-shower-with-a-blue-jar.webp']
-        },
-        {
-          name: 'Koh Yao Noi',
-          chips: [],
-          gallery: []
-        }
-      ]
+      desc: 'Shared-bed rate. You will be required to take a Private Superior if there is no roommate available.',
+      pills: ['Shared bed', 'Double bed', 'Private bath'],
+      gallery: ['images/retreat-photos/thailand/yoga-retreat-thailand-superior-room-with-a-carved-headboard.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-stone-basin-in-the-bathroom.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-sea-view-room-with-a-canopy-bed.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-open-air-shower-with-a-blue-jar.webp']
     },
     {
       name: 'Shared Room — Queen Bed',
       priceUSD: 6595,
       priceUnit: 'per person',
-      hotels: [
-        {
-          name: 'Chiang Mai',
-          chips: ['Queen bed', 'Private bath'],
-          gallery: ['images/retreat-photos/thailand/yoga-retreat-thailand-teak-screen-onto-the-pool.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-bathtub-looking-into-the-room.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-robes-and-bath-products-on-a-tray.webp']
-        },
-        {
-          name: 'Koh Yao Noi',
-          chips: [],
-          gallery: []
-        }
-      ]
+      desc: 'In Koh Yao Noi the shared room has a queen and a twin bed.',
+      pills: ['Shared room', 'Queen bed', 'Private bath'],
+      gallery: []
     },
     {
       name: 'Shared Room — Twin Bed',
       priceUSD: 6395,
       priceUnit: 'per person',
-      hotels: [
-        {
-          name: 'Chiang Mai',
-          chips: ['Twin bed', 'Private bath'],
-          gallery: ['images/retreat-photos/thailand/yoga-retreat-thailand-bathtub-looking-into-the-room.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-robes-and-bath-products-on-a-tray.webp', 'images/retreat-photos/thailand/yoga-retreat-thailand-balcony-over-the-pool.webp']
-        },
-        {
-          name: 'Koh Yao Noi',
-          chips: [],
-          gallery: []
-        }
-      ]
+      desc: 'In Koh Yao Noi the shared room has a queen and a twin bed.',
+      pills: ['Shared room', 'Twin bed', 'Private bath'],
+      gallery: []
     }
   ];
+  /* Where the rooms are: one name per hotel, in the order you stay. */
+  var ROOM_VENUES = ['Chiang Mai', 'Koh Yao Noi'];
 
-  (function () {
-
-    /* A name past this many characters is the one that cannot share a line
-       with the price on a narrow screen. Purely a mobile concern; the class
-       it sets is only honoured under 767px. */
-    var LONG_NAME = 34;
-
-    var gridEl = document.getElementById('rooms-grid');
-    var dlg = document.querySelector('.lightbox');
-    if (!gridEl) return;
-
-    function el(tag, cls, text) {
-      var n = document.createElement(tag);
-      if (cls) n.className = cls;
-      if (text != null) n.textContent = text;
-      return n;
-    }
-
-    var ARROW_PREV = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>';
-    var ARROW_NEXT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>';
-
-    /* The card's photo is the same .photo-slider used by the itinerary and the
-       accommodations gallery, so arrows, dots and keyboard behaviour come from
-       the shared component. It is built here rather than left to the
-       [data-lightbox] hook because this module renders after the lightbox has
-       already scanned the page; each slide opens the tier's full set at its
-       own index instead. */
-    function mediaSlider(list, label, onOpen) {
-      var sl = el('div', 'photo-slider rooms__media');
-      sl.setAttribute('role', 'group');
-      sl.setAttribute('aria-roledescription', 'carousel');
-      sl.setAttribute('aria-label', label + ' photos');
-      sl.innerHTML =
-        '<div class="photo-slider__track">' +
-          list.map(function (src, i) {
-            return '<div class="photo-slider__slide"><img src="' + src + '" alt="' +
-                   (i === 0 ? label : '') + '" loading="lazy"></div>';
-          }).join('') +
-        '</div>' +
-        '<button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">' + ARROW_PREV + '</button>' +
-        '<button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">' + ARROW_NEXT + '</button>' +
-        '<div class="photo-slider__dots">' +
-          list.map(function (_, i) {
-            return '<button class="photo-slider__dot' + (i === 0 ? ' is-active' : '') +
-                   '" aria-label="Photo ' + (i + 1) + '"></button>';
-          }).join('') +
-        '</div>';
-      sl.querySelectorAll('.photo-slider__slide img').forEach(function (img, i) {
-        img.addEventListener('click', function () { onOpen(list, i); });
-      });
-      return sl;
-    }
-
-    /* `back` is the card's own slider: on close the lightbox leaves it on
-       whatever photo was last viewed, the same as the itinerary sliders. */
-    function open(gallery, start, back) {
-      if (dlg && dlg.openGallery && gallery.length) dlg.openGallery(gallery, start, back);
-    }
-
-    TIERS.forEach(function (tier) {
-      var hotels = tier.hotels || [];
-      var card = el('article', 'rooms__card');
-      if (tier.name.length > LONG_NAME) card.classList.add('rooms__card--stacked');
-
-      /* The tier's gallery, flat, plus the index each hotel starts at — so a
-         thumbnail can open the shared gallery already on its own photos. */
-      var gallery = [];
-      var offsets = hotels.map(function (hotel) {
-        var at = gallery.length;
-        gallery = gallery.concat(hotel.gallery || []);
-        return at;
-      });
-
-      var cardSlider = null;
-      if (gallery.length) {
-        cardSlider = mediaSlider(gallery, tier.name, function (list, i) { open(list, i, cardSlider); });
-        card.appendChild(cardSlider);
-      }
-
-      var body = el('div', 'rooms__body');
-
-      var head = el('div', 'rooms__head');
-      head.appendChild(el('h3', 'rooms__tier-name', tier.name));
-      var price = el('div', 'rooms__price');
-      /* A price may not be published yet, and is per person or per room. */
-      price.appendChild(el('p', 'rooms__price-amount', tier.priceUSD == null
-        ? 'Coming soon' : tier.priceUSD.toLocaleString('en-US') + ' USD'));
-      if (tier.priceUSD != null && tier.priceUnit) price.appendChild(el('p', 'rooms__price-unit', tier.priceUnit));
-      head.appendChild(price);
-      body.appendChild(head);
-
-      var list = el('div', 'rooms__hotels');
-      hotels.forEach(function (hotel, hi) {
-        var row = el('div', 'rooms__hotel');
-
-        if (hotel.gallery && hotel.gallery.length) {
-          var thumb = el('img', 'rooms__thumb');
-          thumb.src = hotel.gallery[0];
-          thumb.alt = hotel.name + ' — ' + tier.name;
-          thumb.loading = 'lazy';
-          thumb.addEventListener('click', function () { open(gallery, offsets[hi], cardSlider); });
-          row.appendChild(thumb);
-        }
-
-        var text = el('div', 'rooms__hotel-text');
-        text.appendChild(el('p', 'rooms__hotel-name', hotel.name));
-
-        var attrs = hotel.attrs || {};
-        var chips = hotel.chips || [
-          attrs.bed && attrs.bed + ' bed',
-          attrs.bath && attrs.bath + ' bath',
-          attrs.view && attrs.view + ' view'
-        ].filter(Boolean);
-        if (chips.length) {
-          var chipRow = el('div', 'rooms__chips');
-          chips.forEach(function (label) { chipRow.appendChild(el('span', 'rooms__chip', label)); });
-          text.appendChild(chipRow);
-        }
-
-        row.appendChild(text);
-        list.appendChild(row);
-      });
-      body.appendChild(list);
-
-      card.appendChild(body);
-      gridEl.appendChild(card);
-    });
-  })();
+  /* The list and the room modal are rendered by js/retreat-rooms.js,
+     from TIERS and ROOM_VENUES above. */
 
   /* Tabs: sliding indicator ----------------------------------------------
      Runs last, so every tab bar the modules render already exists. It reads
@@ -2386,7 +2228,8 @@
      hero by build_page.py, the same label the retreat cards carry. */
 </script>
 
-<script src="js/lead-modal.js?v=202611200550" defer></script>
+<script src="js/retreat-rooms.js?v=202611200600" defer></script>
+<script src="js/lead-modal.js?v=202611200600" defer></script>
 <script src="js/hosts.js?v=202611191130" defer></script>
 </body>
 </html>

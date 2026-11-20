@@ -55,7 +55,7 @@ import page_content as PC  # noqa: E402
 REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 TPL = os.path.join(REPO, "retreatpage-elcuyo.html")
 HOSTS_JS = '<script src="js/hosts.js?v=202611191130" defer></script>'
-CSS_VERSION = "202611200550"   # bump with any change to css/retreat.css
+CSS_VERSION = "202611200600"   # bump with any change to css/retreat.css
 CARDS_JS = '<script src="js/retreat-cards.js?v=202611200400"></script>'
 
 # Past editions that still have a page but are no longer listed in
@@ -341,7 +341,7 @@ def chips(attrs):
 
 def price_unit(r):
     u = r.get("price_unit")
-    return {"per person": "per person", "private room": "per room"}.get(u, u)
+    return {"per person": "per person", "private room": "private room"}.get(u, u)
 
 
 # ---------------------------------------------------------------- markup --
@@ -538,7 +538,7 @@ def build(rid, cat, assets, template, waitlist=False):
     # The built pages use rules the template predates (day titles, notes,
     # empty host photo), so they ask for the current stylesheet.
     doc = re.sub(r"css/retreat\.css\?v=\d+", "css/retreat.css?v=" + CSS_VERSION, doc, count=1)
-    doc = re.sub(r"(css/lead-modal\.css|js/lead-modal\.js)\?v=\d+", r"\1?v=" + CSS_VERSION, doc)
+    doc = re.sub(r"(css/lead-modal\.css|js/lead-modal\.js|js/retreat-rooms\.js|js/booking-bar\.js)\?v=\d+", r"\1?v=" + CSS_VERSION, doc)
     doc = swap(doc, "<body>\n",
                f"<body>\n<!-- Built by retreats/_tools/build_page.py"
                + (f" --waitlist from data/locations.js (program) and" if waitlist else " from data/retreats.js and")
@@ -708,25 +708,35 @@ def build(rid, cat, assets, template, waitlist=False):
         doc = cut(doc, "    var HOTELS = [", "\n    ];", "\n" + ",\n".join(hotels), "HOTELS")
 
     # ---------------------------------------------------------------- rooms
+    # One entry per room type, rendered by js/retreat-rooms.js as a stacked
+    # list and a room modal. A room the old site shows no photo for borrows
+    # the photos of the same room at another rate ("…, shared bed" is the
+    # room above it, shared); failing that it gets a visible placeholder,
+    # never the hotel's general photos dressed up as the room's.
+    def base_name(n):
+        return re.sub(r"\s*[,—–-]\s*shared bed\b.*$|\s*[—–-]\s*shared$", "", n, flags=re.I).strip()
+    own = {}
+    for room in d["rooms"]:
+        g = [assets.web(x["file"], Assets.SLIDE, loc) for x in usable(room.get("gallery"))]
+        if g:
+            own.setdefault(base_name(room["name"]), g)
     tiers = []
-    # A room type the old site shows no photo for takes three of the
-    # property's own, starting at a different one per card so a grid of
-    # them does not repeat the same picture.
-    pool = []
-    if d["accommodations"] and d["accommodations"][0].get("gallery"):
-        pool = [assets.web(g["file"], Assets.SLIDE, loc) for g in usable(d["accommodations"][0]["gallery"])]
-    for ri, room in enumerate(d["rooms"]):
-        fallback = (pool[ri % len(pool):] + pool[:ri % len(pool)])[:3] if pool else []
-        gal = [assets.web(g["file"], Assets.SLIDE, loc) for g in usable(room.get("gallery"))] or fallback
-        rows = []
-        for vi, v in enumerate(venues):
-            rows.append("        {\n          name: %s,\n          chips: [%s],\n          gallery: [%s]\n        }" % (
-                jstr(v), ", ".join(jstr(c) for c in (chips(room.get("attrs")) if vi == 0 else [])),
-                ", ".join(jstr(g) for g in (gal if vi == 0 else []))))
-        tiers.append("    {\n      name: %s,\n      priceUSD: %s,\n      priceUnit: %s,\n      hotels: [\n%s\n      ]\n    }" % (
-            jstr(room["name"]), room["price_usd"] if room.get("price_usd") is not None else "null",
-            jstr(price_unit(room)), ",\n".join(rows)))
+    for room in d["rooms"]:
+        gal = ([assets.web(x["file"], Assets.SLIDE, loc) for x in usable(room.get("gallery"))]
+               or own.get(base_name(room["name"])) or [])
+        unit = price_unit(room)
+        nm = room["name"]
+        occ = ("Shared bed" if re.search(r"shared bed|shared double bed", nm, re.I)
+               else "Shared room" if re.match(r"shared", nm, re.I) or unit == "per person" and re.search(r"\bshared\b", nm, re.I)
+               else "Private room" if re.search(r"private", nm, re.I) or unit == "private room"
+               else None)
+        pills = ([occ] if occ else []) + chips(room.get("attrs"))
+        tiers.append("    {\n      name: %s,\n      priceUSD: %s,\n      priceUnit: %s,\n      desc: %s,\n      pills: [%s],\n      gallery: [%s]\n    }" % (
+            jstr(nm), room["price_usd"] if room.get("price_usd") is not None else "null",
+            jstr(unit), jstr(tidy(room.get("description")) or None),
+            ", ".join(jstr(c) for c in pills), ", ".join(jstr(g) for g in gal)))
     doc = cut(doc, "  var TIERS = [", "\n  ];", "" if waitlist else "\n" + ",\n".join(tiers), "TIERS")
+    doc = swap(doc, "  var ROOM_VENUES = [];", "  var ROOM_VENUES = [%s];" % ", ".join(jstr(v) for v in venues), "venues")
 
     # -------------------------------------------------------------- urgency
     st = r.get("status")
@@ -745,7 +755,7 @@ def build(rid, cat, assets, template, waitlist=False):
     units = {price_unit(x) for x in priced}
     step1 = ("Prices for these dates are coming soon." if not priced
              else "Every price is per person, in USD." if units == {"per person"}
-             else "Prices are in USD, per person or per room as marked.")
+             else "Prices are in USD, per person or for a private room, as marked.")
     doc = swap(doc, "<span>Every price is per person, in USD.</span>", f"<span>{step1}</span>", "step1")
     dep = b.get("deposit_usd")
     doc = swap(doc, "<span>A $1,000 deposit per person holds your place. It comes off your total &mdash; it is not an extra.</span>",
@@ -760,9 +770,9 @@ def build(rid, cat, assets, template, waitlist=False):
                  '        <p class="rooms__aside-note">All payments are non-refundable and non-transferable, '
                  "so we recommend trip cancellation insurance from the day you pay your deposit.</p>\n",
                  doc, count=1, flags=re.S)
-    doc = swap(doc, '''          <button class="btn btn--primary" type="button">Reserve your space</button>
+    doc = swap(doc, '''          <button class="btn btn--primary" type="button">Reserve your spot</button>
           <button class="btn btn--secondary" type="button">I want more info</button>''',
-               '''          <a class="btn btn--primary" href="contact.html#general-inquiry" data-lead-open data-lead-intent="reserve" data-lead-source="rooms">Reserve your space</a>
+               '''          <a class="btn btn--primary" href="contact.html#general-inquiry" data-lead-open data-lead-intent="reserve" data-lead-source="rooms" data-wetravel>Reserve your spot</a>
           <a class="btn btn--secondary" href="contact.html#general-inquiry" data-lead-open data-lead-source="rooms">I want more info</a>''', "rooms ctas")
     doc = swap(doc, '<section class="rooms">', '<section class="rooms" id="rooms">', "rooms id")
     if waitlist:
@@ -929,17 +939,6 @@ def patch_template_js(doc):
                "              bar.scrollTo({ left: t.offsetLeft - (bar.clientWidth - t.offsetWidth) / 2, behavior: reduce ? 'auto' : 'smooth' });\n"
                "            }\n"
                "          }", "tab scroll")
-    doc = swap(doc, """      price.appendChild(el('p', 'rooms__price-amount', tier.priceUSD.toLocaleString('en-US') + ' USD'));
-      price.appendChild(el('p', 'rooms__price-unit', 'per person'));""",
-               """      /* A price may not be published yet, and is per person or per room. */
-      price.appendChild(el('p', 'rooms__price-amount', tier.priceUSD == null
-        ? 'Coming soon' : tier.priceUSD.toLocaleString('en-US') + ' USD'));
-      if (tier.priceUSD != null && tier.priceUnit) price.appendChild(el('p', 'rooms__price-unit', tier.priceUnit));""",
-               "price render")
-    doc = swap(doc, """        var chips = [
-          attrs.bed && attrs.bed + ' bed',""",
-               """        var chips = hotel.chips || [
-          attrs.bed && attrs.bed + ' bed',""", "chips")
     doc = swap(doc, """    var prices = (typeof TIERS !== 'undefined' ? TIERS : []).map(function (t) { return t.priceUSD; });
     if (!prices.length) return;
     var from = Math.min.apply(null, prices);""",
