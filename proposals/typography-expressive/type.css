@@ -163,6 +163,11 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
   line-height: 1.14;
   letter-spacing: -0.012em;
 }
+/* "Ready when you are" is clamped to two lines (overflow hidden). At
+   the tighter 1.14 leading the clip cut the descenders of y, g, p;
+   a little padding shows them and the negative margin keeps the
+   layout where it was. */
+.booking__title { padding-bottom: 0.18em; margin-bottom: -0.18em; }
 /* A kicker sits closer to its title once the title is big. */
 .kicker + .section-title, .kicker + h2, .loc-kicker + .loc-h2 { margin-top: 6px; }
 
