@@ -96,3 +96,25 @@ Open / questions:
 - Carie Cook's Dec 2026 El Cuyo retreat is not in `data/retreats.js` (not my file), so her page shows no retreat band.
 - Review figures 4.9 / 4.8 were carried over; confirm, and add the two review URLs (`href="#"` now).
 - `css/home.css` and `index.html` were touched (For teachers styles moved to `css/lead.css`, button href). Retreat pages still link `team-*.html`; the redirects cover them.
+
+## 2 · Homepage
+
+Commits (tag `night-06-home`):
+- `ea2ceaf` home: more air between and inside sections, on a fluid spacing scale
+- `7d1bd70` home: hero video script, shot list from existing footage, web specs
+- (next) home: before/after screenshots and this report section
+
+**Spacing.** New fluid tokens in `css/base.css` (added, nothing existing changed), values at 390 / 1440 / 1920:
+- `--space-section` 48 / 82 / 101: top and bottom of every stone module (was 32 / 48 / 48). Neighbours now sit ~164px apart at 1440 instead of 96.
+- `--space-band` 72 / 104 / 128: the blue "Three ways to travel" band (was 72 flat).
+- `--space-head` 40 / 60 / 72: heading → content in every section (was a mix of 40, 48 and 56). The tiers band keeps one step more (+16) for its heavy content, as before.
+- `--space-stack-xs/sm/md` (8→16, 16→28, 24→48): eyebrow → title, title → body, body → button inside the heading groups and pillars (was 8 or 16 everywhere).
+Applied to Where we're going next, tiers, quotes, the three pillars, movement, booking, who comes, FAQ. Untouched: the hero (fits the viewport), the closing CTA and the footer (as asked), and the "For teachers" band, which now lives in `css/lead.css` shared with About (not my file; it gets more room around it anyway from its neighbours). Page height 10,500 → 11,307 at 1440, 12,846 → 13,102 at 390. CTA and footer heights unchanged at all three widths.
+Full-page before/after at 1440, 1920 and 390: `docs/home-spacing/before-*.jpg`, `after-*.jpg` (headless Chrome, my own instance, not the shared pane). No overflow at 390.
+Version strings for base.css and home.css bumped on `index.html` only; other pages still load the old `base.css?v=` (the new tokens are unused there, so nothing breaks).
+
+**Hero video.** `docs/hero-video-script.md`: a 24 s loop, one retreat day from first light to golden hour in 8 shots (water, practice wide, practice close, into the water, the place, the table, people, golden-hour water), slow moves, dissolves, no text, loop dissolve baked in so the last frame equals the first. Each shot has candidate files from the Selects Bin (by name only). Main find: the Montenegro May 2025 camera clips (`C0xxx`, `yawwNNN`) are 1920x1080 at 100 fps, so the whole loop can come from that shoot with clean slow motion and one grade. Current `hero-home.mp4` is 22 s, 1080p30, 18.6 MB (6.8 Mbps) and goes to phones too; spec targets ≤6 MB desktop (~2 Mbps, no audio, faststart), a 720x1280 mobile file ≤3.5 MB, and matching posters ≤150 KB.
+
+Questions:
+- Is ~164px between sections at 1440 the right amount, or a step too much? It's one token (`--space-section`) to tune.
+- Video: Montenegro only (one consistent look), or one shot per destination?
