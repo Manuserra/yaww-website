@@ -3,7 +3,7 @@
 Folder: `proposals/typography-expressive/`. Open `index.html` (specimen, rules, before/after), then the four pages.
 
 ## What's here
-- `type.css`: the override. It only changes type (family, size, weight, style, leading, tracking, wrapping, hanging quotes, one drop cap). It goes after every site stylesheet and can be adopted as is, or merged into `css/base.css` + page sheets.
+- `type.css`: the override. It only changes type (family, size, weight, style, leading, tracking, wrapping, hanging quotes). It goes after every site stylesheet and can be adopted as is, or merged into `css/base.css` + page sheets.
 - `home.html`, `retreatpage-el-cuyo-dec-2026-delaney.html`, `locationpage-oaxaca.html`, `about.html`: copies of the live pages, with paths rebased to `../../` and `type.css` linked last. The home copy is `home.html` because `index.html` is the specimen.
 - `proposal.js`: rebases the paths that page scripts build at runtime (cards from `data/*.js`, galleries) and draws the on/off switch (top right; bottom right on phones). `T` toggles; `?type=off` opens a page with it off; the choice is remembered per browser.
 - `shots/`: before/after at 1440 used on the specimen page.
@@ -20,8 +20,7 @@ The copies were taken from the live pages when this proposal was committed. To r
 - **Numbers.** Day N, prices, the review score and "+9" go to Baskerville. No oldstyle or tabular figures: the Google Fonts files we load have neither (tested in the browser; `font-variant-numeric` changes nothing). Self-hosting the full Raleway would give oldstyle figures if wanted later.
 - **Small caps.** Not used. Neither font has real ones; the browser fakes them thin. Caps + tracking instead (quote attributions).
 - **Hanging punctuation.** Left-aligned quotes hang their opening mark (native in Safari, `text-indent: -0.42em` elsewhere). Centred quotes (Oaxaca) don't.
-- **Drop cap.** Once: About → Our story. `initial-letter: 3` (Chrome 110+, Safari) with a float fallback.
-- **Wrapping.** `text-wrap: balance` on headings, `pretty` on paragraphs. About's h1 keeps its `<br>` on desktop (italic 46 fits both lines in the 760px measure) and drops it on phones, where it left "journeys," alone.
+- **Wrapping.** `text-wrap: balance` on headings, `pretty` on paragraphs. About's h1 keeps its `<br>` on desktop (italic 42 fits both lines in the 760px measure) and drops it on phones, where it left "journeys," alone.
 
 ## Checked
 - 1440 and 390, switch on and off, all four pages: no horizontal overflow, no broken images (runtime-built cards and room photos included), toggle clear of the sticky nav and the retreat booking bar.

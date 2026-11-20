@@ -12,25 +12,25 @@
    moments that speak: the hero, quotes, "Day N", the closing line.
 
    Scale (390 → 1440, fluid between):
-     display   40 → 80   Baskerville 400 (italic on home)  lh 1.04  -0.02em
-     h1 page   34 → 56   Baskerville 400                   lh 1.1   -0.015em
-     h2        28 → 42   Baskerville 400                   lh 1.14  -0.012em
-     h2 lyric  30 → 48   Baskerville 400 italic             lh 1.15  -0.01em
-     h3        20 → 24   Baskerville 400 italic / 700       lh 1.25
+     display   36 → 68   Baskerville 400 (italic on home)  lh 1.04  -0.02em
+     h1 page   32 → 50   Baskerville 400                   lh 1.1   -0.015em
+     h2        26 → 36   Baskerville 400                   lh 1.14  -0.012em
+     h2 lyric  28 → 42   Baskerville 400 italic             lh 1.15  -0.01em
+     h3        20 → 22   Baskerville 400 italic / 700       lh 1.25
      quote     20 → 26   Baskerville 400 italic             lh 1.45
-     lede      17 → 19   Raleway 400                        lh 1.6
+     lede      17 → 18   Raleway 400                        lh 1.6
      body      16        Raleway 400                        lh 1.6 in prose
      eyebrow   12 → 13   Raleway 600 caps                   +0.16em
    ============================================================ */
 
 :root {
-  --tx-display: clamp(40px, 25.1px + 3.81vw, 80px);
-  --tx-h1:      clamp(34px, 25.8px + 2.1vw, 56px);
-  --tx-h2:      clamp(28px, 22.8px + 1.33vw, 42px);
-  --tx-h2-lyric:clamp(30px, 23.3px + 1.71vw, 48px);
-  --tx-h3:      clamp(20px, 18.5px + 0.38vw, 24px);
+  --tx-display: clamp(36px, 24.1px + 3.05vw, 68px);
+  --tx-h1:      clamp(32px, 25.3px + 1.71vw, 50px);
+  --tx-h2:      clamp(26px, 22.3px + 0.95vw, 36px);
+  --tx-h2-lyric:clamp(28px, 22.8px + 1.33vw, 42px);
+  --tx-h3:      clamp(20px, 19.3px + 0.19vw, 22px);
   --tx-quote:   clamp(20px, 17.8px + 0.57vw, 26px);
-  --tx-lede:    clamp(17px, 16.3px + 0.19vw, 19px);
+  --tx-lede:    clamp(17px, 16.6px + 0.1vw, 18px);
   --tx-eyebrow: clamp(12px, 11.6px + 0.1vw, 13px);
 }
 
@@ -104,12 +104,12 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
 .home-hero__proof-label { letter-spacing: 0.06em; }
 
 /* About's page title is a sentence with a set line break, so it takes
-   the lyric italic (italic is also narrower: at 46px both lines still
+   the lyric italic (italic is also narrower: at 42px both lines still
    fit the 760px measure). Balance off, so the <br> decides the break. */
 .about-intro__title {
   font-weight: 400;
   font-style: italic;
-  font-size: clamp(30px, 24px + 1.53vw, 46px);
+  font-size: clamp(28px, 22.8px + 1.33vw, 42px);
   line-height: 1.16;
   letter-spacing: -0.012em;
   text-wrap: wrap;
@@ -169,7 +169,7 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
   line-height: 1.25;
   letter-spacing: -0.005em;
 }
-.tiers2__headline { font-size: clamp(22px, 19.8px + 0.57vw, 28px); }
+.tiers2__headline { font-size: clamp(22px, 20.5px + 0.38vw, 26px); }
 .host__name, .about-person__name { letter-spacing: -0.005em; }
 .booking__label, .who__tab-title { letter-spacing: -0.005em; }
 /* Card titles at 16px: Bold Baskerville is wide; a touch of air. */
@@ -238,32 +238,7 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
   letter-spacing: 0.005em;
 }
 
-/* ---------- 8 · The one drop cap --------------------------------
-   About → Our story, first paragraph. Three lines of Baskerville
-   Regular, sunk into the text. Nowhere else. `initial-letter` sizes
-   it to the lines exactly (Chrome 110+, Safari); others get a float
-   tuned to the same three lines. */
-.about-intro + .about-section .about-prose > .about-body:first-child::first-letter {
-  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
-  font-weight: 400;
-  color: var(--sea-blue);
-  float: left;
-  margin: 0.06em 0.12em 0 0;
-  font-size: 5.5em;
-  line-height: 0.8;
-}
-@supports (initial-letter: 3) or (-webkit-initial-letter: 3) {
-  .about-intro + .about-section .about-prose > .about-body:first-child::first-letter {
-    float: none;
-    margin: 0 0.14em 0 0;
-    font-size: inherit;
-    line-height: inherit;
-    -webkit-initial-letter: 3;
-    initial-letter: 3;
-  }
-}
-
-/* ---------- 9 · Small UI text -----------------------------------
+/* ---------- 8 · Small UI text -----------------------------------
    Buttons and tabs keep their size; tracking goes from a flat 0.04em
    to a proper caps spacing so they stop looking squeezed. */
 .btn { letter-spacing: 0.1em; }
