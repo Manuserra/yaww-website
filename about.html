@@ -12,7 +12,13 @@
 <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css" crossorigin="anonymous">
 
 <link rel="stylesheet" href="css/base.css?v=202611192000">
-<link rel="stylesheet" href="css/about.css?v=202611181910">
+<link rel="stylesheet" href="css/people.css?v=202611201200">
+<link rel="stylesheet" href="css/lead.css?v=202611201200">
+<link rel="stylesheet" href="css/about.css?v=202611201200">
+<!-- People data for the teacher and facilitator rails. -->
+<script src="data/teachers.js?v=202611201200"></script>
+<script src="data/team.js?v=202611201300"></script>
+<script src="js/people-cards.js?v=202611201200"></script>
 </head>
 
 <body>
@@ -117,7 +123,7 @@
        INTRO — "Our story"
        ========================================================= -->
   <section class="about-intro">
-    <p class="kicker">Our story</p>
+    <p class="kicker">About us</p>
     <h1 class="about-intro__title">Small-group yoga journeys,<br>hosted by people who know the place</h1>
     <p class="about-body about-intro__lede">Since 2008, Christina Thomas and her team have been taking small groups inside the places they love, with a hand-picked teacher and yoga woven into every day.</p>
     <figure class="about-intro__figure">
@@ -135,7 +141,7 @@
       </figure>
       <div class="about-split__text">
         <div class="about-split__head">
-          <p class="kicker">Our story</p>
+          <p class="kicker">Since 2008</p>
           <h2 class="section-title">Our story</h2>
         </div>
         <div class="about-prose">
@@ -174,7 +180,10 @@
        HOW WE WORK
        ========================================================= -->
   <section class="about-section about-how">
-    <h2 class="section-title">How we work</h2>
+    <div class="about-team__head">
+      <p class="kicker">Our approach</p>
+      <h2 class="section-title">How we work</h2>
+    </div>
     <div class="about-how__grid">
 
       <article class="about-card">
@@ -183,7 +192,7 @@
         </figure>
         <h3 class="about-card__title">The places</h3>
         <p class="about-card__text">Destinations away from the overdone routes, chosen for their people, their food and their culture.</p>
-        <a class="btn btn--secondary" href="#">Explore locations</a>
+        <a class="btn btn--secondary" href="locations.html">Explore locations</a>
       </article>
 
       <article class="about-card">
@@ -192,7 +201,7 @@
         </figure>
         <h3 class="about-card__title">The people we know there</h3>
         <p class="about-card__text">Lunch with shepherds in Sardinia. The Day of the Dead with local families in Oaxaca. A monk chat in Chiang Mai.</p>
-        <a class="btn btn--secondary" href="#">Explore retreats</a>
+        <a class="btn btn--secondary" href="retreats.html">Explore retreats</a>
       </article>
 
       <article class="about-card">
@@ -201,121 +210,197 @@
         </figure>
         <h3 class="about-card__title">The teachers</h3>
         <p class="about-card__text">Chosen one by one: teachers who read the room and adapt every class to the group, from first-timers to teachers themselves.</p>
-        <a class="btn btn--secondary" href="#">See all teachers</a>
+        <a class="btn btn--secondary" href="teachers.html">See all teachers</a>
       </article>
 
       <article class="about-card">
         <figure class="about-card__media">
           <img class="about-img" src="images/about-how-team.jpg" alt="Two facilitators standing in a doorway" loading="lazy">
         </figure>
-        <h3 class="about-card__title">Someone from our team, with you</h3>
+        <h3 class="about-card__title">Our team, with you</h3>
         <p class="about-card__text">A facilitator travels with every group, so you never have to think about logistics. Just be there.</p>
-        <a class="btn btn--secondary" href="#">See all teachers</a>
+        <a class="btn btn--secondary" href="facilitators.html">See all facilitators</a>
       </article>
 
     </div>
   </section>
 
   <!-- =========================================================
-       THE TEAM — "It takes a village"
+       THE TEAM: "It takes a village". Christina is introduced above,
+       so the grid is the people behind her, in the order she set.
        ========================================================= -->
   <section class="about-section about-team">
     <div class="about-team__head">
-      <p class="kicker">Founder</p>
+      <p class="kicker">Team</p>
       <h2 class="section-title">It takes a village</h2>
     </div>
     <div class="about-team__grid">
 
       <article class="about-person">
         <figure class="about-person__media">
-          <img class="about-img" src="images/team-christina.jpg" alt="Christina Thomas with two colleagues at dinner" loading="lazy">
-        </figure>
-        <p class="about-person__role">Founder</p>
-        <h3 class="about-person__name">Christina Thomas</h3>
-        <p class="about-person__text">Designs every retreat, from the destination to the last dinner.</p>
-      </article>
-
-      <article class="about-person">
-        <figure class="about-person__media">
-          <img class="about-img" src="images/team-sofia.jpg" alt="Sofia Von Linden working on her phone" loading="lazy">
+          <img class="about-img" src="images/team/sofi-von-linden.jpg" alt="Sofi von Linden sitting on the sand by the sea" loading="lazy" width="672" height="888">
         </figure>
         <p class="about-person__role">Operations</p>
-        <h3 class="about-person__name">Sofia Von Linden</h3>
+        <h3 class="about-person__name">Sofi von Linden</h3>
         <p class="about-person__text">Makes sure every detail works, and travels with many of our groups.</p>
       </article>
 
       <article class="about-person">
         <figure class="about-person__media">
-          <img class="about-img" src="images/team-jenniferlyn.jpg" alt="Jenniferlyn Chiemingo outdoors under a blossoming tree" loading="lazy">
+          <img class="about-img" src="images/team/jenniferlyn-chiemingo.jpg" alt="Jenniferlyn Chiemingo outdoors" loading="lazy" width="672" height="888">
         </figure>
         <p class="about-person__role">Guest care</p>
         <h3 class="about-person__name">Jenniferlyn Chiemingo</h3>
         <p class="about-person__text">Answers your questions, from your first email to your packing list.</p>
       </article>
 
+      <!-- [missing photo + role] Manu: no photo or role on file. -->
+      <article class="about-person">
+        <figure class="about-person__media about-person__media--missing">
+          <span>[missing photo: Manu]</span>
+        </figure>
+        <p class="about-person__role">[missing data: role]</p>
+        <h3 class="about-person__name">Manu</h3>
+        <p class="about-person__text">[missing data: one line on what Manu does for our guests]</p>
+      </article>
+
+      <!-- [missing photo + role] Maggie: no photo or role on file. -->
+      <article class="about-person">
+        <figure class="about-person__media about-person__media--missing">
+          <span>[missing photo: Maggie]</span>
+        </figure>
+        <p class="about-person__role">[missing data: role]</p>
+        <h3 class="about-person__name">Maggie</h3>
+        <p class="about-person__text">[missing data: one line on what Maggie does for our guests]</p>
+      </article>
+
     </div>
   </section>
 
   <!-- =========================================================
-       GUEST QUOTES
+       TEACHERS + FACILITATORS rails, rendered from data/teachers.js
+       and data/team.js by js/people-cards.js
+       ========================================================= -->
+  <section class="about-section about-rails">
+    <div class="people-rail" data-people-rail="teachers">
+      <div class="people-rail__head">
+        <div class="about-split__head">
+          <p class="kicker">Who teaches</p>
+          <h2 class="section-title">Our teachers</h2>
+        </div>
+        <div class="people-rail__controls">
+          <a class="people-rail__all" href="teachers.html">See all teachers</a>
+          <div class="people-rail__nav">
+            <button class="people-rail__btn" type="button" data-rail-prev aria-label="Previous teachers"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+            <button class="people-rail__btn" type="button" data-rail-next aria-label="More teachers"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="people-rail__track" data-rail-track></div>
+    </div>
+
+    <div class="people-rail" data-people-rail="facilitators">
+      <div class="people-rail__head">
+        <div class="about-split__head">
+          <p class="kicker">Who travels with you</p>
+          <h2 class="section-title">Our facilitators</h2>
+        </div>
+        <div class="people-rail__controls">
+          <a class="people-rail__all" href="facilitators.html">See all facilitators</a>
+          <div class="people-rail__nav">
+            <button class="people-rail__btn" type="button" data-rail-prev aria-label="Previous facilitators"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+            <button class="people-rail__btn" type="button" data-rail-next aria-label="More facilitators"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="people-rail__track" data-rail-track></div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       GUEST QUOTES: real reviews (docs/testimonials-by-retreat.md).
+       No photos of these guests exist, so each gets an initial
+       monogram rather than a stock face.
        ========================================================= -->
   <section class="about-section about-quotes">
-    <h2 class="section-title">What our guests say</h2>
+    <div class="about-team__head">
+      <p class="kicker">Reviews</p>
+      <h2 class="section-title">What our guests say</h2>
+    </div>
     <div class="about-quotes__grid">
 
       <figure class="about-quote">
-        <blockquote class="about-quote__text">“We were cared for in a way that greatly exceeded good hospitality.”</blockquote>
+        <blockquote class="about-quote__text">&ldquo;YAWW always hits it out of the park. The yoga component is also great, but the curated experience includes incredible food and wine experiences, top-notch accommodations, and the opportunity to make meaningful connections with like-minded people.&rdquo;</blockquote>
         <figcaption class="about-quote__by">
-          <div class="about-quote__avatar"></div>
+          <span class="about-quote__avatar" aria-hidden="true">MR</span>
           <div>
-            <p class="about-quote__name">Laura E.</p>
-            <p class="about-quote__where">El Cuyo Retreat</p>
+            <p class="about-quote__name">Mallory R.</p>
+            <p class="about-quote__where">Google review</p>
           </div>
         </figcaption>
       </figure>
-
       <figure class="about-quote">
-        <blockquote class="about-quote__text">“The attention to detail and the personalization that Christina treats each person with is incomparable.”</blockquote>
+        <blockquote class="about-quote__text">&ldquo;I had never been interested in group organized travel prior to going on a retreat with Yoga Adventures Worldwide and now I can&rsquo;t imagine traveling without Christina and her wonderful crew.&rdquo;</blockquote>
         <figcaption class="about-quote__by">
-          <div class="about-quote__avatar"></div>
+          <span class="about-quote__avatar" aria-hidden="true">ES</span>
           <div>
-            <p class="about-quote__name">Signe B.</p>
-            <p class="about-quote__where">Holbox Retreat</p>
+            <p class="about-quote__name">Elizabeth S.</p>
+            <p class="about-quote__where">Tripadvisor review</p>
           </div>
         </figcaption>
       </figure>
-
       <figure class="about-quote">
-        <blockquote class="about-quote__text">“I have been traveling with Yoga Adventures Worldwide for over ten years and they keep surprising me with amazing locations and activities!”</blockquote>
+        <blockquote class="about-quote__text">&ldquo;Christina and her crew are magic travel masters. I would think of something and it would appear. Kind, organized and creative they offer great yoga, great food, great friends and great adventures.&rdquo;</blockquote>
         <figcaption class="about-quote__by">
-          <div class="about-quote__avatar"></div>
+          <span class="about-quote__avatar" aria-hidden="true">JS</span>
           <div>
-            <p class="about-quote__name">Mimi S.</p>
-            <p class="about-quote__where">Montenegro Retreat</p>
+            <p class="about-quote__name">Jessica S.</p>
+            <p class="about-quote__where">Google review</p>
           </div>
         </figcaption>
       </figure>
 
     </div>
-    <p class="about-quotes__rating">★ 4.9 on Google&nbsp; ·&nbsp; ★ 4.8 on Tripadvisor</p>
+
+    <!-- REVIEW BADGES: static placeholder, ready to swap for the
+         official widgets. See docs/review-widgets.md for what each one
+         needs. Rating figures carried over from the previous version:
+         confirm them before publishing. -->
+    <div class="review-badges">
+      <a class="review-badge" data-review-widget="google" href="#" rel="noopener">
+        <span class="review-badge__source">Google</span>
+        <span class="review-badge__stars" role="img" aria-label="4.9 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg></span>
+        <span class="review-badge__score">4.9</span>
+        <span class="review-badge__cta">Read our Google reviews</span>
+      </a>
+      <a class="review-badge" data-review-widget="tripadvisor" href="#" rel="noopener">
+        <span class="review-badge__source">Tripadvisor</span>
+        <span class="review-badge__stars" role="img" aria-label="4.8 out of 5 stars"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L1.4 7.8l6-.8z"/></svg></span>
+        <span class="review-badge__score">4.8</span>
+        <span class="review-badge__cta">Read our Tripadvisor reviews</span>
+      </a>
+    </div>
   </section>
 
   <!-- =========================================================
-       FOR TEACHERS
+       FOR TEACHERS: the homepage module, same markup and the same
+       stylesheet (css/lead.css), so the two never drift apart.
        ========================================================= -->
-  <section class="about-teachers">
-    <div class="about-inner about-grid">
-      <figure class="about-teachers__media">
-        <img class="about-img" src="images/about-teachers.jpg" alt="A teacher leading a class on a terrace above a bay" loading="lazy">
-      </figure>
-      <div class="about-teachers__text">
-        <div class="about-split__head">
-          <p class="kicker">For teachers</p>
-          <h2 class="section-title about-teachers__title">Take your students abroad.<br>We handle everything but the teaching.</h2>
-        </div>
-        <p class="about-body">We design the itinerary, manage every logistic, travel with your group and help you fill your spots.</p>
-        <a class="btn btn--secondary" href="#">Lead a retreat with us</a>
-      </div>
+  <section class="lead">
+    <div class="lead__media">
+      <img class="lead__photo" src="images/lead-group-terrace.jpg" alt="A teacher leading a discussion with her group seated on a terrace overlooking the bay" loading="lazy">
+    </div>
+    <div class="lead__copy">
+      <p class="kicker lead__kicker">For teachers</p>
+      <h2 class="lead__title">Lead a retreat with us</h2>
+      <p class="lead__body">Bring your students somewhere new. We take care of everything else, so you can focus on teaching.</p>
+      <ul class="lead__list">
+        <li>We plan the itinerary</li>
+        <li>We book the hotels</li>
+        <li>We run the logistics</li>
+        <li>We help fill your spots</li>
+      </ul>
+      <a class="btn btn--secondary" href="teach-with-us.html">Plan your retreat</a>
     </div>
   </section>
 

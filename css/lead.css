@@ -1,0 +1,103 @@
+/* ============================================================
+   YAWW · "FOR TEACHERS" MODULE (.lead)
+   One module, two pages: the homepage and About. Moved here from
+   home.css so both load the same rules; edit it once, here.
+   Load after base.css.
+   ============================================================ */
+
+/* ============================================================
+   FOR TEACHERS · LEAD A RETREAT WITH US
+   ============================================================ */
+/* Split, not centred: one photo (the teacher leading her group, which
+   tells this module's story on its own) bleeds to the viewport's left
+   edge and runs the band's full height; the copy sits in the grid on
+   the right, at the same 432px text width as the pillars. The bleed is
+   what sets it apart from the pillars (whose photos stay inside the
+   container) and marks the switch to a different audience. */
+/* Two equal halves of the screen: a square photo fills the left half
+   (24px frame top/bottom, the site gutter on the outer edge, 24px — half
+   the usual 48px column gap — toward the middle), the copy starts 24px
+   past the centre line and ends on the shared content edge. */
+.lead {
+  display: grid;
+  /* Each half caps at half the content max plus one gutter (744px),
+     so past ~1488px the pair stops growing and centres: the photo's
+     outer edge then lands exactly on the shared content edge (240px in
+     at 1920), the square tops out at 696px, and the band never
+     outweighs the closing CTA on wide monitors. Below that cap the two
+     halves are exactly half the screen. */
+  grid-template-columns: repeat(2, minmax(0, calc(var(--container-max) / 2 + var(--container-pad))));
+  justify-content: center;
+  align-items: center;
+  background: var(--stone-300);
+}
+.lead__media {
+  min-width: 0;
+  padding: 24px 24px 24px var(--container-pad);
+  box-sizing: border-box;
+}
+.lead__photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+.lead__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 56px var(--container-pad) 56px 24px;
+}
+/* Same 480px measure the pillar copy uses, so lines stay readable even
+   though the half is wider than that. */
+.lead__copy > * { max-width: 480px; }
+.kicker.lead__kicker { color: var(--stone-600); }
+.lead__title {
+  margin: 0;
+  color: var(--sea-blue);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+  text-wrap: balance;
+}
+.lead__body {
+  margin: 0;
+  color: var(--sea-blue);
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  text-wrap: pretty;
+}
+/* What a teacher is actually weighing, as a scannable list rather than
+   buried in the sentence — hairlines in the same language as the
+   "Who comes" profile list, one step darker for this darker band. */
+.lead__list {
+  width: 100%;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--stone-400);
+}
+.lead__list li {
+  padding: 12px 0;
+  border-top: 1px solid var(--stone-400);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue);
+}
+.lead__copy > .btn { margin-top: 16px; }
+/* Stacks at the same point as the pillars: photo on top, edge to edge,
+   copy below inside the normal side margins. */
+@media (max-width: 900px) {
+  .lead { grid-template-columns: minmax(0, 1fr); justify-content: stretch; }
+  .lead__media { padding: var(--container-pad) var(--container-pad) 0; }
+  .lead__photo { aspect-ratio: 3 / 2; }
+  .lead__copy { padding: 40px var(--container-pad); }
+}

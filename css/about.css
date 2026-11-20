@@ -22,6 +22,9 @@
   column-gap: 48px;
   align-items: start;
 }
+/* Eyebrows in the same bronze as the homepage ones (--stone-600). */
+.kicker { color: var(--stone-600); }
+
 /* The shared .kicker and .section-title carry the eyebrow and heading
    treatments; only the body size is local. .section-title is centred by
    default, so the two split sections undo that. */
@@ -42,8 +45,7 @@
 .about-intro__figure,
 .about-split__media,
 .about-card__media,
-.about-person__media,
-.about-teachers__media { margin: 0; }
+.about-person__media { margin: 0; }
 .about-img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 /* --- Intro ------------------------------------------------- */
@@ -80,8 +82,7 @@
 .about-split--mirror .about-split__text  { grid-column: 1 / span 5; }
 .about-split--mirror .about-split__media { grid-column: 8 / span 5; }
 .about-split__head { display: flex; flex-direction: column; gap: 8px; }
-.about-split__head .section-title,
-.about-teachers__title { text-align: left; }
+.about-split__head .section-title { text-align: left; }
 
 /* --- How we work: four cards of three columns each ---------- */
 .about-how { display: flex; flex-direction: column; align-items: center; gap: 40px; }
@@ -113,18 +114,22 @@
    titles and copy run. */
 .about-card .btn { margin-top: auto; width: 100%; }
 
-/* --- The team: three cards of four columns each ------------- */
+/* --- The team: 2 x 2, rectangular portraits, eight columns wide - */
 .about-team { display: flex; flex-direction: column; align-items: center; gap: 40px; }
 .about-team__head { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
 .about-team__grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 48px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 56px 48px;
   width: 100%;
-  max-width: var(--container-max);
+  max-width: 912px;
 }
 .about-person { display: flex; flex-direction: column; gap: 12px; }
-.about-person__media { aspect-ratio: 1 / 1; }
+.about-person__media { aspect-ratio: 4 / 5; overflow: hidden; background: var(--stone-300); }
+.about-person__media--missing {
+  display: flex; align-items: center; justify-content: center; padding: 24px;
+  font-family: var(--font-body); font-size: 14px; line-height: 20px; color: var(--sea-blue-300);
+}
 .about-person__role {
   margin: 0;
   font-family: var(--font-body);
@@ -181,13 +186,22 @@
 /* The attribution sits at the foot so the three rows of names align
    whatever length the quotes run to. */
 .about-quote__by { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+/* No guest photos exist, so an initial monogram, never a stock face. */
 .about-quote__avatar {
   flex: 0 0 auto;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  object-fit: cover;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: var(--stone-300);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: var(--stone-600);
 }
 .about-quote__name,
 .about-quote__where {
@@ -198,29 +212,50 @@
 }
 .about-quote__name { color: var(--sea-blue); }
 .about-quote__where { color: var(--sea-blue-200); }
-.about-quotes__rating {
-  margin: 0;
-  font-family: var(--font-body);
-  font-size: 14px;
-  line-height: 24px;
+/* Review badges: static stand-ins for the official widgets
+   (docs/review-widgets.md). Same footprint either way, so the swap does
+   not move the page. */
+.review-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
+.review-badge {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-areas: "source score" "stars stars" "cta cta";
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 24px;
+  min-width: 280px;
+  padding: 20px 24px;
+  border: 1px solid var(--stone-400);
+  background: var(--stone-100);
   color: var(--sea-blue);
-  text-align: center;
+  text-decoration: none;
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+@media (hover: hover) { .review-badge:hover { border-color: var(--sea-blue); background: var(--stone-200); } }
+.review-badge:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 4px; }
+.review-badge__source {
+  grid-area: source;
+  font-family: var(--font-body); font-weight: 600; font-size: 14px; line-height: 24px;
+  letter-spacing: 0.56px; text-transform: uppercase; color: var(--stone-600);
+}
+.review-badge__score {
+  grid-area: score;
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-weight: 700; font-size: 28px; line-height: 32px;
+}
+.review-badge__stars { grid-area: stars; display: flex; gap: 2px; color: var(--stone-600); }
+.review-badge__stars svg { width: 16px; height: 16px; fill: currentColor; }
+.review-badge__cta {
+  grid-area: cta;
+  font-family: var(--font-body); font-size: 14px; line-height: 20px; letter-spacing: 0.32px;
+  text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--stone-400);
 }
 
-/* --- For teachers: its own ground, so the pitch reads as an aside
-       rather than as the next part of the story. ---------------- */
-.about-teachers { background: var(--stone-300); padding: 72px 24px; }
-.about-teachers__media { grid-column: 1 / span 6; aspect-ratio: 672 / 413; }
-.about-teachers__text  { grid-column: 8 / span 5; display: flex; flex-direction: column; gap: 24px; }
-.about-teachers__title {
-  margin: 0;
-  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 40px;
-  color: var(--sea-blue);
-}
-.about-teachers__text .btn { align-self: flex-start; }
+/* --- Teacher + facilitator rails ------------------------------ */
+.about-rails { display: flex; flex-direction: column; gap: 80px; }
+
+
+/* --- For teachers: the homepage module, styled by css/lead.css. */
 
 
 /* --- Tablet -------------------------------------------------- */
@@ -229,7 +264,6 @@
   .about-how__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 32px; }
   .about-quotes__grid { gap: 32px; }
   .about-team__grid { gap: 32px; }
-  .about-teachers { padding: 56px 24px; }
 }
 
 /* --- Phone: every split stacks, picture first except where the
@@ -243,8 +277,8 @@
   .about-grid { grid-template-columns: minmax(0, 1fr); row-gap: 32px; }
   .about-split__media,
   .about-split__text,
-  .about-teachers__media,
-  .about-teachers__text { grid-column: 1; }
+  .about-split--mirror .about-split__media,
+  .about-split--mirror .about-split__text { grid-column: 1; }
   .about-split__media { aspect-ratio: 4 / 3; }
   /* Ragged below this width: justified text on a narrow measure opens
      rivers of white space between the words. */
@@ -254,10 +288,12 @@
   .about-team__grid,
   .about-quotes__grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   .about-card__media { aspect-ratio: 4 / 3; }
-  .about-person__media { aspect-ratio: 4 / 3; }
+  .about-team__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 16px; }
+  .about-person__name { font-size: 18px; line-height: 26px; }
+  .about-person__media { aspect-ratio: 4 / 5; }
+  .about-rails { gap: 56px; }
+  .review-badge { min-width: 0; width: 100%; }
 
-  .about-teachers { padding: 48px 16px; }
-  .about-teachers__media { aspect-ratio: 3 / 2; }
 
   }
 
