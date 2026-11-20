@@ -192,7 +192,7 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
   line-height: 1.25;
   letter-spacing: -0.005em;
 }
-.tiers2__headline { font-size: clamp(22px, 20.5px + 0.38vw, 26px); }
+.tiers2__headline { font-size: clamp(22px, 21.26px + 0.19vw, 24px); }   /* 22 phone · 24 @1440, as live */
 .host__name, .about-person__name { letter-spacing: -0.005em; }
 .booking__label, .who__tab-title { letter-spacing: -0.005em; }
 /* Card titles at 16px: Bold Baskerville is wide; a touch of air. */
@@ -265,6 +265,8 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
    Buttons and tabs keep their size; tracking goes from a flat 0.04em
    to a proper caps spacing so they stop looking squeezed. */
 .btn { letter-spacing: 0.1em; }
+/* "Explore …" links under the collections: the same caps spacing as buttons. */
+.tiers2__link-text { letter-spacing: 0.1em; }
 .tabs__item { letter-spacing: 0.1em; }
 .card__label { letter-spacing: 0.12em; }
 
