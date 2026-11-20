@@ -28,6 +28,7 @@ import glob, html, json, os, re, subprocess, sys, datetime
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 sys.path.insert(0, os.path.dirname(__file__))
 from location_content import LOCATIONS as C  # noqa: E402
+import seo  # noqa: E402
 
 V = "202611201900"          # cache-buster for css/location.css and the JS touched here
 TODAY = datetime.date(2026, 11, 20)
@@ -401,6 +402,7 @@ def build_page(L, cat):
     out = (head(L, c) + top.replace("<body>", "<body>\n<!-- Built by retreats/_tools/build_location.py from "
            "retreats/_tools/location_content.py and data/*.js. Edit those, not this file. -->", 1) + main + tail)
     path = os.path.join(REPO, f"locationpage-{L['id']}.html")
+    out = seo.apply(out, f"locationpage-{L['id']}.html")   # SEO head (seo.py)
     open(path, "w", encoding="utf-8").write(out)
     return dates
 
@@ -426,6 +428,7 @@ def build_grid(cat):
     words = {13: "Thirteen", 14: "Fourteen", 15: "Fifteen", 16: "Sixteen"}
     src = re.sub(r"(<p class=\"locations__lede\">)\w+ destinations", r"\g<1>" + words.get(n, str(n)) + " destinations", src)
     src = re.sub(r'css/locations\.css\?v=\d+', f"css/locations.css?v={V}", src)
+    src = seo.apply(src, "locations.html")   # SEO head (seo.py)
     open(path, "w", encoding="utf-8").write(src)
 
 

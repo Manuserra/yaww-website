@@ -51,6 +51,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import page_content as PC  # noqa: E402
+import seo  # noqa: E402
 import additional_info as AI  # noqa: E402
 
 REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
@@ -1072,6 +1073,7 @@ def main(argv):
     heroes = []
     for rid in ids:
         fname, doc, d = build(rid, cat, assets, template, waitlist)
+        doc = seo.apply(doc, fname)   # title, description, canonical, Open Graph, JSON-LD (seo.py)
         open(os.path.join(REPO, fname), "w", encoding="utf-8").write(doc)
         built.append(fname)
         heroes.append((rid, d.get("_hero_web")))
