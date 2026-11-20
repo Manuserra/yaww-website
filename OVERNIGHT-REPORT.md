@@ -118,3 +118,30 @@ Version strings for base.css and home.css bumped on `index.html` only; other pag
 Questions:
 - Is ~164px between sections at 1440 the right amount, or a step too much? It's one token (`--space-section`) to tune.
 - Video: Montenegro only (one consistent look), or one shot per destination?
+
+## 11 · Contact and Teach with us
+
+Commits (tag `night-05-contact`):
+- `5c3b38a` contact: one human form with topics, direct lines and doors to the other journeys
+- `73c8b2e` teach: Teach with us page with how it works, real teacher quotes, FAQ and application form
+- `bdcd3a7` contact: strategy doc, two alternative prototypes and the board entry
+
+What changed:
+- **contact.html.** The three tab forms are gone. One form asks "What is it about?" (A retreat / A trip for my group / Something else) and shows only what that topic needs: an optional retreat field with upcoming editions as suggestions, or group size and rough timing for groups. Required: first name, email, message. "Send message", errors under each field, a success state that names the person and the email we will answer. Left column: "We would love to hear from you", email and phone, then four doors (a question about one retreat, leading a retreat, a private group, press). On a phone the form comes before the doors.
+- **Old anchors still work.** `contact.html#teach-with-us` redirects to the teacher page; `#build-a-custom-retreat` / `#private-groups` preselect the group topic. So the other pages' menus keep working until their owners relabel them ("Ask a question / Private groups / Teach with us", already done on contact.html and teach-with-us.html).
+- **"Build a custom retreat"** becomes the "A trip for my group" topic, not a page: there is no defined product behind it yet.
+- **teach-with-us.html.** Hero = the homepage For teachers module as H1. Why YAWW (live About figures: since 2008, 550+ retreats, 4,500 yogis), five steps, who does what, two real teacher quotes (Genevieve Morin and Jenniferlyn Chiemingo, their Google reviews, trimmed), FAQ, and the application (inline errors, success state, `YAWW_CONTACT.endpoints.teach` placeholder in `data/contact.js`).
+- Shared form kit `.yf` in `css/contact.css` + `js/contact.js`; page styles in the new `css/teach.css`.
+- Strategy: `docs/contact-strategy.md`. Board entry "What the Contact page does" with B (signposts, no form) and C (conversation first) in `proposals/contact/`.
+
+Verified at 1440 and 390 in my own tab: no horizontal overflow, validation and success on both forms, topic switching, hash redirect, no console errors.
+
+Questions for the morning (visible on the pages as `[missing data: …]`):
+1. The public email for the contact page (the live page only shows a personal inbox).
+2. Is +52 1 984 202 6072 (live footer) the right guest line, and does it take WhatsApp?
+3. Teacher FAQ: minimum students a teacher brings, how teachers are paid, typical lead time.
+
+Notes:
+- The FAQ accordion CSS is copied into teach.css because home.css is not loaded there; move it to base.css in the cleanup pass.
+- `bdcd3a7` staged the whole `proposals/index.html`, which may include board entries other agents had not committed yet.
+- No live teach/host page exists on yogaadventuresworldwide.com, so the teacher copy is new, in the homepage module's register.
