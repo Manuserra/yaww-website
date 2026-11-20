@@ -229,3 +229,32 @@ Needs a decision or follow-up:
 - Images with empty or missing alt: `index.html` (4 decorative icons and the avatar template, `alt=""` is right for those), `journal.html` (34 card images with `alt=""`; the card title sits next to each so that is acceptable, a descriptive alt would be better), the three El Cuyo template-based retreat pages `…el-cuyo-dec-2026-delaney`, `…feb-2027-delaney`, `…jan-2027-berger` (24 itinerary photos each, `images/dayN-M.jpg`, `alt=""`: body markup from the template, not fixed here), and the lightbox image placeholders on every retreat page (filled by JS). Retreat photos from `data.json` and the location pages all have alt text.
 - Social links in the footer are `#`: add the real Instagram/Facebook/LinkedIn URLs and put them in `sameAs` in `seo.py` (`index.html` entry).
 - Not run: `marketing:seo-audit` (not cheap), no Search Console / structured data test tool pass (JSON-LD parses, not validated against Google's rich-result test).
+
+## Night 10: WordPress theme (draft)
+
+- `wordpress-theme/yaww/`: classic PHP theme, no build step, ACF Pro not required. CPTs `retreat`, `location`, `teacher`, `facilitator` + taxonomy `retreat_tier`, native `register_post_meta` fields from one spec (`inc/fields-spec.json`), generated `acf-json/` groups, `yaww_meta()` so templates are ACF-agnostic. `single-retreat.php` is the full port; the other views are faithful but lean.
+- Hotel names are not exposed anywhere: only `hotel_label`.
+- `bin/sync-assets.sh` copies css/js/images into the theme (assets are gitignored); the static site is untouched.
+- Not verified: no `php` on this machine, so nothing was linted or run in WordPress. Left: ACF wiring, content import, WeTravel embed, forms endpoint, permalinks into the canonicals in `retreats/_tools/seo.py`, inline-page behaviours (sliders, lightbox). See `wordpress-theme/yaww/README.md`.
+
+## 8 · Responsive pass and UX/a11y audit (items 8 and 9)
+
+Tag `night-08-responsive`. Checked in my own tab at localhost:8777 with scripted checks (horizontal overflow, elements past the viewport, clipped text, tap targets, contrast, labels, names, heading order) at 1440, 1024, 768, 390 and 320 on: index, retreats, 4 retreat pages (Argentina with 2 hotels, El Cuyo Berger, Thailand, Iceland waitlist), locations + Oaxaca, El Cuyo, Iceland, Camino, about, teachers + Alicia Delaney + Sue Berger, facilitators + Christina Thomas, journal + Tacos are life, contact, teach-with-us. Visual contact sheets at 768 and 1024 for the main templates.
+
+Commits:
+- `644e91b` menus and footers: "General Inquiry / Teach with us / Build a Custom Retreat" (and the footer's dead `#` links, "Become a Teacher", "Custom Retreat") become "Ask a question / Private groups / Teach with us", as on contact.html, on every official page. Retreat and location pages via their chrome sources (retreatpage-elcuyo.html, locations.html) and a rebuild.
+- `d43d64d` 320px: Retreats collection tabs wrap instead of overflowing; room pills wrap ("Garden views in Buenos Aires" pushed the Argentina page 7px wide); slider dots and Reserve/Details get bigger hit areas.
+- `4e81166` (coordinator's SEO body list): retreats.html visually hidden H1 and collection title h6 -> h2; static H1 in teacher, facilitator and journal-post pages (JS still replaces it); 34 journal card alts from post titles; itinerary photo alts in the El Cuyo template (3 pages rebuilt); `.visually-hidden` utility.
+- `515bcf4` About prose ragged at 768–1024 (justified text opened rivers on a 270px column).
+- `255cc15` retreat card label stacks tier over status on narrow cards (2-up phone grids cut "Filling fa…").
+- `f8a2f2b` contrast: `--sea-blue-200` #657C8F -> #5A6F80 (3.9 -> 4.7:1 on stone) for the small secondary text it sets; inactive tabs (retreats, retreat page, journal, home "who" titles) from sea-blue-100 (2.8:1) to sea-blue-200; placeholder on contact likewise.
+- teach-with-us form title 28 -> 24px (= section-title, as Contact).
+- `ea1a50f` docs/audit-recommendations.md: skip link, slider dots, journal alt redundancy, reviews 2+1 at tablet, label variants, CSS `?v=` bumps.
+
+Consistency findings: buttons are already one size everywhere (304x58, same type); section H2s are 24px Baskerville bold on every page; kickers are one style (14px/600/0.56px stone-600) except the location page's small "Good to know" labels (left, noted). Focus: every control has a visible focus style or a replacement (border) where the outline is removed. No heading-level skips on the audited pages.
+
+Not done / notes:
+- No skip link anywhere (recommendation 1).
+- CSS `?v=` strings in page heads not bumped (the heads belonged to the SEO agent): bump before publishing.
+- 768 retreat page: three reviews leave one alone on the second row (recommendation 6).
+- Screen-reader pass by hand not done.
