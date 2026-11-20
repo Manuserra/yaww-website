@@ -66,6 +66,16 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
   text-transform: uppercase;
 }
 .loc-guide__item .loc-kicker { font-size: 11px; letter-spacing: 0.16em; }
+/* Footer column titles as eyebrows (a trial): same caps, same spacing.
+   Fixed 13 (no fluid size) and the links keep their colour. */
+.footer-col__title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 24px;   /* as live, so the lists below do not move */
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
 
 /* ---------- 2 · Display: the hero lines -------------------------- */
 .home-hero--overlay .home-hero__title,
