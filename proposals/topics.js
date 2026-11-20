@@ -69,6 +69,7 @@ window.YAWW_PROPOSALS = [
   ]},
   { id: "typography-expressive", title: "Expressive type", options: [
     { label: "Specimen", url: "typography-expressive/index.html" },
+    { label: "Compare", url: "typography-expressive/compare.html" },
     { label: "Home", url: "typography-expressive/home.html" },
     { label: "Retreat page", url: "typography-expressive/retreatpage-el-cuyo-dec-2026-delaney.html" },
     { label: "Location page", url: "typography-expressive/locationpage-oaxaca.html" },

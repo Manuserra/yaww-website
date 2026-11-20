@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Expressive type · Now vs proposal</title>
+<script src="../guard.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Proposal page: frozen, self-contained. Tokens copied from css/base.css.
+   Values below were measured with getComputedStyle on the real pages
+   (proposal off = the live site, proposal on = type.css), at 1440 and 390. */
+:root {
+  --sea-blue: #475764; --sea-blue-200: #5A6F80; --sea-blue-300: #516372; --sea-blue-500: #283139;
+  --stone: #F7F2F0; --stone-100: #FDF9F7; --stone-200: #F1EFEB; --stone-300: #E1DCD6; --stone-400: #C6BFB9;
+  --stone-600: #765C3A; --gold: #EFE3CF;
+  --font-heading: "Libre Baskerville", Georgia, serif;
+  --font-body: "Raleway", -apple-system, system-ui, sans-serif;
+  --ease: cubic-bezier(.23,1,.32,1);
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--stone); color: var(--sea-blue); font-family: var(--font-body); font-kerning: normal; }
+h1, h2, h3, p { margin: 0; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 56px 24px 120px; }
+.eyebrow { font-weight: 600; font-size: 12px; line-height: 20px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone-600); }
+.head h1 { margin-top: 8px; font-family: var(--font-heading); -webkit-font-smoothing: antialiased; font-weight: 400; font-size: clamp(30px, 24px + 1.5vw, 44px); line-height: 1.12; letter-spacing: -0.015em; text-wrap: balance; }
+.head p.intro { margin-top: 16px; max-width: 720px; font-size: 16px; line-height: 1.65; }
+
+/* Width switch */
+.bar { position: sticky; top: 0; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 32px; padding: 12px 0; background: var(--stone); border-bottom: 1px solid var(--stone-400); }
+.seg { display: inline-flex; border: 1px solid var(--sea-blue); }
+.seg button { font: 600 12px/1 var(--font-body); letter-spacing: 0.12em; text-transform: uppercase; padding: 10px 14px; background: transparent; color: var(--sea-blue); border: 0; cursor: pointer; transition: background-color .15s ease, color .15s ease; }
+.seg button[aria-pressed="true"] { background: var(--sea-blue); color: var(--stone); }
+.seg button:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
+.legend { display: flex; align-items: center; gap: 8px; font-size: 13px; line-height: 20px; color: var(--sea-blue-200); }
+.legend i { width: 14px; height: 14px; background: var(--gold); border: 1px solid #D9C4A0; }
+
+/* Summary table */
+.tbl { overflow-x: auto; margin-top: 24px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; line-height: 20px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 9px 14px 9px 0; border-bottom: 1px solid var(--stone-300); vertical-align: top; white-space: nowrap; }
+thead th { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; color: var(--sea-blue-200); }
+thead tr:first-child th { border-bottom: 0; padding-bottom: 0; }
+td:first-child { font-weight: 600; white-space: normal; min-width: 160px; }
+th.grp { color: var(--sea-blue); }
+td.now { color: var(--sea-blue-200); }
+td.chg { background: var(--gold); }
+td.gap, th.gap { padding: 0; width: 20px; border-bottom: 0; }
+tr.group td { padding-top: 28px; border-bottom: 1px solid var(--stone-400); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone-600); }
+
+/* Visual rows */
+section { margin-top: 88px; }
+section > h2 { font-family: var(--font-heading); -webkit-font-smoothing: antialiased; font-weight: 400; font-size: clamp(26px, 22.3px + 0.95vw, 36px); line-height: 1.14; letter-spacing: -0.012em; margin-top: 8px; }
+.cmp { margin-top: 24px; }
+.cmp__group { margin: 48px 0 0; padding-bottom: 8px; border-bottom: 1px solid var(--stone-400); font-size: 12px; line-height: 20px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone-600); }
+.style { display: grid; grid-template-columns: 200px minmax(0, 1fr) minmax(0, 1fr); gap: 12px 32px; padding: 28px 0; border-bottom: 1px solid var(--stone-300); }
+.style__name { font-weight: 600; font-size: 14px; line-height: 20px; }
+.style__where { margin-top: 4px; font-size: 12px; line-height: 18px; color: var(--sea-blue-200); }
+.side__label { font-size: 11px; line-height: 16px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sea-blue-200); margin-bottom: 12px; }
+.side--prop .side__label { color: var(--sea-blue); }
+.sample { color: var(--sea-blue); overflow-wrap: anywhere; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden; }
+.sample.serif { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+.spec { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; padding: 0; list-style: none; font-size: 12px; line-height: 16px; font-variant-numeric: tabular-nums; }
+.spec li { padding: 4px 8px; background: var(--stone-200); border: 1px solid transparent; }
+.spec li.chg { background: var(--gold); border-color: #D9C4A0; }
+.delta { margin-top: 10px; font-size: 13px; line-height: 20px; color: var(--stone-600); font-weight: 600; }
+.note { margin-top: 10px; font-size: 13px; line-height: 20px; color: var(--sea-blue-200); }
+
+@media (max-width: 900px) {
+  .style { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .style__meta { grid-column: 1 / -1; }
+}
+@media (max-width: 600px) {
+  .wrap { padding: 40px 16px 80px; }
+  .style { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { .seg button { transition: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="head">
+    <p class="eyebrow">Proposal · Typography · Compare</p>
+    <h1>Every style, now and proposed</h1>
+    <p class="intro">Measured on the real pages, not copied from the CSS: each value is what the browser renders today and with the proposal on, on a 1440px desktop and a 390px phone. Highlighted values are the ones that change.</p>
+  </header>
+
+  <div class="bar">
+    <div class="seg" role="group" aria-label="Screen width for the samples">
+      <button type="button" data-w="d" aria-pressed="true">Desktop 1440</button>
+      <button type="button" data-w="m" aria-pressed="false">Phone 390</button>
+    </div>
+    <span class="legend"><i aria-hidden="true"></i>Changes with the proposal</span>
+  </div>
+
+  <div class="tbl">
+    <table>
+      <thead>
+        <tr><th></th><th class="grp" colspan="2">Desktop 1440</th><th class="gap"></th><th class="grp" colspan="2">Phone 390</th><th class="gap"></th><th class="grp" colspan="2">Style</th></tr>
+        <tr><th>Style</th><th>Now</th><th>Proposal</th><th class="gap"></th><th>Now</th><th>Proposal</th><th class="gap"></th><th>Now</th><th>Proposal</th></tr>
+      </thead>
+      <tbody id="sum"></tbody>
+    </table>
+  </div>
+
+  <section>
+    <p class="eyebrow">Side by side</p>
+    <h2>How each one reads</h2>
+    <div class="cmp" id="cmp"></div>
+  </section>
+</div>
+
+<script>
+/* [name, page, sample, now@1440, now@390, prop@1440, prop@390]
+   each value: [family R|B, weight, italic, size px, line-height px, tracking px, caps] */
+var GROUPS = [
+  ["Display", [
+    ["Home hero", "Home", "Travel that moves you", ["B",400,1,64,60.1,0,0], ["B",400,1,40.3,42.3,0,0], ["B",400,1,68,70.7,-1.4,0], ["B",400,1,36,37.4,-0.7,0]],
+    ["Retreat and location hero", "Retreat page", "Inner Glow Retreat", ["B",400,0,56,64,-0.6,0], ["B",400,0,34,42,-0.3,0], ["B",400,0,68,70.7,-1.4,0], ["B",400,0,36,37.4,-0.7,0]],
+    ["Line under the hero name", "Retreat page", "El Cuyo, Mexico", ["B",400,1,22,32,0,0], ["B",400,1,18,26,0,0], ["B",400,1,23,31,0,0], ["B",400,1,19,25.7,0,0]],
+    ["Hero proof value", "Home", "Since 2008", ["R",600,0,14,24,0.6,0], ["R",600,0,14,24,0.6,0], ["B",400,1,18,24,0,0], ["B",400,1,18,24,0,0]]
+  ]],
+  ["Titles", [
+    ["About page title", "About", "Small-group yoga journeys, hosted by people who know the place", ["B",700,0,36,48,0,0], ["B",700,0,26,36,0,0], ["B",400,1,42,48.7,-0.5,0], ["B",400,1,28,32.5,-0.3,0]],
+    ["Section title (h2)", "Every page", "Where we’re going next", ["B",700,0,24,40,0,0], ["B",700,0,24,40,0,0], ["B",400,0,36,41,-0.4,0], ["B",400,0,26,29.6,-0.3,0]],
+    ["Lyric title (h2)", "Location intro", "One of our most sought-after destinations", ["B",400,1,36,48,0,0], ["B",400,1,26,36,0,0], ["B",400,1,42,48.2,-0.4,0], ["B",400,1,28,32.2,-0.3,0]],
+    ["CTA band title", "Home", "Your next week away starts here", ["B",400,1,36,48,0,0], ["B",400,1,28,36,0,0], ["B",400,1,42,48.2,-0.4,0], ["B",400,1,28,32.2,-0.3,0]]
+  ]],
+  ["h3 and cards", [
+    ["h3 · a line (tier)", "Home", "Go deeper", ["B",400,1,24,40,0,0], ["B",400,1,24,40,0,0], ["B",400,1,26,32.5,-0.1,0], ["B",400,1,22,27.5,-0.1,0]],
+    ["h3 · a line (guide)", "Location guide", "Agave country", ["B",700,0,18,28,0,0], ["B",700,0,18,28,0,0], ["B",400,1,22,27.5,-0.1,0], ["B",400,1,20,25.1,-0.1,0]],
+    ["h3 · a name (host)", "Retreat page", "Alicia Delaney", ["B",700,0,26,34,0,0], ["B",700,0,26,34,0,0], ["B",700,0,26,34,-0.1,0], ["B",700,0,26,34,-0.1,0]],
+    ["Card title", "Cards", "Inner Glow Retreat", ["B",700,0,16,24,0,0], ["B",700,0,16,24,0,0], ["B",700,0,16,24,0.1,0], ["B",700,0,16,24,0.1,0]]
+  ]],
+  ["Numbers", [
+    ["Day N", "Itinerary", "Day 1", ["B",400,1,22,28,0,0], ["B",400,1,19,24,0,0], ["B",400,1,26,28,-0.1,0], ["B",400,1,22,24,-0.1,0]],
+    ["Room price", "Rooms", "2,295 USD", ["B",400,0,20,28,0,0], ["B",400,0,20,28,0,0], ["B",400,0,22,28,-0.2,0], ["B",400,0,22,28,-0.2,0]],
+    ["Review score", "About", "4.9", ["B",700,0,28,32,0,0], ["B",700,0,28,32,0,0], ["B",400,1,32,32,-0.3,0], ["B",400,1,32,32,-0.3,0]]
+  ]],
+  ["Quotes", [
+    ["Pull-quote", "Retreat page", "I attended a yoga retreat in El Cuyo w a group of good friends…", ["B",400,1,17,27,0,0], ["B",400,1,17,27,0,0], ["B",400,1,23,33.3,-0.1,0], ["B",400,1,19,27.6,-0.1,0]],
+    ["Location quote", "Location page", "“Christina and her crew are magic travel masters. I would think of something and it would appear.”", ["B",400,1,26,42,0,0], ["B",400,1,20,32,0,0], ["B",400,1,35.9,46.7,-0.4,0], ["B",400,1,24,31.2,-0.3,0]]
+  ]],
+  ["Text", [
+    ["Eyebrow", "Every kicker", "Upcoming retreats", ["R",600,0,14,24,0.6,1], ["R",600,0,14,24,0.6,1], ["R",600,0,13,20,2.1,1], ["R",600,0,12,20,1.9,1]],
+    ["Lede", "First paragraph", "Since 2008, Christina Thomas and her team have been taking small groups inside the places…", ["R",400,0,16,24,0.3,0], ["R",400,0,16,24,0.3,0], ["R",400,0,18,28.8,0.1,0], ["R",400,0,17,27.2,0.1,0]],
+    ["Body (prose)", "Stories", "Yoga Adventures Worldwide started in 2008 on the beaches of Tulum, Mexico. Back then, it was just a simple idea: to bring like-minded people together in beautiful places.", ["R",400,0,16,24,0.3,0], ["R",400,0,16,24,0.3,0], ["R",400,0,16,26.4,0.3,0], ["R",400,0,16,26.4,0.3,0]]
+  ]],
+  ["Buttons and tabs", [
+    ["Button", "Everywhere", "See all 17 upcoming retreats", ["R",600,0,14,24,0.6,1], ["R",600,0,14,24,0.6,1], ["R",600,0,14,24,1.4,1], ["R",600,0,14,24,1.4,1]],
+    ["Tab", "Retreat page", "Teacher", ["R",600,0,12,24,0.5,1], ["R",600,0,12,24,0.5,1], ["R",600,0,12,24,1.2,1], ["R",600,0,12,24,1.2,1]]
+  ]]
+];
+
+function r(n) { return Math.round(n * 10) / 10; }
+function px(n) { return String(Math.round(n * 2) / 2).replace(/\.0$/, ""); }
+function em(v) { if (!v[5]) return "0"; var e = Math.round(v[5] / v[3] * 1000) / 1000; return (e > 0 ? "+" : "−") + Math.abs(e) + "em"; }
+function fam(v) { return v[0] === "B" ? "Baskerville" : "Raleway"; }
+function weight(v) { return { 400: "Regular", 600: "SemiBold", 700: "Bold" }[v[1]] + (v[2] ? " Italic" : ""); }
+function face(v) { return fam(v) + " " + weight(v) + (v[6] ? " · caps" : ""); }
+function lhRatio(v) { return (Math.round(v[4] / v[3] * 100) / 100).toFixed(2); }
+function short(v) { return px(v[3]) + " / " + px(v[4]); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+
+/* ---- Summary table ---- */
+var sum = document.getElementById("sum"), html = "";
+GROUPS.forEach(function (g) {
+  html += '<tr class="group"><td colspan="9">' + esc(g[0]) + "</td></tr>";
+  g[1].forEach(function (s) {
+    var nd = s[3], nm = s[4], pd = s[5], pm = s[6];
+    function cell(now, prop) { return (short(now) !== short(prop) ? ' class="chg"' : "") + ">" + short(prop) + (Math.abs(prop[3] - now[3]) >= 0.5 ? ' <small>(' + (prop[3] > now[3] ? "+" : "−") + px(Math.abs(prop[3] - now[3])) + ")</small>" : ""); }
+    html += "<tr><td>" + esc(s[0]) + "</td>" +
+      '<td class="now">' + short(nd) + "</td><td" + cell(nd, pd) + "</td><td class=\"gap\"></td>" +
+      '<td class="now">' + short(nm) + "</td><td" + cell(nm, pm) + "</td><td class=\"gap\"></td>" +
+      '<td class="now">' + face(nd) + ", " + em(nd) + "</td>" +
+      "<td" + (face(nd) !== face(pd) || em(nd) !== em(pd) ? ' class="chg"' : "") + ">" + face(pd) + ", " + em(pd) + "</td></tr>";
+  });
+});
+sum.innerHTML = html;
+
+/* ---- Side by side ---- */
+var W = "d";
+function styleAttr(v) {
+  return "font-family:var(" + (v[0] === "B" ? "--font-heading" : "--font-body") + ");font-weight:" + v[1] +
+    ";font-style:" + (v[2] ? "italic" : "normal") + ";font-size:" + v[3] + "px;line-height:" + v[4] + "px;letter-spacing:" +
+    (v[5] || 0) + "px;text-transform:" + (v[6] ? "uppercase" : "none");
+}
+function specList(v, other) {
+  var items = [
+    [face(v), face(other)],
+    [px(v[3]) + "px", px(other[3]) + "px"],
+    ["lh " + px(v[4]) + " (" + lhRatio(v) + ")", "lh " + px(other[4]) + " (" + lhRatio(other) + ")"],
+    ["tracking " + em(v), "tracking " + em(other)]
+  ];
+  return '<ul class="spec">' + items.map(function (it) {
+    return "<li" + (it[0] !== it[1] ? ' class="chg"' : "") + ">" + it[0] + "</li>";
+  }).join("") + "</ul>";
+}
+function delta(now, prop) {
+  var d = [];
+  var ds = prop[3] - now[3];
+  if (Math.abs(ds) >= 0.5) d.push((ds > 0 ? "+" : "−") + px(Math.abs(ds)) + "px");
+  if (fam(now) !== fam(prop)) d.push(fam(now) + " → " + fam(prop));
+  if (weight(now) !== weight(prop)) d.push(weight(now) + " → " + weight(prop));
+  if (em(now) !== em(prop)) d.push("tracking " + em(now) + " → " + em(prop));
+  if (Math.abs(prop[4] / prop[3] - now[4] / now[3]) >= 0.03) d.push("leading " + lhRatio(now) + " → " + lhRatio(prop));
+  return d.length ? d.join(" · ") : "No change";
+}
+function renderCmp() {
+  var out = "";
+  GROUPS.forEach(function (g) {
+    out += '<h3 class="cmp__group">' + esc(g[0]) + "</h3>";
+    g[1].forEach(function (s) {
+      var now = W === "d" ? s[3] : s[4], prop = W === "d" ? s[5] : s[6];
+      var serifN = now[0] === "B" ? " serif" : "", serifP = prop[0] === "B" ? " serif" : "";
+      out += '<div class="style">' +
+        '<div class="style__meta"><p class="style__name">' + esc(s[0]) + '</p><p class="style__where">' + esc(s[1]) + "</p></div>" +
+        '<div class="side side--now"><p class="side__label">Now</p><p class="sample' + serifN + '" style="' + styleAttr(now) + '">' + esc(s[2]) + "</p>" + specList(now, prop) + "</div>" +
+        '<div class="side side--prop"><p class="side__label">Proposal</p><p class="sample' + serifP + '" style="' + styleAttr(prop) + '">' + esc(s[2]) + "</p>" + specList(prop, now) +
+        '<p class="delta">' + delta(now, prop) + "</p></div></div>";
+    });
+  });
+  document.getElementById("cmp").innerHTML = out;
+}
+renderCmp();
+
+document.querySelectorAll(".seg button").forEach(function (b) {
+  b.addEventListener("click", function () {
+    W = b.dataset.w;
+    document.querySelectorAll(".seg button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+    renderCmp();
+  });
+});
+</script>
+</body>
+</html>

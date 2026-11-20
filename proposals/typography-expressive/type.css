@@ -94,7 +94,8 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
 
 /* Hero proof row: the values become small Baskerville italics, the
    labels stay Raleway. Two voices instead of two weights. */
-.home-hero__proof-value {
+.home-hero__proof-value,
+.home-hero--overlay .home-hero__proof-value {
   font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-style: italic;
   font-weight: 400;
