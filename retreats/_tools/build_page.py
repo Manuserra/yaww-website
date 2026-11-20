@@ -51,6 +51,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import page_content as PC  # noqa: E402
+import additional_info as AI  # noqa: E402
 
 REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 TPL = os.path.join(REPO, "retreatpage-elcuyo.html")
@@ -837,7 +838,7 @@ def build(rid, cat, assets, template, waitlist=False):
 
     # ------------------------------------------------------------------ faq
     faqs = ""
-    for i, f in enumerate(d["faqs"], 1):
+    for i, f in enumerate(additional_info(rid, loc, d, waitlist), 1):
         ans = ""
         for p in f["answer"]:
             p = esc(tidy(p))
@@ -878,6 +879,53 @@ def build(rid, cat, assets, template, waitlist=False):
     for pat, rep in PC.SCRUB:
         doc = re.sub(pat, rep, doc)
     return f"retreatpage-{rid}.html", doc, d
+
+
+# -------------------------------------------------------- additional info --
+
+GENERIC_FAQ = {"Do you accept bitcoin?", "What is the cancellation policy?",
+               "What happens if my travel plans change?", "Are flight delays or cancellations covered?",
+               "Where can I find the full terms & conditions?"}
+# Questions from the old site's own FAQ that the written ones already cover.
+FAQ_COVERED = {"Do I have to carry my luggage?", "Can I come on my own?", "What if it rains?"}
+
+
+def additional_info(rid, loc, d, waitlist):
+    """The "Additional info" accordion, in the order a reader decides in:
+    what the days and the place are like (retreats/_tools/additional_info.py,
+    written per retreat from the page and the old site), the old site's own
+    retreat-specific questions, then booking and the old site's policies,
+    worded as published. Nothing here is a new policy."""
+    out = [{"question": q, "answer": a} for q, a in AI.ADDITIONAL_INFO.get(rid) or AI.ADDITIONAL_INFO.get(loc) or []]
+    have = {x["question"] for x in out}
+    for f in d["faqs"]:
+        if f["question"] not in GENERIC_FAQ and f["question"] not in FAQ_COVERED and f["question"] not in have:
+            out.append(f)
+    b = d.get("booking") or {}
+    book = []
+    if b.get("deposit_instructions"):
+        book.append(tidy(b["deposit_instructions"]))
+    if b.get("balance_note"):
+        book.append(tidy(b["balance_note"]))
+    if book:
+        out.append({"question": "How do I reserve my place?", "answer": book})
+    methods = b.get("payment_methods") or []
+    if methods:
+        names = [m.lower() if m in ("Credit card", "Wire transfer") else m for m in methods]
+        out.append({"question": "How can I pay?", "answer": [
+            "We accept " + (", ".join(names[:-1]) + " and " + names[-1] if len(names) > 1 else names[0])
+            + ". Please ask us for the details of the one you would like to use."]})
+    if b.get("roommate_note") and "Can I come on my own?" not in have:
+        out.append({"question": "I would like to share a room. How does that work?", "answer": [tidy(b["roommate_note"])]})
+    # The policy answers are the company's, the same on every retreat of
+    # the old site; a page whose scrape lacks them takes them from one
+    # that has them, word for word.
+    policy = [f for f in d["faqs"] if f["question"] in GENERIC_FAQ]
+    if not policy:
+        ref = json.load(open(os.path.join(REPO, "retreats", "argentina-mar-2027", "data.json"), encoding="utf-8"))
+        policy = [f for f in ref["faqs"] if f["question"] in GENERIC_FAQ]
+    out += [f for f in policy if f["question"] != "Do you accept bitcoin?"]
+    return out
 
 
 # ---------------------------------------------------------- testimonials --
