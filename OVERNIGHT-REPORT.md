@@ -1,3 +1,74 @@
+# Overnight report: 2026-11-20
+
+## Resumen para la mañana
+
+**Rama:** `overnight/2026-11-20`, con unos 60 commits y pusheada a GitHub. `main` está intacto, así que lo que ve C no cambió.
+
+**Para revisar:**
+1. Levantar el servidor local (`python3 -m http.server 8777` en la carpeta) y abrir **http://localhost:8777/proposals/index.html**: es el tablero con cada decisión, sus opciones y cuál quedó implementada.
+2. Recorrer el sitio en http://localhost:8777/.
+
+**Cómo volver atrás:** cada sección tiene su tag, y `git revert <commit>` deshace un cambio puntual.
+
+| Tag | Sección |
+|---|---|
+| `night-01-global` | Global |
+| `night-02-retreat-page` | Retreat page |
+| `night-03-retreats` | Listado de retreats |
+| `night-04-people` | About, Teachers, Facilitators |
+| `night-05-contact` | Contact y Teach with us |
+| `night-06-home` | Homepage |
+| `night-07-locations` | Locations |
+| `night-08-responsive` | Responsive y auditoría |
+| `night-09-seo` | SEO |
+| `night-10-wordpress` | Theme de WordPress |
+| `night-11-cleanup` | Limpieza de código |
+| `night-12-typography` | Propuesta tipográfica |
+
+**Importante sobre el build:** las `retreatpage-*.html`, las `locationpage-*.html` y `locations.html` ahora se **generan** con scripts (`retreats/_tools/build_page.py` y `build_location.py`). Se editan el template o los datos y después se reconstruye. Si se editan a mano, el próximo build lo pisa. Ver `retreats/_tools/README.md`.
+
+### Preguntas pendientes, agrupadas
+
+**Contenido y personas**
+- Christina no tiene un retrato bueno: hay que pedirle un headshot. Rachel Gray no tiene foto en ningún lado. Las fotos sacadas de Canva (Bonnie, Jamie, Yessica, Amy S-S, Carie, Anj, Amy Appel) son chicas y se ven blandas: hay que pedir originales.
+- Manu y Maggie: falta foto y rol para la grid de team de About.
+- Argentina y Oaxaca: en el sitio en vivo esas fotos son de baja resolución. ¿Hay originales?
+- Las specialties y quotes de las teachers salen de sus bios: que ellas las confirmen.
+- El retiro de Carie Cook de diciembre de 2026 no está en `data/retreats.js`.
+
+**Testimonials**
+- Argentina usa un review de Lori Gray que no nombra el país: verificar.
+- El review de Basque Country es de la propia teacher (Genevieve).
+- Los de Oaxaca vienen de otros retiros en México.
+
+**Negocio y datos**
+- WeTravel: URL de cada edición y si un link puede preseleccionar la habitación (`docs/wetravel-cta.md`). Por ahora "Reserve" abre el formulario de leads.
+- ¿Qué herramienta recibe los leads? (`docs/lead-form.md`)
+- ¿Las facilitators (Renata en El Cuyo, Fleur en Thailand) se muestran antes de estar confirmadas por fecha?
+- Carbon offset: ¿hay un partner al que enlazar? Si no, se elimina. Ahora es la última pregunta de Additional info.
+- Contact: el email público, si el teléfono acepta WhatsApp y 3 respuestas del FAQ de teachers (mínimo de alumnos, cómo se les paga, con cuánta anticipación se planifica).
+- Fechas que faltan: el mes de France, Sardinia y Turkey; si Morocco es "Autumn"; la caminata de Thailand; el vuelo de Turkey.
+- Ratings 4.9 y 4.8: confirmar, y sumar los links a Google y Tripadvisor. Widgets reales en `docs/review-widgets.md`.
+- Los links a redes del footer siguen en `#`.
+
+**Diseño (en el tablero)**
+- Color stone: está implementado el bronze `#765C3A`, con 3 alternativas.
+- Espaciado de la home: unos 164 px entre secciones a 1440. ¿Está bien o es un paso de más? Se ajusta con un solo token.
+- Video del hero: ¿todo Montenegro o un plano por destino? (`docs/hero-video-script.md`)
+- Hero de la retreat page, rooms, template de location, teacher page, contact y search de retreats: cada uno tiene alternativas en el tablero.
+- Tipografía más jugada: `proposals/typography-expressive/`, con interruptor on/off en cada página.
+
+**Antes de publicar**
+- Los canonicals y el sitemap usan las URLs actuales: hay que cambiarlos cuando estén los permalinks de WordPress (`retreats/_tools/seo.py`).
+- `retreatpage-elcuyo.html` es el template y no se publica.
+- Hay 52 imágenes sin usar (~10 MB), listadas en la sección 11. No las borré.
+
+**Qué no se verificó**
+- No hice una pasada con lector de pantalla.
+- No abrí las 26 retreat pages una por una (se revisó una muestra y todas se reconstruyeron sin errores).
+- El theme de WordPress no está lintado (no hay PHP en esta Mac).
+
+---
 
 ## Locations grid photos (live-site images)
 
