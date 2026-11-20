@@ -10,6 +10,7 @@ sitio viejo cambie una fecha o un precio, no haya que hacerlo todo a mano otra v
 | `gen.py` | arma los `<slug>/data.json` combinando lo de arriba con el texto scrapeado (includes, itinerario, travel tips, políticas) y con la asignación de imágenes |
 | `build_page.py` | construye una página por cada retiro de `data/retreats.js` (`retreatpage-<id>.html`) sobre `retreatpage-elcuyo.html`, que sólo **lee**: reemplaza las regiones variables y deja CSS y scripts intactos. Exporta las fotos que falten a `images/retreat-photos/` en WebP y le pone `pageUrl` a cada retiro. `python3 retreats/_tools/build_page.py [id ...]` |
 | `page_content.py` | la capa editorial: Travel Tips por destino en el formato de la plantilla, nombres de alojamiento que el sitio viejo no da, facilitadores |
+| `chrome.py` | lo que comparten todas las páginas oficiales: el skip link al principio del `<body>`, `<main id="main">` y **un solo** `?v=` para todo `css/` y `js/` (`ASSET_VERSION`). Los builders lo aplican antes de `seo.apply()`; `python3 retreats/_tools/chrome.py` actualiza las páginas escritas a mano. Subir `ASSET_VERSION` con cada cambio en `css/` o `js/` |
 
 `gen.py` espera en su directorio de trabajo los intermedios del scrapeo
 (`structured.json`, `img_sections.json`, `img_assign.json`, `teachers.json`), que no se

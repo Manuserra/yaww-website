@@ -636,6 +636,27 @@ main { padding-top: 0; }
   width: 560px;
   max-width: 100%;
 }
+/* Skip link: the first stop for a keyboard on every page, out of sight
+   until it has focus. Above the sticky nav (50) and the booking bar (60). */
+.skip-link {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  padding: 12px 20px;
+  background: var(--sea-blue);
+  color: var(--stone-100);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.skip-link:focus-visible { outline: 2px solid var(--stone-600); outline-offset: 2px; }
+#main { scroll-margin-top: 56px; }   /* where the skip link lands: clear of the sticky nav */
+.skip-link:not(:focus),
 .footer-news__label-sr,
 .visually-hidden {
   position: absolute;

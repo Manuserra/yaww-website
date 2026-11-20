@@ -52,13 +52,14 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import page_content as PC  # noqa: E402
 import seo  # noqa: E402
+import chrome  # noqa: E402
 import additional_info as AI  # noqa: E402
 
 REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 TPL = os.path.join(REPO, "retreatpage-elcuyo.html")
-HOSTS_JS = '<script src="js/hosts.js?v=202611191130" defer></script>'
-CSS_VERSION = "202611200635"   # bump with any change to css/retreat.css
-CARDS_JS = '<script src="js/retreat-cards.js?v=202611200400"></script>'
+# css/ and js/ cache-busters: chrome.ASSET_VERSION, applied to the whole page by chrome.apply().
+HOSTS_JS = f'<script src="js/hosts.js?v={chrome.ASSET_VERSION}" defer></script>'
+CARDS_JS = f'<script src="js/retreat-cards.js?v={chrome.ASSET_VERSION}"></script>'
 
 # Past editions that still have a page but are no longer listed in
 # data/retreats.js. Built like any edition so they follow the template;
@@ -537,10 +538,6 @@ def build(rid, cat, assets, template, waitlist=False):
                 + (f", with {who}." if who else ". Teacher to be announced."))
     doc = swap(doc, "<title>YAWW · Beach Escape Retreat</title>",
                f"<title>YAWW · {esc(name)}</title>\n<meta name=\"description\" content=\"{esc(desc)}\">", "title")
-    # The built pages use rules the template predates (day titles, notes,
-    # empty host photo), so they ask for the current stylesheet.
-    doc = re.sub(r"css/retreat\.css\?v=\d+", "css/retreat.css?v=" + CSS_VERSION, doc, count=1)
-    doc = re.sub(r"(css/lead-modal\.css|js/lead-modal\.js|js/retreat-rooms\.js|js/booking-bar\.js)\?v=\d+", r"\1?v=" + CSS_VERSION, doc)
     doc = swap(doc, "<body>\n",
                f"<body>\n<!-- Built by retreats/_tools/build_page.py"
                + (f" --waitlist from data/locations.js (program) and" if waitlist else " from data/retreats.js and")
@@ -1073,6 +1070,7 @@ def main(argv):
     heroes = []
     for rid in ids:
         fname, doc, d = build(rid, cat, assets, template, waitlist)
+        doc = chrome.apply(doc)       # skip link, <main id>, css/js cache-buster (chrome.py)
         doc = seo.apply(doc, fname)   # title, description, canonical, Open Graph, JSON-LD (seo.py)
         open(os.path.join(REPO, fname), "w", encoding="utf-8").write(doc)
         built.append(fname)

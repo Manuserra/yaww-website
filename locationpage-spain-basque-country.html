@@ -39,6 +39,7 @@
 </head>
 <body>
 <!-- Built by retreats/_tools/build_location.py from retreats/_tools/location_content.py and data/*.js. Edit those, not this file. -->
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- Logo sprite: defined once, referenced via <use> from both the desktop
      brand row and the mobile nav-row logo (avoids duplicating the path data). -->
@@ -134,7 +135,7 @@
   </div>
 </nav>
 
-<main>
+<main id="main">
 
   <section class="retreat-hero retreat-hero--overlay loc-hero" data-location-id="spain-basque-country" data-lead-kind="location">
     <div class="retreat-hero__image" role="img" aria-label="Beach and island in the bay, Basque Country" style="background-image: url('images/retreat-photos/spain-basque-country/yoga-retreat-basque-country-beach-and-island-in-the-bay.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
@@ -471,7 +472,7 @@
   window.yawwLenis = lenis;
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href^="#"]');
-    if (!a || a.getAttribute('href').length < 2) return;
+    if (!a || a.getAttribute('href').length < 2 || a.classList.contains('skip-link')) return;
     var to = document.querySelector(a.getAttribute('href'));
     if (!to) return;
     e.preventDefault();

@@ -120,12 +120,12 @@ def build(cat):
             dates = B.has_upcoming(cat["retreats"], lid)
             top, tail = B.chrome()
             head = B.head(L, c).replace("<head>", '<head>\n<base href="../../">\n<meta name="robots" content="noindex">', 1)
-            head = head.replace(f'<link rel="stylesheet" href="css/location.css?v={B.V}">',
+            head = head.replace(f'<link rel="stylesheet" href="css/location.css?v={B.A}">',
                                 "<style>/* frozen copy of css/location.css + this option */\n" + loc_css + css + "</style>")
             banner = (f'<p style="margin:0;padding:10px 24px;background:#283139;color:#F7F2F0;font:600 12px/20px Raleway,sans-serif;'
                       f'letter-spacing:.12em;text-transform:uppercase;text-align:center">Proposal · {label} · not live</p>')
             tail = tail.replace("</body>", B.page_script(L, dates) + "\n"
-                                f'<script src="js/lead-modal.js?v={B.V}" defer></script>\n</body>')
+                                f'<script src="js/lead-modal.js?v={B.A}" defer></script>\n</body>')
             out = head + top.replace("<body>", "<body>\n" + banner, 1) + "<main>\n" + fn(L, c, dates, cat) + "\n</main>" + tail
             path = os.path.join(OUT, f"option-{vid}-{lid}.html")
             open(path, "w", encoding="utf-8").write(out)

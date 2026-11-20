@@ -29,8 +29,10 @@ REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 sys.path.insert(0, os.path.dirname(__file__))
 from location_content import LOCATIONS as C  # noqa: E402
 import seo  # noqa: E402
+import chrome as page_chrome  # noqa: E402  (build_location has its own chrome())
 
-V = "202611201900"          # cache-buster for css/location.css and the JS touched here
+V = "202611201900"          # cache-buster for data/locations.js
+A = page_chrome.ASSET_VERSION    # cache-buster for css/ and js/ (chrome.py)
 TODAY = datetime.date(2026, 11, 20)
 
 
@@ -332,7 +334,7 @@ def chrome():
     src = open(os.path.join(REPO, "locations.html"), encoding="utf-8").read()
     head_end = src.index("</head>")
     body_start = src.index("<body>")
-    main_start = src.index("<main>")
+    main_start = re.search(r"<main[^>]*>", src).start()
     main_end = src.index("</main>") + len("</main>")
     top = src[body_start:main_start]
     tail = src[main_end:]
@@ -343,7 +345,7 @@ def chrome():
                         "  window.yawwLenis = lenis;\n"
                         "  document.addEventListener('click', function (e) {\n"
                         "    var a = e.target.closest && e.target.closest('a[href^=\"#\"]');\n"
-                        "    if (!a || a.getAttribute('href').length < 2) return;\n"
+                        "    if (!a || a.getAttribute('href').length < 2 || a.classList.contains('skip-link')) return;\n"
                         "    var to = document.querySelector(a.getAttribute('href'));\n"
                         "    if (!to) return;\n"
                         "    e.preventDefault();\n"
@@ -372,15 +374,15 @@ def head(L, c):
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/base.css?v=202611192000">
-<link rel="stylesheet" href="css/retreat.css?v=202611200635">
-<link rel="stylesheet" href="css/lead-modal.css?v=202611200635">
-<link rel="stylesheet" href="css/locations.css?v={V}">
-<link rel="stylesheet" href="css/location.css?v={V}">
+<link rel="stylesheet" href="css/base.css?v={A}">
+<link rel="stylesheet" href="css/retreat.css?v={A}">
+<link rel="stylesheet" href="css/lead-modal.css?v={A}">
+<link rel="stylesheet" href="css/locations.css?v={A}">
+<link rel="stylesheet" href="css/location.css?v={A}">
 <script src="data/locations.js?v={V}"></script>
 <script src="data/teachers.js?v=202611201200"></script>
 <script src="data/retreats.js?v=202611191000"></script>
-<script src="js/retreat-cards.js?v={V}"></script>
+<script src="js/retreat-cards.js?v={A}"></script>
 </head>
 """
 
@@ -398,10 +400,11 @@ def build_page(L, cat):
             + intro(L, c) + guide(L, c) + know(L, c) + quote(c) + more(L, cat["locations"]) + cta(L, c, dates)
             + "\n</main>")
     tail = tail.replace("</body>", page_script(L, dates) + "\n"
-                        f'<script src="js/lead-modal.js?v={V}" defer></script>\n</body>')
+                        f'<script src="js/lead-modal.js?v={A}" defer></script>\n</body>')
     out = (head(L, c) + top.replace("<body>", "<body>\n<!-- Built by retreats/_tools/build_location.py from "
            "retreats/_tools/location_content.py and data/*.js. Edit those, not this file. -->", 1) + main + tail)
     path = os.path.join(REPO, f"locationpage-{L['id']}.html")
+    out = page_chrome.apply(out)       # skip link, <main id>, css/js cache-buster (chrome.py)
     out = seo.apply(out, f"locationpage-{L['id']}.html")   # SEO head (seo.py)
     open(path, "w", encoding="utf-8").write(out)
     return dates
@@ -427,7 +430,7 @@ def build_grid(cat):
     n = len(locs)
     words = {13: "Thirteen", 14: "Fourteen", 15: "Fifteen", 16: "Sixteen"}
     src = re.sub(r"(<p class=\"locations__lede\">)\w+ destinations", r"\g<1>" + words.get(n, str(n)) + " destinations", src)
-    src = re.sub(r'css/locations\.css\?v=\d+', f"css/locations.css?v={V}", src)
+    src = page_chrome.apply(src)
     src = seo.apply(src, "locations.html")   # SEO head (seo.py)
     open(path, "w", encoding="utf-8").write(src)
 
