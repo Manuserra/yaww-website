@@ -47,10 +47,10 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
    natively; elsewhere a negative indent of one quote-mark width.
    Left-aligned quotes only: a centred quote has no edge to hang from. */
 @supports (hanging-punctuation: first) {
-  .who__quote, .about-quote__text { hanging-punctuation: first last; }
+  .about-quote__text { hanging-punctuation: first last; }
 }
 @supports not (hanging-punctuation: first) {
-  .who__quote, .about-quote__text { text-indent: -0.42em; }
+  .about-quote__text { text-indent: -0.42em; }
 }
 
 /* ---------- 1 · Eyebrows ----------------------------------------
@@ -238,13 +238,9 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
 .room-card__unit, .extras__price-unit { letter-spacing: 0.12em; }
 
 /* ---------- 6 · Pull-quotes -------------------------------------- */
-/* Guest quote cards (home, "In our guests' words") keep the live
-   italic: size, leading and indent as today. Only the name changes. */
-.who__quote {
-  font-size: clamp(19px, 17.5px + 0.38vw, 23px);
-  line-height: 1.45;
-  letter-spacing: -0.005em;
-}
+/* Guest quotes on the home ("In our guests' words" cards and the
+   "Who comes on our retreats" panel) keep the live italic: size,
+   leading and indent as today. Only the name under a card changes. */
 .loc-quote blockquote {
   font-size: clamp(24px, 19.5px + 1.14vw, 36px);
   line-height: 1.3;
