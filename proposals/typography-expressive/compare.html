@@ -118,7 +118,7 @@ section > h2 { font-family: var(--font-heading); -webkit-font-smoothing: antiali
    each value: [family R|B, weight, italic, size px, line-height px, tracking px, caps] */
 var GROUPS = [
   ["Display", [
-    ["Home hero", "Home", "Travel that moves you", ["B",400,1,64,60.1,0,0], ["B",400,1,40.3,42.3,0,0], ["B",400,1,68,70.7,-1.4,0], ["B",400,1,36,37.4,-0.7,0]],
+    ["Home hero", "Home", "Travel that moves you", ["B",400,1,64,60.1,0,0], ["B",400,1,40.3,42.3,0,0], ["B",400,1,68,70.7,-1.4,0], ["B",400,1,36,37.4,-0.7,0], "Above 1440 both keep growing with the screen: at 1920 now 75 · proposal 80, at 2560 now 89 · proposal 95."],
     ["Retreat and location hero", "Retreat page", "Inner Glow Retreat", ["B",400,0,56,64,-0.6,0], ["B",400,0,34,42,-0.3,0], ["B",400,0,68,70.7,-1.4,0], ["B",400,0,36,37.4,-0.7,0]],
     ["Line under the hero name", "Retreat page", "El Cuyo, Mexico", ["B",400,1,22,32,0,0], ["B",400,1,18,26,0,0], ["B",400,1,23,31,0,0], ["B",400,1,19,25.7,0,0]],
     ["Hero proof value", "Home", "Since 2008", ["R",600,0,14,24,0.6,0], ["R",600,0,14,24,0.6,0], ["B",400,1,18,24,0,0], ["B",400,1,18,24,0,0]]
@@ -220,7 +220,7 @@ function renderCmp() {
         '<div class="style__meta"><p class="style__name">' + esc(s[0]) + '</p><p class="style__where">' + esc(s[1]) + "</p></div>" +
         '<div class="side side--now"><p class="side__label">Now</p><p class="sample' + serifN + '" style="' + styleAttr(now) + '">' + esc(s[2]) + "</p>" + specList(now, prop) + "</div>" +
         '<div class="side side--prop"><p class="side__label">Proposal</p><p class="sample' + serifP + '" style="' + styleAttr(prop) + '">' + esc(s[2]) + "</p>" + specList(prop, now) +
-        '<p class="delta">' + delta(now, prop) + "</p></div></div>";
+        '<p class="delta">' + delta(now, prop) + "</p>" + (s[7] ? '<p class="note">' + esc(s[7]) + "</p>" : "") + "</div></div>";
     });
   });
   document.getElementById("cmp").innerHTML = out;

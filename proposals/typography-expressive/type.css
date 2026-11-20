@@ -104,6 +104,16 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
 }
 .home-hero__proof-label { letter-spacing: 0.06em; }
 
+/* Big screens: the live home hero keeps growing past 1440 (64 → 89 at
+   2560). The proposal follows the same curve, 68/64 larger, so on a
+   wide iMac it never ends up smaller than what is live today. */
+@media (min-width: 1441px) {
+  .home-hero--overlay .home-hero__title,
+  .home-hero__title { font-size: min(calc(33.5px + 2.395vw), 100px); }
+  .home-hero__proof-value,
+  .home-hero--overlay .home-hero__proof-value { font-size: clamp(18px, 15.7px + 0.16vw, 21px); }
+}
+
 /* About's page title is a sentence with a set line break, so it takes
    the lyric italic (italic is also narrower: at 42px both lines still
    fit the 760px measure). Balance off, so the <br> decides the break. */
