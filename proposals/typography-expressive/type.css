@@ -259,6 +259,7 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
 .loc-intro__copy .loc-p,
 .pillar__copy p,
 .tiers2__body,
+.booking__body,
 .movement__body,
 .host__bio {
   line-height: 1.65;
