@@ -836,6 +836,12 @@ def build(rid, cat, assets, template, waitlist=False):
         doc = re.sub(r'<p class="gallery__intro">.*?</p>',
                      f'<p class="gallery__intro">Photographs from past retreats in {esc(place)}.</p>', doc, count=1, flags=re.S)
 
+    # --------------------------------------------------------------- carbon
+    # The band had no link and no programme behind it; its words now close
+    # Additional info (see additional_info()). Options: proposals/carbon/.
+    m = section(doc, "carbon")
+    doc = doc[:m.start()] + "  <!-- Carbon offset: now the last question in Additional info. -->" + doc[m.end():]
+
     # ------------------------------------------------------------------ faq
     faqs = ""
     for i, f in enumerate(additional_info(rid, loc, d, waitlist), 1):
@@ -925,6 +931,12 @@ def additional_info(rid, loc, d, waitlist):
         ref = json.load(open(os.path.join(REPO, "retreats", "argentina-mar-2027", "data.json"), encoding="utf-8"))
         policy = [f for f in ref["faqs"] if f["question"] in GENERIC_FAQ]
     out += [f for f in policy if f["question"] != "Do you accept bitcoin?"]
+    # What was the "Offset Your Carbon Footprint" band: the same words, as
+    # a question, until there is a programme to link to.
+    out.append({"question": "Can I offset the carbon footprint of my trip?", "answer": [
+        "Every trip has an environmental impact. If you would like to offset your carbon footprint, "
+        "you can contribute to climate projects through trusted organizations.",
+        "[missing data: the offsetting organization YAWW recommends, with its link]"]})
     return out
 
 
