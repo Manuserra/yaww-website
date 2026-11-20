@@ -52,7 +52,7 @@ h1, h2 { font-family: var(--font-heading); -webkit-font-smoothing: antialiased; 
   <header class="head">
     <p class="kicker">Overnight · 20 Nov 2026</p>
     <h1>Morning review board</h1>
-    <p>One row per decision. The highlighted option is the one already live on the overnight branch; the others are one click away. Answer with the letter you prefer.</p>
+    <p>One row per decision. The highlighted option is the one already live on the overnight branch; the others are one click away. Every option opens under the same bar: ← Board to come back, the menu to jump to another decision, ← → to move between options. Answer with the letter you prefer.</p>
   </header>
 
   <!-- Decisions. Add new ones as more <article class="decision"> blocks, in brief order. -->
@@ -63,10 +63,10 @@ h1, h2 { font-family: var(--font-heading); -webkit-font-smoothing: antialiased; 
       <h2>Stone colour for secondary buttons and eyebrows</h2>
       <p class="decision__q">Christina dislikes the current stone (#877C71). Which warmer, gold-leaning brown should replace it?</p>
       <ul class="opts">
-        <li><a href="stone-color/index.html#a"><span class="chip" style="background:#7E6B55"></span>A · Warm taupe #7E6B55</a></li>
-        <li><a href="stone-color/index.html#b"><span class="chip" style="background:#85684A"></span>B · Toasted oak #85684A</a></li>
-        <li><a class="is-chosen" href="stone-color/index.html#c"><span class="chip" style="background:#765C3A"></span>C · Bronze #765C3A <span class="tag">Implemented</span></a></li>
-        <li><a href="stone-color/index.html#d"><span class="chip" style="background:#6B5236"></span>D · Walnut #6B5236</a></li>
+        <li><a href="view.html?t=stone-color&amp;o=0"><span class="chip" style="background:#7E6B55"></span>A · Warm taupe #7E6B55</a></li>
+        <li><a href="view.html?t=stone-color&amp;o=1"><span class="chip" style="background:#85684A"></span>B · Toasted oak #85684A</a></li>
+        <li><a class="is-chosen" href="view.html?t=stone-color&amp;o=2"><span class="chip" style="background:#765C3A"></span>C · Bronze #765C3A <span class="tag">Implemented</span></a></li>
+        <li><a href="view.html?t=stone-color&amp;o=3"><span class="chip" style="background:#6B5236"></span>D · Walnut #6B5236</a></li>
       </ul>
       <p class="why"><b>Why C:</b> it has visible gold in it and reads as brass or leather, not dust, while staying in the stone family. It is the only gold-leaning option that passes WCAG AA for the small eyebrow text on every background it is used on, including the stone-300 "For teachers" band (4.58:1; the old colour was 2.99:1 there and failed everywhere). Changing it is one token, <code>--stone-600</code> in <code>css/base.css</code>.</p>
     </div>
@@ -78,10 +78,10 @@ h1, h2 { font-family: var(--font-heading); -webkit-font-smoothing: antialiased; 
       <h2>Card hover</h2>
       <p class="decision__q">One hover for every card on the site (retreats, locations, teachers, team, journal). Which one?</p>
       <ul class="opts">
-        <li><a class="is-chosen" href="../proto-card-hover.html?v=1">Veil <span class="tag">Implemented</span></a></li>
-        <li><a href="../proto-card-hover.html?v=2">Passe-partout</a></li>
-        <li><a href="../proto-card-hover.html?v=3">Comes alive</a></li>
-        <li><a href="../proto-card-hover.html?v=4">Second photo</a></li>
+        <li><a class="is-chosen" href="view.html?t=card-hover&amp;o=0">Veil <span class="tag">Implemented</span></a></li>
+        <li><a href="view.html?t=card-hover&amp;o=1">Passe-partout</a></li>
+        <li><a href="view.html?t=card-hover&amp;o=2">Comes alive</a></li>
+        <li><a href="view.html?t=card-hover&amp;o=3">Second photo</a></li>
       </ul>
       <p class="why"><b>Why Veil:</b> it was the pick from the previous hover round, it works on every card type (Second photo only exists for retreats with a gallery), and it moves nothing. A sheer layer of the page cream settles over the photo and the title underline fades in. Defined once in <code>css/base.css</code>.</p>
     </div>
@@ -93,10 +93,10 @@ h1, h2 { font-family: var(--font-heading); -webkit-font-smoothing: antialiased; 
       <h2>How people find a retreat</h2>
       <p class="decision__q">Tiers as a dropdown? Multi-select with search? A global search? A destination picker with photos, like Evaneos or Kindred? Full reasoning in <code>docs/retreats-search-product.md</code>.</p>
       <ul class="opts">
-        <li><a class="is-chosen" href="../retreats.html">A · Current bar, plus photos and months <span class="tag">Implemented</span></a></li>
-        <li><a href="retreats-search/option-b.html">B · Destination gallery (next to test)</a></li>
-        <li><a href="retreats-search/option-c.html">C · One search field</a></li>
-        <li><a href="retreats-search/option-d.html">D · Four multi-selects</a></li>
+        <li><a class="is-chosen" href="view.html?t=retreats-search&amp;o=0">A · Current bar, plus photos and months <span class="tag">Implemented</span></a></li>
+        <li><a href="view.html?t=retreats-search&amp;o=1">B · Destination gallery (next to test)</a></li>
+        <li><a href="view.html?t=retreats-search&amp;o=2">C · One search field</a></li>
+        <li><a href="view.html?t=retreats-search&amp;o=3">D · Four multi-selects</a></li>
       </ul>
       <p class="why"><b>Why A:</b> 17 dates and 14 places fit on one scroll, so the tools frame the choice rather than narrow it. Stacking choices (C, D) mostly leads to empty combinations, which the live "latest pick wins" rule avoids. The tabs stay because they explain the collections; a fourth dropdown would hide Signature. Tonight A gained a photo per destination, the months of each season, a readable clear (×) and tracking. <b>B</b> is the idea worth testing next: Destination opens a gallery of the places. Not live because it changes the main component; measure first.</p>
     </div>
@@ -109,10 +109,10 @@ h1, h2 { font-family: var(--font-heading); -webkit-font-smoothing: antialiased; 
       <h2>Retreat page hero</h2>
       <p class="decision__q">Everything above the fold (photo, name, key facts, both CTAs) at every screen size. Which layout?</p>
       <ul class="opts">
-        <li><a class="is-chosen" href="hero/option-a.html">A · Overlay on the photo <span class="tag">Implemented</span></a></li>
-        <li><a href="hero/option-b.html">B · Split, copy on stone</a></li>
-        <li><a href="hero/option-c.html">C · Copy above, photo band below</a></li>
-        <li><a href="../retreatpage-el-cuyo-dec-2026-delaney.html">Live page</a></li>
+        <li><a class="is-chosen" href="view.html?t=retreat-hero&amp;o=0">A · Overlay on the photo <span class="tag">Implemented</span></a></li>
+        <li><a href="view.html?t=retreat-hero&amp;o=1">B · Split, copy on stone</a></li>
+        <li><a href="view.html?t=retreat-hero&amp;o=2">C · Copy above, photo band below</a></li>
+        <li><a href="view.html?t=retreat-hero&amp;o=3">Live page</a></li>
       </ul>
       <p class="why"><b>Why A:</b> it is the premium version's hero at our type scale (56px Baskerville, not 116): the photograph fills what the viewport leaves under the header, inside the 24px frame, and the name, facts and both CTAs sit on a scrim in the brand's darkest blue. The copy is anchored to the bottom of the photo, so it is above the fold at 1440x900, 1920x1080 and on a phone. The tier and status sit above the title in the same label the retreat cards use ("Deep Dive · 2 spaces left", Signature in bronze), square. <b>B</b> keeps every word dark on light but halves the photo; <b>C</b> is the most conservative and turns the photo into a band. The location page hero still uses the old layout; it can adopt this one with the <code>retreat-hero--overlay</code> class.</p>
     </div>
@@ -124,9 +124,9 @@ h1, h2 { font-family: var(--font-heading); -webkit-font-smoothing: antialiased; 
       <h2>Rooms pricing layout</h2>
       <p class="decision__q">How should the room types and prices be laid out next to "How to book"?</p>
       <ul class="opts">
-        <li><a class="is-chosen" href="../retreatpage-thailand-dec-2026.html#rooms">A · 4 cols terms + 8 cols stacked horizontal cards <span class="tag">Implemented</span></a></li>
-        <li><a href="rooms/option-b.html">B · Two-up cards (before)</a></li>
-        <li><a href="rooms/option-c.html">C · Comparison table</a></li>
+        <li><a class="is-chosen" href="view.html?t=retreat-rooms&amp;o=0">A · 4 cols terms + 8 cols stacked horizontal cards <span class="tag">Implemented</span></a></li>
+        <li><a href="view.html?t=retreat-rooms&amp;o=1">B · Two-up cards (before)</a></li>
+        <li><a href="view.html?t=retreat-rooms&amp;o=2">C · Comparison table</a></li>
       </ul>
       <p class="why"><b>Why A</b> (your idea, and it holds up): prices line up in one column and compare by reading down; eight rooms (Santorini) stay one screen-and-a-bit instead of four rows of big cards; a room with no photo costs a small square with a visible [missing photo] note instead of a hole. The hotel is said once above the list. Each card has square pills (private or shared, bed, bath, view), the old site's room description, which the page never showed, and Reserve + Details. Details opens a room modal with tabs for every room, plus every hotel when there are two or more. <b>Reserve:</b> both a section CTA and one per room; per-room preselection depends on WeTravel (see <code>docs/wetravel-cta.md</code>). Until there is a WeTravel URL, every Reserve opens the lead form with the room filled in.</p>
     </div>
@@ -138,9 +138,9 @@ h1, h2 { font-family: var(--font-heading); -webkit-font-smoothing: antialiased; 
       <h2>"Offset Your Carbon Footprint"</h2>
       <p class="decision__q">The band links to nowhere and there is no programme behind it. Remove it, keep it as a quiet note, or make it a question in Additional info?</p>
       <ul class="opts">
-        <li><a href="carbon/index.html">A · Remove it</a></li>
-        <li><a href="carbon/index.html">B · Quiet note before the footer</a></li>
-        <li><a class="is-chosen" href="carbon/index.html">C · Question in Additional info <span class="tag">Implemented</span></a></li>
+        <li><a href="view.html?t=retreat-carbon&amp;o=0">A · Remove it</a></li>
+        <li><a href="view.html?t=retreat-carbon&amp;o=0">B · Quiet note before the footer</a></li>
+        <li><a class="is-chosen" href="view.html?t=retreat-carbon&amp;o=0">C · Question in Additional info <span class="tag">Implemented</span></a></li>
       </ul>
       <p class="why"><b>Why C:</b> the reader who cares finds it where practical questions live, in the same words, and it costs nothing to anyone else. It ends with a visible [missing data] line where the recommended organisation's link goes. <b>To answer:</b> is there an offsetting partner to link to? If not, A is the honest choice.</p>
     </div>
@@ -152,10 +152,10 @@ h1, h2 { font-family: var(--font-heading); -webkit-font-smoothing: antialiased; 
       <h2>Teacher page layout</h2>
       <p class="decision__q">The old page was a centred photo and a block of text. Which layout should sell each teacher? Both have slots for a quote, specialties, a class video and a Spotify playlist, shown only when the teacher sends them.</p>
       <ul class="opts">
-        <li><a class="is-chosen" href="teacher-page/option-a.html">A · Split profile <span class="tag">Implemented</span></a></li>
-        <li><a href="teacher-page/option-b.html">B · Editorial hero + sidebar</a></li>
+        <li><a class="is-chosen" href="view.html?t=teacher-page&amp;o=0">A · Split profile <span class="tag">Implemented</span></a></li>
+        <li><a href="view.html?t=teacher-page&amp;o=1">B · Editorial hero + sidebar</a></li>
       </ul>
-      <p class="why"><b>Why A:</b> it works for every teacher today, including those with a short bio or a small Canva photo: vertical photo on the left (held in view while you read), her own line, bio and specialties on the right, then her retreats on the stone band and the video and playlist band. B needs a sharp, wide-enough photo for a half-screen hero, which only Alicia, Alison and Renata have. Live example with every slot filled by a placeholder: <a href="../teacher-alicia-delaney.html?slots=demo">Alicia Delaney</a> (add <code>?slots=demo</code> to any teacher URL). What to ask the teachers for: <code>docs/teacher-content-request.md</code>.</p>
+      <p class="why"><b>Why A:</b> it works for every teacher today, including those with a short bio or a small Canva photo: vertical photo on the left (held in view while you read), her own line, bio and specialties on the right, then her retreats on the stone band and the video and playlist band. B needs a sharp, wide-enough photo for a half-screen hero, which only Alicia, Alison and Renata have. Live example with every slot filled by a placeholder: <a href="view.html?t=teacher-page&amp;o=2">Alicia Delaney</a> (add <code>?slots=demo</code> to any teacher URL). What to ask the teachers for: <code>docs/teacher-content-request.md</code>.</p>
     </div>
   </article>
 
@@ -165,8 +165,8 @@ h1, h2 { font-family: var(--font-heading); -webkit-font-smoothing: antialiased; 
       <h2>Google and Tripadvisor rating badges</h2>
       <p class="decision__q">Official widgets, or our own badges linking out?</p>
       <ul class="opts">
-        <li><a class="is-chosen" href="../about.html">A · Our static badges, linked <span class="tag">Implemented</span></a></li>
-        <li><a href="https://www.tripadvisor.com/Widgets">B · Official Tripadvisor widget + Google via Places API</a></li>
+        <li><a class="is-chosen" href="view.html?t=review-badges&amp;o=0">A · Our static badges, linked <span class="tag">Implemented</span></a></li>
+        <li><a href="https://www.tripadvisor.com/Widgets" target="_blank" rel="noopener">B · Official Tripadvisor widget + Google via Places API</a></li>
       </ul>
       <p class="why"><b>Why A for now:</b> Google has no official embed (only the Places API with a billed Cloud key, or a paid third party), and the Tripadvisor widget brings its own look and a third-party script. Our badges match the page and load nothing; they need the two review links and a quarterly check of the score. Needs from you: owner access to both listings and confirmation of 4.9 / 4.8. Details in <code>docs/review-widgets.md</code>.</p>
     </div>
@@ -178,8 +178,8 @@ h1, h2 { font-family: var(--font-heading); -webkit-font-smoothing: antialiased; 
       <h2>Marina and Fleur after leaving the listing</h2>
       <p class="decision__q">They are off facilitators.html. Their pages: keep them unlisted, or remove them?</p>
       <ul class="opts">
-        <li><a class="is-chosen" href="../facilitator-fleur-optekamp.html">A · Keep unlisted pages <span class="tag">Implemented</span></a></li>
-        <li><a href="../facilitators.html">B · Redirect to the facilitators page</a></li>
+        <li><a class="is-chosen" href="view.html?t=facilitators&amp;o=0">A · Keep unlisted pages <span class="tag">Implemented</span></a></li>
+        <li><a href="view.html?t=facilitators&amp;o=1">B · Redirect to the facilitators page</a></li>
       </ul>
       <p class="why"><b>Why A:</b> the Thailand retreat page still says "Meet Fleur" and links to her page, so removing it would send guests to a list she is not on. If Marina and Fleur no longer work with YAWW, switch to B and drop them from those retreat pages. JL's old team URL now goes to her teacher page; she stays in About's team grid. Old team*.html URLs all redirect.</p>
     </div>
@@ -191,10 +191,10 @@ h1, h2 { font-family: var(--font-heading); -webkit-font-smoothing: antialiased; 
       <h2>What the Contact page does</h2>
       <p class="decision__q">Three tab forms ("General Inquiry", "Teach with us", "Build a Custom Retreat") that nobody would fill in. What should replace them? Full reasoning in <code>docs/contact-strategy.md</code>.</p>
       <ul class="opts">
-        <li><a class="is-chosen" href="../contact.html">A · One human form with topics, plus doors <span class="tag">Implemented</span></a></li>
-        <li><a href="contact/option-b.html">B · Signposts, no form</a></li>
-        <li><a href="contact/option-c.html">C · Conversation first (WhatsApp, call)</a></li>
-        <li><a href="../teach-with-us.html">New page: Teach with us</a></li>
+        <li><a class="is-chosen" href="view.html?t=contact&amp;o=0">A · One human form with topics, plus doors <span class="tag">Implemented</span></a></li>
+        <li><a href="view.html?t=contact&amp;o=1">B · Signposts, no form</a></li>
+        <li><a href="view.html?t=contact&amp;o=2">C · Conversation first (WhatsApp, call)</a></li>
+        <li><a href="view.html?t=contact&amp;o=3">New page: Teach with us</a></li>
       </ul>
       <p class="why"><b>Why A:</b> questions about one retreat now start on that retreat's page, so Contact is for everything else. One form asks "What is it about?" (a retreat, a trip for my group, something else) and only shows what that topic needs; teachers, groups and press get a door each. "Build a custom retreat" becomes the "A trip for my group" topic rather than a page, since there is no defined product behind it yet. <b>C</b> is the warmest and closest to how Christina sells, but needs a confirmed WhatsApp line and a booking calendar. <b>To answer:</b> the public email address, whether the phone takes WhatsApp, and the three teacher FAQ answers marked [missing data] on Teach with us (minimum students, pay, lead time).</p>
     </div>
@@ -206,12 +206,12 @@ h1, h2 { font-family: var(--font-heading); -webkit-font-smoothing: antialiased; 
       <h2>Location page template</h2>
       <p class="decision__q">One template for all 14 places. The retreat page sells a date; this page sells the place and sends people to the dates. Which structure? Each option has a page with dates (Oaxaca) and one on the waitlist (Iceland).</p>
       <ul class="opts">
-        <li><a class="is-chosen" href="../locationpage-oaxaca.html">A · Field guide (Oaxaca) <span class="tag">Implemented</span></a></li>
-        <li><a class="is-chosen" href="../locationpage-iceland.html">A · Field guide, waitlist (Iceland)</a></li>
-        <li><a href="location-template/option-b-oaxaca.html">B · Editorial long-read (Oaxaca)</a></li>
-        <li><a href="location-template/option-b-iceland.html">B · Iceland</a></li>
-        <li><a href="location-template/option-c-oaxaca.html">C · Compact, sales first (Oaxaca)</a></li>
-        <li><a href="location-template/option-c-iceland.html">C · Iceland</a></li>
+        <li><a class="is-chosen" href="view.html?t=location-template&amp;o=0">A · Field guide (Oaxaca) <span class="tag">Implemented</span></a></li>
+        <li><a class="is-chosen" href="view.html?t=location-template&amp;o=1">A · Field guide, waitlist (Iceland)</a></li>
+        <li><a href="view.html?t=location-template&amp;o=2">B · Editorial long-read (Oaxaca)</a></li>
+        <li><a href="view.html?t=location-template&amp;o=3">B · Iceland</a></li>
+        <li><a href="view.html?t=location-template&amp;o=4">C · Compact, sales first (Oaxaca)</a></li>
+        <li><a href="view.html?t=location-template&amp;o=5">C · Iceland</a></li>
       </ul>
       <p class="why"><b>Why A:</b> it reads like our guide to the place and still puts the dates one scroll away. Hero in the retreat hero's frame (place, the live-site line for it, when we go / fly into / pace, two CTAs), then the retreats on the stone band, why we go, the place through the homepage pillars (landscape, table, culture, movement) as four photos, good to know, one real review, three more places. <b>B</b> gives each pillar a full split like the homepage: more atmosphere, twice as long, and the practical facts get lost beside the intro. <b>C</b> is shortest and pushes the dates hardest, but the guide shrinks to captions and the page stops sounding like experts. Waitlist state in every option: no "Upcoming retreats" label over an empty box; the retreat's card with its itinerary on the left, "Our next dates in Iceland go to the waitlist first" on the right, Join the waitlist with Ask us about Iceland beside it, errors under each field. <b>To answer:</b> France, Sardinia and Turkey have no month on record (marked [missing data]); France has two [photo: …] placeholders (Champagne vineyards, morning practice).</p>
     </div>
@@ -223,7 +223,7 @@ h1, h2 { font-family: var(--font-heading); -webkit-font-smoothing: antialiased; 
       <h2>Locations grid: blurbs and Camino</h2>
       <p class="decision__q">Blurbs rewritten from the live retreat pages to three lines on every card (checked at 1280, 1366, 1440 and 1920). Camino de Santiago was in the data but missing from the grid: it is now there, with a crop of the Santiago cathedral photo. Keep it?</p>
       <ul class="opts">
-        <li><a class="is-chosen" href="../locations.html">Fourteen places, all linked <span class="tag">Implemented</span></a></li>
+        <li><a class="is-chosen" href="view.html?t=locations-grid&amp;o=0">Fourteen places, all linked <span class="tag">Implemented</span></a></li>
       </ul>
       <p class="why"><b>Copy source:</b> <code>docs/locations-content.md</code>, edited in <code>retreats/_tools/location_content.py</code> (the <code>blurb</code> of each place). Run <code>python3 retreats/_tools/build_location.py</code> to rebuild the grid and all location pages.</p>
     </div>
@@ -235,11 +235,11 @@ h1, h2 { font-family: var(--font-heading); -webkit-font-smoothing: antialiased; 
       <h2>A more expressive type option</h2>
       <p class="decision__q">If premium is a 10 and the live site a 1, this is a 5: same layouts and colours, more of Libre Baskerville. Section titles go from 24px bold to 42px Regular, italic for a few moments (hero, quotes, Day N, the closing line), one eyebrow style, hanging quotes, one drop cap on About. Adopt it?</p>
       <ul class="opts">
-        <li><a href="typography-expressive/index.html">Specimen, rules, before and after</a></li>
-        <li><a href="typography-expressive/home.html">Home</a></li>
-        <li><a href="typography-expressive/retreatpage-el-cuyo-dec-2026-delaney.html">Retreat page</a></li>
-        <li><a href="typography-expressive/locationpage-oaxaca.html">Location page</a></li>
-        <li><a href="typography-expressive/about.html">About</a></li>
+        <li><a href="view.html?t=typography-expressive&amp;o=0">Specimen, rules, before and after</a></li>
+        <li><a href="view.html?t=typography-expressive&amp;o=1">Home</a></li>
+        <li><a href="view.html?t=typography-expressive&amp;o=2">Retreat page</a></li>
+        <li><a href="view.html?t=typography-expressive&amp;o=3">Location page</a></li>
+        <li><a href="view.html?t=typography-expressive&amp;o=4">About</a></li>
       </ul>
       <p class="why"><b>Not implemented, proposal only.</b> Every page has a switch on the right (or press T) to flip between the live type and the proposal at the same scroll. It is one override file, <code>typography-expressive/type.css</code>, that changes type only, so adopting it is merging that file. Notes and open points in <code>typography-expressive/NOTES.md</code>.</p>
     </div>

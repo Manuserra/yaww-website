@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Proposal viewer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Proposal viewer: one bar for every decision on the board.
+   The option loads in the frame below, so the bar never goes away,
+   even on a live page or when you click around inside it. */
+:root {
+  --bar: #283139; --bar-line: rgba(247,242,240,.16);
+  --ink: #F7F2F0; --ink-dim: rgba(247,242,240,.62);
+  --font-body: "Raleway", -apple-system, system-ui, sans-serif;
+  --ease: cubic-bezier(.23,1,.32,1);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: #F7F2F0; }
+body { display: flex; flex-direction: column; font-family: var(--font-body); }
+
+.vbar { flex: none; display: flex; align-items: center; gap: 4px 20px; min-height: 56px; padding: 0 16px; background: var(--bar); color: var(--ink); font-size: 14px; line-height: 20px; letter-spacing: .32px; }
+.vbar a, .vbar button, .vbar select { font: inherit; letter-spacing: inherit; color: inherit; }
+.vbar :focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+.back { flex: none; display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px 8px 4px; text-decoration: none; font-weight: 600; border-right: 1px solid var(--bar-line); }
+.back span { transition: transform .2s var(--ease); }
+@media (hover: hover) { .back:hover span { transform: translateX(-3px); } }
+
+.topic { flex: none; position: relative; }
+.topic select { appearance: none; -webkit-appearance: none; background: transparent; border: 0; padding: 8px 24px 8px 4px; font-weight: 600; text-transform: uppercase; font-size: 12px; letter-spacing: .1em; color: var(--ink-dim); cursor: pointer; }
+.topic::after { content: ""; position: absolute; right: 8px; top: 50%; width: 6px; height: 6px; margin-top: -5px; border-right: 1.5px solid var(--ink-dim); border-bottom: 1.5px solid var(--ink-dim); transform: rotate(45deg); pointer-events: none; }
+.topic select option { color: #283139; text-transform: none; }
+
+.opts { flex: 1 1 auto; min-width: 0; display: flex; gap: 4px 24px; overflow-x: auto; scrollbar-width: none; }
+.opts::-webkit-scrollbar { display: none; }
+.opt { flex: none; position: relative; display: inline-flex; align-items: center; gap: 8px; padding: 18px 0; background: none; border: 0; color: var(--ink-dim); cursor: pointer; white-space: nowrap; transition: color .15s ease; }
+.opt::after { content: ""; position: absolute; left: 0; right: 0; bottom: 14px; height: 1px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .25s var(--ease); }
+@media (hover: hover) { .opt:hover { color: var(--ink); } }
+.opt[aria-current="true"] { color: var(--ink); font-weight: 600; }
+.opt[aria-current="true"]::after { transform: scaleX(1); }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: #C6A97C; flex: none; }
+
+.tools { flex: none; display: flex; align-items: center; gap: 4px; border-left: 1px solid var(--bar-line); padding-left: 12px; }
+.tool { display: inline-grid; place-items: center; width: 36px; height: 36px; background: none; border: 0; color: var(--ink-dim); cursor: pointer; text-decoration: none; font-size: 18px; transition: color .15s ease; }
+@media (hover: hover) { .tool:hover { color: var(--ink); } }
+.tool[disabled] { opacity: .3; cursor: default; }
+
+.frame { flex: 1 1 auto; width: 100%; border: 0; display: block; background: #F7F2F0; }
+.legend { position: fixed; right: 16px; bottom: 16px; padding: 8px 12px; background: var(--bar); color: var(--ink-dim); font: 12px/16px var(--font-body); letter-spacing: .32px; opacity: 0; transform: translateY(4px); transition: opacity .2s ease, transform .2s var(--ease); pointer-events: none; }
+.legend.is-on { opacity: 1; transform: none; }
+
+@media (max-width: 767px) {
+  .vbar { flex-wrap: wrap; padding: 4px 12px 0; }
+  .back { border-right: 0; }
+  .tools { margin-left: auto; border-left: 0; }
+  .opts { order: 3; flex-basis: 100%; border-top: 1px solid var(--bar-line); }
+  .opt { padding: 14px 0; }
+  .opt::after { bottom: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .back span, .opt::after, .legend { transition: none; } }
+</style>
+</head>
+<body>
+<header class="vbar">
+  <a class="back" href="index.html" id="back"><span aria-hidden="true">&larr;</span> Board</a>
+  <label class="topic"><span class="sr" hidden>Decision</span><select id="topic" aria-label="Decision"></select></label>
+  <nav class="opts" id="opts" aria-label="Options"></nav>
+  <div class="tools">
+    <button class="tool" id="prev" type="button" aria-label="Previous option" title="Previous option (←)">&lsaquo;</button>
+    <button class="tool" id="next" type="button" aria-label="Next option" title="Next option (→)">&rsaquo;</button>
+  </div>
+</header>
+<iframe class="frame" id="frame" title="Proposal option"></iframe>
+<div class="legend" id="legend">← → option · Esc board</div>
+
+<script src="topics.js"></script>
+<script>
+(function () {
+  var T = window.YAWW_PROPOSALS;
+  var $ = function (id) { return document.getElementById(id); };
+  var frame = $("frame"), opts = $("opts"), sel = $("topic");
+  var topic, index;
+
+  /* In-page pickers from before this viewer existed: hidden inside the frame
+     so there is only ever one set of controls. */
+  var HIDE = ".pbar,.proto-picker,a.back[href='../index.html']{display:none!important}";
+
+  T.forEach(function (t) {
+    var o = document.createElement("option");
+    o.value = t.id; o.textContent = t.title;
+    sel.appendChild(o);
+  });
+
+  function abs(url) { return new URL(url, location.href).href; }
+
+  function go(tid, i, push) {
+    topic = T.filter(function (t) { return t.id === tid; })[0] || T[0];
+    index = Math.max(0, Math.min(topic.options.length - 1, i | 0));
+    var o = topic.options[index];
+    sel.value = topic.id;
+    $("back").href = "index.html#" + topic.id;
+    renderOpts();
+    $("prev").disabled = index === 0;
+    $("next").disabled = index === topic.options.length - 1;
+    document.title = topic.title + " · " + o.label;
+    var q = "?t=" + topic.id + "&o=" + index;
+    history[push ? "pushState" : "replaceState"]({ t: topic.id, o: index }, "", q);
+    if (o.external) { window.open(o.url, "_blank", "noopener"); return; }
+    // A hash-only change would just scroll the same document; reload to land cleanly.
+    if (frame.src && abs(frame.src).split("#")[0] === abs(o.url).split("#")[0]) {
+      frame.contentWindow.location.replace(abs(o.url));
+      frame.contentWindow.location.reload();
+    } else {
+      frame.src = o.url;
+    }
+  }
+
+  function renderOpts() {
+    opts.innerHTML = "";
+    topic.options.forEach(function (o, i) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "opt";
+      b.setAttribute("aria-current", i === index ? "true" : "false");
+      b.innerHTML = (o.chosen ? '<span class="dot" title="Live on the branch"></span>' : "") + o.label;
+      if (o.chosen) b.title = "Live on the branch";
+      b.addEventListener("click", function () { go(topic.id, i, true); });
+      opts.appendChild(b);
+    });
+    var cur = opts.children[index];
+    if (cur && cur.scrollIntoView) cur.scrollIntoView({ block: "nearest", inline: "nearest" });
+  }
+
+  function step(d) {
+    var i = index + d;
+    if (i >= 0 && i < topic.options.length) go(topic.id, i, true);
+  }
+
+  function onKey(e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    var tag = (e.target && e.target.tagName) || "";
+    if (/INPUT|TEXTAREA|SELECT/.test(tag) || (e.target && e.target.isContentEditable)) return;
+    if (e.key === "ArrowLeft") { e.preventDefault(); step(-1); }
+    else if (e.key === "ArrowRight") { e.preventDefault(); step(1); }
+    else if (e.key === "Escape") { location.href = $("back").href; }
+  }
+
+  frame.addEventListener("load", function () {
+    try {
+      var d = frame.contentDocument;
+      var s = d.createElement("style"); s.textContent = HIDE;
+      d.head.appendChild(s);
+      d.addEventListener("keydown", onKey);
+      // Links inside the option that point back to the board leave the viewer.
+      d.querySelectorAll("a[href]").forEach(function (a) {
+        if (/proposals\/(index\.html)?(#|$)/.test(a.href)) a.target = "_top";
+      });
+    } catch (err) { /* cross-origin page: bar still works */ }
+  });
+
+  sel.addEventListener("change", function () { go(sel.value, 0, true); });
+  $("prev").addEventListener("click", function () { step(-1); });
+  $("next").addEventListener("click", function () { step(1); });
+  document.addEventListener("keydown", onKey);
+  window.addEventListener("popstate", function (e) {
+    var s = e.state || {};
+    if (s.t) go(s.t, s.o, false);
+  });
+
+  var p = new URLSearchParams(location.search);
+  var u = p.get("u");
+  if (u) {  // came from guard.js: find which option this page is
+    var want = new URL(u, location.href).href, hit = null;
+    T.forEach(function (t) { t.options.forEach(function (o, i) {
+      if (!hit && abs(o.url) === want) hit = [t.id, i];
+    }); });
+    if (!hit) T.forEach(function (t) { t.options.forEach(function (o, i) {
+      if (!hit && abs(o.url).split("#")[0] === want.split("#")[0]) hit = [t.id, i];
+    }); });
+    if (hit) { go(hit[0], hit[1], false); } else { location.replace("index.html"); }
+  } else {
+    go(p.get("t") || T[0].id, +p.get("o") || 0, false);
+  }
+
+  var lg = $("legend");
+  lg.classList.add("is-on");
+  setTimeout(function () { lg.classList.remove("is-on"); }, 2600);
+})();
+</script>
+</body>
+</html>
