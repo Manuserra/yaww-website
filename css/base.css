@@ -625,7 +625,8 @@ main { padding-top: 0; }
   width: 560px;
   max-width: 100%;
 }
-.footer-news__label-sr {
+.footer-news__label-sr,
+.visually-hidden {
   position: absolute;
   width: 1px;
   height: 1px;
