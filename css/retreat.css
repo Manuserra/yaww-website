@@ -2632,3 +2632,48 @@ html.has-lightbox { overflow: hidden; }
   .hosts__slot .host__name { margin-top: 0; }
   .hosts__slot .host__link { margin-top: 24px; padding-top: 0; }
 }
+
+
+/* ============================================================
+   ITINERARY · serif day labels, a rail that fills (2026-11-20)
+   From the premium version, in our colours: "Day 1" set in
+   Baskerville italic instead of tracked capitals, and the rail fills
+   in bronze down to the line you are reading, each ring filling as
+   the line reaches it. The label slot widens to hold the serif.
+   ============================================================ */
+.retreat-itinerary { --label-w: 76px; }
+.retreat-itinerary__label {
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 28px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--sea-blue);
+  transition: color .4s var(--ease-out);
+}
+.retreat-itinerary__progress { width: 2px; left: calc(var(--rail-w) / 2 - 1px); background: var(--stone-600); }
+.retreat-itinerary__dot {
+  border-color: var(--stone-400);
+  transition: border-color .4s var(--ease-out), background-color .4s var(--ease-out), box-shadow .4s var(--ease-out);
+}
+/* Reached: a bronze disc inside the ring, the page's stone between the two. */
+.retreat-itinerary__dot.is-reached {
+  border-color: var(--stone-600);
+  background: var(--stone-600);
+  box-shadow: inset 0 0 0 5px var(--stone);
+}
+.retreat-itinerary__day:has(.retreat-itinerary__dot.is-reached) .retreat-itinerary__label { color: var(--stone-600); }
+@media (prefers-reduced-motion: reduce) {
+  .retreat-itinerary__label, .retreat-itinerary__dot { transition: none; }
+}
+@media (max-width: 946px) {
+  .retreat-itinerary__label { font-size: 20px; line-height: 26px; }
+}
+@media (max-width: 480px) {
+  .retreat-itinerary__label { font-size: 19px; line-height: 24px; }
+  .retreat-itinerary__dot { margin-top: 8px; }
+  .retreat-itinerary__dot.is-reached { box-shadow: inset 0 0 0 2px var(--stone); }
+  .retreat-itinerary__progress { width: 1px; left: calc(var(--rail-w) / 2 - 0.5px); }
+}

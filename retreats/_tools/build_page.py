@@ -55,7 +55,7 @@ import page_content as PC  # noqa: E402
 REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 TPL = os.path.join(REPO, "retreatpage-elcuyo.html")
 HOSTS_JS = '<script src="js/hosts.js?v=202611191130" defer></script>'
-CSS_VERSION = "202611200530"   # bump with any change to css/retreat.css
+CSS_VERSION = "202611200540"   # bump with any change to css/retreat.css
 CARDS_JS = '<script src="js/retreat-cards.js?v=202611200400"></script>'
 
 # Past editions that still have a page but are no longer listed in
