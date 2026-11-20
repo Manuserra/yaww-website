@@ -203,11 +203,11 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
    is as tall as live and the space sits between the lines, not inside them. */
 .tiers2__text { gap: 19px; }
 .host__name, .about-person__name { letter-spacing: -0.005em; }
-.who__tab-title { letter-spacing: -0.005em; }
-/* How it works steps: Regular, not Bold. In Bold 20 the four steps
-   outweighed the Regular 30 section title above them. Roman, not
-   italic: they are instructions, not lines with a voice. */
-.booking__label {
+/* How it works steps and the Who comes tabs: Regular, not Bold. In
+   Bold 20 they outweighed the Regular 30 section title above them.
+   Roman, not italic: they are labels, not lines with a voice. */
+.booking__label,
+.who__tab-title {
   font-weight: 400;
   font-size: clamp(20px, 19.26px + 0.19vw, 22px);   /* 20 phone · 22 @1440 */
   line-height: 1.3;
