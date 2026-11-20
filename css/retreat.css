@@ -105,60 +105,10 @@
 
 /* Frame 429: CTA buttons */
 .retreat-hero__ctas { display: flex; align-items: center; gap: 16px; }
-/* --- Button (shared component) -----------------------------------------
-   One pair for the whole site: filled primary, outlined secondary. Size and
-   width come from base.css (304px minimum, full width on phones); the
-   booking rail and bar set their own.
-
-   The secondary used to be stone-400 text on the stone ground: 1.63:1,
-   against the 4.5:1 WCAG asks for at this size. It was legible as a shape
-   and almost not as words. It now carries the same sea-blue as the primary,
-   which measures 6.7:1, and the border does the work of telling the two
-   apart instead of the text being faded. */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  min-height: 56px;
-  padding: 16px 32px;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  border: 1px solid transparent;
-  border-radius: 0;
-  cursor: pointer;
-  text-decoration: none;   /* the retreat pages' CTAs are links, not buttons */
-  /* colour only — nothing that shifts layout or moves under the cursor */
-  transition: background-color .18s ease, color .18s ease, border-color .18s ease;
-}
-.btn:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
-
-.btn--primary {
-  background: var(--sea-blue);
-  border-color: var(--sea-blue);
-  color: var(--stone);
-}
-/* Deepens rather than lightens: a filled button that pales on hover reads as
-   going disabled. */
-.btn--primary:hover  { background: var(--sea-blue-400); border-color: var(--sea-blue-400); }
-.btn--primary:active  { background: var(--sea-blue-500); border-color: var(--sea-blue-500); }
-
-/* Same stone-600 as the itinerary progress line: sand ink and border on the
-   page ground, and on hover the whole button becomes that line's colour with
-   the label in the page's sand. */
-.btn--secondary {
-  background: transparent;
-  border-color: var(--stone-600);
-  color: var(--stone-600);
-}
-.btn--secondary:hover,
-.btn--secondary:active { background: var(--stone-600); border-color: var(--stone-600); color: var(--stone); }
-
-@media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+/* --- Button --------------------------------------------------------------
+   The button lives in base.css, hover fill and all: this sheet used to
+   carry a second copy of it, which loaded later and quietly won. The
+   booking rail and bar still set their own width further down. */
 
 
 /* --- About ------------------------------------------------ */

@@ -226,34 +226,70 @@ main { padding-top: 0; }
   border: 1px solid transparent;
   border-radius: 0;
   cursor: pointer;
-  transition: background-color .18s ease, color .18s ease, border-color .18s ease, transform 160ms var(--ease-out);
+  /* The fill below is a layer of its own, so the button is its own
+     stacking context and clips it to the square. */
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: background-color .18s ease, color 240ms var(--ease-out), border-color 240ms var(--ease-out), transform 160ms var(--ease-out);
 }
-/* Press feedback: every button answers the moment it is pressed. */
+/* Hover fill, ported from the premium version: a block of the hover
+   colour rises from the bottom edge and sits behind the label. Same
+   motion on every variant; each one only says which colour rises.
+   400ms on the strong ease-out: it is most of the way up in the first
+   150ms, so it answers at once and the last stretch just settles. */
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--btn-fill, transparent);
+  transform: translateY(101%);
+  transition: transform 400ms var(--ease-out);
+}
+@media (hover: hover) {
+  .btn:hover::before { transform: translateY(0); }
+}
+/* Press feedback: every button answers the moment it is pressed. On a
+   touch screen there is no hover, so the press fills it outright. */
 .btn:active { transform: scale(0.97); }
+.btn:active::before { transform: translateY(0); }
 .btn:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
 .btn--primary {
+  --btn-fill: var(--sea-blue-400);
   background: var(--sea-blue);
   border-color: var(--sea-blue);
   color: var(--stone);
 }
-.btn--primary:hover  { background: var(--sea-blue-400); border-color: var(--sea-blue-400); }
-.btn--primary:active  { background: var(--sea-blue-500); border-color: var(--sea-blue-500); }
+@media (hover: hover) {
+  .btn--primary:hover { border-color: var(--sea-blue-400); }
+}
+.btn--primary:active { --btn-fill: var(--sea-blue-500); border-color: var(--sea-blue-500); }
 .btn--secondary {
+  --btn-fill: var(--stone-600);
   background: transparent;
   border-color: var(--stone-600);
   color: var(--stone-600);
 }
-.btn--secondary:hover,
-.btn--secondary:active { background: var(--stone-600); border-color: var(--stone-600); color: var(--stone); }
+@media (hover: hover) {
+  .btn--secondary:hover { color: var(--stone); }
+}
+.btn--secondary:active { color: var(--stone); }
 /* Same shape as --secondary, inverted for a dark/photo background. */
 .btn--light {
+  --btn-fill: var(--stone-300);
   background: var(--stone-100);
   border-color: var(--stone-100);
   color: var(--sea-blue);
 }
-.btn--light:hover,
-.btn--light:active { background: var(--stone-300); border-color: var(--stone-300); }
-@media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+@media (hover: hover) {
+  .btn--light:hover { border-color: var(--stone-300); }
+}
+.btn--light:active { border-color: var(--stone-300); }
+@media (prefers-reduced-motion: reduce) {
+  /* No travel: the fill is simply there on hover. */
+  .btn, .btn::before { transition: none; }
+}
 /* One width for every standalone button: 304px is just past the longest
    label on the site ("Explore upcoming retreats", 295px), so in practice
    every button reads the same width and only a longer future label would
