@@ -480,6 +480,91 @@ main { padding-top: 0; }
 .card__label-sep { width: 3px; height: 3px; border-radius: 50%; background: var(--sea-blue-300); opacity: 0.6; flex-shrink: 0; }
 .card__label-status { color: var(--sea-blue-500); }
 
+/* ============================================================
+   CARD HOVER (shared: every linked card on the site)
+   One hover for every card type, defined here and nowhere else:
+     retreat cards      .result-link   .card__media     .card__title / .r-name
+     retreat, loc page  .loc-card__link .loc-card__media .loc-card__name
+     location grid      .location__link .location__image .location__title
+     teachers & team    .person__link  .person__image   .person__name
+     journal grid       .journal__link .journal__image  .journal__title
+     journal "more"     .post-related__item .post-related__figure .post-related__title
+   The pick from proto-card-hover.html ("Veil"): a sheer layer of the
+   page's cream settles over the photo, and the title underlines. No
+   scale, no shadow, nothing that moves the layout. The tier label on
+   a retreat photo (z-index 2) stays above the veil.
+   Real pointers only, so a tap on a phone never leaves a card stuck
+   half-veiled.
+   ============================================================ */
+.result-link .card__media,
+.loc-card__link .loc-card__media,
+.location__link .location__image,
+.person__link .person__image,
+.journal__link .journal__image,
+.post-related__item .post-related__figure { position: relative; }
+
+.result-link .card__media::after,
+.loc-card__link .loc-card__media::after,
+.location__link .location__image::after,
+.person__link .person__image::after,
+.journal__link .journal__image::after,
+.post-related__item .post-related__figure::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: var(--stone);
+  opacity: 0;
+  transition: opacity 240ms ease;
+}
+/* The underline is there at rest in a clear colour and fades in, so
+   it does not blink on. */
+.result-link .card__title,
+.result-link .r-name,
+.loc-card__link .loc-card__name,
+.location__link .location__title,
+.person__link .person__name,
+.journal__link .journal__title,
+.post-related__item .post-related__title {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 200ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .result-link:hover .card__media::after,
+  .loc-card__link:hover .loc-card__media::after,
+  .location__link:hover .location__image::after,
+  .person__link:hover .person__image::after,
+  .journal__link:hover .journal__image::after,
+  .post-related__item:hover .post-related__figure::after { opacity: 0.28; }
+
+  .result-link:hover .card__title,
+  .result-link:hover .r-name,
+  .loc-card__link:hover .loc-card__name,
+  .location__link:hover .location__title,
+  .person__link:hover .person__name,
+  .journal__link:hover .journal__title,
+  .post-related__item:hover .post-related__title { text-decoration-color: currentColor; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .result-link .card__media::after,
+  .loc-card__link .loc-card__media::after,
+  .location__link .location__image::after,
+  .person__link .person__image::after,
+  .journal__link .journal__image::after,
+  .post-related__item .post-related__figure::after,
+  .result-link .card__title,
+  .result-link .r-name,
+  .loc-card__link .loc-card__name,
+  .location__link .location__title,
+  .person__link .person__name,
+  .journal__link .journal__title,
+  .post-related__item .post-related__title { transition: none; }
+}
+
 .footer-news {
   display: flex;
   flex-direction: column;

@@ -307,7 +307,6 @@
   letter-spacing: 0.32px;
   color: var(--sea-blue);
 }
-.post-related__item:hover .post-related__title { text-decoration: underline; text-underline-offset: 3px; }
 .post-related__excerpt {
   margin: 0;
   font-family: var(--font-body);

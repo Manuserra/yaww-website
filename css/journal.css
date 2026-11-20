@@ -244,8 +244,8 @@
 .journal-grid .journal__cat { display: flex; gap: 16px; margin-top: 16px; }
 .journal-grid .journal__title { margin: 16px 0; }
 
-/* Keyboard affordance only — the reference gives the card no hover or
-   pressed state, and none is invented here. */
+/* Keyboard affordance. The hover is the site-wide card hover in
+   base.css (veil over the photo, title underlines). */
 .journal__link:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 4px; }
 
 /* A topic with nothing in it cannot happen with the current set, but a

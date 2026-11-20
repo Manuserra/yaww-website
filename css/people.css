@@ -54,7 +54,7 @@
   color: var(--sea-blue);
 }
 @media (max-width: 1024px) { .person__name { font-size: 18px; } }
-.person__link:hover .person__name { text-decoration: underline; text-underline-offset: 3px; }
+/* Card hover (veil + underline) lives in base.css, shared by every card. */
 .person__link:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 4px; }
 .person__bio {
   margin: 0;
@@ -161,7 +161,6 @@
 /* The retreat card itself, same component the listing uses. */
 .result-link { display: block; height: 100%; color: inherit; text-decoration: none; }
 .result-link:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 4px; }
-.result-link:hover .card__title { text-decoration: underline; text-underline-offset: 3px; }
 .card { display: flex; flex-direction: column; height: 100%; }
 .card--narrow .card__media { aspect-ratio: 312 / 408; }
 .card__media {
