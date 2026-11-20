@@ -1323,7 +1323,7 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 32px;
-  color: var(--sea-blue-100);
+  color: var(--sea-blue-200);
 }
 .who__profile.is-active .who__tab-title { color: var(--sea-blue); }
 .who__tab-body {

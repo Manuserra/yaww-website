@@ -64,7 +64,7 @@
   -webkit-appearance: none;
   appearance: none;
 }
-.yf__input::placeholder { color: var(--sea-blue-100); opacity: 1; }
+.yf__input::placeholder { color: var(--sea-blue-200); opacity: 1; }
 textarea.yf__input { height: auto; min-height: 144px; padding: 14px 8px; resize: vertical; }
 select.yf__input {
   padding-right: 32px;

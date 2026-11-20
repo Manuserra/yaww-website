@@ -15,7 +15,7 @@
   /* --- Color · Primary / Sea Blue --- */
   --sea-blue:        #475764;
   --sea-blue-100:    #8094A5;
-  --sea-blue-200:    #657C8F;
+  --sea-blue-200:    #5A6F80;   /* was #657C8F (3.9:1 on stone); now 4.7:1, AA for the small secondary text it sets */
   --sea-blue-300:    #516372;
   --sea-blue-400:    #3C4A55;
   --sea-blue-500:    #283139;

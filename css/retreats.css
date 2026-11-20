@@ -89,7 +89,7 @@
   line-height: 24px;
   letter-spacing: 0.48px;
   text-transform: uppercase;
-  color: var(--sea-blue-100);
+  color: var(--sea-blue-200);
   background: none;
   border: 0;
   cursor: pointer;
@@ -262,7 +262,7 @@
   letter-spacing: 0.72px;
   text-transform: uppercase;
   white-space: nowrap;
-  color: var(--sea-blue-100);
+  color: var(--sea-blue-200);
 }
 .r-name {
   display: block;

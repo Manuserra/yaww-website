@@ -70,7 +70,7 @@
   line-height: 24px;
   letter-spacing: 0.48px;           /* normalized (active showed 1.08 — anomaly) */
   text-transform: uppercase;
-  color: var(--sea-blue-100);
+  color: var(--sea-blue-200);
   white-space: nowrap;
 }
 /* Hover on an unselected tab. Only the label moves, deepening to the same
