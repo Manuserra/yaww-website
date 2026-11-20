@@ -203,7 +203,8 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
    is as tall as live and the space sits between the lines, not inside them. */
 .tiers2__text { gap: 19px; }
 .host__name, .about-person__name { letter-spacing: -0.005em; }
-.booking__label, .who__tab-title { letter-spacing: -0.005em; }
+.who__tab-title { letter-spacing: -0.005em; }
+.booking__label { letter-spacing: 0; }   /* How it works steps: as live */
 /* Card titles at 16px: Bold Baskerville is wide; a touch of air. */
 .card__title, .location__title, .person__name { letter-spacing: 0.005em; }
 
