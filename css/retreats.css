@@ -93,14 +93,18 @@
   background: none;
   border: 0;
   cursor: pointer;
-  transition: color .18s ease;
+  transition: color .18s ease, background-color .16s ease;
 }
 .tabs__item.is-active { color: var(--sea-blue); }
 .tabs__item:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
-/* Hover: only the label moves, deepening to the selected sea-blue. */
+/* Hover: the site's hover wash (Stone-300 @ 40%, the same as the filter
+   segments right below, the list rows and the view icons) fills the tab
+   and the label deepens to sea-blue. The active tab keeps its indicator
+   and takes no wash. Real pointers only. */
 @media (hover: hover) and (pointer: fine) {
-  .tabs__item:not(.is-active):hover { color: var(--sea-blue); }
+  .tabs__item:not(.is-active):hover { color: var(--sea-blue); background: rgba(225, 220, 214, 0.40); }
 }
+.tabs__item:not(.is-active):active { background: rgba(225, 220, 214, 0.60); }
 .tabs__indicator {
   position: absolute;
   top: 0;
