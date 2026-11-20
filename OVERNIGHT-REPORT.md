@@ -258,3 +258,22 @@ Not done / notes:
 - CSS `?v=` strings in page heads not bumped (the heads belonged to the SEO agent): bump before publishing.
 - 768 retreat page: three reviews leave one alone on the second row (recommendation 6).
 - Screen-reader pass by hand not done.
+
+## 11 · Code cleanup (BRIEF section 1, item 4)
+
+Tag `night-11-cleanup`. Official site only: drafts, `premium/`, `proposals/` and `index-*` untouched (they share `css/`, so a rule used only by a draft was kept).
+
+Commits:
+- `1fbe9ba` dead and overridden CSS. Dead (no class anywhere: pages, drafts, JS, builders, WP theme): `.yf__chips--stack`, `.yf__fine`, `.yf__chip small`, `.retreats-hero`, `.retreats { }`, `.season__title-*`, `.rooms__aside-fine`, `.footer-col--home`. 59 declarations that a later rule with the same selector always overrides (first versions of the itinerary label, booking bar, quote card, hosts slot) removed; the two booking-bar blocks merged into one; later same-selector rules folded into the first where no rule of equal specificity sets the property in between, so the cascade is unchanged.
+- `300f653` tokens in base.css: `--ease-slide` (9 uses), `--ease-fold` (4), `--error` #9A3B2E (4) replace repeated literals.
+- `2a3ec37` skip link (audit recommendation 1): first in `<body>` on all 103 official pages + the retreat template, lands on `<main id="main">` below the sticky nav. New `retreats/_tools/chrome.py`, called by both builders before `seo.apply()`; `python3 retreats/_tools/chrome.py` for hand-written pages. Location pages' Lenis anchor handler now lets the skip link through (it swallowed the jump and the focus).
+- `52da845` one cache-buster `?v=202611210600` for every `css/` and `js/` reference (was 20 different values). Bump `ASSET_VERSION` in chrome.py from now on; data/*.js versions unchanged.
+
+Bytes (CSS, before → after cleanup): retreat.css −3,538 (110,734 → 107,196), retreats.css −1,494, contact.css −611, people.css −106, filters.css −92, journal.css −38, home.css −24, teach.css −24, lead-modal.css +20 and base.css +205 (token definitions): **−5,702 net**. The skip link then adds 686 to base.css and ~60 per page.
+
+Verification: own headless Chrome (CDP), full-page screenshots at 1440 and 390 of the 13 pages in the brief, plus booking bar, lead modal with errors, filter panel and FAQ states; before/after pixel diff with PIL. Full pages: identical. Some 390 runs differ in Raleway glyph antialiasing only (same layout, also happens between two runs of the unchanged site); re-shot until stable. Builders re-run with no diff, `_validate.py` clean. Baseline screenshots in `docs/cleanup-baseline/` (gitignored, ~100 MB).
+
+Left for a decision (not deleted):
+- CSS used only by drafts (kept so drafts render as before): `.card__flag*`, `.retreat-hero__badge/__urgency/__image--photo`, `.carbon__*`, `.retreat-teacher__*`, `.host__meta`, `.gallery__more`, `.filter-empty*`, `.footer-col__list--split`. If premium/ and index-* stop mattering, these go.
+- 52 tracked images referenced by nothing (~10 MB): 39 in `images/retreat-photos/el-cuyo/`, plus room photos for Sardinia (4), Turkey (4), Basque Country (3) and two teacher portraits. `build_page.py` exports retreat photos from data.json, so check before deleting.
+- Not done: JS dead-code search found no unused functions; shared helpers duplicated across js files (escaping, etc.) could become one module, not attempted. The per-heading `-webkit-font-smoothing` repeats are intentional (body text uses `auto`).
