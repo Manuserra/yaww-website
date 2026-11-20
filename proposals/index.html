@@ -200,6 +200,35 @@ h1, h2 { font-family: var(--font-heading); -webkit-font-smoothing: antialiased; 
     </div>
   </article>
 
+  <article class="decision" id="location-template">
+    <p class="decision__section">5 · Locations</p>
+    <div>
+      <h2>Location page template</h2>
+      <p class="decision__q">One template for all 14 places. The retreat page sells a date; this page sells the place and sends people to the dates. Which structure? Each option has a page with dates (Oaxaca) and one on the waitlist (Iceland).</p>
+      <ul class="opts">
+        <li><a class="is-chosen" href="../locationpage-oaxaca.html">A · Field guide (Oaxaca) <span class="tag">Implemented</span></a></li>
+        <li><a class="is-chosen" href="../locationpage-iceland.html">A · Field guide, waitlist (Iceland)</a></li>
+        <li><a href="location-template/option-b-oaxaca.html">B · Editorial long-read (Oaxaca)</a></li>
+        <li><a href="location-template/option-b-iceland.html">B · Iceland</a></li>
+        <li><a href="location-template/option-c-oaxaca.html">C · Compact, sales first (Oaxaca)</a></li>
+        <li><a href="location-template/option-c-iceland.html">C · Iceland</a></li>
+      </ul>
+      <p class="why"><b>Why A:</b> it reads like our guide to the place and still puts the dates one scroll away. Hero in the retreat hero's frame (place, the live-site line for it, when we go / fly into / pace, two CTAs), then the retreats on the stone band, why we go, the place through the homepage pillars (landscape, table, culture, movement) as four photos, good to know, one real review, three more places. <b>B</b> gives each pillar a full split like the homepage: more atmosphere, twice as long, and the practical facts get lost beside the intro. <b>C</b> is shortest and pushes the dates hardest, but the guide shrinks to captions and the page stops sounding like experts. Waitlist state in every option: no "Upcoming retreats" label over an empty box; the retreat's card with its itinerary on the left, "Our next dates in Iceland go to the waitlist first" on the right, Join the waitlist with Ask us about Iceland beside it, errors under each field. <b>To answer:</b> France, Sardinia and Turkey have no month on record (marked [missing data]); France has two [photo: …] placeholders (Champagne vineyards, morning practice).</p>
+    </div>
+  </article>
+
+  <article class="decision" id="locations-grid">
+    <p class="decision__section">5 · Locations</p>
+    <div>
+      <h2>Locations grid: blurbs and Camino</h2>
+      <p class="decision__q">Blurbs rewritten from the live retreat pages to three lines on every card (checked at 1280, 1366, 1440 and 1920). Camino de Santiago was in the data but missing from the grid: it is now there, with a crop of the Santiago cathedral photo. Keep it?</p>
+      <ul class="opts">
+        <li><a class="is-chosen" href="../locations.html">Fourteen places, all linked <span class="tag">Implemented</span></a></li>
+      </ul>
+      <p class="why"><b>Copy source:</b> <code>docs/locations-content.md</code>, edited in <code>retreats/_tools/location_content.py</code> (the <code>blurb</code> of each place). Run <code>python3 retreats/_tools/build_location.py</code> to rebuild the grid and all location pages.</p>
+    </div>
+  </article>
+
 </div>
 </body>
 </html>
