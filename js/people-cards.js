@@ -1,9 +1,10 @@
 /* ============================================================
-   YAWW — PEOPLE (team + teachers): cards, detail pages, queries
+   YAWW — PEOPLE (facilitators + teachers): cards, profile pages,
+   rails and queries
 
    Same shape as js/retreat-cards.js: the data lives in
-   data/team.js and data/teachers.js, and this is the only place
-   markup for a person is written.
+   data/team.js (facilitators) and data/teachers.js, and this is the
+   only place markup for a person is written.
 
      <script src="data/teachers.js"></script>
      <script src="data/team.js"></script>
@@ -15,16 +16,30 @@
    A teacher page lists that teacher's upcoming retreats through
    YAWW.getRetreatsByTeacher(), so a date added to data/retreats.js
    shows up on her page with nothing else to edit.
+
+   Optional profile slots (teacher pages): quote, specialties, video,
+   spotify. Each one renders only when the data has it, so an empty
+   field leaves no gap and no empty state. Add ?slots=demo to any
+   teacher URL to see every empty slot as a labelled placeholder.
    ============================================================ */
 (function (window, document) {
   "use strict";
 
   var YAWW = window.YAWW || (window.YAWW = {});
-  function esc(s) { return YAWW.esc ? YAWW.esc(s) : String(s == null ? "" : s); }
+  function esc(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+  var DEMO = /[?&]slots=demo\b/.test(window.location.search);
 
   /* ---------- queries -------------------------------------------------- */
 
   function team() { return window.YAWW_TEAM || []; }
+  /* The facilitators grid: everyone on the team who is listed. People
+     marked `listed: false` keep their data (and, for some, a page that
+     retreat pages still link to) but no card. */
+  function facilitators() { return team().filter(function (p) { return p.listed !== false; }); }
   /* Real, named teachers: the "tbd" stand-in is not a person and never
      gets a card or a page. */
   function teachers() {
@@ -37,25 +52,43 @@
   function getTeamMember(slug) { return findBySlug(team(), slug); }
   function getTeacher(slug)    { return findBySlug(teachers(), slug); }
 
+  function firstName(person) {
+    return person.shortName || String(person.name || "").split(" ")[0];
+  }
+  function initials(name) {
+    return String(name || "").split(/\s+/).filter(Boolean)
+      .map(function (w) { return w.charAt(0); }).join("").slice(0, 2).toUpperCase();
+  }
+
+  /* No photograph yet: a stone block carrying her initials in the
+     heading face. Never a stock face, never a broken image. */
+  function monogram(person, cls) {
+    return '<div class="' + cls + ' ' + cls + '--empty" role="img" aria-label="' +
+           esc(person.name) + ', photo coming soon"><span class="monogram">' +
+           esc(initials(person.name)) + '</span></div>';
+  }
+  function photo(person, cls, w, h, lazy) {
+    if (!person.photo) return monogram(person, cls);
+    var pos = person.photoPosition ? ' style="object-position:' + esc(person.photoPosition) + '"' : "";
+    return '<div class="' + cls + '"><img src="' + esc(person.photo) + '" alt="' + esc(person.name) +
+           '"' + (lazy ? ' loading="lazy"' : "") + ' width="' + w + '" height="' + h + '"' + pos + '></div>';
+  }
+
   /* ---------- card ----------------------------------------------------- */
 
-  /* The card used by both index pages — same photo ratio, heading and
-     body scale as the .location card on locations.html.
-
-     A teacher with no bio written yet still gets a card and a link:
-     her page carries a visible placeholder rather than invented copy. */
-  function renderPersonCard(person) {
-    var media = person.photo
-      ? '<div class="person__image"><img src="' + esc(person.photo) + '" alt="' + esc(person.name) + '" loading="lazy" width="672" height="888"></div>'
-      : '<div class="person__image person__image--empty" aria-hidden="true"></div>';
-
-    var blurb = person.shortBio
-      ? '<p class="person__bio">' + esc(person.shortBio) + '</p>'
-      : '<p class="person__bio person__bio--pending">Bio coming soon.</p>';
-
-    var inner = media +
-      '<h2 class="person__name">' + esc(person.name) + '</h2>' +
-      blurb;
+  /* The card used by the index pages and the About rails: same 672/888
+     photo, heading and body scale as the .location card. "More about"
+     sits at the foot so a row of cards lines up whatever the blurb. */
+  function renderPersonCard(person, opts) {
+    opts = opts || {};
+    var inner = photo(person, "person__image", 672, 888, true) +
+      '<h2 class="person__name">' + esc(person.name) + '</h2>';
+    if (!opts.compact) {
+      inner += person.shortBio
+        ? '<p class="person__bio">' + esc(person.shortBio) + '</p>'
+        : '<p class="person__bio person__bio--pending">Bio coming soon.</p>';
+    }
+    inner += '<span class="person__more">More about ' + esc(firstName(person)) + '</span>';
 
     return '<article class="person">' +
              (person.pageUrl
@@ -64,44 +97,99 @@
            '</article>';
   }
 
-  function renderPeopleGrid(list) {
-    return list.map(renderPersonCard).join("");
+  function renderPeopleGrid(list, opts) {
+    return list.map(function (p) { return renderPersonCard(p, opts); }).join("");
   }
 
-  /* ---------- detail page ---------------------------------------------- */
+  /* ---------- profile slots --------------------------------------------- */
 
-  function renderPersonPage(person) {
-    if (!person) return '<p class="person-page__pending">This profile could not be found.</p>';
+  function placeholder(label, cls) {
+    return '<div class="slot-placeholder ' + (cls || "") + '">[placeholder: ' + esc(label) + ']</div>';
+  }
 
-    var html = "";
-    html += person.photo
-      ? '<div class="person-page__photo"><img src="' + esc(person.photo) + '" alt="' + esc(person.name) + '" width="672" height="888"></div>'
-      : '<div class="person-page__photo person-page__photo--empty" aria-hidden="true"></div>';
+  function quoteSlot(person) {
+    if (person.quote) return '<blockquote class="profile__quote">&ldquo;' + esc(person.quote) + '&rdquo;</blockquote>';
+    if (DEMO) return '<blockquote class="profile__quote profile__quote--demo">&ldquo;[placeholder: one line in her own words, under 20 words]&rdquo;</blockquote>';
+    return "";
+  }
 
-    html += '<h1 class="person-page__name">' + esc(person.name) + '</h1>';
+  function specialtiesSlot(person) {
+    var list = person.specialties || [];
+    if (!list.length && DEMO) list = ["[placeholder]", "[style]", "[focus]"];
+    if (!list.length) return "";
+    return '<div class="profile__facts">' +
+             '<h2 class="profile__facts-title">Specialties</h2>' +
+             '<ul class="profile__tags">' +
+               list.map(function (s) { return '<li>' + esc(s) + '</li>'; }).join("") +
+             '</ul>' +
+           '</div>';
+  }
+
+  /* Class video and playlist share one band under the bio. Video takes
+     a YouTube or Vimeo embed URL; spotify takes a playlist URL or id. */
+  function spotifyEmbed(value) {
+    var m = String(value).match(/playlist[\/:]([A-Za-z0-9]+)/);
+    var id = m ? m[1] : value;
+    return "https://open.spotify.com/embed/playlist/" + encodeURIComponent(id) + "?utm_source=generator&theme=0";
+  }
+  function renderMedia(person) {
+    var name = firstName(person);
+    var video = person.video
+      ? '<div class="profile-media__video"><iframe src="' + esc(person.video) + '" title="A class with ' + esc(name) +
+        '" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>'
+      : (DEMO ? placeholder("a 1 to 3 minute clip of " + name + " teaching", "profile-media__video") : "");
+    var music = person.spotify
+      ? '<div class="profile-media__playlist"><iframe src="' + esc(spotifyEmbed(person.spotify)) + '" title="' + esc(name) +
+        '&rsquo;s playlist on Spotify" loading="lazy" allow="encrypted-media"></iframe></div>'
+      : (DEMO ? placeholder(name + "’s Spotify playlist", "profile-media__playlist") : "");
+    if (!video && !music) return "";
+    var cols = video && music ? " profile-media__grid--two" : "";
+    return '<h2 class="section-title profile-media__title">Practice with ' + esc(name) + '</h2>' +
+           '<div class="profile-media__grid' + cols + '">' +
+             (video ? '<div><p class="kicker profile-media__label">A class with ' + esc(name) + '</p>' + video + '</div>' : "") +
+             (music ? '<div><p class="kicker profile-media__label">On her playlist</p>' + music + '</div>' : "") +
+           '</div>';
+  }
+
+  /* ---------- profile page ---------------------------------------------- */
+
+  /* Photo on the left (vertical, sticky on desktop), everything that
+     sells her on the right: role, name, her own line, the bio, then the
+     specialties as a short scannable list. */
+  function renderPersonPage(person, kind) {
+    if (!person) return '<p class="profile__pending">This profile could not be found.</p>';
+
+    var role = person.role || (kind === "team" ? "Facilitator" : "Teacher");
+    var html = '<div class="profile">';
+    html += photo(person, "profile__photo", 672, 888, false);
+    html += '<div class="profile__text">';
+    html += '<p class="kicker profile__kicker">' + esc(role) + '</p>';
+    html += '<h1 class="profile__name">' + esc(person.name) + '</h1>';
+    if (kind !== "team") html += quoteSlot(person);
 
     if (person.bio && person.bio.length) {
-      html += '<div class="person-page__bio">' +
+      html += '<div class="profile__bio">' +
         person.bio.map(function (p) { return '<p>' + esc(p) + '</p>'; }).join("") +
               '</div>';
     } else {
-      /* Deliberately visible: this teacher has retreats on the books
-         but no bio written yet. Nothing is invented on her behalf. */
-      html += '<div class="person-page__pending">' +
-                '<p class="person-page__pending-title">Bio coming soon</p>' +
+      /* Deliberately visible: nothing is invented on her behalf. */
+      html += '<div class="profile__pending">' +
+                '<p class="profile__pending-title">Bio coming soon</p>' +
                 '<p>We are still writing this one. In the meantime you can see ' +
-                  esc(firstName(person.name)) + '&rsquo;s upcoming retreats below.</p>' +
+                  esc(firstName(person)) + '&rsquo;s upcoming retreats below.</p>' +
               '</div>';
     }
+    if (kind !== "team") html += specialtiesSlot(person);
+    if (person.website) {
+      html += '<p class="profile__link"><a href="' + esc(person.website.url) + '" rel="noopener" target="_blank">' +
+              esc(person.website.label) + '</a></p>';
+    }
+    html += '</div></div>';
     return html;
   }
 
-  function firstName(name) { return String(name || "").split(" ")[0]; }
-
   /* ---------- a teacher's retreats -------------------------------------- */
 
-  /* Reads the shared retreat data, so a new date needs no edit here.
-     Renders the standard card; returns "" when she has none on sale. */
   function renderTeacherRetreats(teacher) {
     if (!YAWW.getRetreatsByTeacher) return "";
     var list = YAWW.getRetreatsByTeacher(teacher.id);
@@ -111,56 +199,100 @@
     }).join("");
   }
 
+  /* ---------- rails (About page) ---------------------------------------- */
+
+  function wireRail(rail) {
+    var track = rail.querySelector("[data-rail-track]");
+    var prev = rail.querySelector("[data-rail-prev]");
+    var next = rail.querySelector("[data-rail-next]");
+    if (!track || !prev || !next) return;
+    function step() {
+      var card = track.firstElementChild;
+      return card ? card.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 0) : track.clientWidth;
+    }
+    function update() {
+      var max = track.scrollWidth - track.clientWidth - 2;
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft >= max;
+      rail.classList.toggle("is-static", max <= 0);
+    }
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    prev.addEventListener("click", function () { track.scrollBy({ left: -step(), behavior: reduce ? "auto" : "smooth" }); });
+    next.addEventListener("click", function () { track.scrollBy({ left: step(), behavior: reduce ? "auto" : "smooth" }); });
+    track.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  }
+
   /* ---------- page wiring ----------------------------------------------- */
 
-  /* Every index and detail page carries the data attributes below and
-     nothing else, so a new person is a data edit plus a copied shell. */
+  function listFor(which) { return which === "team" || which === "facilitators" ? facilitators() : teachers(); }
+
   function init() {
-    // Index pages: <div data-people-grid="team|teachers">
+    // Index pages: <div data-people-grid="facilitators|teachers">
     document.querySelectorAll("[data-people-grid]").forEach(function (el) {
-      var which = el.getAttribute("data-people-grid");
-      el.innerHTML = renderPeopleGrid(which === "team" ? team() : teachers());
+      el.innerHTML = renderPeopleGrid(listFor(el.getAttribute("data-people-grid")));
     });
     // ...and their lede, which lives with the data it introduces.
     document.querySelectorAll("[data-people-lede]").forEach(function (el) {
       var which = el.getAttribute("data-people-lede");
-      var copy = which === "team" ? window.YAWW_TEAM_INTRO : window.YAWW_TEACHERS_INTRO;
+      var copy = which === "teachers" ? window.YAWW_TEACHERS_INTRO : window.YAWW_TEAM_INTRO;
       if (copy) el.textContent = copy;
     });
+    // Rails: <div data-people-rail="teachers|facilitators"> with a
+    // [data-rail-track] inside it.
+    document.querySelectorAll("[data-people-rail]").forEach(function (rail) {
+      var track = rail.querySelector("[data-rail-track]");
+      if (!track) return;
+      track.innerHTML = renderPeopleGrid(listFor(rail.getAttribute("data-people-rail")), { compact: true });
+      wireRail(rail);
+    });
 
-    // Detail pages: <div data-person="slug" data-person-kind="team|teacher">
+    // Profile pages: <div data-person="slug" data-person-kind="team|teacher">
     document.querySelectorAll("[data-person]").forEach(function (el) {
       var slug = el.getAttribute("data-person");
       var kind = el.getAttribute("data-person-kind");
       var person = kind === "team" ? getTeamMember(slug) : getTeacher(slug);
-      el.innerHTML = renderPersonPage(person);
-      if (person && person.name) document.title = "YAWW · " + person.name;
+      el.innerHTML = renderPersonPage(person, kind);
+      if (person && person.name) {
+        document.title = person.name + " · " + (kind === "team" ? "Facilitator" : (person.role || "Teacher")) + " · YAWW";
+      }
 
-      // Optional retreat rail underneath a teacher page.
+      // Upcoming retreats, on the stone band.
       var section = document.querySelector("[data-person-retreats]");
-      if (!section) return;
-      var grid = section.querySelector("[data-person-retreats-grid]");
-      var cards = (person && kind !== "team") ? renderTeacherRetreats(person) : "";
-      if (cards && grid) {
-        grid.innerHTML = cards;
-        section.hidden = false;
-        var h = section.querySelector("[data-person-retreats-title]");
-        if (h && person) h.textContent = "Upcoming retreats with " + firstName(person.name);
-      } else {
-        section.hidden = true;
+      if (section) {
+        var grid = section.querySelector("[data-person-retreats-grid]");
+        var cards = (person && kind !== "team") ? renderTeacherRetreats(person) : "";
+        if (cards && grid) {
+          grid.innerHTML = cards;
+          section.hidden = false;
+          var h = section.querySelector("[data-person-retreats-title]");
+          if (h) h.textContent = "Upcoming retreats with " + firstName(person);
+        } else {
+          section.hidden = true;
+        }
+      }
+
+      // Class video + playlist, only when there is one.
+      var media = document.querySelector("[data-person-media]");
+      if (media) {
+        var mhtml = (person && kind !== "team") ? renderMedia(person) : "";
+        media.innerHTML = mhtml;
+        media.hidden = !mhtml;
       }
     });
   }
 
-  YAWW.getTeam             = team;
-  YAWW.getTeachers         = teachers;
-  YAWW.getTeamMember       = getTeamMember;
-  YAWW.getTeacherBySlug    = getTeacher;
-  YAWW.renderPersonCard    = renderPersonCard;
-  YAWW.renderPeopleGrid    = renderPeopleGrid;
-  YAWW.renderPersonPage    = renderPersonPage;
+  YAWW.getTeam               = team;
+  YAWW.getFacilitators       = facilitators;
+  YAWW.getTeachers           = teachers;
+  YAWW.getTeamMember         = getTeamMember;
+  YAWW.getTeacherBySlug      = getTeacher;
+  YAWW.renderPersonCard      = renderPersonCard;
+  YAWW.renderPeopleGrid      = renderPeopleGrid;
+  YAWW.renderPersonPage      = renderPersonPage;
   YAWW.renderTeacherRetreats = renderTeacherRetreats;
-  YAWW.initPeople          = init;
+  YAWW.initPeople            = init;
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);

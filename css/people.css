@@ -66,78 +66,204 @@
 }
 .person__bio--pending { color: var(--sea-blue-200); font-style: italic; }
 
-/* --- profile page -------------------------------------------------- */
-.person-page {
-  padding: 56px var(--container-pad) 96px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* --- card additions: monogram, "More about", even rows ------------ */
+.person, .person__link { height: 100%; }
+.person__link { display: flex; flex-direction: column; }
+.person__image--empty, .profile__photo--empty {
+  display: flex; align-items: center; justify-content: center;
+  background: var(--stone-300);
 }
-.person-page__photo {
-  width: 572px;
-  max-width: 100%;
+.monogram {
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(32px, 4vw, 56px);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: var(--stone-600);
+}
+.profile__photo--empty .monogram { font-size: clamp(56px, 7vw, 96px); }
+/* Pinned to the foot, so a row of cards lines up whatever the blurb. */
+.person__more {
+  margin-top: auto;
+  padding-top: 16px;
+  align-self: flex-start;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+  color: var(--stone-600);
+  border-bottom: 1px solid currentColor;
+}
+@media (max-width: 767px) { .person__more { font-size: 12px; letter-spacing: 0.4px; } }
+/* "way." no longer lands alone on the last line of the lede. */
+.people__lede { text-wrap: balance; }
+
+/* --- profile page (teachers and facilitators) ----------------------
+   Five columns of vertical photo on the left, held in view while the
+   bio scrolls; six columns of text on the right, a reading measure. */
+.person-page { padding: 56px var(--container-pad) 96px; }
+.profile {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 48px;
+  align-items: start;
+}
+.profile__photo {
+  grid-column: 1 / span 5;
+  position: sticky;
+  top: 96px;
   aspect-ratio: 672 / 888;
   overflow: hidden;
   background: var(--stone-300);
 }
-.person-page__photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.person-page__name {
-  margin: 40px 0 32px;
+.profile__photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.profile__text { grid-column: 7 / span 6; max-width: 640px; padding-top: 8px; }
+.kicker.profile__kicker { color: var(--stone-600); margin-bottom: 8px; }
+.profile__name {
+  margin: 0 0 32px;
   font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
-  font-size: 32px;
-  line-height: 44px;
+  font-size: 40px;
+  line-height: 52px;
   color: var(--sea-blue);
-  text-align: center;
+  text-wrap: balance;
 }
-/* A reading measure, left-aligned: the reference justifies this column,
-   which opens rivers at this width. Everything else about the block
-   matches it. */
-.person-page__bio { max-width: 760px; }
-.person-page__bio p {
+.profile__quote {
+  margin: 0 0 32px;
+  padding: 0 0 0 24px;
+  border-left: 2px solid var(--stone-600);
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-style: italic;
+  font-size: 22px;
+  line-height: 36px;
+  color: var(--sea-blue);
+  text-wrap: pretty;
+}
+.profile__quote--demo { color: var(--sea-blue-200); }
+.profile__bio p {
   margin: 0 0 24px;
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 28px;
   letter-spacing: 0.32px;
   color: var(--sea-blue);
+  text-wrap: pretty;
 }
-.person-page__bio p:last-child { margin-bottom: 0; }
+.profile__bio p:last-child { margin-bottom: 0; }
+.profile__facts { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--stone-400); }
+.profile__facts-title {
+  margin: 0 0 16px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+  color: var(--stone-600);
+}
+.profile__tags { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.profile__tags li {
+  padding: 6px 14px;
+  border: 1px solid var(--stone-400);
+  background: var(--stone-100);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue);
+}
+.profile__link { margin: 32px 0 0; font-family: var(--font-body); font-size: 16px; line-height: 24px; }
+.profile__link a { color: var(--sea-blue); text-underline-offset: 4px; }
 /* Shown when a teacher has retreats on sale but no bio written yet. */
-.person-page__pending {
-  max-width: 560px;
+.profile__pending {
   background: var(--stone-100);
   border: 1px solid var(--stone-300);
   padding: 32px;
-  text-align: center;
 }
-.person-page__pending p {
+.profile__pending p {
   margin: 0;
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 24px;
   color: var(--sea-blue-300);
 }
-.person-page__pending-title {
-  margin: 0 0 8px !important;
-  font-family: var(--font-heading) !important; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+.profile__pending .profile__pending-title {
+  margin: 0 0 8px;
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
-  font-size: 20px !important;
-  line-height: 32px !important;
-  color: var(--sea-blue) !important;
+  font-size: 20px;
+  line-height: 32px;
+  color: var(--sea-blue);
+}
+@media (max-width: 1024px) {
+  .profile { column-gap: 32px; }
+  .profile__photo { grid-column: 1 / span 5; }
+  .profile__text { grid-column: 6 / span 7; }
+  .profile__name { font-size: 32px; line-height: 44px; }
 }
 @media (max-width: 767px) {
-  .person-page { padding: 40px 16px 56px; }
-  .person-page__name { font-size: 26px; line-height: 36px; margin: 32px 0 24px; }
+  .person-page { padding: 32px 16px 56px; }
+  .profile { grid-template-columns: minmax(0, 1fr); row-gap: 32px; }
+  .profile__photo, .profile__text { grid-column: 1; }
+  .profile__photo { position: static; aspect-ratio: 4 / 5; }
+  .profile__text { padding-top: 0; }
+  .profile__name { font-size: 28px; line-height: 38px; margin-bottom: 24px; }
+  .profile__quote { font-size: 19px; line-height: 32px; padding-left: 16px; }
 }
 
-/* --- a teacher's upcoming retreats, under her bio ------------------- */
-.person-retreats {
+/* --- class video + playlist ---------------------------------------- */
+.profile-media {
   padding: 0 var(--container-pad) 96px;
+  display: flex; flex-direction: column; align-items: center;
+}
+.profile-media[hidden] { display: none; }
+.profile-media__title { margin: 0 0 40px; }
+.profile-media__grid {
+  width: 100%;
+  max-width: 760px;
+  display: grid;
+  gap: 48px;
+}
+.profile-media__grid--two { max-width: var(--container-max); grid-template-columns: 7fr 5fr; }
+.kicker.profile-media__label { color: var(--stone-600); margin-bottom: 12px; }
+.profile-media__video { aspect-ratio: 16 / 9; background: var(--stone-300); }
+.profile-media__playlist { height: 352px; }
+.profile-media__grid > div { display: flex; flex-direction: column; }
+.profile-media__grid--two .profile-media__playlist { flex: 1; height: auto; min-height: 352px; }
+.profile-media iframe { display: block; width: 100%; height: 100%; border: 0; }
+.profile-media__playlist iframe { min-height: 352px; }
+.slot-placeholder {
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  background: var(--stone-200);
+  border: 1px dashed var(--stone-500);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue-300);
+  text-align: center;
+}
+@media (max-width: 1024px) { .profile-media__grid--two { grid-template-columns: minmax(0, 1fr); max-width: 760px; } }
+@media (max-width: 767px) { .profile-media { padding: 0 16px 56px; } .profile-media__grid { gap: 32px; } }
+
+/* --- a teacher's upcoming retreats, on the stone band ---------------
+   Same stone-300 ground as the "For teachers" band on the homepage. */
+.person-retreats {
+  margin-bottom: 96px;
+  padding: 72px var(--container-pad);
+  background: var(--stone-300);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+.person-retreats[hidden] { display: none; }
 .person-retreats__title {
   margin: 0 0 40px;
   font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
@@ -156,7 +282,54 @@
 }
 @media (max-width: 1024px) { .person-retreats__grid { grid-template-columns: repeat(3, 1fr); gap: 24px; } }
 @media (max-width: 767px)  { .person-retreats__grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-                             .person-retreats { padding: 0 16px 56px; } }
+                             .person-retreats { padding: 48px 16px; margin-bottom: 56px; } }
+
+/* --- rails: a row of compact person cards (About page) -------------- */
+.people-rail { width: 100%; max-width: var(--container-max); margin-inline: auto; }
+.people-rail__head {
+  display: flex; align-items: end; justify-content: space-between; gap: 24px;
+  margin-bottom: 32px;
+}
+.people-rail__head .section-title { text-align: left; margin: 0; }
+.people-rail__controls { display: flex; align-items: center; gap: 24px; }
+.people-rail__all {
+  font-family: var(--font-body); font-weight: 600; font-size: 14px; line-height: 24px;
+  letter-spacing: 0.56px; text-transform: uppercase; color: var(--stone-600);
+  text-decoration: none; border-bottom: 1px solid currentColor;
+}
+.people-rail__nav { display: flex; gap: 8px; }
+.people-rail__btn {
+  width: 44px; height: 44px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: transparent; color: var(--sea-blue);
+  border: 1px solid var(--stone-400);
+  cursor: pointer;
+  transition: border-color 150ms ease, background-color 150ms ease, opacity 150ms ease;
+}
+@media (hover: hover) { .people-rail__btn:hover:not(:disabled) { border-color: var(--sea-blue); background: var(--stone-100); } }
+.people-rail__btn:active:not(:disabled) { transform: scale(0.96); }
+.people-rail__btn:disabled { opacity: 0.35; cursor: default; }
+.people-rail__btn:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
+.people-rail.is-static .people-rail__nav { display: none; }
+.people-rail__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 3 * 48px) / 4);
+  column-gap: 48px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+.people-rail__track::-webkit-scrollbar { display: none; }
+.people-rail__track > .person { scroll-snap-align: start; }
+.people-rail__track .person__name { margin-bottom: 0; }
+@media (max-width: 1024px) { .people-rail__track { grid-auto-columns: calc((100% - 2 * 24px) / 3); column-gap: 24px; } }
+@media (max-width: 767px) {
+  .people-rail__track { grid-auto-columns: 62%; column-gap: 16px; }
+  .people-rail__head { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 24px; }
+  .people-rail__controls { width: 100%; justify-content: space-between; }
+}
 
 /* The retreat card itself, same component the listing uses. */
 .result-link { display: block; height: 100%; color: inherit; text-decoration: none; }

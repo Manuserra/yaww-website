@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>YAWW &middot; Teacher</title>
+<title>Melanie Cordover &middot; Teacher &middot; YAWW</title>
 
 <!-- Fonts: Libre Baskerville (headings) + Raleway (body) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,15 +12,15 @@
 <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css" crossorigin="anonymous">
 
 <link rel="stylesheet" href="css/base.css?v=202611192000">
-<link rel="stylesheet" href="css/people.css?v=202611192000">
+<link rel="stylesheet" href="css/people.css?v=202611201200">
 <!-- People + retreat data, and the components that render them.
      Classic scripts so the prototype still works over file://. -->
 <script src="data/locations.js?v=202611161843"></script>
-<script src="data/teachers.js?v=202611161843"></script>
-<script src="data/team.js?v=202611161843"></script>
+<script src="data/teachers.js?v=202611201200"></script>
+<script src="data/team.js?v=202611201200"></script>
 <script src="data/retreats.js?v=202611191000"></script>
 <script src="js/retreat-cards.js?v=202611192000"></script>
-<script src="js/people-cards.js?v=202611161843"></script>
+<script src="js/people-cards.js?v=202611201200"></script>
 
 </head>
 
@@ -122,9 +122,11 @@
 
 <main>
   <!-- =========================================================
-       PROFILE — all content comes from data/teachers.js, keyed by the
+       PROFILE: all content comes from data/teachers.js, keyed by the
        slug below. Nothing about this person is written into this
-       file, so a copy change is a data change.
+       file, so a copy change is a data change. Optional slots (quote,
+       specialties, video, playlist) appear only when the data has
+       them; add ?slots=demo to the URL to preview them all.
        ========================================================= -->
   <section class="person-page" data-person="melanie-cordover" data-person-kind="teacher"></section>
 
@@ -132,6 +134,8 @@
     <h2 class="person-retreats__title" data-person-retreats-title>Upcoming retreats</h2>
     <div class="person-retreats__grid" data-person-retreats-grid></div>
   </section>
+
+  <section class="profile-media" data-person-media hidden></section>
 
   <section class="home-cta">
     <div class="home-cta__bg" aria-hidden="true"></div>
