@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Typography, a more expressive option</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Proposal page: frozen, self-contained. Tokens copied from css/base.css;
+   the specimen values are the ones in type.css. */
+:root {
+  --sea-blue: #475764; --sea-blue-200: #5A6F80; --sea-blue-300: #516372; --sea-blue-500: #283139;
+  --stone: #F7F2F0; --stone-100: #FDF9F7; --stone-200: #F1EFEB; --stone-300: #E1DCD6; --stone-400: #C6BFB9;
+  --stone-600: #765C3A;
+  --font-heading: "Libre Baskerville", Georgia, serif;
+  --font-body: "Raleway", -apple-system, system-ui, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--stone); color: var(--sea-blue); font-family: var(--font-body); font-kerning: normal; }
+.serif { font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { text-wrap: balance; }
+p, li { text-wrap: pretty; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 56px 24px 120px; }
+.eyebrow { font-weight: 600; font-size: 12px; line-height: 20px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone-600); }
+.head h1 { margin-top: 8px; font-family: var(--font-heading); -webkit-font-smoothing: antialiased; font-weight: 400; font-style: italic; font-size: clamp(36px, 26px + 2.6vw, 64px); line-height: 1.06; letter-spacing: -0.02em; }
+.head .lede { margin-top: 20px; max-width: 700px; font-size: clamp(17px, 16.3px + 0.19vw, 19px); line-height: 1.6; }
+.pages { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 40px 0 0; padding: 0; list-style: none; }
+.pages a { display: block; height: 100%; padding: 16px 18px; border: 1px solid var(--stone-400); background: var(--stone-100); color: var(--sea-blue); text-decoration: none; transition: border-color .15s ease, background-color .15s ease; }
+@media (hover: hover) { .pages a:hover { border-color: var(--sea-blue); background: var(--stone-200); } }
+.pages a:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
+.pages b { display: block; font-family: var(--font-heading); -webkit-font-smoothing: antialiased; font-weight: 400; font-style: italic; font-size: 20px; line-height: 1.3; }
+.pages span { display: block; margin-top: 4px; font-size: 13px; line-height: 20px; color: var(--sea-blue-200); }
+.how { margin-top: 16px; font-size: 14px; line-height: 22px; color: var(--sea-blue-200); }
+kbd { font: 600 12px/1 var(--font-body); padding: 2px 6px; border: 1px solid var(--stone-400); background: var(--stone-100); }
+
+section { margin-top: 88px; padding-top: 32px; border-top: 1px solid var(--stone-400); }
+section > h2 { margin-top: 8px; font-family: var(--font-heading); -webkit-font-smoothing: antialiased; font-weight: 400; font-size: clamp(28px, 22.8px + 1.33vw, 42px); line-height: 1.14; letter-spacing: -0.012em; }
+section > .intro { margin-top: 16px; max-width: 700px; font-size: 16px; line-height: 1.65; }
+
+/* Specimen rows */
+.spec { margin-top: 40px; }
+.row { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 8px 32px; align-items: baseline; padding: 24px 0; border-bottom: 1px solid var(--stone-300); }
+.row__meta { font-size: 12px; line-height: 18px; letter-spacing: 0.04em; color: var(--sea-blue-200); }
+.row__meta b { display: block; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sea-blue); margin-bottom: 4px; }
+.s-display { font-weight: 400; font-style: italic; font-size: clamp(40px, 25.1px + 3.81vw, 80px); line-height: 1.04; letter-spacing: -0.02em; }
+.s-display-r { font-weight: 400; font-size: clamp(40px, 25.1px + 3.81vw, 80px); line-height: 1.04; letter-spacing: -0.02em; }
+.s-h2 { font-weight: 400; font-size: clamp(28px, 22.8px + 1.33vw, 42px); line-height: 1.14; letter-spacing: -0.012em; }
+.s-lyric { font-weight: 400; font-style: italic; font-size: clamp(30px, 23.3px + 1.71vw, 48px); line-height: 1.15; letter-spacing: -0.01em; }
+.s-h3i { font-weight: 400; font-style: italic; font-size: clamp(20px, 18.5px + 0.38vw, 24px); line-height: 1.25; }
+.s-h3b { font-weight: 700; font-size: 20px; line-height: 1.3; letter-spacing: -0.005em; }
+.s-quote { font-weight: 400; font-style: italic; font-size: clamp(20px, 17.8px + 0.57vw, 26px); line-height: 1.45; text-indent: -0.42em; }
+.s-lede { font-size: clamp(17px, 16.3px + 0.19vw, 19px); line-height: 1.6; max-width: 640px; }
+.s-body { font-size: 16px; line-height: 1.65; letter-spacing: 0.02em; max-width: 640px; }
+.s-eyebrow { font-weight: 600; font-size: 13px; line-height: 20px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--stone-600); }
+.s-nums { display: flex; flex-wrap: wrap; gap: 12px 40px; align-items: baseline; }
+.s-nums .day { font-style: italic; font-size: 26px; }
+.s-nums .price { font-size: 22px; letter-spacing: -0.01em; }
+.s-nums .unit { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
+.s-nums .score { font-style: italic; font-size: 32px; }
+.s-drop::first-letter { font-family: var(--font-heading); font-weight: 400; color: var(--sea-blue); float: left; font-size: 5.5em; line-height: 0.8; margin: 0.06em 0.12em 0 0; }
+@supports (initial-letter: 3) or (-webkit-initial-letter: 3) {
+  .s-drop::first-letter { float: none; font-size: inherit; line-height: inherit; margin: 0 0.14em 0 0; -webkit-initial-letter: 3; initial-letter: 3; }
+}
+
+/* Before / after */
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 32px; }
+.pair figure { margin: 0; }
+.pair img { display: block; width: 100%; height: auto; border: 1px solid var(--stone-300); }
+.pair figcaption { margin-top: 8px; font-size: 12px; line-height: 18px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; color: var(--sea-blue-200); }
+
+/* Do / don't */
+.rules { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 32px; }
+.rules > div { padding: 24px; background: var(--stone-100); border: 1px solid var(--stone-300); }
+.rules h3 { font-family: var(--font-heading); -webkit-font-smoothing: antialiased; font-weight: 400; font-style: italic; font-size: 22px; line-height: 1.3; }
+.rules ul { margin: 12px 0 0; padding-left: 18px; font-size: 15px; line-height: 1.6; }
+.rules li + li { margin-top: 6px; }
+
+table { width: 100%; margin-top: 32px; border-collapse: collapse; font-size: 14px; line-height: 20px; }
+th, td { text-align: left; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--stone-300); vertical-align: top; }
+th { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; color: var(--sea-blue-200); }
+td:first-child { font-weight: 600; }
+.tbl { overflow-x: auto; }
+code { font-size: 0.92em; }
+
+@media (max-width: 900px) { .pages { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 767px) {
+  .wrap { padding: 40px 16px 80px; }
+  .row { grid-template-columns: minmax(0, 1fr); }
+  .pair, .rules { grid-template-columns: minmax(0, 1fr); }
+  section { margin-top: 64px; }
+}
+@media (max-width: 480px) { .pages { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="head">
+    <p class="eyebrow">Proposal · Brief 12.12 · Typography</p>
+    <h1>More of Libre Baskerville, same pages</h1>
+    <p class="lede">If the premium version is a 10 for typographic expression and the live site a 1, this is a 5. Same layouts, grids and colours. Only the type changes: a real scale between levels, Baskerville Regular for titles instead of a 24px bold everywhere, italic kept for a few moments, opened-up eyebrows, and the small things (balanced titles, hanging quotes, one drop cap).</p>
+    <ul class="pages">
+      <li><a href="home.html"><b>Home</b><span>Hero, collections, pillars, quotes</span></a></li>
+      <li><a href="retreatpage-el-cuyo-dec-2026-delaney.html"><b>Retreat page</b><span>El Cuyo · Inner Glow, Dec 2026</span></a></li>
+      <li><a href="locationpage-oaxaca.html"><b>Location page</b><span>Oaxaca</span></a></li>
+      <li><a href="about.html"><b>About</b><span>With the one drop cap</span></a></li>
+    </ul>
+    <p class="how">Each page is a copy of the live one with <code>type.css</code> loaded last. The dark switch on the right (bottom right on a phone) turns the proposal on and off; <kbd>T</kbd> does the same, and <code>?type=off</code> opens a page with it off.</p>
+  </header>
+
+  <section>
+    <p class="eyebrow">Before and after</p>
+    <h2>The same section, switch off and on</h2>
+    <div class="pair">
+      <figure><img src="shots/home-pillar-off.jpg" alt="Home pillar section with the current type: a 24px bold title" width="800" height="500" loading="lazy"><figcaption>Now · Home</figcaption></figure>
+      <figure><img src="shots/home-pillar-on.jpg" alt="Same section with the proposal: a 42px Baskerville Regular title" width="800" height="500" loading="lazy"><figcaption>Proposal · Home</figcaption></figure>
+      <figure><img src="shots/location-guide-off.jpg" alt="Oaxaca guide with the current type: bold card titles" width="800" height="500" loading="lazy"><figcaption>Now · Location guide</figcaption></figure>
+      <figure><img src="shots/location-guide-on.jpg" alt="Oaxaca guide with the proposal: larger section title and italic card titles" width="800" height="500" loading="lazy"><figcaption>Proposal · Location guide</figcaption></figure>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Specimen</p>
+    <h2>The scale</h2>
+    <p class="intro">Sizes are fluid between a 390px phone and a 1440px desktop. Today the site has one heading size (24px bold) doing six jobs; the gap between the hero and a section title is 56 to 24. Here it is 80 to 42 to 24, and weight changes with it: big type is Regular, only small named things stay Bold.</p>
+    <div class="spec">
+      <div class="row"><p class="row__meta"><b>Display</b>Home hero · 40 → 80<br>Regular italic, lh 1.04, −0.02em</p><p class="serif s-display">Travel that moves you</p></div>
+      <div class="row"><p class="row__meta"><b>Display</b>Retreat and location hero · 40 → 80<br>Regular, lh 1.04, −0.02em</p><p class="serif s-display-r">Inner Glow Retreat</p></div>
+      <div class="row"><p class="row__meta"><b>Section title</b>All h2 · 28 → 42<br>Regular, lh 1.14, −0.012em</p><p class="serif s-h2">Where we’re going next</p></div>
+      <div class="row"><p class="row__meta"><b>Lyric title</b>A sentence, not a label · 30 → 48<br>Regular italic. One per page + the CTA band</p><p class="serif s-lyric">Your next week away starts here</p></div>
+      <div class="row"><p class="row__meta"><b>h3, a line</b>Tiers, guide pillars, About cards · 20 → 24<br>Regular italic</p><p class="serif s-h3i">Cooked over open flames</p></div>
+      <div class="row"><p class="row__meta"><b>h3, a name</b>People, rooms, extras, cards · as now<br>Bold, −0.005em</p><p class="serif s-h3b">Shared Tower Room</p></div>
+      <div class="row"><p class="row__meta"><b>Pull-quote</b>Reviews · 20 → 26 (Oaxaca 36)<br>Italic, opening quote hangs</p><p class="serif s-quote">“Christina and her crew are magic travel masters. I would think of something and it would appear.”</p></div>
+      <div class="row"><p class="row__meta"><b>Eyebrow</b>Every kicker · 12 → 13<br>Raleway 600 caps, +0.16em</p><p class="s-eyebrow">The people behind the practice</p></div>
+      <div class="row"><p class="row__meta"><b>Lede</b>First paragraph of a story · 17 → 19<br>Raleway 400, lh 1.6</p><p class="s-lede">Tucked along the quiet edge of the Yucatán, El Cuyo is where time slows to the rhythm of the sea.</p></div>
+      <div class="row"><p class="row__meta"><b>Body + drop cap</b>Raleway 16, lh 1.65 in prose<br>Drop cap: About → Our story only</p><p class="s-body s-drop">Yoga Adventures Worldwide started in 2008 on the beaches of Tulum, Mexico. Back then, it was just a simple idea: to bring like-minded people together in beautiful places, with space to move, rest, and reconnect.</p></div>
+      <div class="row"><p class="row__meta"><b>Numbers</b>Numbers that are the point go to Baskerville</p><div class="serif s-nums"><span class="day">Day 3</span><span><span class="price">2,295 USD</span> <span class="unit" style="font-family:var(--font-body)">per person</span></span><span class="score">4.9</span></div></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Rules</p>
+    <h2>Do and don’t</h2>
+    <div class="rules">
+      <div>
+        <h3>Do</h3>
+        <ul>
+          <li>Set every h2 in Baskerville Regular from the one token. Bold is for small named things only (a person, a room, a card).</li>
+          <li>Use italic when the line is a sentence with a voice: the home hero, a quote, “Day 3”, the closing line. At most one lyric h2 per page plus the CTA band.</li>
+          <li>Tighten big type (−0.01 to −0.02em), open up caps (+0.1 to +0.16em). Leave 16px text alone.</li>
+          <li>Balance headings and let paragraphs wrap “pretty”. Keep compound words in titles together (<code>sought-after</code>).</li>
+          <li>Hang the opening quote mark on left-aligned quotes. Centred quotes don’t hang.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Don’t</h3>
+        <ul>
+          <li>No oversized display type away from the hero, no outlined or mixed-weight words, no type running behind images. That is the premium version’s brutalism, which we are not doing.</li>
+          <li>No second drop cap. It works once, on the story.</li>
+          <li>No fake small caps (<code>font-variant: small-caps</code>): neither font has real ones, so the browser draws thin shrunken capitals. Use caps with tracking.</li>
+          <li>No oldstyle or tabular figures: the Google Fonts cuts we load don’t include them (tested), so the CSS would do nothing.</li>
+          <li>No change to colours, grids, image ratios or button sizes from type alone.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Inventory</p>
+    <h2>What changes, element by element</h2>
+    <div class="tbl">
+    <table>
+      <thead><tr><th>Element</th><th>Now</th><th>Proposal</th></tr></thead>
+      <tbody>
+        <tr><td>Home hero</td><td>Italic 64 @1440</td><td>Italic 80, −0.02em</td></tr>
+        <tr><td>Retreat / location hero</td><td>Regular 56</td><td>Regular 80 (40 on a phone)</td></tr>
+        <tr><td>Hero line under the name</td><td>Italic 22</td><td>Italic 23, softer leading</td></tr>
+        <tr><td>Hero proof values</td><td>Raleway 14 bold</td><td>Baskerville italic 18</td></tr>
+        <tr><td>About h1</td><td>Bold 36</td><td>Italic 46 (a sentence)</td></tr>
+        <tr><td>Section titles, all h2</td><td>Bold 24</td><td>Regular 42</td></tr>
+        <tr><td>Lyric h2 (Oaxaca intro, CTA band)</td><td>Italic 36</td><td>Italic 48</td></tr>
+        <tr><td>Tier headlines, guide pillars, About cards</td><td>Italic 24 / Bold 18–20</td><td>Italic 24–28</td></tr>
+        <tr><td>Day N</td><td>Italic 22</td><td>Italic 26</td></tr>
+        <tr><td>Prices, review score</td><td>Bold 28 / Raleway 20</td><td>Baskerville Regular / italic</td></tr>
+        <tr><td>Quotes</td><td>Italic 17–20</td><td>Italic 21–23, hanging quote; Oaxaca 36</td></tr>
+        <tr><td>Eyebrows (5 variants)</td><td>11–14px, 0.04–0.14em</td><td>One: 12–13px, 0.16em</td></tr>
+        <tr><td>Prose</td><td>16 / 24</td><td>16 / 26.4; ledes 19 / 30</td></tr>
+        <tr><td>Buttons, tabs, labels</td><td>caps, 0.04em</td><td>caps, 0.1em (same size)</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+</div>
+</body>
+</html>

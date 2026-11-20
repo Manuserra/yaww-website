@@ -1,0 +1,275 @@
+/* ============================================================
+   YAWW · TYPOGRAPHY PROPOSAL — "expressive, but ours" (a 5 of 10)
+   An override layered after the site's CSS. It changes type only:
+   family, size, weight, style, leading, tracking, wrapping and the
+   odd typographic ornament. No colours, grids, spacing tokens or
+   layout are touched (where a bigger title needs a margin to breathe,
+   that is noted and kept to a few px).
+
+   The idea in one line: Libre Baskerville carries the voice, Raleway
+   does the work. Headings go from 24px bold (everything the same) to
+   a real scale in Baskerville Regular, with italic kept for a few
+   moments that speak: the hero, quotes, "Day N", the closing line.
+
+   Scale (390 → 1440, fluid between):
+     display   40 → 80   Baskerville 400 (italic on home)  lh 1.04  -0.02em
+     h1 page   34 → 56   Baskerville 400                   lh 1.1   -0.015em
+     h2        28 → 42   Baskerville 400                   lh 1.14  -0.012em
+     h2 lyric  30 → 48   Baskerville 400 italic             lh 1.15  -0.01em
+     h3        20 → 24   Baskerville 400 italic / 700       lh 1.25
+     quote     20 → 26   Baskerville 400 italic             lh 1.45
+     lede      17 → 19   Raleway 400                        lh 1.6
+     body      16        Raleway 400                        lh 1.6 in prose
+     eyebrow   12 → 13   Raleway 600 caps                   +0.16em
+   ============================================================ */
+
+:root {
+  --tx-display: clamp(40px, 25.1px + 3.81vw, 80px);
+  --tx-h1:      clamp(34px, 25.8px + 2.1vw, 56px);
+  --tx-h2:      clamp(28px, 22.8px + 1.33vw, 42px);
+  --tx-h2-lyric:clamp(30px, 23.3px + 1.71vw, 48px);
+  --tx-h3:      clamp(20px, 18.5px + 0.38vw, 24px);
+  --tx-quote:   clamp(20px, 17.8px + 0.57vw, 26px);
+  --tx-lede:    clamp(17px, 16.3px + 0.19vw, 19px);
+  --tx-eyebrow: clamp(12px, 11.6px + 0.1vw, 13px);
+}
+
+/* ---------- 0 · Global behaviour --------------------------------
+   Balanced headings (no lonely last word), "pretty" paragraphs (no
+   orphans), kerning and standard ligatures always on. */
+h1, h2, h3, blockquote,
+.section-title, .home-hero__title, .retreat-hero__title { text-wrap: balance; }
+p, li, dd, blockquote { text-wrap: pretty; }
+body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
+
+/* Hanging punctuation: the opening quote mark sits outside the text
+   edge, so the column of letters stays straight. Safari does it
+   natively; elsewhere a negative indent of one quote-mark width.
+   Left-aligned quotes only: a centred quote has no edge to hang from. */
+@supports (hanging-punctuation: first) {
+  .quote-card__quote, .who__quote, .about-quote__text { hanging-punctuation: first last; }
+}
+@supports not (hanging-punctuation: first) {
+  .quote-card__quote, .who__quote, .about-quote__text { text-indent: -0.42em; }
+}
+
+/* ---------- 1 · Eyebrows ----------------------------------------
+   One treatment for every kicker on the site (there were five):
+   smaller and more open, so it reads as a label and lets the title
+   below it be the loud one. Colour stays whatever each page set. */
+.kicker, .loc-kicker, .loc-hero__eyebrow, .about-person__role {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--tx-eyebrow);
+  line-height: 20px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.loc-guide__item .loc-kicker { font-size: 11px; letter-spacing: 0.16em; }
+
+/* ---------- 2 · Display: the hero lines -------------------------- */
+.home-hero--overlay .home-hero__title,
+.home-hero__title {
+  font-size: var(--tx-display);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+}
+.retreat-hero__title,
+.retreat-hero--overlay .retreat-hero__title {
+  font-weight: 400;
+  font-size: var(--tx-display);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+}
+/* The line under the retreat/location name: a quiet italic. */
+.retreat-hero__location,
+.retreat-hero--overlay .retreat-hero__location {
+  font-style: italic;
+  font-size: clamp(19px, 17.5px + 0.38vw, 23px);
+  line-height: 1.35;
+}
+/* Dates · nights · place under the hero: an eyebrow, opened up. */
+.retreat-hero__meta, .retreat-hero__meta span { letter-spacing: 0.14em; }
+@media (max-width: 767px) { .retreat-hero__meta, .retreat-hero__meta span { letter-spacing: 0.1em; } }
+
+/* Hero proof row: the values become small Baskerville italics, the
+   labels stay Raleway. Two voices instead of two weights. */
+.home-hero__proof-value {
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 0;
+}
+.home-hero__proof-label { letter-spacing: 0.06em; }
+
+/* About's page title is a sentence with a set line break, so it takes
+   the lyric italic (italic is also narrower: at 46px both lines still
+   fit the 760px measure). Balance off, so the <br> decides the break. */
+.about-intro__title {
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(30px, 24px + 1.53vw, 46px);
+  line-height: 1.16;
+  letter-spacing: -0.012em;
+  text-wrap: wrap;
+}
+/* On a phone the set break leaves "journeys," alone on a line: drop
+   it and let the browser balance the four lines instead. */
+@media (max-width: 767px) {
+  .about-intro__title br { display: none; }
+  .about-intro__title { text-wrap: balance; }
+}
+
+/* ---------- 3 · Section titles (h2) ------------------------------
+   The biggest change. 24px bold → 28–42px Regular. Bold Baskerville
+   at 24 shouts and whispers at once; Regular at 42 is calm and big. */
+.section-title,
+.pillar__copy h2,
+.who__title,
+.lead__title,
+.faq-section__title,
+.loc-h2,
+.retreat-about__title, .retreat-teacher__title, .retreat-includes__title,
+.retreat-itinerary__title, .retreat-accom__title, .quotes__title,
+.rooms__title, .extras__title, .tips__title, .gallery__title {
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-style: normal;
+  font-size: var(--tx-h2);
+  line-height: 1.14;
+  letter-spacing: -0.012em;
+}
+/* A kicker sits closer to its title once the title is big. */
+.kicker + .section-title, .kicker + h2, .loc-kicker + .loc-h2 { margin-top: 6px; }
+
+/* Lyric h2s: the lines that are a sentence, not a label, get italic.
+   One per page at most, plus the closing CTA band. */
+.loc-intro__copy .loc-h2,
+.home-cta__title,
+.footer-news__title {
+  font-style: italic;
+  font-size: var(--tx-h2-lyric);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.footer-news__title { font-size: var(--tx-h2); }
+
+/* ---------- 4 · h3 and small display -----------------------------
+   Two kinds of h3: "named things" (people, rooms, extras, cards)
+   stay Baskerville Bold at a modest size; "lines" (tier headlines,
+   guide pillars, about cards) go italic Regular, slightly larger. */
+.tiers2__headline,
+.loc-guide__title,
+.about-card__title {
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-style: italic;
+  font-size: var(--tx-h3);
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+}
+.tiers2__headline { font-size: clamp(22px, 19.8px + 0.57vw, 28px); }
+.host__name, .about-person__name { letter-spacing: -0.005em; }
+.booking__label, .who__tab-title { letter-spacing: -0.005em; }
+/* Card titles at 16px: Bold Baskerville is wide; a touch of air. */
+.card__title, .location__title, .person__name { letter-spacing: 0.005em; }
+
+/* ---------- 5 · Numbers -----------------------------------------
+   The Google Fonts cuts of both families ship lining figures only
+   (no oldstyle or tabular sets were found in testing), so the work
+   is in where numbers sit, not which figures. Numbers that are the
+   point (Day N, a price, a score, +9) go to Baskerville; numbers in
+   running text stay Raleway lining. */
+.retreat-itinerary__label {
+  font-style: italic;
+  font-size: clamp(22px, 20.5px + 0.38vw, 26px);
+  letter-spacing: -0.005em;
+}
+.room-card__price { font-size: 22px; letter-spacing: -0.01em; }
+.extras__price-amount {
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.review-badge__score { font-weight: 400; font-style: italic; font-size: 32px; letter-spacing: -0.01em; }
+.rail-more__count { font-style: italic; letter-spacing: -0.02em; }
+.room-card__unit, .extras__price-unit { letter-spacing: 0.12em; }
+
+/* ---------- 6 · Pull-quotes -------------------------------------- */
+.quote-card__quote,
+.who__quote {
+  font-size: clamp(19px, 17.5px + 0.38vw, 23px);
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+}
+.loc-quote blockquote {
+  font-size: clamp(24px, 19.5px + 1.14vw, 36px);
+  line-height: 1.3;
+  letter-spacing: -0.012em;
+}
+.about-quote__text { font-size: clamp(18px, 17.3px + 0.19vw, 20px); line-height: 1.5; }
+/* Who said it: small caps feel, done with real caps + tracking (the
+   fonts have no true small caps; the browser's fake ones look thin). */
+.quote-card__name, .about-quote__name, .loc-quote figcaption {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.loc-quote figcaption span { font-weight: 400; letter-spacing: 0.14em; }
+
+/* ---------- 7 · Reading text ------------------------------------
+   Longer leading in prose blocks only (cards keep their line clamps). */
+.retreat-about__body p,
+.about-prose .about-body,
+.loc-intro__copy .loc-p,
+.pillar__copy p,
+.movement__body,
+.host__bio {
+  line-height: 1.65;
+}
+/* Ledes: the first paragraph of a story reads a size up. */
+.about-intro__lede,
+.retreat-about__body > p:first-child,
+.loc-intro__copy .loc-h2 + .loc-p {
+  font-size: var(--tx-lede);
+  line-height: 1.6;
+  letter-spacing: 0.005em;
+}
+
+/* ---------- 8 · The one drop cap --------------------------------
+   About → Our story, first paragraph. Three lines of Baskerville
+   Regular, sunk into the text. Nowhere else. `initial-letter` sizes
+   it to the lines exactly (Chrome 110+, Safari); others get a float
+   tuned to the same three lines. */
+.about-intro + .about-section .about-prose > .about-body:first-child::first-letter {
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  color: var(--sea-blue);
+  float: left;
+  margin: 0.06em 0.12em 0 0;
+  font-size: 5.5em;
+  line-height: 0.8;
+}
+@supports (initial-letter: 3) or (-webkit-initial-letter: 3) {
+  .about-intro + .about-section .about-prose > .about-body:first-child::first-letter {
+    float: none;
+    margin: 0 0.14em 0 0;
+    font-size: inherit;
+    line-height: inherit;
+    -webkit-initial-letter: 3;
+    initial-letter: 3;
+  }
+}
+
+/* ---------- 9 · Small UI text -----------------------------------
+   Buttons and tabs keep their size; tracking goes from a flat 0.04em
+   to a proper caps spacing so they stop looking squeezed. */
+.btn { letter-spacing: 0.1em; }
+.tabs__item { letter-spacing: 0.1em; }
+.card__label { letter-spacing: 0.12em; }
+
+/* Compound words in titles: keep "sought-after" on one line (markup
+   wraps it in .tx-nowrap; see NOTES.md). */
+.tx-nowrap { white-space: nowrap; }
