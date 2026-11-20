@@ -111,6 +111,9 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
    runs to six lines over the video). Weight stays Medium for contrast. */
 .home-hero__desc,
 .home-hero--overlay .home-hero__desc { font-size: clamp(16px, 15.26px + 0.19vw, 18px); }
+/* The closing band is the same set-up (italic title over a photo, one
+   line under it), so its line follows the hero line: 18 Medium. */
+.home-cta__desc { font-size: clamp(16px, 15.26px + 0.19vw, 18px); font-weight: 500; line-height: 1.5; }
 
 /* Big screens: the live home hero keeps growing past 1440 (64 → 89 at
    2560). The proposal follows the same curve, 68/64 larger, so on a
