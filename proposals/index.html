@@ -87,6 +87,21 @@ h1, h2 { font-family: var(--font-heading); -webkit-font-smoothing: antialiased; 
     </div>
   </article>
 
+  <article class="decision" id="retreats-search">
+    <p class="decision__section">3 · Retreats listing</p>
+    <div>
+      <h2>How people find a retreat</h2>
+      <p class="decision__q">Tiers as a dropdown? Multi-select with search? A global search? A destination picker with photos, like Evaneos or Kindred? Full reasoning in <code>docs/retreats-search-product.md</code>.</p>
+      <ul class="opts">
+        <li><a class="is-chosen" href="../retreats.html">A · Current bar, plus photos and months <span class="tag">Implemented</span></a></li>
+        <li><a href="retreats-search/option-b.html">B · Destination gallery (next to test)</a></li>
+        <li><a href="retreats-search/option-c.html">C · One search field</a></li>
+        <li><a href="retreats-search/option-d.html">D · Four multi-selects</a></li>
+      </ul>
+      <p class="why"><b>Why A:</b> 17 dates and 14 places fit on one scroll, so the tools frame the choice rather than narrow it. Stacking choices (C, D) mostly leads to empty combinations, which the live "latest pick wins" rule avoids. The tabs stay because they explain the collections; a fourth dropdown would hide Signature. Tonight A gained a photo per destination, the months of each season, a readable clear (×) and tracking. <b>B</b> is the idea worth testing next: Destination opens a gallery of the places. Not live because it changes the main component; measure first.</p>
+    </div>
+  </article>
+
 </div>
 </body>
 </html>

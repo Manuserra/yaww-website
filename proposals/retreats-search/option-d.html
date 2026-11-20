@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<base href="../../">
+<title>Retreats search · D · Four multi-selects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="proposals/retreats-search/proto.css">
+<script src="data/locations.js"></script>
+<script src="data/teachers.js"></script>
+<script src="data/retreats.js"></script>
+<script src="js/retreat-cards.js"></script>
+<script src="proposals/retreats-search/proto.js"></script>
+<style>
+/* Option D: the "more filters" route. The tier tabs become a fourth
+   dropdown; every dropdown takes several values, has a search box and
+   an Apply button. Built to show what it costs, not as the pick. */
+.bar { display: flex; margin: 40px auto 0; background: var(--stone-100); border: 1px solid var(--stone-300); }
+.seg { position: relative; flex: 1 1 0; min-width: 0; }
+.seg + .seg { border-left: 1px solid var(--stone-300); }
+.seg__btn { width: 100%; display: flex; align-items: center; gap: 12px; min-height: 80px; padding: 16px 20px; text-align: left; transition: background-color .16s ease; }
+@media (hover: hover) and (pointer: fine) { .seg:not(.is-open) .seg__btn:hover { background: var(--wash); } }
+.seg.is-open .seg__btn { box-shadow: inset 0 -2px 0 var(--sea-blue); }
+.seg__text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.seg__label { font-weight: 600; font-size: 12px; line-height: 16px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--stone-600); }
+.seg__value { font-family: var(--font-heading); font-size: 17px; line-height: 24px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.seg__value.is-empty { font-style: italic; color: var(--sea-blue-200); }
+.panel { position: absolute; top: calc(100% + 8px); left: -1px; z-index: 30; width: max(100%, 340px); display: flex; flex-direction: column; max-height: 480px; background: var(--stone-100); border: 1px solid var(--stone-300); box-shadow: 0 16px 40px rgba(40,49,57,.14); }
+.panel__search { margin: 12px 16px 4px; padding: 10px 12px; border: 1px solid var(--stone-400); background: var(--stone); font-size: 15px; }
+.panel__search:focus { outline: none; border-color: var(--sea-blue); }
+.panel__list { flex: 1 1 auto; overflow: auto; padding: 4px 0; }
+.check { display: flex; align-items: center; gap: 12px; padding: 8px 16px; cursor: pointer; }
+.check:hover { background: var(--stone-200); }
+.check input { width: 18px; height: 18px; accent-color: var(--sea-blue); margin: 0; }
+.check__meta { display: block; font-size: 13px; line-height: 16px; color: var(--sea-blue-300); }
+.check.is-off { color: var(--sea-blue-100); }
+.grp { margin: 12px 16px 4px; font-weight: 600; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--sea-blue-300); }
+.panel__foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 16px; border-top: 1px solid var(--stone-300); }
+.panel__foot .link { font-size: 14px; border-bottom: 1px solid currentColor; padding: 2px 0; }
+.panel__foot .btn { min-width: 0; padding: 10px 20px; }
+@media (max-width: 1023px) { .bar { flex-wrap: wrap; } .seg { flex: 1 1 50%; } .seg:nth-child(3) { border-left: 0; } .seg:nth-child(n+3) { border-top: 1px solid var(--stone-300); } }
+@media (max-width: 767px) {
+  .bar { flex-direction: column; }
+  .seg { flex: 0 0 auto; border-left: 0 !important; }
+  .seg + .seg { border-top: 1px solid var(--stone-300); }
+  .seg__btn { min-height: 64px; padding: 16px; }
+  .panel { position: fixed; left: 0; right: 0; bottom: 0; top: auto; width: auto; max-height: 75vh; }
+}
+</style>
+</head>
+<body>
+<div class="pbar"><span>Proposal · Retreats search</span>
+  <nav aria-label="Options"><a href="retreats.html">A · Live page</a><a href="proposals/retreats-search/option-b.html">B · Destination gallery</a><a href="proposals/retreats-search/option-c.html">C · One search field</a><a href="proposals/retreats-search/option-d.html" aria-current="page">D · Four multi-selects</a><a href="proposals/index.html#retreats-search">Board</a></nav></div>
+<div class="wrap">
+  <div class="ptitle"><h1>All Retreats</h1><p>Every journey we run, in one place.</p></div>
+  <div class="bar" id="bar"></div>
+  <div class="summary" id="summary"></div>
+  <div id="results"></div>
+</div>
+<script>
+(function () {
+var P = window.P, esc = P.esc;
+var s = P.blank(); s.tiers = [];
+var open = "", draft = [], term = "";
+var bar = document.getElementById("bar");
+var TIERS = [{ v: "deep-dives", name: "Deep Dives" }, { v: "signature-collection", name: "Signature Collection" }];
+var DEFS = [
+  { key: "tiers", label: "Collection", any: "All collections", items: function () { return TIERS.map(function (t) { return { v: t.v, name: t.name, n: P.rows.filter(function (x) { return x.tier === t.v; }).length }; }); } },
+  { key: "months", label: "When", any: "Any time", items: function () { return P.months.map(function (m) { return { v: m.key, name: m.label, n: P.facetCount(state(), "months", m.key) }; }); } },
+  { key: "places", label: "Destination", any: "Anywhere", items: function () { return P.locations.map(function (l) { return { v: l.name, name: l.name, n: P.facetCount(state(), "places", l.name), group: l.region }; }); } },
+  { key: "teachers", label: "Teacher", any: "Any teacher", items: function () { return P.teachers.map(function (t) { return { v: t.name, name: t.name, n: P.facetCount(state(), "teachers", t.name) }; }); } }
+];
+/* Tiers are an array here, so map them onto proto.js's single tier. */
+function state() { var x = Object.assign({}, s); x.tier = s.tiers.length === 1 ? s.tiers[0] : "all"; return x; }
+function valueLabel(def) {
+  var v = s[def.key]; if (!v.length) return "";
+  var first = def.key === "months" ? P.months.filter(function (m) { return m.key === v[0]; })[0].label : def.key === "tiers" ? TIERS.filter(function (t) { return t.v === v[0]; })[0].name : v[0];
+  return v.length === 1 ? first : first + " +" + (v.length - 1);
+}
+function panelHTML(def) {
+  var items = def.items().filter(function (i) { return !term || i.name.toLowerCase().indexOf(term.toLowerCase()) >= 0; });
+  var html = '<div class="panel" role="dialog" aria-label="' + def.label + '"><input class="panel__search" type="search" placeholder="Search ' + def.label.toLowerCase() + '" value="' + esc(term) + '" aria-label="Search ' + def.label.toLowerCase() + '"><div class="panel__list">';
+  var g = null;
+  items.forEach(function (i) {
+    if (i.group && i.group !== g) { g = i.group; html += '<p class="grp">' + esc(g) + '</p>'; }
+    var on = draft.indexOf(i.v) >= 0;
+    html += '<label class="check' + (i.n ? '' : ' is-off') + '"><input type="checkbox" value="' + esc(i.v) + '"' + (on ? ' checked' : '') + '><span>' + esc(i.name) + '<span class="check__meta">' + (i.n ? P.plural(i.n) : "None with your other choices") + '</span></span></label>';
+  });
+  if (!items.length) html += '<p class="grp" style="text-transform:none;font-weight:400">Nothing called “' + esc(term) + '”.</p>';
+  return html + '</div><div class="panel__foot"><button type="button" class="link" data-reset>Clear</button><button type="button" class="btn" data-apply>Apply</button></div></div>';
+}
+function render(keepFocus) {
+  bar.innerHTML = DEFS.map(function (d) {
+    var v = valueLabel(d);
+    return '<div class="seg' + (open === d.key ? ' is-open' : '') + '"><button type="button" class="seg__btn" data-seg="' + d.key + '" aria-expanded="' + (open === d.key) + '"><span class="seg__text"><span class="seg__label">' + d.label + '</span><span class="seg__value' + (v ? '' : ' is-empty') + '">' + esc(v || d.any) + '</span></span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 5.25 7 9.25 11 5.25" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button>' +
+      (open === d.key ? panelHTML(d) : '') + '</div>';
+  }).join("");
+  if (keepFocus) { var i = bar.querySelector(".panel__search"); if (i) { i.focus(); i.setSelectionRange(i.value.length, i.value.length); } }
+  P.renderResults(document.getElementById("results"), state(), document.getElementById("summary"), function () { s = P.blank(); s.tiers = []; render(); });
+}
+bar.addEventListener("click", function (e) {
+  var b = e.target.closest("[data-seg]");
+  if (b) { var k = b.dataset.seg; open = open === k ? "" : k; draft = open ? s[k].slice() : []; term = ""; render(); e.stopPropagation(); return; }
+  if (e.target.closest("[data-apply]")) { s[open] = draft.slice(); P.track("multiselect_apply", { key: open, n: draft.length }); open = ""; render(); }
+  else if (e.target.closest("[data-reset]")) { draft = []; render(); }
+  e.stopPropagation();
+});
+bar.addEventListener("change", function (e) {
+  if (e.target.type !== "checkbox") return;
+  var v = e.target.value;
+  draft = e.target.checked ? draft.concat(v) : draft.filter(function (x) { return x !== v; });
+});
+bar.addEventListener("input", function (e) { if (e.target.classList.contains("panel__search")) { term = e.target.value; render(true); } });
+document.addEventListener("click", function () { if (open) { open = ""; render(); } });
+document.addEventListener("keydown", function (e) { if (e.key === "Escape" && open) { open = ""; render(); } });
+render();
+})();
+</script>
+</body>
+</html>

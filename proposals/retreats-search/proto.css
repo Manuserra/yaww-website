@@ -1,0 +1,71 @@
+/* Retreats search prototypes: shared, frozen styles.
+   Tokens copied from css/base.css on 20 Nov 2026. Not linked to the live
+   CSS on purpose, so the options keep looking the way they did when
+   reviewed. Every page here sets <base href="../../">. */
+:root {
+  --sea-blue: #475764; --sea-blue-100: #8094A5; --sea-blue-200: #657C8F; --sea-blue-300: #516372; --sea-blue-400: #3C4A55; --sea-blue-500: #283139;
+  --stone: #F7F2F0; --stone-100: #FDF9F7; --stone-200: #F1EFEB; --stone-300: #E1DCD6; --stone-400: #C6BFB9; --stone-600: #765C3A;
+  --wash: rgba(225, 220, 214, 0.40);
+  --font-heading: "Libre Baskerville", Georgia, serif;
+  --font-body: "Raleway", -apple-system, system-ui, sans-serif;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--stone); color: var(--sea-blue); font-family: var(--font-body); font-size: 16px; line-height: 24px; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+input { font: inherit; color: inherit; }
+img { display: block; }
+h1, h2, h3 { margin: 0; font-family: var(--font-heading); font-weight: 400; -webkit-font-smoothing: antialiased; }
+:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
+
+/* Proposal bar */
+.pbar { position: sticky; top: 0; z-index: 50; display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; justify-content: space-between; padding: 10px 24px; background: var(--sea-blue-500); color: var(--stone); font-size: 13px; line-height: 20px; letter-spacing: 0.32px; }
+.pbar a { color: var(--stone); text-decoration: none; padding: 2px 0; border-bottom: 1px solid transparent; }
+.pbar a[aria-current="page"] { border-bottom-color: var(--stone); font-weight: 600; }
+.pbar nav { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+
+.wrap { max-width: 1392px; margin: 0 auto; padding: 0 24px 120px; }
+.ptitle { text-align: center; padding: 48px 0 0; }
+.ptitle h1 { font-size: 28px; line-height: 40px; font-weight: 700; }
+.ptitle p { margin: 8px auto 0; max-width: 560px; font-size: 16px; line-height: 26px; }
+
+/* Tier tabs, as on the live page */
+.tabs { display: flex; justify-content: center; width: fit-content; max-width: 100%; margin: 32px auto 0; border-bottom: 1px solid var(--stone-400); }
+.tabs button { width: 216px; padding: 12px 24px; font-weight: 600; font-size: 12px; line-height: 24px; letter-spacing: 0.48px; text-transform: uppercase; color: var(--sea-blue-100); box-shadow: inset 0 0 0 transparent; transition: color .16s ease, background-color .16s ease; }
+.tabs button[aria-selected="true"] { color: var(--sea-blue); box-shadow: inset 0 -2px 0 var(--sea-blue); }
+@media (hover: hover) and (pointer: fine) { .tabs button:not([aria-selected="true"]):hover { color: var(--sea-blue); background: var(--wash); } }
+
+/* Results */
+.summary { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: baseline; margin: 32px 0 0; font-size: 14px; line-height: 24px; letter-spacing: 0.56px; }
+.summary button { border-bottom: 1px solid currentColor; font-size: 14px; line-height: 16px; padding: 4px 0; }
+.season { margin-top: 48px; }
+.season__title { font-style: italic; font-size: 24px; line-height: 32px; margin-bottom: 24px; }
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 48px 32px; }
+.result-link { color: inherit; text-decoration: none; display: block; }
+.card { display: flex; flex-direction: column; }
+.card__media { position: relative; aspect-ratio: 312 / 408; overflow: hidden; background: var(--stone-300); }
+.card__media img { width: 100%; height: 100%; object-fit: cover; }
+.card__media::after { content: ""; position: absolute; inset: 0; background: var(--stone); opacity: 0; transition: opacity .3s var(--ease-out); pointer-events: none; }
+@media (hover: hover) and (pointer: fine) { .result-link:hover .card__media::after { opacity: .28; } .result-link:hover .card__title { text-decoration-color: currentColor; } }
+.card__label { position: absolute; left: 12px; bottom: 12px; z-index: 1; display: inline-flex; align-items: center; gap: 8px; padding: 4px 10px; background: var(--stone-100); font-weight: 600; font-size: 11px; line-height: 16px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sea-blue-300); }
+.card__label--signature .card__label-tier { color: var(--stone-600); }
+.card__label-sep { width: 3px; height: 3px; border-radius: 50%; background: var(--sea-blue-300); }
+.card__body { padding-top: 16px; display: flex; flex-direction: column; gap: 4px; }
+.card__title { font-family: var(--font-heading); font-weight: 700; font-size: 18px; line-height: 26px; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 4px; transition: text-decoration-color .3s ease; }
+.card__loc { font-family: var(--font-heading); font-style: italic; font-size: 15px; line-height: 24px; }
+.card__date, .card__teacher { font-size: 14px; line-height: 22px; letter-spacing: 0.32px; }
+.empty { margin-top: 48px; padding: 56px 32px; text-align: center; background: var(--stone-100); border: 1px solid var(--stone-300); }
+.empty h2 { font-weight: 700; font-size: 22px; line-height: 34px; }
+.empty p { margin: 8px auto 20px; max-width: 460px; color: var(--sea-blue-300); }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-width: 240px; padding: 14px 24px; background: var(--sea-blue); color: var(--stone); font-weight: 600; font-size: 13px; line-height: 20px; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--sea-blue); }
+@media (hover: hover) { .btn:hover { background: var(--sea-blue-400); } }
+
+@media (max-width: 1100px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 767px) {
+  .wrap { padding: 0 16px 80px; }
+  .grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .tabs { width: 100%; }
+  .tabs button { width: auto; flex: 1 1 0; padding: 12px 6px; font-size: 11px; letter-spacing: 0.3px; }
+  .pbar { padding: 8px 16px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }

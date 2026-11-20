@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<base href="../../">
+<title>Retreats search · B · Destination gallery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="proposals/retreats-search/proto.css">
+<script src="data/locations.js"></script>
+<script src="data/teachers.js"></script>
+<script src="data/retreats.js"></script>
+<script src="js/retreat-cards.js"></script>
+<script src="proposals/retreats-search/proto.js"></script>
+<style>
+/* Option B: the bar stays as it is; Destination opens a gallery of the
+   places themselves, the way Evaneos and Kindred lead with the photo. */
+.bar { position: relative; display: flex; width: fit-content; max-width: 100%; margin: 40px auto 0; background: var(--stone-100); border: 1px solid var(--stone-300); }
+.seg { position: relative; width: 360px; }
+.seg + .seg { border-left: 1px solid var(--stone-300); }
+.seg__btn { width: 100%; display: flex; align-items: center; gap: 12px; min-height: 80px; padding: 16px 24px; text-align: left; transition: background-color .16s ease; }
+@media (hover: hover) and (pointer: fine) { .seg:not(.is-open) .seg__btn:hover { background: var(--wash); } }
+.seg.is-open .seg__btn { box-shadow: inset 0 -2px 0 var(--sea-blue); }
+.seg__text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.seg__label { font-weight: 600; font-size: 12px; line-height: 16px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--stone-600); }
+.seg__value { font-family: var(--font-heading); font-size: 18px; line-height: 24px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.seg__value.is-empty { font-style: italic; color: var(--sea-blue-200); }
+.seg__chev { transition: transform .2s var(--ease-out); }
+.seg.is-open .seg__chev { transform: rotate(180deg); }
+
+.list { position: absolute; top: calc(100% + 8px); left: -1px; right: -1px; z-index: 20; max-height: 420px; overflow: auto; padding: 8px 0; background: var(--stone-100); border: 1px solid var(--stone-300); box-shadow: 0 16px 40px rgba(40,49,57,.14); }
+.opt { width: 100%; display: flex; align-items: center; gap: 12px; padding: 8px 16px; text-align: left; }
+.opt:hover, .opt[aria-selected="true"] { background: var(--stone-200); }
+.opt__meta { display: block; font-size: 14px; line-height: 16px; color: var(--sea-blue-300); }
+.avatar { position: relative; flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 50%; background: var(--stone-300); font-family: var(--font-heading); font-size: 13px; }
+.avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%; }
+
+/* The gallery: the full width of the bar, under it. */
+.gallery { position: absolute; top: calc(100% + 8px); left: -1px; right: -1px; z-index: 30; max-height: min(640px, calc(100vh - 220px)); overflow: auto; padding: 24px 32px 32px; background: var(--stone-100); border: 1px solid var(--stone-300); box-shadow: 0 16px 40px rgba(40,49,57,.14); transform-origin: top center; transition: opacity .18s var(--ease-out), transform .18s var(--ease-out); }
+@starting-style { .gallery { opacity: 0; transform: translateY(-4px) scale(.99); } }
+.gallery__head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+.gallery__head h2 { font-size: 20px; line-height: 32px; }
+.gallery__any { font-size: 14px; border-bottom: 1px solid currentColor; padding: 2px 0; }
+.region { margin: 24px 0 12px; font-weight: 600; font-size: 12px; line-height: 16px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--sea-blue-300); }
+.tiles { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 24px 16px; }
+.tile { display: flex; flex-direction: column; gap: 8px; text-align: left; }
+.tile__img { position: relative; aspect-ratio: 4 / 5; overflow: hidden; }
+.tile__img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s var(--ease-out); }
+.tile__img::after { content: ""; position: absolute; inset: 0; background: var(--stone); opacity: 0; transition: opacity .3s var(--ease-out); }
+@media (hover: hover) and (pointer: fine) { .tile:hover .tile__img::after { opacity: .28; } .tile:hover .tile__name { text-decoration-color: currentColor; } }
+.tile[aria-pressed="true"] .tile__img { outline: 2px solid var(--sea-blue); outline-offset: 3px; }
+.tile__name { font-family: var(--font-heading); font-size: 16px; line-height: 22px; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 4px; transition: text-decoration-color .3s ease; }
+.tile__meta { font-size: 13px; line-height: 16px; letter-spacing: 0.32px; color: var(--sea-blue-300); }
+.tile__meta.is-wait { color: var(--stone-600); }
+.scrim { display: none; }
+.gallery__close { display: none; width: 44px; height: 44px; align-items: center; justify-content: center; margin: -10px -10px 0 0; }
+.gallery__acts { display: flex; align-items: baseline; gap: 16px; }
+
+@media (max-width: 1129px) { .bar { width: 100%; } .seg { width: auto; flex: 1 1 0; } .tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 767px) {
+  .bar { flex-direction: column; }
+  .seg + .seg { border-left: 0; border-top: 1px solid var(--stone-300); }
+  .seg__btn { min-height: 64px; padding: 16px; }
+  /* On a phone the gallery is a full-height sheet, two tiles a row. */
+  .gallery { position: fixed; inset: 0; z-index: 60; max-height: none; padding: 20px 16px 32px; border: 0; }
+  .gallery__close { display: inline-flex; }
+  .scrim.is-on { display: block; position: fixed; inset: 0; z-index: 25; background: rgba(40,49,57,.42); }
+  .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 12px; }
+  .list { position: fixed; left: 0; right: 0; top: auto; bottom: 0; max-height: 70vh; z-index: 30; }
+}
+</style>
+</head>
+<body>
+<div class="pbar"><span>Proposal · Retreats search</span>
+  <nav aria-label="Options"><a href="retreats.html">A · Live page</a><a href="proposals/retreats-search/option-b.html" aria-current="page">B · Destination gallery</a><a href="proposals/retreats-search/option-c.html">C · One search field</a><a href="proposals/retreats-search/option-d.html">D · Four multi-selects</a><a href="proposals/index.html#retreats-search">Board</a></nav></div>
+<div class="wrap">
+  <div class="ptitle"><h1>All Retreats</h1><p>Every journey we run, in one place.</p></div>
+  <div class="tabs" role="tablist" aria-label="Collection" id="tabs">
+    <button role="tab" data-tier="all" aria-selected="true">All Retreats</button>
+    <button role="tab" data-tier="deep-dives" aria-selected="false">Deep Dives</button>
+    <button role="tab" data-tier="signature-collection" aria-selected="false">Signature Collection</button>
+  </div>
+  <div class="bar" id="bar"></div>
+  <div class="scrim" id="scrim"></div>
+  <div class="summary" id="summary"></div>
+  <div id="results"></div>
+</div>
+<script>
+(function () {
+var P = window.P, esc = P.esc;
+var s = P.blank(), open = "";
+var CHEV = '<svg class="seg__chev" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 5.25 7 9.25 11 5.25" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>';
+var bar = document.getElementById("bar");
+
+function seg(key, label, value, empty) {
+  return '<div class="seg' + (open === key ? ' is-open' : '') + '"><button type="button" class="seg__btn" data-seg="' + key + '" aria-expanded="' + (open === key) + '">' +
+    '<span class="seg__text"><span class="seg__label">' + label + '</span><span class="seg__value' + (value ? '' : ' is-empty') + '">' + esc(value || empty) + '</span></span>' + CHEV + '</button>' +
+    (open === key && key !== "places" ? listHTML(key) : '') + '</div>';
+}
+function listHTML(key) {
+  var items = key === "months"
+    ? P.months.map(function (m) { return { v: m.key, name: m.label, n: P.facetCount(s, "months", m.key) }; })
+    : P.teachers.map(function (t) { return { v: t.name, name: t.name, n: P.facetCount(s, "teachers", t.name), t: t }; });
+  return '<div class="list" role="listbox">' +
+    '<button type="button" class="opt" data-k="' + key + '" data-v="" aria-selected="' + !s[key].length + '"><span>' + (key === "months" ? "Any time" : "Any teacher") + '</span></button>' +
+    items.map(function (i) {
+      return '<button type="button" class="opt" role="option" data-k="' + key + '" data-v="' + esc(i.v) + '" aria-selected="' + (s[key][0] === i.v) + '">' +
+        (i.t ? P.avatar(i.t, 40) : '') + '<span>' + esc(i.name) + '<span class="opt__meta">' + (i.n ? P.plural(i.n) : "Not with your other choices") + '</span></span></button>';
+    }).join("") + '</div>';
+}
+function galleryHTML() {
+  var html = '<div class="gallery" role="dialog" aria-label="Choose a destination"><div class="gallery__head"><h2>Where would you like to go?</h2>' +
+    '<span class="gallery__acts"><button type="button" class="gallery__any" data-place="">Anywhere</button><button type="button" class="gallery__close" data-seg="places" aria-label="Close"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3 13 13 M13 3 3 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button></span></div>';
+  P.regions.forEach(function (r) {
+    html += '<p class="region">' + esc(r) + '</p><div class="tiles">' + P.locations.filter(function (l) { return l.region === r; }).map(function (l) {
+      var n = P.facetCount(s, "places", l.name);
+      var meta = l.count ? (n ? P.plural(n, "date") : P.plural(l.count, "date") + " · other months") : "Waitlist";
+      return '<button type="button" class="tile" data-place="' + esc(l.name) + '" aria-pressed="' + (s.places[0] === l.name) + '">' +
+        '<span class="tile__img" style="background:linear-gradient(155deg,hsl(' + l.hue + ' 32% 80%),hsl(' + l.hue + ' 26% 60%))">' + (l.image ? '<img src="' + esc(l.image) + '" alt="" loading="lazy">' : '') + '</span>' +
+        '<span class="tile__name">' + esc(l.name) + '</span><span class="tile__meta' + (l.count ? '' : ' is-wait') + '">' + meta + '</span></button>';
+    }).join("") + '</div>';
+  });
+  return html + '</div>';
+}
+function render() {
+  var mLabel = s.months[0] ? P.months.filter(function (m) { return m.key === s.months[0]; })[0].label : "";
+  bar.innerHTML = seg("months", "When", mLabel, "Any time") + seg("places", "Destination", s.places[0], "Anywhere") + seg("teachers", "Teacher", s.teachers[0], "Any teacher") +
+    (open === "places" ? galleryHTML() : "");
+  document.getElementById("scrim").classList.toggle("is-on", !!open);
+  document.querySelectorAll("#tabs [data-tier]").forEach(function (b) { b.setAttribute("aria-selected", b.dataset.tier === s.tier); });
+  P.renderResults(document.getElementById("results"), s, document.getElementById("summary"), function () { s = P.blank(); render(); });
+}
+bar.addEventListener("click", function (e) {
+  var b = e.target.closest("[data-seg]"), o = e.target.closest(".opt"), t = e.target.closest("[data-place]");
+  if (b) { open = open === b.dataset.seg ? "" : b.dataset.seg; render(); }
+  else if (o) { s[o.dataset.k] = o.dataset.v ? [o.dataset.v] : []; open = ""; render(); }
+  else if (t) { s.places = t.dataset.place ? [t.dataset.place] : []; open = ""; P.track("destination_gallery_pick", { place: t.dataset.place }); render(); }
+  e.stopPropagation();
+});
+document.getElementById("tabs").addEventListener("click", function (e) { var b = e.target.closest("[data-tier]"); if (b) { s.tier = b.dataset.tier; render(); } });
+document.addEventListener("click", function () { if (open) { open = ""; render(); } });
+document.addEventListener("keydown", function (e) { if (e.key === "Escape" && open) { open = ""; render(); } });
+render();
+})();
+</script>
+</body>
+</html>

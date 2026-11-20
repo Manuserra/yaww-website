@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<base href="../../">
+<title>Retreats search · C · One search field</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="proposals/retreats-search/proto.css">
+<script src="data/locations.js"></script>
+<script src="data/teachers.js"></script>
+<script src="data/retreats.js"></script>
+<script src="js/retreat-cards.js"></script>
+<script src="proposals/retreats-search/proto.js"></script>
+<style>
+/* Option C: one field for place, month or teacher. Empty, it suggests;
+   typed into, it narrows the suggestions. Each pick becomes a chip, and
+   picks of the same kind add up (Santorini or Portugal). */
+.search { position: relative; max-width: 760px; margin: 40px auto 0; }
+.field { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-height: 72px; padding: 12px 20px; background: var(--stone-100); border: 1px solid var(--stone-300); cursor: text; transition: border-color .16s ease; }
+.field:focus-within { border-color: var(--sea-blue); }
+.field svg { flex-shrink: 0; color: var(--sea-blue-300); }
+.field input { flex: 1 1 200px; min-width: 0; border: 0; background: none; outline: none; font-family: var(--font-heading); font-size: 18px; line-height: 28px; padding: 6px 0; }
+.field input::placeholder { color: var(--sea-blue-200); font-style: italic; }
+.chip { display: inline-flex; align-items: center; gap: 8px; padding: 4px 4px 4px 10px; background: var(--stone-200); border: 1px solid var(--stone-300); font-size: 14px; line-height: 20px; }
+.chip button { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; }
+@media (hover: hover) { .chip button:hover { background: var(--sea-blue); color: var(--stone-100); } }
+.chip__kind { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--stone-600); }
+
+.suggest { position: absolute; top: calc(100% + 8px); left: 0; right: 0; z-index: 30; max-height: min(560px, calc(100vh - 260px)); overflow: auto; padding: 8px 0 16px; background: var(--stone-100); border: 1px solid var(--stone-300); box-shadow: 0 16px 40px rgba(40,49,57,.14); }
+.suggest__title { margin: 16px 20px 8px; font-weight: 600; font-size: 12px; line-height: 16px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--sea-blue-300); }
+.row { width: 100%; display: flex; align-items: center; gap: 12px; padding: 8px 20px; text-align: left; }
+.row:hover, .row.is-active { background: var(--stone-200); }
+.row__meta { display: block; font-size: 14px; line-height: 16px; color: var(--sea-blue-300); }
+.row mark { background: none; color: inherit; font-weight: 600; }
+.thumb { position: relative; flex-shrink: 0; overflow: hidden; }
+.thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.avatar { position: relative; flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 50%; background: var(--stone-300); font-family: var(--font-heading); font-size: 13px; }
+.avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%; }
+.months { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 20px; }
+.months button { padding: 8px 12px; border: 1px solid var(--stone-400); font-size: 14px; line-height: 20px; }
+.months button:hover { border-color: var(--sea-blue); background: var(--stone-200); }
+.nothing { padding: 12px 20px; color: var(--sea-blue-300); }
+@media (max-width: 767px) {
+  .search { margin-top: 32px; }
+  .field { min-height: 60px; padding: 10px 14px; }
+  .field input { font-size: 16px; }
+  .suggest { position: fixed; left: 0; right: 0; top: auto; bottom: 0; max-height: 72vh; }
+}
+</style>
+</head>
+<body>
+<div class="pbar"><span>Proposal · Retreats search</span>
+  <nav aria-label="Options"><a href="retreats.html">A · Live page</a><a href="proposals/retreats-search/option-b.html">B · Destination gallery</a><a href="proposals/retreats-search/option-c.html" aria-current="page">C · One search field</a><a href="proposals/retreats-search/option-d.html">D · Four multi-selects</a><a href="proposals/index.html#retreats-search">Board</a></nav></div>
+<div class="wrap">
+  <div class="ptitle"><h1>All Retreats</h1><p>Every journey we run, in one place.</p></div>
+  <div class="tabs" role="tablist" aria-label="Collection" id="tabs">
+    <button role="tab" data-tier="all" aria-selected="true">All Retreats</button>
+    <button role="tab" data-tier="deep-dives" aria-selected="false">Deep Dives</button>
+    <button role="tab" data-tier="signature-collection" aria-selected="false">Signature Collection</button>
+  </div>
+  <div class="search" id="search">
+    <label class="field" for="q">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><circle cx="8" cy="8" r="5.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M12 12 16 16" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      <span id="chips" style="display:contents"></span>
+      <input id="q" type="text" autocomplete="off" placeholder="A place, a month or a teacher" role="combobox" aria-expanded="false" aria-controls="suggest" aria-label="Search retreats">
+    </label>
+    <div class="suggest" id="suggest" role="listbox" hidden></div>
+  </div>
+  <div class="summary" id="summary"></div>
+  <div id="results"></div>
+</div>
+<script>
+(function () {
+var P = window.P, esc = P.esc;
+var s = P.blank();
+var q = document.getElementById("q"), sug = document.getElementById("suggest"), chipsEl = document.getElementById("chips");
+var KIND = { places: "Place", months: "Month", teachers: "Teacher" };
+
+function hl(name, term) {
+  if (!term) return esc(name);
+  var i = name.toLowerCase().indexOf(term.toLowerCase());
+  return i < 0 ? esc(name) : esc(name.slice(0, i)) + '<mark>' + esc(name.slice(i, i + term.length)) + '</mark>' + esc(name.slice(i + term.length));
+}
+function rowHTML(kind, value, label, media, n) {
+  return '<button type="button" class="row" role="option" data-k="' + kind + '" data-v="' + esc(value) + '">' + media +
+    '<span>' + label + '<span class="row__meta">' + (n ? P.plural(n, "date") : (kind === "places" ? "Waitlist" : "No dates with your other choices")) + '</span></span></button>';
+}
+function renderSuggest() {
+  var term = q.value.trim(), t = term.toLowerCase(), html = "";
+  var places = P.locations.filter(function (l) { return s.places.indexOf(l.name) < 0 && (!t || (l.name + " " + l.country + " " + l.region).toLowerCase().indexOf(t) >= 0); });
+  var teachers = P.teachers.filter(function (x) { return s.teachers.indexOf(x.name) < 0 && (!t || x.name.toLowerCase().indexOf(t) >= 0); });
+  var months = P.months.filter(function (m) { return s.months.indexOf(m.key) < 0 && (!t || m.label.toLowerCase().indexOf(t) >= 0); });
+  if (!t) {
+    /* Empty field: lead with places that have dates, then months, then teachers. */
+    places = places.filter(function (l) { return l.count; });
+    html += '<p class="suggest__title">Destinations with dates</p>' + places.map(function (l) { return rowHTML("places", l.name, esc(l.display), P.thumb(l, 48), P.facetCount(s, "places", l.name)); }).join("");
+    html += '<p class="suggest__title">When</p><div class="months">' + months.map(function (m) { return '<button type="button" data-k="months" data-v="' + m.key + '">' + esc(m.short) + '</button>'; }).join("") + '</div>';
+    html += '<p class="suggest__title">Teachers</p>' + teachers.filter(function (x) { return x.count; }).map(function (x) { return rowHTML("teachers", x.name, esc(x.name), P.avatar(x, 40), P.facetCount(s, "teachers", x.name)); }).join("");
+  } else {
+    if (places.length) html += '<p class="suggest__title">Destinations</p>' + places.map(function (l) { return rowHTML("places", l.name, hl(l.display, term), P.thumb(l, 48), P.facetCount(s, "places", l.name)); }).join("");
+    if (months.length) html += '<p class="suggest__title">Months</p>' + months.map(function (m) { return rowHTML("months", m.key, hl(m.label, term), '', P.facetCount(s, "months", m.key)); }).join("");
+    if (teachers.length) html += '<p class="suggest__title">Teachers</p>' + teachers.map(function (x) { return rowHTML("teachers", x.name, hl(x.name, term), P.avatar(x, 40), P.facetCount(s, "teachers", x.name)); }).join("");
+    var textHits = P.filter(Object.assign({}, s, { text: term })).length;
+    if (!html) html = '<p class="nothing">No place, month or teacher called “' + esc(term) + '”.' + (textHits ? '' : ' Try a country or a region, like Greece or Europe.') + '</p>';
+    html += '<button type="button" class="row" data-k="text" data-v="' + esc(term) + '"><span>Show every retreat that mentions “' + esc(term) + '”<span class="row__meta">' + P.plural(textHits) + '</span></span></button>';
+  }
+  sug.innerHTML = html;
+}
+function openSuggest() { renderSuggest(); sug.hidden = false; q.setAttribute("aria-expanded", "true"); }
+function closeSuggest() { sug.hidden = true; q.setAttribute("aria-expanded", "false"); }
+function label(k, v) { return k === "months" ? P.months.filter(function (m) { return m.key === v; })[0].label : k === "text" ? "“" + v + "”" : v; }
+function render() {
+  var chips = [];
+  ["places", "months", "teachers"].forEach(function (k) { s[k].forEach(function (v) { chips.push([k, v]); }); });
+  if (s.text) chips.push(["text", s.text]);
+  chipsEl.innerHTML = chips.map(function (c) {
+    return '<span class="chip"><span class="chip__kind">' + (KIND[c[0]] || "Text") + '</span>' + esc(label(c[0], c[1])) +
+      '<button type="button" data-rm="' + c[0] + '" data-v="' + esc(c[1]) + '" aria-label="Remove ' + esc(label(c[0], c[1])) + '"><svg width="10" height="10" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3 13 13 M13 3 3 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></span>';
+  }).join("");
+  q.placeholder = chips.length ? "Add another" : "A place, a month or a teacher";
+  document.querySelectorAll("#tabs [data-tier]").forEach(function (b) { b.setAttribute("aria-selected", b.dataset.tier === s.tier); });
+  P.renderResults(document.getElementById("results"), s, document.getElementById("summary"), function () { s = P.blank(); q.value = ""; render(); });
+}
+q.addEventListener("focus", openSuggest);
+q.addEventListener("input", openSuggest);
+q.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") { closeSuggest(); return; }
+  if (e.key === "Backspace" && !q.value) {
+    var k = s.text ? "text" : ["teachers", "months", "places"].filter(function (x) { return s[x].length; })[0];
+    if (k === "text") s.text = ""; else if (k) s[k].pop();
+    render(); renderSuggest();
+  }
+  if (e.key === "Enter") { var first = sug.querySelector(".row"); if (first) first.click(); }
+});
+sug.addEventListener("mousedown", function (e) { e.preventDefault(); });
+sug.addEventListener("click", function (e) {
+  var b = e.target.closest("[data-k]"); if (!b) return;
+  if (b.dataset.k === "text") s.text = b.dataset.v; else s[b.dataset.k].push(b.dataset.v);
+  P.track("search_pick", { kind: b.dataset.k, value: b.dataset.v, typed: q.value });
+  q.value = ""; render(); renderSuggest(); q.focus();
+});
+chipsEl.addEventListener("click", function (e) {
+  var b = e.target.closest("[data-rm]"); if (!b) return;
+  e.preventDefault();
+  if (b.dataset.rm === "text") s.text = ""; else s[b.dataset.rm] = s[b.dataset.rm].filter(function (v) { return v !== b.dataset.v; });
+  render();
+});
+document.addEventListener("click", function (e) { if (!document.getElementById("search").contains(e.target)) closeSuggest(); });
+document.getElementById("tabs").addEventListener("click", function (e) { var b = e.target.closest("[data-tier]"); if (b) { s.tier = b.dataset.tier; render(); } });
+render();
+})();
+</script>
+</body>
+</html>
