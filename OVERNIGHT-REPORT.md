@@ -41,3 +41,32 @@ Not verified / notes:
 - Filter tabs (css/journal.css): unselected tabs keep the sea-blue label hover shared with retreats, plus a 2px stone rule that grows from the centre (pointer devices only, reduced-motion safe). focus-visible uses an inset ring, since the scrolling row would clip an outset one.
 - Topic labels now read INSPO · LIFESTYLE · TRAVEL via a CSS ::before middle dot (empty alt text, so screen readers skip it) on journal cards, post headers and related-post cards (css/journal-post.css). The old bullet on post pages became the same dot.
 - Checked at 1440 and 390, no horizontal overflow. Commit prefixed `journal:`.
+
+## 3 · Retreats listing
+
+Commits (tag `night-03-retreats`):
+- `20d7457` retreats: tier tabs take the site's hover wash on hover
+- `f6daae8` retreats: filter clear (x) keeps its contrast on a hovered segment
+- `e2df570` retreats: destination options show a square thumbnail of the place
+- `5738981` retreats: season options name their months; picks and card clicks are tracked
+- `e8375fb` retreats: search study, three prototypes and the board entry
+
+What changed on `retreats.html`:
+- **Tier tabs.** Hover uses the site's hover wash (Stone-300 @ 40%, the one on the filter segments, list rows and view icons) plus the label deepening to sea-blue. Press goes one step deeper.
+- **Clear (×).** It was sea-blue-300 and its own hover (stone-200) was lighter than the segment's hover wash, so it disappeared. Now it is full sea-blue; when the segment is hovered or open it sits on a stone-100 square with a hairline; on its own hover it inverts to sea-blue. Square, not round. Focus ring outside the box. Label "Clear Destination: El Cuyo". After clearing, focus goes back to that segment instead of being lost. 40px target on phones. There was also a specificity clash that would have left the × invisible on its own hover; fixed.
+- **Destination options** show a 40px square photo of the place (new `images/location-thumbs/`, 96px crops, 62 KB for 13). Camino has no photo, so it shows its placeholder colour. If the locations agent changes a location photo, regenerate its thumb.
+- **Season options** show their months: "Spring 2027 · Mar – May · 6 retreats", worked out from the dates.
+- **Tracking:** `filter_pick` and `result_click` (position, filters, view) added next to the existing `yaww:track` events. Nothing listens yet.
+
+Search study: `docs/retreats-search-product.md`. Board entry "How people find a retreat" in `proposals/index.html`.
+- Recommendation: keep the bar, single choice, latest pick wins. Tiers stay as tabs. No multi-select, no search in dropdowns, no global search. Reasons: 17 dates and 14 places fit on one scroll, and stacking choices mostly ends in empty combinations.
+- Next to test: **B · Destination gallery** (photo tiles by region). Not implemented: it changes the main component, and Christina should see it first.
+- Prototypes on real data: `proposals/retreats-search/option-b.html`, `option-c.html` (one search field with chips), `option-d.html` (four multi-selects with search and Apply).
+
+Verified at 1440 and 390 in my own browser tab (another agent drives the shared tab, which navigated under me twice). Hover states checked by forcing the rules with a class, since the pane is a background page and transitions don't run there. No console errors.
+
+Questions / notes:
+- While all Deep Dives are in El Cuyo, the Deep Dives tab and the El Cuyo destination do the same thing. Worth knowing before deciding whether the tabs stay.
+- The thresholds in the doc's "decision rules" are starting points, not benchmarks.
+- `retreats-full.html` is only linked from `index-full-hero.html`, so I treated it as a draft and left it alone.
+- CSS version strings bumped on `retreats.html` only (filters.css, retreats.css).
