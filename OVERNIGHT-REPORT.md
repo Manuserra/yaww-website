@@ -187,3 +187,28 @@ Not verified / notes:
 - Screen reader pass not done (structure and ARIA checked by reading, not with VoiceOver).
 - `css/retreat.css` version is bumped through `CSS_VERSION` in build_page.py; `base.css` version still not bumped (see section 1 note).
 - The room modal's hotel tabs show each hotel's photos and first two paragraphs; rooms are not split per hotel because the data prices one room type across all hotels.
+
+## 5 · Locations (items 2 and 3)
+
+Tag `night-07-locations`. Like the retreat pages, the location pages are generated: `python3 retreats/_tools/build_location.py` writes all 14 `locationpage-<id>.html`, the cards on `locations.html` (between the GRID markers) and each location's `pageUrl` in `data/locations.js`. Copy lives in `retreats/_tools/location_content.py` (one entry per place, sourced from `docs/locations-content.md` and `additional_info.py`). Chrome (header, nav, footer) is copied from `locations.html` on every build. **Do not hand-edit the pages.** Rebuild when a place gains its first date or loses its last one (the build decides retreats vs waitlist; the cards themselves are drawn live from `data/retreats.js`).
+
+Commits:
+- `3460cef` template for every location page: `build_location.py`, `location_content.py`, `css/location.css` rewritten, 14 pages (Iceland redone). `js/retreat-cards.js`: `wireWaitlistForm` gives per-field errors when a form has `[data-error-for]` lines (retreat pages unchanged). `js/lead-modal.js`: on a hero with `data-lead-kind="location"` it says "Ask us about Oaxaca", offers "Upcoming dates" as a topic and sends `location_id`.
+- `bbfbebb` grid: blurbs rewritten to 129–138 characters, three lines on every card at 1280, 1366, 1440 and 1920 (measured); Camino de Santiago added (it was in the data, not on the grid), photo cropped from the Santiago cathedral frame; every card links to its page; lede says "Fourteen".
+- `521beb2` proposals B and C (`proposals/location-template/`), board rows.
+
+Decisions:
+- **Template A, "field guide"** (B editorial long-read and C compact on the board). Order: hero, retreats band, why we go, the place through the homepage pillars (landscape, table, culture, movement: four 3:4 photos on the 312 column), good to know (season, getting there, pace, one more), one real review, three more places, closing CTA.
+- **Hero:** the retreat page's overlay hero (`retreat-hero--overlay`, same CSS), with a plain eyebrow where the retreat has its tier label, the live-site line for the place in italic, and three label/value facts (when we go, fly into, pace). CTAs: "See the retreats" or "Join the waitlist", plus "Ask us about <place>" (lead modal). No tier, no "Next retreat · … · Hosting here since" line.
+- **Retreats band:** stone-300 like "For teachers", directly under the hero. With 1–3 dates the heading takes the first column and the cards follow it, so a single card is not stranded.
+- **Waitlist state:** the retreat's own waitlist card (links to the dateless retreat page with the itinerary) beside a panel: "Our next dates in Iceland go to the waitlist first" / "Leave your name and email and we will write to you as soon as the dates for The Iceland Experience are set, before they are published anywhere else." Join the waitlist (primary) with Ask us about Iceland next to it; "See upcoming dates" gone. Errors under each field in a reserved line, so nothing moves (verified: buttons stay at the same y with and without errors); success "You are on the list, Ana." in place.
+- **Iceland:** tagline is the live "Designed to move you. From Reykjavík to the wild."; the invented guide and hotel name of the old page are gone.
+- **Photos:** all real, from `images/retreat-photos/<id>/`, heroes chosen to differ from each retreat page's hero where a good alternative existed (Argentina and Sardinia's best landscapes are shared). France has two visible placeholders: `[photo: vineyard rows in Champagne]`, `[photo: morning practice in the Champagne countryside]`.
+
+Open questions:
+- France, Sardinia, Turkey: month of the next dates (`[missing data]` in Good to know; their hero facts use other facts instead).
+- Morocco hero fact says "Autumn" (last edition Nov 2026); confirm that is when it will run again.
+- Basque Country's quote is from its retreat teacher (Genevieve Morin), labelled "Retreat teacher".
+- "Ask us which one suits you" / "Ask us anything else" open the same lead modal; leads from a location page carry `location_id` and an empty `retreat_id`. Map in the CRM when it exists (`docs/lead-form.md`).
+
+Verified in the browser (own tab, localhost:8777): Oaxaca, El Cuyo, Santorini (with dates) and Iceland, France (waitlist) at 1440x900, 1920x1080 and 390x844; no horizontal scroll at 390; waitlist validation (empty, bad email, success) at 1440 and 390; lead modal opens with the location wording; no console errors. Not opened one by one: the other nine pages (same template, built without errors). The retreat card's own label clips on 2-up phone cards ("Filling fa…"); that is the site-wide card component, not changed here.
