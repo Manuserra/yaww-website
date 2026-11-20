@@ -313,3 +313,25 @@ PORTRAIT_FOCUS = {
     "amy-sennett-starner": 0.38,
     "bonnie-erickson": 0.34,
 }
+
+# Confidentiality: hotel names never appear on the site (Utopia, which is
+# ours, is the one exception). The old site names a few properties, and a
+# chef or restaurant can name one just as well. Applied by build_page.py to
+# the finished page, so no field can carry a name past it: copy, alt text,
+# room and venue data, itinerary lines.
+SCRUB = [
+    (r"Rehabilitated in 1988 by Jaime Gutiérrez and Mery González, pioneers in Spanish wine tourism, Mayor de Migueloa",
+     "Restored in 1988 by pioneers of Spanish wine tourism, the posada"),
+    (r"Mayor de Migueloa", "the posada"),
+    (r"the Old Viana palace built in 1619", "a palace built in 1619"),
+    (r"We offer you a proposal of haute cuisine in each service, created by the award-winning chef Paulo Airaudo\. "
+     r"In addition, the hotel has in its facilities the Amelia by Paulo Airaudo restaurant, with two Michelin stars\.",
+     "The hotel restaurant holds two Michelin stars, and every meal there is cooked to that standard."),
+    (r"Opening dinner at Amelia by Paulo Airaudo, 2 Michelin starred dining experience",
+     "Opening dinner at the hotel's two Michelin star restaurant"),
+    (r"Amelia by Paulo Airaudo", "the hotel's restaurant"),
+    (r"Paulo Airaudo", "the hotel's chef"),
+    (r"Northern Light Inn", "Hotel near Reykjavík"),
+    (r"Fosshotel Glacier Lagoon", "Hotel near the Vatnajökull glacier"),
+    (r"Turf Guesthouse &(?:amp;)? Horse Farm", "Turf guesthouse on a horse farm"),
+]

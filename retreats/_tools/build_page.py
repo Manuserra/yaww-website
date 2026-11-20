@@ -55,8 +55,17 @@ import page_content as PC  # noqa: E402
 REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 TPL = os.path.join(REPO, "retreatpage-elcuyo.html")
 HOSTS_JS = '<script src="js/hosts.js?v=202611191130" defer></script>'
-CSS_VERSION = "202611200330"   # bump with any change to css/retreat.css
+CSS_VERSION = "202611200500"   # bump with any change to css/retreat.css
 CARDS_JS = '<script src="js/retreat-cards.js?v=202611200400"></script>'
+
+# Past editions that still have a page but are no longer listed in
+# data/retreats.js. Built like any edition so they follow the template;
+# update_listing() leaves them out.
+ARCHIVE = {
+    "iceland-oct-2026": {"id": "iceland-oct-2026", "officialName": "Between Fire & Ice", "locationId": "iceland",
+                         "teacherIds": ["jenniferlyn-chiemingo"], "startDate": "2026-10-11", "endDate": "2026-10-19",
+                         "status": None, "collection": "signature-collection", "_src": "iceland"},
+}
 
 # Which data.json a waitlist page reads: the location's own scrape, or for
 # Morocco the November 2026 edition (same retreat, last time it ran).
@@ -495,6 +504,9 @@ def build(rid, cat, assets, template, waitlist=False):
         r = {"id": rid, "officialName": prog["name"], "locationId": rid, "teacherIds": [],
              "collection": prog.get("collection"), "status": None}
         src_dir = WAITLIST_SOURCE.get(rid, rid)
+    elif rid in ARCHIVE:
+        r = ARCHIVE[rid]
+        src_dir = r["_src"]
     else:
         r = next(x for x in cat["retreats"] if x["id"] == rid)
         src_dir = rid
@@ -668,7 +680,9 @@ def build(rid, cat, assets, template, waitlist=False):
     else:
         hotels = []
         for a in d["accommodations"]:
-            vname = a.get("name") or a.get("label") or PC.VENUE_NAMES.get(loc) or f"Where you stay in {location.get('name', loc)}"
+            # The label ("Riad in the Marrakech medina") before the name: a
+            # property's own name is never shown (PC.SCRUB has the rest).
+            vname = a.get("label") or PC.VENUE_NAMES.get(loc) or f"Where you stay in {location.get('name', loc)}"
             short = PC.VENUE_TABS.get(a.get("label") or "", vname)
             venues.append(short)
             gal = [assets.web(g["file"], Assets.SLIDE, loc) for g in usable(a.get("gallery"))]
@@ -833,6 +847,8 @@ def build(rid, cat, assets, template, waitlist=False):
                    "waitlist js")
     else:
         doc = swap(doc, "\n</body>", "\n" + HOSTS_JS + "\n</body>", "hosts js")
+    for pat, rep in PC.SCRUB:
+        doc = re.sub(pat, rep, doc)
     return f"retreatpage-{rid}.html", doc, d
 
 
@@ -946,7 +962,7 @@ def main(argv):
         argv = argv[1:]
         ids = argv or [l["id"] for l in cat["locations"] if l.get("program")]
     else:
-        ids = argv or [r["id"] for r in cat["retreats"]]
+        ids = argv or [r["id"] for r in cat["retreats"]] + list(ARCHIVE)
     template = patch_template_js(open(TPL, encoding="utf-8").read())
     assets = Assets()
     built = []
@@ -964,7 +980,7 @@ def main(argv):
             card = waitlist_card(rid, hero_web)
             print(f"card {rid}: {card[0] if card else 'no hero'}")
     if not waitlist:
-        update_listing(ids)
+        update_listing([i for i in ids if i not in ARCHIVE])
 
 
 if __name__ == "__main__":

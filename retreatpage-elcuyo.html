@@ -1115,23 +1115,8 @@
 
     var ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M%s"/></svg>';
 
-    HOTELS.forEach(function (hotel, i) {
-      var id = 'accom-' + i;
-
-      var tab = document.createElement('button');
-      tab.className = 'tabs__item retreat-accom__tab' + (i === 0 ? ' is-active' : '');
-      tab.setAttribute('role', 'tab');
-      tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
-      tab.setAttribute('aria-controls', id);
-      tab.textContent = hotel.name;
-      tabsEl.appendChild(tab);
-
-      var panel = document.createElement('div');
-      panel.className = 'retreat-accom__panel';
-      panel.id = id;
-      panel.setAttribute('role', 'tabpanel');
-      if (i !== 0) panel.hidden = true;
-      panel.innerHTML =
+    function panelHTML(hotel) {
+      return (
         '<div class="photo-slider retreat-accom__slider" data-lightbox role="group" aria-roledescription="carousel" aria-label="' + hotel.name + ' photos">' +
           '<div class="photo-slider__track">' +
             hotel.gallery.map(function (src, n) {
@@ -1149,7 +1134,39 @@
         '<div class="retreat-accom__copy">' +
           '<h3 class="retreat-accom__name">' + hotel.name + '</h3>' +
           '<div class="retreat-accom__text">' + hotel.text.map(function (t) { return '<p>' + t + '</p>'; }).join('') + '</div>' +
-        '</div>';
+        '</div>'
+      );
+    }
+
+    /* One hotel needs no tabs: a single tab is a control that switches
+       nothing. The bar is removed and the panel stands on its own. */
+    var single = HOTELS.length < 2;
+    if (single) tabsEl.remove();
+
+    HOTELS.forEach(function (hotel, i) {
+      var id = 'accom-' + i;
+      if (single) {
+        var solo = document.createElement('div');
+        solo.className = 'retreat-accom__panel';
+        panelsEl.appendChild(solo);
+        solo.innerHTML = panelHTML(hotel);
+        return;
+      }
+
+      var tab = document.createElement('button');
+      tab.className = 'tabs__item retreat-accom__tab' + (i === 0 ? ' is-active' : '');
+      tab.setAttribute('role', 'tab');
+      tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+      tab.setAttribute('aria-controls', id);
+      tab.textContent = hotel.name;
+      tabsEl.appendChild(tab);
+
+      var panel = document.createElement('div');
+      panel.className = 'retreat-accom__panel';
+      panel.id = id;
+      panel.setAttribute('role', 'tabpanel');
+      if (i !== 0) panel.hidden = true;
+      panel.innerHTML = panelHTML(hotel);
       panelsEl.appendChild(panel);
 
       tab.addEventListener('click', function () {

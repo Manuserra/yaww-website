@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>YAWW · Between Fire &amp; Ice</title>
+<meta name="description" content="8-night yoga retreat in Reykjavík &amp; the South Coast, Iceland, October 11 – 19, 2026, with Jenniferlyn Chiemingo.">
 
 <!-- Fonts: Libre Baskerville (headings) + Raleway (body) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,9 +12,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/base.css?v=202611192000">
-<link rel="stylesheet" href="css/retreat.css?v=202611181710">
+<link rel="stylesheet" href="css/retreat.css?v=202611200500">
 </head>
 <body>
+<!-- Built by retreats/_tools/build_page.py from data/retreats.js and retreats/iceland/data.json,
+     on the retreatpage-elcuyo.html template. Edit the data, not this file. -->
 
 <!-- Logo sprite: defined once, referenced via <use> from both the desktop
      brand row and the mobile nav-row logo (avoids duplicating the path data). -->
@@ -114,22 +117,22 @@
        title -> location -> badge -> meta (16px rhythm), then CTAs.
        ========================================================= -->
   <section class="retreat-hero">
-    <div class="retreat-hero__image retreat-hero__image--photo" role="img" aria-label="Between Fire &amp; Ice — Reykjavík &amp; Vik, Iceland" style="background-image: url('images/iceland/hero.jpg')"></div>
+    <div class="retreat-hero__image" role="img" aria-label="Three Icelandic horses in a meadow below misty hills, Iceland" style="background-image: url('images/retreat-photos/iceland/yoga-retreat-iceland-icelandic-horses-below-misty-hills.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
 
     <div class="retreat-hero__copy">
       <h1 class="retreat-hero__title">Between Fire &amp; Ice</h1>
-      <p class="retreat-hero__location">Reykjavík &amp; Vik, Iceland</p>
+      <p class="retreat-hero__location">Reykjavík &amp; the South Coast, Iceland</p>
       <p class="retreat-hero__badge">Signature Collection</p>
       <p class="retreat-hero__meta">
-        <span>October 11-19, 2026</span>
+        <span>October 11 – 19, 2026</span>
         <span class="retreat-hero__meta-dot" aria-hidden="true">·</span>
         <span>with Jenniferlyn Chiemingo</span>
       </p>
     </div>
 
     <div class="retreat-hero__ctas">
-      <button class="btn btn--primary" type="button">Book now</button>
-      <button class="btn btn--secondary" type="button">I want more info</button>
+      <a class="btn btn--primary" href="#rooms">Book now</a>
+      <a class="btn btn--secondary" href="contact.html#general-inquiry">I want more info</a>
     </div>
   </section>
 
@@ -139,65 +142,38 @@
   <section class="retreat-about">
     <h2 class="retreat-about__title">About this retreat</h2>
     <div class="retreat-about__body">
-      <!-- The route, pace and stays of THIS trip, in the original voice,
-           plus what only this edition adds (October, JL, the specific
-           experiences). DRAFT — confirm with JL before publishing. -->
-      <p>There’s a rhythm to Iceland that feels otherworldly: shifting skies, endless horizons, and the quiet pulse of earth beneath your feet. This journey follows that rhythm. Over eight nights we travel from the geothermal waters of the Blue Lagoon and the Golden Circle, through Reykjavík, and along the south coast to the edge of Vatnajökull, Europe’s largest glacier.</p>
-      <p>Our days unfold at an unhurried pace. JL leads a grounding vinyasa practice most mornings, before scenic drives through lava fields and coastal villages and long pauses at waterfalls and black-sand beaches. Along the way you’ll hike on the glacier with a guide, cross the iceberg lagoon by amphibian boat and ride Icelandic horses along the river.</p>
-      <p>Evenings bring soft light, shared meals, and stillness. We stay in carefully chosen hotels close to nature, plus one night in a turf house on a horse farm. There’s free time too: a full day for Reykjavík’s quiet creativity and, in October, nights long enough for a real chance at the Northern Lights.</p>
-      <p>This retreat is not about escape. It is about presence. About seeing a place that feels both wild and deliberate, and meeting yourself there, steady and awake to the world.</p>
+      <p>Designed to move you.</p>
+      <p>This is a moving journey—designed to experience the country as it unfolds, not from a single place, but through its shifting landscapes, textures, and rhythms. From Reykjavík to the south coast, each stop reveals a different side of Iceland—raw, quiet, powerful.</p>
+      <p>We begin with moments of ease—geothermal waters, time in the city, space to arrive. From there, the landscape opens: waterfalls, black sand beaches, glacial terrain, and the vastness that defines this place. We follow the natural flow of the land, traveling with intention and without rush.</p>
+      <p>Along the way, you’ll experience Iceland’s culture in subtle, meaningful ways—shared meals, local flavors, and time to explore Reykjavík at your own pace.</p>
+      <p>Yoga is woven into the experience—morning practices, evening resets, and moments to ground into where you are. It’s not the focus, but the thread that connects it all.</p>
+      <p>This retreat is designed to move—gently, intentionally—allowing you to see more, feel more, and experience Iceland in its full depth. We travel light, stay in places that reflect the spirit of the land, and create space for both connection and independence.</p>
+      <p>In the landscapes. In the way it stays with you.</p>
+      <p>This retreat is for those who want more than a place to go.</p>
+      <p>For those drawn to landscapes that shift your perspective—and experiences that stay with you.</p>
+      <p>You value thoughtful travel. You notice the details. You’re as interested in how something feels as where you are.</p>
+      <p>You’re open to movement—both in the journey itself and in your own experience.</p>
+      <p>A retreat that changes locations, energy, and pace feels expansive, not overwhelming.</p>
+      <p>You enjoy being part of a group, but also value space to take things in on your own.</p>
+      <p>You don’t need everything to be explained or structured—you trust the experience to unfold.</p>
+      <p>And you’re not just looking for a break—you’re looking to feel something again.</p>
     </div>
   </section>
 
   <!-- =========================================================
        ABOUT TEACHER (node 115-42277)
        ========================================================= -->
-  <!-- YOUR HOSTS — one card component for both people, so they read as a
-       team. The teacher still leads: she comes first and carries more
-       copy. When the teacher also facilitates, keep a single card. -->
   <section class="retreat-teacher" aria-labelledby="hosts-title">
-    <h2 class="retreat-teacher__title" id="hosts-title">Your hosts</h2>
-    <!-- One slot, two people. The teacher is in the slot in the markup, so
-         the block reads complete with scripting off; js/hosts.js swaps the
-         contents when a tab is pressed.
-         Facilitator confirmed for Iceland Oct 2026. -->
+    <h2 class="retreat-teacher__title" id="hosts-title">Your teacher</h2>
     <div class="hosts" data-hosts>
-      <div class="hosts__tabs" role="tablist" aria-label="Your hosts">
-        <button class="hosts__tab" type="button" role="tab" data-host-tab="teacher" aria-selected="true" tabindex="0">Teacher</button>
-        <button class="hosts__tab" type="button" role="tab" data-host-tab="facilitator" aria-selected="false" tabindex="-1">Facilitator</button>
-      </div>
-
       <div class="hosts__slot" data-host-slot>
         <img class="host__photo" src="images/teachers/jenniferlyn-chiemingo.jpg" alt="Jenniferlyn Chiemingo" loading="lazy">
         <div class="host">
-        <p class="host__role">Your teacher</p>
         <h3 class="host__name">Jenniferlyn Chiemingo</h3>
-        <p class="host__meta">Vinyasa &middot; E-RYT &middot; Teaching since 2002</p>
-        <p class="host__bio">Known to her students as JL, Jenniferlyn teaches a flowing, grounding vinyasa that links breath and movement. She trained at Kripalu and with Shiva Rea, and has led international retreats for more than 15 years. Her classes support people new to yoga while giving regular practitioners somewhere deeper to go.</p>
+        <p class="host__bio">JL teaches flowing, grounding vinyasa built on joy, love and connection. She supports newcomers with care and keeps regular students finding new depth.</p>
         <a class="host__link" href="teacher-jenniferlyn-chiemingo.html">Meet Jenniferlyn <span aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
-
-      <template data-host="teacher">
-        <img class="host__photo" src="images/teachers/jenniferlyn-chiemingo.jpg" alt="Jenniferlyn Chiemingo" loading="lazy">
-        <div class="host">
-        <p class="host__role">Your teacher</p>
-        <h3 class="host__name">Jenniferlyn Chiemingo</h3>
-        <p class="host__meta">Vinyasa &middot; E-RYT &middot; Teaching since 2002</p>
-        <p class="host__bio">Known to her students as JL, Jenniferlyn teaches a flowing, grounding vinyasa that links breath and movement. She trained at Kripalu and with Shiva Rea, and has led international retreats for more than 15 years. Her classes support people new to yoga while giving regular practitioners somewhere deeper to go.</p>
-        <a class="host__link" href="teacher-jenniferlyn-chiemingo.html">Meet Jenniferlyn <span aria-hidden="true">&rarr;</span></a>
-        </div>
-      </template>
-      <template data-host="facilitator">
-        <img class="host__photo" src="images/team/christina-thomas.jpg" alt="Christina Thomas" loading="lazy">
-        <div class="host">
-        <p class="host__role">Your facilitator</p>
-        <h3 class="host__name">Christina Thomas</h3>
-        <p class="host__meta">Founder of YAWW &middot; Hosting retreats since 2009</p>
-        <p class="host__bio">Christina founded YAWW in 2010 and has been planning and hosting retreats around the world since 2009 &mdash; she is the creator, and often the host, of every trip on this map. She travels with the group from the first transfer to the last goodbye, and prefers to be on the mat as a student rather than at the front of the room.</p>
-        <a class="host__link" href="team-christina-thomas.html">Meet Christina <span aria-hidden="true">&rarr;</span></a>
-        </div>
-      </template>
     </div>
   </section>
 
@@ -205,7 +181,7 @@
        INCLUDES (node "Includes" · 1440x759)
        ========================================================= -->
   <section class="retreat-includes">
-    <div class="retreat-includes__bg" aria-hidden="true" style="background-image: url('images/iceland/includes.jpg'), linear-gradient(155deg, hsl(150 20% 68%), hsl(150 24% 38%));"></div>
+    <div class="retreat-includes__bg" aria-hidden="true" style="background-image: url('images/retreat-photos/iceland/yoga-retreat-iceland-icelandic-breakfast.webp'), linear-gradient(155deg, hsl(150 20% 68%), hsl(150 24% 38%));"></div>
     <div class="retreat-includes__card">
       <h2 class="retreat-includes__title">Includes</h2>
 
@@ -217,30 +193,32 @@
       <div class="retreat-includes__panels">
         <div class="retreat-includes__panel" data-panel="includes" role="tabpanel">
           <ul class="retreat-includes__list">
-            <li>8 nights in charming accommodations along the South Ring Road</li>
-            <li>Daily breakfast &amp; 6 delicious dinners (2 nights free to explore on your own)</li>
-            <li>Daily yoga sessions per itinerary</li>
-            <li>Private countryside transportation</li>
-            <li>Blue Lagoon experience with Silica Mud Mask</li>
-            <li>Golden Circle &amp; Food Tour with unique tastings, Geysir &amp; Gulfoss Falls</li>
-            <li>Guided glacier hike on Europe’s largest glacier</li>
-            <li>Glacier Lagoon &amp; Diamond Beach visit with amphibian boat ride</li>
-            <li>Stop at Vik’s black sand beaches</li>
-            <li>Free day in Reykjavik</li>
-            <li>Icelandic horse farm visit &amp; ride (weather permitting)</li>
-            <li>Countless waterfalls &amp; a chance to catch the Northern Lights</li>
-            <li>All taxes and meal gratuities included</li>
+            <li>Eight nights in carefully selected accommodations, moving through Reykjavík and along the South Coast.</li>
+            <li>Daily breakfast, six dinners and three lunches—a mix of local flavors, shared tables, and memorable settings.</li>
+            <li>Yoga woven throughout the experience—grounding each day without defining it.</li>
+            <li>Private transportation as we travel through Iceland’s changing landscapes.</li>
+            <li>The Blue Lagoon, with silica mud mask and time to unwind</li>
+            <li>The Golden Circle, including Geysir, Gullfoss, and a curated food experience</li>
+            <li>A guided Reykjavík walk through its food, culture, and creative scene</li>
+            <li>Time to explore the city at your own pace</li>
+            <li>The black sand beaches of Vík</li>
+            <li>A guided hike on Europe’s largest glacier</li>
+            <li>Glacier Lagoon with amphibian boat experience, and Diamond Beach</li>
+            <li>Waterfalls, open landscapes, and moments you don’t plan for</li>
+            <li>A visit to an Icelandic horse farm, with riding experience (weather permitting)</li>
+            <li>The possibility of the Northern Lights, if conditions align</li>
+            <li>All taxes and gratuities for included meals</li>
           </ul>
         </div>
 
         <div class="retreat-includes__panel is-hidden" data-panel="not-included" role="tabpanel" aria-hidden="true">
           <ul class="retreat-includes__list">
-            <li>Airfare &amp; airport transfers</li>
+            <li>International airfare</li>
+            <li>Airport transfers</li>
             <li>Alcohol</li>
-            <li>Two dinners</li>
-            <li>All lunches</li>
+            <li>Two dinners and five lunches</li>
             <li>Travel insurance</li>
-            <li>Optional extras and shopping</li>
+            <li>Optional activities and personal shopping</li>
           </ul>
         </div>
       </div>
@@ -258,372 +236,356 @@
 
       <ol class="retreat-itinerary__list">
 
-      <li class="retreat-itinerary__day">
-        <div class="retreat-itinerary__rail">
-          <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
-          <span class="retreat-itinerary__dot" aria-hidden="true"></span>
-          <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
-        </div>
-
-        <div class="retreat-itinerary__content">
-          <div class="retreat-itinerary__text">
-            <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 1</span></div>
-
-            <ul class="retreat-itinerary__bullets">
-              <li>Arrive and settle into accommodations; spa time and lunch available on your own</li>
-              <li>Opening circle and Yoga Practice</li>
-              <li>Opening dinner together</li>
-            </ul>
+        <li class="retreat-itinerary__day">
+          <div class="retreat-itinerary__rail">
+            <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
+            <span class="retreat-itinerary__dot" aria-hidden="true"></span>
+            <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
           </div>
 
-          <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 1 photos">
-            <div class="photo-slider__track">
-            <div class="photo-slider__slide"><img src="images/iceland/day1-1.jpg" alt="Day 1 — South Iceland" loading="lazy"></div>
-            <div class="photo-slider__slide"><img src="images/iceland/day1-2.jpg" alt="" loading="lazy"></div>
-            <div class="photo-slider__slide"><img src="images/iceland/day1-3.jpg" alt="" loading="lazy"></div>
+          <div class="retreat-itinerary__content">
+            <div class="retreat-itinerary__text">
+              <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 1</span></div>
+
+              <ul class="retreat-itinerary__bullets">
+                <li>Arrive and settle into accommodations</li>
+                <li>Explore the city, lunch on your own; Rest</li>
+                <li>Opening circle and Yoga Practice</li>
+                <li>Opening dinner together</li>
+              </ul>
             </div>
-            <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-            </button>
-            <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-            </button>
-            <div class="photo-slider__dots">
-            <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
-            <button class="photo-slider__dot" aria-label="Photo 2"></button>
-            <button class="photo-slider__dot" aria-label="Photo 3"></button>
-            </div>
-          </div>
-        </div>
-      </li>
 
-      <li class="retreat-itinerary__day">
-        <div class="retreat-itinerary__rail">
-          <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
-          <span class="retreat-itinerary__dot" aria-hidden="true"></span>
-          <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
-        </div>
-
-        <div class="retreat-itinerary__content">
-          <div class="retreat-itinerary__text">
-            <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 2</span></div>
-
-            <ul class="retreat-itinerary__bullets">
-              <li>Coffee and snack available</li>
-              <li>Yoga Practice</li>
-              <li>Breakfast</li>
-              <li>Experience the Blue Lagoon geothermal waters</li>
-              <li>Yoga Practice</li>
-              <li>Dinner together</li>
-            </ul>
-          </div>
-
-          <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 2 photos">
-            <div class="photo-slider__track">
-            <div class="photo-slider__slide"><img src="images/iceland/day2-1.jpg" alt="Day 2 — South Iceland" loading="lazy"></div>
-            <div class="photo-slider__slide"><img src="images/iceland/day2-2.jpg" alt="" loading="lazy"></div>
-            <div class="photo-slider__slide"><img src="images/iceland/day2-3.jpg" alt="" loading="lazy"></div>
-            </div>
-            <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-            </button>
-            <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-            </button>
-            <div class="photo-slider__dots">
-            <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
-            <button class="photo-slider__dot" aria-label="Photo 2"></button>
-            <button class="photo-slider__dot" aria-label="Photo 3"></button>
+            <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 1 photos">
+              <div class="photo-slider__track">
+                <div class="photo-slider__slide"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-reykjavik-at-sunset.webp" alt="Reykjavík and the Hallgrímskirkja church at sunset, with mountains across the bay" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-reykjavik-hotel-breakfast-room.webp" alt="A breakfast room with a green banquette at the Reykjavík hotel" loading="lazy"></div>
+              </div>
+              <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+              <div class="photo-slider__dots">
+                <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
+                <button class="photo-slider__dot" aria-label="Photo 2"></button>
+              </div>
             </div>
           </div>
-        </div>
-      </li>
+        </li>
 
-      <li class="retreat-itinerary__day">
-        <div class="retreat-itinerary__rail">
-          <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
-          <span class="retreat-itinerary__dot" aria-hidden="true"></span>
-          <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
-        </div>
-
-        <div class="retreat-itinerary__content">
-          <div class="retreat-itinerary__text">
-            <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 3</span></div>
-
-            <ul class="retreat-itinerary__bullets">
-              <li>Breakfast</li>
-              <li>Golden Circle &amp; Food Tour adventure (try geo-thermally brewed beer too)</li>
-              <li>Dinner on your own</li>
-            </ul>
+        <li class="retreat-itinerary__day">
+          <div class="retreat-itinerary__rail">
+            <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
+            <span class="retreat-itinerary__dot" aria-hidden="true"></span>
+            <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
           </div>
 
-          <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 3 photos">
-            <div class="photo-slider__track">
-            <div class="photo-slider__slide"><img src="images/iceland/day3-1.jpg" alt="Day 3 — South Iceland" loading="lazy"></div>
-            <div class="photo-slider__slide"><img src="images/iceland/day3-2.jpg" alt="" loading="lazy"></div>
-            <div class="photo-slider__slide"><img src="images/iceland/day3-3.jpg" alt="" loading="lazy"></div>
+          <div class="retreat-itinerary__content">
+            <div class="retreat-itinerary__text">
+              <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 2</span></div>
+
+              <ul class="retreat-itinerary__bullets">
+                <li>Yoga Practice</li>
+                <li>Breakfast</li>
+                <li>Free time to rest, shop, walk around the city</li>
+                <li>Lunch on your own</li>
+                <li>Experience the Blue Lagoon geothermal waters</li>
+                <li>Dinner together</li>
+              </ul>
             </div>
-            <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-            </button>
-            <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-            </button>
-            <div class="photo-slider__dots">
-            <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
-            <button class="photo-slider__dot" aria-label="Photo 2"></button>
-            <button class="photo-slider__dot" aria-label="Photo 3"></button>
-            </div>
-          </div>
-        </div>
-      </li>
 
-      <li class="retreat-itinerary__day">
-        <div class="retreat-itinerary__rail">
-          <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
-          <span class="retreat-itinerary__dot" aria-hidden="true"></span>
-          <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
-        </div>
-
-        <div class="retreat-itinerary__content">
-          <div class="retreat-itinerary__text">
-            <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 4</span></div>
-
-            <ul class="retreat-itinerary__bullets">
-              <li>Coffee and snack available</li>
-              <li>Yoga Practice</li>
-              <li>Breakfast</li>
-              <li>Free day to explore Reykjavik; see the sights, street art, shopping</li>
-              <li>Dinner on your own</li>
-            </ul>
-          </div>
-
-          <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 4 photos">
-            <div class="photo-slider__track">
-            <div class="photo-slider__slide"><img src="images/iceland/day4-1.jpg" alt="Day 4 — South Iceland" loading="lazy"></div>
-            <div class="photo-slider__slide"><img src="images/iceland/day4-2.jpg" alt="" loading="lazy"></div>
-            </div>
-            <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-            </button>
-            <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-            </button>
-            <div class="photo-slider__dots">
-            <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
-            <button class="photo-slider__dot" aria-label="Photo 2"></button>
+            <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 2 photos">
+              <div class="photo-slider__track">
+                <div class="photo-slider__slide"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-blue-lagoon-and-lava-field.webp" alt="Steam over the Blue Lagoon beside a lava field and boardwalk" loading="lazy"></div>
+              </div>
+              <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+              <div class="photo-slider__dots">
+                <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
+              </div>
             </div>
           </div>
-        </div>
-      </li>
+        </li>
 
-      <li class="retreat-itinerary__day">
-        <div class="retreat-itinerary__rail">
-          <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
-          <span class="retreat-itinerary__dot" aria-hidden="true"></span>
-          <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
-        </div>
-
-        <div class="retreat-itinerary__content">
-          <div class="retreat-itinerary__text">
-            <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 5</span></div>
-
-            <ul class="retreat-itinerary__bullets">
-              <li>Coffee and snack available</li>
-              <li>Yoga Practice</li>
-              <li>Breakfast</li>
-              <li>Travel to Vik</li>
-              <li>Visit Black Beach; lunch on your own</li>
-              <li>Travel to Hoff; new hotel check-in</li>
-              <li>Cocktail hour optional</li>
-              <li>Dinner together</li>
-            </ul>
+        <li class="retreat-itinerary__day">
+          <div class="retreat-itinerary__rail">
+            <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
+            <span class="retreat-itinerary__dot" aria-hidden="true"></span>
+            <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
           </div>
 
-          <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 5 photos">
-            <div class="photo-slider__track">
-            <div class="photo-slider__slide"><img src="images/iceland/day5-1.jpg" alt="Day 5 — South Iceland" loading="lazy"></div>
-            <div class="photo-slider__slide"><img src="images/iceland/day5-2.jpg" alt="" loading="lazy"></div>
+          <div class="retreat-itinerary__content">
+            <div class="retreat-itinerary__text">
+              <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 3</span></div>
+
+              <ul class="retreat-itinerary__bullets">
+                <li>Breakfast</li>
+                <li>Golden Circle &amp; Foodie Adventure (with lunch and geo-thermally brewed beer included)</li>
+                <li>Dinner on your own</li>
+              </ul>
             </div>
-            <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-            </button>
-            <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-            </button>
-            <div class="photo-slider__dots">
-            <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
-            <button class="photo-slider__dot" aria-label="Photo 2"></button>
-            </div>
-          </div>
-        </div>
-      </li>
 
-      <li class="retreat-itinerary__day">
-        <div class="retreat-itinerary__rail">
-          <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
-          <span class="retreat-itinerary__dot" aria-hidden="true"></span>
-          <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
-        </div>
-
-        <div class="retreat-itinerary__content">
-          <div class="retreat-itinerary__text">
-            <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 6</span></div>
-
-            <ul class="retreat-itinerary__bullets">
-              <li>Coffee and snack available</li>
-              <li>Yoga Practice</li>
-              <li>Breakfast</li>
-              <li>Lunch on your own</li>
-              <li>Guided Glacier Hike</li>
-              <li>Happy hour optional</li>
-              <li>Dinner together</li>
-            </ul>
-          </div>
-
-          <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 6 photos">
-            <div class="photo-slider__track">
-            <div class="photo-slider__slide"><img src="images/iceland/day6-1.jpg" alt="Day 6 — South Iceland" loading="lazy"></div>
-            <div class="photo-slider__slide"><img src="images/iceland/day6-2.jpg" alt="" loading="lazy"></div>
-            </div>
-            <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-            </button>
-            <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-            </button>
-            <div class="photo-slider__dots">
-            <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
-            <button class="photo-slider__dot" aria-label="Photo 2"></button>
+            <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 3 photos">
+              <div class="photo-slider__track">
+                <div class="photo-slider__slide"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-geyser-erupting.webp" alt="A geyser erupting from a steaming geothermal field" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-gullfoss-waterfall.webp" alt="The Gullfoss waterfall pouring into its canyon" loading="lazy"></div>
+              </div>
+              <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+              <div class="photo-slider__dots">
+                <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
+                <button class="photo-slider__dot" aria-label="Photo 2"></button>
+              </div>
             </div>
           </div>
-        </div>
-      </li>
+        </li>
 
-      <li class="retreat-itinerary__day">
-        <div class="retreat-itinerary__rail">
-          <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
-          <span class="retreat-itinerary__dot" aria-hidden="true"></span>
-          <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
-        </div>
-
-        <div class="retreat-itinerary__content">
-          <div class="retreat-itinerary__text">
-            <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 7</span></div>
-
-            <ul class="retreat-itinerary__bullets">
-              <li>Coffee and snack available</li>
-              <li>Yoga Practice</li>
-              <li>Breakfast</li>
-              <li>Glacier Lagoon amphibian boat ride; check out Diamond Beach</li>
-              <li>Travel towards Hella</li>
-              <li>Lunch along the way (on your own)</li>
-              <li>Visit Fjaðrárgljúfur canyon</li>
-              <li>Travel towards Hella</li>
-              <li>Arrive Icelandic Horse Farm &amp; check in to Turf House accommodations</li>
-              <li>Dinner together</li>
-            </ul>
+        <li class="retreat-itinerary__day">
+          <div class="retreat-itinerary__rail">
+            <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
+            <span class="retreat-itinerary__dot" aria-hidden="true"></span>
+            <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
           </div>
 
-          <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 7 photos">
-            <div class="photo-slider__track">
-            <div class="photo-slider__slide"><img src="images/iceland/day7-1.jpg" alt="Day 7 — South Iceland" loading="lazy"></div>
-            <div class="photo-slider__slide"><img src="images/iceland/day7-2.jpg" alt="" loading="lazy"></div>
-            <div class="photo-slider__slide"><img src="images/iceland/day7-3.jpg" alt="" loading="lazy"></div>
+          <div class="retreat-itinerary__content">
+            <div class="retreat-itinerary__text">
+              <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 4</span></div>
+
+              <ul class="retreat-itinerary__bullets">
+                <li>Yoga Practice</li>
+                <li>Breakfast</li>
+                <li>Guided walking city tour of Reykjavik with a focus on local cuisine and culture; Lunch included</li>
+                <li>Free time to explore the city, check out Sky Lagoon, shopping, Opera House</li>
+                <li>Dinner on your own</li>
+              </ul>
             </div>
-            <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-            </button>
-            <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-            </button>
-            <div class="photo-slider__dots">
-            <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
-            <button class="photo-slider__dot" aria-label="Photo 2"></button>
-            <button class="photo-slider__dot" aria-label="Photo 3"></button>
-            </div>
-          </div>
-        </div>
-      </li>
 
-      <li class="retreat-itinerary__day">
-        <div class="retreat-itinerary__rail">
-          <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
-          <span class="retreat-itinerary__dot" aria-hidden="true"></span>
-          <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
-        </div>
-
-        <div class="retreat-itinerary__content">
-          <div class="retreat-itinerary__text">
-            <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 8</span></div>
-
-            <ul class="retreat-itinerary__bullets">
-              <li>Coffee and snack available</li>
-              <li>Yoga Practice</li>
-              <li>Breakfast</li>
-              <li>Icelandic horse ride along the river (weather permitting)</li>
-              <li>Travel to Selfoss</li>
-              <li>Lunch in Selfoss on your own</li>
-              <li>Travel to Grindavik; hotel check-in (same as first 5 nights)</li>
-              <li>Closing circle &amp; final yoga practice</li>
-              <li>Dinner together</li>
-            </ul>
-          </div>
-
-          <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 8 photos">
-            <div class="photo-slider__track">
-            <div class="photo-slider__slide"><img src="images/iceland/day8-1.jpg" alt="Day 8 — South Iceland" loading="lazy"></div>
-            <div class="photo-slider__slide"><img src="images/iceland/day8-2.jpg" alt="" loading="lazy"></div>
-            </div>
-            <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-            </button>
-            <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-            </button>
-            <div class="photo-slider__dots">
-            <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
-            <button class="photo-slider__dot" aria-label="Photo 2"></button>
+            <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 4 photos">
+              <div class="photo-slider__track">
+                <div class="photo-slider__slide"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-hallgrimskirkja-and-leif-eriksson-statue.webp" alt="The Hallgrímskirkja tower and the Leif Eriksson statue in Reykjavík" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-hot-dogs-in-reykjavik.webp" alt="Friends eating hot dogs at a street stand in Reykjavík" loading="lazy"></div>
+              </div>
+              <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+              <div class="photo-slider__dots">
+                <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
+                <button class="photo-slider__dot" aria-label="Photo 2"></button>
+              </div>
             </div>
           </div>
-        </div>
-      </li>
+        </li>
 
-      <li class="retreat-itinerary__day">
-        <div class="retreat-itinerary__rail">
-          <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
-          <span class="retreat-itinerary__dot" aria-hidden="true"></span>
-          <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
-        </div>
-
-        <div class="retreat-itinerary__content">
-          <div class="retreat-itinerary__text">
-            <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 9</span></div>
-
-            <ul class="retreat-itinerary__bullets">
-              <li>Breakfast available</li>
-              <li>Departures</li>
-            </ul>
+        <li class="retreat-itinerary__day">
+          <div class="retreat-itinerary__rail">
+            <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
+            <span class="retreat-itinerary__dot" aria-hidden="true"></span>
+            <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
           </div>
 
-          <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 9 photos">
-            <div class="photo-slider__track">
-            <div class="photo-slider__slide"><img src="images/iceland/day9-1.jpg" alt="Day 9 — South Iceland" loading="lazy"></div>
-            <div class="photo-slider__slide"><img src="images/iceland/day9-2.jpg" alt="" loading="lazy"></div>
+          <div class="retreat-itinerary__content">
+            <div class="retreat-itinerary__text">
+              <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 5</span></div>
+
+              <ul class="retreat-itinerary__bullets">
+                <li>Yoga Practice</li>
+                <li>Breakfast</li>
+                <li>Travel to Vik</li>
+                <li>Visit Black Beach; lunch included</li>
+                <li>Travel to Hoff; new hotel check-in</li>
+                <li>Cocktail Hour optional</li>
+                <li>Dinner together</li>
+              </ul>
             </div>
-            <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-            </button>
-            <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-            </button>
-            <div class="photo-slider__dots">
-            <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
-            <button class="photo-slider__dot" aria-label="Photo 2"></button>
+
+            <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 5 photos">
+              <div class="photo-slider__track">
+                <div class="photo-slider__slide"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-road-toward-a-snowy-mountain.webp" alt="An empty road toward a snow-capped mountain with geothermal steam alongside" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-basalt-columns-on-the-black-beach.webp" alt="Basalt columns and sea stacks on a black sand beach" loading="lazy"></div>
+              </div>
+              <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+              <div class="photo-slider__dots">
+                <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
+                <button class="photo-slider__dot" aria-label="Photo 2"></button>
+              </div>
             </div>
           </div>
-        </div>
-      </li>
+        </li>
+
+        <li class="retreat-itinerary__day">
+          <div class="retreat-itinerary__rail">
+            <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
+            <span class="retreat-itinerary__dot" aria-hidden="true"></span>
+            <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
+          </div>
+
+          <div class="retreat-itinerary__content">
+            <div class="retreat-itinerary__text">
+              <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 6</span></div>
+
+              <ul class="retreat-itinerary__bullets">
+                <li>Breakfast</li>
+                <li>Guided Glacier Hike</li>
+                <li>Lunch on your own</li>
+                <li>Happy Hour optional</li>
+                <li>Dinner together</li>
+              </ul>
+            </div>
+
+            <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 6 photos">
+              <div class="photo-slider__track">
+                <div class="photo-slider__slide"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-group-on-the-glacier.webp" alt="A guide&#x27;s selfie with the group on the glacier" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-hiking-across-the-glacier.webp" alt="Hikers in a line crossing the glacier ice" loading="lazy"></div>
+              </div>
+              <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+              <div class="photo-slider__dots">
+                <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
+                <button class="photo-slider__dot" aria-label="Photo 2"></button>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="retreat-itinerary__day">
+          <div class="retreat-itinerary__rail">
+            <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
+            <span class="retreat-itinerary__dot" aria-hidden="true"></span>
+            <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
+          </div>
+
+          <div class="retreat-itinerary__content">
+            <div class="retreat-itinerary__text">
+              <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 7</span></div>
+
+              <ul class="retreat-itinerary__bullets">
+                <li>Breakfast</li>
+                <li>Glacier Lagoon amphibian boat ride; check out Diamond Beach</li>
+                <li>Lunch oyo</li>
+                <li>Visit Fjaðrárgljúfur canyon for an easy hike with views</li>
+                <li>Travel towards Hella</li>
+                <li>Arrive Icelandic Horse Farm &amp; check in to Turf House accommodations</li>
+                <li>Gentle Yoga with the horses</li>
+                <li>Dinner together</li>
+              </ul>
+            </div>
+
+            <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 7 photos">
+              <div class="photo-slider__track">
+                <div class="photo-slider__slide"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-life-jackets-at-the-glacier-lagoon.webp" alt="The group in orange life jackets at the glacier lagoon" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-icebergs-in-the-glacier-lagoon.webp" alt="Blue icebergs floating in the glacier lagoon" loading="lazy"></div>
+              </div>
+              <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+              <div class="photo-slider__dots">
+                <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
+                <button class="photo-slider__dot" aria-label="Photo 2"></button>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="retreat-itinerary__day">
+          <div class="retreat-itinerary__rail">
+            <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
+            <span class="retreat-itinerary__dot" aria-hidden="true"></span>
+            <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
+          </div>
+
+          <div class="retreat-itinerary__content">
+            <div class="retreat-itinerary__text">
+              <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 8</span></div>
+
+              <ul class="retreat-itinerary__bullets">
+                <li>Yoga Practice</li>
+                <li>Breakfast</li>
+                <li>Icelandic Horse ride along the river (weather permitting)</li>
+                <li>Lunch on your own</li>
+                <li>Travel to Reykjavik; hotel check-in</li>
+                <li>Closing circle &amp; final yoga practice</li>
+                <li>Dinner together</li>
+              </ul>
+            </div>
+
+            <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 8 photos">
+              <div class="photo-slider__track">
+                <div class="photo-slider__slide"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-horse-ride-across-the-moor.webp" alt="Riding Icelandic horses in a line across open moorland" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-in-the-stables.webp" alt="Guests in the stables at the horse farm, in black and white" loading="lazy"></div>
+              </div>
+              <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+              <div class="photo-slider__dots">
+                <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
+                <button class="photo-slider__dot" aria-label="Photo 2"></button>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="retreat-itinerary__day">
+          <div class="retreat-itinerary__rail">
+            <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
+            <span class="retreat-itinerary__dot" aria-hidden="true"></span>
+            <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
+          </div>
+
+          <div class="retreat-itinerary__content">
+            <div class="retreat-itinerary__text">
+              <div class="retreat-itinerary__head"><span class="retreat-itinerary__label">Day 9</span></div>
+
+              <ul class="retreat-itinerary__bullets">
+                <li>Breakfast available</li>
+                <li>Departures</li>
+              </ul>
+            </div>
+
+            <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="Day 9 photos">
+              <div class="photo-slider__track">
+                <div class="photo-slider__slide"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-yoga-pose-in-the-stables.webp" alt="A guest in a balancing yoga pose in the long stable at the horse farm" loading="lazy"></div>
+                <div class="photo-slider__slide"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-arms-raised-among-the-ice.webp" alt="A guest with arms raised among chunks of ice on a black sand beach" loading="lazy"></div>
+              </div>
+              <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+              <div class="photo-slider__dots">
+                <button class="photo-slider__dot is-active" aria-label="Photo 1"></button>
+                <button class="photo-slider__dot" aria-label="Photo 2"></button>
+              </div>
+            </div>
+          </div>
+        </li>
 
       </ol>
     </div>
@@ -647,9 +609,9 @@
   </section>
 
   <!-- =========================================================
-       ROOMS PRICING (hotel strip + tier rows) — rendered from JS
+       ROOMS PRICING (one card per tier) — rendered from JS
        ========================================================= -->
-  <section class="rooms">
+  <section class="rooms" id="rooms">
     <h2 class="rooms__title">Rooms pricing</h2>
     <div class="rooms__inner">
       <div class="rooms__grid" id="rooms-grid"></div>
@@ -659,7 +621,7 @@
         <ol class="rooms__steps">
           <li>
             <strong>Choose your room</strong>
-            <span>Every price is per person, in USD.</span>
+            <span>Prices are in USD, per person or per room as marked.</span>
           </li>
           <li>
             <strong>Secure your space</strong>
@@ -670,17 +632,31 @@
             <span>The rest is due 90 days before the retreat.</span>
           </li>
         </ol>
-        <!-- TODO: add the refund policy line here once confirmed. Left out on
-             purpose rather than guessed: whether the deposit is refundable is
-             material to the decision and must not be invented. -->
+        <p class="rooms__aside-note">All payments are non-refundable and non-transferable, so we recommend trip cancellation insurance from the day you pay your deposit.</p>
         <p class="rooms__aside-note">Sharing a room? Book together with your roommate. If you don&rsquo;t have one we&rsquo;ll pair you when we can &mdash; and if nobody is available, we&rsquo;ll move you to a private room.</p>
         <div class="rooms__actions">
-          <button class="btn btn--primary" type="button">Reserve your space</button>
-          <button class="btn btn--secondary" type="button">I want more info</button>
+          <a class="btn btn--primary" href="contact.html#general-inquiry">Reserve your space</a>
+          <a class="btn btn--secondary" href="contact.html#general-inquiry">I want more info</a>
         </div>
       </aside>
     </div>
   </section>
+
+
+  <!-- =========================================================
+       OPTIONAL EXTRAS (tabs + gallery) — rendered from JS
+       ========================================================= -->
+  <!-- Optional Extras: none published for this retreat. -->
+
+
+
+
+  <!-- =========================================================
+       TRAVEL TIPS
+       Plain prose, no data layer: every line here is specific to this
+       retreat and none of it repeats a shape the page renders elsewhere.
+       ========================================================= -->
+  <!-- Travel Tips: none published for this destination. -->
 
   <!-- =========================================================
        GALLERY
@@ -697,8 +673,7 @@
   <section class="gallery">
     <div class="gallery__head">
       <h2 class="gallery__title">Where you&rsquo;ll be</h2>
-      <p class="gallery__intro">Reykjav&iacute;k for the first days, then south to Vik, where the beaches are black and the waterfalls come straight off the road. The photographs are from past retreats: the ice, the horses, and the sky on the nights it decides to perform.</p>
-      <a class="gallery__more" href="locationpage-iceland.html">More about Iceland <span aria-hidden="true">→</span></a>
+      <p class="gallery__intro">Photographs from past retreats in Reykjavík &amp; the South Coast, Iceland.</p>
       <div class="gallery__nav">
         <button class="gallery__arrow gallery__arrow--prev" aria-label="Previous photos">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
@@ -711,16 +686,15 @@
 
     <div class="gallery__track" role="group" aria-roledescription="carousel" aria-label="Photos from Iceland">
       <div class="gallery__rail">
-        <figure class="gallery__slide" style="--r: 28/17"><img src="images/iceland/hero.jpg" alt="Fja&eth;r&aacute;rglj&uacute;fur canyon in the south" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 1/1"><img src="images/iceland/day4-1.jpg" alt="Hallgr&iacute;mskirkja rising over Reykjav&iacute;k" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 28/17"><img src="images/iceland/day5-2.jpg" alt="The Reynisdrangar sea stacks at Vik" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 5/4"><img src="images/iceland/day1-1.jpg" alt="Northern lights over the guesthouse" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 28/17"><img src="images/iceland/hotel1-1.jpg" alt="The lodge set in open country" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 1/1"><img src="images/iceland/day9-2.jpg" alt="On the black ice of the glacier lagoon" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 28/17"><img src="images/iceland/day7-1.jpg" alt="Icebergs at J&ouml;kuls&aacute;rl&oacute;n" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 5/4"><img src="images/iceland/day8-2.jpg" alt="Riding Icelandic horses along the coast" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 1/1"><img src="images/iceland/hotel3-1.jpg" alt="A turf house with its grass roof" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 28/17"><img src="images/iceland/day3-1.jpg" alt="Kirkjufell and its waterfall" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 28/17"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-icelandic-breakfast.webp" alt="Breakfast of bread with cucumber and cheese, a croissant, coffee and juice" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 1/1"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-laughing-at-the-bra-fence.webp" alt="A guest laughing as she hangs a bra on a fence full of bras below the cliffs" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 28/17"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-headstand-above-the-canyon.webp" alt="A guest doing a headstand on the edge of a green canyon" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 5/4"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-holding-glacier-ice.webp" alt="A guest holding a chunk of glacier ice to her face" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 28/17"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-group-in-front-of-the-icebergs.webp" alt="The group in orange life jackets in front of the icebergs" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 1/1"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-group-at-the-blue-lagoon-sign.webp" alt="The group in front of the Blue Lagoon sign" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 28/17"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-glacier-hike-at-sunset.webp" alt="Hikers on the glacier at sunset" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 5/4"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-river-through-a-mossy-canyon.webp" alt="A river winding through a deep, mossy canyon" loading="lazy"></figure>
+        <figure class="gallery__slide" style="--r: 1/1"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-posing-in-the-stables.webp" alt="A guest posing beside the horse stalls in the stables" loading="lazy"></figure>
       </div>
     </div>
 
@@ -740,7 +714,7 @@
 
   <!-- =========================================================
        ADDITIONAL INFO (FAQ)
-       Answers are PLACEHOLDER lorem until the real copy arrives.
+       Answers quoted from the old site's policies for this retreat.
        ========================================================= -->
   <section class="faq-section">
     <h2 class="faq-section__title">Additional info</h2>
@@ -754,8 +728,7 @@
         </h3>
         <div class="faq__panel">
           <div class="faq__answer" id="faq-1" role="region">
-            <p>Lorem ipsum dolor sit amet consectetur. Ac diam magna tellus enim. Senectus tortor nec suspendisse malesuada. Ut nunc habitasse penatibus at. Risus a suscipit urna pulvinar in laoreet ut.</p>
-            <p>Pellentesque mi sagittis dignissim vitae maecenas a at fringilla. Semper velit tristique sed massa lorem cras diam. At morbi non orci felis urna urna. Arcu a odio praesent nisl nibh. Tristique morbi nibh sit semper ultricies maecenas mauris aliquet. Non hac eget habitant urna nec fringilla sed tellus. Ornare amet id non habitant. Odio tempor quis massa a erat ut aenean.</p>
+            <p>In addition to credit card payments we also accept wire transfers, Zelle and Bitcoin. Please inquire for more details.</p>
           </div>
         </div>
       </div>
@@ -768,8 +741,7 @@
         </h3>
         <div class="faq__panel">
           <div class="faq__answer" id="faq-2" role="region">
-            <p>Lorem ipsum dolor sit amet consectetur. Ac diam magna tellus enim. Senectus tortor nec suspendisse malesuada. Ut nunc habitasse penatibus at. Risus a suscipit urna pulvinar in laoreet ut.</p>
-            <p>Pellentesque mi sagittis dignissim vitae maecenas a at fringilla. Semper velit tristique sed massa lorem cras diam. At morbi non orci felis urna urna. Arcu a odio praesent nisl nibh. Tristique morbi nibh sit semper ultricies maecenas mauris aliquet. Non hac eget habitant urna nec fringilla sed tellus. Ornare amet id non habitant. Odio tempor quis massa a erat ut aenean.</p>
+            <p>All payments are 100% non refundable and non-transferable. We recommend that you buy Trip cancellation insurance immediately upon making your initial deposit to cover any travel hiccups or complications that may arise between now and the time of your retreat. No exceptions are possible so please cover your trip by connecting with an insurance company that offers the right policy for you.</p>
           </div>
         </div>
       </div>
@@ -782,8 +754,7 @@
         </h3>
         <div class="faq__panel">
           <div class="faq__answer" id="faq-3" role="region">
-            <p>Lorem ipsum dolor sit amet consectetur. Ac diam magna tellus enim. Senectus tortor nec suspendisse malesuada. Ut nunc habitasse penatibus at. Risus a suscipit urna pulvinar in laoreet ut.</p>
-            <p>Pellentesque mi sagittis dignissim vitae maecenas a at fringilla. Semper velit tristique sed massa lorem cras diam. At morbi non orci felis urna urna. Arcu a odio praesent nisl nibh. Tristique morbi nibh sit semper ultricies maecenas mauris aliquet. Non hac eget habitant urna nec fringilla sed tellus. Ornare amet id non habitant. Odio tempor quis massa a erat ut aenean.</p>
+            <p>There are no refunds as per our cancellation policies. We highly recommend that all of our guests secure a quality travel insurance that will cover them for any event which may cause a change of travel plans, including personal health issues or personal situations in general which may affect travel plans.</p>
           </div>
         </div>
       </div>
@@ -796,8 +767,7 @@
         </h3>
         <div class="faq__panel">
           <div class="faq__answer" id="faq-4" role="region">
-            <p>Lorem ipsum dolor sit amet consectetur. Ac diam magna tellus enim. Senectus tortor nec suspendisse malesuada. Ut nunc habitasse penatibus at. Risus a suscipit urna pulvinar in laoreet ut.</p>
-            <p>Pellentesque mi sagittis dignissim vitae maecenas a at fringilla. Semper velit tristique sed massa lorem cras diam. At morbi non orci felis urna urna. Arcu a odio praesent nisl nibh. Tristique morbi nibh sit semper ultricies maecenas mauris aliquet. Non hac eget habitant urna nec fringilla sed tellus. Ornare amet id non habitant. Odio tempor quis massa a erat ut aenean.</p>
+            <p>Not by us: transportation delays, cancellations or changes due to strikes, labor disputes, or lockouts from airlines, boats, ferries or any type of transportation are among the events we recommend covering with travel insurance.</p>
           </div>
         </div>
       </div>
@@ -810,8 +780,7 @@
         </h3>
         <div class="faq__panel">
           <div class="faq__answer" id="faq-5" role="region">
-            <p>Lorem ipsum dolor sit amet consectetur. Ac diam magna tellus enim. Senectus tortor nec suspendisse malesuada. Ut nunc habitasse penatibus at. Risus a suscipit urna pulvinar in laoreet ut.</p>
-            <p>Pellentesque mi sagittis dignissim vitae maecenas a at fringilla. Semper velit tristique sed massa lorem cras diam. At morbi non orci felis urna urna. Arcu a odio praesent nisl nibh. Tristique morbi nibh sit semper ultricies maecenas mauris aliquet. Non hac eget habitant urna nec fringilla sed tellus. Ornare amet id non habitant. Odio tempor quis massa a erat ut aenean.</p>
+            <p>The full terms and conditions are published at <a href="https://yogaadventuresworldwide.com/termsandconditions/">yogaadventuresworldwide.com/termsandconditions</a>. By submitting payments toward your retreat you accept them.</p>
           </div>
         </div>
       </div>
@@ -1179,19 +1148,34 @@
   (function () {
     var HOTELS = [
       {
-        name: 'Northern Light Inn',
-        gallery: ['images/iceland/hotel1-1.jpg', 'images/iceland/hotel1-2.jpg', 'images/iceland/hotel1-3.jpg', 'images/iceland/hotel1-4.jpg', 'images/iceland/hotel1-5.jpg', 'images/iceland/hotel1-6.jpg', 'images/iceland/hotel1-7.jpg', 'images/iceland/hotel1-8.jpg'],
-        text: ['Set beside the lava fields near the Blue Lagoon, Northern Light Inn combines calm design, geothermal warmth, and panoramic views. The hotel features a spa with saunas and massage treatments, a restaurant overlooking the landscape, and rooms that balance classic style with Nordic comfort.']
+        name: 'Hotel in the heart of Reykjavík',
+        tab: 'Hotel in the heart of Reykjavík',
+        gallery: ['images/retreat-photos/iceland/yoga-retreat-iceland-reykjavik-hotel-lounge.webp', 'images/retreat-photos/iceland/yoga-retreat-iceland-reykjavik-hotel-breakfast-room.webp', 'images/retreat-photos/iceland/yoga-retreat-iceland-reykjavik-hotel-breakfast-counter.webp', 'images/retreat-photos/iceland/yoga-retreat-iceland-reykjavik-hotel-breakfast-by-the-window.webp', 'images/retreat-photos/iceland/yoga-retreat-iceland-reykjavik-hotel-twin-room.webp', 'images/retreat-photos/iceland/yoga-retreat-iceland-reykjavik-hotel-double-room.webp', 'images/retreat-photos/iceland/yoga-retreat-iceland-reykjavik-hotel-room-with-armchair.webp', 'images/retreat-photos/iceland/yoga-retreat-iceland-reykjavik-hotel-room-with-desk.webp'],
+        text: [
+          'Our first 4 nights and final night in Iceland will be enjoyed at a lovely hotel right in the heart of Reykjavik.',
+          'Rooms can accommodate singles or shared doubles.',
+          'We will finish the retreat back where we started in Reykjavik for the closing circle and one last amazing meal together.'
+        ]
       },
       {
-        name: 'Fosshotel Glacier Lagoon',
-        gallery: ['images/iceland/hotel2-1.jpg', 'images/iceland/hotel2-2.jpg', 'images/iceland/hotel2-3.jpg', 'images/iceland/hotel2-4.jpg', 'images/iceland/hotel2-5.jpg', 'images/iceland/hotel2-6.jpg', 'images/iceland/hotel2-7.jpg', 'images/iceland/hotel2-8.jpg'],
-        text: ['Located between Skaftafell National Park and the J\u00f6kuls\u00e1rl\u00f3n Glacier Lagoon, Fosshotel Glacier Lagoon combines striking modern architecture with Iceland\u2019s wild landscapes. The hotel features a restaurant focused on seasonal local cuisine and a spa area perfect for unwinding after a day of exploration. Rooms offer clean lines, large windows, and views that stretch from the ocean to the mountains.']
+        name: 'Hotel near the Vatnajökull glacier',
+        tab: 'Hotel near the Vatnajökull glacier',
+        gallery: ['images/retreat-photos/iceland/yoga-retreat-iceland-glacier-hotel-in-the-snow.webp', 'images/retreat-photos/iceland/yoga-retreat-iceland-glacier-hotel-hot-tubs.webp', 'images/retreat-photos/iceland/yoga-retreat-iceland-glacier-hotel-spiral-staircase.webp', 'images/retreat-photos/iceland/yoga-retreat-iceland-glacier-hotel-by-the-lake.webp', 'images/retreat-photos/iceland/yoga-retreat-iceland-glacier-hotel-bar.webp', 'images/retreat-photos/iceland/yoga-retreat-iceland-pink-cocktail-at-happy-hour.webp', 'images/retreat-photos/iceland/yoga-retreat-iceland-glacier-hotel-lounge.webp', 'images/retreat-photos/iceland/yoga-retreat-iceland-glacier-hotel-dining-room.webp', 'images/retreat-photos/iceland/yoga-retreat-iceland-glacier-hotel-room.webp', 'images/retreat-photos/iceland/yoga-retreat-iceland-glacier-hotel-bathroom.webp'],
+        text: [
+          'Nights 5 &amp; 6 we will hit the South Ring Road and travel towards the Vatnajökull glacier for our hiking excursion and glacier lagoon experience. The scenery along the way is spectacular with waterfalls, landscape changes, rainbows, and tons of animals along the open road. Truly a treat for the senses as we travel.',
+          'Not only does our stop-over offer convenience, this hotel is super stylish with amazing interiors and chic design.',
+          'Happy hour is not to be missed with unique mixologists on the case and a sweet spot to wind down after a day on the ice!',
+          'Rooms for private or shared occupancy in sleek and stylish accommodations will be our home base for a few nights.'
+        ]
       },
       {
-        name: 'Turf Guesthouse & Horse Farm',
-        gallery: ['images/iceland/hotel3-1.jpg', 'images/iceland/hotel3-2.jpg', 'images/iceland/hotel3-3.jpg', 'images/iceland/hotel3-4.jpg', 'images/iceland/hotel3-5.jpg', 'images/iceland/hotel3-6.jpg', 'images/iceland/hotel3-7.jpg', 'images/iceland/hotel3-8.jpg'],
-        text: ['A traditional turf-roof guesthouse on an Icelandic horse farm near Hella. This one-night stay offers a glimpse into rural life, with yoga practiced in the stables and a horseback ride along the river. All guests share accommodations in individual beds for an authentic Icelandic experience.']
+        name: 'Turf guesthouse on a horse farm near Hella',
+        tab: 'Turf guesthouse on a horse farm near Hella',
+        gallery: ['images/retreat-photos/iceland/yoga-retreat-iceland-turf-house-on-the-horse-farm.webp', 'images/retreat-photos/iceland/yoga-retreat-iceland-turf-house-bunk-room.webp', 'images/retreat-photos/iceland/yoga-retreat-iceland-riders-seen-past-a-horses-mane.webp', 'images/retreat-photos/iceland/yoga-retreat-iceland-group-dinner-at-the-long-table.webp'],
+        text: [
+          'And for our second to last night on our way back to the first hotel and the airport we will stay in a very unique and special traditional turf guesthouse on an Icelandic horse farm just outside the town of Hella.',
+          'Our yoga practice will be in the stables and we will take an hour horseback ride by the river following class. No experience is necessary and there are tons of animals to love on at the farm if riding horses isn’t your thing! But these gorgeous, gentle creatures are well trained and relaxed for all types of riders.'
+        ]
       }
     ];
 
@@ -1201,23 +1185,8 @@
 
     var ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M%s"/></svg>';
 
-    HOTELS.forEach(function (hotel, i) {
-      var id = 'accom-' + i;
-
-      var tab = document.createElement('button');
-      tab.className = 'tabs__item retreat-accom__tab' + (i === 0 ? ' is-active' : '');
-      tab.setAttribute('role', 'tab');
-      tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
-      tab.setAttribute('aria-controls', id);
-      tab.textContent = hotel.name;
-      tabsEl.appendChild(tab);
-
-      var panel = document.createElement('div');
-      panel.className = 'retreat-accom__panel';
-      panel.id = id;
-      panel.setAttribute('role', 'tabpanel');
-      if (i !== 0) panel.hidden = true;
-      panel.innerHTML =
+    function panelHTML(hotel) {
+      return (
         '<div class="photo-slider retreat-accom__slider" data-lightbox role="group" aria-roledescription="carousel" aria-label="' + hotel.name + ' photos">' +
           '<div class="photo-slider__track">' +
             hotel.gallery.map(function (src, n) {
@@ -1235,7 +1204,39 @@
         '<div class="retreat-accom__copy">' +
           '<h3 class="retreat-accom__name">' + hotel.name + '</h3>' +
           '<div class="retreat-accom__text">' + hotel.text.map(function (t) { return '<p>' + t + '</p>'; }).join('') + '</div>' +
-        '</div>';
+        '</div>'
+      );
+    }
+
+    /* One hotel needs no tabs: a single tab is a control that switches
+       nothing. The bar is removed and the panel stands on its own. */
+    var single = HOTELS.length < 2;
+    if (single) tabsEl.remove();
+
+    HOTELS.forEach(function (hotel, i) {
+      var id = 'accom-' + i;
+      if (single) {
+        var solo = document.createElement('div');
+        solo.className = 'retreat-accom__panel';
+        panelsEl.appendChild(solo);
+        solo.innerHTML = panelHTML(hotel);
+        return;
+      }
+
+      var tab = document.createElement('button');
+      tab.className = 'tabs__item retreat-accom__tab' + (i === 0 ? ' is-active' : '');
+      tab.setAttribute('role', 'tab');
+      tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+      tab.setAttribute('aria-controls', id);
+      tab.textContent = hotel.tab || hotel.name;
+      tabsEl.appendChild(tab);
+
+      var panel = document.createElement('div');
+      panel.className = 'retreat-accom__panel';
+      panel.id = id;
+      panel.setAttribute('role', 'tabpanel');
+      if (i !== 0) panel.hidden = true;
+      panel.innerHTML = panelHTML(hotel);
       panelsEl.appendChild(panel);
 
       tab.addEventListener('click', function () {
@@ -1245,6 +1246,102 @@
           b.setAttribute('aria-selected', on ? 'true' : 'false');
         });
         panelsEl.querySelectorAll('.retreat-accom__panel').forEach(function (pn, pi) { pn.hidden = pi !== i; });
+      });
+    });
+  })();
+
+  /* Optional Extras -------------------------------------------------------
+     One tab per extra, each with its own gallery, copy and price. Runs
+     before the lightbox so its sliders get the [data-lightbox] hook, and
+     before the slider loop so arrows and dots get wired. */
+  (function () {
+    var EXTRAS = [
+      {
+        name: 'Excursion to Las Coloradas',
+        desc: 'Excursion to Las Coloradas to see flamingos and pink lagoons; dip in a secluded beach &amp; lunch at a local fish joint.',
+        price: '155 USD', unit: 'per person',
+        // the pink aerial leads: it is the photo that sells the excursion
+        gallery: ['images/extra1-3.jpg', 'images/extra1-1.jpg', 'images/extra1-2.jpg']
+      },
+      {
+        name: 'Kayaking in Nature',
+        desc: 'Excursion to our local nature preserve to kayak amongst the mangroves and lily pads. A true nature bath experience.',
+        price: '85 USD', unit: 'per person',
+        gallery: ['images/extra2-1.jpg', 'images/extra2-2.jpg']
+      },
+      {
+        name: 'Yucatan Peninsula day trip',
+        desc: 'Yucatan Peninsula day trip: Ruins of Ek Balam, cenote swim, lunch &amp; colonial city of Valladolid. *Minimum participation of 4 guests to host the excursion.',
+        price: '195 USD', unit: 'per person',
+        gallery: ['images/extra3-1.jpg', 'images/extra3-2.jpg', 'images/extra3-3.jpg']
+      },
+      {
+        name: 'Massages',
+        desc: 'Additional 75 minute massages.',
+        price: '140 USD', unit: 'each',
+        gallery: ['images/extra4-1.jpg', 'images/extra4-2.jpg']
+      }
+    ];
+
+    var tabsEl = document.querySelector('.extras__tabs');
+    var panelsEl = document.querySelector('.extras__panels');
+    if (!tabsEl || !panelsEl) return;
+
+    var PREV = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>';
+    var NEXT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>';
+
+    EXTRAS.forEach(function (x, i) {
+      var id = 'extra-' + i;
+
+      var tab = document.createElement('button');
+      tab.className = 'tabs__item extras__tab' + (i === 0 ? ' is-active' : '');
+      tab.type = 'button';
+      tab.setAttribute('role', 'tab');
+      tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+      tab.setAttribute('aria-controls', id);
+      tab.textContent = x.tab || x.name;
+      tabsEl.appendChild(tab);
+
+      var panel = document.createElement('div');
+      panel.className = 'extras__panel';
+      panel.id = id;
+      panel.setAttribute('role', 'tabpanel');
+      if (i !== 0) panel.hidden = true;
+      panel.innerHTML =
+        '<div class="extras__text">' +
+          '<h3 class="extras__name">' + x.name + '</h3>' +
+          '<p class="extras__desc">' + x.desc + '</p>' +
+          '<p class="extras__price">' +
+            '<span class="extras__price-amount">' + x.price + '</span>' +
+            '<span class="extras__price-unit">' + x.unit + '</span>' +
+          '</p>' +
+        '</div>' +
+        (!x.gallery.length ? '' :
+        '<div class="extras__media">' +
+          '<div class="photo-slider extras__slider" data-lightbox role="group" aria-roledescription="carousel" aria-label="' + x.name + ' photos">' +
+            '<div class="photo-slider__track">' +
+              x.gallery.map(function (src, n) {
+                return '<div class="photo-slider__slide"><img src="' + src + '" alt="' + (n === 0 ? x.name : '') + '" loading="lazy"></div>';
+              }).join('') +
+            '</div>' +
+            '<button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">' + PREV + '</button>' +
+            '<button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">' + NEXT + '</button>' +
+            '<div class="photo-slider__dots">' +
+              x.gallery.map(function (_, n) {
+                return '<button class="photo-slider__dot' + (n === 0 ? ' is-active' : '') + '" aria-label="Photo ' + (n + 1) + '"></button>';
+              }).join('') +
+            '</div>' +
+          '</div>' +
+        '</div>');
+      panelsEl.appendChild(panel);
+
+      tab.addEventListener('click', function () {
+        tabsEl.querySelectorAll('.extras__tab').forEach(function (b, bi) {
+          var on = bi === i;
+          b.classList.toggle('is-active', on);
+          b.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        panelsEl.querySelectorAll('.extras__panel').forEach(function (p, pi) { p.hidden = pi !== i; });
       });
     });
   })();
@@ -1362,63 +1459,83 @@
      dlg.openGallery exists. */
   /* This date's urgency, same shape the index list uses:
      {type:'scarce', label:'...'}, {type:'soldout'}, or null for none.
-     TODO — placeholder. The index carries Between Fire & Ice on September
-     6-12; this page sells October 11-19, so its real value is a different
-     date's and has to come from the booking data. */
-  var URGENCY = { type: 'scarce', label: '2 spaces left' };
+     This one matches the Beach Escape row in index.html, which carries the
+     same retreat on the same dates — keep the two in step. */
+  var URGENCY = null;
 
   /* The page's room data. Lives out here rather than inside the pricing
      module because the sticky booking bar reads it too — both need the
      same numbers, and a second copy is a second thing to forget. */
-  /* The three options the retreat actually sells, with the prices from
-     its own page. Both private tiers are the same king room — only the
-     occupancy and the price differ. Every tier shares the turf house row,
-     because that single night is one common space for the whole group and
-     has no private version. */
+  /* PLACEHOLDER prices, attrs and photos. Room counts follow the
+     Accommodations text (five private queens, three shared twins); the
+     images reuse hotel photos because no per-room shots exist in the repo
+     yet. Any of bed / bath / view may be absent — a missing one simply
+     renders no chip. */
   var TIERS = [
     {
-      name: 'Private \u2014 Single',
-      priceUSD: 11295,
-      hotels: [
-        { name: 'Northern Light Inn',
-          attrs: { bed: 'King', bath: 'En-suite', view: 'Lava fields' },
-          gallery: ['images/iceland/room-nli-king.jpg', 'images/iceland/hotel1-2.jpg', 'images/iceland/hotel1-3.jpg'] },
-        { name: 'Fosshotel Glacier Lagoon',
-          attrs: { bed: 'King', bath: 'En-suite', view: 'Mountain' },
-          gallery: ['images/iceland/room-foss-king.jpg', 'images/iceland/hotel2-2.jpg', 'images/iceland/hotel2-3.jpg'] },
-        { name: 'Turf Guesthouse & Horse Farm',
-          attrs: { bed: 'Individual', bath: 'Shared' },
-          gallery: ['images/iceland/hotel3-6.jpg', 'images/iceland/hotel3-1.jpg', 'images/iceland/hotel3-4.jpg'] }
-      ]
-    },
-    {
-      name: 'Private \u2014 Shared bed',
-      priceUSD: 9865,
-      hotels: [
-        { name: 'Northern Light Inn',
-          attrs: { bed: 'King', bath: 'En-suite', view: 'Lava fields' },
-          gallery: ['images/iceland/room-nli-king.jpg', 'images/iceland/hotel1-2.jpg', 'images/iceland/hotel1-3.jpg'] },
-        { name: 'Fosshotel Glacier Lagoon',
-          attrs: { bed: 'King', bath: 'En-suite', view: 'Mountain' },
-          gallery: ['images/iceland/room-foss-king.jpg', 'images/iceland/hotel2-2.jpg', 'images/iceland/hotel2-3.jpg'] },
-        { name: 'Turf Guesthouse & Horse Farm',
-          attrs: { bed: 'Individual', bath: 'Shared' },
-          gallery: ['images/iceland/hotel3-6.jpg', 'images/iceland/hotel3-1.jpg', 'images/iceland/hotel3-4.jpg'] }
-      ]
-    },
-    {
-      name: 'Shared Double',
+      name: 'Shared Double Room',
       priceUSD: 10265,
+      priceUnit: 'per person',
       hotels: [
-        { name: 'Northern Light Inn',
-          attrs: { bed: 'Twin', bath: 'En-suite' },
-          gallery: ['images/iceland/room-nli-twin.jpg', 'images/iceland/hotel1-2.jpg', 'images/iceland/hotel1-3.jpg'] },
-        { name: 'Fosshotel Glacier Lagoon',
-          attrs: { bed: 'Twin', bath: 'En-suite', view: 'Sea' },
-          gallery: ['images/iceland/room-foss-triple.jpg', 'images/iceland/hotel2-4.jpg', 'images/iceland/hotel2-5.jpg'] },
-        { name: 'Turf Guesthouse & Horse Farm',
-          attrs: { bed: 'Individual', bath: 'Shared' },
-          gallery: ['images/iceland/hotel3-6.jpg', 'images/iceland/hotel3-1.jpg', 'images/iceland/hotel3-4.jpg'] }
+        {
+          name: 'Hotel in the heart of Reykjavík',
+          chips: ['Two individual beds', 'Private bath'],
+          gallery: ['images/retreat-photos/iceland/yoga-retreat-iceland-reykjavik-hotel-twin-room.webp', 'images/retreat-photos/iceland/yoga-retreat-iceland-glacier-hotel-twin-room.webp']
+        },
+        {
+          name: 'Hotel near the Vatnajökull glacier',
+          chips: [],
+          gallery: []
+        },
+        {
+          name: 'Turf guesthouse on a horse farm near Hella',
+          chips: [],
+          gallery: []
+        }
+      ]
+    },
+    {
+      name: 'Private Room',
+      priceUSD: 11295,
+      priceUnit: 'per room',
+      hotels: [
+        {
+          name: 'Hotel in the heart of Reykjavík',
+          chips: ['King bed', 'Private bath'],
+          gallery: ['images/retreat-photos/iceland/yoga-retreat-iceland-reykjavik-hotel-double-room.webp', 'images/retreat-photos/iceland/yoga-retreat-iceland-glacier-hotel-private-room.webp']
+        },
+        {
+          name: 'Hotel near the Vatnajökull glacier',
+          chips: [],
+          gallery: []
+        },
+        {
+          name: 'Turf guesthouse on a horse farm near Hella',
+          chips: [],
+          gallery: []
+        }
+      ]
+    },
+    {
+      name: 'Private Room — shared bed',
+      priceUSD: 9865,
+      priceUnit: 'per person',
+      hotels: [
+        {
+          name: 'Hotel in the heart of Reykjavík',
+          chips: ['King bed', 'Private bath'],
+          gallery: ['images/retreat-photos/iceland/yoga-retreat-iceland-reykjavik-hotel-double-room.webp', 'images/retreat-photos/iceland/yoga-retreat-iceland-glacier-hotel-private-room.webp']
+        },
+        {
+          name: 'Hotel near the Vatnajökull glacier',
+          chips: [],
+          gallery: []
+        },
+        {
+          name: 'Turf guesthouse on a horse farm near Hella',
+          chips: [],
+          gallery: []
+        }
       ]
     }
   ];
@@ -1507,8 +1624,10 @@
       var head = el('div', 'rooms__head');
       head.appendChild(el('h3', 'rooms__tier-name', tier.name));
       var price = el('div', 'rooms__price');
-      price.appendChild(el('p', 'rooms__price-amount', tier.priceUSD.toLocaleString('en-US') + ' USD'));
-      price.appendChild(el('p', 'rooms__price-unit', 'per person'));
+      /* A price may not be published yet, and is per person or per room. */
+      price.appendChild(el('p', 'rooms__price-amount', tier.priceUSD == null
+        ? 'Coming soon' : tier.priceUSD.toLocaleString('en-US') + ' USD'));
+      if (tier.priceUSD != null && tier.priceUnit) price.appendChild(el('p', 'rooms__price-unit', tier.priceUnit));
       head.appendChild(price);
       body.appendChild(head);
 
@@ -1529,7 +1648,7 @@
         text.appendChild(el('p', 'rooms__hotel-name', hotel.name));
 
         var attrs = hotel.attrs || {};
-        var chips = [
+        var chips = hotel.chips || [
           attrs.bed && attrs.bed + ' bed',
           attrs.bath && attrs.bath + ' bath',
           attrs.view && attrs.view + ' view'
@@ -1586,7 +1705,12 @@
         move(active(), false);
         bar.addEventListener('click', function (e) {
           var t = e.target.closest(kind.item);
-          if (t && bar.contains(t)) move(t, !reduce);
+          if (t && bar.contains(t)) {
+            move(t, !reduce);
+            if (bar.scrollWidth > bar.clientWidth) {
+              bar.scrollTo({ left: t.offsetLeft - (bar.clientWidth - t.offsetWidth) / 2, behavior: reduce ? 'auto' : 'smooth' });
+            }
+          }
         });
         /* Observe the bar, not the window: the tabs can rewrap or change
            width without the viewport doing anything, and a resize listener
@@ -1995,9 +2119,10 @@
     var rooms = document.querySelector('.rooms');
     if (!hero || !rooms || !window.IntersectionObserver) return;
 
-    var prices = (typeof TIERS !== 'undefined' ? TIERS : []).map(function (t) { return t.priceUSD; });
-    if (!prices.length) return;
-    var from = Math.min.apply(null, prices);
+    var priced = (typeof TIERS !== 'undefined' ? TIERS : []).filter(function (t) { return t.priceUSD != null; });
+    if (!priced.length) return;
+    var cheapest = priced.reduce(function (a, t) { return t.priceUSD < a.priceUSD ? t : a; });
+    var from = cheapest.priceUSD;
 
     var name = hero.querySelector('.retreat-hero__title');
     var date = hero.querySelector('.retreat-hero__meta span');
@@ -2027,11 +2152,11 @@
     priceEl.appendChild(document.createTextNode('From ' + from.toLocaleString('en-US') + ' USD'));
     var unit = document.createElement('span');
     unit.className = 'booking-bar__price-unit';
-    unit.textContent = ' · per person';
+    unit.textContent = cheapest.priceUnit ? ' · ' + cheapest.priceUnit : '';
     priceEl.appendChild(unit);
-    var cta = document.createElement('button');
+    var cta = document.createElement('a');
     cta.className = 'btn btn--primary';
-    cta.type = 'button';
+    cta.href = '#rooms';
     cta.textContent = 'Book now';
     act.appendChild(priceEl);
     act.appendChild(cta);
@@ -2144,6 +2269,6 @@
   })();
 </script>
 
-<script src="js/hosts.js?v=202611181711" defer></script>
+<script src="js/hosts.js?v=202611191130" defer></script>
 </body>
 </html>

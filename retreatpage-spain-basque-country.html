@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/base.css?v=202611192000">
-<link rel="stylesheet" href="css/retreat.css?v=202611200330">
+<link rel="stylesheet" href="css/retreat.css?v=202611200500">
 </head>
 <body>
 <!-- Built by retreats/_tools/build_page.py --waitlist from data/locations.js (program) and retreats/spain-basque-country/data.json,
@@ -224,7 +224,7 @@
               <ul class="retreat-itinerary__bullets">
                 <li>Arrival to our oceanfront San Sebastian hotel, check-in &amp; settle</li>
                 <li>Opening circle and yoga practice</li>
-                <li>Opening dinner at Amelia by Paulo Airaudo, 2 Michelin starred dining experience with wine pairing</li>
+                <li>Opening dinner at the hotel's two Michelin star restaurant with wine pairing</li>
               </ul>
             </div>
 
@@ -1107,16 +1107,16 @@
           'On one side of the glass, one of the most beautiful promenades in the world: the La Concha promenade in San Sebastián . On the other, the intimacy and charm of an original 19th century villa: a luxury hotel. On one side, life, light, sea and salt spray. On the other, two Michelin stars, a few good days and a cozy corner where you can enjoy the passage of time.',
           'A cozy environment, a special place, where everything has been created around the same idea: that each day among us is unique.',
           'Your room window opens to the heart of the city, to the best possible location on the bay.',
-          'We offer you a proposal of haute cuisine in each service, created by the award-winning chef Paulo Airaudo. In addition, the hotel has in its facilities the Amelia by Paulo Airaudo restaurant, with two Michelin stars.'
+          'The hotel restaurant holds two Michelin stars, and every meal there is cooked to that standard.'
         ]
       },
       {
-        name: 'Mayor de Migueloa',
-        tab: 'Mayor de Migueloa',
+        name: 'Laguardia Posada & Winery',
+        tab: 'Laguardia Posada & Winery',
         gallery: ['images/retreat-photos/spain-basque-country/yoga-retreat-basque-country-posada-entrance-on-a-stone-street.webp', 'images/retreat-photos/spain-basque-country/yoga-retreat-basque-country-posada-cellar-stairway.webp', 'images/retreat-photos/spain-basque-country/yoga-retreat-basque-country-posada-dining-room.webp', 'images/retreat-photos/spain-basque-country/yoga-retreat-basque-country-posada-wine-cellar.webp', 'images/retreat-photos/spain-basque-country/yoga-retreat-basque-country-posada-room-with-stone-wall.webp', 'images/retreat-photos/spain-basque-country/yoga-retreat-basque-country-posada-room-under-the-beams.webp', 'images/retreat-photos/spain-basque-country/yoga-retreat-basque-country-tomato-salad-and-grilled-steak.webp', 'images/retreat-photos/spain-basque-country/yoga-retreat-basque-country-chef-and-winemaker-in-the-cellar.webp', 'images/retreat-photos/spain-basque-country/yoga-retreat-basque-country-mayor-wine-bottles.webp'],
         text: [
-          'For the last half of the retreat we will travel to Spain’s world-renowned wine country to stay in the Old Viana palace built in 1619 nestled into the heart of Laguardia, a fortified hilltop village in the Rioja Alavesa Wine Route. The posada is one of the most interesting historical buildings in Laguardia as it is still operational, producing incredible wines in the antique methods right in the cellar of the building, inside the town.',
-          'It was declared a heritage site of historical and cultural interest by the Government of the Basque Country. Rehabilitated in 1988 by Jaime Gutiérrez and Mery González, pioneers in Spanish wine tourism, Mayor de Migueloa offers a space full of history and full of corners where you can evoke flavors from other times and enjoy the environment, the local products and the nobility of the people.',
+          'For the last half of the retreat we will travel to Spain’s world-renowned wine country to stay in a palace built in 1619 nestled into the heart of Laguardia, a fortified hilltop village in the Rioja Alavesa Wine Route. The posada is one of the most interesting historical buildings in Laguardia as it is still operational, producing incredible wines in the antique methods right in the cellar of the building, inside the town.',
+          'It was declared a heritage site of historical and cultural interest by the Government of the Basque Country. Restored in 1988 by pioneers of Spanish wine tourism, the posada offers a space full of history and full of corners where you can evoke flavors from other times and enjoy the environment, the local products and the nobility of the people.',
           'In keeping with the idea of tradition, the hotel respect the architectural style of the palace with the original floors, wooden beams, stone walls and a staircase made with ashlar stones that show the wear and tear of thousands of footsteps over more than four hundred years. Seeking essence, not perfection, is the motto of this incredible gem.',
           'The decoration in each of the eight unique guest rooms respects the style of the era, with antique furnishings and other decorative elements adorning the property. Guests are made to feel that they are staying in a seventeenth century nobleman’s palace but with the modern amenities of the 21st century. It is indeed a magical experience.',
           'To complement the incredible wines that are still being made within these walls, the restaurant onsite produces some of the best traditional cuisine in the Basque Country. Highlighting quality ingredients and simplicity, dishes range from classic croquetas, tomato salad and seasonal vegetables to fresh seafood in the Rioja style and their famous dry-aged beef cuts of Chuleton.',
@@ -1141,23 +1141,8 @@
 
     var ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M%s"/></svg>';
 
-    HOTELS.forEach(function (hotel, i) {
-      var id = 'accom-' + i;
-
-      var tab = document.createElement('button');
-      tab.className = 'tabs__item retreat-accom__tab' + (i === 0 ? ' is-active' : '');
-      tab.setAttribute('role', 'tab');
-      tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
-      tab.setAttribute('aria-controls', id);
-      tab.textContent = hotel.tab || hotel.name;
-      tabsEl.appendChild(tab);
-
-      var panel = document.createElement('div');
-      panel.className = 'retreat-accom__panel';
-      panel.id = id;
-      panel.setAttribute('role', 'tabpanel');
-      if (i !== 0) panel.hidden = true;
-      panel.innerHTML =
+    function panelHTML(hotel) {
+      return (
         '<div class="photo-slider retreat-accom__slider" data-lightbox role="group" aria-roledescription="carousel" aria-label="' + hotel.name + ' photos">' +
           '<div class="photo-slider__track">' +
             hotel.gallery.map(function (src, n) {
@@ -1175,7 +1160,39 @@
         '<div class="retreat-accom__copy">' +
           '<h3 class="retreat-accom__name">' + hotel.name + '</h3>' +
           '<div class="retreat-accom__text">' + hotel.text.map(function (t) { return '<p>' + t + '</p>'; }).join('') + '</div>' +
-        '</div>';
+        '</div>'
+      );
+    }
+
+    /* One hotel needs no tabs: a single tab is a control that switches
+       nothing. The bar is removed and the panel stands on its own. */
+    var single = HOTELS.length < 2;
+    if (single) tabsEl.remove();
+
+    HOTELS.forEach(function (hotel, i) {
+      var id = 'accom-' + i;
+      if (single) {
+        var solo = document.createElement('div');
+        solo.className = 'retreat-accom__panel';
+        panelsEl.appendChild(solo);
+        solo.innerHTML = panelHTML(hotel);
+        return;
+      }
+
+      var tab = document.createElement('button');
+      tab.className = 'tabs__item retreat-accom__tab' + (i === 0 ? ' is-active' : '');
+      tab.setAttribute('role', 'tab');
+      tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+      tab.setAttribute('aria-controls', id);
+      tab.textContent = hotel.tab || hotel.name;
+      tabsEl.appendChild(tab);
+
+      var panel = document.createElement('div');
+      panel.className = 'retreat-accom__panel';
+      panel.id = id;
+      panel.setAttribute('role', 'tabpanel');
+      if (i !== 0) panel.hidden = true;
+      panel.innerHTML = panelHTML(hotel);
       panelsEl.appendChild(panel);
 
       tab.addEventListener('click', function () {
