@@ -12,6 +12,13 @@
      shortBio  -> ACF text (the card blurb)
      pageUrl   -> permalink
 
+   Shown on facilitators.html (the file keeps its old name so nothing
+   that reads YAWW_TEAM breaks). `listed: false` keeps a person's data
+   without a card: Marina and Fleur keep an unlisted page because
+   retreat pages still link to it, and JL now points to her teacher
+   page. Christina's photo is the old candid: no real portrait exists
+   yet (see docs/people-assets.md).
+
    Order is deliberate, not alphabetical: the founder opens the grid.
    ============================================================ */
 window.YAWW_TEAM = [
@@ -20,7 +27,7 @@ window.YAWW_TEAM = [
     name: "Christina Thomas",
     slug: "christina-thomas",
     photo: "images/team/christina-thomas.jpg",
-    pageUrl: "team-christina-thomas.html",
+    pageUrl: "facilitator-christina-thomas.html",
     shortBio: "Founder of YAWW, Christina brings global retreat expertise and a clear, creative vision. She leads with intention, precision, and a deep appreciation for meaningful travel.",
     bio: [
       "In 2008 Christina left her fancy, big city Interior Design career to follow her heart in the Caribbean of Tulum, Mexico. After many amazing (and bumpy) serendipitous turns, she has founded Utopia Guesthouse & Yoga Studios in Tulum, Havana and now El Cuyo, Yucatan. She started Yoga Adventures Tulum in 2008 and Yoga & Adventures Worldwide in 2010, offering unique, affordable retreat adventures in some of the world’s most fascinating locations.",
@@ -30,10 +37,11 @@ window.YAWW_TEAM = [
   },
   {
     id: "marina-coria",
+    listed: false,
     name: "Marina Coria",
     slug: "marina-coria",
     photo: "images/team/marina-coria.jpg",
-    pageUrl: "team-marina-coria.html",
+    pageUrl: "facilitator-marina-coria.html",
     shortBio: "Marina brings calm clarity and thoughtful care to our retreats. Based in Barcelona, she blends human insight with grounded organization throughout.",
     bio: [
       "Marina was born in Neuquén, Argentina, in the valleys of northern Patagonia, and has made Barcelona her home since 2010. A professional astrologer with a humanistic approach, she combines symbolic insight with a grounded sense of care and organization.",
@@ -45,7 +53,7 @@ window.YAWW_TEAM = [
     name: "Sofi von Linden",
     slug: "sofi-von-linden",
     photo: "images/team/sofi-von-linden.jpg",
-    pageUrl: "team-sofi-von-linden.html",
+    pageUrl: "facilitator-sofi-von-linden.html",
     shortBio: "Sofi brings a grounded, steady presence to our retreats, offering clear guidance and a thoughtful global perspective to every group she leads.",
     bio: [
       "Sofi has been an integral part of our journey since the very beginning, joining us at the original Utopia Guesthouse & Yoga Studio in Tulum back in 2012. Over the years, her presence has become synonymous with the essence of our retreats—a perfect blend of warmth, wisdom, and unforgettable experiences.",
@@ -56,10 +64,11 @@ window.YAWW_TEAM = [
   },
   {
     id: "fleur-optekamp",
+    listed: false,
     name: "Fleur Optekamp",
     slug: "fleur-optekamp",
     photo: "images/team/fleur-optekamp.jpg",
-    pageUrl: "team-fleur-optekamp.html",
+    pageUrl: "facilitator-fleur-optekamp.html",
     shortBio: "Fleur brings global perspective and design sensibility to our retreats in Asia, supporting each experience with clarity and thoughtful coordination.",
     bio: [
       "Fleur has been a lifelong friend of YAWW, always inspiring us with her adventurous spirit, passion for travel, and deep love for wellness. As we expand our offerings to Southeast Asia, she was the natural choice to lead the way. She and Christina, our founder, attended Interior Design school together in North Carolina, worked side by side in a high-end residential firm in NYC for years and have remained close over the past decades as life has led them on their global paths.",
@@ -74,7 +83,7 @@ window.YAWW_TEAM = [
     name: "Karolina Quesada",
     slug: "karolina-quesada",
     photo: "images/team/karolina-quesada.jpg",
-    pageUrl: "team-karolina-quesada.html",
+    pageUrl: "facilitator-karolina-quesada.html",
     shortBio: "Karolina brings cultural fluency and grounded ease to every retreat. Based in Havana, she adds clear insight, warm presence, and thoughtful care throughout.",
     bio: [
       "Karolina was born in Bonn, Germany, to German and Serbian roots, giving her a rich and diverse cultural heritage that has shaped her adventurous and dynamic spirit. From a young age, she has traveled the world, embracing new experiences and cultures with enthusiasm and grace.",
@@ -86,10 +95,11 @@ window.YAWW_TEAM = [
   },
   {
     id: "jenniferlyn-chiemingo",
+    listed: false,
     name: "Jenniferlyn Chiemingo",
     slug: "jenniferlyn-chiemingo",
     photo: "images/team/jenniferlyn-chiemingo.jpg",
-    pageUrl: "team-jenniferlyn-chiemingo.html",
+    pageUrl: "teacher-jenniferlyn-chiemingo.html",
     shortBio: "JL supports our inbox and guest communications with clarity, care, and deep retreat knowledge. She keeps everything running smoothly behind the scenes.",
     bio: [
       "Helping with all your email needs, inquiries and plans…JL is on the case! We are so grateful to have her helping out with our inbox. She’s taught most of our retreats so she knows the answers and we are thrilled to have her support."
@@ -99,8 +109,9 @@ window.YAWW_TEAM = [
     id: "renata-centi",
     name: "Renata Centi",
     slug: "renata-centi",
-    photo: "images/team/renata-centi.jpg",
-    pageUrl: "team-renata-centi.html",
+    photo: "images/people/renata-centi-1.jpg",
+    photoPosition: "50% 35%",
+    pageUrl: "facilitator-renata-centi.html",
     shortBio: "Renata brings warm presence and steady care to our retreats in El Cuyo and Sardinia. A teacher and therapist, she supports each guest with clarity, ease, and quiet strength.",
     bio: [
       "Renata lives in the tranquil seaside paradise of El Cuyo, where she wears many hats as a yoga teacher, massage therapist, and retreat facilitator. Originally from the lush and rolling landscapes of Umbria, Italy, Renata brings a blend of European charm and soulful warmth to every experience she curates.",
@@ -111,5 +122,5 @@ window.YAWW_TEAM = [
   }
 ];
 
-/* Lede for team.html */
-window.YAWW_TEAM_INTRO = "Our team holds each retreat with clarity, warmth, and care. We blend intention, steady organization, and human presence to create meaningful experiences that support your journey from start to end.";
+/* Lede for facilitators.html */
+window.YAWW_TEAM_INTRO = "A facilitator from our team travels with every group. They know the place, handle every detail and look after each guest, so all you have to do is be there.";
