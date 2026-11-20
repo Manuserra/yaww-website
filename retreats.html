@@ -11,8 +11,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/base.css?v=202611192000">
-<link rel="stylesheet" href="css/filters.css?v=202611191930">
-<link rel="stylesheet" href="css/retreats.css?v=202611200200">
+<link rel="stylesheet" href="css/filters.css?v=202611200500">
+<link rel="stylesheet" href="css/retreats.css?v=202611200500">
 <!-- Retreat data + the one card component every retreat card is rendered
      by. Classic scripts so the prototype still works over file://.
      Order matters: the catalogs load before the data, the data before
@@ -632,7 +632,7 @@ function renderFilterBar() {
           '<span class="filter-seg__text"><span class="filter-seg__label">' + esc(def.label) + '</span>' +
           '<span class="filter-seg__value' + (empty ? ' is-empty' : '') + '">' + esc(state[def.key] || def.any) + '</span></span>' +
         '</button>' +
-        (empty ? '' : '<button type="button" class="filter-seg__clear" data-seg="' + def.key + '" aria-label="Clear ' + esc(def.label) + ' filter"><svg width="12" height="12" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3 13 13 M13 3 3 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></button>') +
+        (empty ? '' : '<button type="button" class="filter-seg__clear" data-seg="' + def.key + '" aria-label="Clear ' + esc(def.label) + ': ' + esc(state[def.key]) + '"><svg width="12" height="12" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3 13 13 M13 3 3 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>') +
         '<svg class="filter-seg__chev" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 5.25 7 9.25 11 5.25" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
       '</div>' +
       (open ? '<div class="filter-panel" data-lenis-prevent>' + panelHTML(def) + '</div>' : '') +
@@ -782,7 +782,14 @@ function closeSheet() {
 /* ---------- wiring ---------- */
 filterBar.addEventListener("click", function (e) {
   const clr = e.target.closest(".filter-seg__clear");
-  if (clr) { state[clr.dataset.seg] = ""; note = null; renderFilterBar(); renderResults(); e.stopPropagation(); return; }
+  if (clr) {
+    const key = clr.dataset.seg;
+    state[key] = ""; note = null; renderFilterBar(); renderResults();
+    /* The x is gone once its value is; keep focus on that segment. */
+    const t = filterBar.querySelector('.filter-seg__trigger[data-seg="' + key + '"]');
+    if (t) t.focus();
+    e.stopPropagation(); return;
+  }
   const seg = e.target.closest(".filter-seg__btn");
   if (seg) {
     const key = seg.dataset.seg;

@@ -105,6 +105,12 @@
 /* Press: a joined bar can't scale one segment without breaking the row,
    so the press answers with a deeper wash instead (Stone-300 @ 60%). */
 .filter-seg:not(.is-open) .filter-seg__btn:active { background: rgba(225, 220, 214, 0.60); }
+/* Clear (x). It used to be a faint sea-blue-300 glyph whose own hover
+   (stone-200) was lighter than the segment's hover wash, so on a hovered
+   segment it all but disappeared. Now: full sea-blue at rest; when the
+   segment is hovered it lifts onto a stone-100 square with a hairline,
+   so it reads as its own control; hovered itself it inverts to sea-blue.
+   Square, like every other control on the site. */
 .filter-seg__clear {
   flex-shrink: 0;
   width: 32px;
@@ -112,12 +118,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  color: var(--sea-blue-300);
-  transition: background-color .12s ease, color .12s ease;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--sea-blue);
+  cursor: pointer;
+  transition: background-color .12s ease, border-color .12s ease, color .12s ease;
 }
 @media (hover: hover) and (pointer: fine) {
-  .filter-seg__clear:hover { background: var(--stone-200); color: var(--sea-blue); }
+  .filter-seg:not(.is-open) .filter-seg__btn:hover .filter-seg__clear,
+  .filter-seg.is-open .filter-seg__clear { background: var(--stone-100); border-color: var(--stone-400); }
+  /* Selectors match the two above in weight, so source order decides. */
+  .filter-seg:not(.is-open) .filter-seg__btn:hover .filter-seg__clear:hover,
+  .filter-seg.is-open .filter-seg__btn .filter-seg__clear:hover { background: var(--sea-blue); border-color: var(--sea-blue); color: var(--stone-100); }
+}
+.filter-seg:not(.is-open) .filter-seg__btn .filter-seg__clear:active:active,
+.filter-seg.is-open .filter-seg__btn .filter-seg__clear:active:active { background: var(--sea-blue-500); border-color: var(--sea-blue-500); color: var(--stone-100); }
+@media (max-width: 767px) {
+  .filter-seg__clear { width: 40px; height: 40px; margin-right: -4px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .filter-seg__btn, .filter-seg__chev, .filter-seg__clear, .filter-seg__value { transition: none; }
@@ -210,9 +227,9 @@
   color: var(--sea-blue-300);
 }
 .filter-option__check { flex-shrink: 0; color: var(--sea-blue-500); }
+.filter-seg__clear:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
 .filter-option:focus-visible,
 .filter-seg__trigger:focus-visible,
-.filter-seg__clear:focus-visible,
 .filter-summary__clear:focus-visible {
   outline: 2px solid var(--sea-blue-300);
   outline-offset: -2px;
