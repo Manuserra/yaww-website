@@ -450,11 +450,45 @@
   */
   YAWW.WAITLIST_ENDPOINT = null;   // TODO(backend): set to the webhook URL
 
+  /* Same words and rules as the lead modal (js/lead-modal.js). Returns
+     the first field that needs fixing, or null. */
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  function checkField(form, name) {
+    var el = form.elements[name];
+    if (!el) return true;
+    var v = (el.value || "").trim(), msg = "";
+    if (name === "first_name" && !v) msg = "Please tell us your first name.";
+    if (name === "email") {
+      if (!v) msg = "We need an email to write to you.";
+      else if (!EMAIL_RE.test(v)) msg = "That email looks incomplete. Could you check it?";
+    }
+    var out = form.querySelector('[data-error-for="' + name + '"]');
+    el.setAttribute("aria-invalid", msg ? "true" : "false");
+    var wrap = el.closest(".lead-form__field");
+    if (wrap) wrap.classList.toggle("is-invalid", !!msg);
+    if (out) out.textContent = msg;
+    return !msg;
+  }
+  function checkFields(form) {
+    form.dataset.attempted = "1";
+    var bad = null;
+    ["first_name", "email"].forEach(function (n) { if (!checkField(form, n) && !bad) bad = form.elements[n]; });
+    return bad;
+  }
+
   function wireWaitlistForm(form) {
     if (!form || form.dataset.yawwWired) return;
     form.dataset.yawwWired = "1";
 
     var errorEl   = form.querySelector("[data-waitlist-error]");
+    if (form.querySelector("[data-error-for]")) {
+      ["first_name", "email"].forEach(function (n) {
+        var el = form.elements[n];
+        if (!el) return;
+        el.addEventListener("input", function () { if (el.getAttribute("aria-invalid") === "true") checkField(form, n); });
+        el.addEventListener("blur", function () { if (form.dataset.attempted || el.value) checkField(form, n); });
+      });
+    }
     var successEl = document.getElementById(form.getAttribute("data-waitlist-success") || "");
 
     form.addEventListener("submit", function (e) {
@@ -467,6 +501,15 @@
       var msg = "";
       if (!first.value.trim()) msg = "Please add your first name.";
       else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) msg = "Please add a valid email address.";
+
+      /* Per-field mode: a form that gives each input its own
+         [data-error-for] line (the location pages) gets the lead
+         form's behaviour, one message under each field that needs it. */
+      if (form.querySelector("[data-error-for]")) {
+        var bad = checkFields(form);
+        if (bad) { bad.focus(); return; }
+        msg = "";
+      }
 
       if (msg) {
         if (errorEl) { errorEl.textContent = msg; errorEl.hidden = false; }
@@ -488,6 +531,10 @@
       }));
 
       if (successEl) {
+        var doneTitle = successEl.querySelector("[data-wait-done-title]");
+        if (doneTitle) doneTitle.textContent = "You are on the list, " + payload.firstName + ".";
+        var body = form.closest("[data-loc-wait-body]");
+        if (body) body.hidden = true;
         form.hidden = true;
         successEl.hidden = false;
         successEl.setAttribute("tabindex", "-1");

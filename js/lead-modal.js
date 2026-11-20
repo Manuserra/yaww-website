@@ -48,8 +48,11 @@
     var meta = hero && hero.querySelector(".retreat-hero__meta span");
     var img = hero && hero.querySelector(".retreat-hero__image");
     var bg = img ? (img.style.backgroundImage || "").replace(/^url\(["']?|["']?\)$/g, "") : "";
+    var kind = (hero && hero.getAttribute("data-lead-kind")) || "retreat";
     return {
-      id: (hero && hero.getAttribute("data-retreat-id")) || location.pathname.replace(/^.*\/|\.html$/g, ""),
+      kind: kind,
+      locationId: (hero && hero.getAttribute("data-location-id")) || "",
+      id: (hero && hero.getAttribute("data-retreat-id")) || (kind === "location" ? "" : location.pathname.replace(/^.*\/|\.html$/g, "")),
       name: title ? title.textContent.trim() : document.title.replace(/^YAWW · /, ""),
       dates: meta ? meta.textContent.trim() : "",
       photo: bg
@@ -101,7 +104,9 @@
               '</fieldset>' +
               '<fieldset class="lead-form__group">' +
                 '<legend class="lead-form__label">What would you like to know? <span class="lead-form__opt">Optional</span></legend>' +
-                '<div class="lead-pills">' + pills("topics", "checkbox", [["rooms", "Rooms and prices"], ["level", "Is it right for my level?"], ["travel", "Getting there"], ["other", "Something else"]]) + '</div>' +
+                '<div class="lead-pills">' + pills("topics", "checkbox", ctx.kind === "location"
+                  ? [["dates", "Upcoming dates"], ["level", "Is it right for my level?"], ["travel", "Getting there"], ["other", "Something else"]]
+                  : [["rooms", "Rooms and prices"], ["level", "Is it right for my level?"], ["travel", "Getting there"], ["other", "Something else"]]) + '</div>' +
               '</fieldset>' +
               '<div class="lead-form__field">' +
                 '<label class="lead-form__label" for="lead-message">Your question <span class="lead-form__opt">Optional</span></label>' +
@@ -119,7 +124,8 @@
                 '<span>Also send me news of future retreats</span>' +
               '</label>' +
               '<input type="hidden" name="retreat_id" value="' + esc(ctx.id) + '">' +
-              '<input type="hidden" name="retreat_name" value="' + esc(ctx.name) + '">' +
+              '<input type="hidden" name="retreat_name" value="' + (ctx.kind === "location" ? "" : esc(ctx.name)) + '">' +
+              '<input type="hidden" name="location_id" value="' + esc(ctx.locationId) + '">' +
               '<input type="hidden" name="retreat_dates" value="' + esc(ctx.dates) + '">' +
               '<input type="hidden" name="room" value="">' +
               '<input type="hidden" name="intent" value="info">' +
@@ -137,7 +143,7 @@
             '<svg class="lead-modal__tick" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22.5"/><path d="M15 24.5l6 6 12-13"/></svg>' +
             '<h2 class="lead-modal__title" data-lead-done-title>Thank you</h2>' +
             '<p class="lead-modal__intro" data-lead-done-text></p>' +
-            '<button class="btn btn--secondary lead-modal__back" type="button">Back to the retreat</button>' +
+            '<button class="btn btn--secondary lead-modal__back" type="button">' + (ctx.kind === "location" ? "Back to " + esc(ctx.name) : "Back to the retreat") + '</button>' +
           '</div>' +
         '</div>' +
       '</div>';
@@ -269,7 +275,7 @@
       if (rooms) rooms.checked = true;
     }
     var reserve = intent === "reserve";
-    dlg.querySelector("[data-lead-title]").textContent = reserve ? "Reserve your spot" : "Ask us about this retreat";
+    dlg.querySelector("[data-lead-title]").textContent = reserve ? "Reserve your spot" : (ctx.kind === "location" ? "Ask us about " + ctx.name : "Ask us about this retreat");
     dlg.querySelector("[data-lead-intro]").textContent = reserve
       ? "Leave your name and email and we will write to you to book" + (room ? " this room" : " your place") + ", with the deposit details and anything you would like to ask first."
       : "Leave your name and email, and a question if you have one. Someone from our team will write back to you personally.";

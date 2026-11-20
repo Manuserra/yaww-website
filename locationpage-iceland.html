@@ -3,7 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>YAWW · Iceland</title>
+<title>Iceland yoga retreats · YAWW</title>
+<meta name="description" content="Iceland through our eyes: iceland invites you into something vast. When we go, how to get there and our retreats in Iceland.">
+<link rel="canonical" href="locationpage-iceland.html">
+<meta property="og:title" content="Iceland yoga retreats · YAWW">
+<meta property="og:description" content="Iceland through our eyes: iceland invites you into something vast. When we go, how to get there and our retreats in Iceland.">
+<meta property="og:image" content="images/retreat-photos/iceland/yoga-retreat-iceland-basalt-columns-on-the-black-beach.webp">
 
 <!-- Fonts: Libre Baskerville (headings) + Raleway (body) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,24 +16,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/base.css?v=202611192000">
-<link rel="stylesheet" href="css/retreat.css?v=202611181609">
-<link rel="stylesheet" href="css/location.css?v=202611181910">
-<!-- Retreat data + the one card component every retreat card is rendered
-     by. Classic scripts so the prototype still works over file://.
-     Order matters: the catalogs load before the data, the data before
-     the component. -->
-<script src="data/locations.js?v=202611161843"></script>
-<script src="data/teachers.js?v=202611161843"></script>
+<link rel="stylesheet" href="css/retreat.css?v=202611200635">
+<link rel="stylesheet" href="css/lead-modal.css?v=202611200635">
+<link rel="stylesheet" href="css/locations.css?v=202611201900">
+<link rel="stylesheet" href="css/location.css?v=202611201900">
+<script src="data/locations.js?v=202611201900"></script>
+<script src="data/teachers.js?v=202611201200"></script>
 <script src="data/retreats.js?v=202611191000"></script>
-<script src="js/retreat-cards.js?v=202611192000"></script>
-
+<script src="js/retreat-cards.js?v=202611201900"></script>
 </head>
 <body>
+<!-- Built by retreats/_tools/build_location.py from retreats/_tools/location_content.py and data/*.js. Edit those, not this file. -->
 
 <!-- Logo sprite: defined once, referenced via <use> from both the desktop
      brand row and the mobile nav-row logo (avoids duplicating the path data). -->
 <svg aria-hidden="true" style="position:absolute; width:0; height:0; overflow:hidden;">
   <symbol id="site-logo-symbol" viewBox="0 0 364 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+
 <g clip-path="url(#clip0_1487_13080)">
 <path d="M120.783 7.93966C120.672 7.88401 120.468 7.86546 120.393 7.7356C120.319 7.6243 120.468 7.42024 120.486 7.29039C120.672 6.17735 120.727 5.58373 121.21 4.5449C121.414 4.09968 121.859 3.46896 122.007 3.06085C122.007 3.0052 122.026 2.9681 122.007 2.91245C120.987 3.33911 120.004 3.91418 118.891 4.11823C118.594 4.17389 118.26 4.17389 117.963 4.22954C117.518 4.30374 117.091 4.4336 116.646 4.5078C116.368 3.93273 115.867 3.50606 115.515 2.98665C114.902 2.05912 114.643 1.02028 114.235 0C114.142 0 114.123 0.0742024 114.086 0.129854C113.845 0.593619 113.715 1.26144 113.493 1.76231C112.992 2.91245 112.009 3.59882 111.582 4.78606C110.803 4.5078 109.968 4.5449 109.17 4.32229C108.317 4.08113 107.594 3.56172 106.814 3.32056C106.555 3.22781 106.406 3.20925 106.555 3.52462C106.685 3.82142 106.926 4.13679 107.074 4.45215C107.519 5.39823 107.76 6.34431 107.853 7.36459L108.094 8.23647L106.647 9.21965C105.627 9.94312 104.384 10.1657 103.234 10.5924C103.234 10.7037 103.234 10.6666 103.29 10.6852C103.902 10.9634 104.663 11.0933 105.312 11.3715C106.276 11.7796 106.889 12.3918 107.779 12.8741C108.131 13.0596 108.391 12.9854 108.317 13.4677C108.131 14.859 107.89 15.6382 107.26 16.8996C107.111 17.1779 106.87 17.5303 106.759 17.8086C106.74 17.8642 106.722 17.9199 106.74 17.9755C107.352 17.7344 107.946 17.419 108.558 17.1779C109.486 16.8254 109.931 16.7883 110.896 16.677C111.137 16.6399 112.009 16.3616 112.101 16.3802C112.213 16.3802 112.454 16.8811 112.528 16.9924C113.066 17.6973 113.548 18.1981 113.901 19.07C113.993 19.2926 114.457 20.8509 114.55 20.8694C114.569 20.8694 114.643 20.8694 114.643 20.8509C114.921 20.0347 115.181 19.1813 115.607 18.4208C115.923 17.8828 116.312 17.5489 116.665 17.0666C116.85 16.8068 116.962 16.4915 117.166 16.2503L119.095 16.5286C120.152 16.7141 121.08 17.4005 122.044 17.7344C122.119 17.7529 122.174 17.7715 122.249 17.7715C122.082 17.2892 121.785 16.8625 121.562 16.3802C121.061 15.2857 121.024 14.5066 120.783 13.3935C120.746 13.2266 120.56 12.7999 120.616 12.6515C121.377 12.1877 122.007 11.5941 122.824 11.2231C123.12 11.0933 123.436 10.982 123.751 10.8707C124.215 10.7037 124.92 10.5738 125.328 10.3698C125.365 10.3512 125.421 10.3327 125.421 10.277C124.512 9.94313 123.584 9.72052 122.731 9.25675C122.044 8.88574 121.488 8.36632 120.783 7.97676V7.93966Z" fill="currentColor"/>
 <path d="M98.5222 18.1804C98.1512 18.2732 97.7616 18.3103 97.3535 18.3103C96.055 18.3103 94.6451 16.919 94.6451 14.1178V5.88137C94.6451 3.8037 94.033 2.31965 92.8272 1.44777C91.6214 0.575895 90.3599 0.149231 87.4846 0.149231C84.7762 0.149231 82.6985 0.483142 81.2331 1.13241C79.7676 1.78168 79.0255 2.69066 79.0255 3.8779C79.0255 5.06514 79.749 5.71441 81.1774 5.71441C81.7525 5.71441 82.1977 5.60311 82.4945 5.36195C82.7913 5.12079 83.1067 4.65703 83.422 3.95211C83.589 3.48834 83.7745 3.09878 83.96 2.78342C84.1455 2.46806 84.3495 2.2269 84.5907 2.04139C84.8133 1.87444 85.1101 1.74458 85.444 1.67038C85.7965 1.59618 86.2046 1.55908 86.6869 1.55908C89.6736 1.55908 91.1762 3.06168 91.1762 6.04832V7.55092L84.9617 9.86975C83.6632 10.3521 82.5687 10.8529 81.6783 11.3167C80.7878 11.799 80.0644 12.2813 79.5264 12.7636C78.9884 13.246 78.5803 13.7654 78.3392 14.3033C78.098 14.8413 77.9681 15.4164 77.9681 15.9914C77.9681 17.3085 78.4876 18.3659 79.5264 19.1636C80.5652 19.9427 81.9751 20.3508 83.793 20.3508C85.4069 20.3508 86.8724 19.9984 88.1895 19.2935C89.5066 18.5885 90.5455 17.6425 91.2875 16.4367H91.5101C91.5101 17.6796 91.8254 18.6627 92.4376 19.3491C93.0498 20.0355 93.9959 20.3879 95.2573 20.3879C96.259 20.3879 97.2237 20.2024 98.1512 19.8129C99.0787 19.4419 99.7095 18.9595 100.043 18.403L99.4312 17.5126C99.1715 17.8836 98.8561 18.1062 98.4851 18.199L98.5222 18.1804ZM91.1947 12.0216C91.1947 12.8564 91.0463 13.6541 90.7681 14.3961C90.4898 15.1381 90.1002 15.7874 89.5994 16.3439C89.1171 16.9004 88.542 17.3271 87.8927 17.6425C87.2434 17.9578 86.5571 18.1248 85.7965 18.1248C84.7577 18.1248 83.9229 17.8651 83.2922 17.3456C82.6614 16.8262 82.3461 16.177 82.3461 15.3607C82.3461 14.8228 82.4945 14.2848 82.7913 13.7839C83.0881 13.2645 83.589 12.7451 84.2753 12.2442C84.9617 11.7248 85.8707 11.2054 87.0208 10.7045C88.1524 10.1851 89.5437 9.66569 91.1762 9.12773V12.0402L91.1947 12.0216Z" fill="currentColor"/>
@@ -61,8 +65,9 @@
 <rect width="364" height="40.9968" fill="white"/>
 </clipPath>
 </defs>
-  </symbol>
+</symbol>
 </svg>
+
 
 <header class="site-header">
   <div class="site-header__brand">
@@ -74,6 +79,7 @@
   </div>
 </header>
 
+
 <!-- A sibling of <header>, not nested inside it: position:sticky only
      stays pinned while part of its CONTAINING BLOCK (the nearest
      ancestor box) is still in the scrollport. Nested inside the
@@ -83,19 +89,19 @@
      screenful. As a direct child of <body> (which spans the whole
      page) it has the room to stay pinned for the full scroll. -->
 <nav class="site-header__nav" aria-label="Primary">
-    <div class="container">
-      <a href="index.html" class="site-header__logo site-header__logo--nav" aria-label="Yoga Adventures Worldwide — home">
-        <svg role="img" aria-hidden="true" width="364" height="41" viewBox="0 0 364 41"><use href="#site-logo-symbol"></use></svg>
-      </a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
-          <path d="M3 6h18M3 12h18M3 18h18"/>
-        </svg>
-      </button>
-      <ul class="nav-list" id="primary-nav">
-        <li><a href="retreats.html">Retreats</a></li>
-        <li><a href="locations.html">Locations</a></li>
-        <li class="nav-item nav-item--has-sub">
+  <div class="container">
+    <a href="index.html" class="site-header__logo site-header__logo--nav" aria-label="Yoga Adventures Worldwide — home">
+      <svg role="img" aria-hidden="true" width="364" height="41" viewBox="0 0 364 41"><use href="#site-logo-symbol"></use></svg>
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+        <path d="M3 6h18M3 12h18M3 18h18"/>
+      </svg>
+    </button>
+    <ul class="nav-list" id="primary-nav">
+      <li><a href="retreats.html">Retreats</a></li>
+      <li><a href="locations.html" aria-current="page">Locations</a></li>
+      <li class="nav-item nav-item--has-sub">
         <a href="about.html" aria-haspopup="true" aria-expanded="false">About</a>
         <ul class="nav-sub">
           <li><a href="about.html">About Us</a></li>
@@ -103,8 +109,8 @@
           <li><a href="facilitators.html">Facilitators</a></li>
         </ul>
       </li>
-        <li><a href="journal.html">Journal</a></li>
-        <li class="nav-item nav-item--has-sub">
+      <li><a href="journal.html">Journal</a></li>
+      <li class="nav-item nav-item--has-sub">
         <a href="contact.html" aria-haspopup="true" aria-expanded="false">Contact</a>
         <ul class="nav-sub">
           <li><a href="contact.html#general-inquiry">General Inquiry</a></li>
@@ -112,258 +118,188 @@
           <li><a href="contact.html#build-a-custom-retreat">Build a Custom Retreat</a></li>
         </ul>
       </li>
-      </ul>
-    </div>
-  </nav>
+    </ul>
+  </div>
+</nav>
 
 <main>
 
-  <section class="retreat-hero">
-    <div class="retreat-hero__image" role="img" aria-label="Fja&eth;r&aacute;rglj&uacute;fur canyon, south Iceland" style="background-image: url('images/iceland/hero.jpg')"></div>
+  <section class="retreat-hero retreat-hero--overlay loc-hero" data-location-id="iceland" data-lead-kind="location">
+    <div class="retreat-hero__image" role="img" aria-label="Basalt columns on the black beach, Iceland" style="background-image: url('images/retreat-photos/iceland/yoga-retreat-iceland-basalt-columns-on-the-black-beach.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
 
-    <div class="retreat-hero__copy">
-      <h1 class="retreat-hero__title">Iceland, Reykjav&iacute;k &amp; Vik</h1>
-      <p class="retreat-hero__location">Where the road runs out and the country starts.</p>
-      <p class="retreat-hero__badge">Signature Collection</p>
-      <p class="retreat-hero__meta">
-        <span>Next retreat &middot; Oct 11&ndash;19, 2026</span>
-        <span class="retreat-hero__meta-dot" aria-hidden="true">&middot;</span>
-        <span>3 upcoming dates &middot; Hosting here since 2019</span>
-      </p>
-    </div>
+    <div class="retreat-hero__inner">
+      <div class="retreat-hero__copy">
+        <p class="loc-hero__eyebrow">Reykjavík &amp; the south coast</p>
+        <h1 class="retreat-hero__title">Iceland</h1>
+        <p class="retreat-hero__location">Designed to move you. From Reykjavík to the wild.</p>
+        <dl class="loc-hero__facts"><div><dt>When we go</dt><dd>October</dd></div><div><dt>Fly into</dt><dd>Keflavík (KEF)</dd></div><div><dt>Pace</dt><dd>Gently active, some long drives</dd></div></dl>
+      </div>
 
-    <div class="retreat-hero__ctas">
-      <a class="btn btn--primary" href="retreats.html?destination=iceland">See upcoming dates</a>
-      <a class="btn btn--secondary" href="#">Ask us about Iceland</a>
+      <div class="retreat-hero__ctas">
+        <a class="btn btn--light" href="#waitlist">Join the waitlist</a>
+        <a class="btn btn--ghost" href="contact.html#general-inquiry" data-lead-open data-lead-source="hero">Ask us about Iceland</a>
+      </div>
     </div>
   </section>
 
-  <section class="loc-section loc-upcoming" data-location-id="iceland">
-    <div class="loc-inner">
-      <h2 class="loc-section__title">Upcoming retreats in Iceland</h2>
-
-      <!-- Filled from data/retreats.js by js/retreat-cards.js. -->
-      <div class="loc-upcoming__grid" data-retreat-grid hidden></div>
-
-      <!-- Shown instead of the grid when this destination has no
-           announced dates. -->
-      <div class="loc-waitlist" data-retreat-empty hidden>
-        <p class="loc-waitlist__title">No dates scheduled yet</p>
-        <p class="loc-waitlist__body">We are still putting this one together. Leave your name and we will write to you first, before the dates go public.</p>
-
-        <!-- TODO(backend): no endpoint yet. YAWW.wireWaitlistForm() in
-             js/retreat-cards.js validates and shows the success state;
-             set YAWW.WAITLIST_ENDPOINT there and POST the payload to
-             the Zapier catch hook (or the WP REST route) to go live. -->
-        <form class="loc-waitlist__form" data-waitlist-form data-waitlist-success="locWaitlistDone" novalidate>
-          <label class="loc-waitlist__label-sr" for="locWaitlistFirst">First name</label>
-          <input class="loc-waitlist__input" id="locWaitlistFirst" name="first_name" type="text" placeholder="First name" autocomplete="given-name" required>
-
-          <label class="loc-waitlist__label-sr" for="locWaitlistEmail">Email address</label>
-          <input class="loc-waitlist__input" id="locWaitlistEmail" name="email" type="email" placeholder="Email address" autocomplete="email" required>
-
-          <!-- Which destination the signup is for; filled from
-               data-location-id so it cannot drift from the catalog. -->
-          <input type="hidden" name="location" data-waitlist-location value="">
-
-          <button class="btn btn--primary loc-waitlist__submit" type="submit">Join the waitlist</button>
-          <p class="loc-waitlist__error" data-waitlist-error role="alert" hidden></p>
-        </form>
-
-        <div class="loc-waitlist__done" id="locWaitlistDone" hidden>
-          <p class="loc-waitlist__title">You are on the list</p>
-          <p class="loc-waitlist__body">We will email you as soon as dates are announced.</p>
+  <section class="loc-dates loc-dates--waitlist" id="waitlist" aria-labelledby="loc-wait-title">
+    <div class="loc-wrap loc-wait">
+      <div class="loc-wait__card" data-loc-wait-card></div>
+      <div class="loc-wait__panel">
+        <div class="loc-wait__form-wrap" data-loc-wait-body>
+          <p class="loc-kicker">Join the waitlist</p>
+          <h2 class="loc-h2" id="loc-wait-title">Our next dates in Iceland go to the waitlist first</h2>
+          <p class="loc-p">Leave your name and email and we will write to you as soon as the dates for The Iceland Experience are set, before they are published anywhere else. The full itinerary is on the <a class="loc-inline" href="retreatpage-iceland.html">retreat page</a>.</p>
+          <!-- Same fields and validation as the lead form. No endpoint yet:
+               YAWW.WAITLIST_ENDPOINT in js/retreat-cards.js. -->
+          <form class="lead-form loc-wait__form" data-waitlist-form data-waitlist-success="loc-wait-done" novalidate>
+            <div class="lead-form__row">
+              <div class="lead-form__field">
+                <label class="lead-form__label" for="wl-first">First name</label>
+                <input class="lead-form__input" id="wl-first" name="first_name" type="text" autocomplete="given-name" required aria-required="true" aria-describedby="wl-first-err">
+                <p class="lead-form__error" id="wl-first-err" data-error-for="first_name"></p>
+              </div>
+              <div class="lead-form__field">
+                <label class="lead-form__label" for="wl-email">Email</label>
+                <input class="lead-form__input" id="wl-email" name="email" type="email" autocomplete="email" required aria-required="true" aria-describedby="wl-email-err">
+                <p class="lead-form__error" id="wl-email-err" data-error-for="email"></p>
+              </div>
+            </div>
+            <input type="hidden" name="location" value="iceland">
+            <div class="loc-wait__actions">
+              <button class="btn btn--primary" type="submit">Join the waitlist</button>
+              <a class="btn btn--secondary" href="contact.html#general-inquiry" data-lead-open data-lead-source="waitlist">Ask us about Iceland</a>
+            </div>
+            <p class="loc-wait__fine">We only use your details to tell you about these dates.</p>
+          </form>
+        </div>
+        <div class="loc-wait__done" id="loc-wait-done" hidden>
+          <svg class="loc-wait__tick" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22.5"/><path d="M15 24.5l6 6 12-13"/></svg>
+          <h2 class="loc-h2" data-wait-done-title>You are on the list</h2>
+          <p class="loc-p" data-wait-done-text>We will write to you as soon as the dates for Iceland are set.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="loc-section loc-why">
-    <div class="loc-inner loc-why__row">
-      <div class="loc-why__copy">
-        <h2 class="loc-section__title" style="text-align:left;margin-bottom:0">Why we keep coming back to Iceland</h2>
-        <p>It is the one place on our map where the landscape does the talking. Days are long or barely there, the weather rewrites the plan, and nobody minds. The practice gets quieter here, and so does everyone in it.</p>
-        <p>We first brought a group in 2019 and have gone back every year since, with the same guesthouse outside Vik and the same guide who grew up on that coast. He is the reason we see the places the buses do not stop at.</p>
-        <p>It suits travellers who would rather be outside in bad weather than inside in good.</p>
-      </div>
-      <div class="loc-why__pair">
-        <figure class="loc-why__fig"><img src="images/iceland/loc-why-1.jpg" alt="A river winding between the mossy walls of Fja&eth;r&aacute;rglj&uacute;fur" loading="lazy"></figure>
-        <figure class="loc-why__fig loc-why__fig--low"><img src="images/iceland/loc-why-2.jpg" alt="Walkers crossing a snowfield under an open sky" loading="lazy"></figure>
+  <section class="loc-intro">
+    <div class="loc-wrap loc-intro__row">
+      <figure class="loc-intro__fig"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-river-through-a-mossy-canyon.webp" alt="River through a mossy canyon, Iceland" loading="lazy" decoding="async"></figure>
+      <div class="loc-intro__copy">
+        <p class="loc-kicker">Why we go</p>
+        <h2 class="loc-h2">Iceland invites you into something vast</h2>
+        <p class="loc-p">This journey moves between Reykjavík and the wild, from geothermal waters and quiet city moments to glaciers, open landscapes and the raw beauty of the south. Each stop reveals a different side of Iceland: raw, quiet, powerful.</p>
+        <p class="loc-p">There is a quiet power here. In the scale of the landscapes. In the light. In the way time feels different. Shared meals, shifting skies, long drives through untouched terrain and, if conditions align, the possibility of the Northern Lights overhead.</p>
       </div>
     </div>
   </section>
 
-  <section class="loc-section loc-mat">
-    <div class="loc-inner">
-      <p class="loc-split__eyebrow" style="text-align:center">Founder</p>
-      <h2 class="loc-section__title">Beyond the mat in Iceland</h2>
-      <div class="loc-mat__grid">
-        <article>
-          <figure class="loc-mat__fig"><img src="images/iceland/loc-mat-1.jpg" alt="Glacier walk in Iceland" loading="lazy"></figure>
-          <h3 class="loc-mat__name">Glacier walk</h3>
-          <p class="loc-mat__body">Crampons on, rope between us. Two hours out on the ice with a guide who reads it like a page.</p>
-        </article>
-        <article>
-          <figure class="loc-mat__fig"><img src="images/iceland/loc-mat-2.jpg" alt="Hot springs in Iceland" loading="lazy"></figure>
-          <h3 class="loc-mat__name">Hot springs</h3>
-          <p class="loc-mat__body">The practice ends and the water starts. Most evenings close in a pool somewhere with the steam coming off it.</p>
-        </article>
-        <article>
-          <figure class="loc-mat__fig"><img src="images/iceland/loc-mat-3.jpg" alt="Black sand beach practice in Iceland" loading="lazy"></figure>
-          <h3 class="loc-mat__name">Black sand beach practice</h3>
-          <p class="loc-mat__body">Mats on the sand at Reynisfjara, the sea stacks behind you and the wind deciding how long we stay.</p>
-        </article>
+  <section class="loc-guide" aria-labelledby="loc-guide-title">
+    <div class="loc-wrap">
+      <div class="loc-guide__head">
+        <p class="loc-kicker">Our guide</p>
+        <h2 class="loc-h2" id="loc-guide-title">Iceland, the way we know it</h2>
       </div>
+      <ul class="loc-guide__grid">
+        <li class="loc-guide__item">
+          <figure class="loc-guide__fig"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-hiking-across-the-glacier.webp" alt="Hiking across the glacier, Iceland" loading="lazy" decoding="async"></figure>
+          <p class="loc-kicker">Landscape</p>
+          <h3 class="loc-guide__title">Glaciers and black sand</h3>
+          <p class="loc-p">Waterfalls, black sand beaches, glacial terrain and the vastness that defines this place. We hike on the Vatnajökull glacier with a guide, crampons on.</p>
+        </li>
+        <li class="loc-guide__item">
+          <figure class="loc-guide__fig"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-group-dinner-at-the-long-table.webp" alt="Group dinner at the long table, Iceland" loading="lazy" decoding="async"></figure>
+          <p class="loc-kicker">The table</p>
+          <h3 class="loc-guide__title">Local flavors, one long table</h3>
+          <p class="loc-p">Icelandic breakfasts, a guided food and culture walk through Reykjavík, hot dogs included, and long dinners together after a day outside.</p>
+        </li>
+        <li class="loc-guide__item">
+          <figure class="loc-guide__fig"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-turf-house-on-the-horse-farm.webp" alt="Turf house on the horse farm, Iceland" loading="lazy" decoding="async"></figure>
+          <p class="loc-kicker">Culture</p>
+          <h3 class="loc-guide__title">Horses and turf houses</h3>
+          <p class="loc-p">A night on a horse farm, sleeping Icelandic style in a turf house, and a ride across the moor on Icelandic horses. Back in Reykjavík, time to explore the city at your own pace.</p>
+        </li>
+        <li class="loc-guide__item">
+          <figure class="loc-guide__fig"><img src="images/retreat-photos/iceland/yoga-retreat-iceland-arms-raised-among-the-ice.webp" alt="Arms raised among the ice, Iceland" loading="lazy" decoding="async"></figure>
+          <p class="loc-kicker">Movement</p>
+          <h3 class="loc-guide__title">Yoga as the thread</h3>
+          <p class="loc-p">Morning practices, evening resets and moments to ground into where you are. Yoga becomes part of the rhythm here, and the geothermal waters of the Blue Lagoon do the rest.</p>
+        </li>
+      </ul>
     </div>
   </section>
 
-  <section class="gallery">
-    <div class="gallery__head">
-      <h2 class="gallery__title">Gallery</h2>
-      <p class="gallery__intro">Reykjav&iacute;k for the first days, then south to Vik, where the beaches are black and the waterfalls come straight off the road. The photographs are from past retreats: the ice, the horses, and the sky on the nights it decides to perform.</p>
-      <div class="gallery__nav">
-        <button class="gallery__arrow gallery__arrow--prev" aria-label="Previous photos">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <button class="gallery__arrow gallery__arrow--next" aria-label="More photos">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
+  <section class="loc-know" aria-labelledby="loc-know-title">
+    <div class="loc-wrap">
+      <div class="loc-know__head">
+        <h2 class="loc-h2" id="loc-know-title">Good to know</h2>
+        <button class="loc-link" type="button" data-lead-open data-lead-source="good-to-know">Ask us anything else</button>
       </div>
-    </div>
-
-    <div class="gallery__track" role="group" aria-roledescription="carousel" aria-label="Photos from Iceland">
-      <div class="gallery__rail">
-        <figure class="gallery__slide" style="--r: 28/17"><img src="images/iceland/hero.jpg" alt="Fja&eth;r&aacute;rglj&uacute;fur canyon in the south" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 1/1"><img src="images/iceland/day4-1.jpg" alt="Hallgr&iacute;mskirkja rising over Reykjav&iacute;k" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 28/17"><img src="images/iceland/day5-2.jpg" alt="The Reynisdrangar sea stacks at Vik" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 5/4"><img src="images/iceland/day1-1.jpg" alt="Northern lights over the guesthouse" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 28/17"><img src="images/iceland/hotel1-1.jpg" alt="The lodge set in open country" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 1/1"><img src="images/iceland/day9-2.jpg" alt="On the black ice of the glacier lagoon" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 28/17"><img src="images/iceland/day7-1.jpg" alt="Icebergs at J&ouml;kuls&aacute;rl&oacute;n" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 5/4"><img src="images/iceland/day8-2.jpg" alt="Riding Icelandic horses along the coast" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 1/1"><img src="images/iceland/hotel3-1.jpg" alt="A turf house with its grass roof" loading="lazy"></figure>
-        <figure class="gallery__slide" style="--r: 28/17"><img src="images/iceland/day3-1.jpg" alt="Kirkjufell and its waterfall" loading="lazy"></figure>
-      </div>
-    </div>
-
-    <div class="gallery__progress" aria-hidden="true">
-      <span class="gallery__progress-bar"></span>
+      <dl class="loc-know__grid"><div><dt>When we go</dt><dd>Our last retreat ran in October, usually just above freezing to around 7°C, with weather that changes by the minute. From the end of August to mid-April the nights are dark enough for the Northern Lights.</dd></div><div><dt>Getting there</dt><dd>Fly into Keflavík (KEF), about an hour from Reykjavík. The airport bus is simple and affordable, or we can pair you with guests on similar flights.</dd></div><div><dt>Pace</dt><dd>Gently active, with some long drives. The guided glacier hike is for all levels; crampons and an ice axe are provided.</dd></div><div><dt>Budget</dt><dd>Iceland is expensive. Plan a little more than usual for anything outside the retreat.</dd></div></dl>
     </div>
   </section>
 
-  <section class="loc-section loc-stay">
-    <div class="loc-inner loc-split loc-split--stay">
-      <figure class="loc-split__fig"><img src="images/iceland/hotel1-1.jpg" alt="The guesthouse set in open country outside Vik" loading="lazy"></figure>
-      <div>
-        <p class="loc-split__eyebrow">Where you stay</p>
-        <h2 class="loc-split__title">Hotel Kr&iacute;a, Vik</h2>
-        <p class="loc-split__body">A small guesthouse half an hour from the black beach, run by the family that built it. Twenty rooms, one long table, and a window in the lounge that frames the whole valley. On clear nights nobody goes to bed early.</p>
-        <p class="loc-split__note">Rooms and prices are on each retreat.</p>
-      </div>
+  <section class="loc-quote">
+    <div class="loc-wrap">
+      <figure>
+        <blockquote>&ldquo;Iceland was incredible and I would definitely do it again! Every detail was taken care of which made for a relaxing and fun time! The yoga was great and tailored to what our group needed each day.&rdquo;</blockquote>
+        <figcaption>Jessica Freeman <span>· Google review</span></figcaption>
+      </figure>
     </div>
   </section>
 
-  <section class="loc-section loc-person">
-    <div class="loc-inner loc-split loc-split--person">
-      <figure class="loc-split__fig"><img src="images/iceland/loc-person.jpg" alt="Our guide on the south coast" loading="lazy"></figure>
-      <div>
-        <p class="loc-split__quote">&ldquo;He grew up on this coast and still stops the van for the light. Six years in, he is the reason the week feels like a visit rather than a tour.&rdquo;</p>
-        <p class="loc-split__attr">Christina Thomas, on Gu&eth;mundur &middot; guide, south coast &middot; with YAWW since 2019</p>
+  <section class="loc-more" aria-labelledby="loc-more-title">
+    <div class="loc-wrap">
+      <div class="loc-more__head">
+        <h2 class="loc-h2" id="loc-more-title">More places we love</h2>
+        <a class="loc-link" href="locations.html">All locations</a>
       </div>
-    </div>
-  </section>
-
-  <section class="quotes">
-    <h2 class="quotes__title">In our guests&rsquo; words</h2>
-    <div class="quotes__grid" id="quotes-grid"></div>
-  </section>
-
-  <section class="faq-section">
-    <h2 class="faq-section__title">Good to know about Iceland</h2>
-    <div class="faq-list">
-      <div class="faq">
-        <h3 class="faq__heading">
-          <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="faq-1">
-            <span class="faq__q">Getting there &mdash; airport, transfer, when to land</span>
-            <svg class="faq__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-        </h3>
-        <div class="faq__panel">
-          <div class="faq__answer" id="faq-1" role="region">
-            <p>Lorem ipsum dolor sit amet consectetur. Ac diam magna tellus enim. Senectus tortor nec suspendisse malesuada. Ut nunc habitasse penatibus at. Risus a suscipit urna pulvinar in laoreet ut.</p>
-            <p>Pellentesque mi sagittis dignissim vitae maecenas a at fringilla. Semper velit tristique sed massa lorem cras diam. At morbi non orci felis urna urna. Arcu a odio praesent nisl nibh. Tristique morbi nibh sit semper ultricies maecenas mauris aliquet. Non hac eget habitant urna nec fringilla sed tellus. Ornare amet id non habitant. Odio tempor quis massa a erat ut aenean.</p>
+      <div class="locations-grid">
+      <article class="location">
+        <a class="location__link" href="locationpage-santorini.html">
+          <div class="location__image">
+            <img src="images/location-santorini.jpg" alt="Guests posing on a volcanic ridge with the Santorini caldera behind" width="672" height="888" loading="lazy">
           </div>
-        </div>
-      </div>
-      <div class="faq">
-        <h3 class="faq__heading">
-          <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="faq-2">
-            <span class="faq__q">Best time of year &mdash; and what the weather does</span>
-            <svg class="faq__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-        </h3>
-        <div class="faq__panel">
-          <div class="faq__answer" id="faq-2" role="region">
-            <p>Lorem ipsum dolor sit amet consectetur. Ac diam magna tellus enim. Senectus tortor nec suspendisse malesuada. Ut nunc habitasse penatibus at. Risus a suscipit urna pulvinar in laoreet ut.</p>
-            <p>Pellentesque mi sagittis dignissim vitae maecenas a at fringilla. Semper velit tristique sed massa lorem cras diam. At morbi non orci felis urna urna. Arcu a odio praesent nisl nibh. Tristique morbi nibh sit semper ultricies maecenas mauris aliquet. Non hac eget habitant urna nec fringilla sed tellus. Ornare amet id non habitant. Odio tempor quis massa a erat ut aenean.</p>
+          <h3 class="location__title">Santorini</h3>
+          <p class="location__caption">Not all honeymoons and romantic getaways. The best village on the island, Greek food and wines, and a sunset cruise on a catamaran.</p>
+        </a>
+      </article>
+      <article class="location">
+        <a class="location__link" href="locationpage-camino-de-santiago.html">
+          <div class="location__image">
+            <img src="images/location-camino-de-santiago.jpg" alt="The cathedral of Santiago de Compostela seen through iron gates" width="672" height="888" loading="lazy">
           </div>
-        </div>
-      </div>
-      <div class="faq">
-        <h3 class="faq__heading">
-          <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="faq-3">
-            <span class="faq__q">Who this location suits (and who it doesn&rsquo;t)</span>
-            <svg class="faq__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-        </h3>
-        <div class="faq__panel">
-          <div class="faq__answer" id="faq-3" role="region">
-            <p>Lorem ipsum dolor sit amet consectetur. Ac diam magna tellus enim. Senectus tortor nec suspendisse malesuada. Ut nunc habitasse penatibus at. Risus a suscipit urna pulvinar in laoreet ut.</p>
-            <p>Pellentesque mi sagittis dignissim vitae maecenas a at fringilla. Semper velit tristique sed massa lorem cras diam. At morbi non orci felis urna urna. Arcu a odio praesent nisl nibh. Tristique morbi nibh sit semper ultricies maecenas mauris aliquet. Non hac eget habitant urna nec fringilla sed tellus. Ornare amet id non habitant. Odio tempor quis massa a erat ut aenean.</p>
+          <h3 class="location__title">Camino de Santiago</h3>
+          <p class="location__caption">The final 110 kilometers of the Portuguese Way through Galicia. Forests and stone villages, yoga, silence and a soft landing each night.</p>
+        </a>
+      </article>
+      <article class="location">
+        <a class="location__link" href="locationpage-montenegro.html">
+          <div class="location__image">
+            <img src="images/location-montenegro.jpg" alt="A swimmer at the edge of an infinity pool facing the green slopes across the bay" width="672" height="888" loading="lazy">
           </div>
-        </div>
-      </div>
-      <div class="faq">
-        <h3 class="faq__heading">
-          <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="faq-4">
-            <span class="faq__q">Language, currency, connectivity</span>
-            <svg class="faq__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-        </h3>
-        <div class="faq__panel">
-          <div class="faq__answer" id="faq-4" role="region">
-            <p>Lorem ipsum dolor sit amet consectetur. Ac diam magna tellus enim. Senectus tortor nec suspendisse malesuada. Ut nunc habitasse penatibus at. Risus a suscipit urna pulvinar in laoreet ut.</p>
-            <p>Pellentesque mi sagittis dignissim vitae maecenas a at fringilla. Semper velit tristique sed massa lorem cras diam. At morbi non orci felis urna urna. Arcu a odio praesent nisl nibh. Tristique morbi nibh sit semper ultricies maecenas mauris aliquet. Non hac eget habitant urna nec fringilla sed tellus. Ornare amet id non habitant. Odio tempor quis massa a erat ut aenean.</p>
-          </div>
-        </div>
-      </div>
-      <div class="faq">
-        <h3 class="faq__heading">
-          <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="faq-5">
-            <span class="faq__q">Extending your trip before or after</span>
-            <svg class="faq__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-        </h3>
-        <div class="faq__panel">
-          <div class="faq__answer" id="faq-5" role="region">
-            <p>Lorem ipsum dolor sit amet consectetur. Ac diam magna tellus enim. Senectus tortor nec suspendisse malesuada. Ut nunc habitasse penatibus at. Risus a suscipit urna pulvinar in laoreet ut.</p>
-            <p>Pellentesque mi sagittis dignissim vitae maecenas a at fringilla. Semper velit tristique sed massa lorem cras diam. At morbi non orci felis urna urna. Arcu a odio praesent nisl nibh. Tristique morbi nibh sit semper ultricies maecenas mauris aliquet. Non hac eget habitant urna nec fringilla sed tellus. Ornare amet id non habitant. Odio tempor quis massa a erat ut aenean.</p>
-          </div>
-        </div>
+          <h3 class="location__title">Montenegro</h3>
+          <p class="location__caption">Perast on the Bay of Kotor, between Croatia and Albania. Kayaking, an underwater winery and yoga each morning overlooking the bay.</p>
+        </a>
+      </article>
       </div>
     </div>
   </section>
 
-  <section class="loc-cta">
-    <h2 class="loc-cta__title">Your week in Iceland starts here</h2>
-    <div class="loc-cta__btns">
-      <a class="btn btn--primary" href="retreats.html?destination=iceland">See upcoming dates</a>
-      <a class="btn btn--secondary" href="#">Questions? Talk to us</a>
+  <section class="home-cta">
+    <div class="home-cta__bg" aria-hidden="true" style="background-image: linear-gradient(rgba(40, 49, 57, 0.5), rgba(40, 49, 57, 0.5)), url('images/retreat-photos/iceland/yoga-retreat-iceland-basalt-columns-on-the-black-beach.webp');"></div>
+    <div class="home-cta__content">
+      <h2 class="home-cta__title">Your week in Iceland starts here</h2>
+      <p class="home-cta__desc">Leave the planning to us. All you need to do is arrive.</p>
+      <div class="home-cta__btns">
+        <a class="btn btn--primary" href="#waitlist">Join the waitlist</a>
+        <a class="btn btn--light" href="contact.html#general-inquiry" data-lead-open data-lead-source="closing">Ask us about Iceland</a>
+      </div>
     </div>
-    <a class="loc-cta__alt" href="locations.html">Explore other locations</a>
   </section>
 
 </main>
+
 
 <footer class="site-footer" id="newsletter">
   <div class="container">
@@ -404,7 +340,7 @@
              destinations and all seven Journal topics stacked in one line
              each, to compare against the split version. -->
         <div class="footer-col">
-          <h3 class="footer-col__title"><a href="locations.html">Locations</a></h3>
+          <h3 class="footer-col__title"><a href="#">Locations</a></h3>
           <ul class="footer-col__list">
             <li><a class="footer-link" href="#">France</a></li>
             <li><a class="footer-link" href="#">Greece</a></li>
@@ -496,8 +432,6 @@
   </div>
 </footer>
 
-<!-- Smooth scroll (Lenis) — same library/config as diegodelbono.com/yoga,
-     the reference site for this theme. -->
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 <script>
 /* Lenis replaces native scroll with an eased, inertial one — the
@@ -522,6 +456,16 @@
     smoothTouch: false
   });
 
+  window.yawwLenis = lenis;
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a || a.getAttribute('href').length < 2) return;
+    var to = document.querySelector(a.getAttribute('href'));
+    if (!to) return;
+    e.preventDefault();
+    lenis.scrollTo(to, { offset: -56 });
+  });
+
   function raf(time) {
     lenis.raf(time);
     requestAnimationFrame(raf);
@@ -529,7 +473,47 @@
   requestAnimationFrame(raf);
 })();
 </script>
+
 <script>
+  // CTA band: background parallax — same rig as .retreat-includes__bg
+  // (retreat pages), same SPEED/MAX_OFFSET_RATIO values.
+  (function () {
+    var section = document.querySelector('.home-cta');
+    var bg = document.querySelector('.home-cta__bg');
+    if (!section || !bg) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var SPEED = 0.3;
+    var MAX_OFFSET_RATIO = 0.2;
+    var ticking = false;
+    var listening = false;
+
+    function update() {
+      ticking = false;
+      var rect = section.getBoundingClientRect();
+      var raw = (window.innerHeight / 2 - (rect.top + rect.height / 2)) * SPEED;
+      var max = rect.height * MAX_OFFSET_RATIO;
+      var offset = Math.max(-max, Math.min(max, raw));
+      bg.style.transform = 'translate3d(0,' + offset.toFixed(1) + 'px,0)';
+    }
+
+    function onScroll() {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }
+
+    new IntersectionObserver(function (entries) {
+      var visible = entries[0].isIntersecting;
+      if (visible && !listening) {
+        listening = true;
+        window.addEventListener('scroll', onScroll, { passive: true });
+        update();
+      } else if (!visible && listening) {
+        listening = false;
+        window.removeEventListener('scroll', onScroll);
+      }
+    }, { rootMargin: '20% 0px' }).observe(section);
+  })();
+
   // Mobile nav toggle
   (function () {
     var nav = document.querySelector('.site-header__nav');
@@ -541,582 +525,22 @@
     });
   })();
 
-
-  // Includes: What Includes / What's Not Included tabs
-
-
-
-  /* Lightbox ------------------------------------------------------------
-     One dialog serves every gallery marked [data-lightbox]. <dialog> does
-     the hard parts natively (focus trap, Esc, page inert, focus returned to
-     the thumbnail), so this only has to swap the src and keep the index.
-     On close the underlying slider is moved to whatever photo was last
-     viewed, so the user never loses their place. */
-  (function () {
-    var dlg = document.querySelector('.lightbox');
-    if (!dlg || !dlg.showModal) return;   // no <dialog>: images simply stay static
-
-    var img = dlg.querySelector('.lightbox__img');
-    var count = dlg.querySelector('.lightbox__count');
-    var photos = [], index = 0, source = null, active = false;
-
-    /* Feeds the CSS two numbers per photo: its aspect ratio, and how far it
-       may be enlarged. 1.4x its own pixels is about where a photograph starts
-       to look soft — past that the lightbox is inventing detail, which reads
-       as worse quality rather than as a bigger picture. Tying the ceiling to
-       the file means better originals automatically display bigger. */
-    function fit(w, h) {
-      if (!w || !h) return;
-      dlg.style.setProperty('--lb-ratio', w + ' / ' + h);
-      dlg.style.setProperty('--lightbox-max', Math.round(w * 1.4) + 'px');
-    }
-
-    /* A gallery may arrive as <img> elements already on the page (the
-       sliders) or as bare URLs (the rooms module builds its lists in JS and
-       only one photo per hotel is ever in the DOM). Both collapse to the
-       same shape here, which is the only thing show() needs to know. */
-    function normalize(list) {
-      return list.map(function (item) {
-        if (typeof item === 'string') return { src: item, alt: '' };
-        return { src: item.src, alt: item.alt || '', w: item.naturalWidth, h: item.naturalHeight };
-      });
-    }
-
-    function show(i) {
-      index = (i + photos.length) % photos.length;
-      var photo = photos[index];
-      img.src = photo.src;
-      img.alt = photo.alt;
-      fit(photo.w, photo.h);   // 0 for a bare URL — the load listener fills it in
-      count.textContent = (index + 1) + ' / ' + photos.length;
-      // arrows and a "1 / 1" counter are noise on a single photo
-      dlg.classList.toggle('is-single', photos.length < 2);
-    }
-
-    // fallback for a thumbnail that had not finished loading yet
-    img.addEventListener('load', function () { fit(img.naturalWidth, img.naturalHeight); });
-
-    /* Cleanup is a function, not just a 'close' listener, and it is
-       idempotent: our own close paths run it immediately instead of waiting
-       for the event, and the listener still catches the closes the browser
-       does on its own (Esc). Whichever happens first wins; the second is a
-       no-op. */
-    function teardown() {
-      if (!active) return;
-      active = false;
-      document.documentElement.classList.remove('has-lightbox');
-      if (source && source.goTo) source.goTo(index);
-      img.removeAttribute('src');
-      source = null;
-    }
-    function dismiss() { dlg.close(); teardown(); }
-
-    /* The one way in. `back` is optional and only used by the sliders, which
-       want to be left on the photo the reader stopped at. */
-    dlg.openGallery = function (list, start, back) {
-      if (!list || !list.length) return;
-      photos = normalize(list);
-      source = back || null;
-      show(start || 0);
-      active = true;
-      document.documentElement.classList.add('has-lightbox');
-      dlg.showModal();
-    };
-
-    document.querySelectorAll('.photo-slider[data-lightbox]').forEach(function (slider) {
-      var imgs = Array.prototype.slice.call(slider.querySelectorAll('.photo-slider__slide img'));
-      imgs.forEach(function (el, i) {
-        el.addEventListener('click', function () { dlg.openGallery(imgs, i, slider); });
-      });
-    });
-
-    dlg.querySelector('.lightbox__btn--prev').addEventListener('click', function () { show(index - 1); });
-    dlg.querySelector('.lightbox__btn--next').addEventListener('click', function () { show(index + 1); });
-    dlg.querySelector('.lightbox__btn--close').addEventListener('click', dismiss);
-
-    dlg.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowRight') { e.preventDefault(); show(index + 1); }
-      else if (e.key === 'ArrowLeft') { e.preventDefault(); show(index - 1); }
-    });
-
-    /* Clicking the backdrop closes. The dialog fills the viewport, so the
-       test is whether the click landed outside the photo itself. */
-    dlg.addEventListener('click', function (e) {
-      if (e.target.closest('.lightbox__btn') || e.target === img) return;
-      dismiss();
-    });
-
-    dlg.addEventListener('close', teardown);    // Esc, or any browser-driven close
-    dlg.addEventListener('cancel', teardown);
-  })();
-
-
-
-  // Photo sliders (itinerary days + the accommodations gallery)
-
-  /* Gallery --------------------------------------------------------------
-     An endless strip. Three copies of the set are laid end to end on a rail,
-     the reader is parked in the middle one, and the rail is moved back by
-     exactly one set whenever they travel into an outer copy. The jump lands
-     on an identical photo at an identical offset, so there is nothing to
-     see: no first photo, no last photo, and never a bare margin at either
-     edge however wide the window gets.
-
-     Everything visible is a function of one number — which photo the strip
-     is resting on. The rail's transform and each photo's opacity are both
-     derived from it, so the two can never disagree, and a press is just
-     `at += 1` followed by a re-render. There is no scroll position to keep
-     in sync and nothing for the browser's own scrolling to fight.
-
-     Runs last, so dlg.openGallery already exists. */
-  (function () {
-    var track = document.querySelector('.gallery__track');
-    var rail = document.querySelector('.gallery__rail');
-    if (!track || !rail) return;
-
-    var originals = Array.prototype.slice.call(rail.querySelectorAll('.gallery__slide'));
-    var n = originals.length;
-    if (!n) return;
-
-    var prev = document.querySelector('.gallery__arrow--prev');
-    var next = document.querySelector('.gallery__arrow--next');
-    var dlg = document.querySelector('.lightbox');
-    /* The lightbox is fed the originals only, so it counts 1 / 10 rather
-       than 1 / 30 and a click on a copy opens the photo it is a copy of. */
-    var photos = originals.map(function (s) { return s.querySelector('img'); });
-
-    // The copies are decoration: the photo is already in the tree once, and
-    // a screen reader should not be read the same ten captions three times.
-    function copy(before) {
-      var frag = document.createDocumentFragment();
-      originals.forEach(function (s) {
-        var c = s.cloneNode(true);
-        c.setAttribute('aria-hidden', 'true');
-        frag.appendChild(c);
-      });
-      if (before) rail.insertBefore(frag, originals[0]);
-      else rail.appendChild(frag);
-    }
-    copy(true);
-    copy(false);
-
-    var slides = Array.prototype.slice.call(rail.querySelectorAll('.gallery__slide'));
-    var at = n;          // the photo the strip is resting on, into `slides`
-    var moving = false;  // a press is mid-flight; ignore further presses
-
-    function gap() { return parseFloat(getComputedStyle(rail).columnGap) || 0; }
-    function slideW() { return slides[0].getBoundingClientRect().width; }
-    function pitch() { return slideW() + gap(); }
-
-    // Distance along the rail to slide k. Measured off the DOM rather than
-    // computed from widths and gaps, so it stays right whatever the
-    // breakpoints do to either and nothing can accumulate.
-    function along(k) { return slides[k].offsetLeft - slides[0].offsetLeft; }
-    function setSize() { return along(n); }
-
-    /* Where the resting group sits. How many photos are whole at once is a
-       layout decision, so it lives in the stylesheet as --shown and this only
-       centres however many that is — dropping one at a time if the width
-       cannot actually hold them, which is what makes the narrow end degrade
-       to a single centred photo with a sliver on each side rather than one
-       fat margin. */
-    function edge() {
-      var w = track.clientWidth;
-      var gutter = parseFloat(getComputedStyle(track).getPropertyValue('--gutter')) || 24;
-      var shown = parseFloat(getComputedStyle(track).getPropertyValue('--shown')) || 1;
-      var sw = slideW(), g = gap();
-      while (shown > 1 && shown * sw + (shown - 1) * g > w - gutter * 2) shown--;
-      return Math.max(gutter, (w - (shown * sw + (shown - 1) * g)) / 2);
-    }
-
-    function setX(x) { rail.style.transform = 'translate3d(' + x + 'px, 0, 0)'; }
-    /* Where the rail actually is this frame, read off the computed
-       transform rather than the inline one. Mid-transition the inline value
-       is already the destination, so normalise() would have shifted from a
-       place the strip had not reached yet and snapped it there. Reading the
-       live matrix is what lets a press land while another is still running.
-       While dragging the two agree, so nothing changes there. */
-    function currentX() {
-      var t = getComputedStyle(rail).transform;
-      if (t && t !== 'none') {
-        var m = /matrix(3d)?\(([^)]+)\)/.exec(t);
-        if (m) {
-          var parts = m[2].split(',');
-          var v = parseFloat(m[1] ? parts[12] : parts[4]);
-          if (!isNaN(v)) return v;
-        }
-      }
-      var inline = /translate3d\((-?[\d.]+)px/.exec(rail.style.transform);
-      return inline ? parseFloat(inline[1]) : edge() - along(at);
-    }
-
-    /* One frame of the strip. Both halves of it — where the rail sits and
-       which photos are whole — come out of the same number, so they cannot
-       disagree. Two states, decided per frame, never a ramp. */
-    function paint(x) {
-      var w = track.clientWidth, sw = slideW();
-      setX(x);
-      for (var k = 0; k < slides.length; k++) {
-        var left = x + along(k);
-        // half a pixel of slack: --edge is fractional at most widths
-        slides[k].classList.toggle('is-whole', left >= -0.5 && left + sw <= w + 0.5);
-      }
-      drawProgress();
-    }
-    function render() { paint(edge() - along(at)); }
-
-    /* Progress ----------------------------------------------------------
-       Width is the share of the set the window shows, measured off the two
-       real numbers rather than counted in photos. Position maps the ten
-       photos across the travel the mark has, so the first sits flush left
-       and the last flush right. */
-    var progress = document.querySelector('.gallery__progress');
-    var bar = progress && progress.querySelector('.gallery__progress-bar');
-    var lastIdx = null;
-    function drawProgress() {
-      if (!bar) return;
-      var railW = progress.clientWidth;
-      if (!railW || !setSize()) return;
-      var idx = ((at % n) + n) % n;
-      var w = Math.min(1, track.clientWidth / setSize()) * railW;
-      var x = n > 1 ? (idx / (n - 1)) * (railW - w) : 0;
-      /* Coming back to the first photo is a jump, not a journey. Sliding the
-         mark the whole way back would say the strip travelled backwards,
-         which is the opposite of what the press did. The first draw counts
-         as one too: the mark should already be its size when the section
-         arrives, not grow into it. */
-      var wrapped = lastIdx === null || Math.abs(idx - lastIdx) > 1;
-      if (wrapped) progress.classList.add('is-jumping');
-      bar.style.width = w + 'px';
-      bar.style.transform = 'translateX(' + x + 'px)';
-      if (wrapped) { void bar.offsetWidth; progress.classList.remove('is-jumping'); }
-      lastIdx = idx;
-    }
-
-    // Repaint with no transition anywhere, for the loop jump and the first
-    // paint. The reflow between is what makes the browser take the silent
-    // frame before animations are allowed again.
-    function silently(fn) {
-      rail.classList.add('is-jumping');
-      fn();
-      void rail.offsetWidth;
-      rail.classList.remove('is-jumping');
-    }
-
-    /* Bring the index back into the middle copy, carrying whatever the rail
-       is currently showing with it. Both move by exactly one set and the
-       photo underneath is identical, so the swap is invisible — including
-       part-way through a drag, which is why it shifts the live transform
-       rather than snapping to the canonical one. */
-    function normalise() {
-      if (at >= n && at < n * 2) return;
-      var x = currentX();
-      var forward = at < n;
-      at += forward ? n : -n;
-      var shifted = x + (forward ? -setSize() : setSize());
-      /* Repaint, not just re-position. Shifting the rail by one set hands
-         every slot over to a different element — the photo standing in it is
-         identical and has not moved, but the element carrying `is-whole` is
-         now off screen and the one that replaced it is not marked. Leaving
-         the classes to the next render made all of them change at once with
-         the fade running, so the entire strip dropped to .4 together on the
-         way round. It is a relabelling, not a state change, and it belongs
-         inside the silent frame with the transform. */
-      silently(function () { paint(shifted); });
-    }
-
-    var lastW = 0;
-    function relayout() {
-      if (track.clientWidth === lastW) return;
-      lastW = track.clientWidth;
-      silently(render);
-    }
-
-    var timer = null;
-    function settle() {
-      if (!moving) return;
-      moving = false;
-      normalise();
-    }
-    function go(steps) {
-      normalise();          // always start with a whole set of runway ahead
-      at += steps;
-      normalise();          // a long flick can overshoot the copy in one go
-      moving = true;
-      render();
-      /* transitionend is the normal release. This is the one that has to
-         exist anyway: with reduced motion there is no transition to end, and
-         a background tab may never fire one. Without it a single press would
-         lock the strip for good. */
-      clearTimeout(timer);
-      timer = setTimeout(settle, 700);
-    }
-
-    /* One photo per press. Paging by the full viewport would skip past
-       photos the reader has only half seen, which is exactly the ones the
-       dimming is inviting them towards.
-
-       A press that lands while one is still running now re-aims instead of
-       being dropped. Refusing it was costing every press inside the half
-       second after the last one, so pressing through the strip at any pace
-       above slow felt like the arrow was ignoring you. It cannot land
-       anywhere uncomposed: render() always goes to edge() - along(at), the
-       same frame a resting strip would be in, and the rail simply
-       transitions there from wherever it has got to. */
-    function step(dir) {
-      go(dir);
-    }
-    prev.addEventListener('click', function () { step(-1); });
-    next.addEventListener('click', function () { step(1); });
-
-    /* The rail is the only thing whose transform transitions, but the slides
-       transition opacity, so filter — otherwise the last photo to finish
-       fading would release the lock a little late. */
-    rail.addEventListener('transitionend', function (e) {
-      if (e.target !== rail || e.propertyName !== 'transform') return;
-      clearTimeout(timer);
-      settle();
-    });
-
-    /* Dragging ----------------------------------------------------------
-       Touch and pen only. A phone that does not answer the finger reads as
-       broken, whatever the arrows do. A mouse is deliberately left out: on a
-       strip where clicking a photo opens it, a drag and a click are the same
-       gesture until it is too late to tell them apart — and on a desktop the
-       arrows are meant to be the way through.
-
-       The axis is decided once, on the first few pixels of movement, and a
-       gesture that turns out to be vertical is handed straight back to the
-       page. touch-action: pan-y in the stylesheet is the other half of that
-       deal: the browser keeps vertical scrolling and gives us the rest. */
-    var drag = null;
-    var AXIS = 6;      // px before the gesture commits to an axis
-    var FLICK = 40;    // px that count as a deliberate short flick
-
-    track.addEventListener('pointerdown', function (e) {
-      if (e.pointerType === 'mouse' || moving) return;
-      drag = { x: e.clientX, y: e.clientY, base: currentX(), axis: null };
-    });
-
-    track.addEventListener('pointermove', function (e) {
-      if (!drag) return;
-      var dx = e.clientX - drag.x, dy = e.clientY - drag.y;
-      if (drag.axis === null) {
-        if (Math.abs(dx) < AXIS && Math.abs(dy) < AXIS) return;
-        drag.axis = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y';
-        if (drag.axis === 'x') rail.classList.add('is-dragging');
-        else { drag = null; return; }
-      }
-      setX(drag.base + dx);
-    }, { passive: true });
-
-    function release(e) {
-      if (!drag) return;
-      var d = drag; drag = null;
-      rail.classList.remove('is-dragging');
-      if (d.axis !== 'x') return;
-      var dx = e.clientX - d.x;
-      // the click that follows this gesture belongs to the drag, not to the
-      // photo under the finger
-      rail.dataset.dragged = '1';
-      /* Round to whole photos, so letting go always lands on a composition.
-         A short flick that did not travel a full photo still counts as one:
-         the intent was unmistakable and refusing it feels like the strip is
-         stuck. */
-      var steps = Math.round(-dx / pitch());
-      if (!steps && Math.abs(dx) > FLICK) steps = dx < 0 ? 1 : -1;
-      go(steps);
-    }
-    track.addEventListener('pointerup', release);
-    track.addEventListener('pointercancel', function () {
-      if (!drag) return;
-      drag = null;
-      rail.classList.remove('is-dragging');
-      go(0);          // put the rail back where it was
-    });
-
-    window.addEventListener('resize', relayout);
-    // held in a variable so it is not collected while the section is alive
-    var ro = null;
-    if (window.ResizeObserver) { ro = new ResizeObserver(relayout); ro.observe(track); }
-    /* The slides are aspect-ratio boxes, so the layout is already right
-       before the photos arrive; the only thing an arriving photo can move
-       is the page's scrollbar. This used to call silently(render), which
-       kills the transition and snaps the rail to its resting position — and
-       the photos are lazy, so they finish downloading exactly while the
-       reader is pressing through them. A press would travel 77% of the way
-       and then jump the rest, at a different point every time depending on
-       what the network did. That was the strip feeling stuck.
-
-       relayout() is the same correction with the guard already written: it
-       returns immediately unless the track's width really changed. */
-    slides.forEach(function (s) {
-      s.querySelector('img').addEventListener('load', relayout);
-    });
-
-    /* The crop is the strip's composition; the lightbox is the photograph.
-       It sizes itself from naturalWidth/Height, so opening a square slide
-       gives back the full landscape frame it was cut from. A photo that was
-       dragged is not a photo that was clicked, so a gesture that moved the
-       rail does not also open the viewer. */
-    if (dlg && dlg.openGallery) {
-      slides.forEach(function (s, i) {
-        s.querySelector('img').addEventListener('click', function () {
-          if (rail.dataset.dragged === '1') { rail.dataset.dragged = '0'; return; }
-          dlg.openGallery(photos, i % n);
-        });
-      });
-    }
-
-    lastW = track.clientWidth;
-    silently(render);
-  })();
-
-  /* FAQ ------------------------------------------------------------------
-     The button owns the state and the class owns the animation. aria-expanded
-     is the same fact the class is, said to a screen reader. */
-  document.querySelectorAll('.faq__trigger').forEach(function (btn) {
-    var item = btn.closest('.faq');
-    btn.addEventListener('click', function () {
-      var open = !item.classList.contains('is-open');
-      item.classList.toggle('is-open', open);
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-  });
-
-  /* Newsletter ------------------------------------------------------------
-     No signup provider is wired up yet, and a bare submit would reload the
-     page with the subscriber's address sitting in the query string. Swallow
-     it until there is an endpoint to post to. */
+  // Newsletter form — no endpoint yet, swallow the submit
   document.querySelectorAll('.footer-news__form').forEach(function (form) {
     form.addEventListener('submit', function (e) { e.preventDefault(); });
   });
 
-  /* Image reveal ---------------------------------------------------------
-     An image that has already decoded — cached, or above the fold — is left
-     alone: fading in something the reader is already looking at reads as a
-     glitch rather than as polish. The lightbox is skipped because its src is
-     swapped on every arrow press, and a one-shot listener would fire once and
-     then leave the rest of the gallery invisible. */
-  document.querySelectorAll('img:not(.lightbox__img)').forEach(function (img) {
+  // Image reveal — fade in once loaded, skip images already decoded (cached / above the fold)
+  document.querySelectorAll('img').forEach(function (img) {
     if (img.complete) return;
     img.classList.add('img-reveal');
     function done() { img.classList.add('is-loaded'); }
     img.addEventListener('load', done);
-    img.addEventListener('error', done);   // a broken image must not stay invisible
+    img.addEventListener('error', done);
   });
-
-
-  /* Testimonials ---------------------------------------------------------
-     TODO — all three entries are placeholders. Replace them with real guest
-     words, names and photos before this page goes anywhere public: an
-     invented testimonial is the one kind of placeholder that does harm if it
-     ships, because a reader cannot tell it from a real one. The copy below
-     is written to be obviously unusable for exactly that reason, while still
-     running to the length a real quote would.
-
-     The faces are stock portraits off Unsplash's CDN, chosen as women across
-     the 35-65 audience so the row is cast the way the real one will be — the
-     card has to be judged with the right faces in it, not just with faces. They are strangers: shipping them beside
-     a name and a retreat date would be inventing a person, so they go out with
-     the quotes. Setting `photo` back to '' renders the grey circle instead. */
-  (function () {
-    var TESTIMONIALS = [
-      {
-        quote: 'We practised on the black sand with the wind coming off the water and nobody wanted to come in. I have never been so cold and so happy at the same time.',
-        name: 'Marney R.',
-        detail: 'Iceland 2025'
-      },
-      {
-        quote: 'The guide stopped the van three times in one afternoon because the light changed. That is the whole trip in one detail.',
-        name: 'Laura E.',
-        detail: 'Iceland 2024'
-      },
-      {
-        quote: 'I came for the landscape and left thinking about the people. The guesthouse felt like staying with someone, not at something.',
-        name: 'Signe B.',
-        detail: 'Iceland 2023'
-      }
-    ];
-
-    var grid = document.getElementById('quotes-grid');
-    if (!grid) return;
-
-    function el(tag, cls, text) {
-      var n = document.createElement(tag);
-      if (cls) n.className = cls;
-      if (text != null) n.textContent = text;
-      return n;
-    }
-
-    TESTIMONIALS.forEach(function (t) {
-      var card = el('figure', 'quote-card');
-
-      /* An <img> with no src is a broken image; the div is the same circle
-         without the alt text and the failed request. */
-      if (t.photo) {
-        var img = el('img', 'quote-card__photo');
-        img.src = t.photo;
-        img.alt = t.name;
-        img.loading = 'lazy';
-        card.appendChild(img);
-      } else {
-        card.appendChild(el('div', 'quote-card__photo'));
-      }
-
-      card.appendChild(el('blockquote', 'quote-card__quote', '“' + t.quote + '”'));
-
-      var by = el('figcaption', 'quote-card__by');
-      by.appendChild(el('p', 'quote-card__name', t.name));
-      if (t.detail) by.appendChild(el('p', 'quote-card__detail', t.detail));
-      card.appendChild(by);
-
-      grid.appendChild(card);
-    });
-  })();
-
-
-  /* Upcoming retreats in this location ----------------------------------
-     Reads data/retreats.js through the shared helpers and renders the
-     .loc-card variant of the one card component. Drop this same markup
-     and attribute on any new location page and it works — the only
-     thing that changes is data-location-id on the section.
-
-     Cards do not link to individual retreat pages (there are none yet);
-     the component sends them to the full listing rather than back to
-     this page. */
-  (function () {
-    var Y = window.YAWW;
-    if (!Y) return;
-
-    document.querySelectorAll('[data-location-id]').forEach(function (section) {
-      var id    = section.getAttribute('data-location-id');
-      var grid  = section.querySelector('[data-retreat-grid]');
-      var empty = section.querySelector('[data-retreat-empty]');
-      if (!grid) return;
-
-      var list = Y.getRetreatsByLocation(id);
-      var here = window.location.pathname.split('/').pop();
-
-      if (list.length) {
-        grid.innerHTML = list.map(function (r) {
-          return Y.renderRetreatCard(r, { variant: 'location', currentUrl: here });
-        }).join('');
-        grid.hidden = false;
-        if (empty) empty.hidden = true;
-      } else {
-        grid.hidden = true;
-        if (empty) {
-          empty.hidden = false;
-          var hidden = empty.querySelector('[data-waitlist-location]');
-          if (hidden) hidden.value = id;
-          Y.wireWaitlistForm(empty.querySelector('[data-waitlist-form]'));
-        }
-      }
-    });
-  })();
-
 </script>
 
+<script>(function(){var Y=window.YAWW,id="iceland";if(!Y)return;var slot=document.querySelector('[data-loc-wait-card]');var loc=Y.getLocation(id);if(slot&&loc&&(loc.program||Y.getLastEdition(id))){slot.innerHTML=Y.renderWaitlistCard(loc,{action:false});var d=slot.querySelector('.card__date');if(d)d.textContent='See the itinerary';}else if(slot){slot.remove();}Y.wireWaitlistForm(document.querySelector('[data-waitlist-form]'));})();</script>
+<script src="js/lead-modal.js?v=202611201900" defer></script>
 </body>
 </html>

@@ -37,7 +37,7 @@ window.YAWW_LOCATIONS = [
     name: "El Cuyo",
     region: "The Americas",
     country: "Mexico",
-    pageUrl: null,
+    pageUrl: "locationpage-el-cuyo.html",
     image: "images/location-el-cuyo.jpg",
     placeholderHue: 20
   },
@@ -47,7 +47,7 @@ window.YAWW_LOCATIONS = [
     name: "Oaxaca, Mexico",
     region: "The Americas",
     country: "Mexico",
-    pageUrl: null,
+    pageUrl: "locationpage-oaxaca.html",
     image: "images/location-oaxaca.jpg",
     placeholderHue: 36
   },
@@ -58,7 +58,7 @@ window.YAWW_LOCATIONS = [
     name: "Argentina",
     region: "The Americas",
     country: "Argentina",
-    pageUrl: null,
+    pageUrl: "locationpage-argentina.html",
     image: "images/location-argentina.jpg",
     placeholderHue: 28
   },
@@ -68,7 +68,7 @@ window.YAWW_LOCATIONS = [
     name: "Santorini",
     region: "Europe",
     country: "Greece",
-    pageUrl: null,
+    pageUrl: "locationpage-santorini.html",
     image: "images/location-santorini.jpg",
     placeholderHue: 205
   },
@@ -78,9 +78,9 @@ window.YAWW_LOCATIONS = [
     name: "Camino de Santiago",
     region: "Europe",
     country: "Spain",
-    pageUrl: null,
-    // No Camino photo on the site yet — keeps the gradient placeholder.
-    image: null,
+    pageUrl: "locationpage-camino-de-santiago.html",
+    // Cropped from the retreat's Santiago cathedral photo (2026-11-20).
+    image: "images/location-camino-de-santiago.jpg",
     placeholderHue: 35
   },
   {
@@ -89,7 +89,7 @@ window.YAWW_LOCATIONS = [
     name: "Montenegro",
     region: "Europe",
     country: "Montenegro",
-    pageUrl: null,
+    pageUrl: "locationpage-montenegro.html",
     image: "images/location-montenegro.jpg",
     placeholderHue: 150
   },
@@ -99,7 +99,7 @@ window.YAWW_LOCATIONS = [
     name: "Portugal",
     region: "Europe",
     country: "Portugal",
-    pageUrl: null,
+    pageUrl: "locationpage-portugal.html",
     image: "images/location-portugal.jpg",
     placeholderHue: 120
   },
@@ -120,7 +120,7 @@ window.YAWW_LOCATIONS = [
     name: "France",
     region: "Europe",
     country: "France",
-    pageUrl: null,
+    pageUrl: "locationpage-france.html",
     image: "images/location-france.jpg",
     placeholderHue: 30,
     program: { name: "The Paris-Champagne Experience", pageUrl: "retreatpage-france.html", collection: "signature-collection", image: "images/retreat-cards/france-waitlist.webp", image2x: "images/retreat-cards/france-waitlist@2x.webp" }
@@ -131,7 +131,7 @@ window.YAWW_LOCATIONS = [
     name: "Sardinia",
     region: "Europe",
     country: "Italy",
-    pageUrl: null,
+    pageUrl: "locationpage-sardinia.html",
     image: "images/location-sardinia.jpg",
     placeholderHue: 194,
     program: { name: "Majestic Sardinia : A Yoga & Nature Retreat", pageUrl: "retreatpage-sardinia.html", image: "images/retreat-cards/sardinia-waitlist.webp", image2x: "images/retreat-cards/sardinia-waitlist@2x.webp" }
@@ -144,7 +144,7 @@ window.YAWW_LOCATIONS = [
     name: "Spain, Basque Country",
     region: "Europe",
     country: "Spain",
-    pageUrl: null,
+    pageUrl: "locationpage-spain-basque-country.html",
     image: "images/location-spain-basque-country.jpg",
     placeholderHue: 165,
     program: { name: "Basque Country Spain : Yoga & Gastronomy Retreat", pageUrl: "retreatpage-spain-basque-country.html", image: "images/retreat-cards/spain-basque-country-waitlist.webp", image2x: "images/retreat-cards/spain-basque-country-waitlist@2x.webp" }
@@ -155,7 +155,7 @@ window.YAWW_LOCATIONS = [
     name: "Morocco",
     region: "Africa & Asia",
     country: "Morocco",
-    pageUrl: null,
+    pageUrl: "locationpage-morocco.html",
     image: "images/location-morocco.jpg",
     placeholderHue: 24,
     program: { name: "Mesmerized in Morocco : A Yoga & Culture Retreat", pageUrl: "retreatpage-morocco.html", collection: "signature-collection", image: "images/retreat-cards/morocco-waitlist.webp", image2x: "images/retreat-cards/morocco-waitlist@2x.webp" }
@@ -166,7 +166,7 @@ window.YAWW_LOCATIONS = [
     name: "Thailand",
     region: "Africa & Asia",
     country: "Thailand",
-    pageUrl: null,
+    pageUrl: "locationpage-thailand.html",
     image: "images/location-thailand.jpg",
     placeholderHue: 162
   },
@@ -178,7 +178,7 @@ window.YAWW_LOCATIONS = [
     name: "Turkey",
     region: "Africa & Asia",
     country: "Turkey",
-    pageUrl: null,
+    pageUrl: "locationpage-turkey.html",
     image: "images/location-turkey.jpg",
     placeholderHue: 15,
     program: { name: "Yoga & Culture Retreat Turkey : Istanbul & Cappadocia", pageUrl: "retreatpage-turkey.html", image: "images/retreat-cards/turkey-waitlist.webp", image2x: "images/retreat-cards/turkey-waitlist@2x.webp" }
