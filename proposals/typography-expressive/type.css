@@ -249,7 +249,7 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
 .about-quote__text { font-size: clamp(18px, 17.3px + 0.19vw, 20px); line-height: 1.5; }
 /* Who said it: small caps feel, done with real caps + tracking (the
    fonts have no true small caps; the browser's fake ones look thin). */
-.quote-card__name, .about-quote__name, .loc-quote figcaption {
+.quote-card__name, .who__name, .about-quote__name, .loc-quote figcaption {
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.14em;
