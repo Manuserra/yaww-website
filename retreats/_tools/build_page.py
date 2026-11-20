@@ -55,7 +55,7 @@ import page_content as PC  # noqa: E402
 REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 TPL = os.path.join(REPO, "retreatpage-elcuyo.html")
 HOSTS_JS = '<script src="js/hosts.js?v=202611191130" defer></script>'
-CSS_VERSION = "202611200540"   # bump with any change to css/retreat.css
+CSS_VERSION = "202611200550"   # bump with any change to css/retreat.css
 CARDS_JS = '<script src="js/retreat-cards.js?v=202611200400"></script>'
 
 # Past editions that still have a page but are no longer listed in
@@ -853,9 +853,11 @@ def build(rid, cat, assets, template, waitlist=False):
                "       Answers quoted from the old site's policies for this retreat.\n", "faq comment")
 
     # --------------------------------------------------------- testimonials
-    # The template's own placeholder quotes, kept on every page for now: they
-    # are labelled "Placeholder quote, to be replaced" until real guest
-    # words arrive. The old site has none to bring over.
+    # Three real reviews per page, chosen in docs/testimonials-by-retreat.md.
+    quotes = TESTIMONIALS.get(f"retreatpage-{rid}.html") or []
+    doc = cut(doc, "    var TESTIMONIALS = [", "\n    ];", "\n" + ",\n".join(
+        "      {\n        quote: %s,\n        name: %s,\n        detail: %s\n      }" % (jstr(q), jstr(n), jstr(dt))
+        for q, n, dt in quote_rows(quotes, location.get("name", ""))), "testimonials")
 
     if waitlist:
         doc = swap(doc, "\n</body>", "\n" + CARDS_JS +
@@ -866,6 +868,47 @@ def build(rid, cat, assets, template, waitlist=False):
     for pat, rep in PC.SCRUB:
         doc = re.sub(pat, rep, doc)
     return f"retreatpage-{rid}.html", doc, d
+
+
+# ---------------------------------------------------------- testimonials --
+
+def load_testimonials():
+    """docs/testimonials-by-retreat.md: a '## retreatpage-<id>.html' heading
+    per page, then '- "quote" — Name, Source, [Location,] date' lines."""
+    out, cur = {}, None
+    path = os.path.join(REPO, "docs", "testimonials-by-retreat.md")
+    for line in open(path, encoding="utf-8"):
+        m = re.match(r"^## (retreatpage-[\w-]+\.html)", line)
+        if m:
+            cur = m.group(1)
+            out[cur] = []
+            continue
+        m = re.match(r'^- "(.*)" — (.+)$', line.strip())
+        if m and cur:
+            out[cur].append((m.group(1), m.group(2)))
+    return out
+
+
+def quote_rows(quotes, place):
+    """Name, and "Google review · El Cuyo". The reviewer's destination is
+    shown only when it is this page's; otherwise just the source, as the
+    notes in the .md ask. A retreat teacher reviewing says so."""
+    rows = []
+    for q, by in quotes:
+        parts = [p.strip() for p in re.sub(r"\s*\((?:location not named)[^)]*\)", "", by).split(",")]
+        name, source, rest = parts[0], parts[1], parts[2:]
+        detail = {"Google": "Google review", "Tripadvisor": "Tripadvisor review"}.get(source, source)
+        where = rest[0] if rest and not re.match(r"^(c\.|\w{3} \d{4}|\d{4})", rest[0]) else ""
+        if "retreat teacher" in where:
+            detail = "Retreat teacher · " + detail
+        first = re.split(r"[/(]", where)[0].strip()
+        if place and first and first.lower() == place.lower():
+            detail += " · " + first
+        rows.append((q, name, detail))
+    return rows
+
+
+TESTIMONIALS = load_testimonials()
 
 
 # ----------------------------------------------------------- template js --

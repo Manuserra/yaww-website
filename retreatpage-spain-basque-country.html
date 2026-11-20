@@ -12,8 +12,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/base.css?v=202611192000">
-<link rel="stylesheet" href="css/retreat.css?v=202611200540">
-<link rel="stylesheet" href="css/lead-modal.css?v=202611200540">
+<link rel="stylesheet" href="css/retreat.css?v=202611200550">
+<link rel="stylesheet" href="css/lead-modal.css?v=202611200550">
 </head>
 <body>
 <!-- Built by retreats/_tools/build_page.py --waitlist from data/locations.js (program) and retreats/spain-basque-country/data.json,
@@ -2087,22 +2087,19 @@
   (function () {
     var TESTIMONIALS = [
       {
-        quote: 'Placeholder quote, to be replaced with a real guest’s words. This line runs to roughly the length a three-line testimonial occupies, so the card can be judged at the size it will actually be.',
-        name: 'Guest name',
-        detail: 'Retreat attended, month year',
-        photo: 'https://images.unsplash.com/photo-1761414500568-1348275e08a0?w=128&h=128&fit=crop&crop=faces&q=80'
+        quote: 'Her retreats are filled with memorable experiences and fun adventures. For example, our latest collaboration to Basque Country included a private tour of the Guggenheim Museum in Bilbao, a pintxo crawl in San Sebastian, wine-making in Rioja, a surprise flamenco class, and a spontaneous road trip to Biarritz.',
+        name: 'Genevieve Morin',
+        detail: 'Retreat teacher · Google review'
       },
       {
-        quote: 'Placeholder quote, to be replaced. A shorter one, here to show that a card with less to say still keeps its name and detail level with the cards beside it.',
-        name: 'Guest name',
-        detail: 'Retreat attended, month year',
-        photo: 'https://images.unsplash.com/photo-1581714161666-dade083654ae?w=128&h=128&fit=crop&crop=faces&q=80'
+        quote: 'Participant feedback has been overwhelmingly positive. They feel well taken care of and rave about the transformative experiences.',
+        name: 'Genevieve M',
+        detail: 'Retreat teacher · Tripadvisor review'
       },
       {
-        quote: 'Placeholder quote, to be replaced. This one is deliberately long enough to reach the four-line clamp and be cut off, which is what stops one talkative guest from setting the height of the whole row for everybody else.',
-        name: 'Guest name',
-        detail: 'Retreat attended, month year',
-        photo: 'https://images.unsplash.com/photo-1596743945439-9a576737280a?w=128&h=128&fit=crop&crop=faces&q=80'
+        quote: 'Christina and her crew are magic travel masters. I would think of something and it would appear.',
+        name: 'Jessica Smyser',
+        detail: 'Google review'
       }
     ];
 
@@ -2119,19 +2116,18 @@
     TESTIMONIALS.forEach(function (t) {
       var card = el('figure', 'quote-card');
 
-      /* An <img> with no src is a broken image; the div is the same circle
-         without the alt text and the failed request. */
+      /* Real reviews (docs/testimonials-by-retreat.md) come with no
+         portrait, and a stock face beside a real name would invent a
+         person, so a card shows a photo only when one is given. */
       if (t.photo) {
         var img = el('img', 'quote-card__photo');
         img.src = t.photo;
         img.alt = t.name;
         img.loading = 'lazy';
         card.appendChild(img);
-      } else {
-        card.appendChild(el('div', 'quote-card__photo'));
       }
 
-      card.appendChild(el('blockquote', 'quote-card__quote', '“' + t.quote + '”'));
+      card.appendChild(el('blockquote', 'quote-card__quote', t.quote));
 
       var by = el('figcaption', 'quote-card__by');
       by.appendChild(el('p', 'quote-card__name', t.name));
@@ -2146,7 +2142,7 @@
      hero by build_page.py, the same label the retreat cards carry. */
 </script>
 
-<script src="js/lead-modal.js?v=202611200540" defer></script>
+<script src="js/lead-modal.js?v=202611200550" defer></script>
 <script src="js/retreat-cards.js?v=202611200400"></script>
 <script>YAWW.wireWaitlistForm(document.querySelector('[data-waitlist-form]'));</script>
 </body>
