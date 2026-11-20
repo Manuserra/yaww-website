@@ -498,6 +498,14 @@ main { padding-top: 0; }
 .card__label--signature .card__label-tier { color: var(--stone-600); }
 .card__label-sep { width: 3px; height: 3px; border-radius: 50%; background: var(--sea-blue-300); opacity: 0.6; flex-shrink: 0; }
 .card__label-status { color: var(--sea-blue-500); }
+/* On a narrow card (2-up on phones: location and teacher pages) the two
+   facts no longer fit one line and were cut ("Filling fa"). Stack them,
+   tier over status, and drop the dot. */
+.card__media { container-type: inline-size; }
+@container (max-width: 260px) {
+  .card__label { flex-direction: column; align-items: flex-start; gap: 0; padding: 6px 10px; }
+  .card__label-sep { display: none; }
+}
 
 /* ============================================================
    CARD HOVER (shared: every linked card on the site)
