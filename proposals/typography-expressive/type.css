@@ -14,7 +14,7 @@
    Scale (390 → 1440, fluid between):
      display   36 → 68   Baskerville 400 (italic on home)  lh 1.04  -0.02em
      h1 page   32 → 50   Baskerville 400                   lh 1.1   -0.015em
-     h2        26 → 36   Baskerville 400                   lh 1.14  -0.012em
+     h2        24 → 30   Baskerville 400                   lh 1.14  -0.012em
      h2 lyric  28 → 42   Baskerville 400 italic             lh 1.15  -0.01em
      h3        20 → 22   Baskerville 400 italic / 700       lh 1.25
      quote     20 → 26   Baskerville 400 italic             lh 1.45
@@ -26,7 +26,7 @@
 :root {
   --tx-display: clamp(36px, 24.1px + 3.05vw, 68px);
   --tx-h1:      clamp(32px, 25.3px + 1.71vw, 50px);
-  --tx-h2:      clamp(26px, 22.3px + 0.95vw, 36px);
+  --tx-h2:      clamp(24px, 21.77px + 0.571vw, 30px);
   --tx-h2-lyric:clamp(28px, 22.8px + 1.33vw, 42px);
   --tx-h3:      clamp(20px, 19.3px + 0.19vw, 22px);
   --tx-quote:   clamp(20px, 17.8px + 0.57vw, 26px);
@@ -145,8 +145,8 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
 }
 
 /* ---------- 3 · Section titles (h2) ------------------------------
-   The biggest change. 24px bold → 28–42px Regular. Bold Baskerville
-   at 24 shouts and whispers at once; Regular at 42 is calm and big. */
+   The biggest change. 24px bold → 24–30px Regular. Bold Baskerville
+   at 24 shouts and whispers at once; Regular at 30 is calm and still bigger. */
 .section-title,
 .pillar__copy h2,
 .who__title,
