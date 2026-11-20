@@ -12,8 +12,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/base.css?v=202611192000">
-<link rel="stylesheet" href="css/retreat.css?v=202611200600">
-<link rel="stylesheet" href="css/lead-modal.css?v=202611200600">
+<link rel="stylesheet" href="css/retreat.css?v=202611200635">
+<link rel="stylesheet" href="css/lead-modal.css?v=202611200635">
 </head>
 <body>
 <!-- Built by retreats/_tools/build_page.py from data/retreats.js and retreats/portugal-may-2027/data.json,
@@ -2013,79 +2013,7 @@
     img.addEventListener('error', done);   // a broken image must not stay invisible
   });
 
-  /* Sticky booking bar ---------------------------------------------------
-     Built here rather than written into the markup so the name and the date
-     have one source each: the hero states them, this repeats them. The price
-     is the cheapest tier, off the same TIERS the pricing grid renders.
-
-     Two observers' worth of work in one: the bar shows only while BOTH the
-     hero and the pricing grid are off screen. That covers the whole brief in
-     a single expression — hidden at the top because the hero's own CTA is
-     right there, hidden again over the pricing grid because its Reserve
-     button is, and shown everywhere else. No scroll handler. */
-  (function () {
-    var hero = document.querySelector('.retreat-hero');
-    var rooms = document.querySelector('.rooms');
-    if (!hero || !rooms || !window.IntersectionObserver) return;
-
-    var priced = (typeof TIERS !== 'undefined' ? TIERS : []).filter(function (t) { return t.priceUSD != null; });
-    if (!priced.length) return;
-    var cheapest = priced.reduce(function (a, t) { return t.priceUSD < a.priceUSD ? t : a; });
-    var from = cheapest.priceUSD;
-
-    var name = hero.querySelector('.retreat-hero__title');
-    var date = hero.querySelector('.retreat-hero__meta span');
-
-    var bar = document.createElement('div');
-    bar.className = 'booking-bar';
-    var inner = document.createElement('div');
-    inner.className = 'booking-bar__inner';
-
-    var id = document.createElement('div');
-    id.className = 'booking-bar__id';
-    var nameEl = document.createElement('p');
-    nameEl.className = 'booking-bar__name';
-    nameEl.textContent = name ? name.textContent : '';
-    id.appendChild(nameEl);
-    if (date) {
-      var dateEl = document.createElement('p');
-      dateEl.className = 'booking-bar__date';
-      dateEl.textContent = date.textContent;
-      id.appendChild(dateEl);
-    }
-
-    var act = document.createElement('div');
-    act.className = 'booking-bar__act';
-    var priceEl = document.createElement('p');
-    priceEl.className = 'booking-bar__price';
-    priceEl.appendChild(document.createTextNode('From ' + from.toLocaleString('en-US') + ' USD'));
-    var unit = document.createElement('span');
-    unit.className = 'booking-bar__price-unit';
-    unit.textContent = cheapest.priceUnit ? ' · ' + cheapest.priceUnit : '';
-    priceEl.appendChild(unit);
-    var cta = document.createElement('a');
-    cta.className = 'btn btn--primary';
-    cta.href = '#rooms';
-    cta.textContent = 'Book now';
-    act.appendChild(priceEl);
-    act.appendChild(cta);
-
-    inner.appendChild(id);
-    inner.appendChild(act);
-    bar.appendChild(inner);
-    document.body.appendChild(bar);
-
-    var heroIn = true, roomsIn = false;
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.target === hero) heroIn = e.isIntersecting;
-        else roomsIn = e.isIntersecting;
-      });
-      bar.classList.toggle('is-visible', !heroIn && !roomsIn);
-    });
-    io.observe(hero);
-    io.observe(rooms);
-  })();
+  /* Sticky booking bar: js/booking-bar.js (reads TIERS). */
 
   /* Testimonials ---------------------------------------------------------
      TODO — all three entries are placeholders. Replace them with real guest
@@ -2158,8 +2086,9 @@
      hero by build_page.py, the same label the retreat cards carry. */
 </script>
 
-<script src="js/retreat-rooms.js?v=202611200600" defer></script>
-<script src="js/lead-modal.js?v=202611200600" defer></script>
+<script src="js/booking-bar.js?v=202611200635" defer></script>
+<script src="js/retreat-rooms.js?v=202611200635" defer></script>
+<script src="js/lead-modal.js?v=202611200635" defer></script>
 <script src="js/hosts.js?v=202611191130" defer></script>
 </body>
 </html>

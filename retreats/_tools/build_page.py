@@ -56,7 +56,7 @@ import additional_info as AI  # noqa: E402
 REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 TPL = os.path.join(REPO, "retreatpage-elcuyo.html")
 HOSTS_JS = '<script src="js/hosts.js?v=202611191130" defer></script>'
-CSS_VERSION = "202611200600"   # bump with any change to css/retreat.css
+CSS_VERSION = "202611200635"   # bump with any change to css/retreat.css
 CARDS_JS = '<script src="js/retreat-cards.js?v=202611200400"></script>'
 
 # Past editions that still have a page but are no longer listed in
@@ -999,21 +999,6 @@ def patch_template_js(doc):
                "              bar.scrollTo({ left: t.offsetLeft - (bar.clientWidth - t.offsetWidth) / 2, behavior: reduce ? 'auto' : 'smooth' });\n"
                "            }\n"
                "          }", "tab scroll")
-    doc = swap(doc, """    var prices = (typeof TIERS !== 'undefined' ? TIERS : []).map(function (t) { return t.priceUSD; });
-    if (!prices.length) return;
-    var from = Math.min.apply(null, prices);""",
-               """    var priced = (typeof TIERS !== 'undefined' ? TIERS : []).filter(function (t) { return t.priceUSD != null; });
-    if (!priced.length) return;
-    var cheapest = priced.reduce(function (a, t) { return t.priceUSD < a.priceUSD ? t : a; });
-    var from = cheapest.priceUSD;""", "bar prices")
-    doc = swap(doc, "    unit.textContent = ' · per person';",
-               "    unit.textContent = cheapest.priceUnit ? ' · ' + cheapest.priceUnit : '';", "bar unit")
-    doc = swap(doc, """    var cta = document.createElement('button');
-    cta.className = 'btn btn--primary';
-    cta.type = 'button';""",
-               """    var cta = document.createElement('a');
-    cta.className = 'btn btn--primary';
-    cta.href = '#rooms';""", "bar cta")
     doc = swap(doc, """        '<div class="extras__media">' +
           '<div class="photo-slider extras__slider" data-lightbox role="group" aria-roledescription="carousel" aria-label="' + x.name + ' photos">' +""",
                """        (!x.gallery.length ? '' :

@@ -2798,3 +2798,98 @@ html.has-lightbox { overflow: hidden; }
     .room-modal.is-closing .room-modal__sheet { animation: lead-sheet-out .2s ease-in both; }
   }
 }
+
+
+/* ============================================================
+   STICKY BOOKING BAR · refined (2026-11-20)
+   From the premium version: frosted stone over the nav, the name in
+   Baskerville with the dates in small tracked capitals beside it, the
+   price set in the heading face. Two actions now: "Ask for info"
+   (the lead form) and "Book now". Built by js/booking-bar.js.
+   ============================================================ */
+.booking-bar {
+  background: rgba(247, 242, 240, 0.92);
+  -webkit-backdrop-filter: blur(14px) saturate(1.1);
+  backdrop-filter: blur(14px) saturate(1.1);
+  border-bottom: 1px solid var(--stone-300);
+  box-shadow: 0 1px 0 rgba(40, 49, 57, 0.02), 0 8px 24px -16px rgba(40, 49, 57, 0.25);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .booking-bar { transition: opacity .2s ease, transform .24s var(--ease-out), visibility 0s linear .24s; }
+  .booking-bar.is-visible { transition: opacity .24s var(--ease-out), transform .32s var(--ease-out), visibility 0s; }
+}
+.booking-bar__inner { min-height: 72px; padding: 10px 24px; gap: 32px; }
+.booking-bar__id { display: flex; align-items: baseline; gap: 20px; min-width: 0; }
+.booking-bar__name {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+.booking-bar__date {
+  flex: none;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sea-blue-200);
+}
+.booking-bar__act { gap: 24px; }
+.booking-bar__price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-size: 18px;
+  line-height: 24px;
+  color: var(--sea-blue);
+}
+.booking-bar__from { display: none; }
+.booking-bar__price::before {
+  content: "From";
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sea-blue-200);
+}
+.booking-bar__price--soft::before { content: none; }
+.booking-bar__price--soft { font-size: 15px; }
+.booking-bar__price-unit {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sea-blue-200);
+}
+.booking-bar__btns { display: flex; gap: 10px; }
+.booking-bar .btn { min-height: 48px; padding: 10px 24px; min-width: 0; width: auto; white-space: nowrap; }
+@media (max-width: 1080px) {
+  .booking-bar__date { display: none; }
+}
+/* Phone: bottom edge, price left, both buttons right and equal. */
+@media (max-width: 767px) {
+  .booking-bar { border-bottom: 0; border-top: 1px solid var(--stone-300); box-shadow: 0 -8px 24px -16px rgba(40, 49, 57, 0.25); }
+  .booking-bar__inner { min-height: 0; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); gap: 12px; }
+  .booking-bar__id { display: none; }
+  .booking-bar__price--soft { display: none; }
+  .booking-bar__btns { flex: 1 1 auto; justify-content: flex-end; }
+  .booking-bar__price--soft + .booking-bar__btns .btn { flex: 1 1 0; }
+  .booking-bar__price { align-items: flex-start; font-size: 16px; line-height: 22px; }
+  .booking-bar__price-unit { display: none; }
+  .booking-bar__act { justify-content: space-between; gap: 12px; }
+  .booking-bar__btns { gap: 8px; }
+  .booking-bar .btn { min-height: 44px; padding: 8px 14px; font-size: 13px; letter-spacing: 0.03em; }
+}
+@media (max-width: 360px) {
+  .booking-bar__ask { display: none; }
+}
