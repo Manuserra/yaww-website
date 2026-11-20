@@ -70,3 +70,29 @@ Questions / notes:
 - The thresholds in the doc's "decision rules" are starting points, not benchmarks.
 - `retreats-full.html` is only linked from `index-full-hero.html`, so I treated it as a draft and left it alone.
 - CSS version strings bumped on `retreats.html` only (filters.css, retreats.css).
+
+## 6–9 · About, Teachers, Teacher pages, Facilitators
+
+Commits (tag `night-04-people`):
+- `24c6cbb` teachers: profile layout with optional slots, new teachers, real photos
+- `4d1b11b` facilitators: Team becomes Facilitators, old URLs redirect
+- `e553ff1` about: bronze eyebrows, team 2x2, real reviews, people rails, shared For teachers
+- `da2044b` teachers: teacher page proposals, board entries and content request list
+- (last) facilitators: nav and footer link Team -> Facilitators on every page (97 files, only those link lines; diff checked)
+
+Done:
+- **About.** Eyebrows in bronze and rewritten (About us, Since 2008, Founder, Our approach, Team, Reviews; "Our story" no longer sits on top of "Our story"). How-we-work buttons now link somewhere; card 4 is "Our team, with you" with "See all facilitators". Team grid: Sofi, JL, Manu, Maggie, 2×2, rectangular 4:5 portraits (2 columns on phone too). Three real reviews from `docs/testimonials-by-retreat.md` with initial monograms (no guest photos exist). Static Google/Tripadvisor badges ready to swap; `docs/review-widgets.md` covers access needed. Teacher and facilitator rails with arrows and "See all" links, from the data files. For teachers is the homepage module: same markup, its CSS moved from `home.css` into `css/lead.css` and loaded by both pages; both buttons go to `teach-with-us.html` (homepage TODO resolved). Also fixed a pre-existing overflow: the founder photo pushed the phone layout to 544px.
+- **Teachers.** Carie Cook, Anj Manitsas and Amy Appel added (copy from their Canva flyers, no certifications invented). Bonnie, Jamie, Yessica, Amy Sennett-Starner get photos and bios; Alicia and Alison use the pro El Cuyo set. Rachel Gray shows an "RG" monogram. All blurbs 140–165 characters; "More about [Name]" at the foot of each card; lede balanced so "way." is no longer alone.
+- **Teacher pages.** New layout (option A): sticky vertical photo left; role, name, quote, bio, specialties right; "Upcoming retreats with [Name]" on the stone-300 band; "Practice with [Name]" band for class video + Spotify. Each slot shows only if `data/teachers.js` has it. Demo with every slot as a placeholder: `teacher-alicia-delaney.html?slots=demo`. Option B in `proposals/teacher-page/`. `docs/teacher-content-request.md` lists what to ask teachers for.
+- **Facilitators.** `facilitators.html` + `facilitator-*.html` (git mv). Old `team*.html` are redirects (meta refresh + canonical + noindex); `team-jenniferlyn-chiemingo.html` goes to her teacher page. Marina, Fleur and JL off the listing (`listed: false`); Marina and Fleur keep unlisted pages because retreat pages link to them (board item). Renata has her pro photo.
+
+Verified at 1440 and 390: teachers, Alicia (demo), Carie (demo), Rachel, facilitators, Renata, About (all sections), homepage For teachers band. No console errors, no horizontal overflow.
+
+Open / questions:
+- Manu and Maggie: no photo, surname or role on file; visible `[missing photo]` / `[missing data]` placeholders on About.
+- Christina: no real portrait exists; the facilitators card keeps the current candid. Ask her for a headshot.
+- Rachel Gray: no portrait. Canva-sourced photos (Bonnie, Jamie, Yessica, Amy S-S, Carie, Anj, Amy Appel) are 230–630px and look soft at page size; ask for originals.
+- Specialties and quotes were taken from each teacher's own bio or flyer; teachers should confirm them.
+- Carie Cook's Dec 2026 El Cuyo retreat is not in `data/retreats.js` (not my file), so her page shows no retreat band.
+- Review figures 4.9 / 4.8 were carried over; confirm, and add the two review URLs (`href="#"` now).
+- `css/home.css` and `index.html` were touched (For teachers styles moved to `css/lead.css`, button href). Retreat pages still link `team-*.html`; the redirects cover them.
