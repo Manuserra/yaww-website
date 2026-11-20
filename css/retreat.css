@@ -2612,3 +2612,23 @@ html.has-lightbox { overflow: hidden; }
   .retreat-hero--overlay .retreat-hero__ctas { flex-direction: column; padding-inline: 0; }
   .retreat-hero--overlay .retreat-hero__ctas .btn { flex: none; width: 100%; }
 }
+
+
+/* ============================================================
+   YOUR HOSTS · alignment and air (2026-11-20)
+   The words hang from the top of the portrait and the "Meet …" link
+   sits on its bottom edge, so text and photo read as one block of the
+   same height. No small line under the name any more: credentials are
+   in the bio. More room below, before the Includes photograph.
+   ============================================================ */
+.retreat-teacher { padding-bottom: 104px; }
+.hosts__slot { align-items: stretch; }
+.hosts__slot .host { justify-content: flex-start; padding-block: 4px 0; }
+.hosts__slot .host__name { margin-top: -9px; }      /* cap height to the photo's top edge */
+.hosts__slot .host__bio { margin-top: 12px !important; }
+.hosts__slot .host__link { margin-top: auto; padding-top: 24px; margin-bottom: 0; }
+@media (max-width: 767px) {
+  .retreat-teacher { padding-bottom: 72px; }
+  .hosts__slot .host__name { margin-top: 0; }
+  .hosts__slot .host__link { margin-top: 24px; padding-top: 0; }
+}

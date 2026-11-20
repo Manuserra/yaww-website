@@ -279,6 +279,12 @@ HOST_META = {
     "fleur-optekamp": "YAWW team · Asia",
 }
 
+# What used to be the small line under a host's name (HOST_META), said in
+# the bio instead, where the brief wants it. Only facts the old line held.
+BIO_ADD = {
+    "alicia-delaney": "She is an E-RYT 200 and a YACEP, specialising in restorative yoga and yoga nidra.",
+}
+
 # How a person is labelled in the hosts tabs and over their name.
 HOST_ROLE = {
     "rachel-gray": ("Photographer", "Your photographer"),

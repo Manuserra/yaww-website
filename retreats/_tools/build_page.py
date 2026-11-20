@@ -55,7 +55,7 @@ import page_content as PC  # noqa: E402
 REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 TPL = os.path.join(REPO, "retreatpage-elcuyo.html")
 HOSTS_JS = '<script src="js/hosts.js?v=202611191130" defer></script>'
-CSS_VERSION = "202611200520"   # bump with any change to css/retreat.css
+CSS_VERSION = "202611200530"   # bump with any change to css/retreat.css
 CARDS_JS = '<script src="js/retreat-cards.js?v=202611200400"></script>'
 
 # Past editions that still have a page but are no longer listed in
@@ -403,9 +403,10 @@ def host_portrait(master, tid):
 
 
 def host_html(h, indent="        "):
-    photo = (f'<img class="host__photo" src="{h["photo"]}" alt="{esc(h["name"])}" loading="lazy">'
+    pos = f' style="object-position: {esc(h["pos"])}"' if h.get("pos") else ""
+    photo = (f'<img class="host__photo" src="{h["photo"]}" alt="{esc(h["name"])}"{pos} loading="lazy">'
              if h.get("photo") else '<div class="host__photo host__photo--empty" aria-hidden="true"></div>')
-    meta = f'\n{indent}<p class="host__meta">{esc(h["meta"])}</p>' if h.get("meta") else ""
+    meta = ""   # credentials and team lines live in the bio now, not under the name
     bio = f'\n{indent}<p class="host__bio">{esc(h["bio"])}</p>' if h.get("bio") else ""
     link = (f'\n{indent}<a class="host__link" href="{h["href"]}">{esc(h["link"])} <span aria-hidden="true">&rarr;</span></a>'
             if h.get("href") else "")
@@ -606,9 +607,11 @@ def build(rid, cat, assets, template, waitlist=False):
         dt = next((x for x in d["teachers"] if x.get("slug") == tid), {})
         photo = t.get("photo") or host_portrait((dt.get("photo") or {}).get("file"), tid)
         bio = t.get("shortBio") or first_sentences((dt.get("bio") or [""])[0])
+        if PC.BIO_ADD.get(tid):
+            bio = bio + " " + PC.BIO_ADD[tid]
         tab, role = PC.HOST_ROLE.get(tid, ("Teacher", "Your teacher"))
         hosts.append({"key": "teacher" if i == 0 else tid, "tab": tab,
-                      "role": role, "name": t["name"], "photo": photo, "meta": PC.HOST_META.get(tid),
+                      "role": role, "name": t["name"], "photo": photo, "pos": t.get("photoPosition"),
                       "bio": bio, "href": t.get("pageUrl"), "link": f"Meet {t['name'].split()[0]}"})
     if not hosts:
         hosts.append({"key": "teacher", "tab": "Teacher", "role": "Your teacher", "name": "To be announced",
@@ -619,7 +622,7 @@ def build(rid, cat, assets, template, waitlist=False):
     if fid:
         f = team[fid]
         hosts.append({"key": "facilitator", "tab": "Facilitator", "role": "Your facilitator", "name": f["name"],
-                      "photo": f.get("photo"), "meta": PC.HOST_META.get(fid), "bio": f.get("shortBio"),
+                      "photo": f.get("photo"), "pos": f.get("photoPosition"), "bio": f.get("shortBio"),
                       "href": f.get("pageUrl"), "link": f"Meet {f['name'].split()[0]}"})
         note = (f"PLACEHOLDER facilitator — {f['name']} is the team member whose own bio ties\n"
                 f"         her to {location.get('name', loc)}, but who travels on these dates is unconfirmed.")
