@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/base.css?v=202611192000">
-<link rel="stylesheet" href="css/filters.css?v=202611200500">
+<link rel="stylesheet" href="css/filters.css?v=202611200530">
 <link rel="stylesheet" href="css/retreats.css?v=202611200500">
 <!-- Retreat data + the one card component every retreat card is rendered
      by. Classic scripts so the prototype still works over file://.
@@ -568,11 +568,23 @@ function avatarHTML(name) {
     (photo ? '<img class="filter-option__photo" src="' + esc(photo) + '" alt="" decoding="async" onerror="this.remove()">' : '') +
     '</span>';
 }
+/* Destinations get a small square of their own photo, the way teachers
+   get their face: people choose a place by how it looks. 96px crops of
+   the location photos (images/location-thumbs/), so the open panel costs
+   about 60 KB. A place without a photo shows its placeholder colour. */
+function thumbHTML(name) {
+  const loc = LOCATION_BY_NAME[name];
+  if (!loc) return '';
+  const hue = loc.placeholderHue != null ? loc.placeholderHue : 200;
+  return '<span class="filter-option__thumb" aria-hidden="true" style="background:linear-gradient(155deg, hsl(' + hue + ' 32% 80%), hsl(' + hue + ' 26% 60%))">' +
+    (loc.image ? '<img src="images/location-thumbs/' + esc(loc.id) + '.jpg" alt="" width="40" height="40" loading="lazy" decoding="async" onerror="this.remove()">' : '') +
+    '</span>';
+}
 function optionHTML(key, value, withAvatar) {
   const sel = state[key] === value;
   return '<li role="option" aria-selected="' + sel + '">' +
     '<button type="button" class="filter-option' + (sel ? ' is-selected' : '') + '" data-key="' + key + '" data-value="' + esc(value) + '">' +
-      (withAvatar ? avatarHTML(value) : '') +
+      (withAvatar ? avatarHTML(value) : key === "place" ? thumbHTML(value) : '') +
       '<span class="filter-option__text"><span class="filter-option__name">' + esc(value) + '</span>' +
       '<span class="filter-option__meta">' + esc(optionMeta(key, value)) + '</span></span>' +
       (sel ? checkSVG() : '') +
