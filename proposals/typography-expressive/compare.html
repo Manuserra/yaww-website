@@ -121,6 +121,7 @@ var GROUPS = [
     ["Home hero", "Home", "Travel that moves you", ["B",400,1,64,60.1,0,0], ["B",400,1,40.3,42.3,0,0], ["B",400,1,68,70.7,-1.4,0], ["B",400,1,36,37.4,-0.7,0], "Above 1440 both keep growing with the screen: at 1920 now 75 · proposal 80, at 2560 now 89 · proposal 95."],
     ["Retreat and location hero", "Retreat page", "Inner Glow Retreat", ["B",400,0,56,64,-0.6,0], ["B",400,0,34,42,-0.3,0], ["B",400,0,68,70.7,-1.4,0], ["B",400,0,36,37.4,-0.7,0]],
     ["Line under the hero name", "Retreat page", "El Cuyo, Mexico", ["B",400,1,22,32,0,0], ["B",400,1,18,26,0,0], ["B",400,1,23,31,0,0], ["B",400,1,19,25.7,0,0]],
+    ["Hero line", "Home", "Thoughtfully curated journeys for curious travelers.", ["R",500,0,16,24,0.288,0], ["R",500,0,16,24,0.288,0], ["R",500,0,18,27,0.324,0], ["R",500,0,16,24,0.288,0], "A phone keeps 16: at 17 the line runs to six lines over the video. Above 1440 it keeps growing: at 1920 now 17.6 · proposal 19.8."],
     ["Hero proof value", "Home", "Since 2008", ["R",600,0,14,24,0.6,0], ["R",600,0,14,24,0.6,0], ["B",400,1,18,24,0,0], ["B",400,1,18,24,0,0]]
   ]],
   ["Titles", [
@@ -159,7 +160,7 @@ function r(n) { return Math.round(n * 10) / 10; }
 function px(n) { return String(Math.round(n * 2) / 2).replace(/\.0$/, ""); }
 function em(v) { if (!v[5]) return "0"; var e = Math.round(v[5] / v[3] * 1000) / 1000; return (e > 0 ? "+" : "−") + Math.abs(e) + "em"; }
 function fam(v) { return v[0] === "B" ? "Baskerville" : "Raleway"; }
-function weight(v) { return { 400: "Regular", 600: "SemiBold", 700: "Bold" }[v[1]] + (v[2] ? " Italic" : ""); }
+function weight(v) { return { 400: "Regular", 500: "Medium", 600: "SemiBold", 700: "Bold" }[v[1]] + (v[2] ? " Italic" : ""); }
 function face(v) { return fam(v) + " " + weight(v) + (v[6] ? " · caps" : ""); }
 function lhRatio(v) { return (Math.round(v[4] / v[3] * 100) / 100).toFixed(2); }
 function short(v) { return px(v[3]) + " / " + px(v[4]); }
