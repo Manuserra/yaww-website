@@ -103,6 +103,49 @@ h1, h2 { font-family: var(--font-heading); -webkit-font-smoothing: antialiased; 
   </article>
 
 
+  <article class="decision" id="retreat-hero">
+    <p class="decision__section">4 · Retreat page</p>
+    <div>
+      <h2>Retreat page hero</h2>
+      <p class="decision__q">Everything above the fold (photo, name, key facts, both CTAs) at every screen size. Which layout?</p>
+      <ul class="opts">
+        <li><a class="is-chosen" href="hero/option-a.html">A · Overlay on the photo <span class="tag">Implemented</span></a></li>
+        <li><a href="hero/option-b.html">B · Split, copy on stone</a></li>
+        <li><a href="hero/option-c.html">C · Copy above, photo band below</a></li>
+        <li><a href="../retreatpage-el-cuyo-dec-2026-delaney.html">Live page</a></li>
+      </ul>
+      <p class="why"><b>Why A:</b> it is the premium version's hero at our type scale (56px Baskerville, not 116): the photograph fills what the viewport leaves under the header, inside the 24px frame, and the name, facts and both CTAs sit on a scrim in the brand's darkest blue. The copy is anchored to the bottom of the photo, so it is above the fold at 1440x900, 1920x1080 and on a phone. The tier and status sit above the title in the same label the retreat cards use ("Deep Dive · 2 spaces left", Signature in bronze), square. <b>B</b> keeps every word dark on light but halves the photo; <b>C</b> is the most conservative and turns the photo into a band. The location page hero still uses the old layout; it can adopt this one with the <code>retreat-hero--overlay</code> class.</p>
+    </div>
+  </article>
+
+  <article class="decision" id="retreat-rooms">
+    <p class="decision__section">4 · Retreat page</p>
+    <div>
+      <h2>Rooms pricing layout</h2>
+      <p class="decision__q">How should the room types and prices be laid out next to "How to book"?</p>
+      <ul class="opts">
+        <li><a class="is-chosen" href="../retreatpage-thailand-dec-2026.html#rooms">A · 4 cols terms + 8 cols stacked horizontal cards <span class="tag">Implemented</span></a></li>
+        <li><a href="rooms/option-b.html">B · Two-up cards (before)</a></li>
+        <li><a href="rooms/option-c.html">C · Comparison table</a></li>
+      </ul>
+      <p class="why"><b>Why A</b> (your idea, and it holds up): prices line up in one column and compare by reading down; eight rooms (Santorini) stay one screen-and-a-bit instead of four rows of big cards; a room with no photo costs a small square with a visible [missing photo] note instead of a hole. The hotel is said once above the list. Each card has square pills (private or shared, bed, bath, view), the old site's room description, which the page never showed, and Reserve + Details. Details opens a room modal with tabs for every room, plus every hotel when there are two or more. <b>Reserve:</b> both a section CTA and one per room; per-room preselection depends on WeTravel (see <code>docs/wetravel-cta.md</code>). Until there is a WeTravel URL, every Reserve opens the lead form with the room filled in.</p>
+    </div>
+  </article>
+
+  <article class="decision" id="retreat-carbon">
+    <p class="decision__section">4 · Retreat page</p>
+    <div>
+      <h2>"Offset Your Carbon Footprint"</h2>
+      <p class="decision__q">The band links to nowhere and there is no programme behind it. Remove it, keep it as a quiet note, or make it a question in Additional info?</p>
+      <ul class="opts">
+        <li><a href="carbon/index.html">A · Remove it</a></li>
+        <li><a href="carbon/index.html">B · Quiet note before the footer</a></li>
+        <li><a class="is-chosen" href="carbon/index.html">C · Question in Additional info <span class="tag">Implemented</span></a></li>
+      </ul>
+      <p class="why"><b>Why C:</b> the reader who cares finds it where practical questions live, in the same words, and it costs nothing to anyone else. It ends with a visible [missing data] line where the recommended organisation's link goes. <b>To answer:</b> is there an offsetting partner to link to? If not, A is the honest choice.</p>
+    </div>
+  </article>
+
   <article class="decision" id="teacher-page">
     <p class="decision__section">8 · Teacher pages</p>
     <div>
