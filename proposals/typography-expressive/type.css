@@ -265,6 +265,9 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
 .pillar__copy p,
 .tiers2__body,
 .booking__body,
+.who__tab-body,
+.lead__body,
+.faq__answer p,
 .movement__body,
 .host__bio {
   line-height: 1.65;
