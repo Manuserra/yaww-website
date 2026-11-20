@@ -167,7 +167,7 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
    the tighter 1.14 leading the clip cut the descenders of y, g, p;
    a little padding shows them and the negative margin keeps the
    layout where it was. */
-.booking__title { padding-bottom: 0.18em; margin-bottom: -0.18em; }
+.booking__title { padding-block: 0.1em 0.18em; margin-block: -0.1em -0.18em; }
 /* A kicker sits closer to its title once the title is big. */
 .kicker + .section-title, .kicker + h2, .loc-kicker + .loc-h2 { margin-top: 6px; }
 
