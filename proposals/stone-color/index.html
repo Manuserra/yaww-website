@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Proposal · Stone colour</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Proposal page: frozen, self-contained. Tokens copied from css/base.css. */
+:root {
+  --sea-blue: #475764; --sea-blue-200: #657C8F; --sea-blue-300: #516372; --sea-blue-500: #283139;
+  --stone: #F7F2F0; --stone-100: #FDF9F7; --stone-200: #F1EFEB; --stone-300: #E1DCD6; --stone-400: #C6BFB9;
+  --font-heading: "Libre Baskerville", Georgia, serif;
+  --font-body: "Raleway", -apple-system, system-ui, sans-serif;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--stone); color: var(--sea-blue); font-family: var(--font-body); }
+h1, h2, h3 { font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; margin: 0; }
+a { color: inherit; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 56px 24px 120px; }
+.back { font-size: 14px; letter-spacing: 0.56px; color: var(--sea-blue-300); }
+.head { margin: 32px 0 56px; max-width: 760px; }
+.head h1 { font-size: 32px; line-height: 44px; font-weight: 700; }
+.head p { font-size: 16px; line-height: 26px; letter-spacing: 0.32px; margin: 16px 0 0; }
+.note { font-size: 14px; line-height: 22px; color: var(--sea-blue-300); }
+
+.options { display: grid; gap: 40px; }
+.opt { border-top: 1px solid var(--stone-400); padding-top: 32px; --c: #877C71; }
+.opt__top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px 24px; margin-bottom: 24px; }
+.opt__name { font-size: 24px; line-height: 36px; font-weight: 700; }
+.opt__hex { font-size: 14px; letter-spacing: 0.56px; font-weight: 600; color: var(--sea-blue-300); }
+.opt__chip { display: inline-block; width: 20px; height: 20px; background: var(--c); vertical-align: -4px; margin-right: 8px; }
+.badge { font-size: 11px; line-height: 16px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; padding: 4px 10px; background: var(--sea-blue); color: var(--stone); }
+.badge--now { background: transparent; color: var(--sea-blue-300); border: 1px solid var(--stone-400); }
+.opt__why { flex-basis: 100%; margin: 0; font-size: 15px; line-height: 24px; letter-spacing: 0.32px; max-width: 760px; }
+
+.opt__row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border: 1px solid var(--stone-300); }
+.panel { padding: 32px 24px; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; min-width: 0; }
+.panel--page { background: var(--stone); }
+.panel--s200 { background: var(--stone-200); }
+.panel--s300 { background: var(--stone-300); }
+.panel__where { font-size: 12px; line-height: 16px; letter-spacing: 0.56px; color: var(--sea-blue-300); margin: 0 0 4px; }
+.eyebrow { margin: 0; font-weight: 600; font-size: 14px; line-height: 24px; letter-spacing: 0.56px; text-transform: uppercase; color: var(--c); }
+.panel h3 { font-size: 20px; line-height: 32px; font-weight: 700; color: var(--sea-blue); }
+.swatch { width: 100%; height: 40px; background: var(--c); }
+
+/* The site's secondary button, with the shared hover fill. */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 56px; padding: 16px 32px; width: 100%; max-width: 304px;
+  font-family: var(--font-body); font-weight: 600; font-size: 14px; line-height: 24px; letter-spacing: 0.04em; text-transform: uppercase;
+  background: transparent; border: 1px solid var(--c); color: var(--c); border-radius: 0; cursor: pointer;
+  position: relative; overflow: hidden; isolation: isolate;
+  transition: color 240ms var(--ease-out), transform 160ms var(--ease-out);
+}
+.btn::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--c); transform: translateY(101%); transition: transform 400ms var(--ease-out); }
+@media (hover: hover) { .btn:hover { color: var(--stone); } .btn:hover::before { transform: translateY(0); } }
+.btn:active { transform: scale(0.97); color: var(--stone); }
+.btn:active::before { transform: translateY(0); }
+/* Frozen hover, so the filled state can be judged without a mouse. */
+.btn.is-hover { color: var(--stone); }
+.btn.is-hover::before { transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) { .btn, .btn::before { transition: none; } }
+.btn-pair { display: flex; flex-direction: column; gap: 12px; width: 100%; }
+.btn-cap { font-size: 12px; line-height: 16px; color: var(--sea-blue-300); margin: 4px 0 0; }
+
+.ratios { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 14px; line-height: 22px; }
+.ratios th, .ratios td { text-align: left; padding: 8px 12px 8px 0; border-bottom: 1px solid var(--stone-300); font-weight: 400; }
+.ratios th { font-weight: 600; font-size: 12px; letter-spacing: 0.56px; text-transform: uppercase; color: var(--sea-blue-300); }
+.pass { color: #2F6B45; font-weight: 600; }
+.fail { color: #9A3B2E; font-weight: 600; }
+
+@media (max-width: 900px) {
+  .opt__row { grid-template-columns: minmax(0, 1fr); }
+  .btn { max-width: none; }
+}
+@media (max-width: 767px) {
+  .wrap { padding: 40px 16px 80px; }
+  .head h1 { font-size: 26px; line-height: 36px; }
+  .ratios th:nth-child(4), .ratios td:nth-child(4) { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../index.html">&larr; Morning review board</a>
+  <header class="head">
+    <h1>Stone colour for secondary buttons and eyebrows</h1>
+    <p>Christina dislikes the current stone-600 (#877C71). Four options moving it toward a warmer brown with some gold in it, all within the brand's family. Each one is shown as a secondary button at rest and on hover, as an eyebrow on the page background, and on the stone-200 and stone-300 module backgrounds (the "For teachers" band is stone-300).</p>
+    <p class="note">One token changes: <code>--stone-600</code> in <code>css/base.css</code>. Ratios are WCAG 2.1 contrast, worked out live on this page from the hex values. The eyebrow is 14px semibold, which counts as normal text, so it needs 4.5:1. On hover the label is the page stone on the colour, so the hover ratio equals the page ratio.</p>
+  </header>
+
+  <div class="options">
+
+    <section class="opt" id="current" style="--c:#877C71" data-hex="#877C71">
+      <div class="opt__top">
+        <h2 class="opt__name"><span class="opt__chip"></span>Today: Stone 600</h2>
+        <span class="opt__hex">#877C71</span>
+        <span class="badge badge--now">Current, for comparison</span>
+        <p class="opt__why">Grey-taupe with a green cast, which is what reads as "baby vomit" next to the cream. It also fails AA for small text on every background it sits on.</p>
+      </div>
+      <div class="opt__row"></div>
+    </section>
+
+    <section class="opt" id="a" style="--c:#7E6B55" data-hex="#7E6B55">
+      <div class="opt__top">
+        <h2 class="opt__name"><span class="opt__chip"></span>A · Warm taupe</h2>
+        <span class="opt__hex">#7E6B55</span>
+        <p class="opt__why">The smallest step: today's colour with the grey taken out and a little warmth added. Safe, but still more beige than gold, and as small text it misses AA on the stone-200 and stone-300 bands.</p>
+      </div>
+      <div class="opt__row"></div>
+    </section>
+
+    <section class="opt" id="b" style="--c:#85684A" data-hex="#85684A">
+      <div class="opt__top">
+        <h2 class="opt__name"><span class="opt__chip"></span>B · Toasted oak</h2>
+        <span class="opt__hex">#85684A</span>
+        <p class="opt__why">The most golden of the four, light and honeyed. Lovely as a fill on hover; as small text it only just passes on the page and misses on the stone-200 and stone-300 bands.</p>
+      </div>
+      <div class="opt__row"></div>
+    </section>
+
+    <section class="opt" id="c" style="--c:#765C3A" data-hex="#765C3A">
+      <div class="opt__top">
+        <h2 class="opt__name"><span class="opt__chip"></span>C · Bronze</h2>
+        <span class="opt__hex">#765C3A</span>
+        <span class="badge">Implemented</span>
+        <p class="opt__why">Brown with clear gold in it, like aged brass or leather. Still reads as a sibling of the stone palette, but warm and expensive rather than dusty. The only gold-leaning option that passes AA for small text on all four backgrounds, including the stone-300 "For teachers" band, so one token works everywhere without exceptions.</p>
+      </div>
+      <div class="opt__row"></div>
+    </section>
+
+    <section class="opt" id="d" style="--c:#6B5236" data-hex="#6B5236">
+      <div class="opt__top">
+        <h2 class="opt__name"><span class="opt__chip"></span>D · Walnut</h2>
+        <span class="opt__hex">#6B5236</span>
+        <p class="opt__why">Deeper and quieter, closer to dark chocolate. Most contrast of the set and very calm, but the gold starts to disappear and next to the sea-blue primary the two buttons read as similar weight.</p>
+      </div>
+      <div class="opt__row"></div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+/* Builds each option's three panels and its contrast table from the hex
+   in data-hex, so every number on the page is computed, not typed. */
+(function () {
+  var BGS = [
+    { key: "page",  label: "Page (stone)", hex: "#F7F2F0", cls: "panel--page" },
+    { key: "s200",  label: "Stone-200 module", hex: "#F1EFEB", cls: "panel--s200" },
+    { key: "s300",  label: "Stone-300 module", hex: "#E1DCD6", cls: "panel--s300" }
+  ];
+  var CARD = { label: "Card label (stone-100)", hex: "#FDF9F7" };
+  function lum(hex) {
+    var h = hex.replace("#", "");
+    return [0, 2, 4].map(function (i) {
+      var c = parseInt(h.substr(i, 2), 16) / 255;
+      return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+    }).reduce(function (s, c, i) { return s + c * [0.2126, 0.7152, 0.0722][i]; }, 0);
+  }
+  function ratio(a, b) {
+    var x = lum(a), y = lum(b);
+    return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05);
+  }
+  function verdict(r) {
+    return r >= 4.5 ? '<span class="pass">Pass AA</span>'
+         : r >= 3 ? '<span class="fail">Fail (large text / UI only)</span>'
+         : '<span class="fail">Fail</span>';
+  }
+  document.querySelectorAll(".opt").forEach(function (opt) {
+    var hex = opt.getAttribute("data-hex");
+    var row = opt.querySelector(".opt__row");
+    var panels = BGS.map(function (bg, i) {
+      return '<div class="panel ' + bg.cls + '">' +
+        '<p class="panel__where">' + bg.label + ' ' + bg.hex + '</p>' +
+        '<p class="eyebrow">' + ["Our story", "For teachers", "Signature collection"][i] + '</p>' +
+        '<h3>' + ["Small-group yoga journeys", "Lead a retreat with us", "Beach Escape Retreat"][i] + '</h3>' +
+        (i === 0
+          ? '<div class="btn-pair"><button class="btn" type="button">I want more info</button>' +
+            '<button class="btn is-hover" type="button" tabindex="-1" aria-hidden="true">I want more info</button>' +
+            '<p class="btn-cap">Rest (hover it) · hover state, frozen</p></div>'
+          : (i === 1 ? '<div class="swatch" aria-hidden="true"></div>' : '') +
+            '<button class="btn" type="button">' + (i === 1 ? "Teach with us" : "I want more info") + '</button>') +
+        '</div>';
+    }).join("");
+    row.innerHTML = panels;
+    var rows = BGS.concat([CARD]).map(function (bg) {
+      var r = ratio(hex, bg.hex);
+      return '<tr><td>' + bg.label + '</td><td>' + r.toFixed(2) + ':1</td><td>' + verdict(r) + '</td><td>' +
+        (bg === BGS[0] ? "also the hover state" : "") + '</td></tr>';
+    }).join("");
+    var table = document.createElement("table");
+    table.className = "ratios";
+    table.innerHTML = '<thead><tr><th>Text on</th><th>Ratio</th><th>14px eyebrow</th><th></th></tr></thead><tbody>' + rows + '</tbody>';
+    row.insertAdjacentElement("afterend", table);
+  });
+})();
+</script>
+</body>
+</html>

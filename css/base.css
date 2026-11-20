@@ -27,7 +27,11 @@
   --stone-300:       #E1DCD6;
   --stone-400:       #C6BFB9;
   --stone-500:       #A6A29E;
-  --stone-600:       #877C71;
+  /* Was #877C71, a grey taupe that failed AA as small text (3.67:1 on
+     the page). Bronze: warmer, with gold in it, and AA for the 14px
+     eyebrow on stone, stone-200 and stone-300 alike. Options and
+     ratios: proposals/stone-color/. */
+  --stone-600:       #765C3A;
 
   /* --- Semantic --- */
   --page-bg:         var(--stone);

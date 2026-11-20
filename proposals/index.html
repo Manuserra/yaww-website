@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Morning review board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Review board: frozen, self-contained. Tokens copied from css/base.css.
+   To add a decision, copy one <article class="decision"> block. */
+:root {
+  --sea-blue: #475764; --sea-blue-300: #516372; --sea-blue-500: #283139;
+  --stone: #F7F2F0; --stone-100: #FDF9F7; --stone-200: #F1EFEB; --stone-300: #E1DCD6; --stone-400: #C6BFB9;
+  --stone-600: #765C3A;
+  --font-heading: "Libre Baskerville", Georgia, serif;
+  --font-body: "Raleway", -apple-system, system-ui, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--stone); color: var(--sea-blue); font-family: var(--font-body); }
+h1, h2 { font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; margin: 0; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 56px 24px 120px; }
+.head { margin-bottom: 48px; }
+.kicker { margin: 0 0 12px; font-weight: 600; font-size: 14px; line-height: 24px; letter-spacing: 0.56px; text-transform: uppercase; color: var(--stone-600); }
+.head h1 { font-size: 36px; line-height: 48px; font-weight: 400; font-style: italic; }
+.head p { margin: 16px 0 0; font-size: 16px; line-height: 26px; letter-spacing: 0.32px; max-width: 680px; }
+
+.decision { border-top: 1px solid var(--stone-400); padding: 32px 0; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 16px 40px; }
+.decision__section { margin: 0; font-weight: 600; font-size: 12px; line-height: 20px; letter-spacing: 0.56px; text-transform: uppercase; color: var(--sea-blue-300); }
+.decision h2 { font-size: 22px; line-height: 34px; font-weight: 700; }
+.decision__q { margin: 8px 0 20px; font-size: 16px; line-height: 26px; letter-spacing: 0.32px; }
+.opts { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 20px; padding: 0; list-style: none; }
+.opts a { display: inline-flex; align-items: center; gap: 10px; padding: 10px 14px; border: 1px solid var(--stone-400); background: var(--stone-100); color: var(--sea-blue); text-decoration: none; font-size: 14px; line-height: 20px; letter-spacing: 0.32px; transition: border-color .15s ease, background-color .15s ease; }
+@media (hover: hover) { .opts a:hover { border-color: var(--sea-blue); background: var(--stone-200); } }
+.opts a.is-chosen { border-color: var(--sea-blue); font-weight: 600; }
+.opts a:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
+.chip { width: 16px; height: 16px; flex: 0 0 auto; }
+.tag { font-size: 11px; line-height: 16px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; padding: 2px 8px; background: var(--sea-blue); color: var(--stone); }
+.why { margin: 0; padding: 16px 20px; background: var(--stone-200); font-size: 15px; line-height: 24px; letter-spacing: 0.32px; }
+.why b { font-weight: 600; }
+@media (max-width: 767px) {
+  .wrap { padding: 40px 16px 80px; }
+  .head h1 { font-size: 28px; line-height: 36px; }
+  .decision { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="head">
+    <p class="kicker">Overnight · 20 Nov 2026</p>
+    <h1>Morning review board</h1>
+    <p>One row per decision. The highlighted option is the one already live on the overnight branch; the others are one click away. Answer with the letter you prefer.</p>
+  </header>
+
+  <!-- Decisions. Add new ones as more <article class="decision"> blocks, in brief order. -->
+
+  <article class="decision" id="stone-color">
+    <p class="decision__section">1 · Global</p>
+    <div>
+      <h2>Stone colour for secondary buttons and eyebrows</h2>
+      <p class="decision__q">Christina dislikes the current stone (#877C71). Which warmer, gold-leaning brown should replace it?</p>
+      <ul class="opts">
+        <li><a href="stone-color/index.html#a"><span class="chip" style="background:#7E6B55"></span>A · Warm taupe #7E6B55</a></li>
+        <li><a href="stone-color/index.html#b"><span class="chip" style="background:#85684A"></span>B · Toasted oak #85684A</a></li>
+        <li><a class="is-chosen" href="stone-color/index.html#c"><span class="chip" style="background:#765C3A"></span>C · Bronze #765C3A <span class="tag">Implemented</span></a></li>
+        <li><a href="stone-color/index.html#d"><span class="chip" style="background:#6B5236"></span>D · Walnut #6B5236</a></li>
+      </ul>
+      <p class="why"><b>Why C:</b> it has visible gold in it and reads as brass or leather, not dust, while staying in the stone family. It is the only gold-leaning option that passes WCAG AA for the small eyebrow text on every background it is used on, including the stone-300 "For teachers" band (4.58:1; the old colour was 2.99:1 there and failed everywhere). Changing it is one token, <code>--stone-600</code> in <code>css/base.css</code>.</p>
+    </div>
+  </article>
+
+  <article class="decision" id="card-hover">
+    <p class="decision__section">1 · Global</p>
+    <div>
+      <h2>Card hover</h2>
+      <p class="decision__q">One hover for every card on the site (retreats, locations, teachers, team, journal). Which one?</p>
+      <ul class="opts">
+        <li><a class="is-chosen" href="../proto-card-hover.html?v=1">Veil <span class="tag">Implemented</span></a></li>
+        <li><a href="../proto-card-hover.html?v=2">Passe-partout</a></li>
+        <li><a href="../proto-card-hover.html?v=3">Comes alive</a></li>
+        <li><a href="../proto-card-hover.html?v=4">Second photo</a></li>
+      </ul>
+      <p class="why"><b>Why Veil:</b> it was the pick from the previous hover round, it works on every card type (Second photo only exists for retreats with a gallery), and it moves nothing. A sheer layer of the page cream settles over the photo and the title underline fades in. Defined once in <code>css/base.css</code>.</p>
+    </div>
+  </article>
+
+</div>
+</body>
+</html>
