@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Contact · B · Signposts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Frozen prototype: tokens copied from css/base.css. */
+:root { --sea-blue:#475764; --sea-blue-100:#8094A5; --sea-blue-300:#516372; --sea-blue-500:#283139; --stone:#F7F2F0; --stone-100:#FDF9F7; --stone-200:#F1EFEB; --stone-300:#E1DCD6; --stone-400:#C6BFB9; --stone-600:#765C3A;
+  --h:"Libre Baskerville",Georgia,serif; --b:"Raleway",system-ui,sans-serif; }
+*,*::before,*::after { box-sizing:border-box; }
+body { margin:0; background:var(--stone); color:var(--sea-blue); font-family:var(--b); font-size:16px; line-height:26px; letter-spacing:.32px; }
+.bar { padding:12px 24px; background:var(--sea-blue); color:var(--stone); font-size:13px; }
+.bar a { color:var(--stone); }
+.wrap { max-width:1200px; margin:0 auto; padding:72px 24px 120px; }
+.kicker { margin:0 0 12px; font-weight:600; font-size:14px; line-height:24px; letter-spacing:.56px; text-transform:uppercase; color:var(--stone-600); }
+h1 { margin:0; font-family:var(--h); font-weight:700; font-size:36px; line-height:48px; }
+h2 { margin:0 0 8px; font-family:var(--h); font-weight:700; font-size:20px; line-height:30px; }
+p { margin:0; }
+.lede { max-width:620px; margin-top:16px; }
+.btn { display:inline-flex; justify-content:center; align-items:center; min-height:56px; padding:0 32px; font-family:var(--b); font-weight:600; font-size:14px; letter-spacing:1.08px; text-transform:uppercase; text-decoration:none; border:1px solid var(--sea-blue); cursor:pointer; }
+.btn--p { background:var(--sea-blue); color:var(--stone); }
+.btn--s { background:transparent; color:var(--sea-blue); }
+.muted { color:var(--sea-blue-300); font-size:15px; line-height:24px; }
+.miss { color:var(--stone-600); font-style:italic; }
+.doors { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; margin-top:56px; }
+.door { display:flex; flex-direction:column; gap:12px; padding:32px; background:var(--stone-100); border:1px solid var(--stone-300); }
+.door .btn { margin-top:auto; align-self:flex-start; }
+.door--wide { grid-column:1 / -1; flex-direction:row; align-items:center; justify-content:space-between; gap:24px; background:var(--stone-300); border:0; }
+.foot { margin-top:48px; padding-top:24px; border-top:1px solid var(--stone-400); }
+@media (max-width:767px) { .wrap { padding:48px 16px 80px; } h1 { font-size:26px; line-height:36px; } .doors { grid-template-columns:1fr; } .door--wide { flex-direction:column; align-items:flex-start; } .btn { width:100%; } }
+</style>
+</head>
+<body>
+<div class="bar">Proposal · Contact · B · Signposts, no form · <a href="../index.html#contact">Back to the board</a> · <a href="../../contact.html">Live option A</a></div>
+<main class="wrap">
+  <p class="kicker">Contact</p>
+  <h1>How can we help?</h1>
+  <p class="lede">Pick the door closest to your question. No form here: each one takes you to the place that already knows the context.</p>
+  <div class="doors">
+    <section class="door">
+      <h2>Thinking about a retreat</h2>
+      <p>Every retreat page has an "I want more info" button. Your question arrives with the retreat attached, so the answer is about your dates and your room.</p>
+      <a class="btn btn--p" href="../../retreats.html">Find your retreat</a>
+    </section>
+    <section class="door">
+      <h2>A trip for your own group</h2>
+      <p>Friends, family, a studio or a team. Write to us with how many of you there are and roughly when.</p>
+      <a class="btn btn--s" href="mailto:?subject=Private%20group%20retreat">Email us about your group</a>
+    </section>
+    <section class="door">
+      <h2>Yoga teachers</h2>
+      <p>Lead a retreat with us. We plan the itinerary, book the hotels, run the logistics and help fill your spots.</p>
+      <a class="btn btn--s" href="../../teach-with-us.html">Teach with us</a>
+    </section>
+    <section class="door">
+      <h2>Press and partnerships</h2>
+      <p>Writing about yoga travel, or have a place we should know? We would love to hear about it.</p>
+      <a class="btn btn--s" href="mailto:">Email us</a>
+    </section>
+    <section class="door door--wide">
+      <div><h2>Anything else</h2><p>Email <span class="miss">[missing data: public email address]</span> or call +52 1 984 202 6072.</p></div>
+    </section>
+  </div>
+  <p class="foot muted"><b>Trade-off:</b> the cleanest page, and every lead lands where its context is. But the person with a vague question ("which one is right for me?") has nowhere to type, and email links lose people who are on a phone without a mail app set up.</p>
+</main>
+</body>
+</html>

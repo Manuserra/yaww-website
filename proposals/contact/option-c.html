@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Contact · C · Conversation first</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Frozen prototype: tokens copied from css/base.css. */
+:root { --sea-blue:#475764; --sea-blue-100:#8094A5; --sea-blue-300:#516372; --sea-blue-500:#283139; --stone:#F7F2F0; --stone-100:#FDF9F7; --stone-200:#F1EFEB; --stone-300:#E1DCD6; --stone-400:#C6BFB9; --stone-600:#765C3A;
+  --h:"Libre Baskerville",Georgia,serif; --b:"Raleway",system-ui,sans-serif; }
+*,*::before,*::after { box-sizing:border-box; }
+body { margin:0; background:var(--stone); color:var(--sea-blue); font-family:var(--b); font-size:16px; line-height:26px; letter-spacing:.32px; }
+.bar { padding:12px 24px; background:var(--sea-blue); color:var(--stone); font-size:13px; }
+.bar a { color:var(--stone); }
+.wrap { max-width:1200px; margin:0 auto; padding:72px 24px 120px; }
+.kicker { margin:0 0 12px; font-weight:600; font-size:14px; line-height:24px; letter-spacing:.56px; text-transform:uppercase; color:var(--stone-600); }
+h1 { margin:0; font-family:var(--h); font-weight:700; font-size:36px; line-height:48px; }
+h2 { margin:0 0 8px; font-family:var(--h); font-weight:700; font-size:20px; line-height:30px; }
+p { margin:0; }
+.lede { max-width:620px; margin-top:16px; }
+.btn { display:inline-flex; justify-content:center; align-items:center; min-height:56px; padding:0 32px; font-family:var(--b); font-weight:600; font-size:14px; letter-spacing:1.08px; text-transform:uppercase; text-decoration:none; border:1px solid var(--sea-blue); cursor:pointer; }
+.btn--p { background:var(--sea-blue); color:var(--stone); }
+.btn--s { background:transparent; color:var(--sea-blue); }
+.muted { color:var(--sea-blue-300); font-size:15px; line-height:24px; }
+.miss { color:var(--stone-600); font-style:italic; }
+.grid { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:24px; margin-top:56px; align-items:start; }
+.talk { grid-column:1 / span 7; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
+.card { display:flex; flex-direction:column; gap:12px; padding:32px; background:var(--stone-300); }
+.card .btn { margin-top:12px; }
+.note { grid-column:9 / span 4; padding:32px; background:var(--stone-100); border:1px solid var(--stone-300); }
+label { display:block; margin:20px 0 4px; font-weight:600; font-size:12px; letter-spacing:1.08px; text-transform:uppercase; color:var(--stone-600); }
+input, textarea { width:100%; height:48px; padding:0 8px; font:inherit; color:var(--sea-blue); background:transparent; border:0; border-bottom:1px solid var(--sea-blue-300); border-radius:0; }
+textarea { height:auto; min-height:96px; padding:10px 8px; resize:vertical; }
+.note .btn { width:100%; margin-top:24px; }
+.who { display:flex; align-items:center; gap:16px; grid-column:1 / -1; padding:20px 24px; border:1px solid var(--stone-300); }
+.who img { width:56px; height:56px; object-fit:cover; }
+.foot { margin-top:48px; padding-top:24px; border-top:1px solid var(--stone-400); }
+@media (max-width:767px) { .wrap { padding:48px 16px 80px; } h1 { font-size:26px; line-height:36px; } .grid { display:flex; flex-direction:column; } .talk { grid-template-columns:1fr; } .btn { width:100%; } }
+</style>
+</head>
+<body>
+<div class="bar">Proposal · Contact · C · Conversation first · <a href="../index.html#contact">Back to the board</a> · <a href="../../contact.html">Live option A</a></div>
+<main class="wrap">
+  <p class="kicker">Contact</p>
+  <h1>Talk to us before you book</h1>
+  <p class="lede">Most of our guests have one or two questions before they join a retreat. The quickest way to an answer is a message or a short call with our team.</p>
+  <div class="grid">
+    <div class="talk">
+      <div class="who">
+        <img src="../../images/about-founder.jpg" alt="">
+        <p><b>Christina and the team</b><br><span class="muted">We answer every message ourselves.</span></p>
+      </div>
+      <section class="card">
+        <h2>WhatsApp us</h2>
+        <p>Send a message from your phone and keep the conversation there.</p>
+        <a class="btn btn--p" href="https://wa.me/5219842026072">Open WhatsApp</a>
+        <p class="muted">Number from the live footer; <span class="miss">[confirm it takes WhatsApp]</span></p>
+      </section>
+      <section class="card">
+        <h2>Book a short call</h2>
+        <p>Fifteen minutes to talk through dates, rooms and which retreat suits you.</p>
+        <a class="btn btn--s" href="#">Pick a time</a>
+        <p class="muted"><span class="miss">[needs a booking link, e.g. Calendly]</span></p>
+      </section>
+    </div>
+    <aside class="note">
+      <h2>Or leave a note</h2>
+      <p class="muted">We will write back by email.</p>
+      <form onsubmit="event.preventDefault()">
+        <label for="n">First name</label><input id="n" autocomplete="given-name">
+        <label for="e">Email</label><input id="e" type="email" autocomplete="email">
+        <label for="m">Your question</label><textarea id="m"></textarea>
+        <button class="btn btn--p" type="submit">Send</button>
+      </form>
+    </aside>
+  </div>
+  <p class="foot muted"><b>Trade-off:</b> the warmest option and the closest to how Christina already sells (the live FAQ invites people to set up a call). It needs two things we do not have yet, a confirmed WhatsApp line and a booking calendar, and it puts load on the team's time. Teachers and groups would be handled in the conversation rather than routed.</p>
+</main>
+</body>
+</html>
