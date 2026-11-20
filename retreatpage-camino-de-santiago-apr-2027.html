@@ -12,7 +12,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/base.css?v=202611192000">
-<link rel="stylesheet" href="css/retreat.css?v=202611200510">
+<link rel="stylesheet" href="css/retreat.css?v=202611200520">
+<link rel="stylesheet" href="css/lead-modal.css?v=202611200520">
 </head>
 <body>
 <!-- Built by retreats/_tools/build_page.py from data/retreats.js and retreats/camino-de-santiago-apr-2027/data.json,
@@ -692,8 +693,8 @@
         <p class="rooms__aside-note">All payments are non-refundable and non-transferable, so we recommend trip cancellation insurance from the day you pay your deposit.</p>
         <p class="rooms__aside-note">Sharing a room? Book together with your roommate. If you don&rsquo;t have one we&rsquo;ll pair you when we can &mdash; and if nobody is available, we&rsquo;ll move you to a private room.</p>
         <div class="rooms__actions">
-          <a class="btn btn--primary" href="contact.html#general-inquiry">Reserve your space</a>
-          <a class="btn btn--secondary" href="contact.html#general-inquiry">I want more info</a>
+          <a class="btn btn--primary" href="contact.html#general-inquiry" data-lead-open data-lead-intent="reserve" data-lead-source="rooms">Reserve your space</a>
+          <a class="btn btn--secondary" href="contact.html#general-inquiry" data-lead-open data-lead-source="rooms">I want more info</a>
         </div>
       </aside>
     </div>
@@ -1132,6 +1133,9 @@
     normalizeWheel: false,
     smoothTouch: false
   });
+
+  // The lead modal stops and restarts it while it is open.
+  window.yawwLenis = lenis;
 
   function raf(time) {
     lenis.raf(time);
@@ -2376,6 +2380,7 @@
      hero by build_page.py, the same label the retreat cards carry. */
 </script>
 
+<script src="js/lead-modal.js?v=202611200520" defer></script>
 <script src="js/hosts.js?v=202611191130" defer></script>
 </body>
 </html>

@@ -12,6 +12,7 @@
 
 <link rel="stylesheet" href="css/base.css?v=202611192000">
 <link rel="stylesheet" href="css/retreat.css?v=202611181609">
+<link rel="stylesheet" href="css/lead-modal.css?v=202611200510">
 </head>
 <body>
 
@@ -915,6 +916,9 @@
     normalizeWheel: false,
     smoothTouch: false
   });
+
+  // The lead modal stops and restarts it while it is open.
+  window.yawwLenis = lenis;
 
   function raf(time) {
     lenis.raf(time);
@@ -2154,5 +2158,6 @@
      hero by build_page.py, the same label the retreat cards carry. */
 </script>
 
+<script src="js/lead-modal.js?v=202611200510" defer></script>
 </body>
 </html>

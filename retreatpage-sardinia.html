@@ -12,7 +12,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/base.css?v=202611192000">
-<link rel="stylesheet" href="css/retreat.css?v=202611200510">
+<link rel="stylesheet" href="css/retreat.css?v=202611200520">
+<link rel="stylesheet" href="css/lead-modal.css?v=202611200520">
 </head>
 <body>
 <!-- Built by retreats/_tools/build_page.py --waitlist from data/locations.js (program) and retreats/sardinia/data.json,
@@ -543,7 +544,7 @@
         <p class="waitlist__body">We will write to you as soon as the dates are set.</p>
       </div>
       <p class="waitlist__note">The itinerary, inclusions and stay on this page are from our last retreat here; the next one may differ, and its dates, teacher and prices come out together.</p>
-      <p class="waitlist__links"><a href="contact.html#general-inquiry">Questions? Talk to us</a></p>
+      <p class="waitlist__links"><a href="contact.html#general-inquiry" data-lead-open data-lead-source="waitlist">Questions? Talk to us</a></p>
     </div>
   </section>
 
@@ -871,6 +872,9 @@
     normalizeWheel: false,
     smoothTouch: false
   });
+
+  // The lead modal stops and restarts it while it is open.
+  window.yawwLenis = lenis;
 
   function raf(time) {
     lenis.raf(time);
@@ -2071,6 +2075,7 @@
      hero by build_page.py, the same label the retreat cards carry. */
 </script>
 
+<script src="js/lead-modal.js?v=202611200520" defer></script>
 <script src="js/retreat-cards.js?v=202611200400"></script>
 <script>YAWW.wireWaitlistForm(document.querySelector('[data-waitlist-form]'));</script>
 </body>

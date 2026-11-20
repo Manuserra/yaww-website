@@ -55,7 +55,7 @@ import page_content as PC  # noqa: E402
 REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 TPL = os.path.join(REPO, "retreatpage-elcuyo.html")
 HOSTS_JS = '<script src="js/hosts.js?v=202611191130" defer></script>'
-CSS_VERSION = "202611200510"   # bump with any change to css/retreat.css
+CSS_VERSION = "202611200520"   # bump with any change to css/retreat.css
 CARDS_JS = '<script src="js/retreat-cards.js?v=202611200400"></script>'
 
 # Past editions that still have a page but are no longer listed in
@@ -489,7 +489,7 @@ def waitlist_section(location, last_edition):
         <p class="waitlist__body">We will write to you as soon as the dates are set.</p>
       </div>
       <p class="waitlist__note">{esc(note)}</p>
-      <p class="waitlist__links"><a href="contact.html#general-inquiry">Questions? Talk to us</a></p>
+      <p class="waitlist__links"><a href="contact.html#general-inquiry" data-lead-open data-lead-source="waitlist">Questions? Talk to us</a></p>
     </div>
   </section>'''
 
@@ -537,6 +537,7 @@ def build(rid, cat, assets, template, waitlist=False):
     # The built pages use rules the template predates (day titles, notes,
     # empty host photo), so they ask for the current stylesheet.
     doc = re.sub(r"css/retreat\.css\?v=\d+", "css/retreat.css?v=" + CSS_VERSION, doc, count=1)
+    doc = re.sub(r"(css/lead-modal\.css|js/lead-modal\.js)\?v=\d+", r"\1?v=" + CSS_VERSION, doc)
     doc = swap(doc, "<body>\n",
                f"<body>\n<!-- Built by retreats/_tools/build_page.py"
                + (f" --waitlist from data/locations.js (program) and" if waitlist else " from data/retreats.js and")
@@ -758,8 +759,8 @@ def build(rid, cat, assets, template, waitlist=False):
                  doc, count=1, flags=re.S)
     doc = swap(doc, '''          <button class="btn btn--primary" type="button">Reserve your space</button>
           <button class="btn btn--secondary" type="button">I want more info</button>''',
-               '''          <a class="btn btn--primary" href="contact.html#general-inquiry">Reserve your space</a>
-          <a class="btn btn--secondary" href="contact.html#general-inquiry">I want more info</a>''', "rooms ctas")
+               '''          <a class="btn btn--primary" href="contact.html#general-inquiry" data-lead-open data-lead-intent="reserve" data-lead-source="rooms">Reserve your space</a>
+          <a class="btn btn--secondary" href="contact.html#general-inquiry" data-lead-open data-lead-source="rooms">I want more info</a>''', "rooms ctas")
     doc = swap(doc, '<section class="rooms">', '<section class="rooms" id="rooms">', "rooms id")
     if waitlist:
         m = section(doc, "rooms")
