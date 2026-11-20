@@ -102,6 +102,46 @@ h1, h2 { font-family: var(--font-heading); -webkit-font-smoothing: antialiased; 
     </div>
   </article>
 
+
+  <article class="decision" id="teacher-page">
+    <p class="decision__section">8 · Teacher pages</p>
+    <div>
+      <h2>Teacher page layout</h2>
+      <p class="decision__q">The old page was a centred photo and a block of text. Which layout should sell each teacher? Both have slots for a quote, specialties, a class video and a Spotify playlist, shown only when the teacher sends them.</p>
+      <ul class="opts">
+        <li><a class="is-chosen" href="teacher-page/option-a.html">A · Split profile <span class="tag">Implemented</span></a></li>
+        <li><a href="teacher-page/option-b.html">B · Editorial hero + sidebar</a></li>
+      </ul>
+      <p class="why"><b>Why A:</b> it works for every teacher today, including those with a short bio or a small Canva photo: vertical photo on the left (held in view while you read), her own line, bio and specialties on the right, then her retreats on the stone band and the video and playlist band. B needs a sharp, wide-enough photo for a half-screen hero, which only Alicia, Alison and Renata have. Live example with every slot filled by a placeholder: <a href="../teacher-alicia-delaney.html?slots=demo">Alicia Delaney</a> (add <code>?slots=demo</code> to any teacher URL). What to ask the teachers for: <code>docs/teacher-content-request.md</code>.</p>
+    </div>
+  </article>
+
+  <article class="decision" id="review-badges">
+    <p class="decision__section">6 · About</p>
+    <div>
+      <h2>Google and Tripadvisor rating badges</h2>
+      <p class="decision__q">Official widgets, or our own badges linking out?</p>
+      <ul class="opts">
+        <li><a class="is-chosen" href="../about.html">A · Our static badges, linked <span class="tag">Implemented</span></a></li>
+        <li><a href="https://www.tripadvisor.com/Widgets">B · Official Tripadvisor widget + Google via Places API</a></li>
+      </ul>
+      <p class="why"><b>Why A for now:</b> Google has no official embed (only the Places API with a billed Cloud key, or a paid third party), and the Tripadvisor widget brings its own look and a third-party script. Our badges match the page and load nothing; they need the two review links and a quarterly check of the score. Needs from you: owner access to both listings and confirmation of 4.9 / 4.8. Details in <code>docs/review-widgets.md</code>.</p>
+    </div>
+  </article>
+
+  <article class="decision" id="facilitators">
+    <p class="decision__section">9 · Facilitators</p>
+    <div>
+      <h2>Marina and Fleur after leaving the listing</h2>
+      <p class="decision__q">They are off facilitators.html. Their pages: keep them unlisted, or remove them?</p>
+      <ul class="opts">
+        <li><a class="is-chosen" href="../facilitator-fleur-optekamp.html">A · Keep unlisted pages <span class="tag">Implemented</span></a></li>
+        <li><a href="../facilitators.html">B · Redirect to the facilitators page</a></li>
+      </ul>
+      <p class="why"><b>Why A:</b> the Thailand retreat page still says "Meet Fleur" and links to her page, so removing it would send guests to a list she is not on. If Marina and Fleur no longer work with YAWW, switch to B and drop them from those retreat pages. JL's old team URL now goes to her teacher page; she stays in About's team grid. Old team*.html URLs all redirect.</p>
+    </div>
+  </article>
+
 </div>
 </body>
 </html>

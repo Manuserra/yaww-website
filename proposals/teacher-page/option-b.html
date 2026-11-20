@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Teacher page · B · Editorial hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Frozen prototype. Tokens copied from css/base.css. */
+:root { --sea-blue:#475764; --sea-blue-200:#657C8F; --sea-blue-300:#516372; --stone:#F7F2F0; --stone-100:#FDF9F7; --stone-200:#F1EFEB; --stone-300:#E1DCD6; --stone-400:#C6BFB9; --stone-500:#A6A29E; --stone-600:#765C3A;
+  --h:"Libre Baskerville", Georgia, serif; --b:"Raleway", system-ui, sans-serif; }
+*,*::before,*::after { box-sizing:border-box; }
+body { margin:0; background:var(--stone); color:var(--sea-blue); font-family:var(--b); }
+.note { background:var(--sea-blue); color:var(--stone); font-size:13px; line-height:20px; padding:10px 24px; letter-spacing:.32px; }
+.note a { color:inherit; }
+.kicker { margin:0 0 8px; font-weight:600; font-size:14px; line-height:24px; letter-spacing:.56px; text-transform:uppercase; color:var(--stone-600); }
+h1,h2 { font-family:var(--h); margin:0; -webkit-font-smoothing:antialiased; }
+/* Hero: name and her line on stone, the photo bleeding to the right edge. */
+.hero { display:grid; grid-template-columns:1fr 1fr; background:var(--stone-300); min-height:640px; }
+.hero__copy { padding:96px 48px 72px max(24px, calc((100vw - 1440px)/2 + 24px)); display:flex; flex-direction:column; justify-content:flex-end; gap:24px; }
+.hero__copy h1 { font-size:56px; line-height:64px; font-weight:700; }
+.hero__quote { margin:0; font-family:var(--h); font-style:italic; font-size:26px; line-height:40px; max-width:520px; }
+.hero__tags { display:flex; flex-wrap:wrap; gap:8px; margin:8px 0 0; padding:0; list-style:none; }
+.hero__tags li { padding:6px 14px; border:1px solid var(--stone-500); font-size:14px; line-height:20px; }
+.hero__photo { margin:0; }
+.hero__photo img { display:block; width:100%; height:100%; object-fit:cover; object-position:50% 30%; }
+/* Body: bio on seven columns, a sticky sidebar on four. */
+.body { max-width:1440px; margin:0 auto; padding:96px 24px; display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); column-gap:48px; }
+.bio { grid-column:1 / span 7; }
+.bio p { margin:0 0 24px; font-size:17px; line-height:30px; letter-spacing:.32px; }
+.bio p:first-child::first-letter { font-family:var(--h); float:left; font-size:64px; line-height:56px; padding:6px 10px 0 0; color:var(--stone-600); }
+.side { grid-column:9 / span 4; position:sticky; top:24px; align-self:start; display:flex; flex-direction:column; gap:32px; }
+.next { background:var(--stone-100); border:1px solid var(--stone-300); }
+.next img { display:block; width:100%; aspect-ratio:4/3; object-fit:cover; }
+.next div { padding:20px; }
+.next h2 { font-size:20px; line-height:28px; }
+.next p { margin:4px 0 0; font-size:14px; line-height:24px; }
+.btn { display:block; text-align:center; margin-top:16px; padding:14px; background:var(--sea-blue); color:var(--stone); font-weight:600; font-size:14px; letter-spacing:.56px; text-transform:uppercase; text-decoration:none; }
+.slot { display:flex; align-items:center; justify-content:center; text-align:center; padding:24px; background:var(--stone-200); border:1px dashed var(--stone-500); font-size:14px; line-height:20px; color:var(--sea-blue-300); }
+.video { max-width:1440px; margin:0 auto; padding:0 24px 96px; }
+.video .slot { aspect-ratio:16/9; max-width:1100px; margin:0 auto; }
+@media (max-width:900px) {
+  .hero { grid-template-columns:1fr; min-height:0; }
+  .hero__photo { order:-1; aspect-ratio:4/5; }
+  .hero__copy { padding:32px 16px 40px; }
+  .hero__copy h1 { font-size:34px; line-height:44px; }
+  .hero__quote { font-size:20px; line-height:32px; }
+  .body { grid-template-columns:1fr; padding:48px 16px; row-gap:40px; }
+  .bio, .side { grid-column:1; position:static; }
+  .video { padding:0 16px 56px; }
+}
+</style>
+</head>
+<body>
+<p class="note">Proposal B, not implemented. Option A is live: <a href="../../teacher-alicia-delaney.html?slots=demo">teacher-alicia-delaney.html?slots=demo</a>. Board: <a href="../index.html#teacher-page">proposals/index.html</a>.</p>
+
+<section class="hero">
+  <div class="hero__copy">
+    <p class="kicker">Teacher</p>
+    <h1>Alicia Delaney</h1>
+    <p class="hero__quote">&ldquo;[placeholder: one line in her own words]&rdquo;</p>
+    <ul class="hero__tags"><li>Restorative</li><li>Yoga nidra</li><li>Pranayama</li><li>Reiki</li></ul>
+  </div>
+  <figure class="hero__photo"><img src="../../images/people/alicia-delaney-1.jpg" alt="Alicia Delaney on the beach in El Cuyo"></figure>
+</section>
+
+<section class="body">
+  <div class="bio">
+    <p>Alicia Delaney (E-RYT 200, YACEP) has a deep appreciation for quiet. A natural nurturer and teacher, she is steeped in the work of helping others cultivate more pause in their busy lives, and making their lives less busy in the process.</p>
+    <p>Her mission is to guide students toward ease and delight in their bodies through relaxed pacing, open choice sequencing, and invitational language. When practicing together, you can expect contemplation, curiosity, laughter, and empowering movement with only a little sweat.</p>
+    <p>Always seeking out the medicine of rest and ways to share it with the world, Alicia has studied with internationally-renowned yoga therapist, Jillian Pransky, is attuned as an Usui Reiki practitioner, and holds certification as a yoga nidra guide.</p>
+  </div>
+  <aside class="side">
+    <div class="next">
+      <img src="../../images/people/alicia-delaney-2.jpg" alt="" style="object-position:50% 25%">
+      <div>
+        <p class="kicker" style="margin:0">Next retreat with Alicia</p>
+        <h2>Inner Glow Retreat</h2>
+        <p>El Cuyo, Mexico · December 1–6, 2026</p>
+        <a class="btn" href="../../retreatpage-el-cuyo-dec-2026-delaney.html">See the retreat</a>
+      </div>
+    </div>
+    <div>
+      <p class="kicker">On her playlist</p>
+      <div class="slot" style="height:352px">[placeholder: Spotify playlist]</div>
+    </div>
+  </aside>
+</section>
+
+<section class="video">
+  <h2 style="text-align:center; font-size:24px; line-height:40px; margin-bottom:32px">A class with Alicia</h2>
+  <div class="slot">[placeholder: a 1 to 3 minute clip of Alicia teaching]</div>
+</section>
+</body>
+</html>
