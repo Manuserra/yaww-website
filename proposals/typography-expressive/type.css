@@ -265,8 +265,8 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
    Buttons and tabs keep their size; tracking goes from a flat 0.04em
    to a proper caps spacing so they stop looking squeezed. */
 .btn { letter-spacing: 0.1em; }
-/* "Explore …" links under the collections: the same caps spacing as buttons. */
-.tiers2__link-text { letter-spacing: 0.1em; }
+/* The "Explore …" links under the collections keep the live 0.04em:
+   opened up to 0.1em they read like a second eyebrow. */
 .tabs__item { letter-spacing: 0.1em; }
 .card__label { letter-spacing: 0.12em; }
 
