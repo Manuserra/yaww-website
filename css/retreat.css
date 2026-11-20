@@ -235,7 +235,6 @@ main { overflow-wrap: break-word; }
   display: grid;
   grid-template-columns: 312px 1fr;
   gap: 48px;
-  align-items: center;
 }
 /* The crossfade. transform + opacity only, 220ms on the shared ease-out —
    short, because this is a swap inside a section the reader is scanning,
@@ -277,7 +276,6 @@ main { overflow-wrap: break-word; }
 .host__link,
 .gallery__more {
   align-self: flex-start;
-  margin-top: 8px;
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 20px;
@@ -486,7 +484,6 @@ main { overflow-wrap: break-word; }
    the CTA is never asked for before there is anything to choose. */
 .rooms__aside {
   grid-column: 1 / span 4;
-  grid-row: 1;
   align-self: start;
   position: sticky;
   top: 162px;                              /* 138px sticky header + 24 */
@@ -566,13 +563,6 @@ main { overflow-wrap: break-word; }
   margin-top: 24px;
 }
 .rooms__actions .btn { width: 100%; }
-.rooms__aside-fine {
-  margin: 12px 0 0;
-  font-family: var(--font-body);
-  font-size: 12px;
-  line-height: 18px;
-  color: var(--sea-blue-200);
-}
 
 @media (max-width: 1024px) {
   /* Below the desktop grid the rail stops being a rail: two card columns
@@ -580,7 +570,6 @@ main { overflow-wrap: break-word; }
   .rooms__inner { grid-template-columns: minmax(0, 1fr); }
   .rooms__aside {
     grid-column: 1;
-    grid-row: auto;
     position: static;
     max-height: none;
     overflow: visible;
@@ -1064,7 +1053,7 @@ main { overflow-wrap: break-word; }
   letter-spacing: 0.32px;
   color: var(--sea-blue);
 }
-.gallery__nav { margin-top: 16px; }
+.gallery__nav { margin-top: 16px; display: flex; gap: 12px; }
 .gallery__title {
   margin: 0;
   font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
@@ -1074,7 +1063,6 @@ main { overflow-wrap: break-word; }
   color: var(--sea-blue);
   text-align: center;
 }
-.gallery__nav { display: flex; gap: 12px; }
 .gallery__arrow {
   width: 36px;
   height: 36px;
@@ -1537,7 +1525,6 @@ html.has-lightbox { overflow: hidden; }
 .retreat-itinerary {
   --day-gap: clamp(24px, calc(12.5vw - 126px), 54px);
   --marker-gap: clamp(16px, calc(3.3333vw - 24px), 24px);
-  --label-w: 55px;   /* the "DAY N" slot, per the Figma rail width */
   --list-gap: 48px;  /* between day modules — the rail line bridges it */
   --rail-w: 24px;    /* the dot, and so the axis the whole timeline sits on */
 
@@ -1547,6 +1534,7 @@ html.has-lightbox { overflow: hidden; }
   gap: 40px;
   padding: 56px 24px;
   background: var(--stone);
+  --label-w: 76px;
 }
 .retreat-itinerary__title {
   margin: 0;
@@ -1583,9 +1571,6 @@ html.has-lightbox { overflow: hidden; }
    stays at scaleY(0) and the timeline simply looks as it did before. */
 .retreat-itinerary__progress {
   position: absolute;
-  left: calc(var(--rail-w) / 2 - 0.5px);
-  width: 1px;
-  background: var(--stone-600);
   transform: scaleY(var(--p, 0));
   transform-origin: top;
   will-change: transform;
@@ -1661,21 +1646,8 @@ html.has-lightbox { overflow: hidden; }
   flex: none;
   position: relative;   /* keeps the progress line from crossing the ring */
   z-index: 1;
-  transition: border-color .25s ease;
-}
-/* each dot darkens as the reading line passes it */
-.retreat-itinerary__dot.is-reached { border-color: var(--stone-600); }
-@media (prefers-reduced-motion: reduce) {
-  .retreat-itinerary__dot { transition: none; }
 }
 .retreat-itinerary__label {
-  color: var(--stone-600);
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 1.44px;
-  text-transform: uppercase;
   white-space: nowrap;
 }
 
@@ -1903,17 +1875,12 @@ html.has-lightbox { overflow: hidden; }
      margin rather than a rail. */
   .retreat-itinerary { padding: 56px 16px 56px 4px; --rail-w: 8px; }
   .retreat-itinerary__day { align-items: center; gap: 4px; }
-  /* Figma wraps the dot in a 12px-tall frame that bottom-aligns it. Same
-     geometry, one less box: 4px of offset + an 8px dot = the 12px slot, and
-     the dot's centre lands on 8 — the middle of the label's 16px line. */
-  .retreat-itinerary__dot { margin-top: 4px; }   /* size follows --rail-w */
 
   /* Accommodations on a phone. The tab label is a full hotel name, so it
      stops being a nowrap 216px chip and is allowed to wrap. And the copy
      drops out of justified: at ~50 characters a line, justification without
      hyphenation opens rivers of white space between words. */
   .retreat-accom__text p { text-align: left; }
-  .retreat-itinerary__label { line-height: 16px; }
   .retreat-itinerary__slider { aspect-ratio: 81 / 49; }   /* 448 × 271 at 480 */
 }
 
@@ -2043,7 +2010,6 @@ html.has-lightbox { overflow: hidden; }
 .quote-card {
   display: flex;
   flex-direction: column;
-  gap: 24px;
   margin: 0;
   padding: 32px;
   background: var(--stone-100);
@@ -2066,19 +2032,11 @@ html.has-lightbox { overflow: hidden; }
   font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-style: italic;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 26px;
   color: var(--sea-blue);
-  /* Four lines keeps three cards level with each other whatever length the
-     real quotes turn out to be. */
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 /* Pushed to the foot so the attributions line up across cards even when one
    quote runs shorter than its neighbours. */
-.quote-card__by { margin: 0; margin-top: auto; }
+.quote-card__by { margin: 0; margin-top: auto; padding-top: 16px; border-top: 1px solid var(--stone-300); }
 .quote-card__name {
   margin: 0;
   font-family: var(--font-body);
@@ -2103,103 +2061,6 @@ html.has-lightbox { overflow: hidden; }
   .quotes__grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }   /* one column: no gutter to keep */
   .quote-card { padding: 24px; }
 }
-
-/* --- Sticky booking bar -------------------------------------------------
-   A second home for the hero's CTA, shown only while the real one is off
-   screen. It rides above the sticky header, because two bars stacked at the
-   top would eat a third of a laptop viewport between them.
-
-   Hidden is the resting state and it is described three ways: transparent,
-   translated off its own edge, and inert. Opacity alone would leave an
-   invisible bar swallowing clicks across the top of the page. */
-.booking-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 60;              /* .site-header is 50 */
-  background: var(--stone-100);
-  border-bottom: 1px solid var(--stone-300);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-100%);
-}
-@media (prefers-reduced-motion: no-preference) {
-  .booking-bar { transition: opacity 200ms ease, transform 200ms ease, visibility 0s linear 200ms; }
-}
-.booking-bar.is-visible {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-  transition-delay: 0s;     /* becoming visible must not wait on the fade */
-}
-
-.booking-bar__inner {
-  max-width: var(--container-max);
-  margin-inline: auto;
-  padding: 16px 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px;
-}
-.booking-bar__id { min-width: 0; }
-.booking-bar__name {
-  margin: 0;
-  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 24px;
-  color: var(--sea-blue);
-}
-.booking-bar__date {
-  margin: 0;
-  font-family: var(--font-body);
-  font-size: 14px;
-  line-height: 24px;
-  color: var(--sea-blue-200);
-}
-.booking-bar .btn { min-width: 0; width: auto; }
-.booking-bar__act {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  flex: 0 0 auto;
-}
-.booking-bar__price {
-  margin: 0;
-  font-family: var(--font-body);
-  font-size: 14px;
-  line-height: 24px;
-  color: var(--sea-blue);
-  white-space: nowrap;
-}
-/* Only the phone layout shows a bare number, so the two halves of the line
-   can be told apart without a media query in the markup. */
-.booking-bar__price-unit { display: inline; }
-
-/* Phone: the bar moves to the bottom edge, where a thumb already is, and the
-   rule moves with it. The name and date go — at this width they would push
-   the price and the button into each other, and the reader has just scrolled
-   past both. */
-@media (max-width: 767px) {
-  .booking-bar {
-    top: auto;
-    bottom: 0;
-    transform: translateY(100%);
-    border-bottom: 0;
-    border-top: 1px solid var(--stone-300);
-  }
-  .booking-bar__inner { padding: 12px 16px; gap: 16px; }
-  .booking-bar__id { display: none; }
-  .booking-bar__price-unit { display: none; }
-  .booking-bar__act { flex: 1 1 auto; justify-content: space-between; }
-  .booking-bar__price { font-size: 16px; font-weight: 600; }
-  /* 44px is the smallest target a thumb hits reliably; the hero button's 56
-     would make the bar tall enough to cover the content behind it. */
-  .booking-bar .btn { min-height: 44px; padding: 10px 24px; }
-}
-
 
 /* ============================================================
    WAITLIST — a destination between editions
@@ -2474,8 +2335,7 @@ html.has-lightbox { overflow: hidden; }
   .retreat-hero--overlay .retreat-hero__label { margin-bottom: 16px; }
   .retreat-hero--overlay .retreat-hero__title { font-size: 34px; line-height: 42px; }
   .retreat-hero--overlay .retreat-hero__location { font-size: 18px; line-height: 26px; margin-top: 4px; }
-  .retreat-hero--overlay .retreat-hero__meta { margin-top: 16px; padding-top: 12px; font-size: 12px; letter-spacing: 0.1em; }
-  .retreat-hero--overlay .retreat-hero__meta { grid-template-columns: none; }
+  .retreat-hero--overlay .retreat-hero__meta { margin-top: 16px; padding-top: 12px; font-size: 12px; letter-spacing: 0.1em; grid-template-columns: none; }
   .retreat-hero--overlay .retreat-hero__ctas { flex-direction: column; padding-inline: 0; }
   .retreat-hero--overlay .retreat-hero__ctas .btn { flex: none; width: 100%; }
 }
@@ -2508,7 +2368,6 @@ html.has-lightbox { overflow: hidden; }
    in bronze down to the line you are reading, each ring filling as
    the line reaches it. The label slot widens to hold the serif.
    ============================================================ */
-.retreat-itinerary { --label-w: 76px; }
 .retreat-itinerary__label {
   font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-style: italic;
@@ -2567,12 +2426,9 @@ html.has-lightbox { overflow: hidden; }
 }
 .quote-card__quote {
   display: block;
-  -webkit-line-clamp: none;
-  overflow: visible;
   font-size: 17px;
   line-height: 27px;
 }
-.quote-card__by { padding-top: 16px; border-top: 1px solid var(--stone-300); }
 
 
 /* ============================================================
@@ -2801,13 +2657,29 @@ html.has-lightbox { overflow: hidden; }
 
 
 /* ============================================================
-   STICKY BOOKING BAR · refined (2026-11-20)
-   From the premium version: frosted stone over the nav, the name in
-   Baskerville with the dates in small tracked capitals beside it, the
-   price set in the heading face. Two actions now: "Ask for info"
+   STICKY BOOKING BAR
+   A second home for the hero's CTA, shown only while the real one is off
+   screen. It rides above the sticky header, because two bars stacked at the
+   top would eat a third of a laptop viewport between them.
+
+   Hidden is the resting state and it is described three ways: transparent,
+   translated off its own edge, and inert. Opacity alone would leave an
+   invisible bar swallowing clicks across the top of the page.
+
+   Refined 2026-11-20 from the premium version: frosted stone over the nav,
+   the name in Baskerville with the dates in small tracked capitals beside
+   it, the price set in the heading face. Two actions: "Ask for info"
    (the lead form) and "Book now". Built by js/booking-bar.js.
    ============================================================ */
 .booking-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;              /* .site-header is 50 */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-100%);
   background: rgba(247, 242, 240, 0.92);
   -webkit-backdrop-filter: blur(14px) saturate(1.1);
   backdrop-filter: blur(14px) saturate(1.1);
@@ -2818,9 +2690,26 @@ html.has-lightbox { overflow: hidden; }
   .booking-bar { transition: opacity .2s ease, transform .24s var(--ease-out), visibility 0s linear .24s; }
   .booking-bar.is-visible { transition: opacity .24s var(--ease-out), transform .32s var(--ease-out), visibility 0s; }
 }
-.booking-bar__inner { min-height: 72px; padding: 10px 24px; gap: 32px; }
+.booking-bar.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.booking-bar__inner {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 72px;
+  padding: 10px 24px;
+  gap: 32px;
+}
 .booking-bar__id { display: flex; align-items: baseline; gap: 20px; min-width: 0; }
 .booking-bar__name {
+  margin: 0;
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  color: var(--sea-blue);
   font-weight: 400;
   font-size: 20px;
   line-height: 28px;
@@ -2830,6 +2719,8 @@ html.has-lightbox { overflow: hidden; }
   min-width: 0;
 }
 .booking-bar__date {
+  margin: 0;
+  font-family: var(--font-body);
   flex: none;
   font-size: 11px;
   font-weight: 600;
@@ -2838,8 +2729,10 @@ html.has-lightbox { overflow: hidden; }
   text-transform: uppercase;
   color: var(--sea-blue-200);
 }
-.booking-bar__act { gap: 24px; }
+.booking-bar__act { display: flex; align-items: center; flex: 0 0 auto; gap: 24px; }
 .booking-bar__price {
+  margin: 0;
+  white-space: nowrap;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -2878,15 +2771,15 @@ html.has-lightbox { overflow: hidden; }
 }
 /* Phone: bottom edge, price left, both buttons right and equal. */
 @media (max-width: 767px) {
-  .booking-bar { border-bottom: 0; border-top: 1px solid var(--stone-300); box-shadow: 0 -8px 24px -16px rgba(40, 49, 57, 0.25); }
+  .booking-bar { top: auto; bottom: 0; transform: translateY(100%); border-bottom: 0; border-top: 1px solid var(--stone-300); box-shadow: 0 -8px 24px -16px rgba(40, 49, 57, 0.25); }
   .booking-bar__inner { min-height: 0; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); gap: 12px; }
   .booking-bar__id { display: none; }
   .booking-bar__price--soft { display: none; }
   .booking-bar__btns { flex: 1 1 auto; justify-content: flex-end; }
   .booking-bar__price--soft + .booking-bar__btns .btn { flex: 1 1 0; }
-  .booking-bar__price { align-items: flex-start; font-size: 16px; line-height: 22px; }
+  .booking-bar__price { align-items: flex-start; font-size: 16px; font-weight: 600; line-height: 22px; }
   .booking-bar__price-unit { display: none; }
-  .booking-bar__act { justify-content: space-between; gap: 12px; }
+  .booking-bar__act { flex: 1 1 auto; justify-content: space-between; gap: 12px; }
   .booking-bar__btns { gap: 8px; }
   .booking-bar .btn { min-height: 44px; padding: 8px 14px; font-size: 13px; letter-spacing: 0.03em; }
 }

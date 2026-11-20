@@ -116,12 +116,6 @@ select.yf__input {
   border-bottom: 1.5px solid currentColor;
   transform: rotate(-45deg);
 }
-/* Stacked chips (wider choices with a line of explanation). */
-.yf__chips--stack { flex-direction: column; }
-.yf__chips--stack .yf__chip, .yf__chips--stack .yf__chip span { width: 100%; }
-.yf__chips--stack .yf__chip span { flex-direction: column; align-items: flex-start; gap: 2px; padding: 14px 16px; }
-.yf__chip small { font-size: 14px; line-height: 20px; color: var(--sea-blue-300); }
-.yf__chip input:checked + span small { color: var(--stone-300); }
 
 /* Errors: under their own field, with a mark so it never relies on
    colour alone. The site has no red; the line goes dark and thick. */
@@ -153,14 +147,6 @@ select.yf__input {
 
 .yf__actions { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-top: 4px; }
 .yf__submit.is-sending { opacity: .7; cursor: progress; }
-.yf__fine {
-  margin: 0;
-  font-family: var(--font-body);
-  font-size: 14px;
-  line-height: 22px;
-  letter-spacing: 0.28px;
-  color: var(--sea-blue-300);
-}
 .yf__failed {
   margin: 0;
   padding: 12px 16px;

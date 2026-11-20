@@ -22,6 +22,11 @@
   max-width: calc(100% - (var(--container-pad) * 2));
   margin-inline: auto;
   box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  background: var(--stone-100);
+  border: 1px solid var(--stone-300);
+  box-shadow: 0 1px 2px rgba(40, 49, 57, 0.04);
 }
 
 /* ------------------------------------------------------------------
@@ -34,13 +39,6 @@
    12/16 .14em labels, 11px group titles, 13px meta text, #FFFFFF
    panels…); each is resolved to its nearest token below.
    ------------------------------------------------------------------ */
-.filter-bar {
-  display: flex;
-  flex-wrap: wrap;
-  background: var(--stone-100);
-  border: 1px solid var(--stone-300);
-  box-shadow: 0 1px 2px rgba(40, 49, 57, 0.04);
-}
 .filter-seg { position: relative; width: 360px; flex: 0 0 auto; min-width: 0; }
 .filter-seg + .filter-seg { border-left: 1px solid var(--stone-300); }
 /* .filter-seg__btn is the row, and the thing clicks delegate off of
@@ -59,6 +57,7 @@
   min-height: 80px;
   padding: 16px 24px;
   transition: background-color .16s ease, box-shadow .16s ease;
+  cursor: pointer;
 }
 .filter-seg.is-open .filter-seg__btn {
   background: var(--stone-100);
@@ -88,14 +87,13 @@
   overflow: hidden;
   text-overflow: ellipsis;
   color: var(--sea-blue);
+  transition: color .16s ease;
 }
 .filter-seg__value.is-empty { font-style: italic; color: var(--sea-blue-200); }
 /* Hover: a closed segment fills with Stone-300 @ 40%, the same wash as
    a list row and the view icons, and an empty value ("Any
    time") deepens a step. An open segment keeps its own state. Real
    pointers only, so a tap never leaves a segment looking hovered. */
-.filter-seg__btn { cursor: pointer; }
-.filter-seg__value { transition: color .16s ease; }
 @media (hover: hover) and (pointer: fine) {
   .filter-seg:not(.is-open) .filter-seg__btn:hover { background: rgba(225, 220, 214, 0.40); }   /* same wash as .list-row:hover (Stone-300 @ 40%) */
   .filter-seg:not(.is-open) .filter-seg__btn:hover .filter-seg__value.is-empty { color: var(--sea-blue-300); }
@@ -203,12 +201,13 @@
   font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-size: 13px;
   color: var(--sea-blue);
+  position: relative;
+  overflow: hidden;
 }
 /* A teacher's photo sits over her initials, so a missing or broken
    photo simply leaves the initials showing. The square avatar crops are
    already centred on the face; the raised focal point only matters
    for a teacher who still falls back to her 3:4 portrait. */
-.filter-option__avatar { position: relative; overflow: hidden; }
 .filter-option__photo {
   position: absolute; inset: 0;
   width: 100%; height: 100%;

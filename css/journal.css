@@ -125,6 +125,7 @@
   line-height: 24px;
   letter-spacing: 0.32px;
   color: var(--sea-blue);
+  padding-top: 24px;
 }
 @media only screen and (max-width: 1024px) {
   .main-journal { font-size: 16px; line-height: 24px; letter-spacing: 0.32px; }
@@ -189,7 +190,6 @@
 .main-journal .text-center, .main-journal .text-center * { text-align: center; }
 
 /* --- Page frame ------------------------------------------------------ */
-.main-journal { padding-top: 24px; }
 
 .main-journal .main__header--small { padding: 56px 152px; }
 @media only screen and (max-width: 1024px) {

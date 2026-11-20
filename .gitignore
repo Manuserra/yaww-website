@@ -29,3 +29,7 @@ retreats/_shared/
 # processed. images/retreat-cards/ holds what the site actually serves
 # (312x408 and 624x816 WebP, ~1.3 MB for both sets together).
 images/Retreats/
+
+# Full-page screenshots for the cleanup pass (night 11): ~100 MB of PNGs,
+# a local before/after reference, not part of the site.
+docs/cleanup-baseline/

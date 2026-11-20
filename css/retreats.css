@@ -3,39 +3,6 @@
    Loaded after base.css by retreats.html.
    ============================================================ */
 
-/* ============================================================
-   RETREATS PAGE
-   ============================================================ */
-.retreats { }
-
-/* --- Hero / intro ---------------------------------------- */
-.retreats-hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 24px;
-  padding: 96px 152px 56px;   /* Figma: 96 152 56 152 */
-}
-.retreats-hero h1 {
-  margin: 0;
-  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 40px;          /* Desktop H4 bold */
-  color: var(--sea-blue);
-}
-.retreats-hero p {
-  margin: 0;
-  max-width: 672px;           /* Figma: content block 672 wide -> 2 lines */
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;          /* Caption regular 14/24 (matches 112px block) */
-  letter-spacing: 0.56px;     /* caption tracking (4%) */
-  color: var(--sea-blue-200); /* inferred muted tone */
-}
-
 /* --- Controls (collection tabs + view toggle) ------------- */
 .controls { display: flex; flex-direction: column; }
 
@@ -48,12 +15,11 @@
   align-items: center;
   gap: 16px;
 }
-.view-toggle button { display: inline-flex; color: var(--sea-blue-100); }
+.view-toggle button { display: inline-flex; color: var(--sea-blue-100); cursor: pointer; transition: color .18s ease, background-color .16s ease; }
 .view-toggle button.is-active { color: var(--sea-blue); }
 /* Hover on the view you're not in: the icon deepens to the active
    sea-blue, a "this is where you'd go" cue. Real
    pointers only, so a tap doesn't leave the other icon looking chosen. */
-.view-toggle button { cursor: pointer; transition: color .18s ease, background-color .16s ease; }
 @media (hover: hover) and (pointer: fine) {
   .view-toggle button:not(.is-active):hover { color: var(--sea-blue); background: rgba(225, 220, 214, 0.40); }   /* same wash as .list-row:hover (Stone-300 @ 40%) */
 }
@@ -149,10 +115,6 @@
 .season--list { display: block; }
 .season--list .season__title { position: static; margin-bottom: 24px; }
 
-/* "By location" title: COUNTRY, / Region (italic) — two lines */
-.season__title--location { font-style: normal; }
-.season__title-country { display: block; font-style: normal; }
-.season__title-region { display: block; font-style: italic; }
 
 /* Grid view — 3 narrow cards per row (312px) inside the 9-col/1032px
    area: (1032 - 2*48) / 3 = 312, which is exactly .card--narrow's own
@@ -305,7 +267,6 @@
 
 /* --- Responsive ------------------------------------------ */
 @media (max-width: 1024px) {
-  .retreats-hero { padding: 72px 24px 48px; }
   .grid { grid-template-columns: repeat(2, 1fr); gap: 40px 24px; }
   .list-row {
     grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) 112px;
@@ -320,8 +281,6 @@
   .r-avail { align-self: center; }
 }
 @media (max-width: 767px) {
-  .retreats-hero { padding: 48px 16px 40px; gap: 24px; }
-  .retreats-hero h1 { font-size: 24px; line-height: 32px; }
   .tabs { width: 100%; }
   .tabs__item { width: auto; flex: 1 1 0; padding: 12px 8px; }
   .grid { grid-template-columns: 1fr; gap: 32px; }
