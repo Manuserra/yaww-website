@@ -55,7 +55,7 @@ import page_content as PC  # noqa: E402
 REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 TPL = os.path.join(REPO, "retreatpage-elcuyo.html")
 HOSTS_JS = '<script src="js/hosts.js?v=202611191130" defer></script>'
-CSS_VERSION = "202611200500"   # bump with any change to css/retreat.css
+CSS_VERSION = "202611200510"   # bump with any change to css/retreat.css
 CARDS_JS = '<script src="js/retreat-cards.js?v=202611200400"></script>'
 
 # Past editions that still have a page but are no longer listed in
@@ -556,25 +556,37 @@ def build(rid, cat, assets, template, waitlist=False):
                f'<h1 class="retreat-hero__title">{esc(name)}</h1>', "hero title")
     doc = swap(doc, '<p class="retreat-hero__location">El Cuyo, Mexico</p>',
                f'<p class="retreat-hero__location">{esc(place)}</p>', "hero location")
-    coll = {"signature-collection": "Signature Collection", "deep-dives": "Deep Dives"}.get(r.get("collection"))
-    doc = swap(doc, '      <p class="retreat-hero__badge">Signature Collection</p>\n',
-               f'      <p class="retreat-hero__badge">{coll}</p>\n' if coll else "", "badge")
+    # The label over the title: tier and status, worded and coloured as on
+    # the retreat cards (YAWW.cardLabelHTML in js/retreat-cards.js).
+    tier = {"signature-collection": "Signature", "deep-dives": "Deep Dive"}.get(r.get("collection"))
+    st = r.get("status")
+    status = ("Waitlist" if waitlist else
+              {"sold_out": "Sold out", "filling_fast": "Filling fast", "new": "New retreat",
+               "spaces_left": f"{r.get('spacesLeft')} space{'s' if r.get('spacesLeft') != 1 else ''} left"}.get(st))
+    parts = []
+    if tier:
+        parts.append(f'<span class="card__label-tier">{tier}</span>')
+    if status:
+        if parts:
+            parts.append('<span class="card__label-sep" aria-hidden="true"></span>')
+        parts.append(f'<span class="card__label-status">{esc(status)}</span>')
+    sig = " card__label--signature" if r.get("collection") == "signature-collection" else ""
+    label = (f'        <p class="retreat-hero__label card__label{sig}">{"".join(parts)}</p>\n' if parts else "")
+    doc = swap(doc, '        <p class="retreat-hero__label card__label card__label--signature"><span class="card__label-tier">Signature</span>'
+               '<span class="card__label-sep" aria-hidden="true"></span><span class="card__label-status">Filling fast</span></p>\n',
+               label, "hero label")
+    doc = swap(doc, '<section class="retreat-hero retreat-hero--overlay">',
+               f'<section class="retreat-hero retreat-hero--overlay" data-retreat-id="{esc(rid)}">', "hero id")
     if waitlist:
-        doc = swap(doc, '''        <span>September 4-8, 2026</span>
-        <span class="retreat-hero__meta-dot" aria-hidden="true">·</span>
-        <span>with Renata Centi</span>''', "        <span>Dates to be announced</span>", "hero meta")
-        doc = swap(doc, '''      <button class="btn btn--primary" type="button">Book now</button>
-      <button class="btn btn--secondary" type="button">I want more info</button>''',
-                   '''      <a class="btn btn--primary" href="#waitlist">Join the waitlist</a>
-      <a class="btn btn--secondary" href="contact.html#general-inquiry">I want more info</a>''', "hero ctas")
+        doc = swap(doc, '''          <span>September 4-8, 2026</span>
+          <span class="retreat-hero__meta-dot" aria-hidden="true">·</span>
+          <span>with Renata Centi</span>''', "          <span>Dates to be announced</span>", "hero meta")
+        doc = swap(doc, '<a class="btn btn--light" href="#rooms">Book now</a>',
+                   '<a class="btn btn--light" href="#waitlist">Join the waitlist</a>', "hero ctas")
     else:
         doc = swap(doc, "<span>September 4-8, 2026</span>", f"<span>{esc(dates)}</span>", "hero date")
         doc = swap(doc, "<span>with Renata Centi</span>",
                    f"<span>with {esc(who)}</span>" if who else "<span>Teacher to be announced</span>", "hero who")
-        doc = swap(doc, '''      <button class="btn btn--primary" type="button">Book now</button>
-      <button class="btn btn--secondary" type="button">I want more info</button>''',
-                   '''      <a class="btn btn--primary" href="#rooms">Book now</a>
-      <a class="btn btn--secondary" href="contact.html#general-inquiry">I want more info</a>''', "hero ctas")
 
     # --------------------------------------------------------------- about
     if not standard:

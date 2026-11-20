@@ -1,0 +1,27 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
+<title>Hero · C · Copy above, photo below</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Frozen prototype: tokens copied from css/base.css, nothing linked. */
+:root{--sea:#475764;--sea5:#283139;--stone:#F7F2F0;--s100:#FDF9F7;--s300:#E1DCD6;--s400:#C6BFB9;--bronze:#765C3A;--h:"Libre Baskerville",Georgia,serif;--b:"Raleway",system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--stone);color:var(--sea);font-family:var(--b)}
+.hdr{height:82px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--s400);font-family:var(--h);letter-spacing:.2em;text-transform:uppercase;font-size:20px}
+.nav{height:56px;display:flex;align-items:center;justify-content:space-around;font-size:14px;border-bottom:1px solid var(--s300)}
+.lbl{display:inline-flex;gap:8px;align-items:center;margin:0;padding:7px 12px;background:rgba(253,249,247,.88);font-size:11px;line-height:16px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:#516372}
+.lbl i{width:3px;height:3px;border-radius:50%;background:#516372;opacity:.6}.lbl b{color:var(--sea5);font-weight:600}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;min-width:304px;padding:16px 32px;font:600 14px/24px var(--b);letter-spacing:.04em;text-transform:uppercase;text-decoration:none;border:1px solid}
+.note{max-width:880px;margin:40px auto;padding:0 24px;font-size:15px;line-height:24px}
+@media(max-width:767px){.hdr{height:56px;font-size:15px}.nav{display:none}.btn{min-width:0;width:100%}}
+
+.hero{padding:40px 24px 24px;text-align:center}.ph{margin:32px auto 0;max-width:1392px;height:calc(100svh - 138px - 330px);min-height:280px;background:url(../../images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-open-air-yoga-shala.webp) center/cover}
+h1{font:400 48px/56px var(--h);margin:16px 0 0}.loc{font:italic 20px/30px var(--h);margin:4px 0 0}
+.lbl{background:var(--s300)}
+.meta{margin:16px 0 0;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.ctas{display:flex;gap:16px;justify-content:center;margin-top:24px}.p{background:var(--sea);color:var(--stone);border-color:var(--sea)}.g{color:var(--bronze);border-color:var(--bronze)}
+@media(max-width:767px){.hero{padding:24px 16px}h1{font-size:30px;line-height:38px}.ctas{flex-direction:column}.ph{height:40vh}}
+
+</style></head><body><div class="hdr">Yoga Adventures</div><div class="nav"><span>Retreats</span><span>Locations</span><span>About</span><span>Journal</span><span>Contact</span></div>
+<section class="hero"><p class="lbl">Deep Dive<i></i><b>2 spaces left</b></p>
+<h1>Inner Glow Retreat</h1><p class="loc">El Cuyo, Mexico</p>
+<p class="meta">December 1 – 6, 2026 · with Alicia Delaney</p><div class="ctas"><a class="btn p" href="#">Book now</a><a class="btn g" href="#">I want more info</a></div><div class="ph"></div></section>
+<p class="note">The current centred order (name first, then the picture), with the photo’s height set to whatever the viewport has left so the CTAs are always above the fold. The most conservative change and the closest to proto-hero-above.html; the photograph becomes a band instead of the first impression.</p></body></html>

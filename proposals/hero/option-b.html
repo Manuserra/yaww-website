@@ -1,0 +1,28 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
+<title>Hero · B · Split</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Frozen prototype: tokens copied from css/base.css, nothing linked. */
+:root{--sea:#475764;--sea5:#283139;--stone:#F7F2F0;--s100:#FDF9F7;--s300:#E1DCD6;--s400:#C6BFB9;--bronze:#765C3A;--h:"Libre Baskerville",Georgia,serif;--b:"Raleway",system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--stone);color:var(--sea);font-family:var(--b)}
+.hdr{height:82px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--s400);font-family:var(--h);letter-spacing:.2em;text-transform:uppercase;font-size:20px}
+.nav{height:56px;display:flex;align-items:center;justify-content:space-around;font-size:14px;border-bottom:1px solid var(--s300)}
+.lbl{display:inline-flex;gap:8px;align-items:center;margin:0;padding:7px 12px;background:rgba(253,249,247,.88);font-size:11px;line-height:16px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:#516372}
+.lbl i{width:3px;height:3px;border-radius:50%;background:#516372;opacity:.6}.lbl b{color:var(--sea5);font-weight:600}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;min-width:304px;padding:16px 32px;font:600 14px/24px var(--b);letter-spacing:.04em;text-transform:uppercase;text-decoration:none;border:1px solid}
+.note{max-width:880px;margin:40px auto;padding:0 24px;font-size:15px;line-height:24px}
+@media(max-width:767px){.hdr{height:56px;font-size:15px}.nav{display:none}.btn{min-width:0;width:100%}}
+
+.hero{display:grid;grid-template-columns:5fr 7fr;gap:48px;margin:0 24px 24px;height:calc(100svh - 162px);min-height:560px}
+.copy{align-self:center;padding:24px 0 24px 24px}.ph{background:url(../../images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-open-air-yoga-shala.webp) center/cover}
+.lbl{background:var(--s300)}
+h1{font:400 52px/60px var(--h);margin:20px 0 0}.loc{font:italic 22px/32px var(--h);margin:8px 0 0}
+.meta{margin:24px 0 32px;padding-top:16px;border-top:1px solid var(--s400);font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.ctas{display:flex;flex-direction:column;gap:12px;align-items:flex-start}.p{background:var(--sea);color:var(--stone);border-color:var(--sea)}.g{color:var(--bronze);border-color:var(--bronze)}
+@media(max-width:900px){.hero{grid-template-columns:1fr;height:auto;margin:0}.ph{height:52vh;order:-1}.copy{padding:0 16px 32px}h1{font-size:34px;line-height:42px}.ctas{align-items:stretch}}
+
+</style></head><body><div class="hdr">Yoga Adventures</div><div class="nav"><span>Retreats</span><span>Locations</span><span>About</span><span>Journal</span><span>Contact</span></div>
+<section class="hero"><div class="copy"><p class="lbl">Deep Dive<i></i><b>2 spaces left</b></p>
+<h1>Inner Glow Retreat</h1><p class="loc">El Cuyo, Mexico</p>
+<p class="meta">December 1 – 6, 2026 · with Alicia Delaney</p><div class="ctas"><a class="btn p" href="#">Book now</a><a class="btn g" href="#">I want more info</a></div></div><div class="ph"></div></section>
+<p class="note">Copy on the page’s own stone, photograph to the right. Every word is dark on light, so it never depends on the photo, and the buttons keep their normal colours. Costs: the photo loses almost half its width, and on a phone the copy drops under it, so the CTAs fall near the fold on short screens.</p></body></html>

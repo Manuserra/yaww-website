@@ -1,0 +1,28 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex">
+<title>Hero · A · Overlay (implemented)</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Frozen prototype: tokens copied from css/base.css, nothing linked. */
+:root{--sea:#475764;--sea5:#283139;--stone:#F7F2F0;--s100:#FDF9F7;--s300:#E1DCD6;--s400:#C6BFB9;--bronze:#765C3A;--h:"Libre Baskerville",Georgia,serif;--b:"Raleway",system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--stone);color:var(--sea);font-family:var(--b)}
+.hdr{height:82px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--s400);font-family:var(--h);letter-spacing:.2em;text-transform:uppercase;font-size:20px}
+.nav{height:56px;display:flex;align-items:center;justify-content:space-around;font-size:14px;border-bottom:1px solid var(--s300)}
+.lbl{display:inline-flex;gap:8px;align-items:center;margin:0;padding:7px 12px;background:rgba(253,249,247,.88);font-size:11px;line-height:16px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:#516372}
+.lbl i{width:3px;height:3px;border-radius:50%;background:#516372;opacity:.6}.lbl b{color:var(--sea5);font-weight:600}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;min-width:304px;padding:16px 32px;font:600 14px/24px var(--b);letter-spacing:.04em;text-transform:uppercase;text-decoration:none;border:1px solid}
+.note{max-width:880px;margin:40px auto;padding:0 24px;font-size:15px;line-height:24px}
+@media(max-width:767px){.hdr{height:56px;font-size:15px}.nav{display:none}.btn{min-width:0;width:100%}}
+
+.hero{position:relative;margin:0 24px 24px;height:calc(100svh - 162px);min-height:560px;background:#283139 url(../../images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-open-air-yoga-shala.webp) center/cover;color:var(--stone)}
+.hero:after{content:"";position:absolute;inset:0;background:radial-gradient(120% 85% at 0 100%,rgba(40,49,57,.62),rgba(40,49,57,0) 60%),linear-gradient(0deg,rgba(40,49,57,.72),rgba(40,49,57,.28) 38%,rgba(40,49,57,0) 62%)}
+.in{position:absolute;z-index:1;left:0;right:0;bottom:0;max-width:1440px;margin:auto;padding:0 48px 48px;display:grid;grid-template-columns:1fr auto;align-items:end;gap:32px}
+h1{font:400 56px/64px var(--h);margin:20px 0 0}.loc{font:italic 22px/32px var(--h);margin:8px 0 0}
+.meta{margin:24px 0 0;padding-top:16px;border-top:1px solid rgba(247,242,240,.4);font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;display:inline-block}
+.ctas{display:flex;flex-direction:column;gap:12px}.p{background:var(--s100);color:var(--sea);border-color:var(--s100)}.g{color:var(--stone);border-color:rgba(247,242,240,.8)}
+@media(max-width:767px){.hero{margin:0;height:calc(100svh - 56px)}.in{grid-template-columns:1fr;padding:0 16px 24px}h1{font-size:34px;line-height:42px}}
+
+</style></head><body><div class="hdr">Yoga Adventures</div><div class="nav"><span>Retreats</span><span>Locations</span><span>About</span><span>Journal</span><span>Contact</span></div>
+<section class="hero"><div class="in"><div><p class="lbl">Deep Dive<i></i><b>2 spaces left</b></p>
+<h1>Inner Glow Retreat</h1><p class="loc">El Cuyo, Mexico</p>
+<p class="meta">December 1 – 6, 2026 · with Alicia Delaney</p></div><div class="ctas"><a class="btn p" href="#">Book now</a><a class="btn g" href="#">I want more info</a></div></div></section>
+<p class="note"><b>Implemented.</b> The photograph fills what the viewport has left under the header, inside the 24px page frame; name, facts and both CTAs sit on it over a scrim in the brand blue. Closest to the premium version, at our type scale (56px, not 116). Works at every desktop height because the copy is anchored to the bottom of the frame instead of stacked under the photo.</p></body></html>

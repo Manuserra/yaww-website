@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/base.css?v=202611192000">
-<link rel="stylesheet" href="css/retreat.css?v=202611200500">
+<link rel="stylesheet" href="css/retreat.css?v=202611200510">
 </head>
 <body>
 <!-- Built by retreats/_tools/build_page.py from data/retreats.js and retreats/el-cuyo-feb-2027-morin-gray/data.json,
@@ -116,23 +116,25 @@
        Order below is literal Figma layer order: image, then
        title -> location -> badge -> meta (16px rhythm), then CTAs.
        ========================================================= -->
-  <section class="retreat-hero">
+  <section class="retreat-hero retreat-hero--overlay" data-retreat-id="el-cuyo-feb-2027-morin-gray">
     <div class="retreat-hero__image" role="img" aria-label="A lone figure on the wide empty shoreline at dawn in El Cuyo, Mexico" style="background-image: url('images/retreat-photos/el-cuyo/yoga-retreat-el-cuyo-mexico-empty-shoreline-at-dawn.webp'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
 
-    <div class="retreat-hero__copy">
-      <h1 class="retreat-hero__title">Embodied: The Art of Being Seen</h1>
-      <p class="retreat-hero__location">El Cuyo, Mexico</p>
-      <p class="retreat-hero__badge">Deep Dives</p>
-      <p class="retreat-hero__meta">
-        <span>February 14 – 20, 2027</span>
-        <span class="retreat-hero__meta-dot" aria-hidden="true">·</span>
-        <span>with Genevieve Morin &amp; Rachel Gray</span>
-      </p>
-    </div>
+    <div class="retreat-hero__inner">
+      <div class="retreat-hero__copy">
+        <p class="retreat-hero__label card__label"><span class="card__label-tier">Deep Dive</span></p>
+        <h1 class="retreat-hero__title">Embodied: The Art of Being Seen</h1>
+        <p class="retreat-hero__location">El Cuyo, Mexico</p>
+        <p class="retreat-hero__meta">
+          <span>February 14 – 20, 2027</span>
+          <span class="retreat-hero__meta-dot" aria-hidden="true">·</span>
+          <span>with Genevieve Morin &amp; Rachel Gray</span>
+        </p>
+      </div>
 
-    <div class="retreat-hero__ctas">
-      <a class="btn btn--primary" href="#rooms">Book now</a>
-      <a class="btn btn--secondary" href="contact.html#general-inquiry">I want more info</a>
+      <div class="retreat-hero__ctas">
+        <a class="btn btn--light" href="#rooms">Book now</a>
+        <a class="btn btn--ghost" href="contact.html#general-inquiry" data-lead-open data-lead-source="hero">I want more info</a>
+      </div>
     </div>
   </section>
 
@@ -2200,24 +2202,8 @@
     });
   })();
 
-  /* Hero urgency ---------------------------------------------------------
-     Mirrors cardFlag() in index.html, including the two states resolving to
-     the same class pair. Nothing is written when URGENCY is null, so the
-     hero keeps exactly the shape it has today on a date with no flag. */
-  (function () {
-    var meta = document.querySelector('.retreat-hero__meta');
-    if (!meta || typeof URGENCY === 'undefined' || !URGENCY) return;
-
-    var flag = document.createElement('span');
-    var soldout = URGENCY.type === 'soldout';
-    flag.className = 'card__flag card__flag--' + (soldout ? 'soldout' : 'scarce');
-    flag.textContent = soldout ? 'Sold out' : URGENCY.label;
-
-    var row = document.createElement('p');
-    row.className = 'retreat-hero__urgency';
-    row.appendChild(flag);
-    meta.insertAdjacentElement('afterend', row);
-  })();
+  /* Hero label: the tier and this date's status are written into the
+     hero by build_page.py, the same label the retreat cards carry. */
 </script>
 
 <script src="js/hosts.js?v=202611191130" defer></script>
