@@ -226,6 +226,33 @@
 .main-journal .tabs { margin-inline: auto; }
 .main-journal .tab { width: auto; }
 
+/* Hover and focus for the topic tabs. On top of the label deepening to
+   sea-blue (base of the component), an unselected tab gets a 2px stone
+   rule that grows from the centre, the quiet cousin of the sea-blue
+   indicator that slides to the active one. Real pointers only. */
+.main-journal .tab:not(.is-active)::after {
+  content: "";
+  position: absolute;
+  left: 24px; right: 24px; bottom: -1px;
+  height: 2px;
+  background: var(--stone-500);
+  transform: scaleX(0);
+  transition: transform .22s cubic-bezier(.2, 0, 0, 1);
+  pointer-events: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .main-journal .tab:not(.is-active):hover::after { transform: scaleX(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .main-journal .tab:not(.is-active)::after { transition: none; }
+}
+/* The row scrolls (overflow-x), which would clip an outset ring. */
+.main-journal .tab:focus-visible {
+  outline: 2px solid var(--sea-blue-300);
+  outline-offset: -6px;
+  color: var(--sea-blue);
+}
+
 /* --- Grid ------------------------------------------------------------
    2 columns in the 1392px content width with a 48px gutter = 672px per
    card, which is exactly the image crop the cards are served at. */
@@ -241,7 +268,14 @@
   .journal-grid { grid-template-columns: repeat(1, 1fr); }
 }
 
-.journal-grid .journal__cat { display: flex; gap: 16px; margin-top: 16px; }
+.journal-grid .journal__cat { display: flex; flex-wrap: wrap; gap: 0; margin-top: 16px; }
+/* Middle dot between topics: INSPO · LIFESTYLE · TRAVEL. Decorative, so
+   the empty alternative keeps it out of the accessible text. */
+.journal-grid .journal__cat > div + div::before {
+  content: "\00B7" / "";
+  margin-inline: 10px;
+  color: var(--stone-500);
+}
 .journal-grid .journal__title { margin: 16px 0; }
 
 /* Keyboard affordance. The hover is the site-wide card hover in

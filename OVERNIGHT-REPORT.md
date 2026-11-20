@@ -36,3 +36,8 @@ Not verified / notes:
 - The pages load `css/base.css?v=202611192000`. I did not bump the version string (it is in every HTML file other agents are editing); a browser with a cached base.css will show the old styles until a hard reload. Bump it in the cleanup pass before anything is published.
 - No screenshots embedded on the board; the stone page itself is the visual.
 - Hover-fill motion judged by eye in the pane, not on a real trackpad.
+
+### Journal: filter tab hover and topic separators
+- Filter tabs (css/journal.css): unselected tabs keep the sea-blue label hover shared with retreats, plus a 2px stone rule that grows from the centre (pointer devices only, reduced-motion safe). focus-visible uses an inset ring, since the scrolling row would clip an outset one.
+- Topic labels now read INSPO · LIFESTYLE · TRAVEL via a CSS ::before middle dot (empty alt text, so screen readers skip it) on journal cards, post headers and related-post cards (css/journal-post.css). The old bullet on post pages became the same dot.
+- Checked at 1440 and 390, no horizontal overflow. Commit prefixed `journal:`.

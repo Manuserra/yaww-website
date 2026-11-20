@@ -37,7 +37,7 @@
 .post__cats {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 0;
   justify-content: center;
   margin: 32px 0;
 }
@@ -51,13 +51,12 @@
   text-transform: uppercase;
   color: var(--stone-600);
 }
-/* Bullet between categories, not after the last one. */
-.post__cats span::after {
-  content: "\2022";
-  color: var(--stone-400);
-  margin-left: 12px;
+/* Middle dot between categories, not after the last one. */
+.post__cats span + span::before {
+  content: "\00B7" / "";
+  color: var(--stone-500);
+  margin-inline: 10px;
 }
-.post__cats span:last-child::after { display: none; }
 .post__date {
   margin: 0;
   font-family: var(--font-body);
@@ -286,8 +285,13 @@
 .post-related__cats {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 0;
   margin: 16px 0;
+}
+.post-related__cats span + span::before {
+  content: "\00B7" / "";
+  color: var(--stone-500);
+  margin-inline: 10px;
 }
 .post-related__cats span {
   font-family: var(--font-body);
