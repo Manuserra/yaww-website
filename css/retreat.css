@@ -918,7 +918,7 @@ main { overflow-wrap: break-word; }
   color: var(--sea-blue-200);
   rotate: 0deg;
   translate: 0 0;
-  transition: rotate .5s cubic-bezier(.45, 0, .25, 1),
+  transition: rotate .5s var(--ease-fold),
               translate .18s ease,
               color .18s ease;
 }
@@ -956,7 +956,7 @@ main { overflow-wrap: break-word; }
 .faq__panel {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows .4s cubic-bezier(.45, 0, .25, 1);
+  transition: grid-template-rows .4s var(--ease-fold);
 }
 .faq.is-open .faq__panel {
   grid-template-rows: 1fr;
@@ -1273,8 +1273,8 @@ main { overflow-wrap: break-word; }
    jump, and the indicator ends up animating from a stale position. */
 .is-sliding-ready .tabs__indicator,
 .is-sliding-ready .tabbar__indicator {
-  transition: transform .32s cubic-bezier(.32, .72, 0, 1),
-              width     .32s cubic-bezier(.32, .72, 0, 1);
+  transition: transform .32s var(--ease-slide),
+              width     .32s var(--ease-slide);
 }
 /* the per-tab rule steps aside once a sliding one exists */
 .is-sliding .tabs__item.is-active::after,

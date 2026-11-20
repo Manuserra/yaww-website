@@ -1634,7 +1634,7 @@
   color: var(--sea-blue-200);
   rotate: 0deg;
   translate: 0 0;
-  transition: rotate .5s cubic-bezier(.45, 0, .25, 1),
+  transition: rotate .5s var(--ease-fold),
               translate .18s ease,
               color .18s ease;
 }
@@ -1647,7 +1647,7 @@
 .faq__panel {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows .4s cubic-bezier(.45, 0, .25, 1);
+  transition: grid-template-rows .4s var(--ease-fold);
 }
 .faq.is-open .faq__panel {
   grid-template-rows: 1fr;

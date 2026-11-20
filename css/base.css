@@ -38,6 +38,7 @@
   --header-bg:       var(--stone);
   --hairline:        var(--stone-400);
   --nav-ink:         #222D36;
+  --error:           #9A3B2E;   /* form errors: 6.2:1 on stone */
 
   /* --- Type families --- */
   --font-heading: "Libre Baskerville", Georgia, serif;
@@ -65,6 +66,8 @@
   /* --- Motion --- */
   --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-slide:  cubic-bezier(0.32, 0.72, 0, 1);   /* tab indicators, the filter sheet */
+  --ease-fold:   cubic-bezier(0.45, 0, 0.25, 1);    /* FAQ / accordion open and close */
 }
 
 /* ============================================================
