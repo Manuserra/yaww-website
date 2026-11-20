@@ -422,6 +422,16 @@ const TEACHER_PHOTO = {};
 Y.teacherRoster().forEach(t => { const img = t.avatar || t.photo; if (img) TEACHER_PHOTO[t.name] = img; });
 const PLACES = Y.locationGroups().map(g => ({ title: g.title, items: g.items.map(l => l.name) }));
 const WHENS = Y.seasonOptions("filter");
+/* The months each season actually covers, from the dates themselves
+   ("Mar – May"), so "Spring 2027" says which spring. */
+const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const WHEN_SPAN = {};
+WHENS.forEach(function (w) {
+  const keys = ROWS.filter(v => v.when === w).map(v => v.retreat.startDate.slice(0, 7)).sort();
+  if (!keys.length) return;
+  const a = MON[+keys[0].slice(5) - 1], b = MON[+keys[keys.length - 1].slice(5) - 1];
+  WHEN_SPAN[w] = a === b ? a : a + "\u2009\u2013\u2009" + b;
+});
 const SEGMENTS = [
   { key: "when",    label: "When",        any: "Any time",    param: "when",        groups: [{ title: "", items: WHENS, avatar: false }] },
   { key: "place",   label: "Destination", any: "Anywhere",    param: "destination", groups: PLACES.map(g => ({ title: g.title, items: g.items, avatar: false })) },
@@ -527,6 +537,7 @@ function showPhrase(key, s) {
 }
 function track(detail) { document.dispatchEvent(new CustomEvent("yaww:track", { detail: detail })); }
 function pick(key, value, opts) {
+  track({ event: "filter_pick", key: key, value: value });
   const before = snapshot(state);
   const r = resolvePick(key, value);
   Object.assign(state, r.next);
@@ -586,7 +597,7 @@ function optionHTML(key, value, withAvatar) {
     '<button type="button" class="filter-option' + (sel ? ' is-selected' : '') + '" data-key="' + key + '" data-value="' + esc(value) + '">' +
       (withAvatar ? avatarHTML(value) : key === "place" ? thumbHTML(value) : '') +
       '<span class="filter-option__text"><span class="filter-option__name">' + esc(value) + '</span>' +
-      '<span class="filter-option__meta">' + esc(optionMeta(key, value)) + '</span></span>' +
+      '<span class="filter-option__meta">' + esc((key === "when" && WHEN_SPAN[value] ? WHEN_SPAN[value] + " \u00b7 " : "") + optionMeta(key, value)) + '</span></span>' +
       (sel ? checkSVG() : '') +
     '</button></li>';
 }
@@ -792,6 +803,16 @@ function closeSheet() {
 }
 
 /* ---------- wiring ---------- */
+/* Which card people open, from where in the list and with which filters:
+   the number that says whether the finding tools are working
+   (docs/retreats-search-product.md). */
+results.addEventListener("click", function (e) {
+  const a = e.target.closest("a.result-link");
+  if (!a) return;
+  const all = Array.from(results.querySelectorAll("a.result-link"));
+  track({ event: "result_click", href: a.getAttribute("href"), position: all.indexOf(a) + 1, of: all.length,
+          waitlist: !!a.dataset.waitlistDest, filters: snapshot(state), view: state.view });
+});
 filterBar.addEventListener("click", function (e) {
   const clr = e.target.closest(".filter-seg__clear");
   if (clr) {
