@@ -316,49 +316,51 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: var(--space-head);
   /* The section opens with the results line ("17 retreats coming up")
      for the filter bar that closes the hero above, so the two read as
      one control: 32px from the bar to that line (24px on phones), not
      the 96px module rhythm. Plus the hero's own bottom padding (the
      container gutter) = 32px at every width. */
-  padding: calc(32px - var(--container-pad)) 0 48px;
+  padding: calc(32px - var(--container-pad)) 0 var(--space-section);
 }
-/* Module rhythm: modules on the same stone background each carry 48px
-   top and bottom (32px on phones), so any two neighbours sit 96px
-   (64px) apart — pillars, movement, booking, who, quotes and the FAQ
-   all follow it. Bands with their own background keep their own
-   padding. (This section's top edge is the one exception, see above.) */
+/* Module rhythm: modules on the same stone background each carry
+   --space-section top and bottom (82px at 1440, 101 at 1920, 48 on
+   phones; tokens in base.css), so any two neighbours sit ~164px
+   (96px) apart. Heading → content is --space-head everywhere, and
+   inside a heading group eyebrow → title is --space-stack-xs,
+   title → body --space-stack-sm. Pillars, movement, booking, who,
+   quotes and the FAQ all follow it. The tiers band uses --space-band;
+   the lead band (css/lead.css) and the closing CTA keep their own. (This section's top edge is the one exception, see above.) */
 @media (max-width: 767px) {
-  .home-next { padding: calc(24px - var(--container-pad)) 0 32px; }
+  .home-next { padding: calc(24px - var(--container-pad)) 0 var(--space-section); }
 }
 /* Results line → cards: 16px (12px on phones) to the rail's box, so the
    line sits closer to the cards it counts than to the bar above. The
    section's own 40px gap still separates the rail from its footer, so
    the line pulls the rail up by the difference rather than the gap
    changing for everything. */
-.home-next > .filter-summary { margin-bottom: calc(16px - 40px); }
+.home-next > .filter-summary { margin-bottom: calc(16px - var(--space-head)); }
 @media (max-width: 767px) {
-  .home-next > .filter-summary { margin-bottom: calc(12px - 40px); }
+  .home-next > .filter-summary { margin-bottom: calc(12px - var(--space-head)); }
 }
 /* Headed form (index-video.html): with the bar out of the hero, the
    section opens with kicker + title, then the bar, then the results
    line. 48px from the hero to the heading (32px on phones), the
    section's 40px gap heading → bar, and bar → results line pulled to
    the same 32px/24px index.html gives it under the hero's bar. */
-.home-next--headed { padding-top: calc(48px - var(--container-pad)); }
+.home-next--headed { padding-top: calc(var(--space-section) - var(--container-pad)); }
 .home-next__head {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-stack-xs);
   padding-inline: var(--container-pad);
   text-align: center;
 }
 .kicker.home-next__kicker { color: var(--stone-600); text-align: center; }
 .home-next--headed > .filter-summary { margin-top: -8px; }
 @media (max-width: 767px) {
-  .home-next--headed { padding-top: calc(32px - var(--container-pad)); }
   .home-next--headed > .filter-summary { margin-top: -16px; }
 }
 /* Only the rail itself goes edge-to-edge; the heading, the filter bar
@@ -537,7 +539,10 @@
    three photo stacks that fill their boxes edge to edge, with no
    internal whitespace of their own to borrow from.
 
-   The band's own padding is 72, the largest step the page uses
+   (Spacing now comes from the tokens in base.css: --space-head
+   between heading and cards, --space-band top and bottom, 104 at
+   1440. The reasoning below still holds.)
+   The band's own padding was 72, the largest step the page used
    (.quotes already tops out there) and the one place that deserves
    it: this is the only full-bleed colour block on the homepage, so
    its edges are hard lines rather than the invisible seams between
@@ -550,8 +555,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 56px;
-  padding: 72px var(--container-pad) 72px;
+  gap: calc(var(--space-head) + 16px);   /* one step over the other heads: heaviest content */
+  padding: var(--space-band) var(--container-pad);
   background: var(--sea-blue);
 }
 /* Section heading. Same kicker + .section-title pairing the other
@@ -565,7 +570,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-stack-xs);
   max-width: 555px;
   margin-inline: auto;
 }
@@ -835,7 +840,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 48px var(--container-pad);
+  padding: var(--space-section) var(--container-pad);
   gap: 56px;
   background: var(--stone);
 }
@@ -862,17 +867,18 @@
   overflow: hidden;
 }
 .pillar__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.pillar__copy { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.pillar__copy { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-stack-sm); }
 /* The button sits apart from the eyebrow/title/paragraph group at
    32px, not the 16px between those three pieces themselves. */
 .pillar__copy > .btn {
-  margin-top: 16px;
+  margin-top: calc(var(--space-stack-md) - var(--space-stack-sm));
 }
 /* Beats .pillar__copy p's own font-size/line-height/letter-spacing on
    specificity (0,1,1 there vs 0,2,0 here) — .kicker's <p> tag was
    quietly inheriting the paragraph rule's 16px/0.32em instead of its
    own 14px/0.56em caption spec. */
 .pillar__copy .kicker {
+  margin-bottom: calc(var(--space-stack-xs) - var(--space-stack-sm));
   color: var(--stone-600);
   font-size: 14px;
   line-height: 24px;
@@ -932,7 +938,7 @@
   .pillar__copy p { max-width: none; }
 }
 @media (max-width: 767px) {
-  .pillar { padding: 32px 16px; gap: 40px; }
+  .pillar { padding: var(--space-section) var(--container-pad); gap: 40px; }
 }
 
 /* ============================================================
@@ -943,8 +949,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 48px;
-  padding: 48px var(--container-pad);
+  gap: var(--space-head);
+  padding: var(--space-section) var(--container-pad);
   background: var(--stone);
 }
 .movement__intro {
@@ -954,12 +960,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: var(--space-stack-sm);
 }
 /* Compound selector (not just .movement__kicker on its own) so this
    reliably beats .kicker's own color on specificity rather than
    depending on which rule happens to come later in the file. */
-.kicker.movement__kicker { color: var(--stone-600); }
+.kicker.movement__kicker { color: var(--stone-600); margin-bottom: calc(var(--space-stack-xs) - var(--space-stack-sm)); }
 .movement__intro .section-title { text-wrap: balance; }
 .movement__body {
   margin: 0;
@@ -985,7 +991,7 @@
 .movement__media--tall { aspect-ratio: 432 / 568; }
 .movement__media--short { aspect-ratio: 432 / 423; }
 @media (max-width: 767px) {
-  .movement { padding: 32px 16px; gap: 40px; }
+  .movement { padding: var(--space-section) var(--container-pad); gap: var(--space-head); }
   /* Mosaic instead of a vertical stack: the poolside photo runs the
      full height of a wider left column, the other two sit square on
      the right. All three stay visible at once (about a quarter of the
@@ -1008,15 +1014,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 56px;
-  padding: 48px var(--container-pad);
+  gap: var(--space-head);
+  padding: var(--space-section) var(--container-pad);
   background: var(--stone);
 }
 .booking__intro {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-stack-xs);
 }
 .kicker.booking__kicker { color: var(--stone-600); text-align: center; }
 /* Same line-clamp treatment as the testimonials' own title: caps at
@@ -1092,7 +1098,7 @@
   .booking__step { flex: 0 0 calc(50% - 24px); }
 }
 @media (max-width: 767px) {
-  .booking { padding: 32px 16px; gap: 40px; }
+  .booking { padding: var(--space-section) var(--container-pad); gap: var(--space-head); }
   .booking__row { flex-direction: column; align-items: center; gap: 40px; }
   .booking__step { max-width: 420px; }
 }
@@ -1104,8 +1110,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 48px;
-  padding: 48px 0;
+  gap: var(--space-head);
+  padding: var(--space-section) 0;
   background: var(--stone);
 }
 /* Caps the title at 996px so it never spans the full 1392px content
@@ -1215,7 +1221,7 @@
      but the vertical rhythm matches every other section's own mobile
      step-down — lost when .quotes__grid's rules were rewritten for
      the rail, restored here. */
-  .quotes { padding: 32px 0; gap: 32px; }
+  .quotes { padding: var(--space-section) 0; gap: var(--space-head); }
 }
 /* The 722px side-by-side card only while it fits with the next one
    still peeking (at 768 it showed 1% of it). Below 900 it stacks text
@@ -1240,8 +1246,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 48px;
-  padding: 48px var(--container-pad);
+  gap: var(--space-head);
+  padding: var(--space-section) var(--container-pad);
   background: var(--stone);
 }
 .who__title {
@@ -1554,7 +1560,7 @@
    where you are. A 16:9 photo keeps even the longest card (Mimi's)
    within a phone screen. */
 @media (max-width: 767px) {
-  .who { padding: 32px 16px; gap: 32px; }
+  .who { padding: var(--space-section) var(--container-pad); gap: var(--space-head); }
   .who__row { flex-direction: column; }
   .who__profiles { display: none; }
   .who__postcards { flex: 1 1 auto; width: 100%; gap: 16px; }
@@ -1580,8 +1586,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
-  padding: 48px var(--container-pad);
+  gap: var(--space-head);
+  padding: var(--space-section) var(--container-pad);
   background: var(--stone);
 }
 .faq-section__title {
@@ -1670,7 +1676,7 @@
   color: var(--sea-blue);
 }
 @media (max-width: 767px) {
-  .faq-section { padding: 32px 16px; gap: 32px; }
+  .faq-section { padding: var(--space-section) var(--container-pad); gap: var(--space-head); }
 }
 @media (prefers-reduced-motion: reduce) {
   .faq__panel, .faq__answer, .faq__chev, .faq__q { transition: none; }

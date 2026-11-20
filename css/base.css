@@ -47,6 +47,21 @@
   --container-max: 1440px;
   --container-pad: 24px;
 
+  /* --- Vertical rhythm (fluid; first used on the homepage) ---
+     Values at 390 / 1440 / 1920 in the comments.
+     section: top/bottom padding of a module on the page background;
+              two neighbours sit twice this apart (96 / 164 / 200).
+     band:    top/bottom padding of a full-bleed colour band.
+     head:    section heading → its content.
+     stack-*: inside a text group: eyebrow → title (xs), title → body
+              (sm), body → button or list (md). */
+  --space-section:  clamp(48px, 24px + 4vw, 104px);    /* 48 / 82 / 101 */
+  --space-band:     clamp(72px, 32px + 5vw, 136px);    /* 72 / 104 / 128 */
+  --space-head:     clamp(40px, 24px + 2.5vw, 80px);   /* 40 / 60 / 72 */
+  --space-stack-xs: clamp(8px, 4px + 0.6vw, 16px);     /* 8 / 13 / 16 */
+  --space-stack-sm: clamp(16px, 8px + 1.1vw, 28px);    /* 16 / 24 / 28 */
+  --space-stack-md: clamp(24px, 12px + 2vw, 48px);     /* 24 / 41 / 48 */
+
   /* --- Motion --- */
   --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
