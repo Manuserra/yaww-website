@@ -2893,3 +2893,19 @@ html.has-lightbox { overflow: hidden; }
 @media (max-width: 360px) {
   .booking-bar__ask { display: none; }
 }
+
+
+/* ============================================================
+   RESPONSIVE PASS (2026-11-20, night 08)
+   ============================================================ */
+/* Slider dots stay 6px to the eye but take a taller tap (swipe is the main control). */
+.photo-slider__dot { position: relative; }
+.photo-slider__dot::after { content: ""; position: absolute; inset: -9px -3px; }   /* 24px tall, no overlap across the 6px gap */
+/* Reserve / Details are 20px lines 6px apart: grow each hit area 3px
+   up and down so they reach 26px without overlapping. */
+.room-card__reserve, .room-card__details { position: relative; }
+.room-card__reserve::after, .room-card__details::after { content: ""; position: absolute; inset: -3px -4px; }
+/* At 320 a long pill ("Garden views in Buenos Aires") is wider than the card. */
+@media (max-width: 479px) {
+  .room-card__pills li { white-space: normal; }
+}

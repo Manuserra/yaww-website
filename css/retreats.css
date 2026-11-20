@@ -463,3 +463,9 @@ main { padding-top: 0; }
 @media (max-width: 767px) {
   .results__lead { margin-top: 48px; padding-top: 32px; font-size: 20px; line-height: 32px; }
 }
+
+/* Responsive pass (night 08): at 320 "Signature Collection" no longer
+   fits a third of the bar on one line; let the labels wrap, centred. */
+@media (max-width: 400px) {
+  .tabs__item { min-width: 0; white-space: normal; text-align: center; align-items: center; line-height: 16px; padding: 12px 4px; }
+}
