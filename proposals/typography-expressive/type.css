@@ -57,7 +57,7 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
    One treatment for every kicker on the site (there were five):
    smaller and more open, so it reads as a label and lets the title
    below it be the loud one. Colour stays whatever each page set. */
-.kicker, .loc-kicker, .loc-hero__eyebrow, .about-person__role {
+.kicker, .pillar__copy .kicker, .loc-kicker, .loc-hero__eyebrow, .about-person__role {
   font-family: var(--font-body);
   font-weight: 600;
   font-size: var(--tx-eyebrow);
