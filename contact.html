@@ -3,7 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>YAWW &middot; Contact</title>
+<title>Contact · Yoga Adventures Worldwide</title>
+<meta name="description" content="Questions about a retreat, a private trip for your group, or anything else: write to the Yoga Adventures Worldwide team and a real person will reply.">
+<link rel="canonical" href="https://yogaadventuresworldwide.com/contact/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Contact · Yoga Adventures Worldwide">
+<meta property="og:description" content="Questions about a retreat, a private trip for your group, or anything else: write to the Yoga Adventures Worldwide team and a real person will reply.">
 
 <!-- Fonts: Libre Baskerville (headings) + Raleway (body) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,11 +17,11 @@
 <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css" crossorigin="anonymous">
 
 <link rel="stylesheet" href="css/base.css?v=202611192000">
-<link rel="stylesheet" href="css/contact.css?v=202611181910">
-<!-- Contact form definitions + the renderer. Classic scripts so the
-     prototype still works over file://. -->
-<script src="data/contact.js?v=202611161937"></script>
-<script src="js/contact.js?v=202611161937"></script>
+<link rel="stylesheet" href="css/contact.css?v=202611201500">
+<script src="data/contact.js?v=202611201500"></script>
+<script src="js/contact.js?v=202611201500"></script>
+<script src="data/locations.js?v=202611161843"></script>
+<script src="data/retreats.js?v=202611191000"></script>
 
 </head>
 
@@ -107,29 +112,156 @@
       <li class="nav-item nav-item--has-sub">
         <a href="contact.html" aria-current="page" aria-haspopup="true" aria-expanded="false">Contact</a>
         <ul class="nav-sub">
-          <li><a href="contact.html#general-inquiry">General Inquiry</a></li>
-          <li><a href="contact.html#teach-with-us">Teach with us</a></li>
-          <li><a href="contact.html#build-a-custom-retreat">Build a Custom Retreat</a></li>
+          <li><a href="contact.html" aria-current="page">Ask a question</a></li>
+          <li><a href="contact.html#private-groups">Private groups</a></li>
+          <li><a href="teach-with-us.html">Teach with us</a></li>
         </ul>
       </li>
     </ul>
   </div>
 </nav>
 
+
 <main>
   <!-- =========================================================
-       CONTACT — one page, three anchored forms, exactly as the
-       source does it: /contact/#general-inquiry and friends.
-       Everything inside is rendered from data/contact.js.
+       CONTACT: one human form plus the other doors.
+       The old page had three tab forms (General Inquiry, Teach with
+       us, Build a Custom Retreat). Questions about a specific retreat
+       now start on that retreat's page ("I want more info"), teachers
+       have teach-with-us.html, and private groups are a topic of this
+       form. Reasoning: docs/contact-strategy.md
+       Old anchors (#general-inquiry, #teach-with-us,
+       #build-a-custom-retreat) are routed by js/contact.js.
        ========================================================= -->
-  <section class="contact" data-contact>
-    <div class="contact__head">
-      <h1 class="contact__title">Contact</h1>
+  <div class="contact">
+
+    <div class="contact__intro">
+      <p class="kicker contact__kicker">Contact</p>
+      <h1 class="contact__title">We would love to hear from you</h1>
+      <p class="contact__lede">Ask us anything about a retreat, plan a trip for your own group, or just say hello. Someone from our team reads every message and writes back personally.</p>
+      <ul class="contact__direct">
+        <li><span class="contact__direct-k">Email</span><a href="#" class="is-placeholder" data-contact-email>[missing data: public email address]</a></li>
+        <li><span class="contact__direct-k">Phone</span><a href="tel:+5219842026072">+52 1 984 202 6072</a></li>
+      </ul>
     </div>
-    <div class="cf__tabs" role="tablist" aria-label="Contact forms" data-cf-tabs></div>
-    <div data-cf-panels></div>
-  </section>
+
+    <section class="contact__main" id="form" aria-labelledby="contact-form-title" data-yform-wrap>
+      <h2 class="contact__form-title" id="contact-form-title">Send us a message</h2>
+      <p class="contact__form-sub">A few lines is plenty. We will take it from there.</p>
+
+      <form class="yf" data-yform="contact" action="" method="post" novalidate>
+
+        <fieldset class="yf__field" data-field="topic" data-required data-error="Pick the one closest to your question.">
+          <legend class="yf__legend">What is it about?</legend>
+          <div class="yf__chips">
+            <label class="yf__chip"><input type="radio" name="topic" value="retreat" checked aria-describedby="topic-error"><span>A retreat</span></label>
+            <label class="yf__chip"><input type="radio" name="topic" value="private-group" aria-describedby="topic-error"><span>A trip for my group</span></label>
+            <label class="yf__chip"><input type="radio" name="topic" value="other" aria-describedby="topic-error"><span>Something else</span></label>
+          </div>
+          <p class="yf__error" id="topic-error" hidden></p>
+        </fieldset>
+
+        <!-- topic = retreat -->
+        <div class="yf__field" data-field="retreat" data-show-when="topic=retreat">
+          <label class="yf__label" for="c-retreat">Which retreat or place? <span class="yf__opt">(optional)</span></label>
+          <input class="yf__input" id="c-retreat" name="retreat" type="text" list="c-retreat-list" placeholder="El Cuyo in January, Santorini, not sure yet…">
+          <datalist id="c-retreat-list" data-retreat-options></datalist>
+        </div>
+
+        <!-- topic = private-group -->
+        <p class="contact__group-note" data-show-when="topic=private-group">Friends, family, a studio, a company. Tell us who is coming and roughly when, and we will tell you what we can build.</p>
+        <div class="yf__row" data-show-when="topic=private-group">
+          <div class="yf__field" data-field="group_size">
+            <label class="yf__label" for="c-size">How many of you?</label>
+            <select class="yf__input" id="c-size" name="group_size" required aria-describedby="c-size-error" data-error="Roughly how many people?">
+              <option value="">Choose</option>
+              <option>2 to 5</option>
+              <option>6 to 10</option>
+              <option>11 to 20</option>
+              <option>More than 20</option>
+            </select>
+            <p class="yf__error" id="c-size-error" hidden></p>
+          </div>
+          <div class="yf__field" data-field="group_when">
+            <label class="yf__label" for="c-when">Roughly when? <span class="yf__opt">(optional)</span></label>
+            <input class="yf__input" id="c-when" name="group_when" type="text" placeholder="Spring 2027">
+          </div>
+        </div>
+
+        <div class="yf__row">
+          <div class="yf__field" data-field="first_name">
+            <label class="yf__label" for="c-name">First name</label>
+            <input class="yf__input" id="c-name" name="first_name" type="text" autocomplete="given-name" required aria-describedby="c-name-error" data-error="What should we call you?">
+            <p class="yf__error" id="c-name-error" hidden></p>
+          </div>
+          <div class="yf__field" data-field="email">
+            <label class="yf__label" for="c-email">Email</label>
+            <input class="yf__input" id="c-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="c-email-error" data-error="We need an email to write back to.">
+            <p class="yf__error" id="c-email-error" hidden></p>
+          </div>
+        </div>
+
+        <div class="yf__field" data-field="message">
+          <label class="yf__label" for="c-message">Your message</label>
+          <textarea class="yf__input" id="c-message" name="message" rows="5" required aria-describedby="c-message-error" data-error="Tell us a little about what you would like to know."></textarea>
+          <p class="yf__error" id="c-message-error" hidden></p>
+        </div>
+
+        <fieldset class="yf__field" data-field="reply_by">
+          <legend class="yf__legend">How should we reply? <span class="yf__opt">(optional)</span></legend>
+          <div class="yf__chips">
+            <label class="yf__chip"><input type="radio" name="reply_by" value="email" checked><span>Email</span></label>
+            <label class="yf__chip"><input type="radio" name="reply_by" value="whatsapp"><span>WhatsApp</span></label>
+            <label class="yf__chip"><input type="radio" name="reply_by" value="call"><span>A call</span></label>
+          </div>
+        </fieldset>
+        <div class="yf__field" data-field="phone" data-show-when="reply_by=whatsapp|call">
+          <label class="yf__label" for="c-phone">Phone, with country code</label>
+          <input class="yf__input" id="c-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+1 555 123 4567" required aria-describedby="c-phone-error" data-error="Add the number we should use.">
+          <p class="yf__error" id="c-phone-error" hidden></p>
+        </div>
+
+        <div class="yf__actions">
+          <p class="yf__failed" data-yform-failed role="alert" hidden>Your message did not go through. Please try again, or write to us directly.</p>
+          <button class="btn btn--primary yf__submit" type="submit">Send message</button>
+        </div>
+      </form>
+
+      <div class="yf-done" data-yform-done tabindex="-1" role="status" hidden>
+        <p class="yf-done__title">Thank you, <span data-yform-name></span></p>
+        <p>Your message is with us. We will write back to <strong data-yform-email></strong> soon.</p>
+        <p>In the meantime, have a look at what is coming up.</p>
+        <a class="btn btn--secondary" href="retreats.html">See upcoming retreats</a>
+      </div>
+    </section>
+
+    <nav class="contact__doors" aria-label="Other ways we can help">
+      <p class="contact__doors-title">You might be looking for</p>
+      <a class="door" href="retreats.html">
+        <span class="door__t">A question about one retreat</span>
+        <span class="door__d">Every retreat page has an "I want more info" button that sends your question with the retreat attached.</span>
+        <svg class="door__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="door" href="teach-with-us.html">
+        <span class="door__t">Leading a retreat with us</span>
+        <span class="door__d">For yoga teachers: how it works, what we handle and how to apply.</span>
+        <svg class="door__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="door" href="#form" data-pick-topic="private-group">
+        <span class="door__t">A private retreat for your group</span>
+        <span class="door__d">Friends, family, a studio or a team. Choose "A trip for my group" in the form.</span>
+        <svg class="door__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="door" href="#form" data-pick-topic="other">
+        <span class="door__t">Press and partnerships</span>
+        <span class="door__d">Choose "Something else" and tell us who you are.</span>
+        <svg class="door__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </nav>
+
+  </div>
 </main>
+
 
 
 <footer class="site-footer" id="newsletter">
@@ -210,11 +342,11 @@
         </div>
 
         <div class="footer-col">
-          <h3 class="footer-col__title"><a href="#">Contact</a></h3>
+          <h3 class="footer-col__title"><a href="contact.html">Contact</a></h3>
           <ul class="footer-col__list">
-            <li><a class="footer-link" href="#">General Inquiry</a></li>
-            <li><a class="footer-link" href="#">Become a Teacher</a></li>
-            <li><a class="footer-link" href="#">Custom Retreat</a></li>
+            <li><a class="footer-link" href="contact.html">Ask a question</a></li>
+            <li><a class="footer-link" href="contact.html#private-groups">Private groups</a></li>
+            <li><a class="footer-link" href="teach-with-us.html">Teach with us</a></li>
           </ul>
         </div>
 
@@ -361,5 +493,25 @@
   });
 </script>
 
+<script>
+  // Suggestions for "Which retreat or place?": the upcoming editions,
+  // as "El Cuyo · Jan 2027", from data/retreats.js + data/locations.js.
+  (function () {
+    var list = document.querySelector('[data-retreat-options]');
+    var R = window.YAWW_RETREATS || [], L = window.YAWW_LOCATIONS || [];
+    if (!list || !R.length) return;
+    var names = {}; L.forEach(function (l) { names[l.id] = l.name; });
+    var M = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var today = new Date().toISOString().slice(0, 10), seen = {};
+    R.filter(function (r) { return r.startDate >= today; })
+     .sort(function (a, b) { return a.startDate < b.startDate ? -1 : 1; })
+     .forEach(function (r) {
+       var d = r.startDate.split('-');
+       var label = (names[r.locationId] || r.officialName) + ' · ' + M[+d[1] - 1] + ' ' + d[0];
+       if (seen[label]) return; seen[label] = 1;
+       var o = document.createElement('option'); o.value = label; list.appendChild(o);
+     });
+  })();
+</script>
 </body>
 </html>

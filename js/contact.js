@@ -1,162 +1,242 @@
 /* ============================================================
-   YAWW — CONTACT PAGE
-   Renders the tab bar and the three forms from data/contact.js,
-   switches tabs, and validates on submit.
+   YAWW · FORMS (contact.html, teach-with-us.html)
 
-   No backend yet — same shape as the location-page waitlist:
-   validate, show the success state, leave one place to wire the
-   endpoint.
+   Every <form data-yform="key"> on the page gets:
+   - inline errors under each field, shown on submit and then kept
+     live as the person fixes them (never while they are still typing
+     a first time);
+   - conditional rows: [data-show-when="field=value"] appear only when
+     that radio/select has that value, and are skipped by validation
+     while hidden;
+   - a success state ([data-yform-done]) that names the person back;
+   - one place to post: YAWW_CONTACT.endpoints[key] (data/contact.js).
+
+   Markup contract for a field:
+     <div class="yf__field" data-field="email">
+       <label for="x">…</label> <input id="x" name="email" required>
+       <p class="yf__error" id="x-error" hidden></p>
+     </div>
+   Radio/checkbox groups use <fieldset class="yf__field" data-field="name"
+   data-required> with the error <p> inside the fieldset.
    ============================================================ */
 (function (window, document) {
   "use strict";
 
-  var YAWW = window.YAWW || (window.YAWW = {});
-  function esc(s) {
-    return String(s == null ? "" : s)
-      .replace(/&/g, "&amp;").replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  function cfg() { return window.YAWW_CONTACT || { endpoints: {} }; }
+
+  function track(detail) {
+    document.dispatchEvent(new CustomEvent("yaww:track", { detail: detail }));
   }
 
-  // TODO(backend): point this at the Zapier catch hook or the WP REST
-  // route and post the payload built in submit() below.
-  YAWW.CONTACT_ENDPOINT = null;
-
-  function forms() { return window.YAWW_CONTACT_FORMS || []; }
-
-  /* Labels are visible and tied to their input by id. The source hides
-     them and leaves the placeholder as the only name a field has,
-     which disappears the moment someone types. */
-  function fieldHTML(formId, f) {
-    var id = formId + "--" + f.name;
-    var common =
-      ' id="' + esc(id) + '" name="' + esc(f.name) + '"' +
-      (f.required ? ' required aria-required="true"' : "") +
-      (f.autocomplete ? ' autocomplete="' + esc(f.autocomplete) + '"' : "");
-    var control = f.type === "textarea"
-      ? '<textarea class="cf__input cf__input--area" rows="6"' + common + '></textarea>'
-      : '<input class="cf__input" type="text"' + common + '>';
-    return '<div class="cf__field">' +
-             '<label class="cf__label" for="' + esc(id) + '">' + esc(f.label) +
-               (f.required ? ' <span class="cf__req" aria-hidden="true">*</span>' : "") +
-             '</label>' +
-             control +
-           '</div>';
+  /* --- one field ------------------------------------------------------ */
+  function controls(field) {
+    return field.querySelectorAll("input, select, textarea");
   }
 
-  function formHTML(def) {
-    return '<div class="cf__panel" id="' + esc(def.id) + '" data-cf-panel="' + esc(def.id) + '" role="tabpanel" hidden>' +
-             '<p class="cf__title">' + esc(def.title) + '</p>' +
-             '<form class="cf__form" data-cf-form="' + esc(def.id) + '" novalidate>' +
-               def.fields.map(function (f) { return fieldHTML(def.id, f); }).join("") +
-               '<p class="cf__error" data-cf-error role="alert" hidden></p>' +
-               '<button class="btn btn--primary cf__submit" type="submit">Submit</button>' +
-             '</form>' +
-             '<div class="cf__done" data-cf-done hidden tabindex="-1">' +
-               '<p class="cf__title">Thank you</p>' +
-               '<p class="cf__done-body">We have your message and will write back shortly.</p>' +
-             '</div>' +
-           '</div>';
+  function isHidden(field) {
+    var row = field.closest("[data-show-when]");
+    return !!(row && row.hidden);
   }
 
-  function tabsHTML(defs, active) {
-    return defs.map(function (d) {
-      var on = d.id === active;
-      return '<a class="cf__tab' + (on ? ' is-active' : '') + '" href="#' + esc(d.id) + '"' +
-               ' role="tab" aria-selected="' + on + '" data-cf-tab="' + esc(d.id) + '">' +
-               esc(d.label) +
-             '</a>';
-    }).join("");
+  function message(field) {
+    var first = controls(field)[0];
+    var custom = field.getAttribute("data-error") || (first && first.getAttribute("data-error"));
+    if (field.tagName === "FIELDSET") {
+      var picked = field.querySelector("input:checked");
+      if (field.hasAttribute("data-required") && !picked) return custom || "Please choose one.";
+      return "";
+    }
+    if (!first) return "";
+    var v = first.value.trim();
+    if (first.required && !v) return custom || "Please fill this in.";
+    if (v && first.type === "email" && !EMAIL.test(v)) return "That email doesn't look right. Check for a typo?";
+    return "";
   }
 
-  function show(root, id) {
-    root.querySelectorAll("[data-cf-panel]").forEach(function (p) {
-      p.hidden = p.getAttribute("data-cf-panel") !== id;
+  function paint(field, msg) {
+    var err = field.querySelector(".yf__error");
+    field.classList.toggle("is-invalid", !!msg);
+    Array.prototype.forEach.call(controls(field), function (c) {
+      if (msg) c.setAttribute("aria-invalid", "true");
+      else c.removeAttribute("aria-invalid");
     });
-    root.querySelectorAll("[data-cf-tab]").forEach(function (t) {
-      var on = t.getAttribute("data-cf-tab") === id;
-      t.classList.toggle("is-active", on);
-      t.setAttribute("aria-selected", on);
+    if (field.tagName === "FIELDSET") {
+      if (msg) field.setAttribute("aria-invalid", "true"); else field.removeAttribute("aria-invalid");
+    }
+    if (err) { err.textContent = msg; err.hidden = !msg; }
+  }
+
+  function check(field) {
+    var msg = isHidden(field) ? "" : message(field);
+    paint(field, msg);
+    return !msg;
+  }
+
+  /* --- conditional rows ---------------------------------------------- */
+  function syncConditions(form) {
+    Array.prototype.forEach.call(form.querySelectorAll("[data-show-when]"), function (row) {
+      var rule = row.getAttribute("data-show-when").split("=");
+      var name = rule[0], values = rule[1].split("|");
+      var el = form.elements[name];
+      var val = el ? el.value : "";   // works for a select and a RadioNodeList
+      var show = values.indexOf(val) !== -1;
+      row.hidden = !show;
+      Array.prototype.forEach.call(row.querySelectorAll("input, select, textarea"), function (c) {
+        c.disabled = !show;
+      });
     });
   }
 
-  function submit(def, form) {
-    var errorEl = form.querySelector("[data-cf-error]");
-    var done = form.parentNode.querySelector("[data-cf-done]");
-    var bad = null, msg = "";
-
-    for (var i = 0; i < def.fields.length; i++) {
-      var f = def.fields[i];
-      if (!f.required) continue;
-      var el = form.elements[f.name];
-      if (!el || !el.value.trim()) { bad = el; msg = "Please fill in " + f.label.toLowerCase() + "."; break; }
-      // One combined "Email & phone" field, so an address is only
-      // checked when someone actually typed one.
-      if (f.name === "contact-info" && el.value.indexOf("@") > -1 &&
-          !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim().split(/[\s,;]+/).filter(function (p) { return p.indexOf("@") > -1; })[0] || "")) {
-        bad = el; msg = "That email address does not look right."; break;
+  /* --- payload -------------------------------------------------------- */
+  function payload(form) {
+    var out = { form: form.getAttribute("data-yform"), page: location.pathname.split("/").pop() || "index.html" };
+    Array.prototype.forEach.call(form.elements, function (el) {
+      if (!el.name || el.disabled || el.type === "submit") return;
+      if ((el.type === "radio" || el.type === "checkbox") && !el.checked) return;
+      var v = el.value.trim();
+      if (el.type === "checkbox") {
+        (out[el.name] = out[el.name] || []).push(v);
+      } else {
+        out[el.name] = v;
       }
-    }
-    if (bad) {
-      if (errorEl) { errorEl.textContent = msg; errorEl.hidden = false; }
-      bad.focus();
-      return;
-    }
-    if (errorEl) { errorEl.textContent = ""; errorEl.hidden = true; }
-
-    var payload = { form: def.id };
-    def.fields.forEach(function (f) {
-      var el = form.elements[f.name];
-      if (el) payload[f.name] = el.value.trim();
     });
-    document.dispatchEvent(new CustomEvent("yaww:track", {
-      detail: { event: "contact_submit", form: def.id }
-    }));
-    // TODO(backend): POST `payload` to YAWW.CONTACT_ENDPOINT and only
-    // then reveal the success state.
-    if (done) {
-      form.hidden = true;
-      done.hidden = false;
-      done.focus();
+    return out;
+  }
+
+  function send(key, data) {
+    var url = (cfg().endpoints || {})[key];
+    if (!url) {
+      // No backend yet: log so the payload can be checked, then succeed.
+      if (window.console) console.info("[yform] no endpoint for '" + key + "', payload:", data);
+      return Promise.resolve();
     }
+    return fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    }).then(function (r) { if (!r.ok) throw new Error(r.status); });
+  }
+
+  /* --- one form ------------------------------------------------------- */
+  function initForm(form) {
+    var key = form.getAttribute("data-yform");
+    var wrap = form.closest("[data-yform-wrap]") || form.parentNode;
+    var done = wrap.querySelector("[data-yform-done]");
+    var failed = form.querySelector("[data-yform-failed]");
+    var submit = form.querySelector('[type="submit"]');
+    var fields = form.querySelectorAll(".yf__field");
+    var tried = false;
+
+    syncConditions(form);
+
+    form.addEventListener("change", function (e) {
+      syncConditions(form);
+      var f = e.target.closest(".yf__field");
+      if (tried && f) check(f);
+    });
+    // After the first submit attempt, errors clear as soon as the field
+    // is fixed, so people see the form agree with them.
+    form.addEventListener("input", function (e) {
+      var f = e.target.closest(".yf__field");
+      if (tried && f && f.classList.contains("is-invalid")) check(f);
+    });
+    form.addEventListener("focusout", function (e) {
+      var f = e.target.closest(".yf__field");
+      if (tried && f && !f.contains(e.relatedTarget)) check(f);
+    });
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      tried = true;
+      var firstBad = null;
+      Array.prototype.forEach.call(fields, function (f) {
+        if (!check(f) && !firstBad) firstBad = f;
+      });
+      if (firstBad) {
+        var c = firstBad.querySelector("input:not([disabled]), select, textarea");
+        if (c) c.focus();
+        track({ event: "form_invalid", form: key });
+        return;
+      }
+
+      var data = payload(form);
+      if (failed) failed.hidden = true;
+      submit.disabled = true;
+      submit.classList.add("is-sending");
+      var label = submit.textContent;
+      submit.textContent = "Sending…";
+
+      send(key, data).then(function () {
+        track({ event: "form_submit", form: key, topic: data.topic || null });
+        if (done) {
+          Array.prototype.forEach.call(done.querySelectorAll("[data-yform-name]"), function (n) {
+            n.textContent = data.first_name || data.name || "";
+          });
+          Array.prototype.forEach.call(done.querySelectorAll("[data-yform-email]"), function (n) {
+            n.textContent = data.email || "";
+          });
+          form.hidden = true;
+          done.hidden = false;
+          done.focus();
+        }
+      }).catch(function () {
+        if (failed) failed.hidden = false;
+      }).then(function () {
+        submit.disabled = false;
+        submit.classList.remove("is-sending");
+        submit.textContent = label;
+      });
+    });
+  }
+
+  /* --- contact.html: old anchors and topic links ---------------------- */
+  // The old page had three tabs at #general-inquiry, #teach-with-us and
+  // #build-a-custom-retreat, and other pages' menus still point there.
+  // Teachers go to their own page; the other two pick the form's topic.
+  function routeHash() {
+    var h = location.hash.replace("#", "");
+    if (!h) return;
+    if (h === "teach-with-us") { location.replace("teach-with-us.html"); return; }
+    var topic = { "build-a-custom-retreat": "private-group", "private-groups": "private-group",
+                  "general-inquiry": "retreat", "ask": "retreat" }[h];
+    if (!topic) return;
+    pickTopic(topic);
+  }
+
+  function pickTopic(topic) {
+    var form = document.querySelector('[data-yform="contact"]');
+    if (!form) return;
+    var radio = form.querySelector('input[name="topic"][value="' + topic + '"]');
+    if (!radio) return;
+    radio.checked = true;
+    syncConditions(form);
   }
 
   function init() {
-    var root = document.querySelector("[data-contact]");
-    if (!root) return;
-    var defs = forms();
-    if (!defs.length) return;
+    Array.prototype.forEach.call(document.querySelectorAll("form[data-yform]"), initForm);
 
-    var hash = (window.location.hash || "").replace("#", "");
-    var active = defs.some(function (d) { return d.id === hash; }) ? hash : defs[0].id;
-
-    root.querySelector("[data-cf-tabs]").innerHTML = tabsHTML(defs, active);
-    root.querySelector("[data-cf-panels]").innerHTML = defs.map(formHTML).join("");
-    show(root, active);
-
-    root.querySelectorAll("[data-cf-tab]").forEach(function (t) {
-      t.addEventListener("click", function (e) {
-        e.preventDefault();
-        var id = t.getAttribute("data-cf-tab");
-        show(root, id);
-        // Keep the anchor in the address bar without jumping the page,
-        // so these tabs stay linkable from the nav.
-        if (window.history.replaceState) window.history.replaceState(null, "", "#" + id);
+    // A published email, if set in data/contact.js, replaces the placeholder.
+    var email = cfg().email;
+    if (email) {
+      Array.prototype.forEach.call(document.querySelectorAll("[data-contact-email]"), function (a) {
+        a.textContent = email;
+        a.href = "mailto:" + email;
+        a.classList.remove("is-placeholder");
       });
-    });
-    // Arriving from the nav on a page that is already open.
-    window.addEventListener("hashchange", function () {
-      var h = (window.location.hash || "").replace("#", "");
-      if (defs.some(function (d) { return d.id === h; })) show(root, h);
+    }
+
+    // Links like <a href="#form" data-pick-topic="private-group">.
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest("[data-pick-topic]");
+      if (a) pickTopic(a.getAttribute("data-pick-topic"));
     });
 
-    defs.forEach(function (def) {
-      var form = root.querySelector('[data-cf-form="' + def.id + '"]');
-      if (form) form.addEventListener("submit", function (e) { e.preventDefault(); submit(def, form); });
-    });
+    routeHash();
+    window.addEventListener("hashchange", routeHash);
   }
 
-  YAWW.initContact = init;
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
-
 })(window, document);
