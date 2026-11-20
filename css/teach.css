@@ -1,0 +1,226 @@
+/* ============================================================
+   YAWW · TEACH WITH US
+   Loaded by teach-with-us.html after base.css, lead.css (the hero
+   is the "For teachers" module) and contact.css (the form kit).
+   ============================================================ */
+
+.teach-inner { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--container-pad); box-sizing: border-box; }
+.teach-section { padding: 96px 0; }
+.teach-head { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; margin: 0 auto 56px; max-width: 720px; }
+.teach-head .section-title { margin: 0; text-wrap: balance; }
+.kicker.teach-kicker { color: var(--stone-600); }
+.teach-lede {
+  margin: 4px 0 0;
+  font-size: 16px; line-height: 26px; letter-spacing: 0.32px;
+  color: var(--sea-blue);
+  text-wrap: pretty;
+}
+.teach-link {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.56px;
+  text-transform: uppercase;
+  color: var(--sea-blue);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+  text-decoration-color: var(--stone-500);
+  transition: text-decoration-color .2s ease;
+}
+@media (hover: hover) { .teach-link:hover { text-decoration-color: var(--sea-blue); } }
+.teach-link:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 4px; }
+.teach-missing { color: var(--stone-600); font-style: italic; }
+
+/* --- Hero: the For teachers module, as the page H1 --------------- */
+.teach-hero__title { font-size: 36px; line-height: 48px; }
+.teach-hero__ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; margin-top: 16px; }
+
+/* --- Why --------------------------------------------------------- */
+.teach-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0 auto 72px;
+  max-width: 1032px;
+  border-top: 1px solid var(--stone-400);
+  border-bottom: 1px solid var(--stone-400);
+}
+.teach-stats > div { display: flex; flex-direction: column-reverse; align-items: center; gap: 4px; padding: 28px 16px; text-align: center; }
+.teach-stats > div + div { border-left: 1px solid var(--stone-400); }
+.teach-stats dt { font-size: 14px; line-height: 22px; letter-spacing: 0.28px; color: var(--sea-blue-300); }
+.teach-stats dd {
+  margin: 0;
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-style: italic;
+  font-size: 40px;
+  line-height: 52px;
+  color: var(--sea-blue);
+}
+.teach-why__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px; max-width: 1032px; margin: 0 auto; padding: 0; list-style: none; }
+.teach-why__grid h3,
+.teach-steps h3 {
+  margin: 0 0 8px;
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--sea-blue);
+}
+.teach-why__grid p,
+.teach-steps p { margin: 0; font-size: 16px; line-height: 26px; letter-spacing: 0.32px; color: var(--sea-blue); text-wrap: pretty; }
+
+/* --- Steps: five columns on a hairline, big italic numerals ------ */
+.teach-steps-wrap { background: var(--stone-200); }
+.teach-steps {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 32px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.teach-steps li { padding-top: 24px; border-top: 1px solid var(--stone-400); }
+.teach-steps__n {
+  display: block;
+  margin-bottom: 20px;
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-style: italic;
+  font-size: 32px;
+  line-height: 40px;
+  color: var(--stone-600);
+}
+
+/* --- Who does what ----------------------------------------------- */
+.teach-split { padding-bottom: 0; }
+.teach-split .section-title { margin: 0 0 48px; }
+.teach-split__cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; max-width: 1032px; margin: 0 auto; }
+.teach-split__col { padding: 40px; background: var(--stone-300); }
+.teach-split__col + .teach-split__col { background: var(--stone-100); border: 1px solid var(--stone-300); }
+.teach-list { margin: 16px 0 0; padding: 0; list-style: none; border-bottom: 1px solid var(--stone-400); }
+.teach-list li {
+  padding: 12px 0;
+  border-top: 1px solid var(--stone-400);
+  font-size: 16px; line-height: 24px; letter-spacing: 0.32px;
+  color: var(--sea-blue);
+}
+
+/* --- Quotes ------------------------------------------------------ */
+.teach-quotes__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto; }
+.tq {
+  display: grid;
+  grid-template-columns: minmax(0, 200px) minmax(0, 1fr);
+  align-items: start;
+  gap: 24px;
+  margin: 0;
+  padding: 24px;
+  background: var(--stone-100);
+  border: 1px solid var(--stone-300);
+}
+.tq__photo { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 20%; }
+.tq__text { display: flex; flex-direction: column; justify-content: space-between; gap: 24px; min-width: 0; align-self: stretch; }
+.tq__quote {
+  margin: 0;
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-style: italic;
+  font-size: 18px;
+  line-height: 30px;
+  color: var(--sea-blue);
+}
+.tq__by { display: flex; flex-direction: column; gap: 2px; }
+.tq__name {
+  font-weight: 600; font-size: 16px; line-height: 24px; letter-spacing: 0.32px;
+  color: var(--sea-blue);
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size .3s var(--ease-out);
+  justify-self: start;
+  width: fit-content;
+}
+@media (hover: hover) { .tq__name:hover { background-size: 100% 1px; } }
+.tq__detail { font-size: 15px; line-height: 24px; letter-spacing: 0.3px; color: var(--sea-blue-300); }
+
+/* --- FAQ: the homepage accordion (home.css "Good to know"), copied
+       because home.css is not loaded here. Move both to base.css in
+       the cleanup pass. ------------------------------------------- */
+.faq-section { display: flex; flex-direction: column; align-items: center; gap: 40px; padding: 96px var(--container-pad); background: var(--stone); }
+.faq-section__title {
+  margin: 0;
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-weight: 700; font-size: 24px; line-height: 40px;
+  color: var(--sea-blue); text-align: center;
+}
+.faq-list { width: 672px; max-width: 100%; }
+.faq { border-bottom: 1px solid var(--stone-300); }
+.faq__heading { margin: 0; font: inherit; }
+.faq__trigger { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 72px; padding: 24px 0; background: none; border: 0; cursor: pointer; text-align: left; color: inherit; }
+.faq__trigger:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
+.faq__q { flex: 1; font-family: var(--font-body); font-weight: 600; font-size: 16px; line-height: 24px; letter-spacing: 0.32px; color: var(--sea-blue); transition: color .18s ease; }
+.faq__chev { flex: none; width: 16px; height: 16px; display: block; color: var(--sea-blue-200); rotate: 0deg; translate: 0 0; transition: rotate .5s cubic-bezier(.45, 0, .25, 1), translate .18s ease, color .18s ease; }
+.faq.is-open .faq__chev { rotate: 180deg; color: var(--sea-blue); }
+@media (hover: hover) and (pointer: fine) {
+  .faq__trigger:hover .faq__q { color: var(--sea-blue-500); }
+  .faq__trigger:hover .faq__chev { color: var(--sea-blue); translate: 0 2px; }
+  .faq.is-open .faq__trigger:hover .faq__chev { translate: 0 -2px; }
+}
+.faq__panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .4s cubic-bezier(.45, 0, .25, 1); }
+.faq.is-open .faq__panel { grid-template-rows: 1fr; transition-duration: .5s; }
+.faq__answer { min-width: 0; min-height: 0; overflow: hidden; visibility: hidden; opacity: 0; transition: opacity .2s ease, visibility 0s .4s; }
+.faq.is-open .faq__answer { visibility: visible; opacity: 1; transition: opacity .3s ease .1s, visibility 0s; }
+.faq__answer p { margin: 0; padding: 0 0 24px; font-size: 16px; line-height: 26px; letter-spacing: 0.32px; color: var(--sea-blue); }
+@media (prefers-reduced-motion: reduce) {
+  .faq__panel, .faq__answer, .faq__chev { transition: none; }
+}
+
+/* --- Apply: intro on 4 columns, form on 6, offset by 2 ----------- */
+.teach-apply { background: var(--stone-200); }
+.teach-apply__grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; align-items: start; }
+.teach-apply__intro { grid-column: 1 / span 4; display: flex; flex-direction: column; gap: 12px; position: sticky; top: 120px; }
+.teach-apply__form { grid-column: 6 / span 7; }
+.teach-apply__title {
+  margin: 0;
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-weight: 700; font-size: 28px; line-height: 40px;
+  color: var(--sea-blue);
+  text-wrap: balance;
+}
+.teach-apply__aside { margin: 16px 0 0; font-size: 15px; line-height: 24px; color: var(--sea-blue-300); }
+.teach-apply__aside .teach-link { font-size: 13px; margin-left: 4px; }
+.teach-apply .yf__chip span { background: var(--stone-100); }
+
+/* --- Tablet ------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .teach-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 40px; }
+  .teach-why__grid { gap: 32px; }
+  .tq { grid-template-columns: minmax(0, 1fr); }
+  .tq__photo { aspect-ratio: 3 / 2; }
+  .teach-apply__intro { grid-column: 1 / span 12; position: static; margin-bottom: 40px; }
+  .teach-apply__form { grid-column: 1 / span 12; max-width: 720px; }
+}
+
+/* --- Phone -------------------------------------------------------- */
+@media (max-width: 767px) {
+  .teach-section { padding: 64px 0; }
+  .teach-inner { padding: 0 16px; }
+  .teach-head { margin-bottom: 40px; }
+  .teach-hero__title { font-size: 26px; line-height: 36px; }
+  .teach-hero__ctas .btn { width: 100%; min-width: 0; }
+  .teach-hero__ctas { width: 100%; justify-content: center; }
+  .teach-stats { grid-template-columns: minmax(0, 1fr); margin-bottom: 48px; }
+  .teach-stats > div { padding: 20px 0; }
+  .teach-stats > div + div { border-left: 0; border-top: 1px solid var(--stone-400); }
+  .teach-stats dd { font-size: 32px; line-height: 44px; }
+  .teach-why__grid,
+  .teach-steps,
+  .teach-split__cols,
+  .teach-quotes__grid { grid-template-columns: minmax(0, 1fr); }
+  .teach-steps { gap: 32px; }
+  .teach-steps__n { margin-bottom: 8px; font-size: 28px; }
+  .teach-split .section-title { margin-bottom: 32px; }
+  .teach-split__col { padding: 28px 24px; }
+  .tq { padding: 16px; gap: 20px; }
+  .faq-section { padding: 64px 16px; }
+  .teach-apply__title { font-size: 24px; line-height: 36px; }
+}
