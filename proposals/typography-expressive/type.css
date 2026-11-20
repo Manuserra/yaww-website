@@ -206,6 +206,15 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
 /* How it works steps and the Who comes tabs: Regular, not Bold. In
    Bold 20 they outweighed the Regular 30 section title above them.
    Roman, not italic: they are labels, not lines with a voice. */
+/* "Lead a retreat" list: the same ruled list as the Who comes tabs,
+   so the same voice, a step smaller (supporting lines, not tabs). */
+.lead__list li {
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: clamp(18px, 17.26px + 0.19vw, 20px);   /* 18 phone · 20 @1440 */
+  line-height: 1.3;
+  letter-spacing: 0;
+}
 .booking__label,
 .who__tab-title {
   font-weight: 400;
