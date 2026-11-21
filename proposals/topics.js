@@ -32,7 +32,8 @@ window.YAWW_PROPOSALS = [
   { id: "retreat-rooms", title: "Room pricing", options: [
     { label: "A · Stacked cards", url: "../retreatpage-thailand-dec-2026.html#rooms", chosen: true },
     { label: "B · Two-up cards", url: "rooms/option-b.html" },
-    { label: "C · Comparison table", url: "rooms/option-c.html" }
+    { label: "C · Comparison table", url: "rooms/option-c.html" },
+    { label: "D · Steps band, full-width list", url: "typography-expressive/retreatpage-el-cuyo-dec-2026-delaney-rooms-d.html#rooms" }
   ]},
   { id: "retreat-carbon", title: "Carbon offset", options: [
     { label: "A · B · C compared", url: "carbon/index.html", chosen: true }
