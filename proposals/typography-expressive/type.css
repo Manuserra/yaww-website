@@ -136,8 +136,8 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
   max-width: none;
   font-weight: 400;
   font-style: normal;
-  font-size: var(--tx-display);
-  line-height: 1.04;
+  font-size: var(--tx-h1);   /* 50 @1440: hero style at page-title size */
+  line-height: 1.08;
   letter-spacing: -0.02em;
   text-wrap: wrap;
 }
