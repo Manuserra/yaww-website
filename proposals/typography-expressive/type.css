@@ -217,10 +217,13 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
 /* How it works steps and the Who comes tabs: Regular, not Bold. In
    Bold 20 they outweighed the Regular 30 section title above them.
    Roman, not italic: they are labels, not lines with a voice. */
-/* "Lead a retreat" list and the FAQ questions: ruled lists like the
+/* Destination cards ("Other destinations", Locations index) take the
+   FAQ size too: Regular 18 → 20, was Bold 18.
+   "Lead a retreat" list and the FAQ questions: ruled lists like the
    Who comes tabs, so the same voice, a step smaller. */
 .lead__list li,
-.faq__q {
+.faq__q,
+.location__title {
   font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
   font-size: clamp(18px, 17.26px + 0.19vw, 20px);   /* 18 phone · 20 @1440 */
@@ -317,7 +320,7 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
    contrast without shrinking the name: 22 phone · 24 @1440. */
 .host__name { font-style: italic; font-size: clamp(22px, 21.26px + 0.19vw, 24px); }
 /* Card titles at 16px: Bold Baskerville is wide; a touch of air. */
-.card__title, .location__title, .person__name { letter-spacing: 0.005em; }
+.card__title, .person__name { letter-spacing: 0.005em; }
 
 /* ---------- 5 · Numbers -----------------------------------------
    The Google Fonts cuts of both families ship lining figures only
