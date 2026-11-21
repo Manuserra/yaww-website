@@ -250,8 +250,10 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
   letter-spacing: 0;
 }
 /* Room description in the normal paragraph style: Raleway 16, 1.65,
-   the body colour (live: 14/22 in the lighter blue). Trial. */
+   the body colour (live: 14/22 in the lighter blue). */
 .room-card__desc { font-size: 16px; line-height: 1.65; letter-spacing: 0.32px; color: var(--sea-blue); }
+/* "Where you stay: …" in the same body style (live: 15/24, lighter blue). */
+.rooms__where { font-size: 16px; line-height: 1.65; letter-spacing: 0.32px; color: var(--sea-blue); }
 /* Reserve and Details: the site's one link style ("Meet Alicia"):
    14px, 1.2px tracking, fine underline 6px below. */
 .room-card__reserve,
