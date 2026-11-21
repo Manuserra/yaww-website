@@ -204,6 +204,13 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
   letter-spacing: -0.005em;
 }
 .tiers2__headline { font-size: clamp(22px, 21.26px + 0.19vw, 24px); }   /* 22 phone · 24 @1440, as live */
+/* Card titles on Location (the guide) and About go roman, like the room
+   and extras names on the retreat page: a card with photo, eyebrow, title
+   and text is the same object on every page. Italic stays for the lines
+   that were italic live (home hero, tier headlines, Oaxaca intro) and the
+   section titles that are a sentence. */
+.loc-guide__title,
+.about-card__title { font-style: normal; letter-spacing: 0; }
 /* The tighter leading (eyebrow 24 → 20, headline 40 → 30) took ~14px
    of air out of each collection; the gap gives it back, so the block
    is as tall as live and the space sits between the lines, not inside them. */
