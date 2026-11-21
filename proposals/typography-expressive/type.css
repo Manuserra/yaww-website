@@ -287,6 +287,9 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
   text-transform: uppercase;
 }
 .loc-quote figcaption span { font-weight: 400; letter-spacing: 0.14em; }
+/* Retreat quote cards: the line under the name as on the Home cards,
+   Raleway 16 (live retreat: 13). Trial. */
+.quotes .quote-card__detail { font-size: 16px; line-height: 24px; letter-spacing: 0.32px; }
 
 /* ---------- 7 · Reading text ------------------------------------
    Longer leading in prose blocks only (cards keep their line clamps). */
