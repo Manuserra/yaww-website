@@ -240,6 +240,20 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
 }
 .retreat-accom__name,
 .rooms__aside-title { font-size: clamp(20px, 19.26px + 0.19vw, 22px); }
+/* Room names: a price list, not a grid of cards. Bold 19 → Regular
+   22 (20 phone), like the other h3s under a section title; name and
+   price then share one voice, left and right of the row. */
+.room-card__name button {
+  font-weight: 400;
+  font-size: clamp(20px, 19.26px + 0.19vw, 22px);
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+/* Reserve and Details: the site's one link style ("Meet Alicia"):
+   14px, 1.2px tracking, fine underline 6px below. */
+.room-card__reserve,
+.room-card__details { font-size: 14px; letter-spacing: 1.2px; text-underline-offset: 6px; }
+
 /* Host names: Regular 26 under a Regular 30 title read as the same
    title twice. Italic, like the Home collection headlines, gives the
    contrast without shrinking the name: 22 phone · 24 @1440. */
