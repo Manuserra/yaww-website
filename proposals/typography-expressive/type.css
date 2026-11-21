@@ -454,3 +454,8 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
 /* Compound words in titles: keep "sought-after" on one line (markup
    wraps it in .tx-nowrap; see NOTES.md). */
 .tx-nowrap { white-space: nowrap; }
+
+/* Location hero facts: a little more air. Values (Raleway SemiBold 16)
+   tracked 0.02em → 0.04em; label to value 2 → 6px. */
+.loc-hero__facts dt { margin-bottom: 6px; }
+.loc-hero__facts dd { letter-spacing: 0.04em; }
