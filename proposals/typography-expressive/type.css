@@ -249,6 +249,9 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
   line-height: 1.3;
   letter-spacing: 0;
 }
+/* Room description in the normal paragraph style: Raleway 16, 1.65,
+   the body colour (live: 14/22 in the lighter blue). Trial. */
+.room-card__desc { font-size: 16px; line-height: 1.65; letter-spacing: 0.32px; color: var(--sea-blue); }
 /* Reserve and Details: the site's one link style ("Meet Alicia"):
    14px, 1.2px tracking, fine underline 6px below. */
 .room-card__reserve,
