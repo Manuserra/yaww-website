@@ -262,15 +262,13 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
    outrank the room names. The text under them and the two notes go to
    the body style (live: 14/22 in the lighter blue): deposit, refunds and
    room sharing are terms people decide on, not fine print. */
-/* Travel Tips row titles: Baskerville Regular 20, like the How to book
-   steps, so every row title on the page is the same family (live was
-   Raleway Bold 16, the only bold title left on the page). */
+/* Travel Tips row titles are labels (practical info, scanned): Raleway
+   SemiBold 16, the same as the How to book steps in rooms option D.
+   Baskerville stays for things with a name (rooms, extras, places).
+   Live was Raleway Bold 16. */
 .tips__heading {
-  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
-  font-weight: 400;
-  font-size: clamp(18px, 17.26px + 0.19vw, 20px);
-  line-height: 1.3;
-  letter-spacing: 0;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 .rooms__steps strong {
   font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
