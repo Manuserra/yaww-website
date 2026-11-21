@@ -319,8 +319,34 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
    Buttons and tabs keep their size; tracking goes from a flat 0.04em
    to a proper caps spacing so they stop looking squeezed. */
 .btn, .footer-news__submit { letter-spacing: 0.1em; }
-/* The "Explore …" links under the collections keep the live 0.04em:
-   opened up to 0.1em they read like a second eyebrow. */
+/* The "Explore …" links under the collections take the "Meet Alicia"
+   link style from the retreat page: same tracking (1.2px), a fine
+   underline and the short arrow. Tracking alone made them read like a
+   second eyebrow; the underline is what says "link". One link style
+   across the site. Done here in CSS so the T toggle still shows live. */
+.tiers2__link { gap: 0.45em; }
+.tiers2__link svg { display: none; }
+.tiers2__link-text {
+  letter-spacing: 1.2px;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+  text-underline-offset: 6px;
+  transition: text-decoration-color .2s ease;
+}
+.tiers2__link::after {
+  content: "\2192";
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  transition: transform .2s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .tiers2__link:hover .tiers2__link-text { text-decoration-color: currentColor; }
+  .tiers2__link:hover::after { transform: translateX(3px); }
+}
+@media (prefers-reduced-motion: reduce) { .tiers2__link::after { transition: none; } }
 .tabs__item { letter-spacing: 0.1em; }
 .card__label { letter-spacing: 0.12em; }
 
