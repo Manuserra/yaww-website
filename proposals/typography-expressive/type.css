@@ -291,6 +291,8 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
    Raleway 16 (live retreat: 13). */
 /* …and the same spacing between name and line as Home: name on a 24px
    line, 4px gap (live retreat: 20px line, 2px). */
+/* Mark to quote: 16px between the boxes live, 12px here (trial). */
+.quotes .quote-card::before { margin-bottom: -8px; }
 /* Retreat quote italic a point up: 17/27 live → 18/28.8. */
 .quotes .quote-card__quote { font-size: 18px; line-height: 1.6; }
 .quotes .quote-card__name { line-height: 24px; }
