@@ -315,6 +315,21 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
   letter-spacing: 0.005em;
 }
 
+/* Bullets: the Raleway "•" at 16px is a 3px speck. A drawn 5px dot,
+   centred on the first line (24px leading), reads as a bullet and
+   still sits quietly. Same for Includes, the itinerary and Travel Tips. */
+.retreat-includes__list li::before,
+.retreat-itinerary__bullets li::before,
+.tips__list li::before {
+  content: "";
+  top: 9.5px;
+  left: 4px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
 /* ---------- 8 · Small UI text -----------------------------------
    Buttons and tabs keep their size; tracking goes from a flat 0.04em
    to a proper caps spacing so they stop looking squeezed. */
