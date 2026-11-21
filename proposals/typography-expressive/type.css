@@ -240,6 +240,10 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
 }
 .retreat-accom__name,
 .rooms__aside-title { font-size: clamp(20px, 19.26px + 0.19vw, 22px); }
+/* Host names: Regular 26 under a Regular 30 title read as the same
+   title twice. Italic, like the Home collection headlines, gives the
+   contrast without shrinking the name: 22 phone · 24 @1440. */
+.host__name { font-style: italic; font-size: clamp(22px, 21.26px + 0.19vw, 24px); }
 /* Card titles at 16px: Bold Baskerville is wide; a touch of air. */
 .card__title, .location__title, .person__name { letter-spacing: 0.005em; }
 
