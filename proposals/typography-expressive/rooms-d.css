@@ -12,7 +12,7 @@
          the prices). Step titles drop to Raleway SemiBold 16: labels,
          so the room names (Baskerville 22) are the only "titles" here.
      2 · "Where you stay", then the room list at full width with the
-         photo bigger (200 → 432, four columns).
+         photo bigger (200 → 552, five columns).
      3 · The two notes under the list, side by side.
      4 · The two CTAs, unchanged, side by side and centred.
    No markup change: the rail becomes display: contents and its
@@ -20,7 +20,7 @@
 
    On the site grid: 12 columns of 72px, 48px gutters, 1392 of content
    at 1440 (N columns = 120·N − 48). Band, list and notes span all 12;
-   each step is 4 columns; a room row is photo 4 · text 5 · price 3.
+   each step is 4 columns; a room row is photo 5 · text 4 · price 3.
    ============================================================ */
 
 .rooms__inner {
@@ -66,8 +66,8 @@
 .rooms__steps span { font-size: 15px; line-height: 1.6; letter-spacing: 0.3px; }
 
 /* 2 · Where + list. Each row is the 12-column grid again:
-   photo 4 columns (432 × 262, the page's 672:408 horizontal),
-   text 5 columns (552), price 3 columns, right-aligned. */
+   photo 5 columns (552 × 335, the page's 672:408 horizontal),
+   text 4 columns (432), price 3 columns, right-aligned. */
 .rooms__where { grid-row: 2; margin-bottom: 20px; }
 .rooms__list { grid-row: 3; }
 .room-card {
@@ -77,8 +77,8 @@
   padding: 24px 0;
   align-items: start;
 }
-.room-card__media { grid-column: 1 / span 4; width: 100%; aspect-ratio: 672 / 408; }
-.room-card__body  { grid-column: 5 / span 5; gap: 0; }
+.room-card__media { grid-column: 1 / span 5; width: 100%; aspect-ratio: 672 / 408; }
+.room-card__body  { grid-column: 6 / span 4; gap: 0; }
 .room-card__side  { grid-column: 10 / span 3; min-width: 0; margin-top: -5px; }
 /* One rhythm inside the row: name, 20, tags, 24, description. The name's
    half-leading is trimmed so its cap line sits on the photo's top edge;
@@ -112,13 +112,13 @@
 .rooms__actions .btn { width: auto; min-width: 260px; }
 
 /* Tablet: same 12 columns, 24px gutters (the site's tablet margin is
-   16). Row: photo 4 · text 5 · price 3. */
+   16). Row: photo 5 · text 4 · price 3. */
 @media (max-width: 1024px) {
   .rooms__inner, .room-card, .rooms__steps { column-gap: 24px; }
   .rooms__steps { margin-inline: -16px; padding-inline: 16px; }
   .rooms__aside { margin-top: 0; max-width: none; }
-  .room-card__media { grid-column: 1 / span 4; }
-  .room-card__body  { grid-column: 5 / span 5; }
+  .room-card__media { grid-column: 1 / span 5; }
+  .room-card__body  { grid-column: 6 / span 4; }
   .room-card__side  { grid-column: 10 / span 3; }
 }
 
