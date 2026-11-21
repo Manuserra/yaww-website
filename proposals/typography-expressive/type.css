@@ -129,15 +129,16 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
   .home-hero--overlay .home-hero__desc { font-size: clamp(18px, 12.71px + 0.367vw, 22px); }
 }
 
-/* About's page title is a sentence with a set line break, so it takes
-   the lyric italic (italic is also narrower: at 42px both lines still
-   fit the 760px measure). Balance off, so the <br> decides the break. */
+/* About's page title: the hero title style of the retreat and location
+   pages (Baskerville Regular, roman, display size, tight leading). The
+   measure opens up so the set <br> still gives two lines. */
 .about-intro__title {
+  max-width: none;
   font-weight: 400;
-  font-style: italic;
-  font-size: clamp(28px, 22.8px + 1.33vw, 42px);
-  line-height: 1.16;
-  letter-spacing: -0.012em;
+  font-style: normal;
+  font-size: var(--tx-display);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
   text-wrap: wrap;
 }
 /* On a phone the set break leaves "journeys," alone on a line: drop
