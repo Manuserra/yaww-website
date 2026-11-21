@@ -254,6 +254,9 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
 .room-card__desc { font-size: 16px; line-height: 1.65; letter-spacing: 0.32px; color: var(--sea-blue); }
 /* "Where you stay: …" in the same body style (live: 15/24, lighter blue). */
 .rooms__where { font-size: 16px; line-height: 1.65; letter-spacing: 0.32px; color: var(--sea-blue); }
+/* Room tags: 12 read too small next to 16 copy and a 22 name; 14 with
+   a little more padding (live: 12/18, 3px 9px). Trial. */
+.room-card__pills li { font-size: 14px; line-height: 20px; padding: 4px 10px; }
 /* Reserve and Details: the site's one link style ("Meet Alicia"):
    14px, 1.2px tracking, fine underline 6px below. */
 .room-card__reserve,
