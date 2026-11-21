@@ -347,10 +347,11 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
 /* Guest quotes on the home ("In our guests' words" cards and the
    "Who comes on our retreats" panel) keep the live italic: size,
    leading and indent as today. Only the name under a card changes. */
+/* Location pull-quote: back to the live size, 26 at 1440 (20 on phones),
+   leading as live (42/26). 36 was too big for a guest's words. */
 .loc-quote blockquote {
-  font-size: clamp(24px, 19.5px + 1.14vw, 36px);
-  line-height: 1.3;
-  letter-spacing: -0.012em;
+  font-size: var(--tx-quote);
+  line-height: 1.6;
 }
 .about-quote__text { font-size: clamp(18px, 17.3px + 0.19vw, 20px); line-height: 1.5; }
 /* Who said it: small caps feel, done with real caps + tracking (the
