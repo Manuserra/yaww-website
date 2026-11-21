@@ -36,9 +36,9 @@
 }
 .rooms__inner > *, .rooms__aside > * { grid-column: 1 / -1; }
 
-/* 1 · The steps band: 3 × 4 columns. The background runs 24px into the
-   page margin on each side so the text inside stays on the columns. The
-   h3 stays for screen readers; the band says what it is. */
+/* 1 · The steps band: 3 × 4 columns. Its edges sit on the grid's outer
+   edges, the same line as the photos and the testimonial cards; the text
+   is inset 24px inside. The h3 stays for screen readers. */
 .rooms__aside-title {
   position: absolute !important;
   width: 1px; height: 1px; margin: -1px; padding: 0;
@@ -49,7 +49,7 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   column-gap: 48px;
-  margin: 0 -24px 48px;
+  margin: 0 0 48px;
   padding: 28px 24px;
   background: var(--stone-200);
 }
@@ -64,6 +64,11 @@
   letter-spacing: 0.02em;
 }
 .rooms__steps span { font-size: 15px; line-height: 1.6; letter-spacing: 0.3px; }
+
+/* Testimonials above: their grid is capped at 1440 (the container's box)
+   instead of 1392 (its content), so past 1440 wide the cards stuck out
+   24px past the grid on each side. Same cap as everything else here. */
+.quotes__grid { max-width: 1392px; }
 
 /* 2 · Where + list. Each row is the 12-column grid again:
    photo 5 columns (552 × 335, the page's 672:408 horizontal),
@@ -115,7 +120,7 @@
    16). Row: photo 5 · text 4 · price 3. */
 @media (max-width: 1024px) {
   .rooms__inner, .room-card, .rooms__steps { column-gap: 24px; }
-  .rooms__steps { margin-inline: -16px; padding-inline: 16px; }
+  .rooms__steps { padding-inline: 16px; }
   .rooms__aside { margin-top: 0; max-width: none; }
   .room-card__media { grid-column: 1 / span 5; }
   .room-card__body  { grid-column: 6 / span 4; }
