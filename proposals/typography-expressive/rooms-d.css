@@ -69,11 +69,20 @@
 /* 2 · Where + list, full width. */
 .rooms__where { grid-row: 2; grid-column: 1; }
 .rooms__list { grid-row: 3; grid-column: 1; }
-.room-card { grid-template-columns: 320px minmax(0, 1fr) auto; gap: 24px 40px; padding: 32px 0; }
-.room-card__media { width: 320px; }
-.room-card__body { gap: 14px; padding-top: 4px; }
-.room-card__side { padding-top: 4px; }
-.room-card__desc { max-width: 52ch; }
+/* Photo in the retreat page's horizontal ratio (672:408, the itinerary
+   and extras sliders): 336 × 204, half the itinerary photo. */
+.rooms__where { margin-bottom: 20px; }
+.room-card { grid-template-columns: 336px minmax(0, 1fr) auto; gap: 20px 40px; padding: 32px 0; align-items: start; }
+.room-card__media { width: 336px; aspect-ratio: 672 / 408; }
+/* One rhythm inside the row: name, 12, tags, 16, description. The name's
+   half-leading is trimmed so its cap line sits on the photo's top edge,
+   and the price on the right lines up with the name. */
+.room-card__body { gap: 0; }
+.room-card__name { margin: -5px 0 0; }
+.room-card__pills { margin-top: 12px; }
+.room-card__desc { margin-top: 16px; max-width: 52ch; }
+.room-card__side { margin-top: -5px; }
+.room-card__actions { margin-top: 20px; gap: 8px; }
 
 /* 3 · The notes under the list: terms, read next to the decision. */
 .rooms__aside-note { grid-row: 4; }
@@ -104,7 +113,7 @@
   .rooms__steps li { padding: 0 20px 0 56px; }
   .rooms__steps li::before { left: 20px; }
   .room-card { grid-template-columns: 240px minmax(0, 1fr) auto; gap: 20px 28px; }
-  .room-card__media { width: 240px; }
+  .room-card__media { width: 240px; aspect-ratio: 672 / 408; }
   .rooms__aside { margin-top: 0; max-width: none; }
 }
 
@@ -114,8 +123,13 @@
   .rooms__steps { grid-template-columns: minmax(0, 1fr); gap: 16px; padding: 20px 0; margin-bottom: 32px; }
   .rooms__steps li { padding: 0 20px 0 56px; border-left: 0; }
   .rooms__steps li::before { left: 20px; }
-  .room-card { grid-template-columns: 112px minmax(0, 1fr); gap: 12px 16px; padding: 20px 0; }
-  .room-card__media { width: 112px; }
+  .room-card { grid-template-columns: 128px minmax(0, 1fr); gap: 12px 16px; padding: 24px 0; }
+  .room-card__media { width: 128px; aspect-ratio: 672 / 408; }
+  .room-card__name { margin-top: -3px; }
+  .room-card__pills { margin-top: 8px; }
+  .room-card__desc { margin-top: 12px; }
+  .room-card__side { margin-top: 0; }
+  .room-card__actions { margin-top: 0; }
   .rooms__aside-note { max-width: none; grid-row: auto; justify-self: stretch !important; }
   .rooms__actions { grid-row: auto; flex-direction: column; margin-top: 32px; }
   .rooms__actions .btn { width: 100%; min-width: 0; }
