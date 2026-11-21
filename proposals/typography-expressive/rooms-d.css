@@ -74,7 +74,7 @@
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: 48px;
   row-gap: 20px;
-  padding: 32px 0;
+  padding: 24px 0;
   align-items: start;
 }
 .room-card__media { grid-column: 1 / span 4; width: 100%; aspect-ratio: 672 / 408; }
