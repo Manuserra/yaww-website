@@ -66,8 +66,10 @@ window.YAWW_PROPOSALS = [
     { label: "C · Iceland", url: "location-template/option-c-iceland.html" }
   ]},
   { id: "location-guide", title: "Location guide", options: [
-    { label: "El Cuyo · as a guest sees it", url: "location-guide/locationpage-el-cuyo.html" },
-    { label: "El Cuyo · what we need", url: "location-guide/locationpage-el-cuyo.html?needs=1" },
+    { label: "A · El Cuyo, as a guest sees it", url: "location-guide/locationpage-el-cuyo.html" },
+    { label: "A · what we need", url: "location-guide/locationpage-el-cuyo.html?needs=1" },
+    { label: "B · Destination guide", url: "location-guide/option-b.html" },
+    { label: "B · what we need", url: "location-guide/option-b.html?needs=1" },
     { label: "Live page", url: "../locationpage-el-cuyo.html", chosen: true }
   ]},
   { id: "locations-grid", title: "Locations grid", options: [
@@ -80,6 +82,19 @@ window.YAWW_PROPOSALS = [
     { label: "Retreat page", url: "typography-expressive/retreatpage-el-cuyo-dec-2026-delaney.html" },
     { label: "Location page", url: "typography-expressive/locationpage-oaxaca.html" },
     { label: "About", url: "typography-expressive/about.html" }
+  ]},
+  { id: "retreats-cards", title: "Retreat cards", options: [
+    { label: "Retreats · Cards switch", url: "retreats-cards/retreats.html" }
+  ]},
+  { id: "hero-buttons", title: "Hero buttons", options: [
+    { label: "El Cuyo · A / B / C switch", url: "hero-buttons/index.html" }
+  ]},
+  { id: "retreats-wide", title: "Retreats > 1440", options: [
+    { label: "Retreats · Width switch", url: "retreats-wide/retreats.html" }
+  ]},
+  { id: "contact-alt", title: "Contact alternative", options: [
+    { label: "Implemented · new contact", url: "../contact.html", chosen: true },
+    { label: "Alternative layout", url: "contact-alt/index.html" }
   ]},
   { id: "bullet-leading", title: "Bullet leading", options: [
     { label: "El Cuyo · bullets, rooms", url: "bullet-leading/retreatpage-el-cuyo-dec-2026-delaney.html", chosen: true },

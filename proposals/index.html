@@ -221,14 +221,16 @@ h1, h2 { font-family: var(--font-heading); -webkit-font-smoothing: antialiased; 
   <article class="decision" id="location-guide">
     <p class="decision__section">5 · Locations</p>
     <div>
-      <h2>Location page as a guide (prototype)</h2>
-      <p class="decision__q">The location page sells the place first, so the retreat sells itself. This prototype turns El Cuyo into a guide only we could write: notes from the village, the season, the people, who it is for and who it is not for, and the questions guests really ask. The dates move below the first two blocks; "See the retreats" in the hero still jumps straight to them. Is it worth asking the team for the content?</p>
+      <h2>Location page as a destination guide (prototype)</h2>
+      <p class="decision__q">The location page sells the place first, as the people who know it best, so the retreat sells itself. Two prototypes on El Cuyo. Is B the direction for all 14 places, and is it worth asking the team for the content it needs?</p>
       <ul class="opts">
-        <li><a href="view.html?t=location-guide&amp;o=0">El Cuyo · as a guest sees it</a></li>
-        <li><a href="view.html?t=location-guide&amp;o=1">El Cuyo · what we need</a></li>
-        <li><a class="is-chosen" href="view.html?t=location-guide&amp;o=2">Live page <span class="tag">Implemented</span></a></li>
+        <li><a href="view.html?t=location-guide&amp;o=2">B · Destination guide <span class="tag">Recommended</span></a></li>
+        <li><a href="view.html?t=location-guide&amp;o=3">B · what we need (for the team)</a></li>
+        <li><a href="view.html?t=location-guide&amp;o=0">A · First draft (rated 6)</a></li>
+        <li><a href="view.html?t=location-guide&amp;o=1">A · what we need</a></li>
+        <li><a class="is-chosen" href="view.html?t=location-guide&amp;o=4">Live page <span class="tag">Implemented</span></a></li>
       </ul>
-      <p class="why"><b>How to read it:</b> the button at the bottom left shows what we need. Each block is tagged Real (live-site copy and the retreat FAQ), Example (written to show the kind of detail we want, to be replaced) or Missing. The brief under the hero is the list to send the team: three notes, one line per season, four people with their OK, a tone check, the real questions. Nothing on the live location pages changes until the content exists.</p>
+      <p class="why"><b>Why B:</b> a cover with the place and the facts that matter (when, how long, from $1,495, how to get there) and the dates one click away; why we go, with proof in numbers (since 2008, our own house, 4.8 from 87 reviews); our edit of six things, each with a verdict and an “On retreat” line that ties the place to what we arrange; Christina’s answers as the host; then the bridge: our house, the people who look after you, what we arrange, and a real guest quote, right before the dates. The honest part (shared bathrooms, no ATMs, wifi, who it suits) comes after. On a phone, a slim “See the dates” bar follows you once the cover is gone. Scored by independent judges over four rounds: desktop 7.35 → 8.4 → 8.6 → 8.9, phone 7.2 → 8.3 → 8.6 → 8.8. <b>What only the team can give:</b> a portrait of Christina at Utopia and her own answers, a photo and an OK from Sonia and Mae, our healer’s name and portrait, confirmation that Las Coloradas is part of every week. The “what we need” view lists it all.</p>
     </div>
   </article>
 
@@ -258,6 +260,43 @@ h1, h2 { font-family: var(--font-heading); -webkit-font-smoothing: antialiased; 
         <li><a href="view.html?t=typography-expressive&amp;o=5">About</a></li>
       </ul>
       <p class="why"><b>Not implemented, proposal only.</b> Every page has a switch on the right (or press T) to flip between the live type and the proposal at the same scroll. It is one override file, <code>typography-expressive/type.css</code>, that changes type only, so adopting it is merging that file. Notes and open points in <code>typography-expressive/NOTES.md</code>.</p>
+    </div>
+  </article>
+
+
+  <article class="decision" id="retreats-cards">
+    <p class="decision__section">4 · Retreats listing</p>
+    <div>
+      <h2>Retreat cards, left-aligned (switch on the page)</h2>
+      <p class="decision__q">Text left instead of centred; the dates on top in premium's date style; the name as now; the location in our italic but premium's colour; the teacher in our type, primary blue. Keep ours or switch?</p>
+      <ul class="opts">
+        <li><a href="view.html?t=retreats-cards&amp;o=0">Retreats page with the Cards switch (Ours / Premium-style)</a></li>
+      </ul>
+      <p class="why"><b>Not implemented, option only.</b> The switch is top right (or press C); the copy of <code>retreats.html</code> is frozen, only CSS is toggled. <b>I would adopt it:</b> the date leads, so a column of cards reads as a timeline, and left alignment matches the left-aligned season labels beside them. Note: the primary blue (the logo's, <code>--sea-blue</code> #475764) is also the colour of the name today, so the teacher line looks the same as before; if you want it to stand apart, say which blue.</p>
+    </div>
+  </article>
+
+  <article class="decision" id="hero-buttons">
+    <p class="decision__section">4 · Retreat page</p>
+    <div>
+      <h2>Hero buttons: Book now / I want more info</h2>
+      <p class="decision__q">On hover "I want more info" turns solid light and looks like Book now, and at rest neither stands out much over the photo. Which treatment? Labels and links are unchanged in all three.</p>
+      <ul class="opts">
+        <li><a href="view.html?t=hero-buttons&amp;o=0">El Cuyo retreat page with the switch (A current · B · C)</a></li>
+      </ul>
+      <p class="why"><b>A · Current:</b> light solid + outline that fills light on hover. <b>B · Text link:</b> Book now stays the one solid button; "I want more info" becomes an underlined link with an arrow, so the two can never look alike. <b>C · Bronze + quiet outline:</b> Book now in solid brand bronze with a shadow (it stands out on any photo); the outline only darkens slightly on hover. <b>I would take C</b> (two clear buttons, never identical); B if you want the lightest page. Switch top right, or press B.</p>
+    </div>
+  </article>
+
+  <article class="decision" id="retreats-wide">
+    <p class="decision__section">4 · Retreats listing</p>
+    <div>
+      <h2>Retreats page wider than 1440</h2>
+      <p class="decision__q">Today the page stops at 1440 and floats in the middle of a big screen. Should the cards and the season-label column keep growing, following the grid?</p>
+      <ul class="opts">
+        <li><a href="view.html?t=retreats-wide&amp;o=0">Retreats page with the Width switch (Capped 1440 / Fluid)</a></li>
+      </ul>
+      <p class="why"><b>Not implemented, option only.</b> Fluid: above 1440 the container grows up to 1920 and the same 12 columns scale (label = 3 columns, three cards = 3 columns each), so at 1920 the cards are 432px wide instead of 312. Below 1440 nothing changes. <b>I would adopt it</b> with the 1920 ceiling: it fills a big monitor the way the hero already does, and the photos get larger, not more numerous. Open it at 1920 to judge; switch top right, or press W.</p>
     </div>
   </article>
 
