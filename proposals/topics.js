@@ -75,5 +75,8 @@ window.YAWW_PROPOSALS = [
     { label: "Retreat page", url: "typography-expressive/retreatpage-el-cuyo-dec-2026-delaney.html" },
     { label: "Location page", url: "typography-expressive/locationpage-oaxaca.html" },
     { label: "About", url: "typography-expressive/about.html" }
+  ]},
+  { id: "bullet-leading", title: "Bullet leading", options: [
+    { label: "Retreat page · before / now", url: "bullet-leading/retreatpage-el-cuyo-dec-2026-delaney.html", chosen: true }
   ]}
 ];
