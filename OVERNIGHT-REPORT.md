@@ -15,3 +15,24 @@ Copia de `retreats.html` en `proposals/retreats-cards/` con interruptor "Cards" 
 - No se reemplazó ningún archivo: no hizo falta buscar originales.
 - Sin resolver (el sujeto no cabe en la banda 28:17 de una foto vertical, es limitación del archivo): `elephants-walking-the-track` (cabezas ya cortadas en el archivo), `triangle-pose-by-the-lake` (cara centrada, mano levantada cortada), `dancer-pose-above-the-water` (estatua entera no cabe), `legs-raised-in-yoga-class` (pies o manos quedan cortados), `holding-up-a-red-paper-flower` (cara y flor no caben juntas; quedó la flor con la cara a medias). Si se quiere verlas enteras, habría que ofrecerlas con otro formato o elegir otra foto.
 - No verificado en móvil real; el cálculo usa la misma proporción (28:17 / 81:49).
+
+## 2 · Santorini fuera
+
+- `santorini-sep-2027-berger` (Breath Body Soul Retreat in Santorini, sep 2027) sale de `data/retreats.js`: desaparece de retreats, filtros y contadores (ahora 16), home, páginas de teacher y dropdowns. Sale también de `sitemap.xml`.
+- `retreatpage-santorini-sep-2027-berger.html` se queda en el repo sin ningún enlace. `retreats/_index.json`, `retreats/santorini-sep-2027-berger/data.json` y `_tools/editions.py` aún lo mencionan (son fuente de build, no se leen en el sitio); si se vuelve a correr `build_page.py` no se regenera porque ya no está en `data/retreats.js`.
+- El Breath Body Soul Retreat de El Cuyo (ene 2027) no se tocó.
+
+## 10 · Fotos de personas
+
+- Dropdowns de retreats: Camino de Santiago tiene miniatura (`images/location-thumbs/camino-de-santiago.jpg`, recorte del sendero musgoso de `retreat-photos/camino-de-santiago/`). Rachel Gray tiene avatar (`images/teachers/avatars/rachel-gray.jpg`, recorte cuadrado de la cara).
+- Rachel Gray: foto del Embodied (`retreat-photos/teachers/yoga-teacher-rachel-gray-portrait.webp`) en teachers.html y en su página.
+- Christina Thomas: `images/team/christina-thomas.jpg` ahora es la foto de Founder de about, recortada 3:4 con la cara arriba al centro (mismo path, así que no cambia nada más). El archivo anterior queda como `christina-thomas-old.jpg`. No aparece en las retreat pages.
+- Renata Centi: nueva foto principal (El Cuyo, riendo, buena luz) en `images/people/renata-centi-1.jpg` (mismo path, 933x1400); la anterior queda como `renata-centi-prev.jpg`. Alternativas para el board: `images/people/renata-alt-1.webp` (sombrero y camisa blanca, verde de fondo, mirada de perfil) y `renata-alt-2.webp` (sombrero, pared amarilla de Izamal, cuerpo medio). Duda: las fotos de Cerdeña de esa carpeta parecen otra persona (pelo más claro); no las usé.
+- Pedido al orquestador: ninguno; las retreat pages ya apuntan a `renata-centi-1.jpg`, que se cambió en el lugar.
+
+## 6b · Teacher pages: Spotify, YouTube, links
+
+- `js/people-cards.js` + `css/people.css` + comentario en `data/teachers.js`: campos opcionales por teacher `spotifyPlaylist` (URL o id), `youtube` (id o URL, se embebe con youtube-nocookie), `website` (string o `{url,label}`) e `instagram` (@usuario o URL). Los antiguos `spotify` y `video` siguen funcionando.
+- Bloque "Listen & watch" (iframes lazy, YouTube 16:9, Spotify 352px) y links Website / Instagram bajo el bio con `target=_blank rel=noopener`. Campo vacío = no se pinta nada. Verificado con datos de prueba (ya revertidos) y sin ellos.
+- URLs reales: no hay ninguna en el repo ni en el sitio actual (no tiene páginas de teacher; solo hay un video de YouTube del retreat de Tulum, que no es de un teacher). Todos los campos quedan vacíos para los 15 teachers. Dawn Thie ("I AM Dawn Thie Yoga") y Genevieve Morin ("Truro Yoga") mencionan su web en el bio, pero sin URL: preguntar.
+- Nota: si hace falta `?v=` nuevo para `css/people.css`, `js/people-cards.js` y `data/*.js` lo sube el orquestador.
