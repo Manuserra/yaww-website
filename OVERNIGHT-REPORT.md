@@ -36,3 +36,23 @@ Copia de `retreats.html` en `proposals/retreats-cards/` con interruptor "Cards" 
 - Bloque "Listen & watch" (iframes lazy, YouTube 16:9, Spotify 352px) y links Website / Instagram bajo el bio con `target=_blank rel=noopener`. Campo vacío = no se pinta nada. Verificado con datos de prueba (ya revertidos) y sin ellos.
 - URLs reales: no hay ninguna en el repo ni en el sitio actual (no tiene páginas de teacher; solo hay un video de YouTube del retreat de Tulum, que no es de un teacher). Todos los campos quedan vacíos para los 15 teachers. Dawn Thie ("I AM Dawn Thie Yoga") y Genevieve Morin ("Truro Yoga") mencionan su web en el bio, pero sin URL: preguntar.
 - Nota: si hace falta `?v=` nuevo para `css/people.css`, `js/people-cards.js` y `data/*.js` lo sube el orquestador.
+
+## 3 · Hover de cards
+
+- Hover de premium en todas las cards con foto (`css/cards.css`): la foto se acerca a 105 % en 1,6 s con el ease de premium (0.22, 1, 0.36, 1), recortada dentro del marco; sin velo.
+- Cubre: cards de retreat (retreats, home y rails, locations, teacher pages), locations y "more locations", teachers/facilitators, journal, posts relacionados, cards de About ("How we work") y room cards.
+- Títulos como en premium: retreat y location sin subrayado; personas, journal y relacionados con subrayado que aparece en 0,5 s.
+- El "Veil" de `base.css` queda neutralizado desde `cards.css` (no se tocó base.css). Solo con mouse real; con reduced motion no hay zoom.
+- Verificado a 1440 en retreats, home (rail), locations, teachers y journal: zoom 1.05, sin saltos, sin errores de consola.
+
+## 6a · More about en hover
+
+- "More about {nombre}" invisible hasta pasar el mouse por la card; aparece con fade y sube 6 px. También aparece con foco de teclado (`:focus-within`). En touch siempre visible.
+- Solo opacity/transform: la card no cambia de altura (verificado: 629 px antes y durante el hover).
+
+## 7 · About · It takes a village
+
+- 2 × 2 horizontal en la grilla: 6 + 6 columnas (672 × 408 a 1440, gutter 48), gutter 24 en ≤1024, una columna en celular (verificado a 1440, 1024 y 390).
+- Sofi y Jenniferlyn conservan sus fotos (las mismas de sus cards); encuadre con `object-position` por foto. Ambas recortan bien en horizontal.
+- Pregunta: los archivos son 672 × 888; en pantallas retina el recorte horizontal queda algo blando. ¿Hay originales de mayor resolución de esas dos fotos? En la biblioteca (Teachers/Team Sofi y Teacher Jennieferlyn) hay fotos de varias personas mezcladas y no pude confirmar cuál es Sofi, así que no cambié ninguna.
+- Manu y Maggie siguen sin foto ni rol (`[missing data]`).
