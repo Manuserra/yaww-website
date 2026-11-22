@@ -216,6 +216,10 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
    is as tall as live and the space sits between the lines, not inside them. */
 .tiers2__text { gap: 19px; }
 .about-person__name { letter-spacing: -0.005em; }
+/* About names in Regular, like every other title now (room names, card
+   titles, FAQ): team 22, people rails at the FAQ / destination size. */
+.about-person__name { font-weight: 400; letter-spacing: 0; }
+.person__link .person__name { font-weight: 400; font-size: clamp(18px, 17.26px + 0.19vw, 20px); letter-spacing: 0; }
 /* How it works steps and the Who comes tabs: Regular, not Bold. In
    Bold 20 they outweighed the Regular 30 section title above them.
    Roman, not italic: they are labels, not lines with a voice. */
