@@ -56,3 +56,23 @@ Copia de `retreats.html` en `proposals/retreats-cards/` con interruptor "Cards" 
 - Sofi y Jenniferlyn conservan sus fotos (las mismas de sus cards); encuadre con `object-position` por foto. Ambas recortan bien en horizontal.
 - Pregunta: los archivos son 672 × 888; en pantallas retina el recorte horizontal queda algo blando. ¿Hay originales de mayor resolución de esas dos fotos? En la biblioteca (Teachers/Team Sofi y Teacher Jennieferlyn) hay fotos de varias personas mezcladas y no pude confirmar cuál es Sofi, así que no cambié ninguna.
 - Manu y Maggie siguen sin foto ni rol (`[missing data]`).
+
+## 8 · Contact
+
+- Se fue "You might be looking for". La columna izquierda ahora es: datos directos, después "Since 2008" · "4.9 on Google · 45 reviews" y la reseña de Google de Jessica S. (la misma que está en About: "Christina and her crew are magic travel masters…"), y al final un solo link discreto "For yoga teachers · Leading a retreat with us →" a teach-with-us.html. En celular va después del formulario.
+- Chip "Something else" → "Press & partnerships" (valor `press`, ancla `#press`).
+- "A trip for my group": "How many of you?" pasa a chips (un toque), y "Roughly when?" queda al lado de "Anywhere in mind?" (`destination`, opcional).
+- Checkbox "Also send me news of future retreats" (`newsletter`), destildado, antes del botón. Se envía `newsletter: "yes"` solo si está tildado.
+- Éxito: "Thank you, {name}. Jenniferlyn will write back to {email} within 24 hours." (como texto, nunca HTML; probado con `<b>Ana</b>`).
+- El envío sigue igual: POST JSON a `YAWW_CONTACT.endpoints.contact` (data/contact.js); hoy es `null`, así que se simula y se loguea el payload. No hay Formspree/Netlify.
+- Alternativa en el board: `proposals/contact-alt/index.html`, una sola columna tipo carta; la pregunta "What is it about?" en Baskerville grande incluye como cuarta línea "Leading a retreat with us", así no hace falta ningún bloque de links aparte.
+- Verificado a 1440 y 390, las tres ramas, error de grupo sin tamaño, éxito simulado. Sin errores de JS.
+- Preguntas: ¿link de "4.9 on Google · 45 reviews" a la ficha de Google (no tenemos la URL)? ¿Las cifras siguen vigentes? Si la persona elige WhatsApp o llamada, el mensaje igual dice "write back to {email}": ¿lo dejamos así o lo adaptamos?
+
+## 9 · Pop-up y atribución
+
+- Todas las retreat pages (26) abren el pop-up desde todos sus botones (hero, rooms, barra fija, waitlist): verificado una por una en el navegador. Lo que linkeaba a `contact.html#general-inquiry` sin abrir nada era "Ask about these dates" (bloque de hosts cuando el teacher no está anunciado: Oaxaca y Santorini sep D26) y los botones de rooms de la plantilla `retreatpage-elcuyo.html`. Arreglado en `build_page.py` y en la plantilla; páginas regeneradas (ediciones + waitlist), `_validate.py` sin errores. Book now / WeTravel y el estilo de los botones del hero no se tocaron.
+- Mismo mensaje de éxito que contact. `retreat_id` ya salía de `data-retreat-id` (= id de data/retreats.js); en las páginas waitlist es el id de la location (`france`, `morocco`…), porque no hay edición.
+- Atribución (`js/attribution.js`, en todas las páginas): en la primera página de la sesión guarda `utm_source/medium/campaign/term/content`, `referrer` (solo externo, sin query) y `landing_page`; un link nuevo con utm en la misma sesión lo reemplaza. Además guarda el primer contacto en localStorage (`first_*` + `first_seen`), porque la reserva suele llegar semanas después. Todo con try/catch; nada va en URLs. Los dos formularios reciben los campos ocultos al enviar. Documentado en `docs/lead-form.md` ("Attribution"). El campo viejo `utm` del pop-up se reemplazó por estos.
+- No subí `?v=` (lo hace el orquestador): tocados `css/contact.css`, `js/contact.js`, `js/lead-modal.js`, `js/attribution.js`.
+- Preguntas: ¿confirmás estos campos de atribución (y guardar el primer contacto)? ¿El formulario de waitlist (js/retreat-cards.js, no es mío) también debería mandarlos? Basta con `YAWW_ATTRIBUTION.get()`.
