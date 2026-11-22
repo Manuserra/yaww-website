@@ -411,7 +411,7 @@ def host_html(h, indent="        "):
              if h.get("photo") else '<div class="host__photo host__photo--empty" aria-hidden="true"></div>')
     meta = ""   # credentials and team lines live in the bio now, not under the name
     bio = f'\n{indent}<p class="host__bio">{esc(h["bio"])}</p>' if h.get("bio") else ""
-    link = (f'\n{indent}<a class="host__link" href="{h["href"]}">{esc(h["link"])} <span aria-hidden="true">&rarr;</span></a>'
+    link = (f'\n{indent}<a class="host__link" href="{h["href"]}"{h.get("attrs", "")}>{esc(h["link"])} <span aria-hidden="true">&rarr;</span></a>'
             if h.get("href") else "")
     return (f'{indent}{photo}\n{indent}<div class="host">'
             f'\n{indent}<h3 class="host__name">{esc(h["name"])}</h3>{meta}{bio}{link}'
@@ -615,7 +615,10 @@ def build(rid, cat, assets, template, waitlist=False):
     if not hosts:
         hosts.append({"key": "teacher", "tab": "Teacher", "role": "Your teacher", "name": "To be announced",
                       "bio": "The teacher for these dates has not been announced yet. Ask us and we’ll let you know as soon as it’s confirmed.",
-                      "href": "contact.html#general-inquiry", "link": "Ask about these dates"})
+                      "href": "contact.html#general-inquiry", "link": "Ask about these dates",
+                      # Opens the lead pop-up with this retreat attached, like
+                      # "I want more info"; the href is the no-script fallback.
+                      "attrs": ' data-lead-open data-lead-source="hosts"'})
     note = ""
     fid = PC.FACILITATORS.get(loc)
     if fid:
@@ -769,10 +772,13 @@ def build(rid, cat, assets, template, waitlist=False):
                  '        <p class="rooms__aside-note">All payments are non-refundable and non-transferable, '
                  "so we recommend trip cancellation insurance from the day you pay your deposit.</p>\n",
                  doc, count=1, flags=re.S)
-    doc = swap(doc, '''          <button class="btn btn--primary" type="button">Reserve your spot</button>
-          <button class="btn btn--secondary" type="button">I want more info</button>''',
-               '''          <a class="btn btn--primary" href="contact.html#general-inquiry" data-lead-open data-lead-intent="reserve" data-lead-source="rooms" data-wetravel>Reserve your spot</a>
-          <a class="btn btn--secondary" href="contact.html#general-inquiry" data-lead-open data-lead-source="rooms">I want more info</a>''', "rooms ctas")
+    ROOMS_CTAS = '''          <a class="btn btn--primary" href="contact.html#general-inquiry" data-lead-open data-lead-intent="reserve" data-lead-source="rooms" data-wetravel>Reserve your spot</a>
+          <a class="btn btn--secondary" href="contact.html#general-inquiry" data-lead-open data-lead-source="rooms">I want more info</a>'''
+    # The template carries these links itself (so the reference page opens
+    # the pop-up too); older copies of it had plain buttons.
+    if ROOMS_CTAS not in doc:
+        doc = swap(doc, '''          <button class="btn btn--primary" type="button">Reserve your spot</button>
+          <button class="btn btn--secondary" type="button">I want more info</button>''', ROOMS_CTAS, "rooms ctas")
     doc = swap(doc, '<section class="rooms">', '<section class="rooms" id="rooms">', "rooms id")
     if waitlist:
         m = section(doc, "rooms")

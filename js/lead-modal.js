@@ -17,6 +17,10 @@
    The retreat is read from the page: .retreat-hero[data-retreat-id],
    its title, the first fact under it (the dates) and its photograph.
 
+   Attribution: the form is marked [data-attribution], so
+   js/attribution.js adds utm_*, referrer, landing_page (and the first
+   visit's) as hidden inputs on submit, before the payload is read.
+
    Submission: the form posts JSON to its data-endpoint. While that is
    empty (no CRM yet, WeTravel later) the send is simulated and the
    success state shown, so the whole flow can be reviewed. Field names
@@ -93,7 +97,7 @@
           '<div class="lead-modal__body" data-lead-body>' +
             '<h2 class="lead-modal__title" id="lead-title" data-lead-title>Ask us about this retreat</h2>' +
             '<p class="lead-modal__intro" id="lead-intro" data-lead-intro>Leave your name and email, and a question if you have one. Someone from our team will write back to you personally.</p>' +
-            '<form class="lead-form" novalidate data-endpoint="' + esc(ENDPOINT) + '">' +
+            '<form class="lead-form" novalidate data-attribution data-endpoint="' + esc(ENDPOINT) + '">' +
               '<div class="lead-form__row">' +
                 field("first_name", "First name", "text", "given-name", true) +
                 field("email", "Email", "email", "email", true) +
@@ -131,7 +135,6 @@
               '<input type="hidden" name="intent" value="info">' +
               '<input type="hidden" name="source" value="">' +
               '<input type="hidden" name="page_url" value="">' +
-              '<input type="hidden" name="utm" value="">' +
               '<div class="lead-form__foot">' +
                 '<button class="btn btn--primary lead-form__submit" type="submit"><span data-lead-submit-label>Send my question</span></button>' +
                 '<p class="lead-form__fine">We only use your details to answer you.</p>' +
@@ -265,7 +268,6 @@
     form.elements.intent.value = intent;
     form.elements.source.value = source;
     form.elements.page_url.value = location.href.split("#")[0];
-    form.elements.utm.value = (location.search.match(/utm_[a-z]+=[^&]*/g) || []).join("&");
 
     var roomLine = dlg.querySelector("[data-lead-room-line]");
     roomLine.hidden = !room;
@@ -357,13 +359,10 @@
     // form in place instead of the whole box collapsing around it.
     var sheet = dlg.querySelector(".lead-modal__sheet");
     sheet.style.minHeight = sheet.offsetHeight + "px";
+    // Same words as contact.html. Set as text, so a name is never read as HTML.
     dlg.querySelector("[data-lead-done-title]").textContent = "Thank you, " + data.first_name + ".";
     dlg.querySelector("[data-lead-done-text]").textContent =
-      "Your " + (data.intent === "reserve" ? "request" : "question") + " about " + (ctx.name || "this retreat") +
-      " is with us. " + ({
-        whatsapp: "We will message you on WhatsApp at " + data.phone + ".",
-        phone: "We will call you at " + data.phone + "."
-      }[data.contact_method] || "We will write to you at " + data.email + ".");
+      "Jenniferlyn will write back to " + data.email + " within 24 hours.";
     dlg.querySelector("[data-lead-body]").hidden = true;
     done.hidden = false;
     done.focus();

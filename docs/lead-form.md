@@ -28,9 +28,9 @@ Hidden fields (filled by the script, never typed):
 | `retreat_dates` | "December 1 – 6, 2026" (or "Dates to be announced" on a waitlist page) |
 | `room` | The room the reader picked, when the form was opened from a room card or the room modal. Empty otherwise. |
 | `intent` | `info` (asking) or `reserve` (pressed Reserve while online booking is not wired: same form, worded "Reserve your spot") |
-| `source` | Which button opened it: `hero`, `sticky-bar`, `rooms`, `room-card`, `room-modal`, `waitlist` |
+| `source` | Which button opened it: `hero`, `sticky-bar`, `rooms`, `room-card`, `room-modal`, `waitlist`, `hosts` ("Ask about these dates" when the teacher is not announced yet) |
 | `page_url` | The page, without the hash |
-| `utm` | Any `utm_*` parameters on the URL, as one query string (`utm_source=ig&utm_campaign=cuyo`) |
+| `utm_source` … `landing_page`, `first_*` | Attribution, added on submit by `js/attribution.js`. See "Attribution" below. (Replaces the old single `utm` field.) |
 
 The visible context on the left of the modal (photo, "You are asking about", name, dates, room) is the same information, so the reader can see what the team will receive.
 
@@ -38,7 +38,7 @@ The visible context on the left of the modal (photo, "You are asking about", nam
 
 - **Errors** appear under the field, in words, after the first submit attempt and then live as the field is corrected. The field gets `aria-invalid` and the message is linked with `aria-describedby`; focus moves to the first field with a problem.
 - **Sending**: the button is disabled and reads "Sending…".
-- **Success**: the form is replaced in place (same height) by "Thank you, Ana." and a line that repeats how we will reach them (email, WhatsApp or phone). One button back to the page. A `yaww:lead` event is dispatched on `document` with the payload, for analytics.
+- **Success**: the form is replaced in place (same height) by "Thank you, Ana." and "Jenniferlyn will write back to ana@example.com within 24 hours.", the same words as on contact.html. Name and email are set as text, never as HTML. One button back to the page. A `yaww:lead` event is dispatched on `document` with the payload, for analytics.
 - **Failure** (only with a real endpoint): a message above the button; nothing typed is lost.
 
 ## Submission and WeTravel
@@ -53,8 +53,28 @@ Mapping, when it is connected:
 
 ## Where it opens from
 
-Any element with `data-lead-open` (a delegated click listener, so elements added later work too). Optional `data-lead-source`, `data-lead-room`, `data-lead-intent="reserve"`. Every opener is a real link to `contact.html#general-inquiry`, so without JavaScript it still leads somewhere useful.
+Any element with `data-lead-open` (a delegated click listener, so elements added later work too). On every `retreatpage-*.html` that is: "I want more info" in the hero and in the rooms aside, "Reserve your spot" while WeTravel is not wired, "Ask for info" in the sticky bar, "Questions? Talk to us" on waitlist pages, and "Ask about these dates" in the hosts block when the teacher is not announced (that one used to be a plain link to `contact.html#general-inquiry`; fixed in `build_page.py`, 2026-11-23). The template `retreatpage-elcuyo.html` carries the same openers. Optional `data-lead-source`, `data-lead-room`, `data-lead-intent="reserve"`. Every opener is a real link to `contact.html#general-inquiry`, so without JavaScript it still leads somewhere useful.
 
 ## Accessibility
 
 Native `<dialog>` opened with `showModal()` (page behind is inert, Esc closes), plus: Tab and Shift+Tab are kept inside; the page does not scroll behind it (Lenis is stopped too); focus goes to First name on open and back to the opening button on close; the backdrop click closes; all choices are real radio buttons and checkboxes inside square pills; 16px inputs so iOS does not zoom; error colour #9A3B2E is 6.2:1 on the stone background and every error also has words and a "!" mark. Reduced motion: no slide or scale, it simply appears.
+
+## Attribution (both forms)
+
+`js/attribution.js` is loaded on every page (`retreats/_tools/chrome.py`). It records where the visit came from and adds it to the contact form and to this pop-up as hidden inputs at the moment of submit (any `<form data-attribution>`; capture-phase listener, so the fields exist before the form's own handler builds the payload). With no endpoint yet the fields show up in the logged / dispatched payload.
+
+| Name | Content |
+|---|---|
+| `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content` | From the address of the first page of the session, if the link carried them |
+| `referrer` | The other site that sent the visitor: origin + path, query string dropped. Empty for internal navigation and direct visits |
+| `landing_page` | Path of the first page of the session (no query string), e.g. `/retreatpage-el-cuyo-dec-2026-delaney.html` |
+| `first_utm_source` … `first_landing_page`, `first_seen` | The same, for the first visit ever on this browser, with its date (`YYYY-MM-DD`) |
+
+Rules:
+
+- **Session** (`sessionStorage["yaww_attr"]`): written on the first page of the session. A later page whose address has its own `utm_*` replaces it (a second campaign link counts); untagged pages leave it alone.
+- **First touch** (`localStorage["yaww_attr_first"]`): written once. Worth keeping because a retreat is a slow decision; the booking often comes weeks after the first visit from a post or a newsletter.
+- Every storage call is wrapped in `try/catch`: blocked storage (private mode, cookies off) means the fields are sent empty, never an error.
+- Values are clipped to 200 characters. Nothing is ever written into a URL.
+- Other forms (the waitlist form in `js/retreat-cards.js`) can read the same object with `YAWW_ATTRIBUTION.get()`, or get the hidden inputs by adding `data-attribution` to the `<form>` if they read their fields from the form.
+- Consent: these are first-party values about the visit, stored in the browser and only sent when the person submits a form. If a cookie notice is added, list them there.
