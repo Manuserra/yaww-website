@@ -327,6 +327,9 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
 .host__name { font-style: italic; font-size: clamp(22px, 21.26px + 0.19vw, 24px); }
 /* Card titles at 16px: Bold Baskerville is wide; a touch of air. */
 .card__title, .person__name { letter-spacing: 0.005em; }
+/* Retreat card names in Regular at the FAQ / destination-card size:
+   no more Bold titles anywhere (live: Bold 16). */
+.result-link .card__title { font-weight: 400; font-size: clamp(18px, 17.26px + 0.19vw, 20px); line-height: 1.3; letter-spacing: 0; }
 
 /* ---------- 5 · Numbers -----------------------------------------
    The Google Fonts cuts of both families ship lining figures only
