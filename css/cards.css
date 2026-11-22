@@ -84,3 +84,27 @@
   .post-related__item .post-related__title { transition: none; }
 }
 
+
+/* ============================================================
+   "MORE ABOUT {NAME}" ON HOVER (brief 2026-11-23 · section 6)
+   Teacher and facilitator cards (js/people-cards.js). With a real
+   pointer the link waits until the cursor is on the card, then
+   fades up 6px. It keeps its box the whole time (opacity and
+   transform only), so the card never changes height. Keyboard focus
+   shows it too. Touch screens never hide it.
+   ============================================================ */
+@media (hover: hover) and (pointer: fine) {
+  .person__more {
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity .5s var(--card-ease), transform .5s var(--card-ease);
+  }
+  .person__link:hover .person__more,
+  .person:focus-within .person__more {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: reduce) {
+  .person__more { transform: none; transition: opacity .2s linear; }
+}
