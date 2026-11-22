@@ -355,7 +355,13 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
   font-size: var(--tx-quote);
   line-height: 1.6;
 }
-.about-quote__text { font-size: clamp(18px, 17.3px + 0.19vw, 20px); line-height: 1.5; }
+/* About testimonials match the retreat quote cards: padding 32 (24 on
+   phone), italic 18/1.6, name on a 24 line, source line Raleway 16. */
+.about-quote { padding: 32px; }
+.about-quote__text { font-size: 18px; line-height: 1.6; }
+.about-quote__name { line-height: 24px; }
+.about-quote__where { font-size: 16px; line-height: 24px; letter-spacing: 0.32px; }
+@media (max-width: 767px) { .about-quote { padding: 24px; } }
 /* Who said it: small caps feel, done with real caps + tracking (the
    fonts have no true small caps; the browser's fake ones look thin). */
 .quote-card__name, .who__name, .about-quote__name, .loc-quote figcaption {
