@@ -335,6 +335,9 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
    name > place > date/teacher; long places wrap to two lines. */
 .result-link .card__loc { font-size: clamp(17px, 16.63px + 0.1vw, 18px); line-height: 1.4; }
 .result-link .card__date, .result-link .card__teacher { font-size: 16px; line-height: 24px; letter-spacing: 0.32px; }
+/* Date is what people scan for; the teacher steps back in the secondary
+   blue (same as "Google review" under the quotes). */
+.result-link .card__teacher { color: var(--sea-blue-200); }
 
 /* ---------- 5 · Numbers -----------------------------------------
    The Google Fonts cuts of both families ship lining figures only
