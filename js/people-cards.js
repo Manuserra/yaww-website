@@ -125,30 +125,66 @@
            '</div>';
   }
 
-  /* Class video and playlist share one band under the bio. Video takes
-     a YouTube or Vimeo embed URL; spotify takes a playlist URL or id. */
+  /* "Listen & watch": a Spotify embed and a YouTube embed share one band
+     under the bio. Data fields (all optional, empty = nothing rendered):
+       spotifyPlaylist  Spotify URL, URI or bare id (spotify = older alias)
+       youtube          YouTube video id or any youtube.com / youtu.be URL
+                        (video = older alias, also accepts an embed URL) */
   function spotifyEmbed(value) {
-    var m = String(value).match(/playlist[\/:]([A-Za-z0-9]+)/);
-    var id = m ? m[1] : value;
-    return "https://open.spotify.com/embed/playlist/" + encodeURIComponent(id) + "?utm_source=generator&theme=0";
+    var v = String(value).trim();
+    var m = v.match(/(playlist|album|track|show|episode|artist)[\/:]([A-Za-z0-9]+)/);
+    var kind = m ? m[1] : "playlist", id = m ? m[2] : v;
+    return "https://open.spotify.com/embed/" + kind + "/" + encodeURIComponent(id) + "?utm_source=generator&theme=0";
+  }
+  function youtubeEmbed(value) {
+    var v = String(value).trim();
+    var m = v.match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/|\/live\/)([A-Za-z0-9_-]{11})/);
+    var id = m ? m[1] : (/^[A-Za-z0-9_-]{11}$/.test(v) ? v : "");
+    if (id) return "https://www.youtube-nocookie.com/embed/" + id;
+    return /^https:\/\/(player\.vimeo\.com|www\.youtube(-nocookie)?\.com)\//.test(v) ? v : "";
   }
   function renderMedia(person) {
     var name = firstName(person);
-    var video = person.video
-      ? '<div class="profile-media__video"><iframe src="' + esc(person.video) + '" title="A class with ' + esc(name) +
-        '" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>'
+    var ySrc = (person.youtube || person.video) ? youtubeEmbed(person.youtube || person.video) : "";
+    var sSrc = (person.spotifyPlaylist || person.spotify) ? spotifyEmbed(person.spotifyPlaylist || person.spotify) : "";
+    var video = ySrc
+      ? '<div class="profile-media__video"><iframe src="' + esc(ySrc) + '" title="A class with ' + esc(name) +
+        '" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>'
       : (DEMO ? placeholder("a 1 to 3 minute clip of " + name + " teaching", "profile-media__video") : "");
-    var music = person.spotify
-      ? '<div class="profile-media__playlist"><iframe src="' + esc(spotifyEmbed(person.spotify)) + '" title="' + esc(name) +
+    var music = sSrc
+      ? '<div class="profile-media__playlist"><iframe src="' + esc(sSrc) + '" title="' + esc(name) +
         '&rsquo;s playlist on Spotify" loading="lazy" allow="encrypted-media"></iframe></div>'
       : (DEMO ? placeholder(name + "’s Spotify playlist", "profile-media__playlist") : "");
     if (!video && !music) return "";
     var cols = video && music ? " profile-media__grid--two" : "";
-    return '<h2 class="section-title profile-media__title">Practice with ' + esc(name) + '</h2>' +
+    return '<h2 class="section-title profile-media__title">Listen &amp; watch</h2>' +
            '<div class="profile-media__grid' + cols + '">' +
              (video ? '<div><p class="kicker profile-media__label">A class with ' + esc(name) + '</p>' + video + '</div>' : "") +
-             (music ? '<div><p class="kicker profile-media__label">On her playlist</p>' + music + '</div>' : "") +
+             (music ? '<div><p class="kicker profile-media__label">On ' + esc(name) + '&rsquo;s playlist</p>' + music + '</div>' : "") +
            '</div>';
+  }
+
+  /* Website and Instagram: plain links under the bio, new tab. */
+  function externalLink(v) {
+    if (!v) return null;
+    var url = typeof v === "string" ? v : v.url;
+    if (!url) return null;
+    return { url: url, label: typeof v === "string" ? "" : (v.label || "") };
+  }
+  function instagramUrl(v) {
+    v = String(v || "").trim();
+    if (!v) return "";
+    if (/^https?:\/\//.test(v)) return v;
+    return "https://www.instagram.com/" + v.replace(/^@/, "").replace(/\/+$/, "") + "/";
+  }
+  function linksSlot(person) {
+    var items = [];
+    var w = externalLink(person.website);
+    if (w) items.push('<li><a href="' + esc(w.url) + '" target="_blank" rel="noopener">' + esc(w.label || "Website") + '</a></li>');
+    var ig = instagramUrl(person.instagram);
+    if (ig) items.push('<li><a href="' + esc(ig) + '" target="_blank" rel="noopener">Instagram</a></li>');
+    if (!items.length) return "";
+    return '<ul class="profile__links">' + items.join("") + '</ul>';
   }
 
   /* ---------- profile page ---------------------------------------------- */
@@ -180,10 +216,7 @@
               '</div>';
     }
     if (kind !== "team") html += specialtiesSlot(person);
-    if (person.website) {
-      html += '<p class="profile__link"><a href="' + esc(person.website.url) + '" rel="noopener" target="_blank">' +
-              esc(person.website.label) + '</a></p>';
-    }
+    html += linksSlot(person);
     html += '</div></div>';
     return html;
   }

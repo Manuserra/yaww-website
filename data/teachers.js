@@ -14,8 +14,11 @@
    Optional profile slots, each rendered only when filled:
      quote       -> one line in her own words (ACF text)
      specialties -> short list of styles (ACF repeater / tags)
-     video       -> YouTube or Vimeo embed URL of her teaching
-     spotify     -> Spotify playlist URL or id
+     youtube         -> YouTube video id or URL (embedded, youtube-nocookie)
+     spotifyPlaylist -> Spotify playlist URL or id (embedded)
+     website         -> URL string, or { url, label }; opens in a new tab
+     instagram       -> @handle or URL; opens in a new tab
+     video / spotify -> older names for youtube / spotifyPlaylist, still read
      role        -> overrides the "Teacher" eyebrow (e.g. Photographer)
      shortName   -> what she goes by, for "More about Anj"
      photoPosition -> CSS object-position for the portrait crop
