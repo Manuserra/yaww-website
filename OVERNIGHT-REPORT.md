@@ -76,3 +76,17 @@ Copia de `retreats.html` en `proposals/retreats-cards/` con interruptor "Cards" 
 - Atribución (`js/attribution.js`, en todas las páginas): en la primera página de la sesión guarda `utm_source/medium/campaign/term/content`, `referrer` (solo externo, sin query) y `landing_page`; un link nuevo con utm en la misma sesión lo reemplaza. Además guarda el primer contacto en localStorage (`first_*` + `first_seen`), porque la reserva suele llegar semanas después. Todo con try/catch; nada va en URLs. Los dos formularios reciben los campos ocultos al enviar. Documentado en `docs/lead-form.md` ("Attribution"). El campo viejo `utm` del pop-up se reemplazó por estos.
 - No subí `?v=` (lo hace el orquestador): tocados `css/contact.css`, `js/contact.js`, `js/lead-modal.js`, `js/attribution.js`.
 - Preguntas: ¿confirmás estos campos de atribución (y guardar el primer contacto)? ¿El formulario de waitlist (js/retreat-cards.js, no es mío) también debería mandarlos? Basta con `YAWW_ATTRIBUTION.get()`.
+
+## 5 · Menú
+
+Commit `1bb0f54` (solo `css/nav.css` y `js/nav.js`; ninguna página tocada; sin JS el header queda igual que antes).
+
+- **Desktop (≥768):** mismo layout (logo arriba, fila Retreats · Locations · About · Journal · Contact). Retreats, Locations, About y Contact abren un panel a todo el ancho bajo la fila: a la izquierda el título y la bajada de cada página (copy existente), al centro los links, a la derecha una foto que cambia según el link bajo el puntero.
+  - Retreats: All Retreats / Deep Dives / Signature Collection (con su línea de descripción de /retreats, y links a `?tier=`) + "Upcoming Dates": las 3 próximas fechas no agotadas, desde `data/retreats.js`.
+  - Locations: los 14 destinos por región (Europe | The Americas + Africa & Asia), desde `data/locations.js`, con foto y nombre en itálica.
+  - About: About Us, Teachers, Facilitators. Contact: Ask a question, Private groups, Teach with us (lo que ya había). Journal sigue siendo link simple.
+  - Hover: 120 ms para abrir, 200 ms de gracia para cerrar, 90 ms para pasar de un panel a otro (crossfade sin volver a caer). Velo suave sobre la página. Subrayado fino en hover y en la sección actual (sin el fondo gris). Un caret chico al lado de cada item es el botón accesible (aria-expanded, Enter/↓ abre, Tab entra al panel, Esc cierra y devuelve el foco). En tablet, primer toque abre y segundo navega.
+- **Mobile (≤767):** overlay de premium (bajada de arriba hacia abajo), fondo azul del logo (`--sea-blue`), items en Libre Baskerville grande en `--stone-300` (el arena del secundario; 5.1:1). Sección actual en itálica. Los items con más opciones se despliegan con "+". Scroll bloqueado, foco atrapado, Esc, foco vuelve al botón.
+- Verificado: 1440 y 1024 (hover de cada item, teclado), overlay a 375, en index, una retreat page, journal/ (rutas ../ y carga de datos) y contact. Sin errores de consola.
+- Pregunta: "sand secondary" no existe como token; usé `--stone-300` (#E1DCD6). Si es otro tono, se cambia en una línea.
+- Pendiente para el orquestador: bump de `?v=` de nav.css / nav.js.
