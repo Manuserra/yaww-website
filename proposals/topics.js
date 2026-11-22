@@ -96,6 +96,9 @@ window.YAWW_PROPOSALS = [
     { label: "Implemented · new contact", url: "../contact.html", chosen: true },
     { label: "Alternative layout", url: "contact-alt/index.html" }
   ]},
+  { id: "renata-photo", title: "Renata photo", options: [
+    { label: "New photo and alternates", url: "renata/index.html", chosen: true }
+  ]},
   { id: "bullet-leading", title: "Bullet leading", options: [
     { label: "El Cuyo · bullets, rooms", url: "bullet-leading/retreatpage-el-cuyo-dec-2026-delaney.html", chosen: true },
     { label: "Camino · long days, photo test", url: "bullet-leading/retreatpage-camino-de-santiago-apr-2027.html" }
