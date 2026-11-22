@@ -1,1 +1,164 @@
-/* photo-focus · see the header in each section. */
+/* photo-focus · object-position per itinerary photo (.retreat-itinerary__slider).
+ * Keyed by file name so it survives repeats across retreat pages. Default is the centre crop;
+ * a rule here only exists where the subject (face, hand, animal, dish, landmark) would be cut. */
+
+/* argentina */
+.retreat-itinerary__slider img[src$="/yoga-retreat-argentina-asado-cooking-over-the-fire.webp"] { object-position: 50% 87%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-argentina-clear-lake-below-the-andes.webp"] { object-position: 50% 16%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-argentina-cocktail-at-the-hotel-bar.webp"] { object-position: 50% 32%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-argentina-dome-of-the-congress-building.webp"] { object-position: 50% 16%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-argentina-kayaking-on-the-lake.webp"] { object-position: 50% 28%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-argentina-lakes-seen-from-the-ruta-de-los-siete-lagos.webp"] { object-position: 50% 58%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-argentina-mate-held-against-the-lake.webp"] { object-position: 50% 77%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-argentina-painted-houses-of-la-boca.webp"] { object-position: 50% 42%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-argentina-painted-wall-and-a-taxi.webp"] { object-position: 50% 80%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-argentina-peaks-above-the-lake.webp"] { object-position: 50% 31%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-argentina-polo-players-on-horseback.webp"] { object-position: 50% 24%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-argentina-poolside-loungers-in-the-garden.webp"] { object-position: 50% 13%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-argentina-red-car-on-a-cobbled-street.webp"] { object-position: 50% 83%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-argentina-red-poppies-in-the-garden.webp"] { object-position: 50% 25%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-argentina-room-with-palm-print-wallpaper.webp"] { object-position: 50% 59%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-argentina-street-art-in-buenos-aires.webp"] { object-position: 50% 68%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-argentina-tango-dancers-in-the-street.webp"] { object-position: 50% 8%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-argentina-tree-pose-among-the-poplars.webp"] { object-position: 50% 65%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-argentina-walking-the-lupin-lined-path.webp"] { object-position: 50% 69%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-argentina-wooden-walkway-through-the-woods.webp"] { object-position: 50% 82%; }
+
+/* camino-de-santiago */
+.retreat-itinerary__slider img[src$="/yoga-retreat-camino-de-santiago-spain-pool-beside-the-waterfall.webp"] { object-position: 100% 50%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-camino-de-santiago-spain-practice-with-arms-overhead.webp"] { object-position: 100% 50%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-camino-de-santiago-spain-spa-pool-at-the-final-hotel.webp"] { object-position: 0% 50%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-camino-de-santiago-spain-stretching-above-the-green-valley.webp"] { object-position: 100% 0%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-camino-de-santiago-spain-yellow-arrow-painted-on-a-tree.webp"] { object-position: 20% 50%; }
+
+/* el-cuyo */
+.retreat-itinerary__slider img[src$="/yoga-retreat-el-cuyo-mexico-morning-coffee-on-the-terrace.webp"] { object-position: 100% 100%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-el-cuyo-mexico-paddling-out-at-sunset.webp"] { object-position: 100% 100%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-el-cuyo-mexico-palapa-at-the-end-of-the-jetty.webp"] { object-position: 98% 0%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-el-cuyo-mexico-portrait-against-the-clouds.webp"] { object-position: 98% 100%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-el-cuyo-mexico-tostadas-with-shrimp-and-avocado.webp"] { object-position: 0% 50%; }
+
+/* iceland */
+.retreat-itinerary__slider img[src$="/yoga-retreat-iceland-arms-raised-among-the-ice.webp"] { object-position: 100% 0%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-iceland-basalt-columns-on-the-black-beach.webp"] { object-position: 0% 50%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-iceland-geyser-erupting.webp"] { object-position: 100% 50%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-iceland-group-on-the-glacier.webp"] { object-position: 0% 0%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-iceland-horse-ride-across-the-moor.webp"] { object-position: 100% 0%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-iceland-hot-dogs-in-reykjavik.webp"] { object-position: 50% 0%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-iceland-reykjavik-at-sunset.webp"] { object-position: 0% 50%; }
+
+/* montenegro */
+.retreat-itinerary__slider img[src$="/yoga-retreat-montenegro-alpine-coaster-track-above-the-clouds.webp"] { object-position: 50% 79%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-montenegro-bell-tower-above-the-rooftops-of-perast.webp"] { object-position: 50% 42%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-montenegro-boat-over-clear-water.webp"] { object-position: 50% 99%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-montenegro-bottles-from-the-undersea-winery.webp"] { object-position: 50% 69%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-montenegro-dancer-pose-above-the-water.webp"] { object-position: 50% 41%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-montenegro-footprints-in-the-sand.webp"] { object-position: 50% 87%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-montenegro-hands-resting-in-meditation.webp"] { object-position: 50% 9%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-montenegro-laid-table-at-a-local-dinner.webp"] { object-position: 50% 78%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-montenegro-montenegrin-flag-above-the-mountains.webp"] { object-position: 50% 60%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-montenegro-reaching-arm-in-soft-light.webp"] { object-position: 50% 15%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-montenegro-red-rooftops-above-the-bay.webp"] { object-position: 50% 58%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-montenegro-serving-oysters-at-the-table.webp"] { object-position: 50% 32%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-montenegro-the-church-tower-in-perast.webp"] { object-position: 50% 58%; }
+
+/* morocco */
+.retreat-itinerary__slider img[src$="/yoga-retreat-morocco-essaouira-ramparts-above-the-sea.webp"] { object-position: 100% 50%; }
+
+/* oaxaca */
+.retreat-itinerary__slider img[src$="/yoga-retreat-oaxaca-mexico-agave-field-under-a-wide-sky.webp"] { object-position: 50% 89%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-oaxaca-mexico-church-towers-above-the-agaves.webp"] { object-position: 50% 33%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-oaxaca-mexico-cooking-class-over-the-coals.webp"] { object-position: 50% 8%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-oaxaca-mexico-cooking-demonstration-in-the-kitchen.webp"] { object-position: 50% 18%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-oaxaca-mexico-day-of-the-dead-altar-with-marigolds.webp"] { object-position: 50% 32%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-oaxaca-mexico-giant-puppet-in-a-flowered-dress.webp"] { object-position: 50% 0%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-oaxaca-mexico-guest-in-calavera-face-paint.webp"] { object-position: 50% 4%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-oaxaca-mexico-headstand-in-a-marigold-lined-lane.webp"] { object-position: 50% 83%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-oaxaca-mexico-holding-up-a-red-paper-flower.webp"] { object-position: 50% 35%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-oaxaca-mexico-making-tortillas-on-the-comal.webp"] { object-position: 50% 58%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-oaxaca-mexico-marigold-garlands-on-a-doorway.webp"] { object-position: 50% 41%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-oaxaca-mexico-mezcal-shelves-behind-the-bar.webp"] { object-position: 50% 32%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-oaxaca-mexico-mezcal-tasting-at-the-bar.webp"] { object-position: 50% 13%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-oaxaca-mexico-practice-under-the-beamed-roof.webp"] { object-position: 50% 83%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-oaxaca-mexico-setting-up-the-altar.webp"] { object-position: 50% 13%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-oaxaca-mexico-the-group-against-a-painted-wall.webp"] { object-position: 50% 74%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-oaxaca-mexico-trying-on-an-alebrije-mask.webp"] { object-position: 50% 15%; }
+
+/* portugal */
+.retreat-itinerary__slider img[src$="/yoga-retreat-portugal-embracing-in-the-sea.webp"] { object-position: 100% 0%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-portugal-farmhouse-pool-and-agaves.webp"] { object-position: 100% 78%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-portugal-practising-against-a-street-mural.webp"] { object-position: 100% 50%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-portugal-toasting-with-vinho-verde.webp"] { object-position: 100% 0%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-portugal-two-guests-outside-a-white-house.webp"] { object-position: 50% 0%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-portugal-yoga-class-in-the-timber-studio.webp"] { object-position: 100% 50%; }
+
+/* santorini */
+.retreat-itinerary__slider img[src$="/yoga-retreat-santorini-greece-forward-fold-above-the-caldera.webp"] { object-position: 100% 50%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-santorini-greece-leaping-from-the-catamaran.webp"] { object-position: 100% 50%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-santorini-greece-standing-on-the-white-terrace-wall.webp"] { object-position: 50% 100%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-santorini-greece-sunset-meditation-on-the-terrace.webp"] { object-position: 100% 100%; }
+
+/* sardinia */
+.retreat-itinerary__slider img[src$="/yoga-retreat-sardinia-bench-under-hanging-ceramics.webp"] { object-position: 50% 32%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-sardinia-heart-opening-stretch-in-a-doorway.webp"] { object-position: 50% 42%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-sardinia-hiking-through-a-rocky-gorge.webp"] { object-position: 50% 59%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-sardinia-terrace-overlooking-the-hills.webp"] { object-position: 50% 59%; }
+
+/* spain-basque-country */
+.retreat-itinerary__slider img[src$="/yoga-retreat-basque-country-candlelit-dining-room.webp"] { object-position: 50% 70%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-basque-country-dinner-in-a-warmly-lit-restaurant.webp"] { object-position: 100% 50%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-basque-country-legs-raised-in-yoga-class.webp"] { object-position: 50% 13%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-basque-country-villa-on-the-rocky-coast.webp"] { object-position: 0% 50%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-basque-country-vintage-suitcases-and-lamp.webp"] { object-position: 50% 58%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-basque-country-walking-to-the-bilbao-hotel.webp"] { object-position: 50% 42%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-basque-country-yoga-in-a-beamed-room.webp"] { object-position: 50% 0%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-basque-country-yoga-in-the-vineyard.webp"] { object-position: 50% 11%; }
+
+/* thailand */
+.retreat-itinerary__slider img[src$="/yoga-retreat-thailand-carved-stone-heads-in-the-garden.webp"] { object-position: 50% 69%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-thailand-elephant-in-the-palms.webp"] { object-position: 50% 80%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-thailand-elephants-walking-the-track.webp"] { object-position: 50% 59%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-thailand-hammock-above-the-bay.webp"] { object-position: 50% 92%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-thailand-hammock-between-the-palms.webp"] { object-position: 50% 33%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-thailand-hands-in-prayer-position.webp"] { object-position: 50% 33%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-thailand-hands-resting-in-meditation-seat.webp"] { object-position: 50% 16%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-thailand-hornbill-in-the-palms.webp"] { object-position: 50% 78%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-thailand-jungle-hillside-above-the-beach.webp"] { object-position: 50% 59%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-thailand-kinnari-statue-among-the-trees.webp"] { object-position: 50% 4%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-thailand-limestone-island-and-a-longtail-boat.webp"] { object-position: 50% 100%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-thailand-longtail-boats-among-the-karsts.webp"] { object-position: 50% 59%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-thailand-longtail-boats-beached-below-the-karsts.webp"] { object-position: 50% 68%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-thailand-lotus-flowers-on-the-pond.webp"] { object-position: 50% 30%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-thailand-orchids-against-the-green.webp"] { object-position: 50% 75%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-thailand-plunge-pool-at-sunset.webp"] { object-position: 50% 60%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-thailand-pool-reflecting-the-palms.webp"] { object-position: 50% 60%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-thailand-practice-on-the-lawn-by-the-sea.webp"] { object-position: 50% 65%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-thailand-preparing-flower-offerings.webp"] { object-position: 50% 40%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-thailand-spa-table-with-rose-petals.webp"] { object-position: 50% 59%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-thailand-thatched-pavilion-over-the-water.webp"] { object-position: 50% 39%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-thailand-upward-dog-in-the-studio.webp"] { object-position: 50% 3%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-thailand-village-shop-on-the-island.webp"] { object-position: 50% 54%; }
+
+/* turkey */
+.retreat-itinerary__slider img[src$="/yoga-retreat-turkey-assisted-childs-pose.webp"] { object-position: 50% 30%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-turkey-assisted-yoga-stretch.webp"] { object-position: 50% 42%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-turkey-avrupa-pasaji-arcade.webp"] { object-position: 50% 58%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-turkey-cappadocia-valley-from-above.webp"] { object-position: 50% 75%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-turkey-carpet-shop.webp"] { object-position: 50% 58%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-turkey-cat-on-a-stone-step.webp"] { object-position: 50% 11%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-turkey-cobra-pose-on-the-mat.webp"] { object-position: 50% 8%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-turkey-evil-eye-charms-on-a-tree.webp"] { object-position: 50% 33%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-turkey-galata-tower.webp"] { object-position: 50% 16%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-turkey-hammam-basin-and-copper-bowl.webp"] { object-position: 50% 42%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-turkey-hot-air-balloons-at-sunrise.webp"] { object-position: 50% 14%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-turkey-meditating-on-a-wooden-floor.webp"] { object-position: 50% 20%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-turkey-minaret-against-the-sky.webp"] { object-position: 50% 33%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-turkey-mosque-and-minarets-across-the-park.webp"] { object-position: 50% 78%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-turkey-mosque-dome-above-the-water.webp"] { object-position: 50% 66%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-turkey-old-houses-and-church-tower.webp"] { object-position: 50% 33%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-turkey-rock-formations-in-cappadocia.webp"] { object-position: 50% 33%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-turkey-rolling-out-thin-dough.webp"] { object-position: 50% 33%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-turkey-turkish-coffee-and-copper-pot.webp"] { object-position: 50% 21%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-turkey-vineyard-below-the-rock-formations.webp"] { object-position: 50% 24%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-turkey-whirling-dervish.webp"] { object-position: 50% 59%; }
+.retreat-itinerary__slider img[src$="/yoga-retreat-turkey-wine-in-a-cave-restaurant.webp"] { object-position: 50% 75%; }
