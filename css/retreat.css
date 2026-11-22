@@ -2354,7 +2354,9 @@ html.has-lightbox { overflow: hidden; }
 .hosts__slot .host { justify-content: flex-start; padding-block: 4px 0; }
 .hosts__slot .host__name { margin-top: -9px; }      /* cap height to the photo's top edge */
 .hosts__slot .host__bio { margin-top: 12px !important; }
-.hosts__slot .host__link { margin-top: auto; padding-top: 24px; margin-bottom: 0; }
+/* The link follows the bio at 48px instead of sitting on the photo's
+   bottom edge, so it reads with the text it belongs to. */
+.hosts__slot .host__link { margin-top: 40px; padding-top: 0; margin-bottom: 0; }  /* + the 8px flex gap = 48 */
 @media (max-width: 767px) {
   .retreat-teacher { padding-bottom: 72px; }
   .hosts__slot .host__name { margin-top: 0; }
