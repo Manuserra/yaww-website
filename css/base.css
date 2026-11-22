@@ -866,3 +866,25 @@ main { padding-top: 0; }
   .footer-logo { padding: 32px 0; }
   .footer-copy { padding: 24px 0; }
 }
+
+/* ============================================================
+   TABS · one hover everywhere (2026-11-22)
+   The hover first made for the Retreats page tabs, now on every tab
+   bar: the retreat page (hosts, what's included), the journal and the
+   room modal. An unselected tab under a real pointer fills with the
+   site's hover wash (Stone-300 @ 40%) and its label deepens to
+   sea-blue; pressed, the wash deepens to 60%. The active tab keeps its
+   indicator and takes no wash.
+   ============================================================ */
+.tabs__item, .tab, .room-modal__tab { transition: color .18s ease, background-color .16s ease; }
+@media (hover: hover) and (pointer: fine) {
+  .tabs__item:not(.is-active):hover,
+  .tab:not(.is-active):hover,
+  .room-modal__tab:not(.is-active):hover { color: var(--sea-blue); background: rgba(225, 220, 214, 0.40); }
+}
+.tabs__item:not(.is-active):active,
+.tab:not(.is-active):active,
+.room-modal__tab:not(.is-active):active { background: rgba(225, 220, 214, 0.60); }
+@media (prefers-reduced-motion: reduce) {
+  .tabs__item, .tab, .room-modal__tab { transition: none; }
+}

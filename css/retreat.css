@@ -592,8 +592,7 @@ main { overflow-wrap: break-word; }
   .tabs__item:not(.is-active):hover,
   .tab:not(.is-active):hover { color: var(--sea-blue); }
 }
-.tabs__item,
-.tab { transition: color .18s ease; }
+/* (transition now set with the shared tab hover in base.css) */
 @media (prefers-reduced-motion: reduce) {
   .tabs__item, .tab { transition: none; }
 }

@@ -84,8 +84,7 @@
   .tabs__item:not(.is-active):hover,
   .tab:not(.is-active):hover { color: var(--sea-blue); }
 }
-.tabs__item,
-.tab { transition: color .18s ease; }
+/* (transition now set with the shared tab hover in base.css) */
 @media (prefers-reduced-motion: reduce) {
   .tabs__item, .tab { transition: none; }
 }
@@ -240,9 +239,7 @@
   transition: transform .22s cubic-bezier(.2, 0, 0, 1);
   pointer-events: none;
 }
-@media (hover: hover) and (pointer: fine) {
-  .main-journal .tab:not(.is-active):hover::after { transform: scaleX(1); }
-}
+/* Hover: the shared tab wash in base.css (no underline preview). */
 @media (prefers-reduced-motion: reduce) {
   .main-journal .tab:not(.is-active)::after { transition: none; }
 }
