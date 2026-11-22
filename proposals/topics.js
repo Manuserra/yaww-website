@@ -65,6 +65,11 @@ window.YAWW_PROPOSALS = [
     { label: "C · Oaxaca", url: "location-template/option-c-oaxaca.html" },
     { label: "C · Iceland", url: "location-template/option-c-iceland.html" }
   ]},
+  { id: "location-guide", title: "Location guide", options: [
+    { label: "El Cuyo · as a guest sees it", url: "location-guide/locationpage-el-cuyo.html" },
+    { label: "El Cuyo · what we need", url: "location-guide/locationpage-el-cuyo.html?needs=1" },
+    { label: "Live page", url: "../locationpage-el-cuyo.html", chosen: true }
+  ]},
   { id: "locations-grid", title: "Locations grid", options: [
     { label: "Fourteen places", url: "../locations.html", chosen: true }
   ]},
