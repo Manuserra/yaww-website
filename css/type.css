@@ -316,9 +316,10 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
 @media (min-width: 1025px) and (max-height: 960px) {
   .rooms__aside { position: static; max-height: none; overflow: visible; }
 }
-/* Two-line descriptions: balance the lines so none ends on one or two
-   stray words ("within steps."). */
-.room-card__desc { text-wrap: balance; }
+/* Room descriptions fill the column like any paragraph; "pretty" only
+   keeps a lone last word from dropping to its own line. (Balanced lines
+   broke them early, leaving half the column empty.) */
+.room-card__desc { text-wrap: pretty; }
 /* Reserve and Details: the site's one link style ("Meet Alicia"):
    14px, 1.2px tracking, fine underline 6px below. */
 .room-card__reserve,
