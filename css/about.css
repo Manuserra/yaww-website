@@ -114,7 +114,10 @@
    titles and copy run. */
 .about-card .btn { margin-top: auto; width: 100%; }
 
-/* --- The team: 2 x 2, rectangular portraits, eight columns wide - */
+/* --- The team: 2 x 2, landscape, six columns each ------------
+   Two per row on the page grid: 6 + 6 of 12 columns (672px at 1440,
+   48px gutter, 1392 wide), 24px gutter at 1024 and below, one per
+   row on phones. Frames are 672:408, the site's landscape ratio. */
 .about-team { display: flex; flex-direction: column; align-items: center; gap: 40px; }
 .about-team__head { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
 .about-team__grid {
@@ -122,10 +125,13 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 56px 48px;
   width: 100%;
-  max-width: 912px;
+  max-width: var(--container-max);
 }
 .about-person { display: flex; flex-direction: column; gap: 12px; }
-.about-person__media { aspect-ratio: 4 / 5; overflow: hidden; background: var(--stone-300); }
+.about-person__media { aspect-ratio: 672 / 408; overflow: hidden; background: var(--stone-300); }
+/* Framing: the person, not the empty sea or studio above them. */
+.about-person__media img[src$="/sofi-von-linden.jpg"] { object-position: 50% 55%; }
+.about-person__media img[src$="/jenniferlyn-chiemingo.jpg"] { object-position: 50% 80%; }
 .about-person__media--missing {
   display: flex; align-items: center; justify-content: center; padding: 24px;
   font-family: var(--font-body); font-size: 14px; line-height: 20px; color: var(--sea-blue-300);
@@ -263,7 +269,7 @@
   .about-intro__title { font-size: 32px; line-height: 44px; }
   .about-how__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 32px; }
   .about-quotes__grid { gap: 32px; }
-  .about-team__grid { gap: 32px; }
+  .about-team__grid { gap: 40px 24px; }
   /* Justified needs the desktop measure; at 768–1024 the column is ~270px. */
   .about-prose .about-body { text-align: left; }
 }
@@ -290,9 +296,7 @@
   .about-team__grid,
   .about-quotes__grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   .about-card__media { aspect-ratio: 4 / 3; }
-  .about-team__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 16px; }
   .about-person__name { font-size: 18px; line-height: 26px; }
-  .about-person__media { aspect-ratio: 4 / 5; }
   .about-rails { gap: 56px; }
   .review-badge { min-width: 0; width: 100%; }
 
