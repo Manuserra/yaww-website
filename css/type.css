@@ -532,4 +532,6 @@ h1.main__header--title.main__header--title {
    this: delete this block (or revert its one commit) and nothing else
    changes. */
 .retreat-itinerary li, .retreat-includes li { line-height: 1.65; }
+/* …and the drawn dot re-centred on the taller first line (26.4 / 2 − 2.5). */
+.retreat-includes__list li::before, .retreat-itinerary__bullets li::before { top: 10.7px; }
 /* ---------- end TRIAL ---------- */
