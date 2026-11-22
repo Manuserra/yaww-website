@@ -29,10 +29,14 @@
   }).observe(document.documentElement, { subtree: true, childList: true, attributes: true, attributeFilter: ATTRS.concat("style") });
 
   var KEY = "yaww-bullet-leading";
-  function read() { try { return localStorage.getItem(KEY) !== "before"; } catch (e) { return true; } }
-  function apply(now, btn) {
-    document.documentElement.classList.toggle("bl-before", !now);
-    if (btn) { btn.setAttribute("aria-pressed", String(now)); btn.querySelector(".tx-toggle__state").textContent = now ? "Now · 26.4" : "Before · 24"; }
+  var STATES = ["now", "try"];  /* 26.4 is decided; only the gap is on trial */
+  var LABEL = { before: "Before · 24 · gap 8", now: "Now · 26.4 · gap 8", "try": "Try · 26.4 · gap 6" };
+  function read() { try { var v = localStorage.getItem(KEY); return STATES.indexOf(v) > -1 ? v : "try"; } catch (e) { return "try"; } }
+  function apply(st, btn) {
+    var h = document.documentElement;
+    
+    h.classList.toggle("bl-try", st === "try");
+    if (btn) { btn.setAttribute("aria-pressed", String(st === "try")); btn.querySelector(".tx-toggle__state").textContent = LABEL[st]; }
   }
   apply(read());
   document.addEventListener("DOMContentLoaded", function () {
@@ -40,6 +44,10 @@
     css.textContent =
       "html.bl-before .retreat-itinerary li,html.bl-before .retreat-includes li{line-height:24px}" +
       "html.bl-before .retreat-includes__list li::before,html.bl-before .retreat-itinerary__bullets li::before{top:9.5px}" +
+      "html.bl-try .retreat-includes__list,html.bl-try .retreat-itinerary__bullets{gap:6px}" +
+      "@media (min-width:947px){html.ph-grow .retreat-itinerary__slider{align-self:stretch}}" +
+      ".tx-toggle.tx-toggle--photo{top:196px}" +
+      "@media (max-width:767px){.tx-toggle.tx-toggle--photo{bottom:140px;top:auto}}" +
       ".tx-toggle{position:fixed;top:150px;right:16px;z-index:2147483000;display:flex;align-items:center;gap:10px;" +
       "padding:8px 12px 8px 14px;background:#283139;color:#F7F2F0;border:0;border-radius:0;cursor:pointer;" +
       "font:600 12px/16px Raleway,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;box-shadow:0 4px 16px rgba(0,0,0,.18)}" +
@@ -53,17 +61,40 @@
     document.head.appendChild(css);
     var btn = document.createElement("button");
     btn.type = "button"; btn.className = "tx-toggle";
-    btn.title = "Bullets: before / now (T)";
+    btn.title = "Bullets: gap 8 / gap 6 (T)";
     btn.innerHTML = '<span class="tx-toggle__label">Bullets</span><span class="tx-toggle__state"></span><span class="tx-toggle__sw" aria-hidden="true"></span>';
     document.body.appendChild(btn);
-    var now = read(); apply(now, btn);
-    function flip() { now = !now; apply(now, btn); try { localStorage.setItem(KEY, now ? "now" : "before"); } catch (e) {} }
+    var st = read(); apply(st, btn);
+    function flip() { st = STATES[(STATES.indexOf(st) + 1) % STATES.length]; apply(st, btn); try { localStorage.setItem(KEY, st); } catch (e) {} }
     btn.addEventListener("click", flip);
+
+    /* Second switch: on laptops and tablets a long day's bullets can run
+       taller than its photo; "grows" stretches the photo to the row (it
+       crops a little at the sides instead of leaving a gap below). */
+    var PKEY = "yaww-photo-grow";
+    var b2 = document.createElement("button");
+    b2.type = "button"; b2.className = "tx-toggle tx-toggle--photo";
+    b2.title = "Itinerary photo: as now / grows with the text (P)";
+    b2.innerHTML = '<span class="tx-toggle__label">Photo</span><span class="tx-toggle__state"></span><span class="tx-toggle__sw" aria-hidden="true"></span>';
+    document.body.appendChild(b2);
+    var grow; try { grow = localStorage.getItem(PKEY) !== "now"; } catch (e) { grow = true; }
+    function applyP() {
+      document.documentElement.classList.toggle("ph-grow", grow);
+      b2.setAttribute("aria-pressed", String(grow));
+      b2.querySelector(".tx-toggle__state").textContent = grow ? "Grows with text" : "As now";
+    }
+    function flipP() { grow = !grow; applyP(); try { localStorage.setItem(PKEY, grow ? "grow" : "now"); } catch (e) {} }
+    applyP();
+    b2.addEventListener("click", flipP);
+    document.addEventListener("keydown", function (e) {
+      if ((e.key === "p" || e.key === "P") && !e.metaKey && !e.ctrlKey && !e.altKey &&
+          !/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) && !e.target.isContentEditable) flipP();
+    });
     document.addEventListener("keydown", function (e) {
       if ((e.key === "t" || e.key === "T") && !e.metaKey && !e.ctrlKey && !e.altKey &&
           !/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) && !e.target.isContentEditable) flip();
     });
-    var it = document.querySelector(".retreat-includes");
+    var it = document.querySelector(/camino/.test(location.pathname) ? ".retreat-itinerary__day:nth-child(8)" : ".retreat-includes");
     if (it && !location.hash) setTimeout(function () { it.scrollIntoView({ block: "start" }); }, 300);
   });
 })();

@@ -1713,6 +1713,11 @@ html.has-lightbox { overflow: hidden; }
   height: auto;
   aspect-ratio: 672 / 408;
   margin-left: calc(var(--day-gap) - var(--marker-gap));
+  /* On laptops and tablets a long day's bullets can run taller than the
+     photo's ratio height: the photo then stretches to the row and crops a
+     little at the sides, so it ends level with the last bullet instead of
+     leaving a gap below. Short days keep the 672:408 ratio. */
+  align-self: stretch;
 }
 /* Photo slider — shared by the itinerary days and the accommodations
    gallery. Only the box (size, flex, ratio) belongs to each module; the

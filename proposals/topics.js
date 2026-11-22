@@ -77,6 +77,7 @@ window.YAWW_PROPOSALS = [
     { label: "About", url: "typography-expressive/about.html" }
   ]},
   { id: "bullet-leading", title: "Bullet leading", options: [
-    { label: "Retreat page · before / now", url: "bullet-leading/retreatpage-el-cuyo-dec-2026-delaney.html", chosen: true }
+    { label: "El Cuyo · bullets", url: "bullet-leading/retreatpage-el-cuyo-dec-2026-delaney.html", chosen: true },
+    { label: "Camino · long days, photo test", url: "bullet-leading/retreatpage-camino-de-santiago-apr-2027.html" }
   ]}
 ];
