@@ -47,6 +47,9 @@
       "html.bl-try .retreat-includes__list,html.bl-try .retreat-itinerary__bullets{gap:6px}" +
       "@media (min-width:947px){html.ph-grow .retreat-itinerary__slider{align-self:stretch}}" +
       ".tx-toggle.tx-toggle--photo{top:196px}" +
+      "@media (min-width:768px){html.rm-552 .room-card__body{grid-column:6 / span 5}html.rm-552 .room-card__side{grid-column:11 / span 2}}" +
+      ".tx-toggle.tx-toggle--rooms{top:242px}" +
+      "@media (max-width:767px){.tx-toggle.tx-toggle--rooms{bottom:184px;top:auto}}" +
       "@media (max-width:767px){.tx-toggle.tx-toggle--photo{bottom:140px;top:auto}}" +
       ".tx-toggle{position:fixed;top:150px;right:16px;z-index:2147483000;display:flex;align-items:center;gap:10px;" +
       "padding:8px 12px 8px 14px;background:#283139;color:#F7F2F0;border:0;border-radius:0;cursor:pointer;" +
@@ -86,6 +89,28 @@
     function flipP() { grow = !grow; applyP(); try { localStorage.setItem(PKEY, grow ? "grow" : "now"); } catch (e) {} }
     applyP();
     b2.addEventListener("click", flipP);
+
+    /* Third switch: the room rows' columns. Now photo 5 · text 4 · price 3;
+       try photo 5 · text 5 · price 2 (the price only uses ~118px). */
+    var RKEY = "yaww-rooms-cols";
+    var b3 = document.createElement("button");
+    b3.type = "button"; b3.className = "tx-toggle tx-toggle--rooms";
+    b3.title = "Room rows: text 4 · price 3 / text 5 · price 2 (R)";
+    b3.innerHTML = '<span class="tx-toggle__label">Rooms</span><span class="tx-toggle__state"></span><span class="tx-toggle__sw" aria-hidden="true"></span>';
+    document.body.appendChild(b3);
+    var wide; try { wide = localStorage.getItem(RKEY) !== "now"; } catch (e) { wide = true; }
+    function applyR() {
+      document.documentElement.classList.toggle("rm-552", wide);
+      b3.setAttribute("aria-pressed", String(wide));
+      b3.querySelector(".tx-toggle__state").textContent = wide ? "Try · text 5 · price 2" : "Now · text 4 · price 3";
+    }
+    function flipR() { wide = !wide; applyR(); try { localStorage.setItem(RKEY, wide ? "try" : "now"); } catch (e) {} }
+    applyR();
+    b3.addEventListener("click", flipR);
+    document.addEventListener("keydown", function (e) {
+      if ((e.key === "r" || e.key === "R") && !e.metaKey && !e.ctrlKey && !e.altKey &&
+          !/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) && !e.target.isContentEditable) flipR();
+    });
     document.addEventListener("keydown", function (e) {
       if ((e.key === "p" || e.key === "P") && !e.metaKey && !e.ctrlKey && !e.altKey &&
           !/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) && !e.target.isContentEditable) flipP();
@@ -94,7 +119,7 @@
       if ((e.key === "t" || e.key === "T") && !e.metaKey && !e.ctrlKey && !e.altKey &&
           !/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) && !e.target.isContentEditable) flip();
     });
-    var it = document.querySelector(/camino/.test(location.pathname) ? ".retreat-itinerary__day:nth-child(8)" : ".retreat-includes");
+    var it = document.querySelector(/camino/.test(location.pathname) ? ".retreat-itinerary__day:nth-child(8)" : "#rooms, .rooms");
     if (it && !location.hash) setTimeout(function () { it.scrollIntoView({ block: "start" }); }, 300);
   });
 })();
