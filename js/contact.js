@@ -8,8 +8,12 @@
    - conditional rows: [data-show-when="field=value"] appear only when
      that radio/select has that value, and are skipped by validation
      while hidden;
-   - a success state ([data-yform-done]) that names the person back;
-   - one place to post: YAWW_CONTACT.endpoints[key] (data/contact.js).
+   - a success state ([data-yform-done]) that names the person back
+     (first name and email, set as text, never as HTML);
+   - one place to post: YAWW_CONTACT.endpoints[key] (data/contact.js);
+   - attribution: a form marked [data-attribution] gets utm_*, referrer
+     and landing_page as hidden inputs on submit (js/attribution.js),
+     so they arrive in the payload like any other field.
 
    Markup contract for a field:
      <div class="yf__field" data-field="email">
@@ -96,7 +100,9 @@
       if (!el.name || el.disabled || el.type === "submit") return;
       if ((el.type === "radio" || el.type === "checkbox") && !el.checked) return;
       var v = el.value.trim();
-      if (el.type === "checkbox") {
+      if (el.type === "checkbox" && form.querySelectorAll('input[type="checkbox"][name="' + el.name + '"]').length === 1) {
+        out[el.name] = v;   // a lone checkbox (newsletter) is a yes, not a list
+      } else if (el.type === "checkbox") {
         (out[el.name] = out[el.name] || []).push(v);
       } else {
         out[el.name] = v;
@@ -200,7 +206,7 @@
     if (!h) return;
     if (h === "teach-with-us") { location.replace("teach-with-us.html"); return; }
     var topic = { "build-a-custom-retreat": "private-group", "private-groups": "private-group",
-                  "general-inquiry": "retreat", "ask": "retreat" }[h];
+                  "general-inquiry": "retreat", "ask": "retreat", "press": "press" }[h];
     if (!topic) return;
     pickTopic(topic);
   }

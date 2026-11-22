@@ -142,12 +142,15 @@
 
 <main id="main">
   <!-- =========================================================
-       CONTACT: one human form plus the other doors.
+       CONTACT: one human form, with who we are beside it.
        The old page had three tab forms (General Inquiry, Teach with
        us, Build a Custom Retreat). Questions about a specific retreat
        now start on that retreat's page ("I want more info"), teachers
-       have teach-with-us.html, and private groups are a topic of this
-       form. Reasoning: docs/contact-strategy.md
+       have teach-with-us.html (one quiet link in the left column), and
+       private groups and press are topics of this form. The left
+       column answers "is there a real company here?": the direct
+       lines, since when, the Google score and one guest in her own
+       words. Reasoning: docs/contact-strategy.md
        Old anchors (#general-inquiry, #teach-with-us,
        #build-a-custom-retreat) are routed by js/contact.js.
        ========================================================= -->
@@ -167,14 +170,14 @@
       <h2 class="contact__form-title" id="contact-form-title">Send us a message</h2>
       <p class="contact__form-sub">A few lines is plenty. We will take it from there.</p>
 
-      <form class="yf" data-yform="contact" action="" method="post" novalidate>
+      <form class="yf" data-yform="contact" data-attribution action="" method="post" novalidate>
 
         <fieldset class="yf__field" data-field="topic" data-required data-error="Pick the one closest to your question.">
           <legend class="yf__legend">What is it about?</legend>
           <div class="yf__chips">
             <label class="yf__chip"><input type="radio" name="topic" value="retreat" checked aria-describedby="topic-error"><span>A retreat</span></label>
             <label class="yf__chip"><input type="radio" name="topic" value="private-group" aria-describedby="topic-error"><span>A trip for my group</span></label>
-            <label class="yf__chip"><input type="radio" name="topic" value="other" aria-describedby="topic-error"><span>Something else</span></label>
+            <label class="yf__chip"><input type="radio" name="topic" value="press" aria-describedby="topic-error"><span>Press &amp; partnerships</span></label>
           </div>
           <p class="yf__error" id="topic-error" hidden></p>
         </fieldset>
@@ -186,23 +189,26 @@
           <datalist id="c-retreat-list" data-retreat-options></datalist>
         </div>
 
-        <!-- topic = private-group -->
+        <!-- topic = private-group: size is one tap; when and where side by side -->
         <p class="contact__group-note" data-show-when="topic=private-group">Friends, family, a studio, a company. Tell us who is coming and roughly when, and we will tell you what we can build.</p>
-        <div class="yf__row" data-show-when="topic=private-group">
-          <div class="yf__field" data-field="group_size">
-            <label class="yf__label" for="c-size">How many of you?</label>
-            <select class="yf__input" id="c-size" name="group_size" required aria-describedby="c-size-error" data-error="Roughly how many people?">
-              <option value="">Choose</option>
-              <option>2 to 5</option>
-              <option>6 to 10</option>
-              <option>11 to 20</option>
-              <option>More than 20</option>
-            </select>
-            <p class="yf__error" id="c-size-error" hidden></p>
+        <fieldset class="yf__field" data-field="group_size" data-show-when="topic=private-group" data-required data-error="Roughly how many people?">
+          <legend class="yf__legend">How many of you?</legend>
+          <div class="yf__chips">
+            <label class="yf__chip"><input type="radio" name="group_size" value="2 to 5" aria-describedby="c-size-error"><span>2 to 5</span></label>
+            <label class="yf__chip"><input type="radio" name="group_size" value="6 to 10" aria-describedby="c-size-error"><span>6 to 10</span></label>
+            <label class="yf__chip"><input type="radio" name="group_size" value="11 to 20" aria-describedby="c-size-error"><span>11 to 20</span></label>
+            <label class="yf__chip"><input type="radio" name="group_size" value="More than 20" aria-describedby="c-size-error"><span>More than 20</span></label>
           </div>
+          <p class="yf__error" id="c-size-error" hidden></p>
+        </fieldset>
+        <div class="yf__row" data-show-when="topic=private-group">
           <div class="yf__field" data-field="group_when">
             <label class="yf__label" for="c-when">Roughly when? <span class="yf__opt">(optional)</span></label>
             <input class="yf__input" id="c-when" name="group_when" type="text" placeholder="Spring 2027">
+          </div>
+          <div class="yf__field" data-field="destination" data-show-when="topic=private-group">
+            <label class="yf__label" for="c-destination">Anywhere in mind? <span class="yf__opt">(optional)</span></label>
+            <input class="yf__input" id="c-destination" name="destination" type="text" placeholder="Mexico, Greece, open to ideas…">
           </div>
         </div>
 
@@ -239,6 +245,11 @@
           <p class="yf__error" id="c-phone-error" hidden></p>
         </div>
 
+        <label class="yf__check" for="c-newsletter">
+          <input type="checkbox" id="c-newsletter" name="newsletter" value="yes">
+          <span>Also send me news of future retreats</span>
+        </label>
+
         <div class="yf__actions">
           <p class="yf__failed" data-yform-failed role="alert" hidden>Your message did not go through. Please try again, or write to us directly.</p>
           <button class="btn btn--primary yf__submit" type="submit">Send message</button>
@@ -246,36 +257,30 @@
       </form>
 
       <div class="yf-done" data-yform-done tabindex="-1" role="status" hidden>
-        <p class="yf-done__title">Thank you, <span data-yform-name></span></p>
-        <p>Your message is with us. We will write back to <strong data-yform-email></strong> soon.</p>
+        <p class="yf-done__title">Thank you, <span data-yform-name></span>.</p>
+        <p>Jenniferlyn will write back to <strong data-yform-email></strong> within 24 hours.</p>
         <p>In the meantime, have a look at what is coming up.</p>
         <a class="btn btn--secondary" href="retreats.html">See upcoming retreats</a>
       </div>
     </section>
 
-    <nav class="contact__doors" aria-label="Other ways we can help">
-      <p class="contact__doors-title">You might be looking for</p>
-      <a class="door" href="retreats.html">
-        <span class="door__t">A question about one retreat</span>
-        <span class="door__d">Every retreat page has an "I want more info" button that sends your question with the retreat attached.</span>
-        <svg class="door__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-      <a class="door" href="teach-with-us.html">
-        <span class="door__t">Leading a retreat with us</span>
-        <span class="door__d">For yoga teachers: how it works, what we handle and how to apply.</span>
-        <svg class="door__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-      <a class="door" href="#form" data-pick-topic="private-group">
-        <span class="door__t">A private retreat for your group</span>
-        <span class="door__d">Friends, family, a studio or a team. Choose "A trip for my group" in the form.</span>
-        <svg class="door__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-      <a class="door" href="#form" data-pick-topic="other">
-        <span class="door__t">Press and partnerships</span>
-        <span class="door__d">Choose "Something else" and tell us who you are.</span>
-        <svg class="door__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-    </nav>
+    <aside class="contact__aside" aria-label="About us">
+      <!-- Trust: figures as on the home hero and in the brief; the quote is
+           a real Google review (about.html, docs/testimonials-by-retreat.md). -->
+      <figure class="contact__trust">
+        <ul class="contact__proof">
+          <li>Since 2008</li>
+          <li><span class="contact__stars" aria-hidden="true">★★★★★</span> 4.9 on Google · 45 reviews</li>
+        </ul>
+        <blockquote class="contact__quote">&ldquo;Christina and her crew are magic travel masters. I would think of something and it would appear.&rdquo;</blockquote>
+        <figcaption class="contact__quote-by"><span class="contact__quote-name">Jessica S.</span><span class="contact__quote-where">Google review</span></figcaption>
+      </figure>
+
+      <p class="contact__teach">
+        <span class="contact__teach-k">For yoga teachers</span>
+        <a class="contact__teach-link" href="teach-with-us.html">Leading a retreat with us<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </p>
+    </aside>
 
   </div>
 </main>

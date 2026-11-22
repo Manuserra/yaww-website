@@ -14,7 +14,7 @@ Brief §11. Implemented on `contact.html` (option A) and the new `teach-with-us.
 | Browsing, not sure where | A human opinion: "which one suits me?" | Contact form, topic "A retreat", retreat field optional. |
 | Friends, family, a studio, a company | A private or custom trip | Contact form, topic "A trip for my group" (group size + rough timing). |
 | Yoga teacher | To lead a retreat with YAWW | `teach-with-us.html`: a page that sells, then the application. |
-| Press, partners, suppliers | An inbox | Contact, topic "Something else". |
+| Press, partners, suppliers | An inbox | Contact, topic "Press & partnerships". |
 | A booked guest | Logistics, a change | Phone line on the page (and their booking emails). |
 
 The first two are the money. They are high-value, emotional purchases from people who want to know there is a person on the other side, so the page leads with that and asks for as little as possible.
@@ -24,7 +24,9 @@ The first two are the money. They are high-value, emotional purchases from peopl
 - Headline "We would love to hear from you" (live FAQ register), a line saying a person replies, and the direct lines (email, phone) for people who will not fill in a form.
 - One form. First question: **What is it about?** A retreat / A trip for my group / Something else. Only the fields that topic needs appear. Required: first name, email, message (and group size for groups, phone if they chose WhatsApp or a call). Everything else optional.
 - "Send message", not "Submit". Errors under each field in plain words. The success state names the person, repeats the email we will answer, and offers the retreats.
-- "You might be looking for": four doors (a question about one retreat, leading a retreat, a private group, press). On a phone they come after the form, since most people arrive with a question.
+- Left column, under the direct lines: proof that a real, long-running company answers ("Since 2008", "4.9 on Google · 45 reviews", one short Google review with the guest's name) and one quiet link for teachers ("Leading a retreat with us", to `teach-with-us.html`). On a phone they come after the form. (2026-11-23: this replaced the "You might be looking for" block of four doors, which repeated the topic chips and explained the UI. "Press and partnerships" is now the third topic chip, replacing "Something else".)
+- Topic "A trip for my group" asks how many (one tap), roughly when and "Anywhere in mind?" (`destination`), both optional. A newsletter checkbox, unticked, sits before the button (`newsletter = yes` only when ticked).
+- Success: "Thank you, {name}. Jenniferlyn will write back to {email} within 24 hours." Same words in the retreat pop-up.
 - Old anchors keep working: `#teach-with-us` redirects to the teacher page, `#build-a-custom-retreat` and `#private-groups` preselect the group topic, `#general-inquiry` the retreat topic.
 
 Why this over the others: one form is one thing to build, route and answer, and the topic chips do the triage a human would otherwise do. It does not compete with the retreat-page modal (that one is attached to a retreat; this one is for everything else).
@@ -57,6 +59,6 @@ Application fields and why:
 ## Wiring
 
 - Endpoints: `window.YAWW_CONTACT.endpoints.contact` / `.teach` in `data/contact.js`. While `null`, a valid submit logs the payload to the console and shows success.
-- Payload: snake_case field names, plus `form` and `page`. Checkbox groups arrive as arrays.
+- Payload: snake_case field names, plus `form` and `page`. Checkbox groups arrive as arrays; a lone checkbox (`newsletter`) as `"yes"`. Attribution fields (`utm_*`, `referrer`, `landing_page`, `first_*`) are added on submit: see `docs/lead-form.md`, "Attribution".
 - Events: `yaww:track` with `form_submit` / `form_invalid` and the `topic`.
 - Other pages' menus and footers still say "General Inquiry / Teach with us / Build a Custom Retreat" and link to `contact.html#…`. They work through the redirects; the labels should become "Ask a question / Private groups / Teach with us" (done on contact.html and teach-with-us.html) when their owners next touch them.
