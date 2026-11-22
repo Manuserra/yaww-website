@@ -482,3 +482,11 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
    tracked 0.02em → 0.04em; label to value 2 → 6px. */
 .loc-hero__facts dt { margin-bottom: 6px; }
 .loc-hero__facts dd { letter-spacing: 0.04em; }
+
+/* Review pass before main (2026-11-22):
+   · Text links in caps all take the site's one link style, 1.2px
+     tracking (Meet Alicia, Reserve, the tier links). These were 0.56px.
+   · Location guide-card text and Good to know answers join the body
+     16 / 26.4 (were 15), like the About cards. */
+.loc-link, .person__more, .people-rail__all { letter-spacing: 1.2px; }
+.loc-guide__item .loc-p, .loc-know__grid dd { font-size: 16px; line-height: 1.65; letter-spacing: 0.32px; }
