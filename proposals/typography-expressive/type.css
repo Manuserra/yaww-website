@@ -330,6 +330,11 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
 /* Retreat card names in Regular at the FAQ / destination-card size:
    no more Bold titles anywhere (live: Bold 16). */
 .result-link .card__title { font-weight: 400; font-size: clamp(18px, 17.26px + 0.19vw, 20px); line-height: 1.3; letter-spacing: 0; }
+/* The rest of the card a step up for an older audience: place italic
+   16 → 17-18, date and teacher Raleway 14 → the body 16. Order stays
+   name > place > date/teacher; long places wrap to two lines. */
+.result-link .card__loc { font-size: clamp(17px, 16.63px + 0.1vw, 18px); line-height: 1.4; }
+.result-link .card__date, .result-link .card__teacher { font-size: 16px; line-height: 24px; letter-spacing: 0.32px; }
 
 /* ---------- 5 · Numbers -----------------------------------------
    The Google Fonts cuts of both families ship lining figures only
