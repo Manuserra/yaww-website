@@ -276,19 +276,6 @@ window.YAWW_RETREATS = [
     url: "/retreats/camino-de-santiago-sep-2027/"
   },
   {
-    id: "santorini-sep-2027-berger",
-    slug: "santorini-sep-2027-berger",
-    pageUrl: "retreatpage-santorini-sep-2027-berger.html",
-    officialName: "Breath Body Soul Retreat in Santorini",
-    locationId: "santorini",
-    teacherIds: ["sue-berger"],
-    startDate: "2027-09-19",
-    endDate: "2027-09-25",
-    status: "sold_out",
-    collection: "signature-collection",
-    url: "/retreats/santorini-sep-2027-berger/"
-  },
-  {
     // Same official name as santorini-sep-2027-erickson; the slug keeps
     // the two editions apart (and will keep the two WP posts apart).
     id: "santorini-sep-2027-d26",
