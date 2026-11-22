@@ -1,3 +1,45 @@
+# Overnight build · 2026-11-23 · resumen
+
+**Cómo verlo:** `python3 .claude/serve.py 8777` → http://localhost:8777/ (sitio) y http://localhost:8777/proposals/index.html (board).
+Todo está en la rama `overnight/2026-11-23`. **`main` no se tocó** (Christina no ve nada todavía).
+
+| Tag | Sección | Qué cambió |
+|---|---|---|
+| `night-00-start-1123` | inicio | brief; capas compartidas conectadas en las 104 páginas (cards, nav, photo-focus, attribution) |
+| `night-1123-01-photo-framing` | 1 · Fotos del itinerario | 275 fotos únicas revisadas, 135 con encuadre propio (`css/photo-focus.css`) |
+| `night-1123-02-people-data` | 2, 10, 6b | Santorini fuera; fotos de Camino y Rachel en dropdowns; Rachel en teachers; Christina con la foto de founder; Renata nueva; Spotify/YouTube/web/Instagram en teacher pages |
+| `night-1123-03-cards-about` | 3, 6a, 7 | hover premium en todas las cards con foto; "More about" solo en hover; It takes a village 2 × 2 |
+| `night-1123-04-contact-popup` | 8, 9 | contact rediseñado; "I want more info" abre el pop-up en los 26 retiros; atribución en los dos formularios |
+| `night-1123-05-menu` | 5 | desplegables editoriales en desktop; menú mobile azul a pantalla completa |
+| `night-1123-board-options` | 4, 11, 12 | board: cards de retreats (switch), botones del hero (A/B/C), retreats > 1440 |
+
+**Avisos**
+- Versiones de assets: `retreats/_tools/chrome.py` tiene **un solo** `ASSET_VERSION` para todo `css/` y `js/`. Subirlo y correr `python3 retreats/_tools/chrome.py` cuando cambie un CSS/JS. Los `data/*.js` se versionan aparte.
+- Las capas nuevas (`css/cards.css`, `css/nav.css`, `css/photo-focus.css`, `js/nav.js`, `js/attribution.js`) las agrega `chrome.py` a cada página; no hace falta tocar HTML.
+- Los formularios todavía no envían a ningún lado: los endpoints en `data/contact.js` y `js/lead-modal.js` están vacíos (el envío se simula).
+
+**Preguntas abiertas**
+
+*Para vos (diseño)*
+- Menú mobile: "sand secondary" no existe como token. Usé `--stone-300` (#E1DCD6). ¿Era otro tono?
+- Cards de retreats (board): el azul del logo es el mismo que ya tienen los nombres, así que la profesora no se diferencia. ¿Otro azul?
+- Board: elegir botones del hero (A/B/C), retreats > 1440 (recomiendo Fluid hasta 1920), contact (implementado vs. alternativa), foto de Renata.
+
+*Para Christina / el equipo (datos)*
+- URLs de Spotify, YouTube, web e Instagram de cada teacher: no hay ninguna ni en el repo ni en el sitio actual.
+- Email público de contacto (sigue `[missing data]`); link al perfil de Google y si 4.9 · 45 reviews está al día.
+- Manu y Maggie: foto y rol (About).
+- Atribución: confirmar los campos (utm_*, referrer, landing page) y si guardar también la primera visita.
+- Con WhatsApp o llamada elegidos, el mensaje de éxito igual dice "write back to {email}": ¿lo adaptamos?
+
+*Fotos que vienen recortadas de origen* (encuadradas lo mejor posible): Thailand elefantes caminando (cabezas cortadas en el archivo), Argentina triángulo junto al lago, Montenegro bailarina sobre el agua, Basque piernas arriba, Oaxaca flor de papel.
+
+**No verificado:** dispositivos táctiles reales, lector de pantalla, reduced motion; el menú mobile se probó a 375–390 en el navegador.
+
+**Presupuesto:** 50 % → 52 % del uso semanal.
+
+---
+
 
 ## 4 · Cards de retreats (opción)
 Copia de `retreats.html` en `proposals/retreats-cards/` con interruptor "Cards" (Ours / Premium-style; tecla C). ON: texto a la izquierda, fecha arriba del todo con el estilo de premium (Raleway 11/600, tracking .18em, mayúsculas, #877C71), nombre como ahora, location en Libre Baskerville cursiva con el color de premium, teacher en nuestro estilo con el azul primario (`--sea-blue` #475764, el del logo). Solo CSS (flex `order`), sin tocar JS. Ojo: ese azul ya es el color del nombre, así que la línea del teacher se ve igual que antes; si querés que se distinga, hay que elegir otro azul. Recomendación: adoptar. Board: fila `retreats-cards`.
