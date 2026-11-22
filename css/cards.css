@@ -1,1 +1,86 @@
 /* cards · see the header in each section. */
+
+/* ============================================================
+   CARD HOVER, PREMIUM STYLE (brief 2026-11-23 · section 3)
+   Taken from premium/premium.css and its skins: the photo drifts in
+   to 105% over 1.6s on a long ease-out (0.22, 1, 0.36, 1), inside a
+   frame that clips it, so nothing around the card moves. No veil.
+   Titles follow premium family by family:
+     retreat cards, location cards ... no underline
+     people, journal, related posts .. underline fades in over .5s
+   This replaces the "Veil" hover in css/base.css (CARD HOVER), which
+   is neutralised here rather than edited there.
+
+     retreat cards    .result-link          .card__media
+     loc page cards   .loc-card__link       .loc-card__media
+     locations        .location__link       .location__image
+     teachers/team    a.person__link        .person__image
+     journal          .journal__link        .journal__image
+     related posts    .post-related__item   .post-related__figure
+     About cards      .about-card           .about-card__media
+     room cards       .room-card            .room-card__media
+
+   Real pointers only, so a tap never leaves a card stuck zoomed.
+   Transform only (composite); no layout property animates.
+   ============================================================ */
+:root { --card-ease: cubic-bezier(0.22, 1, 0.36, 1); }
+
+.result-link .card__media,
+.loc-card__link .loc-card__media,
+.location__link .location__image,
+.person__link .person__image,
+.journal__link .journal__image,
+.post-related__item .post-related__figure,
+.about-card .about-card__media { overflow: hidden; }
+
+/* The old veil: off. */
+.result-link .card__media::after,
+.loc-card__link .loc-card__media::after,
+.location__link .location__image::after,
+.person__link .person__image::after,
+.journal__link .journal__image::after,
+.post-related__item .post-related__figure::after { content: none; }
+
+/* Premium drops the underline on retreat and location cards. */
+.result-link .card__title,
+.loc-card__link .loc-card__name,
+.location__link .location__title { text-decoration: none; }
+
+/* People, journal and related posts keep it, slower, as in premium. */
+.person__link .person__name,
+.journal__link .journal__title,
+.post-related__item .post-related__title {
+  transition: text-decoration-color .5s var(--card-ease);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .result-link .card__media img,
+  .loc-card__link .loc-card__media img,
+  .location__link .location__image img,
+  .person__link .person__image img,
+  .journal__link .journal__image img,
+  .post-related__item .post-related__figure img,
+  .about-card .about-card__media img,
+  .room-card .room-card__media img {
+    /* keeps the load fade of img.img-reveal (base.css) */
+    transition: opacity 300ms var(--ease-out), transform 1.6s var(--card-ease);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .result-link:hover .card__media img,
+  .loc-card__link:hover .loc-card__media img,
+  .location__link:hover .location__image img,
+  a.person__link:hover .person__image img,
+  .journal__link:hover .journal__image img,
+  .post-related__item:hover .post-related__figure img,
+  .about-card:hover .about-card__media img,
+  .room-card:hover .room-card__media img { transform: scale(1.05); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .person__link .person__name,
+  .journal__link .journal__title,
+  .post-related__item .post-related__title { transition: none; }
+}
+
