@@ -2186,11 +2186,13 @@ html.has-lightbox { overflow: hidden; }
   --hero-ink: var(--stone);
   position: relative;
   display: block;
-  margin: 0 var(--container-pad) var(--container-pad);
+  /* The same 24px (16 at ≤1024) on all four sides as the Home hero,
+     so the photo never touches the nav bar. */
+  margin: var(--container-pad);
   padding: 0;
   /* 138 = the logo row (82) + the sticky nav (56). */
-  height: calc(100vh - 138px - var(--container-pad));
-  height: calc(100svh - 138px - var(--container-pad));
+  height: calc(100vh - 138px - 2 * var(--container-pad));
+  height: calc(100svh - 138px - 2 * var(--container-pad));
   min-height: 560px;
   overflow: hidden;
   isolation: isolate;
