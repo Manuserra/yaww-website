@@ -1,1 +1,448 @@
-/* nav · see the header in each section. */
+/* ============================================================
+   YAWW · NAV — dropdown panels (desktop) + overlay (mobile)
+   Loads after base.css and overrides it. Everything here is keyed
+   off .mnav-ready / .mnav-js, which js/nav.js sets once it has built
+   the extra markup, so without JS the header is exactly base.css.
+
+   Motion is composite-only (opacity, transform) except the overlay's
+   clip-path reveal, taken as-is from the premium draft, and the
+   mobile sub-list fold (grid rows, same as the FAQ). Reduced motion
+   turns every transition into a plain, short fade.
+   ============================================================ */
+
+/* ---------- 1 · Top row (desktop) ------------------------------------
+   Same layout as before. The grey pill on hover becomes a hairline
+   that draws in from the left; the current section keeps it. Weight
+   stays 400 on the current item, so nothing reflows between pages. */
+.mnav-ready .nav-list > li > a {
+  position: relative;
+  background: none !important;
+  font-weight: 400;
+}
+.mnav-ready .nav-list > li > a::after {
+  content: "";
+  position: absolute;
+  left: 16px; right: 16px; bottom: 7px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform .45s var(--ease-out);
+}
+.mnav-ready .nav-list > li > a.is-current,
+.mnav-ready .nav-list > li.is-open > a { color: var(--sea-blue-500); }
+.mnav-ready .nav-list > li > a.is-current::after,
+.mnav-ready .nav-list > li.is-open > a::after { transform: scaleX(1); transform-origin: left center; }
+@media (hover: hover) {
+  .mnav-ready .nav-list > li > a:hover::after { transform: scaleX(1); transform-origin: left center; }
+}
+
+/* Items with a panel: the caret button takes the link's right padding
+   (2 + 14 = the old 16), so the row is pixel-identical with or
+   without JS. The <li> stops being the positioning context so the
+   panel can hang off the full-width sticky nav instead. */
+.mnav-ready .nav-list > li.mnav-has-panel { position: static; display: flex; align-items: center; }
+.mnav-ready .nav-list > li.mnav-has-panel > a { padding-right: 2px; }
+.mnav-ready .nav-list > li.mnav-has-panel > a::after { right: 2px; }
+.mnav-ready .nav-sub { display: none !important; }
+
+.mnav-caret {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 14px; height: 40px; padding: 0;
+  color: var(--nav-ink); opacity: .5;
+  border-radius: 4px;
+  transition: opacity .2s ease;
+}
+.mnav-caret svg { display: block; transition: transform .35s var(--ease-out); }
+.mnav-has-panel:hover .mnav-caret,
+.mnav-has-panel.is-open .mnav-caret { opacity: 1; }
+.mnav-has-panel.is-open .mnav-caret svg { transform: rotate(180deg); }
+.mnav-caret:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 0; opacity: 1; }
+
+/* ---------- 2 · Panel ---------------------------------------------- */
+.mnav-panel {
+  position: absolute;
+  left: 0; right: 0; top: 100%;
+  z-index: 1;
+  background: var(--stone);
+  border-bottom: 1px solid var(--hairline);
+  box-shadow: 0 28px 48px -28px rgba(40, 49, 57, .22);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity .18s ease, transform .22s ease, visibility 0s linear .22s;
+}
+/* While some panel is open, a switch is a pure crossfade: no panel
+   drops in again, only the contents change. */
+.mnav-open .mnav-panel { transform: none; }
+.mnav-panel.is-open {
+  z-index: 2;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
+  transition: opacity .28s var(--ease-out), transform .42s var(--ease-out), visibility 0s;
+}
+.mnav-switching .mnav-panel.is-open { transition: opacity .22s ease, visibility 0s; }
+.mnav-instant .mnav-panel,
+.mnav-instant .mnav-col { transition: none !important; }
+
+.site-header__nav .mnav-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 24px;
+  align-items: start;
+  padding-block: 40px 48px;
+}
+
+/* Columns arrive a beat after the panel, left to right. */
+.mnav-col {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .15s ease, transform .15s ease;
+}
+.mnav-panel.is-open .mnav-col {
+  opacity: 1;
+  transform: none;
+  transition: opacity .5s var(--ease-out), transform .6s var(--ease-out);
+  transition-delay: calc(50ms + var(--i, 0) * 45ms);
+}
+
+/* Lead: the page's own heading and lede. */
+.mnav-lead { grid-column: 1 / span 4; }
+.mnav-eyebrow {
+  margin: 0 0 14px;
+  font-family: var(--font-body);
+  font-size: 12px; line-height: 16px; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: var(--stone-600);
+}
+.mnav-title {
+  margin: 0 0 14px;
+  max-width: 20ch;
+  font-family: var(--font-heading);
+  font-size: 26px; line-height: 1.2; font-weight: 400; letter-spacing: -0.01em;
+  color: var(--sea-blue-500);
+  text-wrap: balance;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+.mnav-lede {
+  margin: 0;
+  max-width: 38ch;
+  font-size: 15px; line-height: 1.6;
+  color: var(--sea-blue-200);
+  text-wrap: pretty;
+}
+.mnav-all {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-top: 22px; padding-block: 6px;
+  font-size: 13px; line-height: 20px; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--sea-blue-500);
+}
+.mnav-all svg { transition: transform .35s var(--ease-out); }
+@media (hover: hover) { .mnav-all:hover svg { transform: translateX(4px); } }
+
+/* Links: big serif rows. Hovering one quietly steps the others back. */
+.mnav-links { grid-column: 6 / span 3; display: grid; gap: 4px; }
+.mnav-link {
+  display: block;
+  padding-block: 6px;
+  color: var(--sea-blue-500);
+  transition: opacity .25s ease;
+}
+.mnav-link__t {
+  display: inline;
+  font-family: var(--font-heading);
+  font-size: 28px; line-height: 1.25; font-weight: 400; letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size .45s var(--ease-out);
+}
+.mnav-link.is-current .mnav-link__t { font-style: italic; }
+.mnav-link__d {
+  display: block;
+  margin-top: 4px;
+  font-size: 14px; line-height: 1.5;
+  color: var(--sea-blue-200);
+  max-width: 34ch;
+}
+@media (hover: hover) {
+  .mnav-links:hover .mnav-link:not(:hover),
+  .mnav-regions:hover .mnav-place:not(:hover),
+  .mnav-dates:hover .mnav-date:not(:hover) { opacity: .45; }
+  .mnav-link:hover .mnav-link__t { background-size: 100% 1px; }
+}
+.mnav-link:focus-visible .mnav-link__t { background-size: 100% 1px; }
+
+/* Retreats: collections with their one-line description, then the
+   next few dates. */
+.mnav-grid--retreats .mnav-lead { grid-column: 1 / span 4; }
+.mnav-links--desc { grid-column: 5 / span 4; gap: 0; }
+.mnav-links--desc li { border-top: 1px solid var(--stone-300); }
+.mnav-links--desc li:last-child { border-bottom: 1px solid var(--stone-300); }
+.mnav-links--desc .mnav-link { padding-block: 14px 16px; }
+.mnav-links--desc .mnav-link__t { font-size: 22px; }
+.mnav-side { grid-column: 10 / span 3; }
+.mnav-dates { display: grid; gap: 14px; }
+.mnav-date {
+  display: grid; grid-template-columns: 56px 1fr; gap: 14px; align-items: center;
+  transition: opacity .25s ease;
+}
+.mnav-date__img {
+  position: relative; display: block;
+  aspect-ratio: 4 / 5; overflow: hidden;
+  background: var(--stone-300);
+}
+.mnav-date__img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.mnav-date__txt { display: grid; gap: 2px; min-width: 0; }
+.mnav-date__when {
+  font-size: 11px; line-height: 16px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--stone-600);
+}
+.mnav-date__name {
+  font-family: var(--font-heading); font-size: 15px; line-height: 1.3; color: var(--sea-blue-500);
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+.mnav-date__where {
+  font-family: var(--font-heading); font-style: italic; font-size: 13px; line-height: 1.4; color: var(--sea-blue-200);
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+
+/* Locations: regions in two columns. */
+.mnav-regions {
+  grid-column: 5 / span 4;
+  display: grid; grid-template-columns: 1fr 1fr; column-gap: 24px;
+}
+.mnav-region + .mnav-region { margin-top: 26px; }
+.mnav-region .mnav-eyebrow { margin-bottom: 8px; }
+.mnav-place {
+  display: inline-block;
+  padding-block: 4px;
+  font-size: 16px; line-height: 24px;
+  color: var(--sea-blue-500);
+  background: linear-gradient(currentColor, currentColor) 0 calc(100% - 3px) / 0 1px no-repeat;
+  transition: opacity .25s ease, background-size .45s var(--ease-out);
+}
+@media (hover: hover) { .mnav-place:hover { background-size: 100% 1px; } }
+.mnav-place:focus-visible { background-size: 100% 1px; }
+.mnav-place.is-current { font-weight: 600; }
+
+/* Photo: stacked frames; the one under the pointer fades up. */
+.mnav-media { grid-column: 10 / span 3; }
+.mnav-media__frame {
+  position: relative;
+  aspect-ratio: 5 / 4;
+  overflow: hidden;
+  background: var(--stone-300);
+}
+.mnav-media__frame img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  opacity: 0;
+  transform: scale(1.035);
+  transition: opacity .5s ease, transform 1.1s var(--ease-out);
+}
+.mnav-media__frame img.is-on { opacity: 1; transform: none; }
+.mnav-media__cap {
+  margin: 10px 0 0;
+  font-family: var(--font-heading); font-style: italic; font-size: 13px; line-height: 1.4;
+  color: var(--sea-blue-200);
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+
+/* Panel focus rings */
+.mnav-panel a:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 3px; }
+
+/* Veil over the page under the panel (never over the nav or logo). */
+.mnav-scrim {
+  position: fixed; left: 0; right: 0; top: 0; height: 100vh;
+  z-index: 49;
+  background: rgba(40, 49, 57, .14);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+}
+.mnav-scrim.is-on { opacity: 1; transition-duration: .45s; }
+
+/* Narrower desktops: the photo goes first, then columns widen. */
+@media (max-width: 1279px) {
+  .mnav-title { font-size: 24px; }
+  .mnav-link__t { font-size: 26px; }
+}
+@media (max-width: 1099px) {
+  .site-header__nav .mnav-grid { column-gap: 20px; padding-block: 32px 40px; }
+  .mnav-media { display: none; }
+  .mnav-lead, .mnav-grid--retreats .mnav-lead { grid-column: 1 / span 5; }
+  .mnav-links { grid-column: 7 / span 6; }
+  .mnav-regions { grid-column: 7 / span 6; }
+  .mnav-links--desc { grid-column: 6 / span 4; }
+  .mnav-side { grid-column: 10 / span 3; }
+  .mnav-side .mnav-date { grid-template-columns: 1fr; }
+  .mnav-side .mnav-date__img { display: none; }
+}
+@media (max-width: 899px) {
+  .mnav-side { display: none; }
+  .mnav-links--desc { grid-column: 7 / span 6; }
+}
+
+/* ---------- 3 · Mobile overlay ---------------------------------------
+   The premium draft's menu: a full-screen sheet revealed top-down,
+   big Baskerville items. Here in brand blue (--sea-blue, the logo's
+   colour) with the items in stone-300, the sand of the secondary
+   palette (5.1:1 on the blue; the current item goes to --stone). */
+.msheet { display: none; }
+html.mnav-locked, html.mnav-locked body { overflow: hidden; }
+
+@media (max-width: 767px) {
+  .mnav-caret, .mnav-panel, .mnav-scrim { display: none !important; }
+
+  .msheet {
+    position: fixed; inset: 0;
+    z-index: 1000;
+    display: flex; flex-direction: column;
+    padding: 0 var(--container-pad) calc(24px + env(safe-area-inset-bottom, 0px));
+    background: var(--sea-blue);
+    color: var(--stone-300);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    clip-path: inset(0 0 100% 0);
+    visibility: hidden;
+    transition: clip-path .8s var(--ease-in-out), visibility 0s linear .8s;
+  }
+  .msheet.is-open {
+    clip-path: inset(0 0 0 0);
+    visibility: visible;
+    transition: clip-path .8s var(--ease-in-out), visibility 0s;
+  }
+
+  /* Top bar sits exactly where the nav row is: same height, logo in
+     the same centred spot, Close where the hamburger was. */
+  .msheet__top {
+    position: relative; flex: none;
+    display: flex; align-items: center; justify-content: flex-end;
+    min-height: 56px;
+    border-bottom: 1px solid rgba(247, 242, 240, .18);
+  }
+  .msheet__logo {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 0; color: var(--stone-300);
+  }
+  .msheet__logo svg { display: block; width: 220px; height: auto; }
+  .msheet__close {
+    min-height: 44px; padding: 0 2px;
+    font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--stone-300);
+  }
+
+  .msheet__body { margin: auto 0; padding-block: 36px 28px; }
+  .msheet__list { display: grid; gap: 4px; }
+  .msheet__row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .msheet__link {
+    font-family: var(--font-heading);
+    font-size: clamp(36px, 10vw, 56px); line-height: 1.15; font-weight: 400; letter-spacing: -0.01em;
+    color: var(--stone-300);
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  }
+  .msheet__item.is-current .msheet__link { font-style: italic; color: var(--stone); }
+
+  /* + that turns into − */
+  .msheet__more {
+    position: relative; flex: none;
+    width: 44px; height: 44px; margin-right: -10px;
+    color: var(--stone-300);
+  }
+  .msheet__more span::before,
+  .msheet__more span::after {
+    content: ""; position: absolute; left: 50%; top: 50%;
+    width: 16px; height: 1px; margin: 0 0 0 -8px;
+    background: currentColor;
+    transition: transform .4s var(--ease-out);
+  }
+  .msheet__more span::after { transform: rotate(90deg); }
+  .msheet__more[aria-expanded="true"] span::after { transform: rotate(90deg) scaleX(0); }
+
+  .msheet__sub {
+    display: grid; grid-template-rows: 0fr;
+    transition: grid-template-rows .45s var(--ease-fold);
+  }
+  .msheet__sub.is-open { grid-template-rows: 1fr; }
+  .msheet__subinner {
+    min-height: 0; overflow: hidden;
+    visibility: hidden;
+    transition: visibility 0s linear .45s;
+  }
+  .msheet__sub.is-open .msheet__subinner { visibility: visible; transition: visibility 0s; }
+  .msheet__subinner > ul,
+  .msheet__regions { padding: 6px 0 18px; }
+  .msheet__sublink {
+    display: inline-flex; align-items: center;
+    min-height: 40px;
+    font-size: 16px; line-height: 24px; letter-spacing: .02em;
+    color: var(--stone-300);
+  }
+  .msheet__sublink[aria-current] { color: var(--stone); font-weight: 600; }
+  .msheet__region + .msheet__region { margin-top: 10px; }
+  .msheet__region ul { display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; }
+  .msheet__eyebrow {
+    margin: 6px 0 2px;
+    font-size: 11px; line-height: 16px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--stone-300);
+  }
+  .msheet__all { margin: 8px 0 0; }
+  .msheet__all .msheet__sublink {
+    font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+  }
+
+  .msheet__foot {
+    flex: none;
+    display: flex; justify-content: space-between; gap: 16px;
+    font-size: 11px; line-height: 16px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--stone-300);
+  }
+
+  .msheet :focus-visible { outline: 2px solid var(--stone-300); outline-offset: 3px; }
+
+  /* Items rise in once the blue has mostly come down; they leave fast. */
+  .msheet__item, .msheet__foot, .msheet__top > * {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .2s ease, transform .2s ease;
+  }
+  .msheet__top > .msheet__logo { transform: translate(-50%, calc(-50% + 12px)); }
+  .msheet.is-open .msheet__item,
+  .msheet.is-open .msheet__foot,
+  .msheet.is-open .msheet__top > * {
+    opacity: 1;
+    transform: none;
+    transition: opacity .6s var(--ease-out), transform .8s var(--ease-out);
+    transition-delay: calc(.3s + var(--i, 0) * .06s);
+  }
+  .msheet.is-open .msheet__top > .msheet__logo { transform: translate(-50%, -50%); }
+  .msheet.is-open .msheet__top > * { transition-delay: .25s; }
+  .msheet.is-open .msheet__foot { transition-delay: .6s; }
+}
+
+/* ---------- 4 · Reduced motion -------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .mnav-panel, .mnav-col, .mnav-scrim, .mnav-media__frame img,
+  .mnav-ready .nav-list > li > a::after, .mnav-caret svg,
+  .msheet__item, .msheet__foot, .msheet__top > *, .msheet__sub, .msheet__more span::after {
+    transition-duration: .01ms !important;
+    transition-delay: 0s !important;
+  }
+  .mnav-panel, .mnav-col, .mnav-media__frame img { transform: none !important; }
+  .mnav-panel.is-open { transition: opacity .15s ease, visibility 0s !important; }
+  .msheet__item, .msheet__foot, .msheet__top > * { transform: none !important; }
+  .msheet__top > .msheet__logo { transform: translate(-50%, -50%) !important; }
+  @media (max-width: 767px) {
+    .msheet, .msheet.is-open { clip-path: none; transition: opacity .2s ease, visibility 0s linear .2s; opacity: 0; }
+    .msheet.is-open { opacity: 1; transition: opacity .2s ease, visibility 0s; }
+  }
+}
+
+/* The retreat you are reading, in the Upcoming Dates list. */
+.mnav-date.is-current .mnav-date__name { font-style: italic; }
