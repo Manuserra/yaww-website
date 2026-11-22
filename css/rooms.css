@@ -1,0 +1,146 @@
+/* ============================================================
+   ROOMS PRICING · option D (layout, not type)
+   Loaded on every retreat page with a rooms section, after type.css
+   (it overrides some of its rooms rules, so it must come last).
+
+   The problem with A: the sticky rail and the list both talk at the
+   same volume, side by side, and the rail takes a third of the width,
+   so the room photos end up the smallest thing in the row.
+
+   D, top to bottom:
+     1 · How to book as a quiet band of three steps (read once, before
+         the prices). Step titles drop to Raleway SemiBold 16: labels,
+         so the room names (Baskerville 22) are the only "titles" here.
+     2 · "Where you stay", then the room list at full width with the
+         photo bigger (200 → 552, five columns).
+     3 · The two notes under the list, side by side.
+     4 · The two CTAs, unchanged, side by side and centred.
+   No markup change: the rail becomes display: contents and its
+   children are placed on the section's grid.
+
+   On the site grid: 12 columns of 72px, 48px gutters, 1392 of content
+   at 1440 (N columns = 120·N − 48). Band, list and notes span all 12;
+   each step is 4 columns; a room row is photo 5 · text 4 · price 3.
+   ============================================================ */
+
+.rooms__inner {
+  max-width: 1392px;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 48px;
+}
+.rooms__aside {
+  display: contents;
+  position: static;
+  max-height: none;
+  overflow: visible;
+}
+.rooms__inner > *, .rooms__aside > * { grid-column: 1 / -1; }
+
+/* 1 · The steps band: 3 × 4 columns. Its edges sit on the grid's outer
+   edges, the same line as the photos and the testimonial cards; the text
+   is inset 24px inside. The h3 stays for screen readers. */
+.rooms__aside-title {
+  position: absolute !important;
+  width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.rooms__steps {
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 48px;
+  margin: 0 0 48px;
+  padding: 28px 24px;
+  background: var(--stone-200);
+}
+.rooms__steps li { padding: 0 0 0 40px; }
+.rooms__steps li::before { left: 0; top: 1px; }
+.rooms__steps strong {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: auto; -moz-osx-font-smoothing: auto;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.02em;
+}
+.rooms__steps span { font-size: 15px; line-height: 1.6; letter-spacing: 0.3px; }
+
+/* Testimonials above: their grid is capped at 1440 (the container's box)
+   instead of 1392 (its content), so past 1440 wide the cards stuck out
+   24px past the grid on each side. Same cap as everything else here. */
+.quotes__grid { max-width: 1392px; }
+
+/* 2 · Where + list. Each row is the 12-column grid again:
+   photo 5 columns (552 × 335, the page's 672:408 horizontal),
+   text 4 columns (432), price 3 columns, right-aligned. */
+.rooms__where { grid-row: 2; margin-bottom: 20px; }
+.rooms__list { grid-row: 3; }
+.room-card {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 48px;
+  row-gap: 20px;
+  padding: 24px 0;
+  align-items: start;
+}
+.room-card__media { grid-column: 1 / span 5; width: 100%; aspect-ratio: 672 / 408; }
+.room-card__body  { grid-column: 6 / span 4; gap: 0; }
+.room-card__side  { grid-column: 10 / span 3; min-width: 0; margin-top: -5px; }
+/* One rhythm inside the row: name, 20, tags, 24, description. The name's
+   half-leading is trimmed so its cap line sits on the photo's top edge;
+   the price lines up with the name. */
+.room-card__name { margin: -5px 0 0; }
+.room-card__pills { margin-top: 20px; }
+.room-card__desc { margin-top: 24px; }
+.room-card__actions { margin-top: 20px; gap: 8px; }
+
+/* 3 · The notes under the list, 6 + 6 columns. */
+.rooms__aside-note {
+  grid-row: 4;
+  margin: 0;
+  padding: 24px 0 0;
+  border-top: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--sea-blue-300);
+}
+.rooms__aside-note:nth-of-type(1) { grid-column: 1 / span 6; }
+.rooms__aside-note:nth-of-type(2) { grid-column: 7 / span 6; }
+
+/* 4 · CTAs, unchanged, side by side, centred. */
+.rooms__actions {
+  grid-row: 5;
+  flex-direction: row;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 40px;
+}
+.rooms__actions .btn { width: auto; min-width: 260px; }
+
+/* Tablet: same 12 columns, 24px gutters (the site's tablet margin is
+   16). Row: photo 5 · text 4 · price 3. */
+@media (max-width: 1024px) {
+  .rooms__inner, .room-card, .rooms__steps { column-gap: 24px; }
+  .rooms__steps { padding-inline: 16px; }
+  .rooms__aside { margin-top: 0; max-width: none; }
+  .room-card__media { grid-column: 1 / span 5; }
+  .room-card__body  { grid-column: 6 / span 4; }
+  .room-card__side  { grid-column: 10 / span 3; }
+}
+
+/* Phone: one column. The band stacks; rows keep the phone layout
+   (photo beside the name, price row under), photo still 672:408. */
+@media (max-width: 767px) {
+  .rooms__inner { grid-template-columns: minmax(0, 1fr); }
+  .rooms__steps { grid-template-columns: minmax(0, 1fr); row-gap: 16px; padding: 20px 16px; margin-bottom: 32px; }
+  .room-card { grid-template-columns: 128px minmax(0, 1fr); column-gap: 16px; row-gap: 12px; padding: 24px 0; }
+  .room-card__media { grid-column: 1; width: 128px; }
+  .room-card__body  { grid-column: 2; }
+  .room-card__side  { grid-column: 1 / -1; margin-top: 0; }
+  .room-card__name { margin-top: -3px; }
+  .room-card__pills { margin-top: 14px; }
+  .room-card__desc { margin-top: 16px; }
+  .room-card__actions { margin-top: 0; }
+  .rooms__aside-note:nth-of-type(n) { grid-column: 1 / -1; grid-row: auto; }
+  .rooms__actions { grid-row: auto; flex-direction: column; margin-top: 32px; }
+  .rooms__actions .btn { width: 100%; min-width: 0; }
+}
