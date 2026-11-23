@@ -199,9 +199,10 @@
 
   /* --- contact.html: the topic tabs ---------------------------------- */
   // The site's tab component (.tabs / .tabs__item / .tabs__indicator, as
-  // on retreats.html). "A retreat", "My group" and "Press & partners" set
-  // the form's hidden topic and re-run the conditional rows; "Teach with
-  // us" swaps the form for the teachers' panel. ARIA tabs pattern: roving
+  // on retreats.html). "Join a retreat", "Plan a group trip" and "Press &
+  // partners" set the form's hidden topic, re-run the conditional rows and
+  // swap the message prompt; "Teach with us" swaps the form for the
+  // teacher application (a copy of the one on teach-with-us.html). ARIA tabs pattern: roving
   // tabindex, arrows / Home / End move and select.
   // Deep links, old and new: #general-inquiry and #ask -> A retreat;
   // #private-groups, #group, #build-a-custom-retreat -> My group;
@@ -249,6 +250,10 @@
       var form = document.querySelector('[data-yform="contact"]');
       var input = form && form.querySelector("[data-topic-input]");
       if (input) { input.value = key; syncConditions(form); }
+      // The message prompt follows the tab (data-placeholder-<topic>).
+      var msg = form && form.querySelector("textarea[name=message]");
+      var ph = msg && msg.getAttribute("data-placeholder-" + key);
+      if (ph) msg.placeholder = ph;
     }
     moveIndicator(bar, opts.animate);
     // Keep the chosen tab in view when the bar scrolls (phones).

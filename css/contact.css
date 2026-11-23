@@ -242,11 +242,11 @@ select.yf__input {
    One centred column (after Wild Terrains' contact): the welcome, one
    quiet line of proof, the site's tabs for the kind of message, one
    narrow form with a full-width button, and the direct lines last.
-   "Teach with us" swaps the form for a short panel.
+   "Teach with us" swaps the form for the teacher application.
    Text 16px and up, controls 44px and up, AA contrast on stone.
    ============================================================ */
 .contact {
-  max-width: 760px;
+  max-width: 840px;
   margin: 0 auto;
   padding: 72px var(--container-pad) 112px;
   box-sizing: border-box;
@@ -295,7 +295,7 @@ select.yf__input {
 .tabs__item {
   position: relative;
   flex: 0 0 auto;
-  min-width: 172px;
+  min-width: 160px;
   min-height: 48px;
   padding: 12px 20px;
   display: flex;
@@ -343,33 +343,25 @@ select.yf__input {
   background: var(--stone-200);
 }
 
-/* Teach with us: a short panel in place of the form. */
-.contact__teach {
-  display: flex; flex-direction: column; align-items: center; gap: 12px;
-  padding: 48px 32px;
-  box-sizing: border-box;
-  text-align: center;
-  background: var(--stone-200);
-}
-.kicker.contact__teach-kicker { margin: 0; color: var(--stone-600); }
-.contact__teach-title {
-  margin: 0;
-  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
-  font-weight: 400; font-size: var(--tx-h2, 28px); line-height: 1.14; letter-spacing: -0.012em;
+/* Teach with us: the application (same form as teach-with-us.html)
+   under one line that links to the full page. */
+.contact__teach-intro {
+  margin: 0 0 32px;
+  font-size: 16px; line-height: 28px; letter-spacing: 0.32px;
   color: var(--sea-blue);
+  text-align: center;
+  text-wrap: pretty;
 }
-.contact__teach-text { margin: 0 0 12px; font-size: 16px; line-height: 26px; letter-spacing: 0.32px; color: var(--sea-blue); }
+.contact__teach-intro a { color: var(--sea-blue); font-weight: 600; text-underline-offset: 4px; text-decoration-thickness: 1px; }
 
-/* Direct lines: one small centred line under everything. */
+/* Direct lines: one quiet centred line under the lede. */
 .contact__direct {
-  display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 28px;
-  margin: 56px 0 0;
-  font-size: 16px; line-height: 26px; letter-spacing: 0.32px;
-  color: var(--sea-blue);
+  margin: 0;
+  font-size: 16px; line-height: 28px; letter-spacing: 0.32px;
+  color: var(--sea-blue-200);
   text-align: center;
 }
-.contact__direct-k { font-weight: 600; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--stone-600); margin-right: 6px; }
-.contact__direct a { color: var(--sea-blue); text-underline-offset: 3px; text-decoration-thickness: 1px; overflow-wrap: anywhere; }
+.contact__direct a { display: inline-block; min-height: 28px; color: var(--sea-blue); text-underline-offset: 3px; text-decoration-thickness: 1px; overflow-wrap: anywhere; }
 .contact__direct a.is-placeholder { text-decoration: none; color: var(--sea-blue-300); font-style: italic; }
 
 /* Success: centred like the rest. */
@@ -381,9 +373,6 @@ select.yf__input {
   .tabs { padding-left: 16px; padding-right: 16px; scroll-padding-inline: 16px; }
   .tabs__item { min-width: 0; padding: 12px 14px; }
   .contact__main, .contact__teach { margin-top: 32px; }
-  .contact__teach { padding: 40px 20px; }
-  .contact__teach .btn { width: 100%; }
-  .contact__direct { flex-direction: column; margin-top: 48px; }
 }
 
 /* ============================================================

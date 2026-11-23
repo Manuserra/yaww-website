@@ -146,7 +146,7 @@
        The tabs are the site's tab component (as on retreats.html).
        The first three set the form's topic (retreat / private-group /
        press: hidden input "topic", read by [data-show-when] and sent
-       in the payload); the fourth shows the teachers' panel instead of
+       in the payload); the fourth shows the teacher application instead of
        the form. Deep links: #private-groups (or #group,
        #build-a-custom-retreat), #press, #teach-with-us; default and
        #general-inquiry: A retreat. Wiring in js/contact.js.
@@ -159,12 +159,13 @@
     <header class="contact__head">
       <h1 class="contact__title">We would love to hear from you</h1>
       <p class="contact__lede">Ask us anything about a retreat, plan a trip for your own group, or just say hello. Someone from our team reads every message and writes back personally.</p>
+      <p class="contact__direct">Prefer to talk? <a href="tel:+5219842026072" title="Phone · Mexico" aria-label="Phone, Mexico: +52 1 984 202 6072">+52 1 984 202 6072</a> <span aria-hidden="true">·</span> <a href="#" class="is-placeholder" data-contact-email>[missing data: public email address]</a></p>
     </header>
 
     <div class="contact__tabs-wrap">
       <div class="tabs contact__tabs" role="tablist" aria-label="What is it about?" data-contact-tabs>
-        <button class="tabs__item is-active" type="button" role="tab" id="tab-retreat" data-contact-tab="retreat" aria-controls="form" aria-selected="true" tabindex="0">A retreat</button>
-        <button class="tabs__item" type="button" role="tab" id="tab-private-group" data-contact-tab="private-group" aria-controls="form" aria-selected="false" tabindex="-1">My group</button>
+        <button class="tabs__item is-active" type="button" role="tab" id="tab-retreat" data-contact-tab="retreat" aria-controls="form" aria-selected="true" tabindex="0">Join a retreat</button>
+        <button class="tabs__item" type="button" role="tab" id="tab-private-group" data-contact-tab="private-group" aria-controls="form" aria-selected="false" tabindex="-1">Plan a group trip</button>
         <button class="tabs__item" type="button" role="tab" id="tab-press" data-contact-tab="press" aria-controls="form" aria-selected="false" tabindex="-1">Press &amp; partners</button>
         <button class="tabs__item" type="button" role="tab" id="tab-teach" data-contact-tab="teach" aria-controls="teach" aria-selected="false" tabindex="-1">Teach with us</button>
         <span class="tabs__indicator" aria-hidden="true"></span>
@@ -181,8 +182,13 @@
         <!-- topic = retreat -->
         <div class="yf__field" data-field="retreat" data-show-when="topic=retreat">
           <label class="yf__label" for="c-retreat">Which retreat or place? <span class="yf__opt">(optional)</span></label>
-          <input class="yf__input" id="c-retreat" name="retreat" type="text" list="c-retreat-list" placeholder="El Cuyo in January, Santorini, not sure yet…">
-          <datalist id="c-retreat-list" data-retreat-options></datalist>
+          <!-- Native select (no datalist: Safari draws that as a dark popup).
+               The upcoming editions are added between the first and last
+               option by the script at the end of the page. -->
+          <select class="yf__input" id="c-retreat" name="retreat" data-retreat-options>
+            <option value="not-sure" selected>Not sure yet, help me choose</option>
+            <option value="other" data-retreat-last>Something else</option>
+          </select>
         </div>
 
         <!-- topic = private-group: size is one tap; when and where side by side -->
@@ -223,7 +229,10 @@
 
         <div class="yf__field" data-field="message">
           <label class="yf__label" for="c-message">Your message</label>
-          <textarea class="yf__input" id="c-message" name="message" rows="5" placeholder="First retreat? Travelling alone? Tell us a little about you." required aria-describedby="c-message-error" data-error="Tell us a little about what you would like to know."></textarea>
+          <textarea class="yf__input" id="c-message" name="message" rows="5" placeholder="First retreat? Travelling alone? Tell us a little about you."
+            data-placeholder-retreat="First retreat? Travelling alone? Tell us a little about you."
+            data-placeholder-private-group="Who's coming, and what kind of trip do you have in mind?"
+            data-placeholder-press="Tell us who you are and what you have in mind." required aria-describedby="c-message-error" data-error="Tell us a little about what you would like to know."></textarea>
           <p class="yf__error" id="c-message-error" hidden></p>
         </div>
 
@@ -262,17 +271,118 @@
       </div>
     </section>
 
-    <section class="contact__teach" id="teach" role="tabpanel" aria-labelledby="tab-teach" tabindex="-1" hidden>
-      <p class="kicker contact__teach-kicker">For yoga teachers</p>
-      <h2 class="contact__teach-title">Lead a retreat with us</h2>
-      <p class="contact__teach-text">How it works, what we handle and how to apply.</p>
-      <a class="btn btn--primary" href="teach-with-us.html">Teach with us</a>
+    <section class="contact__teach" id="teach" role="tabpanel" aria-labelledby="tab-teach" tabindex="-1" hidden data-yform-wrap>
+      <p class="contact__teach-intro">Lead a retreat with us. <a href="teach-with-us.html">How it works, what we handle and how to apply&nbsp;<span aria-hidden="true">&rarr;</span></a></p>
+      <!-- COPY of the application on teach-with-us.html (#apply): same
+           fields, names, ids, endpoint (YAWW_CONTACT.endpoints.teach) and
+           thank-you. The two copies must match; change both together.
+           Only difference: data-attribution here. -->
+      <form class="yf" data-yform="teach" data-attribution action="" method="post" novalidate>
+        <div class="yf__row">
+          <div class="yf__field" data-field="first_name">
+            <label class="yf__label" for="t-first">First name</label>
+            <input class="yf__input" id="t-first" name="first_name" type="text" autocomplete="given-name" required aria-describedby="t-first-error" data-error="Please add your first name.">
+            <p class="yf__error" id="t-first-error" hidden></p>
+          </div>
+          <div class="yf__field" data-field="last_name">
+            <label class="yf__label" for="t-last">Last name</label>
+            <input class="yf__input" id="t-last" name="last_name" type="text" autocomplete="family-name" required aria-describedby="t-last-error" data-error="Please add your last name.">
+            <p class="yf__error" id="t-last-error" hidden></p>
+          </div>
+        </div>
+        <div class="yf__row">
+          <div class="yf__field" data-field="email">
+            <label class="yf__label" for="t-email">Email</label>
+            <input class="yf__input" id="t-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="t-email-error" data-error="We need an email to reply to.">
+            <p class="yf__error" id="t-email-error" hidden></p>
+          </div>
+          <div class="yf__field" data-field="phone">
+            <label class="yf__label" for="t-phone">Phone <span class="yf__opt">(optional)</span></label>
+            <input class="yf__input" id="t-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+1 555 123 4567">
+          </div>
+        </div>
+        <div class="yf__row">
+          <div class="yf__field" data-field="teaches_at">
+            <label class="yf__label" for="t-where">Where do you teach?</label>
+            <input class="yf__input" id="t-where" name="teaches_at" type="text" required placeholder="City and studio, or online" aria-describedby="t-where-error" data-error="A city or a studio is enough.">
+            <p class="yf__error" id="t-where-error" hidden></p>
+          </div>
+          <div class="yf__field" data-field="links">
+            <label class="yf__label" for="t-links">Website or Instagram <span class="yf__opt">(optional)</span></label>
+            <input class="yf__input" id="t-links" name="links" type="text" placeholder="@yourname">
+          </div>
+        </div>
+
+        <fieldset class="yf__field" data-field="retreat_experience" data-required data-error="Choose the one closest to you.">
+          <legend class="yf__legend">Have you led a retreat before?</legend>
+          <div class="yf__chips">
+            <label class="yf__chip"><input type="radio" name="retreat_experience" value="not-yet" aria-describedby="t-exp-error"><span>Not yet</span></label>
+            <label class="yf__chip"><input type="radio" name="retreat_experience" value="1-3" aria-describedby="t-exp-error"><span>Once or a few times</span></label>
+            <label class="yf__chip"><input type="radio" name="retreat_experience" value="many" aria-describedby="t-exp-error"><span>Many times</span></label>
+          </div>
+          <p class="yf__error" id="t-exp-error" hidden></p>
+        </fieldset>
+
+        <fieldset class="yf__field" data-field="group_size" data-required data-error="A rough guess is fine.">
+          <legend class="yf__legend">How many students might travel with you?</legend>
+          <div class="yf__chips">
+            <label class="yf__chip"><input type="radio" name="group_size" value="under-5" aria-describedby="t-size-error"><span>Under 5</span></label>
+            <label class="yf__chip"><input type="radio" name="group_size" value="5-10" aria-describedby="t-size-error"><span>5 to 10</span></label>
+            <label class="yf__chip"><input type="radio" name="group_size" value="10-20" aria-describedby="t-size-error"><span>10 to 20</span></label>
+            <label class="yf__chip"><input type="radio" name="group_size" value="20-plus" aria-describedby="t-size-error"><span>More than 20</span></label>
+            <label class="yf__chip"><input type="radio" name="group_size" value="not-sure" aria-describedby="t-size-error"><span>Not sure yet</span></label>
+          </div>
+          <p class="yf__error" id="t-size-error" hidden></p>
+        </fieldset>
+
+        <fieldset class="yf__field" data-field="destinations">
+          <legend class="yf__legend">Where would you love to go? <span class="yf__opt">(optional, pick any)</span></legend>
+          <div class="yf__chips">
+            <label class="yf__chip"><input type="checkbox" name="destinations" value="mexico"><span>Mexico</span></label>
+            <label class="yf__chip"><input type="checkbox" name="destinations" value="greece"><span>Greece</span></label>
+            <label class="yf__chip"><input type="checkbox" name="destinations" value="morocco"><span>Morocco</span></label>
+            <label class="yf__chip"><input type="checkbox" name="destinations" value="portugal"><span>Portugal</span></label>
+            <label class="yf__chip"><input type="checkbox" name="destinations" value="spain"><span>Spain</span></label>
+            <label class="yf__chip"><input type="checkbox" name="destinations" value="france"><span>France</span></label>
+            <label class="yf__chip"><input type="checkbox" name="destinations" value="italy"><span>Italy</span></label>
+            <label class="yf__chip"><input type="checkbox" name="destinations" value="iceland"><span>Iceland</span></label>
+            <label class="yf__chip"><input type="checkbox" name="destinations" value="montenegro"><span>Montenegro</span></label>
+            <label class="yf__chip"><input type="checkbox" name="destinations" value="thailand"><span>Thailand</span></label>
+            <label class="yf__chip"><input type="checkbox" name="destinations" value="somewhere-new"><span>Somewhere new</span></label>
+          </div>
+        </fieldset>
+
+        <div class="yf__field" data-field="timing">
+          <label class="yf__label" for="t-when">When are you thinking? <span class="yf__opt">(optional)</span></label>
+          <select class="yf__input" id="t-when" name="timing">
+            <option value="">Choose</option>
+            <option value="2027">In 2027</option>
+            <option value="2028">In 2028</option>
+            <option value="flexible">I'm flexible</option>
+          </select>
+        </div>
+
+        <div class="yf__field" data-field="about">
+          <label class="yf__label" for="t-about">Your teaching and your students</label>
+          <p class="yf__hint" id="t-about-hint">Your style, how long you have been teaching, and the kind of trip your students would love.</p>
+          <textarea class="yf__input" id="t-about" name="about" rows="6" required aria-describedby="t-about-hint t-about-error" data-error="A few lines about your teaching helps us prepare the call."></textarea>
+          <p class="yf__error" id="t-about-error" hidden></p>
+        </div>
+
+        <div class="yf__actions">
+          <p class="yf__failed" data-yform-failed role="alert" hidden>Your application did not go through. Please try again in a moment.</p>
+          <button class="btn btn--primary yf__submit" type="submit">Send application</button>
+        </div>
+      </form>
+
+      <div class="yf-done" data-yform-done tabindex="-1" role="status" hidden>
+        <p class="yf-done__title">Thank you, <span data-yform-name></span></p>
+        <p>Your application is with us. We will write to <strong data-yform-email></strong> to set up a first call.</p>
+        <p>While you wait, see where our teachers are taking their students this year.</p>
+        <a class="btn btn--secondary" href="retreats.html">See upcoming retreats</a>
+      </div>
     </section>
 
-    <p class="contact__direct">
-      <span class="contact__direct-item"><span class="contact__direct-k">Phone · Mexico</span> <a href="tel:+5219842026072">+52 1 984 202 6072</a></span>
-      <span class="contact__direct-item"><span class="contact__direct-k">Email</span> <a href="#" class="is-placeholder" data-contact-email>[missing data: public email address]</a></span>
-    </p>
 
   </div>
 </main>
@@ -509,8 +619,9 @@
 </script>
 
 <script>
-  // Suggestions for "Which retreat or place?": the upcoming editions,
-  // as "El Cuyo · Jan 2027", from data/retreats.js + data/locations.js.
+  // Options for "Which retreat or place?": the upcoming editions, as
+  // "El Cuyo · Jan 2027", from data/retreats.js + data/locations.js,
+  // between "Not sure yet, help me choose" and "Something else".
   (function () {
     var list = document.querySelector('[data-retreat-options]');
     var R = window.YAWW_RETREATS || [], L = window.YAWW_LOCATIONS || [];
@@ -524,7 +635,8 @@
        var d = r.startDate.split('-');
        var label = (names[r.locationId] || r.officialName) + ' · ' + M[+d[1] - 1] + ' ' + d[0];
        if (seen[label]) return; seen[label] = 1;
-       var o = document.createElement('option'); o.value = label; list.appendChild(o);
+       var o = document.createElement('option'); o.value = label; o.textContent = label;
+       list.insertBefore(o, list.querySelector('[data-retreat-last]'));
      });
   })();
 </script>
