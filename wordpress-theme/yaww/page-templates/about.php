@@ -8,7 +8,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 require_once get_template_directory() . '/inc/e-helpers.php';
-yaww_e_assets( 'about', array( 'people-rail', 'cta-parallax' ) );
+yaww_e_assets( 'about', array( 'people-rail', 'cta-parallax', 'about-reveal' ) );
 get_header();
 ?>
   <section class="about-intro">
