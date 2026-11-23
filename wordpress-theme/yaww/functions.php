@@ -148,3 +148,10 @@ function yaww_contact_config() {
 }
 
 /** Journal categories are the built-in `category` taxonomy; nothing else to register. */
+
+/* The static site shows emoji as text; WordPress's emoji script swapped them for twemoji <img> (QA, journal). */
+remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+remove_action( 'wp_print_styles', 'print_emoji_styles' );
+remove_action( 'wp_enqueue_scripts', 'wp_enqueue_emoji_styles' );
+remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+remove_action( 'admin_print_styles', 'print_emoji_styles' );

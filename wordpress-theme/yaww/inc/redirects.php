@@ -261,3 +261,19 @@ add_action( 'template_redirect', function () {
 	wp_redirect( $url, 301, 'YAWW' );
 	exit;
 }, 1 );
+
+/*
+ * A facilitator who is also a teacher and is not listed on the Facilitators grid has no page of its own
+ * on the static site (team-jenniferlyn-chiemingo.html is a "Moved" page to teacher-jenniferlyn-chiemingo.html):
+ * 301 to the teacher page, so the two never compete in search.
+ */
+add_action( 'template_redirect', function () {
+	if ( ! is_singular( 'facilitator' ) ) { return; }
+	$id = get_queried_object_id();
+	if ( '0' !== (string) yaww_meta( 'listed', $id ) && '' !== (string) yaww_meta( 'listed', $id ) ) { return; }
+	$teacher = get_page_by_path( get_post_field( 'post_name', $id ), OBJECT, 'teacher' );
+	if ( ! $teacher || 'publish' !== $teacher->post_status ) { return; }
+	header( 'X-Redirect-By: yaww-redirects' );
+	wp_redirect( get_permalink( $teacher ), 301, 'YAWW' );
+	exit;
+}, 2 );

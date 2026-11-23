@@ -5,7 +5,7 @@
  *
  * Fields (post): featured image = hero, hero_image_2x; date_label (the date line as the source writes it; empty on the ten posts the source has no date for);
  * post content = the body, ideally already as journal-post.js writes it (<div class="post__text"><p>…</p></div>,
- * <figure class="post__figure"><img></figure>); author_name, author_bio (paragraphs on blank lines),
+ * <figure class="post__figure"><img></figure>); author_name, author_bio (one paragraph per line),
  * author_photo, author_photo_2x, author_person (post id of a teacher / facilitator);
  * retreat_title, retreat_subtitle, retreat_text, retreat_location (location post id), retreat_image, retreat_image_2x.
  */
@@ -37,7 +37,7 @@ while ( have_posts() ) : the_post();
 	if ( $a_name ) {
 		$a_bio  = yaww_meta( 'author_bio', $this_post );
 		if ( ! $a_bio ) { $a_bio = get_the_author_meta( 'description', (int) get_post_field( 'post_author', $this_post ) ); }
-		$a_bio  = array_filter( array_map( 'trim', preg_split( '/\n\s*\n/', (string) $a_bio ) ), 'strlen' );
+		$a_bio  = array_filter( array_map( 'trim', preg_split( '/\R+/', (string) $a_bio ) ), 'strlen' );
 		$a_page = (int) yaww_meta( 'author_person', $this_post );
 		$a_url  = $a_page ? get_permalink( $a_page ) : '';
 		$a_ph   = (int) yaww_meta( 'author_photo', $this_post );
