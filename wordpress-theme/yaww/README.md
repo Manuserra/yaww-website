@@ -179,3 +179,5 @@ Regenerate with `python3 bin/gen-acf.py --table`. The edit screens group these f
 | `post` | `retreat_location` | post | journal.js retreat.locationId |
 | `post` | `retreat_image` | image | journal.js retreat.image / image2x |
 | `post` | `retreat_image_2x` | image | journal.js retreat.image2x |
+| `post` | `seo_title` | text | retreats/_tools/seo.py TITLE_OVERRIDE |
+| `post` | `seo_description` | textarea | journal.js excerpt |

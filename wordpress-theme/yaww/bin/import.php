@@ -333,6 +333,12 @@ if ( $want( 'journal' ) ) {
 			'author_photo_2x' => ( $P['author_photo'] && ! empty( $P['author_photo']['src2x'] ) ) ? yaww_imp_media( $P['author_photo']['src2x'], $P['author_name'] ) : 0,
 			'retreat_image_2x' => ( $r && $r['image'] && ! empty( $r['image']['src2x'] ) ) ? yaww_imp_media( $r['image']['src2x'], $r['title'] ) : 0,
 		) );
+		// seo.py TITLE_OVERRIDE: two titles too long for 60 characters (field "Search title"; set only when empty).
+		$seo_titles = array(
+			'the-utopian-newsletter-eat-drink-be-merry-issue-august-8-2018' => 'Utopian Newsletter: Eat, Drink & Be Merry Issue | YAWW',
+			'the-utopian-newsletter-interior-design-issue-september-12-2018' => 'Utopian Newsletter: Interior Design Issue | YAWW',
+		);
+		if ( isset( $seo_titles[ $P['slug'] ] ) && ! yaww_meta( 'seo_title', $id ) ) { yaww_imp_fields( 'post', $id, array( 'seo_title' => $seo_titles[ $P['slug'] ] ) ); }
 		WP_CLI::log( "journal   $slug" );
 	}
 	$unc = get_term_by( 'slug', 'uncategorized', 'category' );

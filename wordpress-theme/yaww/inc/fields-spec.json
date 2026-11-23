@@ -952,6 +952,21 @@
    "label": "Photo, double size",
    "src": "journal.js retreat.image2x",
    "instructions": "Optional."
+  },
+  {
+   "key": "seo_title",
+   "type": "text",
+   "label": "Search title",
+   "src": "retreats/_tools/seo.py TITLE_OVERRIDE",
+   "tab": "SEO",
+   "instructions": "Optional. The title Google shows, at most 60 characters, ending in \"| YAWW\" or \"| Yoga Adventures Worldwide\". Empty = the post title plus the site name."
+  },
+  {
+   "key": "seo_description",
+   "type": "textarea",
+   "label": "Search description",
+   "src": "journal.js excerpt",
+   "instructions": "Optional. The text Google shows under the title (about 150 characters). Empty = the excerpt or the start of the post."
   }
  ]
 }

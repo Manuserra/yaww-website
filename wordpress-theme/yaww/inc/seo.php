@@ -261,7 +261,8 @@ function yaww_seo_fill_retreat( &$ctx, $id ) {
 	}
 
 	if ( $dated ) {
-		$dest = $lid ? get_the_title( $lid ) : $name;
+		// seo.py uses the location's short name (locations.js `name`, e.g. "Oaxaca, Mexico").
+		$dest = $lid ? ( yaww_meta( 'short_name', $lid ) ?: get_the_title( $lid ) ) : $name;
 		list( $y, $m ) = array_map( 'intval', explode( '-', $start ) );
 		$M = yaww_seo_months();
 		$base = "$dest Yoga Retreat, {$M[$m-1]} $y";
@@ -292,7 +293,14 @@ function yaww_seo_fill_retreat( &$ctx, $id ) {
 		$ctx['ld'][] = $ev;
 	} else {
 		// Waitlist page: a trip, not an event.
-		$ctx['title'] = yaww_seo_title_of( trim( explode( ':', $name )[0] ) );
+		// seo.py WAITLIST_TITLE: the program's own name as a search title; others fall back to the name before ':'.
+		$wait = array(
+			'france' => 'Paris & Champagne Yoga Retreat', 'iceland' => 'The Iceland Experience', 'morocco' => 'Mesmerized in Morocco Yoga Retreat',
+			'sardinia' => 'Majestic Sardinia Yoga Retreat', 'spain-basque-country' => 'Basque Country Yoga & Gastronomy Retreat',
+			'turkey' => 'Istanbul & Cappadocia Yoga Retreat',
+		);
+		$slug = get_post_field( 'post_name', $id );
+		$ctx['title'] = yaww_seo_title_of( isset( $wait[ $slug ] ) ? $wait[ $slug ] : trim( explode( ':', $name )[0] ) );
 		$manual = yaww_seo_manual_desc( $id );
 		$ctx['desc'] = $manual ? $manual : ( $name . ': ' . ( $nights ? "$nights-night " : '' ) . 'yoga retreat' . ( $place ? " in $place" : '' ) . '. Join the waitlist for the next dates.' );
 		$trip = array( '@context' => 'https://schema.org', '@type' => 'TouristTrip', 'name' => $name, 'description' => $ctx['desc'], 'url' => $url,
@@ -352,6 +360,9 @@ function yaww_seo_fill_journal( &$ctx, $id ) {
 	$url  = get_permalink( $id );
 	$t    = yaww_seo_clean( get_the_title( $id ) );
 	$ctx['title'] = ( mb_strlen( $t . ' | ' . YAWW_SEO_SITE ) <= 60 ) ? $t . ' | ' . YAWW_SEO_SITE : ( ( mb_strlen( $t . ' | ' . YAWW_SEO_SHORT ) <= 60 ) ? $t . ' | ' . YAWW_SEO_SHORT : $t );
+	// Search title typed by the team (seo.py TITLE_OVERRIDE for titles too long for 60 characters).
+	$own = yaww_seo_clean( yaww_meta( 'seo_title', $id ) );
+	if ( $own ) { $ctx['title'] = $own; }
 	$post = get_post( $id );
 	$desc = yaww_seo_manual_desc( $id );
 	if ( ! $desc ) { $desc = yaww_seo_fit( $post->post_excerpt ? $post->post_excerpt : $post->post_content ); }
