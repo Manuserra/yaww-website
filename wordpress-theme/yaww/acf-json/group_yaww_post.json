@@ -1,0 +1,95 @@
+{
+  "key": "group_yaww_post",
+  "title": "YAWW \u00b7 Journal",
+  "fields": [
+    {
+      "key": "field_yaww_post_date_label",
+      "label": "Date as shown (empty = no date line)",
+      "name": "date_label",
+      "type": "text"
+    },
+    {
+      "key": "field_yaww_post_author_name",
+      "label": "Author name",
+      "name": "author_name",
+      "type": "text"
+    },
+    {
+      "key": "field_yaww_post_author_photo",
+      "label": "Author photo",
+      "name": "author_photo",
+      "type": "image",
+      "return_format": "id"
+    },
+    {
+      "key": "field_yaww_post_author_bio",
+      "label": "Author bio (one paragraph per line)",
+      "name": "author_bio",
+      "type": "textarea"
+    },
+    {
+      "key": "field_yaww_post_author_person",
+      "label": "Author page (teacher or facilitator)",
+      "name": "author_person",
+      "type": "post_object",
+      "allow_null": 1,
+      "post_type": [
+        "teacher",
+        "facilitator"
+      ],
+      "return_format": "id"
+    },
+    {
+      "key": "field_yaww_post_retreat_title",
+      "label": "Explore this retreat: title",
+      "name": "retreat_title",
+      "type": "text"
+    },
+    {
+      "key": "field_yaww_post_retreat_subtitle",
+      "label": "Explore this retreat: subtitle",
+      "name": "retreat_subtitle",
+      "type": "text"
+    },
+    {
+      "key": "field_yaww_post_retreat_text",
+      "label": "Explore this retreat: text",
+      "name": "retreat_text",
+      "type": "textarea"
+    },
+    {
+      "key": "field_yaww_post_retreat_location",
+      "label": "Explore this retreat: location",
+      "name": "retreat_location",
+      "type": "post_object",
+      "allow_null": 1,
+      "post_type": [
+        "location"
+      ],
+      "return_format": "id"
+    },
+    {
+      "key": "field_yaww_post_retreat_image",
+      "label": "Explore this retreat: photo",
+      "name": "retreat_image",
+      "type": "image",
+      "return_format": "id"
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_type",
+        "operator": "==",
+        "value": "post"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "active": true,
+  "show_in_rest": 1,
+  "modified": 1795447296
+}

@@ -19,6 +19,12 @@
       "label": "Listed on the Facilitators grid",
       "name": "listed",
       "type": "true_false"
+    },
+    {
+      "key": "field_yaww_facilitator_photo_position",
+      "label": "Photo object-position",
+      "name": "photo_position",
+      "type": "text"
     }
   ],
   "location": [
@@ -36,5 +42,5 @@
   "label_placement": "top",
   "active": true,
   "show_in_rest": 1,
-  "modified": 1763600000
+  "modified": 1795447296
 }

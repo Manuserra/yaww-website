@@ -2,7 +2,7 @@
 
 Classic PHP theme (no build step, WordPress 6.x, PHP 7.4+) that will reproduce the official static site.
 The static HTML site is untouched: this folder only reads from `../../css`, `../../js` and `../../images`.
-ACF Pro is not required yet; everything works on native post meta and is ready for ACF.
+ACF Pro is the field storage (field groups in `acf-json/`); without ACF the fields fall back to native post meta and a stop-gap meta box.
 
 ## Structure
 
@@ -23,12 +23,40 @@ ACF Pro is not required yet; everything works on native post meta and is ready f
 | `bin/sync-assets.sh` | copies css, js, used images and the hero video from the static site into `assets/` |
 | `bin/gen-acf.py` | regenerates `acf-json/*.json` from the spec; `--table` prints the field map below |
 
-## Install
+## Local site (LocalWP "localwp.com", http://localwpcom.local)
 
-1. `bash bin/sync-assets.sh` (needs python3), then zip the `yaww/` folder and upload it, or symlink it into `wp-content/themes/`.
-2. Activate. Create pages with slugs `journal` (becomes the Posts page automatically), `about` (template About), `contact` (Contact), `teach-with-us` (Teach with us), `policies`. Set Settings > Reading > front page to a static page.
-3. Settings > Permalinks > Save (flushes `/retreats/`, `/locations/`, `/teachers/`, `/facilitators/`).
-4. Content: add posts per CPT. Retreat title = `officialName`, content = about text, `location_id` / `teacher_ids` are post IDs. Fields are in the "YAWW fields" box, or in ACF once installed.
+The theme folder is symlinked into `~/Local Sites/localwpcom/app/public/wp-content/themes/yaww` and active.
+Start the site in Local first (its MySQL listens on a socket in Local's run dir).
+
+| Step | Command (from the repo root) |
+|---|---|
+| WP-CLI | `bash wordpress-theme/yaww/bin/wp.sh <args>` e.g. `... wp.sh post list --post_type=retreat` (uses Local's PHP 8.2 and MySQL socket; `LOCAL_SITE_ID`, `LOCAL_PHP` override) |
+| Assets | `bash wordpress-theme/yaww/bin/sync-assets.sh` after **any** change in `css/`, `js/` or a template-level image (copies into `assets/`, gitignored) |
+| Fields | edit `inc/fields-spec.json`, then `python3 wordpress-theme/yaww/bin/gen-acf.py` (rewrites `acf-json/`, then the README table with `--table`) and sync in ACF (Custom Fields > Sync, or `wp.sh eval 'yaww...'`, see below) |
+| Content | `bash wordpress-theme/yaww/bin/import.sh` = `bin/export-content.py` (static site -> `bin/content.json`) + `wp.sh eval-file bin/import.php`. Idempotent; `only=media,locations,people,retreats,journal,site` limits it |
+| Lint | `find wordpress-theme/yaww -name '*.php' -exec "$PHP" -l {} \;` with Local's PHP |
+| Debug | `WP_DEBUG_LOG` is on: `~/Local Sites/localwpcom/app/public/wp-content/debug.log` |
+
+### What the import does
+
+- Reads what the static pages **show**, not the raw scrape: `retreatpage-*.html` (about, hosts, includes, itinerary, stays,
+  rooms, extras, tips, gallery, Additional info, testimonials, booking terms), `data/*.js`, `retreats/_tools/location_content.py`.
+- Retreats: the 17 dated editions of `data/retreats.js` (not `santorini-sep-2027-berger`, removed) plus the 6 dateless
+  "program" retreats of `data/locations.js` (status `waitlist`, slug = location id, linked from the location's `program_retreat`).
+- Journal: 34 posts at `/<slug>/` (7 keep the live site's slug, see B's map), Gutenberg paragraph/image blocks grouped in
+  `post__text` groups, categories in the static order (`yaww_post_categories()`), undated posts get `date_label` empty.
+- Site: pages Home (front), About, Contact, Teach with us (templates), Journal (posts page), Policies; permalinks `/%postname%/`; menus Primary/Footer.
+- Media: each file once, in `uploads/yaww/<path under images/>` with its **original file name** (`_yaww_source` = repo path).
+  `big_image_size_threshold` is off, so `full` is the original file. A `@2x` twin is the attachment's `2x` size.
+
+### Reading fields in templates
+
+- `yaww_meta()`, `yaww_list()` (list = ACF repeater of `{value}`), `yaww_rows()` (rows), `yaww_lines()` for "one per line" sub fields.
+  ACF is the storage; dates come back `Y-m-d`; image/gallery fields are attachment IDs; relations are post IDs.
+- Images: print `wp_get_attachment_image( $id, 'full' )` (or `yaww_img_1x2x()` for the static `1x, 2x` srcset) so `src` ends in
+  `/<original-name>.webp` and **css/photo-focus.css keeps matching** the itinerary photos. Resized sizes rename the file (`-1200x730`).
+- `yaww_data_js( array( 'locations', 'regions', 'teachers', 'team', 'retreats', 'journal' ) )` prints `window.YAWW_*` in the
+  shape of `data/*.js` (absolute permalinks and media URLs). `yaww_url_map()` maps `*.html` to permalinks.
 
 ## Rules baked in
 
@@ -62,50 +90,85 @@ Regenerate with `python3 bin/gen-acf.py --table`. Relations use post IDs; image 
 | `retreat` | `subtitle` | text | retreats/*/data.json subtitle |
 | `retreat` | `location_id` | post | retreats.js locationId |
 | `retreat` | `teacher_ids` | posts | retreats.js teacherIds |
+| `retreat` | `facilitator_ids` | posts | retreats/_tools/page_content.py FACILITATORS |
 | `retreat` | `start_date` | date | retreats.js startDate |
 | `retreat` | `end_date` | date | retreats.js endDate |
-| `retreat` | `status` | select | retreats.js status |
+| `retreat` | `status` | select | retreats.js status; waitlist = dateless retreat from locations.js program |
 | `retreat` | `spaces_left` | number | retreats.js spacesLeft |
 | `retreat` | `collection` | select | retreats.js collection (mirrors retreat_tier taxonomy) |
 | `retreat` | `card_image` | image | retreats.js image / image2x |
-| `retreat` | `hero_image` | image | data.json hero_image |
+| `retreat` | `hero_image` | image | retreatpage-*.html hero |
 | `retreat` | `hotel_label` | text | BRIEF s.12: e.g. boutique hotel in Chiang Mai |
 | `retreat` | `nights` | number | data.json nights |
 | `retreat` | `includes` | list | data.json includes |
 | `retreat` | `not_included` | list | data.json not_included |
+| `retreat` | `includes_notes` | list | retreatpage-*.html .retreat-includes__footnote |
+| `retreat` | `includes_image` | image | retreatpage-*.html .retreat-includes__bg |
 | `retreat` | `itinerary` | rows | data.json itinerary |
-| `retreat` | `rooms` | rows | data.json rooms (hotel name dropped) |
-| `retreat` | `extras` | rows | data.json extras |
-| `retreat` | `travel_tips` | rows | data.json travel_tips |
-| `retreat` | `faqs` | rows | data.json faqs |
-| `retreat` | `gallery` | gallery | data.json gallery |
+| `retreat` | `itinerary_notes` | list | retreatpage-*.html .retreat-itinerary__note |
+| `retreat` | `stays` | rows | retreatpage-*.html var HOTELS |
+| `retreat` | `room_venues` | list | retreatpage-*.html var ROOM_VENUES |
+| `retreat` | `rooms` | rows | retreatpage-*.html var TIERS (hotel name dropped) |
+| `retreat` | `extras` | rows | retreatpage-*.html var EXTRAS |
+| `retreat` | `travel_tips` | rows | retreatpage-*.html .tips__group |
+| `retreat` | `faqs` | rows | retreatpage-*.html .faq (Additional info) |
+| `retreat` | `gallery` | gallery | retreatpage-*.html .gallery__slide (--r cycles 28/17,1/1,28/17,5/4,28/17,1/1,28/17,5/4,1/1,28/17) |
 | `retreat` | `gallery_title` | text | data.json gallery_title |
 | `retreat` | `gallery_intro` | textarea | data.json gallery_intro |
+| `retreat` | `testimonials` | rows | retreatpage-*.html var TESTIMONIALS |
 | `retreat` | `deposit_usd` | number | data.json booking.deposit_usd |
 | `retreat` | `balance_due_days` | number | data.json booking.balance_due_days |
 | `retreat` | `roommate_note` | textarea | data.json booking.roommate_note |
 | `retreat` | `wetravel_url` | url | window.YAWW_WETRAVEL.url (js/retreat-rooms.js) |
-| `retreat` | `seo_description` | textarea | data.json seo_description |
+| `retreat` | `seo_description` | textarea | retreatpage-*.html meta description |
 | `location` | `display_name` | text | locations.js displayName |
+| `location` | `card_name` | text | locations.js cardName |
+| `location` | `short_name` | text | locations.js name |
 | `location` | `region` | select | locations.js region |
 | `location` | `country` | text | locations.js country |
-| `location` | `intro` | textarea | locationpage-*.html hero copy |
-| `location` | `hero_image` | image | locations.js image |
-| `location` | `card_image` | image | locations.js image |
+| `location` | `hero_image` | image | location_content.py hero |
+| `location` | `card_image` | image | images/location-<id>.jpg (locations.html grid) |
 | `location` | `placeholder_hue` | number | locations.js placeholderHue |
 | `location` | `hotel_label` | text | BRIEF s.12 |
+| `location` | `eyebrow` | text | location_content.py eyebrow |
+| `location` | `tagline` | text | location_content.py tagline |
+| `location` | `blurb` | textarea | location_content.py blurb |
+| `location` | `facts` | rows | location_content.py facts |
+| `location` | `intro_title` | text | location_content.py intro_title / intro |
+| `location` | `intro_image` | image | location_content.py intro_img |
+| `location` | `guide` | rows | location_content.py guide |
+| `location` | `know` | rows | location_content.py know |
+| `location` | `quote_text` | textarea | location_content.py quote[0] |
+| `location` | `quote_name` | text | location_content.py quote[1] |
+| `location` | `quote_source` | text | location_content.py quote[2] |
+| `location` | `program_retreat` | post | locations.js program |
 | `location` | `travel_tips` | rows | page_content.py |
 | `location` | `gallery` | gallery | locationpage-*.html |
 | `teacher` | `short_name` | text | teachers.js shortName |
 | `teacher` | `role` | text | teachers.js role |
 | `teacher` | `short_bio` | textarea | teachers.js shortBio |
+| `teacher` | `host_bio` | textarea | retreatpage-*.html .host__bio |
 | `teacher` | `quote` | text | teachers.js quote |
 | `teacher` | `specialties` | list | teachers.js specialties |
-| `teacher` | `video_url` | url | teachers.js video |
-| `teacher` | `spotify_url` | url | teachers.js spotify |
+| `teacher` | `youtube` | url | teachers.js youtube / video |
+| `teacher` | `spotify_url` | url | teachers.js spotifyPlaylist / spotify |
+| `teacher` | `website` | url | teachers.js website |
+| `teacher` | `website_label` | text | teachers.js website.label |
+| `teacher` | `instagram` | text | teachers.js instagram |
 | `teacher` | `avatar` | image | teachers.js avatar |
 | `teacher` | `photo_position` | text | teachers.js photoPosition |
 | `teacher` | `needs_content` | bool | teachers.js needsContent |
 | `facilitator` | `role` | text | team.js role |
 | `facilitator` | `short_bio` | textarea | team.js shortBio |
 | `facilitator` | `listed` | bool | team.js listed |
+| `facilitator` | `photo_position` | text | team.js photoPosition |
+| `post` | `date_label` | text | journal.js date |
+| `post` | `author_name` | text | journal.js author.name |
+| `post` | `author_photo` | image | journal.js author.photo / photo2x |
+| `post` | `author_bio` | textarea | journal.js author.bio |
+| `post` | `author_person` | post | journal.js author.pageUrl |
+| `post` | `retreat_title` | text | journal.js retreat.title |
+| `post` | `retreat_subtitle` | text | journal.js retreat.subtitle |
+| `post` | `retreat_text` | textarea | journal.js retreat.text |
+| `post` | `retreat_location` | post | journal.js retreat.locationId |
+| `post` | `retreat_image` | image | journal.js retreat.image / image2x |

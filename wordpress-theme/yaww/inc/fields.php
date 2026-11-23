@@ -38,7 +38,13 @@ function yaww_field_schema( $f ) {
 	}
 }
 
+/** ACF Pro active: it owns storage, the editor UI and REST (field groups have show_in_rest). */
+function yaww_acf_active() { return function_exists( 'acf_get_field_group' ); }
+
 add_action( 'init', function () {
+	// With ACF, repeaters are stored as row counts plus `rooms_0_name` keys; registering the
+	// array schemas natively would make REST reject those values. Native meta is the no-ACF fallback.
+	if ( yaww_acf_active() ) { return; }
 	foreach ( yaww_field_spec() as $post_type => $fields ) {
 		if ( '_' === substr( $post_type, 0, 1 ) ) { continue; }
 		foreach ( $fields as $f ) {
@@ -56,7 +62,7 @@ add_action( 'init', function () {
 
 /* --- Stop-gap editor: scalar fields as inputs, arrays as JSON. Replaced by ACF Pro. --- */
 add_action( 'add_meta_boxes', function () {
-	if ( function_exists( 'acf_add_local_field_group' ) ) { return; }
+	if ( yaww_acf_active() ) { return; }
 	foreach ( array_keys( yaww_field_spec() ) as $pt ) {
 		if ( '_' === substr( $pt, 0, 1 ) ) { continue; }
 		add_meta_box( 'yaww_fields', 'YAWW fields', 'yaww_render_metabox', $pt, 'normal', 'high' );
@@ -92,6 +98,7 @@ function yaww_render_metabox( $post ) {
 }
 
 add_action( 'save_post', function ( $post_id ) {
+	if ( yaww_acf_active() ) { return; }
 	if ( ! isset( $_POST['yaww_fields_nonce'] ) || ! wp_verify_nonce( $_POST['yaww_fields_nonce'], 'yaww_fields' ) ) { return; }
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) { return; }
 	if ( ! current_user_can( 'edit_post', $post_id ) ) { return; }

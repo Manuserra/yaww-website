@@ -13,6 +13,7 @@
       "label": "Location",
       "name": "location_id",
       "type": "post_object",
+      "allow_null": 1,
       "post_type": [
         "location"
       ],
@@ -25,6 +26,16 @@
       "type": "relationship",
       "post_type": [
         "teacher"
+      ],
+      "return_format": "id"
+    },
+    {
+      "key": "field_yaww_retreat_facilitator_ids",
+      "label": "Facilitators (hosts tab)",
+      "name": "facilitator_ids",
+      "type": "relationship",
+      "post_type": [
+        "facilitator"
       ],
       "return_format": "id"
     },
@@ -54,7 +65,8 @@
         "filling_fast": "filling_fast",
         "spaces_left": "spaces_left",
         "sold_out": "sold_out",
-        "new": "new"
+        "new": "new",
+        "waitlist": "waitlist"
       },
       "return_format": "value"
     },
@@ -77,7 +89,7 @@
     },
     {
       "key": "field_yaww_retreat_card_image",
-      "label": "Card image (312x408)",
+      "label": "Card image (312x408; the @2x file is the attachment's '2x' size)",
       "name": "card_image",
       "type": "image",
       "return_format": "id"
@@ -134,6 +146,29 @@
       ]
     },
     {
+      "key": "field_yaww_retreat_includes_notes",
+      "label": "Includes footnotes",
+      "name": "includes_notes",
+      "type": "repeater",
+      "layout": "table",
+      "button_label": "Add",
+      "sub_fields": [
+        {
+          "key": "field_yaww_retreat_includes_notes_value",
+          "label": "Value",
+          "name": "value",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "key": "field_yaww_retreat_includes_image",
+      "label": "Includes band photo (empty = css default)",
+      "name": "includes_image",
+      "type": "image",
+      "return_format": "id"
+    },
+    {
       "key": "field_yaww_retreat_itinerary",
       "label": "Itinerary",
       "name": "itinerary",
@@ -165,6 +200,73 @@
           "name": "images",
           "type": "gallery",
           "return_format": "id"
+        }
+      ]
+    },
+    {
+      "key": "field_yaww_retreat_itinerary_notes",
+      "label": "Itinerary notes",
+      "name": "itinerary_notes",
+      "type": "repeater",
+      "layout": "table",
+      "button_label": "Add",
+      "sub_fields": [
+        {
+          "key": "field_yaww_retreat_itinerary_notes_value",
+          "label": "Value",
+          "name": "value",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "key": "field_yaww_retreat_stays",
+      "label": "Accommodations (stay tabs)",
+      "name": "stays",
+      "type": "repeater",
+      "layout": "block",
+      "button_label": "Add row",
+      "sub_fields": [
+        {
+          "key": "field_yaww_retreat_stays_name",
+          "label": "Name (generic label, never a hotel name except Utopia)",
+          "name": "name",
+          "type": "text"
+        },
+        {
+          "key": "field_yaww_retreat_stays_tab",
+          "label": "Short tab label",
+          "name": "tab",
+          "type": "text"
+        },
+        {
+          "key": "field_yaww_retreat_stays_text",
+          "label": "Paragraphs (one per line)",
+          "name": "text",
+          "type": "textarea"
+        },
+        {
+          "key": "field_yaww_retreat_stays_gallery",
+          "label": "Photos",
+          "name": "gallery",
+          "type": "gallery",
+          "return_format": "id"
+        }
+      ]
+    },
+    {
+      "key": "field_yaww_retreat_room_venues",
+      "label": "Room venues (ROOM_VENUES for retreat-rooms.js)",
+      "name": "room_venues",
+      "type": "repeater",
+      "layout": "table",
+      "button_label": "Add",
+      "sub_fields": [
+        {
+          "key": "field_yaww_retreat_room_venues_value",
+          "label": "Value",
+          "name": "value",
+          "type": "text"
         }
       ]
     },
@@ -236,8 +338,20 @@
           "type": "text"
         },
         {
+          "key": "field_yaww_retreat_extras_tab",
+          "label": "Short tab label",
+          "name": "tab",
+          "type": "text"
+        },
+        {
+          "key": "field_yaww_retreat_extras_price",
+          "label": "Price as shown (e.g. 155 USD, 250 EUR)",
+          "name": "price",
+          "type": "text"
+        },
+        {
           "key": "field_yaww_retreat_extras_price_usd",
-          "label": "Price (USD)",
+          "label": "Price (USD, when in USD)",
           "name": "price_usd",
           "type": "number"
         },
@@ -326,6 +440,34 @@
       "type": "textarea"
     },
     {
+      "key": "field_yaww_retreat_testimonials",
+      "label": "Testimonials (What guests say)",
+      "name": "testimonials",
+      "type": "repeater",
+      "layout": "block",
+      "button_label": "Add row",
+      "sub_fields": [
+        {
+          "key": "field_yaww_retreat_testimonials_quote",
+          "label": "Quote",
+          "name": "quote",
+          "type": "textarea"
+        },
+        {
+          "key": "field_yaww_retreat_testimonials_name",
+          "label": "Name",
+          "name": "name",
+          "type": "text"
+        },
+        {
+          "key": "field_yaww_retreat_testimonials_detail",
+          "label": "Detail (Google review \u00b7 El Cuyo)",
+          "name": "detail",
+          "type": "text"
+        }
+      ]
+    },
+    {
       "key": "field_yaww_retreat_deposit_usd",
       "label": "Deposit (USD)",
       "name": "deposit_usd",
@@ -371,5 +513,5 @@
   "label_placement": "top",
   "active": true,
   "show_in_rest": 1,
-  "modified": 1763600000
+  "modified": 1795447296
 }

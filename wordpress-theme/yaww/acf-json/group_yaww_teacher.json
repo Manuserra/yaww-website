@@ -21,6 +21,12 @@
       "type": "textarea"
     },
     {
+      "key": "field_yaww_teacher_host_bio",
+      "label": "Bio on retreat pages (empty = card blurb)",
+      "name": "host_bio",
+      "type": "textarea"
+    },
+    {
       "key": "field_yaww_teacher_quote",
       "label": "Quote",
       "name": "quote",
@@ -43,16 +49,34 @@
       ]
     },
     {
-      "key": "field_yaww_teacher_video_url",
-      "label": "Video URL",
-      "name": "video_url",
+      "key": "field_yaww_teacher_youtube",
+      "label": "YouTube video (id or URL)",
+      "name": "youtube",
       "type": "url"
     },
     {
       "key": "field_yaww_teacher_spotify_url",
-      "label": "Spotify URL",
+      "label": "Spotify playlist (URL or id)",
       "name": "spotify_url",
       "type": "url"
+    },
+    {
+      "key": "field_yaww_teacher_website",
+      "label": "Website",
+      "name": "website",
+      "type": "url"
+    },
+    {
+      "key": "field_yaww_teacher_website_label",
+      "label": "Website link label",
+      "name": "website_label",
+      "type": "text"
+    },
+    {
+      "key": "field_yaww_teacher_instagram",
+      "label": "Instagram (@handle or URL)",
+      "name": "instagram",
+      "type": "text"
     },
     {
       "key": "field_yaww_teacher_avatar",
@@ -89,5 +113,5 @@
   "label_placement": "top",
   "active": true,
   "show_in_rest": 1,
-  "modified": 1763600000
+  "modified": 1795447296
 }

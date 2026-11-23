@@ -9,6 +9,18 @@
       "type": "text"
     },
     {
+      "key": "field_yaww_location_card_name",
+      "label": "Card name (shorter line on retreat cards)",
+      "name": "card_name",
+      "type": "text"
+    },
+    {
+      "key": "field_yaww_location_short_name",
+      "label": "Short name (as on locations.html)",
+      "name": "short_name",
+      "type": "text"
+    },
+    {
       "key": "field_yaww_location_region",
       "label": "Region",
       "name": "region",
@@ -26,12 +38,6 @@
       "label": "Country",
       "name": "country",
       "type": "text"
-    },
-    {
-      "key": "field_yaww_location_intro",
-      "label": "Intro",
-      "name": "intro",
-      "type": "textarea"
     },
     {
       "key": "field_yaww_location_hero_image",
@@ -58,6 +64,145 @@
       "label": "Generic stay label (never a hotel name)",
       "name": "hotel_label",
       "type": "text"
+    },
+    {
+      "key": "field_yaww_location_eyebrow",
+      "label": "Hero eyebrow",
+      "name": "eyebrow",
+      "type": "text"
+    },
+    {
+      "key": "field_yaww_location_tagline",
+      "label": "Tagline",
+      "name": "tagline",
+      "type": "text"
+    },
+    {
+      "key": "field_yaww_location_blurb",
+      "label": "Grid blurb",
+      "name": "blurb",
+      "type": "textarea"
+    },
+    {
+      "key": "field_yaww_location_facts",
+      "label": "Hero facts",
+      "name": "facts",
+      "type": "repeater",
+      "layout": "block",
+      "button_label": "Add row",
+      "sub_fields": [
+        {
+          "key": "field_yaww_location_facts_label",
+          "label": "Label",
+          "name": "label",
+          "type": "text"
+        },
+        {
+          "key": "field_yaww_location_facts_value",
+          "label": "Value",
+          "name": "value",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "key": "field_yaww_location_intro_title",
+      "label": "Intro title (Why we go); intro paragraphs = post content",
+      "name": "intro_title",
+      "type": "text"
+    },
+    {
+      "key": "field_yaww_location_intro_image",
+      "label": "Intro photo",
+      "name": "intro_image",
+      "type": "image",
+      "return_format": "id"
+    },
+    {
+      "key": "field_yaww_location_guide",
+      "label": "Our guide",
+      "name": "guide",
+      "type": "repeater",
+      "layout": "block",
+      "button_label": "Add row",
+      "sub_fields": [
+        {
+          "key": "field_yaww_location_guide_kicker",
+          "label": "Kicker",
+          "name": "kicker",
+          "type": "text"
+        },
+        {
+          "key": "field_yaww_location_guide_title",
+          "label": "Title",
+          "name": "title",
+          "type": "text"
+        },
+        {
+          "key": "field_yaww_location_guide_text",
+          "label": "Text",
+          "name": "text",
+          "type": "textarea"
+        },
+        {
+          "key": "field_yaww_location_guide_image",
+          "label": "Photo",
+          "name": "image",
+          "type": "image",
+          "return_format": "id"
+        }
+      ]
+    },
+    {
+      "key": "field_yaww_location_know",
+      "label": "Good to know",
+      "name": "know",
+      "type": "repeater",
+      "layout": "block",
+      "button_label": "Add row",
+      "sub_fields": [
+        {
+          "key": "field_yaww_location_know_label",
+          "label": "Label",
+          "name": "label",
+          "type": "text"
+        },
+        {
+          "key": "field_yaww_location_know_value",
+          "label": "Text",
+          "name": "value",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "key": "field_yaww_location_quote_text",
+      "label": "Quote",
+      "name": "quote_text",
+      "type": "textarea"
+    },
+    {
+      "key": "field_yaww_location_quote_name",
+      "label": "Quote name",
+      "name": "quote_name",
+      "type": "text"
+    },
+    {
+      "key": "field_yaww_location_quote_source",
+      "label": "Quote source",
+      "name": "quote_source",
+      "type": "text"
+    },
+    {
+      "key": "field_yaww_location_program_retreat",
+      "label": "Program between editions (waitlist retreat)",
+      "name": "program_retreat",
+      "type": "post_object",
+      "allow_null": 1,
+      "post_type": [
+        "retreat"
+      ],
+      "return_format": "id"
     },
     {
       "key": "field_yaww_location_travel_tips",
@@ -104,5 +249,5 @@
   "label_placement": "top",
   "active": true,
   "show_in_rest": 1,
-  "modified": 1763600000
+  "modified": 1795447296
 }

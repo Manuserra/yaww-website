@@ -14,6 +14,19 @@ define( 'YAWW_URI', get_template_directory_uri() );
 require_once YAWW_DIR . '/inc/helpers.php';
 require_once YAWW_DIR . '/inc/post-types.php';
 require_once YAWW_DIR . '/inc/fields.php';
+/* Other agents' includes (BRIEF-WP ownership); each is optional so a missing file never breaks the site. */
+foreach ( array( 'redirects', 'seo', 'settings', 'forms', 'views', 'e-helpers' ) as $yaww_inc ) {
+	if ( file_exists( YAWW_DIR . '/inc/' . $yaww_inc . '.php' ) ) { require_once YAWW_DIR . '/inc/' . $yaww_inc . '.php'; }
+}
+unset( $yaww_inc );
+
+/* Imported photos keep their own file and name: no "-scaled" copy (photo-focus.css keys on names),
+   and no 1536/2048 sizes nobody uses. */
+add_filter( 'big_image_size_threshold', '__return_false' );
+add_filter( 'intermediate_image_sizes_advanced', function ( $sizes ) {
+	unset( $sizes['1536x1536'], $sizes['2048x2048'] );
+	return $sizes;
+} );
 
 add_action( 'after_setup_theme', function () {
 	add_theme_support( 'title-tag' );
@@ -36,52 +49,86 @@ add_action( 'after_setup_theme', function () {
 	add_image_size( 'yaww-journal',  1200, 750, true );   // journal hero, 16:10
 } );
 
-/* The static pages load these two families from Google Fonts. */
+/*
+ * Assets. Every static page loads, in this order:
+ *   Google Fonts, [Hugeicons], base.css, <page css...>, type.css, [rooms.css], attribution.js,
+ *   cards.css, nav.css, photo-focus.css, nav.js, [data + page scripts], Lenis
+ * (retreats/_tools/chrome.py LAYERS_CSS / LAYERS_JS). yaww_page_assets() is that table.
+ * D's views (inc/views.php: home, listing, retreat) and E's views (inc/e-helpers.php: location,
+ * people, about, journal, post, page) print their own chain at priority 20; this baseline covers
+ * what is left (contact, teach-with-us, 404, search) and the fonts everywhere.
+ */
 add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'yaww-fonts',
 		'https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap',
 		array(), null );
-	wp_enqueue_style( 'yaww-base', YAWW_URI . '/assets/css/base.css', array( 'yaww-fonts' ), yaww_asset_ver( 'css/base.css' ) );
-	wp_enqueue_style( 'yaww-lead-modal', YAWW_URI . '/assets/css/lead-modal.css', array( 'yaww-base' ), yaww_asset_ver( 'css/lead-modal.css' ) );
 
-	$page_css = yaww_page_css();
-	if ( $page_css ) {
-		wp_enqueue_style( 'yaww-page', YAWW_URI . '/assets/css/' . $page_css . '.css', array( 'yaww-base' ), yaww_asset_ver( 'css/' . $page_css . '.css' ) );
+	$a = yaww_page_assets();
+	if ( ! $a ) { return; }
+	if ( $a['icons'] ) { wp_enqueue_style( 'yaww-hugeicons', 'https://use.hugeicons.com/font/icons.css', array(), null ); }
+	$prev = array( 'yaww-fonts' );
+	foreach ( $a['css'] as $css ) {
+		$h = 'yaww-css-' . $css;
+		wp_enqueue_style( $h, YAWW_URI . '/assets/css/' . $css . '.css', $prev, yaww_asset_ver( 'css/' . $css . '.css' ) );
+		$prev = array( $h );
 	}
-
+	wp_enqueue_script( 'yaww-attribution', YAWW_URI . '/assets/js/attribution.js', array(), yaww_asset_ver( 'js/attribution.js' ), array( 'strategy' => 'defer', 'in_footer' => false ) );
+	if ( ! wp_script_is( 'yaww-nav', 'enqueued' ) && ! wp_script_is( 'yaww-nav', 'registered' ) ) {
+		// inc/views.php normally enqueues nav.js with its URL bridge; this is the fallback.
+		wp_enqueue_script( 'yaww-nav', YAWW_URI . '/assets/js/nav.js', array(), yaww_asset_ver( 'js/nav.js' ), array( 'strategy' => 'defer', 'in_footer' => false ) );
+	}
+	$prevjs = array();
+	if ( $a['data'] ) {
+		wp_register_script( 'yaww-data', false, array(), null, false );
+		wp_enqueue_script( 'yaww-data' );
+		wp_add_inline_script( 'yaww-data', yaww_data_js( $a['data'] ) );
+		$prevjs = array( 'yaww-data' );
+	}
+	foreach ( $a['js'] as $js ) {
+		$h = 'yaww-js-' . $js;
+		wp_enqueue_script( $h, YAWW_URI . '/assets/js/' . $js . '.js', $prevjs, yaww_asset_ver( 'js/' . $js . '.js' ), true );
+		$prevjs = array( $h );
+	}
+	if ( in_array( 'contact', $a['js'], true ) ) {
+		wp_add_inline_script( 'yaww-js-contact', 'window.YAWW_CONTACT = window.YAWW_CONTACT || ' . wp_json_encode( yaww_contact_config() ) . ';', 'before' );
+	}
 	wp_enqueue_script( 'yaww-lenis', 'https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js', array(), '1.1.18', true );
-	wp_enqueue_script( 'yaww-theme', YAWW_URI . '/assets/theme.js', array(), YAWW_VERSION, true );
-	wp_enqueue_script( 'yaww-lead-modal', YAWW_URI . '/assets/js/lead-modal.js', array(), yaww_asset_ver( 'js/lead-modal.js' ), true );
-
-	if ( is_singular( 'retreat' ) ) {
-		wp_enqueue_script( 'yaww-booking-bar', YAWW_URI . '/assets/js/booking-bar.js', array(), yaww_asset_ver( 'js/booking-bar.js' ), true );
-		wp_enqueue_script( 'yaww-retreat-rooms', YAWW_URI . '/assets/js/retreat-rooms.js', array( 'yaww-theme' ), yaww_asset_ver( 'js/retreat-rooms.js' ), true );
-		// retreat-rooms.js reads the globals TIERS / ROOM_VENUES; the static page defines them inline.
-		wp_add_inline_script( 'yaww-theme', yaww_rooms_js_globals( get_the_ID() ), 'before' );
-	}
-	if ( is_singular( 'post' ) ) {
-		wp_enqueue_script( 'yaww-journal-post', YAWW_URI . '/assets/js/journal-post.js', array(), yaww_asset_ver( 'js/journal-post.js' ), true );
-	}
-	if ( is_page_template( 'page-templates/contact.php' ) || is_page_template( 'page-templates/teach-with-us.php' ) ) {
-		wp_enqueue_script( 'yaww-contact', YAWW_URI . '/assets/js/contact.js', array(), yaww_asset_ver( 'js/contact.js' ), true );
-		wp_add_inline_script( 'yaww-contact', 'window.YAWW_CONTACT = ' . wp_json_encode( yaww_contact_config() ) . ';', 'before' );
-	}
 } );
 
-/** Which css/<name>.css belongs to the current view (same mapping as the static pages' <link>). */
-function yaww_page_css() {
-	if ( is_front_page() ) { return 'home'; }
-	if ( is_singular( 'retreat' ) ) { return 'retreat'; }
-	if ( is_post_type_archive( 'retreat' ) ) { return 'retreats'; }
-	if ( is_singular( 'location' ) ) { return 'location'; }
-	if ( is_post_type_archive( 'location' ) ) { return 'locations'; }
-	if ( is_singular( array( 'teacher', 'facilitator' ) ) || is_post_type_archive( 'teacher' ) || is_post_type_archive( 'facilitator' ) ) { return 'people'; }
-	if ( is_home() ) { return 'journal'; }
-	if ( is_singular( 'post' ) ) { return 'journal-post'; }
-	if ( is_page_template( 'page-templates/about.php' ) ) { return 'about'; }
-	if ( is_page_template( 'page-templates/contact.php' ) ) { return 'contact'; }
-	if ( is_page_template( 'page-templates/teach-with-us.php' ) ) { return 'teach'; }
-	return '';
+/**
+ * The static page's asset list for the current request, or null when D's / E's views own it.
+ * css = the full chain in order (base … photo-focus); data = window.YAWW_* sets; js = page scripts.
+ */
+function yaww_page_assets() {
+	$d_view = function_exists( 'yaww_view' ) && '' !== yaww_view();
+	$e_view = is_singular( array( 'location', 'teacher', 'facilitator', 'post' ) ) || is_post_type_archive( array( 'location', 'teacher', 'facilitator' ) )
+		|| is_home() || is_page_template( 'page-templates/about.php' );
+	if ( $d_view || ( $e_view && function_exists( 'yaww_e_assets' ) ) ) { return null; }
+
+	$tail = array( 'type', 'cards', 'nav', 'photo-focus' );
+	$out  = array( 'icons' => true, 'css' => array_merge( array( 'base' ), $tail ), 'data' => array(), 'js' => array() );
+	if ( is_page_template( 'page-templates/contact.php' ) ) {                     // contact.html
+		$out['css']  = array_merge( array( 'base', 'contact' ), $tail );
+		$out['data'] = array( 'locations', 'retreats' );
+		$out['js']   = array( 'contact' );
+	} elseif ( is_page_template( 'page-templates/teach-with-us.php' ) ) {         // teach-with-us.html
+		$out['css'] = array_merge( array( 'base', 'lead', 'contact', 'teach' ), $tail );
+		$out['js']  = array( 'contact' );
+	} elseif ( is_front_page() ) {                                                // index.html (fallback)
+		$out['css']  = array_merge( array( 'base', 'home', 'lead' ), $tail );
+		$out['data'] = array( 'locations', 'regions', 'teachers', 'retreats' );
+		$out['js']   = array( 'retreat-cards' );
+	} elseif ( is_singular( 'retreat' ) ) {                                       // retreatpage-*.html (fallback)
+		$out['icons'] = false;
+		$out['css']   = array( 'base', 'retreat', 'lead-modal', 'type', 'rooms', 'cards', 'nav', 'photo-focus' );
+		$out['js']    = array( 'booking-bar', 'retreat-rooms', 'lead-modal', 'hosts' );
+	} elseif ( is_post_type_archive( 'retreat' ) || is_tax( 'retreat_tier' ) ) {  // retreats.html (fallback)
+		$out['icons'] = false;
+		$out['css']   = array_merge( array( 'base', 'filters', 'retreats' ), $tail );
+		$out['data']  = array( 'locations', 'regions', 'teachers', 'retreats' );
+		$out['js']    = array( 'retreat-cards' );
+	}
+	return $out;
 }
 
 /** Cache-busting by file mtime; falls back to the theme version. */
