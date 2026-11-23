@@ -3,7 +3,7 @@
  * Retreats listing: retreats.html, verbatim. The collection tabs, the When / Destination /
  * Teacher bar, the season groups, grid/list views and the URL state are the static page's
  * own script (assets/js-theme/retreats-listing.js) over js/retreat-cards.js, fed by the
- * WordPress catalog (inc/views.php, yaww_catalog_js). The tier archive (/tier/<slug>/) is
+ * WordPress catalog (yaww_data_js, inc/helpers.php). The tier archive (/tier/<slug>/) is
  * this page with that collection picked.
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }

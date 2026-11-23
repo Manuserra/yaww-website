@@ -7,8 +7,8 @@
  * those pages run inline live in assets/js-theme/ (copied verbatim, data pulled out).
  *
  * The card components (js/retreat-cards.js), the nav (js/nav.js) and the listing read
- * window.YAWW_LOCATIONS / YAWW_TEACHERS / YAWW_RETREATS. yaww_catalog_js() writes those
- * from WordPress posts in the shape of data/*.js, so every script runs unchanged.
+ * window.YAWW_LOCATIONS / YAWW_TEACHERS / YAWW_RETREATS. yaww_data_js() (inc/helpers.php) writes
+ * those from WordPress posts in the shape of data/*.js, so every script runs unchanged.
  *
  * Loaded by functions.php (require_once) and, defensively, by the templates themselves.
  */
@@ -128,9 +128,12 @@ add_action( 'wp_enqueue_scripts', function () {
 	/* The catalog (data/*.js equivalent) on every page: nav.js reads it for its panels. */
 	wp_register_script( 'yaww-catalog', false, array(), null, false );
 	wp_enqueue_script( 'yaww-catalog' );
-	wp_add_inline_script( 'yaww-catalog', yaww_catalog_js() . "\n" . yaww_links_js() );
+	wp_add_inline_script( 'yaww-catalog', ( wp_script_is( 'yaww-data', 'enqueued' ) ? '' : yaww_data_js( array( 'locations', 'regions', 'teachers', 'retreats' ) ) ) . yaww_links_js() );
 	wp_enqueue_script( 'yaww-wp-links', yaww_theme_js_url( 'wp-links.js' ), array( 'yaww-catalog' ), yaww_theme_js_ver( 'wp-links.js' ), array( 'strategy' => 'defer', 'in_footer' => false ) );
 	wp_enqueue_script( 'yaww-nav', yaww_asset_url( 'js/nav.js' ), array( 'yaww-wp-links' ), yaww_asset_ver( 'js/nav.js' ), array( 'strategy' => 'defer', 'in_footer' => false ) );
+	/* functions.php may have registered nav.js first (its fallback): it must still run after wp-links.js. */
+	$reg = wp_scripts()->query( 'yaww-nav', 'registered' );
+	if ( $reg && ! in_array( 'yaww-wp-links', $reg->deps, true ) ) { $reg->deps[] = 'yaww-wp-links'; }
 
 	$view = yaww_view();
 	if ( ! $view ) { return; }
@@ -259,66 +262,6 @@ function yaww_retreat_record( $rid ) {
 		$rec['image2x'] = yaww_attachment_url( $img, 'yaww-card-2x' );
 	}
 	return $rec;
-}
-
-/** Normalise a Y-m-d / Ymd date (ACF returns Ymd unless the field says otherwise). */
-function yaww_ymd( $d ) {
-	$d = (string) $d;
-	if ( preg_match( '/^(\d{4})(\d{2})(\d{2})$/', $d, $m ) ) { return "$m[1]-$m[2]-$m[3]"; }
-	if ( preg_match( '~^(\d{2})/(\d{2})/(\d{4})$~', $d, $m ) ) { return "$m[3]-$m[2]-$m[1]"; }
-	return $d;
-}
-
-/** window.YAWW_LOCATIONS / YAWW_REGIONS / YAWW_TEACHERS / YAWW_RETREATS from WordPress. */
-function yaww_catalog_js() {
-	$locs = array();
-	$loc_ids = get_posts( array( 'post_type' => 'location', 'post_status' => 'publish', 'numberposts' => -1, 'orderby' => 'menu_order title', 'order' => 'ASC', 'fields' => 'ids' ) );
-	foreach ( $loc_ids as $lid ) { $locs[ $lid ] = yaww_location_record( $lid ); }
-
-	$teachers = array();
-	foreach ( get_posts( array( 'post_type' => 'teacher', 'post_status' => 'publish', 'numberposts' => -1, 'orderby' => 'menu_order title', 'order' => 'ASC', 'fields' => 'ids' ) ) as $tid ) {
-		$photo = yaww_attachment_url( get_post_thumbnail_id( $tid ), 'yaww-person' );
-		$teachers[] = array_filter( array(
-			'id'            => yaww_static_id( $tid ),
-			'name'          => get_the_title( $tid ),
-			'slug'          => yaww_static_id( $tid ),
-			'shortName'     => yaww_meta( 'short_name', $tid ) ?: null,
-			'photo'         => $photo,
-			'avatar'        => yaww_attachment_url( yaww_meta( 'avatar', $tid ), 'yaww-avatar' ) ?: $photo,
-			'pageUrl'       => get_permalink( $tid ),
-			'photoPosition' => yaww_meta( 'photo_position', $tid ) ?: null,
-			'shortBio'      => yaww_meta( 'short_bio', $tid ) ?: null,
-			'role'          => yaww_meta( 'role', $tid ) ?: null,
-			'needsContent'  => yaww_meta( 'needs_content', $tid ) ? true : null,
-		), function ( $v ) { return null !== $v; } );
-	}
-	$teachers[] = array( 'id' => 'tbd', 'name' => null, 'placeholderLabel' => 'a YAWW instructor', 'unannounced' => true );
-
-	$retreats = array();
-	foreach ( get_posts( array( 'post_type' => 'retreat', 'post_status' => 'publish', 'numberposts' => -1, 'fields' => 'ids' ) ) as $rid ) {
-		$rec = yaww_retreat_record( $rid );
-		$rec['startDate'] = yaww_ymd( $rec['startDate'] );
-		$rec['endDate']   = yaww_ymd( $rec['endDate'] );
-		if ( '' === $rec['startDate'] ) {
-			/* No dates: the program a destination runs between editions (its waitlist page). */
-			$lid = (int) yaww_meta( 'location_id', $rid );
-			if ( $lid && isset( $locs[ $lid ] ) ) {
-				$p = array( 'name' => $rec['officialName'], 'pageUrl' => $rec['pageUrl'] );
-				if ( yaww_meta( 'collection', $rid ) ) { $p['collection'] = yaww_meta( 'collection', $rid ); }
-				if ( ! empty( $rec['image'] ) ) { $p['image'] = $rec['image']; $p['image2x'] = $rec['image2x']; }
-				$locs[ $lid ]['program'] = $p;
-			}
-			continue;
-		}
-		if ( yaww_meta( 'unlisted', $rid ) ) { $rec['unlisted'] = true; }
-		$retreats[] = $rec;
-	}
-	usort( $retreats, function ( $a, $b ) { return strcmp( $a['startDate'], $b['startDate'] ); } );
-
-	return 'window.YAWW_LOCATIONS = ' . wp_json_encode( array_values( $locs ) ) . ";\n"
-		. 'window.YAWW_REGIONS = ["Europe", "The Americas", "Africa & Asia"];' . "\n"
-		. 'window.YAWW_TEACHERS = ' . wp_json_encode( $teachers ) . ";\n"
-		. 'window.YAWW_RETREATS = ' . wp_json_encode( $retreats ) . ';';
 }
 
 /* --------------------------------------------------------- retreat page -- */

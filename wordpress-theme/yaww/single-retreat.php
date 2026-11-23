@@ -22,7 +22,7 @@ $loc      = (int) yaww_meta( 'location_id' );
 $place    = $loc ? yaww_location_line( $loc ) : '';
 $status   = yaww_meta( 'status' );
 $waitlist = ( 'waitlist' === $status ) || ! yaww_meta( 'start_date' );
-$dates    = $waitlist ? 'Dates to be announced' : yaww_d_date_range( yaww_ymd( yaww_meta( 'start_date' ) ), yaww_ymd( yaww_meta( 'end_date' ) ) );
+$dates    = $waitlist ? 'Dates to be announced' : yaww_d_date_range( yaww_date_ymd( yaww_meta( 'start_date' ) ), yaww_date_ymd( yaww_meta( 'end_date' ) ) );
 $hosts    = $waitlist ? array() : yaww_d_hosts( $id );
 $who      = implode( ' & ', array_map( function ( $h ) { return $h['name']; }, array_filter( $hosts, function ( $h ) { return 'teacher' === $h['kind']; } ) ) );
 
