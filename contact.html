@@ -142,80 +142,43 @@
 
 <main id="main">
   <!-- =========================================================
-       CONTACT: a person, then the form, then the teachers.
-       The lede promises that a real person reads every message, so
-       the page shows her: Jenniferlyn (guest care, she answers) and,
-       smaller, Christina (founder). Then the direct lines and the
-       proof (since 2008, Google score, one guest's words).
-       The form's first topic is for the visitor who is not sure which
-       retreat suits them, the biggest group. Teachers each bring a
-       whole group, so they get a full-width band, not a footnote.
+       CONTACT: one column, one form, tabs for the kind of message.
+       The tabs are the site's tab component (as on retreats.html).
+       The first three set the form's topic (retreat / private-group /
+       press: hidden input "topic", read by [data-show-when] and sent
+       in the payload); the fourth shows the teachers' panel instead of
+       the form. Deep links: #private-groups (or #group,
+       #build-a-custom-retreat), #press, #teach-with-us; default and
+       #general-inquiry: A retreat. Wiring in js/contact.js.
+       Earlier versions are on the board: proposals/contact-prev/,
+       proposals/contact-people/, proposals/contact-alt/.
        Reasoning: docs/contact-strategy.md
-       Old anchors (#general-inquiry, #teach-with-us,
-       #build-a-custom-retreat, #private-groups, #press) are routed by
-       js/contact.js. The previous version is on the board:
-       proposals/contact-prev/.
        ========================================================= -->
   <div class="contact">
 
-    <div class="contact__intro">
+    <header class="contact__head">
       <p class="kicker contact__kicker">Contact</p>
       <h1 class="contact__title">We would love to hear from you</h1>
       <p class="contact__lede">Ask us anything about a retreat, plan a trip for your own group, or just say hello. Someone from our team reads every message and writes back personally.</p>
+      <p class="contact__proof">Since 2008 · <span aria-hidden="true">★</span> 4.9 on Google · 45 reviews</p>
+    </header>
 
-      <!-- Who answers. Photos: images/contact/ are crops of
-           images/team/jenniferlyn-chiemingo.jpg and images/about-founder.jpg
-           (the photos About uses). Roles as on About. -->
-      <ul class="contact__people">
-        <li class="contact__person contact__person--lead">
-          <img class="contact__person-photo" src="images/contact/jenniferlyn-chiemingo.jpg" alt="Jenniferlyn Chiemingo" width="240" height="300">
-          <div class="contact__person-text">
-            <p class="contact__person-role">Guest care</p>
-            <p class="contact__person-name">Jenniferlyn Chiemingo</p>
-            <p class="contact__person-line">Writes back within 24 hours.</p>
-          </div>
-        </li>
-        <li class="contact__person">
-          <img class="contact__person-photo" src="images/contact/christina-thomas.jpg" alt="Christina Thomas" width="240" height="300" loading="lazy">
-          <div class="contact__person-text">
-            <p class="contact__person-role">Founder</p>
-            <p class="contact__person-name">Christina Thomas</p>
-          </div>
-        </li>
-      </ul>
-
-      <ul class="contact__direct">
-        <li><span class="contact__direct-k">Email</span><a href="#" class="is-placeholder" data-contact-email>[missing data: public email address]</a></li>
-        <li><span class="contact__direct-k">Phone · Mexico</span><a href="tel:+5219842026072">+52 1 984 202 6072</a></li>
-      </ul>
-
-      <!-- Trust: figures as on the home hero; the quote is a real Google
-           review (about.html, docs/testimonials-by-retreat.md). -->
-      <figure class="contact__trust">
-        <ul class="contact__proof">
-          <li>Since 2008</li>
-          <li><span class="contact__stars" aria-hidden="true">★★★★★</span> 4.9 on Google · 45 reviews</li>
-        </ul>
-        <blockquote class="contact__quote">&ldquo;Christina and her crew are magic travel masters. I would think of something and it would appear.&rdquo;</blockquote>
-        <figcaption class="contact__quote-by"><span class="contact__quote-name">Jessica S.</span><span class="contact__quote-where">Google review</span></figcaption>
-      </figure>
+    <div class="contact__tabs-wrap">
+      <div class="tabs contact__tabs" role="tablist" aria-label="What is it about?" data-contact-tabs>
+        <button class="tabs__item is-active" type="button" role="tab" id="tab-retreat" data-contact-tab="retreat" aria-controls="form" aria-selected="true" tabindex="0">A retreat</button>
+        <button class="tabs__item" type="button" role="tab" id="tab-private-group" data-contact-tab="private-group" aria-controls="form" aria-selected="false" tabindex="-1">My group</button>
+        <button class="tabs__item" type="button" role="tab" id="tab-press" data-contact-tab="press" aria-controls="form" aria-selected="false" tabindex="-1">Press &amp; partners</button>
+        <button class="tabs__item" type="button" role="tab" id="tab-teach" data-contact-tab="teach" aria-controls="teach" aria-selected="false" tabindex="-1">Teach with us</button>
+        <span class="tabs__indicator" aria-hidden="true"></span>
+      </div>
     </div>
 
-    <section class="contact__main" id="form" aria-labelledby="contact-form-title" data-yform-wrap>
-      <h2 class="contact__form-title" id="contact-form-title">Send us a message</h2>
-      <p class="contact__form-sub">A few lines is plenty. We will take it from there.</p>
-
+    <section class="contact__main" id="form" role="tabpanel" aria-labelledby="tab-retreat" tabindex="-1" data-yform-wrap>
       <form class="yf" data-yform="contact" data-attribution action="" method="post" novalidate>
 
-        <fieldset class="yf__field" data-field="topic" data-required data-error="Pick the one closest to your question.">
-          <legend class="yf__legend">What is it about?</legend>
-          <div class="yf__chips">
-            <label class="yf__chip"><input type="radio" name="topic" value="retreat" checked aria-describedby="topic-error"><span>Help me choose a retreat</span></label>
-            <label class="yf__chip"><input type="radio" name="topic" value="private-group" aria-describedby="topic-error"><span>A trip for my group</span></label>
-            <label class="yf__chip"><input type="radio" name="topic" value="press" aria-describedby="topic-error"><span>Press &amp; partnerships</span></label>
-          </div>
-          <p class="yf__error" id="topic-error" hidden></p>
-        </fieldset>
+        <!-- The topic is chosen with the tabs above; this carries it in the
+             payload and drives [data-show-when]. -->
+        <input type="hidden" name="topic" value="retreat" data-topic-input>
 
         <!-- topic = retreat -->
         <div class="yf__field" data-field="retreat" data-show-when="topic=retreat">
@@ -299,30 +262,21 @@
         <p>In the meantime, have a look at what is coming up.</p>
         <a class="btn btn--secondary" href="retreats.html">See upcoming retreats</a>
       </div>
-      <div class="yf-done" data-yform-done tabindex="-1" role="status" hidden>
-        <p class="yf-done__title">Thank you, <span data-yform-name></span>.</p>
-        <p>Jenniferlyn will write back to <strong data-yform-email></strong> within 24 hours.</p>
-        <p>In the meantime, have a look at what is coming up.</p>
-        <a class="btn btn--secondary" href="retreats.html">See upcoming retreats</a>
-      </div>
     </section>
 
-  </div>
+    <section class="contact__teach" id="teach" role="tabpanel" aria-labelledby="tab-teach" tabindex="-1" hidden>
+      <p class="kicker contact__teach-kicker">For yoga teachers</p>
+      <h2 class="contact__teach-title">Lead a retreat with us</h2>
+      <p class="contact__teach-text">How it works, what we handle and how to apply.</p>
+      <a class="btn btn--primary" href="teach-with-us.html">Teach with us</a>
+    </section>
 
-  <!-- Teachers: each one brings a whole group, so a full-width band
-       with a real button, not a line in the margin. -->
-  <section class="contact-teach" aria-labelledby="contact-teach-title">
-    <div class="contact-teach__inner">
-      <div class="contact-teach__head">
-        <p class="kicker contact-teach__kicker">For yoga teachers</p>
-        <h2 class="section-title contact-teach__title" id="contact-teach-title">Lead a retreat with us</h2>
-      </div>
-      <div class="contact-teach__body">
-        <p class="contact-teach__text">How it works, what we handle and how to apply.</p>
-        <a class="btn btn--primary" href="teach-with-us.html">Teach with us</a>
-      </div>
-    </div>
-  </section>
+    <p class="contact__direct">
+      <span class="contact__direct-item"><span class="contact__direct-k">Phone · Mexico</span> <a href="tel:+5219842026072">+52 1 984 202 6072</a></span>
+      <span class="contact__direct-item"><span class="contact__direct-k">Email</span> <a href="#" class="is-placeholder" data-contact-email>[missing data: public email address]</a></span>
+    </p>
+
+  </div>
 </main>
 
 

@@ -197,27 +197,98 @@
     });
   }
 
-  /* --- contact.html: old anchors and topic links ---------------------- */
-  // The old page had three tabs at #general-inquiry, #teach-with-us and
-  // #build-a-custom-retreat, and other pages' menus still point there.
-  // Teachers go to their own page; the other two pick the form's topic.
-  function routeHash() {
-    var h = location.hash.replace("#", "");
-    if (!h) return;
-    if (h === "teach-with-us") { location.replace("teach-with-us.html"); return; }
-    var topic = { "build-a-custom-retreat": "private-group", "private-groups": "private-group",
-                  "general-inquiry": "retreat", "ask": "retreat", "press": "press" }[h];
-    if (!topic) return;
-    pickTopic(topic);
+  /* --- contact.html: the topic tabs ---------------------------------- */
+  // The site's tab component (.tabs / .tabs__item / .tabs__indicator, as
+  // on retreats.html). "A retreat", "My group" and "Press & partners" set
+  // the form's hidden topic and re-run the conditional rows; "Teach with
+  // us" swaps the form for the teachers' panel. ARIA tabs pattern: roving
+  // tabindex, arrows / Home / End move and select.
+  // Deep links, old and new: #general-inquiry and #ask -> A retreat;
+  // #private-groups, #group, #build-a-custom-retreat -> My group;
+  // #press -> Press; #teach-with-us -> Teach with us.
+  var HASH_TO_TAB = { "general-inquiry": "retreat", "ask": "retreat", "form": "retreat",
+                      "private-groups": "private-group", "group": "private-group",
+                      "build-a-custom-retreat": "private-group",
+                      "press": "press", "teach-with-us": "teach" };
+  var TAB_TO_HASH = { "retreat": "", "private-group": "private-groups", "press": "press", "teach": "teach-with-us" };
+  var REDUCE = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function tabBar() { return document.querySelector("[data-contact-tabs]"); }
+
+  function moveIndicator(bar, animate) {
+    var tab = bar.querySelector(".tabs__item.is-active");
+    var ind = bar.querySelector(".tabs__indicator");
+    if (!tab || !ind || !tab.offsetWidth) return;
+    bar.classList.toggle("is-sliding-ready", !!animate && !REDUCE);
+    ind.style.width = tab.offsetWidth + "px";
+    ind.style.transform = "translate(" + tab.offsetLeft + "px, " + (tab.offsetTop + tab.offsetHeight - 1) + "px)";
   }
 
-  function pickTopic(topic) {
-    var form = document.querySelector('[data-yform="contact"]');
-    if (!form) return;
-    var radio = form.querySelector('input[name="topic"][value="' + topic + '"]');
-    if (!radio) return;
-    radio.checked = true;
-    syncConditions(form);
+  function selectTab(key, opts) {
+    opts = opts || {};
+    var bar = tabBar();
+    if (!bar) return;
+    var tabs = bar.querySelectorAll("[data-contact-tab]");
+    var btn = bar.querySelector('[data-contact-tab="' + key + '"]');
+    if (!btn) return;
+    Array.prototype.forEach.call(tabs, function (t) {
+      var on = t === btn;
+      t.classList.toggle("is-active", on);
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      t.tabIndex = on ? 0 : -1;
+    });
+    var formPanel = document.getElementById("form");
+    var teachPanel = document.getElementById("teach");
+    var teach = key === "teach";
+    if (formPanel) {
+      formPanel.hidden = teach;
+      formPanel.setAttribute("aria-labelledby", btn.id);
+    }
+    if (teachPanel) teachPanel.hidden = !teach;
+    if (!teach) {
+      var form = document.querySelector('[data-yform="contact"]');
+      var input = form && form.querySelector("[data-topic-input]");
+      if (input) { input.value = key; syncConditions(form); }
+    }
+    moveIndicator(bar, opts.animate);
+    // Keep the chosen tab in view when the bar scrolls (phones).
+    if (bar.scrollWidth > bar.clientWidth) {
+      bar.scrollTo({ left: btn.offsetLeft - (bar.clientWidth - btn.offsetWidth) / 2, behavior: REDUCE || !opts.animate ? "auto" : "smooth" });
+    }
+    if (opts.focus) btn.focus();
+    if (opts.updateHash && window.history && history.replaceState) {
+      var h = TAB_TO_HASH[key];
+      history.replaceState(null, "", location.pathname + location.search + (h ? "#" + h : ""));
+    }
+  }
+
+  function initTabs() {
+    var bar = tabBar();
+    if (!bar) return false;
+    var tabs = Array.prototype.slice.call(bar.querySelectorAll("[data-contact-tab]"));
+    bar.addEventListener("click", function (e) {
+      var t = e.target.closest("[data-contact-tab]");
+      if (t) selectTab(t.getAttribute("data-contact-tab"), { animate: true, updateHash: true });
+    });
+    bar.addEventListener("keydown", function (e) {
+      var i = tabs.indexOf(document.activeElement);
+      if (i < 0) return;
+      var next = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[e.key];
+      if (next === undefined) return;
+      e.preventDefault();
+      next = (next + tabs.length) % tabs.length;
+      selectTab(tabs[next].getAttribute("data-contact-tab"), { animate: true, focus: true, updateHash: true });
+    });
+    var place = function () { moveIndicator(bar, false); };
+    window.addEventListener("resize", place);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(place);
+    return true;
+  }
+
+  function routeHash() {
+    var h = location.hash.replace("#", "");
+    if (!tabBar()) return;
+    selectTab(HASH_TO_TAB[h] || "retreat");
   }
 
   function init() {
@@ -233,14 +304,10 @@
       });
     }
 
-    // Links like <a href="#form" data-pick-topic="private-group">.
-    document.addEventListener("click", function (e) {
-      var a = e.target.closest("[data-pick-topic]");
-      if (a) pickTopic(a.getAttribute("data-pick-topic"));
-    });
-
-    routeHash();
-    window.addEventListener("hashchange", routeHash);
+    if (initTabs()) {
+      routeHash();
+      window.addEventListener("hashchange", routeHash);
+    }
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
