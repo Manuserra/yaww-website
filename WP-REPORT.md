@@ -49,3 +49,30 @@
 - **Verificado** en http://localwpcom.local con mi pestaña: contact (retreat y grupo), teach (pestaña de Contact y página), pop-up en /retreats/turkey/, waitlist en /locations/france/, newsletter: los seis guardados, los seis emails en Mailpit con reply-to correcto, Slack "skipped", y con un webhook roto Slack falla sin afectar al resto. Sin avisos PHP de estos archivos. Leads de prueba borrados.
 - **Preguntas abiertas**: (1) URL del webhook de Slack y canal; (2) WeTravel: ¿hay una vía para crear leads/contactos (API privada, Zapier, CRM aparte)? Hoy solo queda el hook; (3) qué emails reciben los formularios (¿Jenniferlyn?) y qué email público va en Contact; (4) texto "Thank you. You are on the list." del newsletter es nuevo (el estático no tenía estado de éxito): revisar.
 - **A, ronda 2 (pedido de E):** journal con `menu_order` = orden de la grilla de journal.html (1–34); campos `card_image`, `card_image_2x`, `hero_image_2x`, `author_photo_2x` y `retreat_image_2x` (adjuntos propios); `placeholder` en las filas del guide (de `ph`). Import re-ejecutado (84 imágenes nuevas), debug.log limpio. Policies sin tocar.
+
+## QA · Paridad y correcciones
+
+- **Método**: pestaña propia; cada página estática y su URL de WordPress en un iframe a 1440 y 390; firma por página (alto del documento, títulos h1–h4, secciones de `<main>`, cada `<img>` por nombre de archivo y si carga, destinos de links, errores de consola, desborde horizontal). Los paneles del menú se excluyen de la firma (se llenan en diferido en los dos sitios; comprobado aparte que se llenan en WP). Además `<title>` y `<meta description>` de las 101 páginas, crawl de 113 URLs con debug.log vacío, 150 redirecciones y los 5 formularios.
+- **Resultado**: 103 pares (101 páginas + 2 `?tier=`) × 2 anchos = **206 firmas, 206 iguales** (primera pasada: 81 de 170 iguales). 101/101 títulos y 101/101 descripciones iguales al estático.
+
+| Tipo | Páginas | Estado |
+|---|---|---|
+| Home, Retreats (+2 `?tier=`) | 4 | igual |
+| Retreats con fecha + waitlist | 23 | igual (títulos de 9 corregidos; foto repetida de Thailand) |
+| Locations + 14 location | 15 | igual (panel de menú, descripciones) |
+| Teachers + 15 teacher | 16 | igual |
+| Facilitators + 6 facilitator | 7 | igual |
+| About, Contact, Teach with us | 3 | igual (fotos del equipo en About; orden del menú en Contact) |
+| Journal + 34 posts | 35 | igual (`<main>` de Journal, bio del autor en párrafos, emoji) |
+| 404 | 1 | sin par estático; título "Page not found", sin avisos |
+
+- **Corregido**: títulos únicos de retreats del mismo mes (ACF guarda fechas `Ymd`); nombre corto de la location en títulos ("Oaxaca, Mexico…"), títulos de waitlist y 2 del journal como `seo.py`; título del 404; descripciones = las del estático (campo "Search description" nuevo en locations, personas y journal, lo llena el import `only=seo`); `journal/<id>.html` redirige al post con slug vivo (antes caía en un archivo de imagen) y `yaww_url_map()` lo conoce; `retreat-cards.js` antes de `nav.js` en location/personas/post (panel "Retreats" del menú); Contact imprime `YAWW_REGIONS` (orden del panel Locations); `<main class="main main-journal">` como journal.html; galerías de estadías/extras/habitaciones leen el valor crudo (ACF borraba fotos repetidas); `sync-assets.sh` copia las imágenes que piden las plantillas (`images/team/` de About daba 404); sin script de emoji de WP; bio del autor un párrafo por línea; facilitator no listado que también es teacher (Jenniferlyn) 301 a su página de teacher, como `team-jenniferlyn-chiemingo.html`.
+- **Admin (ACF)**: todos los campos con etiqueta y ayuda en inglés llano; retreat en pestañas (Basics, Photos, What's included, Itinerary, Stay & rooms, Extras, Gallery & guests, Travel info, SEO); location, teacher, facilitator y journal agrupados igual; obligatorios: retreat Location + Booking status, location Display name + Region (todos los posts ya los tienen); opciones de status/collection legibles (valores iguales); fechas "j F Y" en el editor. Fuente: `inc/fields-spec.json` → `bin/gen-acf.py` → `bin/acf-sync.php` (carga los grupos en la base, sin clic en wp-admin; había un grupo Facilitator duplicado, borrado).
+- **Comprobado**: debug.log vacío tras el crawl completo y los envíos (el aviso de `seo.php` ~70 ya no sale); ningún nombre de hotel salvo Utopia en el HTML (solo etiquetas genéricas como "Turf guesthouse on a horse farm", igual que el estático); los 5 formularios por el endpoint (contact, lead, teach, waitlist, newsletter): guardados, email a Mailpit, Slack "skipped", leads de prueba borrados; 150 URLs viejas (las 138 del mapa + adjuntos + `.html`) terminan en 200 en páginas reales; el `<img>` sin src del retreat es el del lightbox, igual que en el estático (no pide nada).
+- **Queda (y por qué)**:
+  - Título de la pestaña en teacher, facilitator y journal: el estático lo cambia por JS ("YAWW · …", "… · Teacher · YAWW"); WP deja el título SEO del `<head>` (el mismo que el estático en su HTML). Decisión: se deja así.
+  - Footer: en el estático casi todos los links son `#`; WP los apunta a páginas reales (tiers, locations, categorías, Policies). Mismo texto; "Mexico" y "Spain" van a `/locations/` (no hay una página por país).
+  - `/retreats/?tier=…` comparte título con `/retreats/` (misma canonical): correcto.
+  - Policies: `[missing data: page content]` (falta el texto; preguntas de B).
+  - `/team-jenniferlyn-chiemingo.html` llega en 2 saltos (301 → facilitator → teacher).
+  - Pendientes de otros: webhook de Slack, API de WeTravel, emails destino.
