@@ -93,7 +93,8 @@ window.YAWW_PROPOSALS = [
     { label: "Retreats · Width switch", url: "retreats-wide/retreats.html" }
   ]},
   { id: "contact-alt", title: "Contact alternative", options: [
-    { label: "New · Jenniferlyn, Help me choose, teachers band", url: "../contact.html", chosen: true },
+    { label: "Now · one column, site tabs (A retreat / My group / Press / Teach with us)", url: "../contact.html", chosen: true },
+    { label: "Before · two columns with Jenniferlyn and the teachers band", url: "contact-people/index.html" },
     { label: "Previous (trust block, quiet teachers link)", url: "contact-prev/index.html" },
     { label: "Alternative · one column, letter", url: "contact-alt/index.html" }
   ]},
