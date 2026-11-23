@@ -9,12 +9,21 @@ require_once get_template_directory() . '/inc/views.php';
 
 /* The section the current page belongs to: its top nav link gets aria-current="page". */
 $yaww_section = '';
-if ( is_post_type_archive( 'retreat' ) || is_tax( 'retreat_tier' ) ) { $yaww_section = 'retreats'; }
-elseif ( is_post_type_archive( 'location' ) ) { $yaww_section = 'locations'; }
-elseif ( is_page( 'about' ) ) { $yaww_section = 'about'; }
-elseif ( is_home() && ! is_front_page() ) { $yaww_section = 'journal'; }
-elseif ( is_page( 'contact' ) ) { $yaww_section = 'contact'; }
-$yaww_cur = function ( $key ) use ( $yaww_section ) { return $key === $yaww_section ? ' aria-current="page"' : ''; };
+/* Same sections js/nav.js derives from the static file names (sectionOf). Only the listing itself
+   carries aria-current="page" in the static markup; the others are marked by wp-links.js. */
+$yaww_aria = is_post_type_archive( 'retreat' ) || is_tax( 'retreat_tier' );
+if ( $yaww_aria || is_singular( 'retreat' ) ) { $yaww_section = 'retreats'; }
+elseif ( is_post_type_archive( 'location' ) || is_singular( 'location' ) ) { $yaww_section = 'locations'; }
+elseif ( is_page( 'about' ) || is_post_type_archive( array( 'teacher', 'facilitator' ) ) || is_singular( array( 'teacher', 'facilitator' ) ) ) { $yaww_section = 'about'; }
+elseif ( ( is_home() && ! is_front_page() ) || is_singular( 'post' ) || is_category() ) { $yaww_section = 'journal'; }
+elseif ( is_page( array( 'contact', 'teach-with-us' ) ) ) { $yaww_section = 'contact'; }
+/* aria-current as the static headers have it (every section page but the built retreat pages);
+   data-current always (read by wp-links.js, which marks the section the way nav.js would). */
+$yaww_index = ! is_singular( 'retreat' );   // the built retreat pages carry no aria-current
+$yaww_cur = function ( $key ) use ( $yaww_section, $yaww_index ) {
+	if ( $key !== $yaww_section ) { return ''; }
+	return $yaww_index ? ' aria-current="page" data-current' : ' data-current';
+};
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
 <head>

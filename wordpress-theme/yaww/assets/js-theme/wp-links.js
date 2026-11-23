@@ -61,7 +61,7 @@
       if (!a) return;
       var stat = REV[norm(a.getAttribute("href"))];
       if (!stat) return;
-      tops.push({ a: a, href: a.getAttribute("href"), cur: a.getAttribute("aria-current") === "page" });
+      tops.push({ a: a, href: a.getAttribute("href"), cur: a.hasAttribute("data-current") });
       a.setAttribute("href", stat);
     });
   }
