@@ -326,3 +326,41 @@ function yaww_e_journal_posts( $exclude = 0, $limit = -1, $order = 'listing' ) {
 		'suppress_filters' => false,
 	) );
 }
+
+/**
+ * A journal post's body in journal-post.js bodyHTML() markup, from the imported blocks:
+ * a group with class post__text => <div class="post__text"><p>…</p></div>; an image => <figure class="post__figure"><img></figure>.
+ * Anything else (posts written later in the editor) goes through the usual block rendering.
+ */
+function yaww_e_journal_body( $post_id ) {
+	$raw = (string) get_post_field( 'post_content', $post_id );
+	if ( ! has_blocks( $raw ) ) {
+		return '<div class="post__text">' . apply_filters( 'the_content', $raw ) . '</div>';
+	}
+	$out = '';
+	foreach ( parse_blocks( $raw ) as $b ) {
+		$cls = isset( $b['attrs']['className'] ) ? $b['attrs']['className'] : '';
+		if ( 'core/group' === $b['blockName'] && false !== strpos( $cls, 'post__text' ) ) {
+			$out .= '<div class="post__text">';
+			foreach ( $b['innerBlocks'] as $ib ) {
+				if ( preg_match( '#<p[^>]*>(.*?)</p>#s', $ib['innerHTML'], $m ) ) { $out .= '<p>' . wp_kses_post( trim( $m[1] ) ) . '</p>'; }
+				elseif ( trim( $ib['innerHTML'] ) ) { $out .= render_block( $ib ); }
+			}
+			$out .= '</div>';
+		} elseif ( 'core/image' === $b['blockName'] && ! empty( $b['attrs']['id'] ) ) {
+			$src = yaww_e_img_src( (int) $b['attrs']['id'], 'full' );
+			if ( $src ) { $out .= '<figure class="post__figure"><img src="' . esc_url( $src ) . '" alt="" loading="lazy" decoding="async"></figure>'; }
+		} elseif ( $b['blockName'] ) {
+			$out .= render_block( $b );
+		}
+	}
+	return $out;
+}
+
+/** A post's category names as journal.js lists them: A to Z, the umbrella "Journal" included. */
+function yaww_e_post_cat_names( $post_id ) {
+	$n = array();
+	foreach ( get_the_category( $post_id ) as $c ) { if ( 'uncategorized' !== $c->slug ) { $n[] = $c->name; } }
+	sort( $n, SORT_STRING );
+	return $n;
+}

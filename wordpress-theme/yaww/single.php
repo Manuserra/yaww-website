@@ -17,11 +17,8 @@ while ( have_posts() ) : the_post();
 	$this_post    = get_the_ID();
 	$title = get_the_title( $this_post );
 
-	// Categories as the data lists them: the umbrella "Journal" first, then the topics.
-	$all  = get_the_category( $this_post );
-	$cats = array();
-	foreach ( $all as $c ) { if ( 'journal' === $c->slug ) { $cats[] = $c->name; } }
-	foreach ( yaww_e_post_topics( $this_post ) as $c ) { $cats[] = $c->name; }
+	// Categories as data/journal.js lists them: A to Z, "Journal" included.
+	$cats = yaww_e_post_cat_names( $this_post );
 	$cats_html = $cats ? '<div class="post__cats">' . implode( '', array_map( function ( $n ) { return '<span>' . esc_html( $n ) . '</span>'; }, $cats ) ) . '</div>' : '';
 
 	/* Image with an optional retina twin (journal-post.js img()). */
@@ -31,11 +28,7 @@ while ( have_posts() ) : the_post();
 		return yaww_e_img( $id1, 'full', array( 'srcset' => yaww_e_srcset( $id1, $id2 ), 'alt' => $alt, 'fetchpriority' => $eager ? 'high' : null, 'loading' => $eager ? null : 'lazy', 'decoding' => 'async' ) );
 	};
 
-	// Body: imported as journal-post.js markup goes out as is; anything else gets the usual filters in one text block.
-	$raw  = (string) get_post_field( 'post_content', $this_post );
-	$body = ( false !== strpos( $raw, 'post__text' ) || false !== strpos( $raw, 'post__figure' ) )
-		? do_shortcode( $raw )
-		: '<div class="post__text">' . apply_filters( 'the_content', $raw ) . '</div>';
+	$body = yaww_e_journal_body( $this_post );
 	?>
   <article class="post" data-journal-post="<?php echo esc_attr( get_post_field( 'post_name', $this_post ) ); ?>"><div class="post__head"><h1 class="post__title"><?php echo esc_html( $title ); ?></h1><?php echo $cats_html; // phpcs:ignore ?><?php $dl = yaww_meta( 'date_label', $this_post ); if ( $dl ) : ?><p class="post__date"><time datetime="<?php echo esc_attr( get_the_date( 'Y-m-d', $this_post ) ); ?>"><?php echo esc_html( $dl ); ?></time></p><?php endif; ?></div><div class="post__hero"><?php echo $img( get_post_thumbnail_id( $this_post ), yaww_meta( 'hero_image_2x', $this_post ), $title, true ); // phpcs:ignore ?></div><div class="post__body"><?php echo $body; // phpcs:ignore ?></div><?php
 
@@ -79,9 +72,7 @@ while ( have_posts() ) : the_post();
 	if ( $others ) {
 		echo '<section class="post-related"><h2 class="post-related__head">More from the journal</h2><div class="post-related__grid">';
 		foreach ( $others as $oid ) {
-			$oc = array();
-			foreach ( get_the_category( $oid ) as $c ) { if ( 'journal' === $c->slug ) { $oc[] = $c->name; } }
-			foreach ( yaww_e_post_topics( $oid ) as $c ) { $oc[] = $c->name; }
+			$oc = yaww_e_post_cat_names( $oid );
 			$oe = has_excerpt( $oid ) ? get_post_field( 'post_excerpt', $oid ) : '';
 			echo '<a class="post-related__item" href="' . esc_url( get_permalink( $oid ) ) . '"><div class="post-related__figure">'
 				. $img( get_post_thumbnail_id( $oid ), yaww_meta( 'hero_image_2x', $oid ), '' ) . '</div>' // phpcs:ignore
