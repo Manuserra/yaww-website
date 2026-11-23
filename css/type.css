@@ -501,7 +501,7 @@ body { font-kerning: normal; font-variant-ligatures: common-ligatures; }
    h1 range); section titles → the Regular h2 (24 → 30), like
    "Where we're going next"; card and step titles → Regular at the
    FAQ / retreat-card size. */
-.contact__title, .profile__name, .post__title {
+.profile__name, .post__title {
   font-weight: 400;
   letter-spacing: -0.015em;
   line-height: 1.1;

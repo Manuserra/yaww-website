@@ -254,32 +254,27 @@ select.yf__input {
   flex-direction: column;
   align-items: center;
 }
-.contact__head { display: flex; flex-direction: column; align-items: center; gap: 16px; max-width: 640px; text-align: center; }
-.kicker.contact__kicker { color: var(--stone-600); }
+.contact__head { display: flex; flex-direction: column; align-items: center; gap: 16px; max-width: 680px; text-align: center; }
+/* Same hierarchy as the "All Retreats" intro on /retreats: section
+   title (Regular 24 → 30) and a 16/28 lede in the secondary blue. */
 .contact__title {
   margin: 0;
   font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
-  font-size: var(--tx-h1, 44px);
-  line-height: 1.1;
-  letter-spacing: -0.015em;
+  font-size: var(--tx-h2, 30px);
+  line-height: 1.14;
+  letter-spacing: -0.012em;
   color: var(--sea-blue);
   text-align: center;
   text-wrap: balance;
 }
 .contact__lede {
-  margin: 4px 0 0;
-  font-size: var(--tx-lede, 17px); line-height: 1.6; letter-spacing: 0.32px;
-  color: var(--sea-blue);
+  margin: 0;
+  max-width: 680px;
+  font-size: 16px; line-height: 28px; letter-spacing: 0.32px;
+  color: var(--sea-blue-300);
   text-wrap: pretty;
 }
-/* Proof: one line, eyebrow voice, never a block. */
-.contact__proof {
-  margin: 4px 0 0;
-  font-weight: 600; font-size: 13px; line-height: 20px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--stone-600);
-}
-
 /* Tabs: the site's component (copied from css/retreats.css, which is
    not loaded here; the hover wash comes from css/base.css). Four equal
    slots on desktop; on a phone the row scrolls sideways, never wraps. */
