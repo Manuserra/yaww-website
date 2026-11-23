@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Council · Contact</title>
+<style>
+  :root { --ink:#1f2933; --muted:#5b6670; --line:#e3e6e8; --bg:#fff; --soft:#f6f7f8; --agree:#2f7d5b; --clash:#b4552d; --accent:#475764; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  .wrap { max-width:860px; margin:0 auto; padding:40px 20px 64px; }
+  h1 { font-size:26px; line-height:1.25; margin:0 0 6px; }
+  .q { color:var(--muted); margin:0 0 28px; }
+  h2 { font-size:18px; margin:32px 0 10px; }
+  .verdict { border:1px solid var(--line); border-left:4px solid var(--accent); padding:20px 24px; background:var(--soft); }
+  .verdict h2:first-child { margin-top:0; }
+  .grid { display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); gap:8px; font-size:13px; }
+  .grid div { border:1px solid var(--line); padding:10px; }
+  .grid b { display:block; font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-bottom:4px; }
+  .y { color:var(--agree); } .n { color:var(--clash); }
+  details { border:1px solid var(--line); padding:10px 14px; margin:8px 0; }
+  summary { cursor:pointer; font-weight:600; }
+  footer { margin-top:40px; color:var(--muted); font-size:13px; }
+  @media (max-width:700px) { .grid { grid-template-columns:1fr 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Council · página de Contact</h1>
+  <p class="q">"Sigo sin estar convencido con la página contact, es re importante, no sé en qué estoy fallando."</p>
+
+  <div class="verdict">
+    <h2>Dónde coincide el consejo</h2>
+    <p>Falta una persona. La página dice "alguien lee cada mensaje" y no muestra a nadie: sin foto, sin nombre, con el email vacío. Para una mujer de 40–65 que va a gastar 3.000 USD sola, eso es lo que falla. Los cinco lo dijeron por su cuenta.</p>
+    <h2>Dónde choca</h2>
+    <p>Formulario mínimo (sin chips) contra ruteo. Gana un ruteo suave: el primer chip, elegido por defecto, es "Help me choose a retreat", el idioma de quien todavía no sabe.</p>
+    <h2>Lo que vio la revisión cruzada</h2>
+    <p>El pop-up de cada retiro ya responde las preguntas sobre un retiro concreto; accesibilidad para 40–65; qué pasa después de enviar; no inventar la voz de Jenniferlyn en primera persona.</p>
+    <h2>Recomendación</h2>
+    <p>Dos columnas. Izquierda: título, Jenniferlyn (foto, nombre, guest care, "Writes back within 24 hours") y Christina más chica, líneas directas y la cita. Derecha: formulario con "Help me choose a retreat" por defecto y una línea de qué pasa después. Abajo, una banda ancha para teachers con botón.</p>
+    <h2>Lo primero</h2>
+    <p>Conseguir el email público real y confirmar si el teléfono atiende WhatsApp.</p>
+  </div>
+
+  <h2>Posiciones</h2>
+  <div class="grid">
+    <div><b>Contrarian</b><span class="y">Cara y nombre</span><br><span class="y">Banda teachers</span><br><span class="n">Recortar campos</span></div>
+    <div><b>First principles</b><span class="y">Cara y nombre</span><br><span class="y">"Help me choose"</span><br><span class="y">Banda teachers</span></div>
+    <div><b>Expansionist</b><span class="y">Cara y voz</span><br><span class="n">3 formularios</span><br><span class="y">Teachers como pipeline</span></div>
+    <div><b>Outsider</b><span class="y">Cara y nombre</span><br><span class="n">Sin chips</span><br><span class="n">Teachers al footer</span></div>
+    <div><b>Executor</b><span class="y">Cara y nombre</span><br><span class="y">Una columna</span><br><span class="y">"Not sure" primero</span></div>
+  </div>
+
+  <h2>Detalle</h2>
+  <details><summary>Contrarian</summary><p>Hace trabajar al visitante y no muestra a nadie. El email vacío es un bug. Los teachers son un agregado. "No sé cuál retiro" no tiene camino. Los ya reservados no tienen lugar.</p></details>
+  <details><summary>First principles</summary><p>La pregunta no es de layout: es qué necesita una mujer nerviosa, sola, para apretar Send. Jenniferlyn con la promesa de 24 h, "Help me choose" por defecto, banda ancha para teachers. Mayor palanca: una cara, un nombre, un email real.</p></details>
+  <details><summary>Expansionist</summary><p>Conversación de venta, no formulario. Tres puertas grandes con su propio formulario; teachers como pipeline.</p></details>
+  <details><summary>Outsider</summary><p>"We would love to hear from you" no dice nada; sin caras; "+52 1" desconcierta; no sé qué pasa después. "Questions before you book? Ask Jenniferlyn."</p></details>
+  <details><summary>Executor</summary><p>Fotos que ya existen, una columna, "Not sure which retreat" y "Already booked" como opciones; se hace con un HTML y un CSS.</p></details>
+  <details><summary>Revisión cruzada</summary><p>Más sólida: First principles (Contrarian segunda). Expansionist sobre-construye; Outsider recorta lo que el usuario pidió. Nadie vio: el pop-up de cada retiro, accesibilidad, qué pasa después de enviar, spam, copy inventado.</p></details>
+
+  <footer>Council · 2026-11-23 · Contact de Yoga Adventures Worldwide · transcripción: council-transcript-2026-11-23-contact.md</footer>
+</div>
+</body>
+</html>

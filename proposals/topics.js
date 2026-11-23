@@ -93,8 +93,9 @@ window.YAWW_PROPOSALS = [
     { label: "Retreats · Width switch", url: "retreats-wide/retreats.html" }
   ]},
   { id: "contact-alt", title: "Contact alternative", options: [
-    { label: "Implemented · new contact", url: "../contact.html", chosen: true },
-    { label: "Alternative layout", url: "contact-alt/index.html" }
+    { label: "New · Jenniferlyn, Help me choose, teachers band", url: "../contact.html", chosen: true },
+    { label: "Previous (trust block, quiet teachers link)", url: "contact-prev/index.html" },
+    { label: "Alternative · one column, letter", url: "contact-alt/index.html" }
   ]},
   { id: "renata-photo", title: "Renata photo", options: [
     { label: "New photo and alternates", url: "renata/index.html", chosen: true }
