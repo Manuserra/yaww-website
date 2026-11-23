@@ -209,6 +209,9 @@ function yaww_seo_context() {
 		$ctx['image'] = yaww_seo_post_image( $id );
 		$ctx['canonical'] = get_permalink( $id );
 		$ctx['ld'][] = yaww_seo_crumbs( array( array( 'Home', $home ), array( get_the_title( $id ), $ctx['canonical'] ) ) );
+	} elseif ( is_404() ) {
+		$ctx['title'] = yaww_seo_title_of( 'Page not found' );
+		$ctx['image'] = yaww_seo_default_image();
 	} else {
 		$ctx['title'] = yaww_seo_title_of( 'Yoga Retreats Around the World' );
 		$ctx['image'] = yaww_seo_default_image();
@@ -264,7 +267,7 @@ function yaww_seo_fill_retreat( &$ctx, $id ) {
 		$base = "$dest Yoga Retreat, {$M[$m-1]} $y";
 		// Unique per site: when two editions of a place share a month, name the exact days.
 		$same = $lid ? get_posts( array( 'post_type' => 'retreat', 'post_status' => 'publish', 'fields' => 'ids', 'numberposts' => 5, 'meta_query' => array(
-			'relation' => 'AND', array( 'key' => 'location_id', 'value' => $lid ), array( 'key' => 'start_date', 'value' => sprintf( '%04d-%02d-', $y, $m ), 'compare' => 'LIKE' ) ) ) ) : array();
+			'relation' => 'AND', array( 'key' => 'location_id', 'value' => $lid ), array( 'key' => 'start_date', 'value' => '^' . sprintf( '%04d-?%02d', $y, $m ), 'compare' => 'REGEXP' ) ) ) ) : array(); // ACF stores dates as Ymd, native meta as Y-m-d.
 		if ( count( $same ) > 1 ) {
 			$ctx['title'] = "$dest Yoga Retreat, " . yaww_seo_date_short( $start, $end ) . ' | ' . YAWW_SEO_SHORT;
 		} else {

@@ -376,6 +376,11 @@ function yaww_url_map() {
 			$m[ $prefix . $p->post_name . '.html' ] = get_permalink( $p );
 		}
 	}
-	foreach ( get_posts( array( 'post_type' => 'post', 'numberposts' => -1 ) ) as $p ) { $m[ 'journal/' . $p->post_name . '.html' ] = get_permalink( $p ); }
+	foreach ( get_posts( array( 'post_type' => 'post', 'numberposts' => -1 ) ) as $p ) {
+		$m[ 'journal/' . $p->post_name . '.html' ] = get_permalink( $p );
+		// The static site links the post by its own id; 7 posts kept the live site's different slug.
+		$src = (string) get_post_meta( $p->ID, '_yaww_source_id', true );
+		if ( $src && $src !== $p->post_name ) { $m[ 'journal/' . $src . '.html' ] = get_permalink( $p ); }
+	}
 	return $m;
 }

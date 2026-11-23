@@ -212,7 +212,12 @@ function yaww_redirect_resolve( $key ) {
 	$map  = yaww_redirect_map();
 	$segs = '' === $key ? array() : explode( '/', $key );
 	// journal/<slug>.html of the static site
-	if ( 2 === count( $segs ) && 'journal' === $segs[0] && preg_match( '#^(.+)\.html$#', $segs[1], $m ) ) { return array( '/' . $m[1] . '/', '/journal/' ); }
+	if ( 2 === count( $segs ) && 'journal' === $segs[0] && preg_match( '#^(.+)\.html$#', $segs[1], $m ) ) {
+		// 7 posts kept the live site's slug: find the post by its static id first.
+		$ids = get_posts( array( 'post_type' => 'post', 'post_status' => 'publish', 'fields' => 'ids', 'numberposts' => 1, 'meta_key' => '_yaww_source_id', 'meta_value' => $m[1] ) );
+		if ( $ids ) { return array( wp_make_link_relative( get_permalink( $ids[0] ) ) ); }
+		return array( '/' . $m[1] . '/', '/journal/' );
+	}
 	// full path first, then the parent (attachment pages, deep old URLs)
 	for ( $n = count( $segs ); $n >= 1; $n-- ) {
 		$k = implode( '/', array_slice( $segs, 0, $n ) );
