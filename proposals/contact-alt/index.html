@@ -469,6 +469,24 @@ select.yf__input {
   .cx__foot { margin-top: 64px; padding-top: 40px; }
   .cx__direct { flex-direction: column; }
 }
+/* Teachers' band: its own block before the form (user: "too hidden"). */
+.cx-teach {
+  position: relative; display: grid; grid-template-columns: 1fr auto; column-gap: 24px; row-gap: 4px;
+  margin: 40px 0 48px; padding: 28px 32px;
+  background: var(--stone-200); color: var(--sea-blue); text-decoration: none;
+  border-left: 2px solid var(--stone-600);
+  transition: background-color .25s ease;
+}
+.cx-teach__k { grid-column: 1; font: 600 12px/18px var(--font-body); letter-spacing: .16em; text-transform: uppercase; color: var(--stone-600); }
+.cx-teach__t { grid-column: 1; font-family: var(--font-heading); font-size: clamp(22px, 21.26px + .19vw, 24px); line-height: 1.25; }
+.cx-teach__d { grid-column: 1; font-size: 16px; line-height: 1.65; letter-spacing: .32px; color: var(--sea-blue-200); }
+.cx-teach__arrow { grid-column: 2; grid-row: 1 / span 3; align-self: center; width: 24px; height: 24px; transition: transform .3s var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .cx-teach:hover { background: var(--stone-300); }
+  .cx-teach:hover .cx-teach__arrow { transform: translateX(4px); }
+}
+.cx-teach:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 4px; }
+@media (max-width: 767px) { .cx-teach { margin: 32px 0 40px; padding: 20px 16px; } }
 </style>
 <link rel="stylesheet" href="../../css/type.css?v=202611230100">
 <script src="../../js/attribution.js?v=202611230100" defer></script>
@@ -598,6 +616,14 @@ select.yf__input {
         <li><span aria-hidden="true">★★★★★</span> 4.9 on Google · 45 reviews</li>
       </ul>
     </header>
+    <!-- Teachers are a different audience and an important one: their own
+         band, before the form, so nobody has to find them in a list. -->
+    <a class="cx-teach" href="../../teach-with-us.html">
+      <span class="cx-teach__k">For yoga teachers</span>
+      <span class="cx-teach__t">Leading a retreat with us</span>
+      <span class="cx-teach__d">How it works, what we handle and how to apply.</span>
+      <svg class="cx-teach__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
 
     <section class="cx__main" id="form" aria-label="Send us a message" data-yform-wrap>
       <form class="yf" data-yform="contact" data-attribution action="" method="post" novalidate>
@@ -608,7 +634,6 @@ select.yf__input {
             <label class="cx-topic"><input type="radio" name="topic" value="retreat" checked aria-describedby="topic-error"><span>A retreat</span></label>
             <label class="cx-topic"><input type="radio" name="topic" value="private-group" aria-describedby="topic-error"><span>A trip for my group</span></label>
             <label class="cx-topic"><input type="radio" name="topic" value="press" aria-describedby="topic-error"><span>Press &amp; partnerships</span></label>
-            <a class="cx-topic cx-topic--out" href="../../teach-with-us.html"><span>Leading a retreat with us</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </div>
           <p class="yf__error" id="topic-error" hidden></p>
         </fieldset>

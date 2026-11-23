@@ -84,10 +84,10 @@ window.YAWW_PROPOSALS = [
     { label: "About", url: "typography-expressive/about.html" }
   ]},
   { id: "retreats-cards", title: "Retreat cards", options: [
-    { label: "Retreats · Cards switch", url: "retreats-cards/retreats.html" }
+    { label: "Retreats · Cards switch (live: premium-style)", url: "retreats-cards/retreats.html", chosen: true }
   ]},
   { id: "hero-buttons", title: "Hero buttons", options: [
-    { label: "El Cuyo · A / B / C switch", url: "hero-buttons/index.html" }
+    { label: "El Cuyo · A / B / C switch (kept A)", url: "hero-buttons/index.html" }
   ]},
   { id: "retreats-wide", title: "Retreats > 1440", options: [
     { label: "Retreats · Width switch", url: "retreats-wide/retreats.html" }

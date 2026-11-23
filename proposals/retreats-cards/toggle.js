@@ -32,8 +32,8 @@
   var KEY = "yaww-retreats-cards";
   var STATES = ["ours", "premium"];
   var LABEL = {"ours": "Ours", "premium": "Premium-style"};
-  var CLASS = {"ours": "", "premium": "rc-on"};
-  var CSS = "html.rc-on .card--narrow .card__body{align-items:flex-start;text-align:left;gap:6px;padding-top:20px}html.rc-on .card--narrow .card__date{order:-1;font-family:var(--font-body);font-size:11px;line-height:16px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#877C71}html.rc-on .card--narrow .card__loc{color:#877C71}html.rc-on .card--narrow .card__teacher{color:var(--sea-blue)}";
+  var CLASS = {"ours": "rc-ours", "premium": ""};  /* premium-style is live now (css/cards.css); "ours" switches it off */
+  var CSS = "";
   function read() { try { var v = localStorage.getItem(KEY); return STATES.indexOf(v) > -1 ? v : STATES[1]; } catch (e) { return STATES[1]; } }
   var st = read(), btn;
   function apply() {

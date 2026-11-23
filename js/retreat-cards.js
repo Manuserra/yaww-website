@@ -283,7 +283,7 @@
           : '<div class="card__media" style="' + placeholderStyle(loc) + '">' + overlay + '</div>') +
         '<div class="card__body">' +
           '<div class="card__title">' + esc(retreat.officialName) + '</div>' +
-          '<div class="card__loc">' + esc(loc ? loc.displayName : "") + '</div>' +
+          '<div class="card__loc">' + esc(loc ? (loc.cardName || loc.displayName) : "") + '</div>' +
           '<div class="card__date">' + esc(retreatDateLabel(retreat)) + '</div>' +
           '<div class="card__teacher">with ' + esc(teacherLine(retreat)) + '</div>' +
         '</div>' +
@@ -405,7 +405,7 @@
           : '<div class="card__media" style="' + placeholderStyle(loc) + '">' + label + '</div>') +
         '<div class="card__body">' +
           '<div class="card__title">' + esc(p.title) + '</div>' +
-          '<div class="card__loc">' + esc(loc.displayName) + '</div>' +
+          '<div class="card__loc">' + esc(loc.cardName || loc.displayName) + '</div>' +
           '<div class="card__date">Dates to be announced</div>' +
           (opts.action === false ? '' : '<div class="card__teacher">Join the waitlist</div>') +
         '</div>' +

@@ -13,7 +13,7 @@
  "retreats": [
   {
    "slug": "morocco-nov-2026",
-   "title": "Mesmerized in Morocco : A Yoga & Culture Retreat",
+   "title": "Mesmerized in Morocco: A Yoga & Culture Retreat",
    "destination": "Morocco",
    "country": "Morocco",
    "location_label": "Marrakech & Essaouira, Morocco",
@@ -69,7 +69,7 @@
   },
   {
    "slug": "thailand-dec-2026",
-   "title": "Treasures of Thailand : A Yoga + Wellness Retreat",
+   "title": "Treasures of Thailand: A Yoga + Wellness Retreat",
    "destination": "Thailand",
    "country": "Thailand",
    "location_label": "Chiang Mai & Koh Yao Noi, Thailand",
@@ -207,7 +207,7 @@
   },
   {
    "slug": "el-cuyo-feb-2027-morin-gray",
-   "title": "Embodied : The Art of Being Seen",
+   "title": "Embodied: The Art of Being Seen",
    "destination": "El Cuyo",
    "country": "Mexico",
    "location_label": "El Cuyo, Mexico",
@@ -237,7 +237,7 @@
   },
   {
    "slug": "argentina-mar-2027",
-   "title": "Argentina Yoga Retreat : Buenos Aires & Patagonia",
+   "title": "Argentina Yoga Retreat: Buenos Aires & Patagonia",
    "destination": "Argentina",
    "country": "Argentina",
    "location_label": "Buenos Aires & Patagonia, Argentina",
@@ -265,7 +265,7 @@
   },
   {
    "slug": "camino-de-santiago-apr-2027",
-   "title": "Camino de Santiago : A Yoga & Reflections Retreat",
+   "title": "Camino de Santiago: A Yoga & Reflections Retreat",
    "destination": "Camino de Santiago",
    "country": "Spain",
    "location_label": "Camino de Santiago, Spain",
@@ -294,7 +294,7 @@
   },
   {
    "slug": "montenegro-may-2027-erickson",
-   "title": "Montenegro Magic : A Yoga & Nature Retreat",
+   "title": "Montenegro Magic: A Yoga & Nature Retreat",
    "destination": "Montenegro",
    "country": "Montenegro",
    "location_label": "Bay of Kotor, Montenegro",
@@ -322,7 +322,7 @@
   },
   {
    "slug": "portugal-may-2027",
-   "title": "Portugal : A Yoga & Coastal Retreat",
+   "title": "Portugal: A Yoga & Coastal Retreat",
    "destination": "Portugal",
    "country": "Portugal",
    "location_label": "Lisbon & Costa Vicentina, Portugal",
@@ -351,7 +351,7 @@
   },
   {
    "slug": "montenegro-may-2027-cordover",
-   "title": "Montenegro Magic : A Yoga & Nature Retreat",
+   "title": "Montenegro Magic: A Yoga & Nature Retreat",
    "destination": "Montenegro",
    "country": "Montenegro",
    "location_label": "Bay of Kotor, Montenegro",
@@ -435,7 +435,7 @@
   },
   {
    "slug": "camino-de-santiago-sep-2027",
-   "title": "Camino de Santiago : A Yoga & Reflections Retreat",
+   "title": "Camino de Santiago: A Yoga & Reflections Retreat",
    "destination": "Camino de Santiago",
    "country": "Spain",
    "location_label": "Camino de Santiago, Spain",
@@ -560,7 +560,7 @@
   },
   {
    "slug": "iceland",
-   "title": "The Iceland Experience : From Reykjavík to the wild",
+   "title": "The Iceland Experience: From Reykjavík to the wild",
    "destination": "Iceland",
    "country": "Iceland",
    "location_label": "Reykjavík & the South Coast, Iceland",
@@ -573,7 +573,7 @@
   },
   {
    "slug": "sardinia",
-   "title": "Majestic Sardinia : A Yoga & Nature Retreat",
+   "title": "Majestic Sardinia: A Yoga & Nature Retreat",
    "destination": "Sardinia",
    "country": "Italy",
    "location_label": "Sardinia, Italy",
@@ -586,7 +586,7 @@
   },
   {
    "slug": "spain-basque-country",
-   "title": "Basque Country Spain : Yoga & Gastronomy Retreat",
+   "title": "Basque Country Spain: Yoga & Gastronomy Retreat",
    "destination": "Basque Country",
    "country": "Spain",
    "location_label": "Basque Country, Spain",
@@ -599,7 +599,7 @@
   },
   {
    "slug": "turkey",
-   "title": "Yoga & Culture Retreat Turkey : Istanbul & Cappadocia",
+   "title": "Yoga & Culture Retreat Turkey: Istanbul & Cappadocia",
    "destination": "Turkey",
    "country": "Turkey",
    "location_label": "Istanbul & Cappadocia, Turkey",

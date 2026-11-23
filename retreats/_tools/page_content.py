@@ -296,8 +296,8 @@ HOST_ROLE = {
 VENUE_TABS = {
     "Buenos Aires boutique hotel": "Buenos Aires",
     "Villa La Angostura lake front hotel": "Villa La Angostura",
-    "3 nights in Lisbon : a boutique stay in São Bento": "Lisbon",
-    "4 nights in Costa Vicentina : a secluded boutique stay": "Costa Vicentina",
+    "3 nights in Lisbon: a boutique stay in São Bento": "Lisbon",
+    "4 nights in Costa Vicentina: a secluded boutique stay": "Costa Vicentina",
     "5 nights in Chiang Mai Old City": "Chiang Mai",
     "4 nights beachfront on Koh Yao Noi": "Koh Yao Noi",
     "Riad in the Marrakech medina": "Marrakech",

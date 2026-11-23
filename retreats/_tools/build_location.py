@@ -379,9 +379,10 @@ def head(L, c):
 <link rel="stylesheet" href="css/lead-modal.css?v={A}">
 <link rel="stylesheet" href="css/locations.css?v={A}">
 <link rel="stylesheet" href="css/location.css?v={A}">
+<link rel="stylesheet" href="css/type.css?v={A}">
 <script src="data/locations.js?v={V}"></script>
-<script src="data/teachers.js?v=202611201200"></script>
-<script src="data/retreats.js?v=202611191000"></script>
+<script src="data/teachers.js?v=202611230600"></script>
+<script src="data/retreats.js?v=202611231000"></script>
 <script src="js/retreat-cards.js?v={A}"></script>
 </head>
 """
@@ -406,6 +407,8 @@ def build_page(L, cat):
     path = os.path.join(REPO, f"locationpage-{L['id']}.html")
     out = page_chrome.apply(out)       # skip link, <main id>, css/js cache-buster (chrome.py)
     out = seo.apply(out, f"locationpage-{L['id']}.html")   # SEO head (seo.py)
+    # Keep the compound together at every width (type proposal, approved).
+    out = out.replace(">One of our most sought-after destinations<", '>One of our most <span class="tx-nowrap">sought-after</span> destinations<')
     open(path, "w", encoding="utf-8").write(out)
     return dates
 

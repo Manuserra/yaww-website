@@ -108,3 +108,21 @@
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: reduce) {
   .person__more { transform: none; transition: opacity .2s linear; }
 }
+
+/* ============================================================
+   RETREATS PAGE · card text, premium-style (approved 2026-11-23)
+   Left-aligned; the date first, in premium's caps date style; name as
+   before; location in our italic but premium's warm grey; teacher in
+   the logo blue. Only the /retreats results grid. The board copy
+   (proposals/retreats-cards) adds html.rc-ours to show the old cards.
+   ============================================================ */
+html:not(.rc-ours) #results .card--narrow .card__body { align-items: flex-start; text-align: left; gap: 6px; padding-top: 20px; }
+html:not(.rc-ours) #results .card--narrow .card__date {
+  order: -1;
+  font-family: var(--font-body);
+  font-size: 11px; line-height: 16px; font-weight: 600;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: #877C71;
+}
+html:not(.rc-ours) #results .card--narrow .card__loc { color: #877C71; }
+html:not(.rc-ours) #results .card--narrow .card__teacher { color: var(--sea-blue); }

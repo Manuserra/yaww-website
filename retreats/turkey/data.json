@@ -1,6 +1,6 @@
 {
  "slug": "turkey",
- "title": "Yoga & Culture Retreat Turkey : Istanbul & Cappadocia",
+ "title": "Yoga & Culture Retreat Turkey: Istanbul & Cappadocia",
  "subtitle": "The Beauty Between Retreat",
  "destination": "Turkey",
  "location_label": "Istanbul & Cappadocia, Turkey",
@@ -40,7 +40,7 @@
   "Small group, high-touch hosting, boutique stays"
  ],
  "includes": [
-  "8 nights : 6 in Istanbul’s coolest neighborhood + 2 in a cave hotel in Cappadocia",
+  "8 nights: 6 in Istanbul’s coolest neighborhood + 2 in a cave hotel in Cappadocia",
   "Breakfast daily, 2 lunches, 4 dinners",
   "High quality Yoga instruction for all levels",
   "Traditional Turkish bath (hammam)",
@@ -139,7 +139,7 @@
     "Coffee & Tea in your room",
     "7:30-8:45am Morning Yoga Practice",
     "9am Breakfast",
-    "Full Day Classic City Sites adventure : Basilica Cistern, Hagia Sophia and Topkapi Palace, Blue Mosque with lunch",
+    "Full Day Classic City Sites adventure: Basilica Cistern, Hagia Sophia and Topkapi Palace, Blue Mosque with lunch",
     "Dinner together at a local classic"
    ],
    "images": [
@@ -685,7 +685,7 @@
   "seo_description": "DRAFT. Written only from facts stated on the source page.",
   "images": "Photos downloaded at the largest size the server has (WordPress size suffixes stripped when the full file exists). AVIF originals were converted to JPEG because the naming rule only allows jpg/png/webp.",
   "date_start": "The source page publishes no dates, so date_start, date_end, dates_label and days are null (the schema requires strings: expect validator errors on these until dates are set).",
-  "nights": "From Includes: '8 nights : 6 in Istanbul's coolest neighborhood + 2 in a cave hotel in Cappadocia'.",
+  "nights": "From Includes: '8 nights: 6 in Istanbul's coolest neighborhood + 2 in a cave hotel in Cappadocia'.",
   "subtitle": "'The Beauty Between Retreat' is the heading the page repeats in the blurb and every section. Note build_page.py prints the subtitle as the first About paragraph.",
   "about_body": "The page's About section is only a 'What to expect' bullet list (now in highlights, with about_title). The prose is the two blurb paragraphs above the section tabs; intro repeats the first of them.",
   "not_included_footnote": "The domestic IST to NAV flight line and its cost note, kept as the page writes them (capitals included).",

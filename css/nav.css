@@ -303,7 +303,7 @@ html.mnav-locked, html.mnav-locked body { overflow: hidden; }
     z-index: 1000;
     display: flex; flex-direction: column;
     padding: 0 var(--container-pad) calc(24px + env(safe-area-inset-bottom, 0px));
-    background: var(--sea-blue);
+    background: var(--sea-blue-500);   /* the footer's blue (user's pick) */
     color: var(--stone-300);
     overflow-y: auto;
     overscroll-behavior: contain;

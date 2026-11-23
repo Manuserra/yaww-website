@@ -5,10 +5,10 @@ transcribed from the old site; nothing is invented. A null price means the
 old site publishes no price for that room."""
 
 UTOPIA = dict(
-  name="Utopia Guesthouse & Yoga Studio : El Cuyo",
+  name="Utopia Guesthouse & Yoga Studio: El Cuyo",
   instagram="@utopiayogaelcuyo",
   text=[
-    "Utopia Guesthouse & Yoga Studio : El Cuyo is the 3rd incarnation of a series of retreat houses that we have created to host retreat groups over the years.",
+    "Utopia Guesthouse & Yoga Studio: El Cuyo is the 3rd incarnation of a series of retreat houses that we have created to host retreat groups over the years.",
     "The main living area shares a sitting room and a dining area indoors. There are porches both on the front side of the house and the beach side.",
     "Bedrooms are simple and cozy with neutral tones, natural textures from local sources and some with ocean views.",
     "The house has 8 bedrooms (5 privates with a queen bed each and 3 shared with 2 twin beds).",
@@ -45,7 +45,7 @@ CUR = {
     X("Excursion to Las Coloradas", 155, "$155usd per person", "per person",
       "Excursion to Las Coloradas to see flamingos and pink lagoons; dip in a secluded beach & lunch at a local fish joint."),
     X("Yucatan Peninsula day trip", 195, "$195usd per person", "per person",
-      "Yucatan Peninsula day trip : Ruins of Ek Balam, colonial city of Valladolid & cenote; lunch included."),
+      "Yucatan Peninsula day trip: Ruins of Ek Balam, colonial city of Valladolid & cenote; lunch included."),
     X("Kayaking in Nature", 85, "$85usd per person", "per person",
       "Sunset kayaking amongst the lilypads & mangroves. Guide and transportation included."),
     X("Temazcal Ceremony", 95, "$95usd per person", "per person",
@@ -96,10 +96,10 @@ CUR = {
     R("Private Queen Room – private bathroom, shared bed", 5295, "5,295usd Shared Bed — per person", "per person", "This room has a private ensuite bathroom. Shared-bed rate; you must provide your own bedmate.", bed="Queen", bath="Private"),
     R("Private Queen Room – shared bathroom", 6195, "6,195usd Private", "private room", "Bathrooms are shared with one other room.", bed="Queen", bath="Shared"),
     R("Private Queen Room – shared bathroom, shared bed", 5195, "5,195usd Shared Bed — per person", "per person", "Bathrooms are shared with one other room. Shared-bed rate; you must provide your own bedmate.", bed="Queen", bath="Shared"),
-    R("Shared Double Room – shared bathroom", 5695, "2 twin beds : 5,695usd per person", "per person", "2 twin beds.", bed="Twin", bath="Shared"),
+    R("Shared Double Room – shared bathroom", 5695, "2 twin beds: 5,695usd per person", "per person", "2 twin beds.", bed="Twin", bath="Shared"),
     R("Lofted Queen Bed – shared bathroom", 5995, "5,995usd Private", "private room", "The loft space is accessed by a ladder with a full and half shared bathroom downstairs.", bed="Queen", bath="Shared"),
-    R("Shared Suite – shared bathroom", 6095, "Private Queen Room : 6,095usd Private", "private room", "One bathroom inside the bedroom is shared in this villa.", bed="Queen", bath="Shared"),
-    R("Studio Style Twin Bed – shared bathroom", 5995, "Studio Style Twin Bed in Living Area : 5,995usd", None, "Studio-style twin bed in the living area. One bathroom inside the bedroom is shared in this villa.", bed="Twin", bath="Shared"),
+    R("Shared Suite – shared bathroom", 6095, "Private Queen Room: 6,095usd Private", "private room", "One bathroom inside the bedroom is shared in this villa.", bed="Queen", bath="Shared"),
+    R("Studio Style Twin Bed – shared bathroom", 5995, "Studio Style Twin Bed in Living Area: 5,995usd", None, "Studio-style twin bed in the living area. One bathroom inside the bedroom is shared in this villa.", bed="Twin", bath="Shared"),
   ],
   extras=[X("Optional healing massage at the villa", None, "135 euro each", "each",
             "75 minute healing massage at the villa, available on several afternoons.")],
@@ -123,12 +123,12 @@ CUR = {
 
 "yoga-retreat-portugal": dict(
   hotels=[
-    dict(name=None, instagram=None, label="3 nights in Lisbon : a boutique stay in São Bento", text=[
+    dict(name=None, instagram=None, label="3 nights in Lisbon: a boutique stay in São Bento", text=[
       "Tucked into Lisbon’s São Bento neighborhood, our boutique stay feels both intimate and quietly distinctive. Each space is thoughtfully designed, blending contemporary lines with artistic details that reflect the creative energy of the area.",
       "There’s a sense of ease to it—comfortable, understated, and personal—where mornings begin with a beautifully prepared breakfast and the city moves just outside your door, yet never overwhelming.",
       "It’s the kind of place that lets you settle in quickly and experience Lisbon in a more local, authentic and unhurried way.",
     ]),
-    dict(name=None, instagram=None, label="4 nights in Costa Vicentina : a secluded boutique stay", text=[
+    dict(name=None, instagram=None, label="4 nights in Costa Vicentina: a secluded boutique stay", text=[
       "The second half of our experience unfolds in a quietly extraordinary retreat set within a protected valley on Portugal’s wild southwest coast. Surrounded by rolling hills, eucalyptus groves, and open fields that stretch toward the sea, the property feels both grounded and expansive—deeply connected to the land it rests on.",
       "Days move slowly here. Morning light over the valley, long walks through nature just beyond your door, time by the pool, and meals rooted in the rhythms of the region. There is space to explore, to rest, to soften.",
       "The atmosphere is intimate and unforced—beautiful without excess, thoughtful in every detail. It’s the kind of place people return to.",

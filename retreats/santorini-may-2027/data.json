@@ -257,7 +257,7 @@
  "itinerary_notes": [
   "This itinerary is subject to adjustments, changes in times, locations, or activities as the retreat leaders and hosts see fit. Any change will be on par with our standards or an upgrade in services or location making for an even more amazing experience for the group and our guests. Thank you in advance for your flexibility and cooperation if any situation were to arise.",
   "If you need a private ride outside of these shuttle times please send us your flight itinerary and we can arrange this for you at an additional cost.",
-  "PLEASE NOTE : All included dinners include two glasses of wine. Lunches include water for the table. Any other drinks are on your own."
+  "PLEASE NOTE: All included dinners include two glasses of wine. Lunches include water for the table. Any other drinks are on your own."
  ],
  "optional_excursions_schedule": [],
  "accommodations": [
@@ -421,7 +421,7 @@
   {
    "name": "Shared Double Room – shared bathroom",
    "price_usd": 5695,
-   "price_label": "2 twin beds : 5,695usd per person",
+   "price_label": "2 twin beds: 5,695usd per person",
    "price_unit": "per person",
    "description": "2 twin beds.",
    "attrs": {
@@ -487,7 +487,7 @@
   {
    "name": "Shared Suite – shared bathroom",
    "price_usd": 6095,
-   "price_label": "Private Queen Room : 6,095usd Private",
+   "price_label": "Private Queen Room: 6,095usd Private",
    "price_unit": "private room",
    "description": "One bathroom inside the bedroom is shared in this villa.",
    "attrs": {
@@ -514,7 +514,7 @@
   {
    "name": "Studio Style Twin Bed – shared bathroom",
    "price_usd": 5995,
-   "price_label": "Studio Style Twin Bed in Living Area : 5,995usd",
+   "price_label": "Studio Style Twin Bed in Living Area: 5,995usd",
    "price_unit": null,
    "description": "Studio-style twin bed in the living area. One bathroom inside the bedroom is shared in this villa.",
    "attrs": {

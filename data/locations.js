@@ -21,6 +21,7 @@
      image       -> ACF image  (card media; null falls back to the
                     gradient placeholder the prototype has always used)
 
+   cardName (optional) -> replaces displayName on retreat cards when it runs too long.
    displayName FORMAT: "City & City, Country" or "City, Country".
    These strings are lifted verbatim from the italic .card__loc /
    .loc-card__where lines already in the HTML, so nothing on the page
@@ -134,7 +135,7 @@ window.YAWW_LOCATIONS = [
     pageUrl: "locationpage-sardinia.html",
     image: "images/location-sardinia.jpg",
     placeholderHue: 194,
-    program: { name: "Majestic Sardinia : A Yoga & Nature Retreat", pageUrl: "retreatpage-sardinia.html", image: "images/retreat-cards/sardinia-waitlist.webp", image2x: "images/retreat-cards/sardinia-waitlist@2x.webp" }
+    program: { name: "Majestic Sardinia: A Yoga & Nature Retreat", pageUrl: "retreatpage-sardinia.html", image: "images/retreat-cards/sardinia-waitlist.webp", image2x: "images/retreat-cards/sardinia-waitlist@2x.webp" }
   },
   {
     // PROPOSED label — destination exists on locations.html, no retreat
@@ -147,7 +148,7 @@ window.YAWW_LOCATIONS = [
     pageUrl: "locationpage-spain-basque-country.html",
     image: "images/location-spain-basque-country.jpg",
     placeholderHue: 165,
-    program: { name: "Basque Country Spain : Yoga & Gastronomy Retreat", pageUrl: "retreatpage-spain-basque-country.html", image: "images/retreat-cards/spain-basque-country-waitlist.webp", image2x: "images/retreat-cards/spain-basque-country-waitlist@2x.webp" }
+    program: { name: "Basque Country Spain: Yoga & Gastronomy Retreat", pageUrl: "retreatpage-spain-basque-country.html", image: "images/retreat-cards/spain-basque-country-waitlist.webp", image2x: "images/retreat-cards/spain-basque-country-waitlist@2x.webp" }
   },
   {
     id: "morocco",
@@ -158,11 +159,12 @@ window.YAWW_LOCATIONS = [
     pageUrl: "locationpage-morocco.html",
     image: "images/location-morocco.jpg",
     placeholderHue: 24,
-    program: { name: "Mesmerized in Morocco : A Yoga & Culture Retreat", pageUrl: "retreatpage-morocco.html", collection: "signature-collection", image: "images/retreat-cards/morocco-waitlist.webp", image2x: "images/retreat-cards/morocco-waitlist@2x.webp" }
+    program: { name: "Mesmerized in Morocco: A Yoga & Culture Retreat", pageUrl: "retreatpage-morocco.html", collection: "signature-collection", image: "images/retreat-cards/morocco-waitlist.webp", image2x: "images/retreat-cards/morocco-waitlist@2x.webp" }
   },
   {
     id: "thailand",
     displayName: "Chiang Mai & Koh Yao Noi, Thailand",
+    cardName: "Thailand",   // shorter line on retreat cards (user's call)
     name: "Thailand",
     region: "Africa & Asia",
     country: "Thailand",
@@ -181,7 +183,7 @@ window.YAWW_LOCATIONS = [
     pageUrl: "locationpage-turkey.html",
     image: "images/location-turkey.jpg",
     placeholderHue: 15,
-    program: { name: "Yoga & Culture Retreat Turkey : Istanbul & Cappadocia", pageUrl: "retreatpage-turkey.html", image: "images/retreat-cards/turkey-waitlist.webp", image2x: "images/retreat-cards/turkey-waitlist@2x.webp" }
+    program: { name: "Yoga & Culture Retreat Turkey: Istanbul & Cappadocia", pageUrl: "retreatpage-turkey.html", image: "images/retreat-cards/turkey-waitlist.webp", image2x: "images/retreat-cards/turkey-waitlist@2x.webp" }
   }
 ];
 
