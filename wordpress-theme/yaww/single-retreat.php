@@ -1,263 +1,451 @@
 <?php
 /**
- * Single retreat. Ported section by section from retreatpage-elcuyo.html (the template the static
- * generator, retreats/_tools/build_page.py, fills in). Every value comes through yaww_meta() / helpers.
+ * Retreat page: retreatpage-<id>.html as retreats/_tools/build_page.py writes it, fed by
+ * the retreat post. Same markup, same order, same class names; the regions the builder
+ * fills (hero, about, hosts, includes, itinerary, rooms steps, tips, gallery, FAQ) are
+ * written here, and the ones its inline script renders (stays, extras, rooms, quotes) by
+ * assets/js-theme/retreat-page.js from window.YAWW_RETREAT (inc/views.php).
  *
- * Hotel confidentiality: no hotel name is read or printed anywhere here, only the generic `hotel_label`.
- * Gaps (see README): accommodation tabs + extras tabs JS, itinerary progress rail, gallery slider and
- * lightbox behaviours (inline scripts in the static page), FAQ placeholder fallbacks, carbon-offset copy.
+ * A dateless retreat (status "waitlist", a destination between editions) is the builder's
+ * --waitlist page: "Dates to be announced", no hosts, the waitlist form in place of rooms.
+ *
+ * Hotel names never appear: stays carry the generic label only (see BRIEF-WP).
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
+require_once get_template_directory() . '/inc/views.php';
 get_header();
+the_post();
 
-while ( have_posts() ) :
-	the_post();
-	$id        = get_the_ID();
-	$loc_id    = yaww_retreat_location( $id );
-	$loc_line  = yaww_location_line( $loc_id );
-	$teachers  = array_filter( (array) yaww_meta( 'teacher_ids', $id ) );
-	$tier      = yaww_meta( 'collection', $id );
-	$sig       = ( 'signature-collection' === $tier );
-	$badge     = yaww_status_label( $id );
-	$hero_url  = yaww_img_url( 'hero_image', 'yaww-hero', $id );
-	$includes  = yaww_list( 'includes', $id );
-	$excluded  = yaww_list( 'not_included', $id );
-	$itinerary = yaww_rows( 'itinerary', $id );
-	$rooms     = yaww_rows( 'rooms', $id );
-	$extras    = yaww_rows( 'extras', $id );
-	$tips      = yaww_rows( 'travel_tips', $id );
-	$faqs      = yaww_rows( 'faqs', $id );
-	$gallery   = array_filter( (array) yaww_meta( 'gallery', $id ) );
-	$hotel     = yaww_hotel_label( $id );
-	$deposit   = (float) yaww_meta( 'deposit_usd', $id );
-	$balance   = (int) yaww_meta( 'balance_due_days', $id );
+$id       = get_the_ID();
+$name     = get_the_title();
+$loc      = (int) yaww_meta( 'location_id' );
+$place    = $loc ? yaww_location_line( $loc ) : '';
+$status   = yaww_meta( 'status' );
+$waitlist = ( 'waitlist' === $status ) || ! yaww_meta( 'start_date' );
+$dates    = $waitlist ? 'Dates to be announced' : yaww_d_date_range( yaww_ymd( yaww_meta( 'start_date' ) ), yaww_ymd( yaww_meta( 'end_date' ) ) );
+$hosts    = $waitlist ? array() : yaww_d_hosts( $id );
+$who      = implode( ' & ', array_map( function ( $h ) { return $h['name']; }, array_filter( $hosts, function ( $h ) { return 'teacher' === $h['kind']; } ) ) );
+
+/* Hero label: tier and status, worded as on the cards (YAWW.cardLabelHTML). */
+$tier  = array( 'signature-collection' => 'Signature', 'deep-dives' => 'Deep Dive' );
+$coll  = yaww_meta( 'collection' );
+$label = array();
+if ( isset( $tier[ $coll ] ) ) { $label[] = '<span class="card__label-tier">' . esc_html( $tier[ $coll ] ) . '</span>'; }
+$st = $waitlist ? 'Waitlist' : yaww_status_label( $id );
+if ( $st ) {
+	if ( $label ) { $label[] = '<span class="card__label-sep" aria-hidden="true"></span>'; }
+	$label[] = '<span class="card__label-status">' . esc_html( $st ) . '</span>';
+}
+
+$hero_id  = (int) yaww_meta( 'hero_image' );
+$hero_src = $hero_id ? wp_get_attachment_image_url( $hero_id, 'full' ) : '';
+$hero_alt = $hero_id ? get_post_meta( $hero_id, '_wp_attachment_image_alt', true ) : '';
+if ( ! $hero_alt ) { $hero_alt = $name . ' — ' . $place; }
+
+$arrow_prev = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>';
+$arrow_next = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>';
+?>
+
+  <!-- =========================================================
+       HERO
+       ========================================================= -->
+  <section class="retreat-hero retreat-hero--overlay" data-retreat-id="<?php echo esc_attr( yaww_static_id( $id ) ); ?>">
+    <div class="retreat-hero__image" role="img" aria-label="<?php echo esc_attr( $hero_alt ); ?>"<?php if ( $hero_src ) : ?> style="background-image: url('<?php echo esc_url( $hero_src ); ?>'); background-size: cover; background-position: center; background-repeat: no-repeat;"<?php endif; ?>></div>
+
+    <div class="retreat-hero__inner">
+      <div class="retreat-hero__copy">
+<?php if ( $label ) : ?>
+        <p class="retreat-hero__label card__label<?php echo 'signature-collection' === $coll ? ' card__label--signature' : ''; ?>"><?php echo implode( '', $label ); // escaped above ?></p>
+<?php endif; ?>
+        <h1 class="retreat-hero__title"><?php echo esc_html( $name ); ?></h1>
+        <p class="retreat-hero__location"><?php echo esc_html( $place ); ?></p>
+        <p class="retreat-hero__meta">
+<?php if ( $waitlist ) : ?>
+          <span>Dates to be announced</span>
+<?php else : ?>
+          <span><?php echo esc_html( $dates ); ?></span>
+          <span class="retreat-hero__meta-dot" aria-hidden="true">·</span>
+          <span><?php echo $who ? 'with ' . esc_html( $who ) : 'Teacher to be announced'; ?></span>
+<?php endif; ?>
+        </p>
+      </div>
+
+      <div class="retreat-hero__ctas">
+<?php if ( $waitlist ) : ?>
+        <a class="btn btn--light" href="#waitlist">Join the waitlist</a>
+<?php else : ?>
+        <a class="btn btn--light" href="#rooms">Book now</a>
+<?php endif; ?>
+        <a class="btn btn--ghost" href="<?php echo yaww_u( 'contact.html#general-inquiry' ); ?>" data-lead-open data-lead-source="hero">I want more info</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       ABOUT
+       ========================================================= -->
+  <section class="retreat-about">
+    <h2 class="retreat-about__title">About this retreat</h2>
+    <div class="retreat-about__body">
+<?php foreach ( yaww_d_paragraphs( get_post_field( 'post_content', $id ) ) as $p ) : ?>
+      <p><?php echo wp_kses_post( $p ); ?></p>
+<?php endforeach; ?>
+    </div>
+  </section>
+
+<?php if ( $waitlist ) : ?>
+  <!-- Hosts: announced with the next dates. -->
+<?php else : ?>
+  <!-- =========================================================
+       HOSTS
+       ========================================================= -->
+  <section class="retreat-teacher" aria-labelledby="hosts-title">
+    <h2 class="retreat-teacher__title" id="hosts-title"><?php echo count( $hosts ) > 1 ? 'Your hosts' : ( 'teacher' === $hosts[0]['key'] ? 'Your teacher' : 'Your host' ); ?></h2>
+    <div class="hosts" data-hosts>
+<?php if ( count( $hosts ) > 1 ) : ?>
+      <div class="tabs tabs--hug hosts__tabs" role="tablist" aria-label="Your hosts">
+<?php foreach ( $hosts as $i => $h ) : ?>
+        <button class="tabs__item hosts__tab<?php echo 0 === $i ? ' is-active' : ''; ?>" type="button" role="tab" data-host-tab="<?php echo esc_attr( $h['key'] ); ?>" aria-selected="<?php echo 0 === $i ? 'true' : 'false'; ?>" tabindex="<?php echo 0 === $i ? '0' : '-1'; ?>"><?php echo esc_html( $h['tab'] ); ?></button>
+<?php endforeach; ?>
+      </div>
+<?php endif; ?>
+      <div class="hosts__slot" data-host-slot>
+<?php yaww_d_host_html( $hosts[0] ); ?>
+      </div>
+<?php if ( count( $hosts ) > 1 ) : foreach ( $hosts as $h ) : ?>
+      <template data-host="<?php echo esc_attr( $h['key'] ); ?>">
+<?php yaww_d_host_html( $h ); ?>
+      </template>
+<?php endforeach; endif; ?>
+    </div>
+  </section>
+<?php endif; ?>
+
+  <!-- =========================================================
+       INCLUDES
+       ========================================================= -->
+<?php
+$inc_img = (int) yaww_meta( 'includes_image' );
+$inc_src = $inc_img ? wp_get_attachment_image_url( $inc_img, 'full' ) : '';
+?>
+  <section class="retreat-includes">
+    <div class="retreat-includes__bg" aria-hidden="true"<?php if ( $inc_src ) : ?> style="background-image: url('<?php echo esc_url( $inc_src ); ?>'), linear-gradient(155deg, hsl(150 20% 68%), hsl(150 24% 38%));"<?php endif; ?>></div>
+    <div class="retreat-includes__card">
+      <h2 class="retreat-includes__title">Includes</h2>
+
+      <div class="tabs tabs--fixed retreat-includes__tabs" role="tablist" aria-label="Includes">
+        <button class="tabs__item retreat-includes__tab is-active" data-panel="includes" role="tab" aria-selected="true">What Includes</button>
+        <button class="tabs__item retreat-includes__tab" data-panel="not-included" role="tab" aria-selected="false">What&rsquo;s Not Included</button>
+      </div>
+
+      <div class="retreat-includes__panels">
+        <div class="retreat-includes__panel" data-panel="includes" role="tabpanel">
+          <ul class="retreat-includes__list">
+<?php foreach ( yaww_list( 'includes' ) as $x ) : ?>
+            <li><?php echo esc_html( $x ); ?></li>
+<?php endforeach; ?>
+          </ul>
+        </div>
+
+        <div class="retreat-includes__panel is-hidden" data-panel="not-included" role="tabpanel" aria-hidden="true">
+          <ul class="retreat-includes__list">
+<?php foreach ( yaww_list( 'not_included' ) as $x ) : ?>
+            <li><?php echo esc_html( $x ); ?></li>
+<?php endforeach; ?>
+          </ul>
+<?php foreach ( yaww_list( 'includes_notes' ) as $x ) : ?>
+          <p class="retreat-includes__footnote"><?php echo esc_html( $x ); ?></p>
+<?php endforeach; ?>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       ITINERARY (day-by-day vertical timeline + photo slider)
+       ========================================================= -->
+  <section class="retreat-itinerary">
+    <h2 class="retreat-itinerary__title">Itinerary</h2>
+
+    <div class="retreat-itinerary__timeline">
+      <span class="retreat-itinerary__progress" aria-hidden="true"></span>
+
+      <ol class="retreat-itinerary__list">
+<?php foreach ( yaww_rows( 'itinerary' ) as $day ) :
+	$pics = yaww_d_gallery( isset( $day['images'] ) ? $day['images'] : array() );
+	$lbl  = isset( $day['label'] ) ? $day['label'] : '';
 	?>
 
-<?php /* ===== HERO ===== */ ?>
-<section class="retreat-hero retreat-hero--overlay">
-  <div class="retreat-hero__image" role="img" aria-label="<?php echo esc_attr( get_the_title() . ( $loc_line ? ' — ' . $loc_line : '' ) ); ?>"<?php echo $hero_url ? ' style="background-image:url(' . esc_url( $hero_url ) . ')"' : ''; ?>></div>
-  <div class="retreat-hero__inner">
-    <div class="retreat-hero__copy">
-      <p class="retreat-hero__label card__label<?php echo $sig ? ' card__label--signature' : ''; ?>"><span class="card__label-tier"><?php echo esc_html( yaww_tier_label( $id ) ); ?></span><?php if ( $badge ) : ?><span class="card__label-sep" aria-hidden="true"></span><span class="card__label-status"><?php echo esc_html( $badge ); ?></span><?php endif; ?></p>
-      <h1 class="retreat-hero__title"><?php the_title(); ?></h1>
-      <?php if ( $loc_line ) : ?><p class="retreat-hero__location"><?php echo esc_html( $loc_line ); ?></p><?php endif; ?>
-      <p class="retreat-hero__meta">
-        <span><?php echo esc_html( yaww_retreat_dates( $id ) ); ?></span>
-        <?php if ( yaww_teacher_line( $id ) ) : ?>
-          <span class="retreat-hero__meta-dot" aria-hidden="true">·</span>
-          <span>with <?php echo esc_html( yaww_teacher_line( $id ) ); ?></span>
-        <?php endif; ?>
-      </p>
-    </div>
-    <div class="retreat-hero__ctas">
-      <a class="btn btn--light" href="#rooms">Book now</a>
-      <?php yaww_part( 'lead-modal', array( 'source' => 'hero' ) ); ?>
-    </div>
-  </div>
-</section>
+        <li class="retreat-itinerary__day">
+          <div class="retreat-itinerary__rail">
+            <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
+            <span class="retreat-itinerary__dot" aria-hidden="true"></span>
+            <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
+          </div>
 
-<?php /* ===== ABOUT (post content) ===== */ ?>
-<section class="retreat-about">
-  <h2 class="retreat-about__title">About this retreat</h2>
-  <div class="retreat-about__body"><?php the_content(); ?></div>
-</section>
+          <div class="retreat-itinerary__content">
+            <div class="retreat-itinerary__text">
+              <div class="retreat-itinerary__head"><span class="retreat-itinerary__label"><?php echo esc_html( $lbl ); ?></span></div>
 
-<?php /* ===== TEACHERS ===== */ ?>
-<?php foreach ( $teachers as $tid ) : ?>
-<section class="retreat-teacher">
-  <h2 class="retreat-teacher__title">Yoga with <?php echo esc_html( get_the_title( $tid ) ); ?></h2>
-  <div class="retreat-teacher__row">
-    <div class="retreat-teacher__photo" role="img" aria-label="<?php echo esc_attr( get_the_title( $tid ) ); ?>"<?php $tp = get_the_post_thumbnail_url( $tid, 'yaww-person' ); echo $tp ? ' style="background-image:url(' . esc_url( $tp ) . ')"' : ''; ?>></div>
-    <div class="retreat-teacher__text">
-      <?php echo wp_kses_post( wpautop( yaww_meta( 'short_bio', $tid ) ) ); ?>
-      <p><a href="<?php echo esc_url( get_permalink( $tid ) ); ?>">More about <?php echo esc_html( yaww_meta( 'short_name', $tid ) ?: get_the_title( $tid ) ); ?></a></p>
-    </div>
-  </div>
-</section>
+              <ul class="retreat-itinerary__bullets">
+<?php if ( ! empty( $day['title'] ) ) : ?>
+                <li class="retreat-itinerary__day-title"><?php echo esc_html( $day['title'] ); ?></li>
+<?php endif; ?>
+<?php foreach ( yaww_lines( isset( $day['bullets'] ) ? $day['bullets'] : '' ) as $b ) : ?>
+                <li><?php echo esc_html( $b ); ?></li>
+<?php endforeach; ?>
+              </ul>
+            </div>
+<?php if ( $pics ) : ?>
+
+            <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="<?php echo esc_attr( $lbl . ' photos' ); ?>">
+              <div class="photo-slider__track">
+<?php foreach ( $pics as $p ) : ?>
+                <div class="photo-slider__slide"><img src="<?php echo esc_url( $p['src'] ); ?>" alt="<?php echo esc_attr( $p['alt'] ? $p['alt'] : $lbl . ' — ' . $place ); ?>" loading="lazy"></div>
+<?php endforeach; ?>
+              </div>
+              <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo">
+                <?php echo $arrow_prev; ?>
+
+              </button>
+              <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo">
+                <?php echo $arrow_next; ?>
+
+              </button>
+              <div class="photo-slider__dots">
+<?php foreach ( $pics as $n => $p ) : ?>
+                <button class="photo-slider__dot<?php echo 0 === $n ? ' is-active' : ''; ?>" aria-label="Photo <?php echo (int) $n + 1; ?>"></button>
+<?php endforeach; ?>
+              </div>
+            </div>
+<?php endif; ?>
+          </div>
+        </li>
 <?php endforeach; ?>
 
-<?php /* ===== INCLUDES ===== */ ?>
-<?php if ( $includes || $excluded ) : ?>
-<section class="retreat-includes">
-  <div class="retreat-includes__bg" aria-hidden="true"></div>
-  <div class="retreat-includes__card">
-    <h2 class="retreat-includes__title">Includes</h2>
-    <div class="tabs tabs--fixed retreat-includes__tabs" role="tablist" aria-label="Includes">
-      <button class="tabs__item retreat-includes__tab is-active" data-panel="includes" role="tab" aria-selected="true">What Includes</button>
-      <?php if ( $excluded ) : ?><button class="tabs__item retreat-includes__tab" data-panel="not-included" role="tab" aria-selected="false">What&rsquo;s Not Included</button><?php endif; ?>
-    </div>
-    <div class="retreat-includes__panels">
-      <div class="retreat-includes__panel" data-panel="includes" role="tabpanel">
-        <ul class="retreat-includes__list"><?php foreach ( $includes as $li ) : ?><li><?php echo esc_html( $li ); ?></li><?php endforeach; ?></ul>
-      </div>
-      <?php if ( $excluded ) : ?>
-      <div class="retreat-includes__panel is-hidden" data-panel="not-included" role="tabpanel" aria-hidden="true" hidden>
-        <ul class="retreat-includes__list"><?php foreach ( $excluded as $li ) : ?><li><?php echo esc_html( $li ); ?></li><?php endforeach; ?></ul>
-      </div>
-      <?php endif; ?>
-    </div>
-  </div>
-</section>
-<?php endif; ?>
-
-<?php /* ===== ITINERARY ===== */ ?>
-<?php if ( $itinerary ) : ?>
-<section class="retreat-itinerary">
-  <h2 class="retreat-itinerary__title">Itinerary</h2>
-  <div class="retreat-itinerary__timeline">
-    <span class="retreat-itinerary__progress" aria-hidden="true"></span>
-    <ol class="retreat-itinerary__list">
-      <?php foreach ( $itinerary as $day ) :
-        $imgs = array_filter( (array) ( isset( $day['images'] ) ? $day['images'] : array() ) ); ?>
-      <li class="retreat-itinerary__day">
-        <div class="retreat-itinerary__rail">
-          <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
-          <span class="retreat-itinerary__dot" aria-hidden="true"></span>
-          <span class="retreat-itinerary__rail-line" aria-hidden="true"></span>
-        </div>
-        <div class="retreat-itinerary__content">
-          <div class="retreat-itinerary__text">
-            <div class="retreat-itinerary__head"><span class="retreat-itinerary__label"><?php echo esc_html( isset( $day['label'] ) ? $day['label'] : '' ); ?></span><?php if ( ! empty( $day['title'] ) ) : ?> <span class="retreat-itinerary__day-title"><?php echo esc_html( $day['title'] ); ?></span><?php endif; ?></div>
-            <ul class="retreat-itinerary__bullets">
-              <?php foreach ( yaww_lines( isset( $day['bullets'] ) ? $day['bullets'] : '' ) as $b ) : ?><li><?php echo esc_html( $b ); ?></li><?php endforeach; ?>
-            </ul>
-          </div>
-          <?php if ( $imgs ) : ?>
-          <div class="photo-slider retreat-itinerary__slider" role="group" aria-roledescription="carousel" aria-label="<?php echo esc_attr( ( isset( $day['label'] ) ? $day['label'] : 'Day' ) . ' photos' ); ?>">
-            <div class="photo-slider__track">
-              <?php foreach ( $imgs as $aid ) : ?><div class="photo-slider__slide"><?php echo yaww_img( (int) $aid, 'yaww-gallery', array( 'loading' => 'lazy' ) ); // phpcs:ignore ?></div><?php endforeach; ?>
-            </div>
-            <button class="photo-slider__arrow photo-slider__arrow--prev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
-            <button class="photo-slider__arrow photo-slider__arrow--next" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
-            <div class="photo-slider__dots"><?php foreach ( array_values( $imgs ) as $i => $x ) : ?><button class="photo-slider__dot<?php echo 0 === $i ? ' is-active' : ''; ?>" aria-label="Photo <?php echo (int) ( $i + 1 ); ?>"></button><?php endforeach; ?></div>
-          </div>
-          <?php endif; ?>
-        </div>
-      </li>
-      <?php endforeach; ?>
-    </ol>
-  </div>
-</section>
-<?php endif; ?>
-
-<?php /* ===== ACCOMMODATIONS: generic label only. Tabs appear with 2+ stays (BRIEF s.12 item 7). ===== */ ?>
-<?php if ( $hotel ) : ?>
-<section class="retreat-accom">
-  <h2 class="retreat-accom__title">Accommodations</h2>
-  <div class="retreat-accom__panels"><p class="retreat-accom__label"><?php echo esc_html( $hotel ); ?></p></div>
-</section>
-<?php endif; ?>
-
-<?php yaww_part( 'testimonials', array( 'title' => 'What guests say' ) ); ?>
-
-<?php /* ===== ROOMS PRICING. #rooms-grid is filled by js/retreat-rooms.js from the TIERS global (functions.php). ===== */ ?>
-<?php if ( $rooms ) : ?>
-<section class="rooms" id="rooms">
-  <h2 class="rooms__title">Rooms pricing</h2>
-  <div class="rooms__inner">
-    <div class="rooms__list" id="rooms-grid" aria-label="Room types"></div>
-    <aside class="rooms__aside" aria-labelledby="how-to-book">
-      <h3 class="rooms__aside-title" id="how-to-book">How to book</h3>
-      <ol class="rooms__steps">
-        <li><strong>Choose your room</strong><span>Every price is per person, in USD.</span></li>
-        <?php if ( $deposit ) : ?><li><strong>Secure your space</strong><span>A $<?php echo esc_html( number_format_i18n( $deposit ) ); ?> deposit per person holds your place. It comes off your total &mdash; it is not an extra.</span></li><?php endif; ?>
-        <?php if ( $balance ) : ?><li><strong>Pay the balance later</strong><span>The rest is due <?php echo (int) $balance; ?> days before the retreat.</span></li><?php endif; ?>
       </ol>
-      <?php if ( yaww_meta( 'roommate_note', $id ) ) : ?><p class="rooms__aside-note"><?php echo esc_html( yaww_meta( 'roommate_note', $id ) ); ?></p><?php endif; ?>
-      <div class="rooms__actions">
-        <?php if ( yaww_meta( 'wetravel_url', $id ) ) : ?><a class="btn btn--primary" href="<?php echo esc_url( yaww_meta( 'wetravel_url', $id ) ); ?>">Reserve your spot</a><?php endif; ?>
-        <?php yaww_part( 'lead-modal', array( 'source' => 'rooms', 'class' => 'btn btn--secondary' ) ); ?>
+    </div>
+<?php $notes = yaww_list( 'itinerary_notes' ); if ( $notes ) : ?>
+    <div class="retreat-itinerary__notes">
+<?php foreach ( $notes as $n ) : ?>
+      <p class="retreat-itinerary__note"><?php echo esc_html( $n ); ?></p>
+<?php endforeach; ?>
+    </div>
+<?php endif; ?>
+  </section>
+
+  <!-- =========================================================
+       ACCOMMODATIONS (stay tabs + gallery) — rendered from JS
+       ========================================================= -->
+  <section class="retreat-accom">
+    <h2 class="retreat-accom__title">Accommodations</h2>
+    <div class="tabs tabs--hug retreat-accom__tabs" role="tablist" aria-label="Accommodations"></div>
+    <div class="retreat-accom__panels"></div>
+  </section>
+
+  <!-- =========================================================
+       TESTIMONIALS ("What guests say") — rendered from JS
+       ========================================================= -->
+  <section class="quotes">
+    <h2 class="quotes__title">What guests say</h2>
+    <div class="quotes__grid" id="quotes-grid"></div>
+  </section>
+
+<?php if ( $waitlist ) :
+	$loc_name = $loc ? ( yaww_meta( 'short_name', $loc ) ?: get_the_title( $loc ) ) : '';
+	$note     = yaww_meta( 'waitlist_note' );
+	if ( ! $note ) { $note = 'The itinerary, inclusions and stay on this page are from our last retreat here; the next one may differ, and its dates, teacher and prices come out together.'; }
+	?>
+  <!-- =========================================================
+       WAITLIST (in place of Rooms pricing: no dates yet)
+       ========================================================= -->
+  <section class="waitlist" id="waitlist" aria-labelledby="waitlist-title">
+    <div class="waitlist__inner">
+      <h2 class="waitlist__title" id="waitlist-title">Join the waitlist</h2>
+      <p class="waitlist__body">We are planning the next retreat in <?php echo esc_html( $loc_name ); ?>. Leave your name and we will write to you first, before the dates go public.</p>
+      <form class="waitlist__form" data-waitlist-form data-waitlist-success="waitlist-done" novalidate>
+        <label class="waitlist__label-sr" for="waitlist-first">First name</label>
+        <input class="waitlist__input" id="waitlist-first" name="first_name" type="text" placeholder="First name" autocomplete="given-name" required>
+        <label class="waitlist__label-sr" for="waitlist-email">Email address</label>
+        <input class="waitlist__input" id="waitlist-email" name="email" type="email" placeholder="Email address" autocomplete="email" required>
+        <input type="hidden" name="location" value="<?php echo esc_attr( $loc ? yaww_static_id( $loc ) : '' ); ?>">
+        <button class="btn btn--primary waitlist__submit" type="submit">Join the waitlist</button>
+        <p class="waitlist__error" data-waitlist-error role="alert" hidden></p>
+      </form>
+      <div class="waitlist__done" id="waitlist-done" hidden>
+        <p class="waitlist__title">You are on the list</p>
+        <p class="waitlist__body">We will write to you as soon as the dates are set.</p>
       </div>
-    </aside>
-  </div>
-</section>
+      <p class="waitlist__note"><?php echo esc_html( $note ); ?></p>
+      <p class="waitlist__links"><a href="<?php echo yaww_u( 'contact.html#general-inquiry' ); ?>" data-lead-open data-lead-source="waitlist">Questions? Talk to us</a></p>
+    </div>
+  </section>
+<?php else :
+	$rooms  = yaww_rows( 'rooms' );
+	$priced = array_filter( $rooms, function ( $r ) { return isset( $r['price_usd'] ) && '' !== $r['price_usd'] && null !== $r['price_usd']; } );
+	$units  = array_unique( array_map( function ( $r ) { return isset( $r['price_unit'] ) ? $r['price_unit'] : ''; }, $priced ) );
+	$step1  = ! $priced ? 'Prices for these dates are coming soon.' : ( array( 'per person' ) === array_values( $units ) ? 'Every price is per person, in USD.' : 'Prices are in USD, per person or for a private room, as marked.' );
+	$dep    = (int) yaww_meta( 'deposit_usd' );
+	$due    = (int) yaww_meta( 'balance_due_days' );
+	?>
+  <!-- =========================================================
+       ROOMS PRICING (one card per tier) — rendered from JS
+       ========================================================= -->
+  <section class="rooms" id="rooms">
+    <h2 class="rooms__title">Rooms pricing</h2>
+    <div class="rooms__inner">
+      <div class="rooms__list" id="rooms-grid" aria-label="Room types"></div>
+
+      <aside class="rooms__aside" aria-labelledby="how-to-book">
+        <h3 class="rooms__aside-title" id="how-to-book">How to book</h3>
+        <ol class="rooms__steps">
+          <li>
+            <strong>Choose your room</strong>
+            <span><?php echo esc_html( $step1 ); ?></span>
+          </li>
+          <li>
+            <strong>Secure your space</strong>
+            <span>A <?php echo $dep ? '$' . esc_html( number_format( $dep ) ) . ' ' : ''; ?>deposit per person holds your place. It comes off your total &mdash; it is not an extra.</span>
+          </li>
+          <li>
+            <strong>Pay the balance later</strong>
+            <span>The rest is due <?php echo $due ? esc_html( $due ) . ' days ' : ''; ?>before the retreat.</span>
+          </li>
+        </ol>
+        <p class="rooms__aside-note">All payments are non-refundable and non-transferable, so we recommend trip cancellation insurance from the day you pay your deposit.</p>
+        <p class="rooms__aside-note">Sharing a room? Book together with your roommate. If you don&rsquo;t have one we&rsquo;ll pair you when we can &mdash; and if nobody is available, we&rsquo;ll move you to a private room.</p>
+        <div class="rooms__actions">
+          <a class="btn btn--primary" href="<?php echo yaww_u( 'contact.html#general-inquiry' ); ?>" data-lead-open data-lead-intent="reserve" data-lead-source="rooms" data-wetravel>Reserve your spot</a>
+          <a class="btn btn--secondary" href="<?php echo yaww_u( 'contact.html#general-inquiry' ); ?>" data-lead-open data-lead-source="rooms">I want more info</a>
+        </div>
+      </aside>
+    </div>
+  </section>
 <?php endif; ?>
 
-<?php /* ===== OPTIONAL EXTRAS (static markup is JS-built; here plain lists, tabs JS is a gap) ===== */ ?>
-<?php if ( $extras ) : ?>
-<section class="extras">
-  <h2 class="extras__title">Optional Extras</h2>
-  <div class="extras__panels">
-    <?php foreach ( $extras as $x ) : ?>
-      <div class="extras__panel">
-        <h3 class="extras__name"><?php echo esc_html( $x['name'] ); ?></h3>
-        <?php if ( isset( $x['price_usd'] ) && '' !== $x['price_usd'] ) : ?><p class="extras__price">$<?php echo esc_html( number_format_i18n( (float) $x['price_usd'] ) ); ?> <?php echo esc_html( isset( $x['unit'] ) ? $x['unit'] : '' ); ?></p><?php endif; ?>
-        <?php if ( ! empty( $x['desc'] ) ) : ?><p><?php echo esc_html( $x['desc'] ); ?></p><?php endif; ?>
-      </div>
-    <?php endforeach; ?>
-  </div>
-</section>
+<?php if ( yaww_rows( 'extras' ) ) : ?>
+  <!-- =========================================================
+       OPTIONAL EXTRAS (tabs + gallery) — rendered from JS
+       ========================================================= -->
+  <section class="extras">
+    <h2 class="extras__title">Optional Extras</h2>
+    <div class="tabs tabs--hug extras__tabs" role="tablist" aria-label="Optional extras"></div>
+    <div class="extras__panels"></div>
+  </section>
+<?php else : ?>
+  <!-- Optional Extras: none published for this retreat. -->
 <?php endif; ?>
 
-<?php /* ===== TRAVEL TIPS (retreat's own, else the location's) ===== */ ?>
 <?php
-if ( ! $tips && $loc_id ) { $tips = yaww_rows( 'travel_tips', $loc_id ); }
+$tips = yaww_rows( 'travel_tips' );
+if ( ! $tips && $loc ) { $tips = yaww_rows( 'travel_tips', $loc ); }
 if ( $tips ) : ?>
-<section class="tips">
-  <h2 class="tips__title">Travel Tips</h2>
-  <div class="tips__body">
-    <?php foreach ( $tips as $g ) : ?>
-    <div class="tips__group">
-      <h3 class="tips__heading"><?php echo esc_html( $g['heading'] ); ?></h3>
-      <ul class="tips__list"><?php foreach ( yaww_lines( isset( $g['items'] ) ? $g['items'] : '' ) as $li ) : ?><li><?php echo esc_html( $li ); ?></li><?php endforeach; ?></ul>
+  <!-- =========================================================
+       TRAVEL TIPS
+       ========================================================= -->
+  <section class="tips">
+    <h2 class="tips__title">Travel Tips</h2>
+    <div class="tips__body">
+<?php foreach ( $tips as $g ) : ?>
+      <div class="tips__group">
+        <h3 class="tips__heading"><?php echo esc_html( isset( $g['heading'] ) ? $g['heading'] : '' ); ?></h3>
+        <ul class="tips__list">
+<?php foreach ( yaww_lines( isset( $g['items'] ) ? $g['items'] : '' ) as $it ) : ?>
+          <li><?php echo esc_html( $it ); ?></li>
+<?php endforeach; ?>
+        </ul>
+      </div>
+
+<?php endforeach; ?>
     </div>
-    <?php endforeach; ?>
-  </div>
-</section>
+  </section>
+<?php else : ?>
+  <!-- Travel Tips: none published for this destination. -->
 <?php endif; ?>
-
-<?php /* ===== GALLERY ===== */ ?>
-<?php if ( $gallery ) : ?>
-<section class="gallery">
-  <div class="gallery__head">
-    <h2 class="gallery__title"><?php echo esc_html( yaww_meta( 'gallery_title', $id ) ?: 'Where you’ll be' ); ?></h2>
-    <?php if ( yaww_meta( 'gallery_intro', $id ) ) : ?><p class="gallery__intro"><?php echo esc_html( yaww_meta( 'gallery_intro', $id ) ); ?></p><?php endif; ?>
-  </div>
-  <div class="gallery__track" role="group" aria-roledescription="carousel" aria-label="Photos">
-    <div class="gallery__rail">
-      <?php foreach ( $gallery as $aid ) :
-        $m = wp_get_attachment_metadata( (int) $aid );
-        $r = ( $m && ! empty( $m['width'] ) && ! empty( $m['height'] ) ) ? $m['width'] . '/' . $m['height'] : '28/17'; ?>
-        <figure class="gallery__slide" style="--r: <?php echo esc_attr( $r ); ?>"><?php echo yaww_img( (int) $aid, 'yaww-gallery', array( 'loading' => 'lazy' ) ); // phpcs:ignore ?></figure>
-      <?php endforeach; ?>
-    </div>
-  </div>
-  <div class="gallery__progress" aria-hidden="true"><span class="gallery__progress-bar"></span></div>
-</section>
-<?php endif; ?>
-
-<?php /* ===== CARBON OFFSET: copy not final (no source copy on the old site). ===== */ ?>
-
-<?php /* ===== ADDITIONAL INFO / FAQ ===== */ ?>
-<?php if ( $faqs ) : ?>
-<section class="faq-section">
-  <h2 class="faq-section__title">Additional info</h2>
-  <div class="faq-list">
-    <?php foreach ( $faqs as $n => $f ) : ?>
-    <div class="faq">
-      <h3 class="faq__heading">
-        <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="faq-<?php echo (int) $n; ?>">
-          <span class="faq__q"><?php echo esc_html( $f['question'] ); ?></span>
-          <svg class="faq__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-      </h3>
-      <div class="faq__panel"><div class="faq__answer" id="faq-<?php echo (int) $n; ?>" role="region"><?php echo wp_kses_post( wpautop( $f['answer'] ) ); ?></div></div>
-    </div>
-    <?php endforeach; ?>
-  </div>
-</section>
-<?php endif; ?>
-
-<dialog class="lightbox" aria-label="Photo viewer">
-  <div class="lightbox__frame">
-    <img class="lightbox__img" alt="">
-    <p class="lightbox__count" aria-live="polite"></p>
-    <button class="lightbox__btn lightbox__btn--prev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
-    <button class="lightbox__btn lightbox__btn--next" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
-    <button class="lightbox__btn lightbox__btn--close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
-  </div>
-</dialog>
 
 <?php
-endwhile;
-get_footer();
+$gal    = yaww_d_gallery( yaww_meta( 'gallery' ) );
+$ratios = array( '28/17', '1/1', '28/17', '5/4', '28/17', '1/1', '28/17', '5/4', '1/1', '28/17' );
+$g_title = yaww_meta( 'gallery_title' );
+$g_intro = yaww_meta( 'gallery_intro' );
+$g_where = $loc ? ( yaww_meta( 'short_name', $loc ) ?: get_the_title( $loc ) ) : $place;
+?>
+  <!-- =========================================================
+       GALLERY
+       ========================================================= -->
+  <section class="gallery">
+    <div class="gallery__head">
+      <h2 class="gallery__title"><?php echo $g_title ? esc_html( $g_title ) : 'Where you&rsquo;ll be'; ?></h2>
+      <p class="gallery__intro"><?php echo esc_html( $g_intro ? $g_intro : 'Photographs from past retreats in ' . $place . '.' ); ?></p>
+      <div class="gallery__nav">
+        <button class="gallery__arrow gallery__arrow--prev" aria-label="Previous photos">
+          <?php echo $arrow_prev; ?>
+
+        </button>
+        <button class="gallery__arrow gallery__arrow--next" aria-label="More photos">
+          <?php echo $arrow_next; ?>
+
+        </button>
+      </div>
+    </div>
+
+    <div class="gallery__track" role="group" aria-roledescription="carousel" aria-label="<?php echo esc_attr( 'Photos from ' . $g_where ); ?>">
+      <div class="gallery__rail">
+<?php foreach ( $gal as $i => $p ) : ?>
+        <figure class="gallery__slide" style="--r: <?php echo esc_attr( $ratios[ $i % count( $ratios ) ] ); ?>"><img src="<?php echo esc_url( $p['src'] ); ?>" alt="<?php echo esc_attr( $p['alt'] ? $p['alt'] : $place ); ?>" loading="lazy"></figure>
+<?php endforeach; ?>
+      </div>
+    </div>
+
+    <div class="gallery__progress" aria-hidden="true">
+      <span class="gallery__progress-bar"></span>
+    </div>
+  </section>
+
+  <!-- Carbon offset: now the last question in Additional info. -->
+
+  <!-- =========================================================
+       ADDITIONAL INFO (FAQ)
+       ========================================================= -->
+  <section class="faq-section">
+    <h2 class="faq-section__title">Additional info</h2>
+    <div class="faq-list">
+<?php foreach ( yaww_rows( 'faqs' ) as $i => $f ) : $n = $i + 1; ?>
+      <div class="faq">
+        <h3 class="faq__heading">
+          <button class="faq__trigger" type="button" aria-expanded="false" aria-controls="faq-<?php echo (int) $n; ?>">
+            <span class="faq__q"><?php echo esc_html( isset( $f['question'] ) ? $f['question'] : '' ); ?></span>
+            <svg class="faq__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </h3>
+        <div class="faq__panel">
+          <div class="faq__answer" id="faq-<?php echo (int) $n; ?>" role="region">
+<?php foreach ( yaww_d_paragraphs( isset( $f['answer'] ) ? $f['answer'] : '' ) as $p ) : ?>
+            <p><?php echo wp_kses_post( $p ); ?></p>
+<?php endforeach; ?>
+          </div>
+        </div>
+      </div>
+<?php endforeach; ?>
+    </div>
+  </section>
+
+  <dialog class="lightbox" aria-label="Photo viewer">
+    <div class="lightbox__frame">
+      <img class="lightbox__img" alt="">
+      <p class="lightbox__count" aria-live="polite"></p>
+      <button class="lightbox__btn lightbox__btn--prev" aria-label="Previous photo">
+        <?php echo $arrow_prev; ?>
+
+      </button>
+      <button class="lightbox__btn lightbox__btn--next" aria-label="Next photo">
+        <?php echo $arrow_next; ?>
+
+      </button>
+      <button class="lightbox__btn lightbox__btn--close" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </dialog>
+
+<?php get_footer();
