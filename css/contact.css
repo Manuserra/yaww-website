@@ -424,3 +424,56 @@ select.yf__input {
   .contact__proof li + li { padding-left: 0; border-left: 0; }
   .contact__direct li { grid-template-columns: minmax(0, 1fr); gap: 0; }
 }
+
+/* ============================================================
+   3 · READABILITY PASS (2026-11-23, after the UX review)
+   For readers of 40 to 65:
+   · Fields look like fields: a light box with a 1px warm border
+     (#8A8178, 3.4:1 on stone, 3.6:1 on the field, WCAG 1.4.11),
+     not a lone underline that reads as text.
+   · Labels in sentence case at 15px, not 12–13px tracked caps.
+   · On a phone the form comes right after the welcome and the person
+     who answers; direct lines and reviews follow it, so Send is about
+     one screen down instead of two.
+   Shared by contact, teach-with-us and anything else using .yf.
+   ============================================================ */
+.yf__label,
+.yf__legend,
+.contact .yf__label,
+.contact .yf__legend {
+  margin: 0 0 8px;
+  font-size: 15px;
+  line-height: 22px;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: var(--sea-blue);
+}
+.yf__opt, .contact .yf__opt { font-size: 14px; color: var(--sea-blue-200); }
+.contact .yf__field--quiet .yf__legend { color: var(--sea-blue-300); }
+.yf__input {
+  height: 52px;
+  padding: 0 14px;
+  background-color: var(--stone-100);
+  border: 1px solid #8A8178;
+  border-radius: 2px;
+}
+textarea.yf__input { min-height: 160px; padding: 14px; }
+select.yf__input { padding-right: 40px; background-position: right 14px center; }
+@media (hover: hover) { .yf__input:hover { border-color: var(--sea-blue-300); } }
+.yf__input:focus { border-color: var(--sea-blue); box-shadow: inset 0 0 0 1px var(--sea-blue); }
+.is-invalid .yf__input { border-color: var(--sea-blue-500); box-shadow: inset 0 0 0 1px var(--sea-blue-500); }
+
+/* Phone: welcome + people, then the form, then direct lines and proof. */
+@media (max-width: 900px) {
+  .contact { gap: 0; }
+  .contact__intro { display: contents; }
+  .contact__kicker, .contact__title, .contact__lede, .contact__people { order: 0; }
+  .contact__title { margin-top: 8px; }
+  .contact__lede { margin-top: 16px; }
+  .contact__people { margin-top: 24px; flex-direction: row; flex-wrap: wrap; gap: 16px 24px; }
+  .contact__person-photo { width: 56px; height: 70px; }
+  .contact__person--lead .contact__person-photo { width: 72px; height: 90px; }
+  .contact__main { order: 1; margin-top: 40px; }
+  .contact__direct { order: 2; margin-top: 56px; }
+  .contact__trust { order: 3; margin-top: 32px; }
+}
