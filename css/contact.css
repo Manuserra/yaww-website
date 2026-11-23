@@ -167,6 +167,33 @@ select.yf__input {
 }
 .yf__check input:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
 
+/* Light radios for optional choices (reply preference): a real radio
+   and its word, 44px tall, no filled pill, so they sit quieter than
+   the topic chips above. */
+.yf__radios { display: flex; flex-wrap: wrap; gap: 0 28px; margin-top: 4px; }
+.yf__radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue);
+}
+.yf__radio input { width: 18px; height: 18px; margin: 0; accent-color: var(--sea-blue); cursor: pointer; }
+.yf__radio input:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 2px; }
+.yf__note {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  color: var(--sea-blue-200);
+}
+
 .yf__actions { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-top: 4px; }
 .yf__submit.is-sending { opacity: .7; cursor: progress; }
 .yf__failed {
@@ -212,26 +239,25 @@ select.yf__input {
 
 /* ============================================================
    2 · CONTACT PAGE
-   Two columns at desktop. Left (5 of 12): who we are, the direct
-   lines, then the proof that a real, long-running company answers
-   (since when, the Google score, one guest in her own words) and one
-   quiet link for teachers. Right (6 of 12, offset by 1): the form.
-   On a phone: intro, form, then the proof and the teachers' link.
+   Two columns at desktop. Left (5 of 12): the welcome, the people who
+   answer (Jenniferlyn, then Christina, smaller), the direct lines and
+   the proof. Right (6 of 12, offset by 1): the form. Then a full-width
+   band for teachers. On a phone the same order, one column.
+   Sizes are set for readers of 40 to 65: text 16px and up, labels
+   13px caps, every control 44px or taller, AA contrast on stone.
    ============================================================ */
 .contact {
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: 72px var(--container-pad) 120px;
+  padding: 72px var(--container-pad) 104px;
   box-sizing: border-box;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-template-rows: auto 1fr;
   column-gap: 24px;
   align-items: start;
 }
-.contact__intro { grid-column: 1 / span 5; grid-row: 1; display: flex; flex-direction: column; gap: 20px; }
-.contact__main { grid-column: 7 / span 6; grid-row: 1 / span 2; }
-.contact__aside { grid-column: 1 / span 5; grid-row: 2; }
+.contact__intro { grid-column: 1 / span 5; display: flex; flex-direction: column; gap: 20px; max-width: 520px; }
+.contact__main { grid-column: 7 / span 6; }
 
 .contact__title {
   margin: 0;
@@ -245,34 +271,59 @@ select.yf__input {
 .kicker.contact__kicker { color: var(--stone-600); }
 .contact__lede {
   margin: 0;
-  max-width: 480px;
-  font-size: 16px; line-height: 26px; letter-spacing: 0.32px;
+  font-size: var(--tx-lede, 17px); line-height: 1.6; letter-spacing: 0.32px;
   color: var(--sea-blue);
   text-wrap: pretty;
 }
 
+/* The people who answer. Jenniferlyn first and larger (she writes
+   back); Christina smaller beneath. Portraits 4:5, as on About. */
+.contact__people { margin: 16px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 20px; }
+.contact__person { display: flex; align-items: center; gap: 16px; }
+.contact__person-photo {
+  flex: none;
+  width: 64px; height: 80px;
+  object-fit: cover;
+  background: var(--stone-300);
+}
+.contact__person--lead .contact__person-photo { width: 104px; height: 130px; }
+.contact__person-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.contact__person-text p { margin: 0; }
+.contact__person-role {
+  font-weight: 600; font-size: 13px; line-height: 20px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--stone-600);
+}
+.contact__person-name {
+  font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-weight: 400; font-size: 18px; line-height: 26px; color: var(--sea-blue);
+}
+.contact__person--lead .contact__person-name { font-size: var(--tx-h3, 22px); line-height: 1.25; }
+.contact__person-line { font-size: 16px; line-height: 24px; letter-spacing: 0.32px; color: var(--sea-blue); }
+
 /* Direct lines: email and phone, for people who would rather not fill
    anything in. */
-.contact__direct { margin: 12px 0 0; padding: 0; list-style: none; border-bottom: 1px solid var(--stone-400); max-width: 480px; }
+.contact__direct { margin: 16px 0 0; padding: 0; list-style: none; border-bottom: 1px solid var(--stone-400); }
 .contact__direct li {
   display: grid;
-  grid-template-columns: 96px minmax(0, 1fr);
+  grid-template-columns: 136px minmax(0, 1fr);
   gap: 16px;
-  padding: 14px 0;
+  align-items: baseline;
+  padding: 12px 0;
+  min-height: 44px;
+  box-sizing: border-box;
   border-top: 1px solid var(--stone-400);
   font-size: 16px; line-height: 24px; letter-spacing: 0.32px;
 }
 .contact__direct-k {
-  font-weight: 600; font-size: 12px; line-height: 24px; letter-spacing: 1.08px; text-transform: uppercase;
+  font-weight: 600; font-size: 13px; line-height: 24px; letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--stone-600);
 }
 .contact__direct a { color: var(--sea-blue); text-underline-offset: 3px; text-decoration-thickness: 1px; overflow-wrap: anywhere; }
 .contact__direct a.is-placeholder { text-decoration: none; color: var(--sea-blue-300); font-style: italic; }
 
-/* Trust: no box, no badge. Two facts on one line, then a guest's words
-   in the site's quote voice (Baskerville italic), then her name. */
-.contact__aside { display: flex; flex-direction: column; gap: 56px; max-width: 480px; margin-top: 56px; }
-.contact__trust { margin: 0; display: flex; flex-direction: column; gap: 20px; }
+/* Trust: two facts on one line, then a guest's words in the site's
+   quote voice (Baskerville italic), then her name. No box. */
+.contact__trust { margin: 24px 0 0; display: flex; flex-direction: column; gap: 16px; }
 .contact__proof {
   display: flex;
   flex-wrap: wrap;
@@ -283,7 +334,7 @@ select.yf__input {
   list-style: none;
   font-family: var(--font-body);
   font-weight: 600;
-  font-size: var(--tx-eyebrow, 12px);
+  font-size: 13px;
   line-height: 20px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -291,7 +342,7 @@ select.yf__input {
 }
 .contact__proof li { display: inline-flex; align-items: center; gap: 8px; }
 .contact__proof li + li { padding-left: 20px; border-left: 1px solid var(--stone-400); }
-.contact__stars { font-size: 11px; letter-spacing: 0.12em; color: var(--stone-600); }
+.contact__stars { font-size: 12px; letter-spacing: 0.12em; }
 .contact__quote {
   margin: 0;
   font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
@@ -304,46 +355,12 @@ select.yf__input {
 }
 @supports (hanging-punctuation: first) { .contact__quote { hanging-punctuation: first last; } }
 @supports not (hanging-punctuation: first) { .contact__quote { text-indent: -0.42em; } }
-.contact__quote-by { display: flex; flex-wrap: wrap; gap: 4px 12px; font-family: var(--font-body); font-size: 14px; line-height: 20px; letter-spacing: 0.28px; }
+.contact__quote-by { display: flex; flex-wrap: wrap; gap: 4px 12px; font-family: var(--font-body); font-size: 16px; line-height: 24px; letter-spacing: 0.32px; }
 .contact__quote-name { font-weight: 600; color: var(--sea-blue); }
 .contact__quote-where { color: var(--sea-blue-200); }
 
-/* Teachers: one line, not a card. They are a different audience with
-   their own page; this only has to be findable. */
-.contact__teach {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 4px 16px;
-  margin: 0;
-  padding-top: 20px;
-  border-top: 1px solid var(--stone-400);
-}
-.contact__teach-k {
-  font-weight: 600; font-size: 12px; line-height: 24px; letter-spacing: 1.08px; text-transform: uppercase;
-  color: var(--stone-600);
-}
-.contact__teach-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  font-size: 16px; line-height: 24px; letter-spacing: 0.32px; font-weight: 600;
-  color: var(--sea-blue);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
-  text-decoration-color: var(--stone-400);
-  transition: text-decoration-color .2s ease;
-}
-.contact__teach-link svg { width: 18px; height: 18px; flex: none; transition: transform .3s var(--ease-out); }
-@media (hover: hover) {
-  .contact__teach-link:hover { text-decoration-color: currentColor; }
-  .contact__teach-link:hover svg { transform: translateX(3px); }
-}
-.contact__teach-link:focus-visible { outline: 2px solid var(--sea-blue-300); outline-offset: 4px; }
-
-/* The form column */
+/* The form column. Labels a point larger than the shared kit and
+   chips at 16px, for older eyes. */
 .contact__form-title {
   margin: 0 0 8px;
   font-family: var(--font-heading); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
@@ -353,28 +370,57 @@ select.yf__input {
   color: var(--sea-blue);
 }
 .contact__form-sub { margin: 0 0 32px; font-size: 16px; line-height: 26px; letter-spacing: 0.32px; color: var(--sea-blue-300); }
+.contact .yf__label, .contact .yf__legend { font-size: 13px; }
+.contact .yf__opt { font-size: 14px; }
+.contact .yf__chip span { font-size: 16px; }
+.contact .yf__check { font-size: 16px; line-height: 24px; }
+.contact .yf__error { font-size: 15px; line-height: 22px; }
+.contact .yf__field--quiet .yf__legend { color: var(--sea-blue-200); }
 .contact__group-note {
   margin: 0;
   padding: 16px 20px;
-  font-size: 15px; line-height: 24px; letter-spacing: 0.3px;
+  font-size: 16px; line-height: 26px; letter-spacing: 0.32px;
   color: var(--sea-blue);
   background: var(--stone-200);
 }
 
+/* Teachers: full-width band on the 12-column grid. */
+.contact-teach { background: var(--stone-200); }
+.contact-teach__inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--space-band, 104px) var(--container-pad);
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 24px;
+  align-items: end;
+}
+.contact-teach__head { grid-column: 1 / span 5; }
+.contact-teach__body { grid-column: 7 / span 6; display: flex; flex-wrap: wrap; align-items: center; gap: 20px 32px; }
+.kicker.contact-teach__kicker { margin: 0; color: var(--stone-600); }
+.contact-teach__title { margin: 6px 0 0; color: var(--sea-blue); text-align: left; }
+.contact-teach__text { margin: 0; flex: 1 1 260px; font-size: var(--tx-lede, 17px); line-height: 1.6; letter-spacing: 0.32px; color: var(--sea-blue); }
+
 @media (max-width: 1024px) {
   .contact__main { grid-column: 6 / span 7; }
-  .contact__intro, .contact__aside { grid-column: 1 / span 4; }
+  .contact__intro { grid-column: 1 / span 5; }
+  .contact-teach__head { grid-column: 1 / span 6; }
+  .contact-teach__body { grid-column: 7 / span 6; }
 }
 @media (max-width: 900px) {
-  .contact { display: flex; flex-direction: column; gap: 48px; padding: 48px 16px 80px; }
-  .contact__title { font-size: 26px; line-height: 36px; }
-  .contact__main { width: 100%; }
-  /* Source order is intro, form, aside: on a phone the form comes
-     first, since most people arrive with a question. */
-  .contact__aside { margin-top: 8px; gap: 40px; }
+  .contact { display: flex; flex-direction: column; gap: 56px; padding: 48px 16px 72px; }
+  .contact__title { font-size: 28px; line-height: 38px; }
+  .contact__main, .contact__intro { width: 100%; max-width: none; }
+  .contact-teach__inner { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; padding: 64px 16px; }
+  .contact-teach__body { flex-direction: column; align-items: flex-start; }
+  .contact-teach__text { flex: none; }
+}
+@media (max-width: 767px) {
+  .contact-teach__body .btn { width: 100%; }
 }
 @media (max-width: 520px) {
-  /* The two facts stack instead of wrapping around their divider. */
   .contact__proof { flex-direction: column; align-items: flex-start; gap: 4px; }
   .contact__proof li + li { padding-left: 0; border-left: 0; }
+  .contact__direct li { grid-template-columns: minmax(0, 1fr); gap: 0; }
 }
