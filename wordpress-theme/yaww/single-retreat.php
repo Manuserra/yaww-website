@@ -19,7 +19,9 @@ the_post();
 $id       = get_the_ID();
 $name     = get_the_title();
 $loc      = (int) yaww_meta( 'location_id' );
-$place    = $loc ? yaww_location_line( $loc ) : '';
+/* The hero's place line is the retreat's own (data.json location_label, e.g. "Marrakech & Essaouira,
+   Morocco"), which can differ from the location's card line; that line is the fallback. */
+$place    = yaww_meta( 'location_label' ) ?: ( $loc ? yaww_location_line( $loc ) : '' );
 $status   = yaww_meta( 'status' );
 $waitlist = ( 'waitlist' === $status ) || ! yaww_meta( 'start_date' );
 $dates    = $waitlist ? 'Dates to be announced' : yaww_d_date_range( yaww_date_ymd( yaww_meta( 'start_date' ) ), yaww_date_ymd( yaww_meta( 'end_date' ) ) );
