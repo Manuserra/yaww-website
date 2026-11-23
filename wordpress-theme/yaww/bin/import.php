@@ -411,6 +411,26 @@ if ( $want( 'site' ) ) {
 	WP_CLI::log( 'site      pages, reading settings, menus, rewrite rules' );
 }
 
+/* ------------------------------------------------------------------ seo -- */
+/* Search descriptions as the static pages print them (retreats/_tools/seo.py: padded, overrides), into
+   seo_description when that field is empty, so WordPress's <meta name="description"> matches. */
+if ( $want( 'seo' ) || $want( 'locations' ) || $want( 'people' ) || $want( 'journal' ) ) {
+	$files = array( 'location' => 'locationpage-%s.html', 'teacher' => 'teacher-%s.html', 'facilitator' => 'facilitator-%s.html', 'post' => 'journal/%s.html' );
+	$n = 0;
+	foreach ( $files as $type => $pattern ) {
+		foreach ( get_posts( array( 'post_type' => $type, 'numberposts' => -1, 'post_status' => 'any' ) ) as $p ) {
+			$src  = (string) get_post_meta( $p->ID, '_yaww_source_id', true );
+			$file = $GLOBALS['YAWW_REPO'] . '/' . sprintf( $pattern, $src );
+			if ( ! $src || ! is_file( $file ) || yaww_meta( 'seo_description', $p->ID ) ) { continue; }
+			if ( preg_match( '/<meta name="description" content="([^"]*)"/', file_get_contents( $file ), $m ) ) {
+				yaww_imp_fields( $type, $p->ID, array( 'seo_description' => html_entity_decode( $m[1], ENT_QUOTES, 'UTF-8' ) ) );
+				$n++;
+			}
+		}
+	}
+	WP_CLI::log( "seo       $n search descriptions from the static pages" );
+}
+
 $count = function ( $t ) { return (int) wp_count_posts( $t )->publish; };
 WP_CLI::success( sprintf( 'locations %d, teachers %d, facilitators %d, retreats %d, journal %d, media new %d / reused %d',
 	$count( 'location' ), $count( 'teacher' ), $count( 'facilitator' ), $count( 'retreat' ), $count( 'post' ),

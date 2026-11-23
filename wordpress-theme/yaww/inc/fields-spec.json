@@ -707,6 +707,14 @@
    "label": "Placeholder colour (0-360)",
    "src": "locations.js placeholderHue",
    "instructions": "Colour of the box shown while a photo is missing. Leave as is."
+  },
+  {
+   "key": "seo_description",
+   "type": "textarea",
+   "label": "Search description",
+   "src": "locationpage-*.html meta description",
+   "tab": "SEO",
+   "instructions": "Optional. The text Google shows under the title (about 150 characters). Empty = written automatically."
   }
  ],
  "teacher": [
@@ -809,6 +817,14 @@
    "label": "Spotify playlist",
    "src": "teachers.js spotifyPlaylist / spotify",
    "instructions": "Playlist link or id."
+  },
+  {
+   "key": "seo_description",
+   "type": "textarea",
+   "label": "Search description",
+   "src": "teacher-*.html meta description",
+   "tab": "SEO",
+   "instructions": "Optional. The text Google shows under the title (about 150 characters). Empty = written automatically."
   }
  ],
  "facilitator": [
@@ -840,6 +856,14 @@
    "label": "Photo focus",
    "src": "team.js photoPosition",
    "instructions": "Optional CSS position such as \"50% 20%\" for portraits that crop badly."
+  },
+  {
+   "key": "seo_description",
+   "type": "textarea",
+   "label": "Search description",
+   "src": "facilitator-*.html meta description",
+   "tab": "SEO",
+   "instructions": "Optional. The text Google shows under the title (about 150 characters). Empty = written automatically."
   }
  ],
  "post": [
@@ -965,7 +989,7 @@
    "key": "seo_description",
    "type": "textarea",
    "label": "Search description",
-   "src": "journal.js excerpt",
+   "src": "journal/*.html meta description",
    "instructions": "Optional. The text Google shows under the title (about 150 characters). Empty = the excerpt or the start of the post."
   }
  ]

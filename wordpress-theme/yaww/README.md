@@ -146,6 +146,7 @@ Regenerate with `python3 bin/gen-acf.py --table`. The edit screens group these f
 | `location` | `program_retreat` | post | locations.js program |
 | `location` | `hotel_label` | text | BRIEF s.12 |
 | `location` | `placeholder_hue` | number | locations.js placeholderHue |
+| `location` | `seo_description` | textarea | locationpage-*.html meta description |
 | `teacher` | `short_name` | text | teachers.js shortName |
 | `teacher` | `role` | text | teachers.js role |
 | `teacher` | `short_bio` | textarea | teachers.js shortBio |
@@ -160,10 +161,12 @@ Regenerate with `python3 bin/gen-acf.py --table`. The edit screens group these f
 | `teacher` | `instagram` | text | teachers.js instagram |
 | `teacher` | `youtube` | url | teachers.js youtube / video |
 | `teacher` | `spotify_url` | url | teachers.js spotifyPlaylist / spotify |
+| `teacher` | `seo_description` | textarea | teacher-*.html meta description |
 | `facilitator` | `role` | text | team.js role |
 | `facilitator` | `short_bio` | textarea | team.js shortBio |
 | `facilitator` | `listed` | bool | team.js listed |
 | `facilitator` | `photo_position` | text | team.js photoPosition |
+| `facilitator` | `seo_description` | textarea | facilitator-*.html meta description |
 | `post` | `date_label` | text | journal.js date |
 | `post` | `card_image` | image | images/journal/<slug>.jpg |
 | `post` | `card_image_2x` | image | images/journal/<slug>@2x.jpg |
@@ -180,4 +183,4 @@ Regenerate with `python3 bin/gen-acf.py --table`. The edit screens group these f
 | `post` | `retreat_image` | image | journal.js retreat.image / image2x |
 | `post` | `retreat_image_2x` | image | journal.js retreat.image2x |
 | `post` | `seo_title` | text | retreats/_tools/seo.py TITLE_OVERRIDE |
-| `post` | `seo_description` | textarea | journal.js excerpt |
+| `post` | `seo_description` | textarea | journal/*.html meta description |
