@@ -3,12 +3,30 @@
     "title": "YAWW · Facilitator",
     "fields": [
         {
+            "key": "field_yaww_facilitator_tab_profile",
+            "label": "Profile",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
             "key": "field_yaww_facilitator_role",
             "label": "Role",
             "name": "role",
             "aria-label": "",
             "type": "text",
-            "instructions": "",
+            "instructions": "Line above the name, e.g. \"Founder\" or \"Retreat host\".",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -28,7 +46,7 @@
             "name": "short_bio",
             "aria-label": "",
             "type": "textarea",
-            "instructions": "",
+            "instructions": "Two or three sentences for the card. The full bio is the main text box above.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -44,11 +62,11 @@
         },
         {
             "key": "field_yaww_facilitator_listed",
-            "label": "Listed on the Facilitators grid",
+            "label": "Show on the Facilitators page",
             "name": "listed",
             "aria-label": "",
             "type": "true_false",
-            "instructions": "",
+            "instructions": "Untick to keep the person off the Facilitators grid (their page still works).",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -64,11 +82,11 @@
         },
         {
             "key": "field_yaww_facilitator_photo_position",
-            "label": "Photo object-position",
+            "label": "Photo focus",
             "name": "photo_position",
             "aria-label": "",
             "type": "text",
-            "instructions": "",
+            "instructions": "Optional CSS position such as \"50% 20%\" for portraits that crop badly.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -104,5 +122,5 @@
     "display_title": "",
     "enable_acf_abilities": true,
     "ai_description": "",
-    "modified": 1795448808
+    "modified": 1795450816
 }

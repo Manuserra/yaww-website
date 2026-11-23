@@ -83,53 +83,53 @@ Everything in the structure table. `single-retreat.php` is the full port (hero, 
 
 ## Field map
 
-Regenerate with `python3 bin/gen-acf.py --table`. Relations use post IDs; image fields are attachment IDs. Title, content and featured image carry `officialName`, the about text and the portrait (teacher and facilitator bio paragraphs = content).
+Regenerate with `python3 bin/gen-acf.py --table`. The edit screens group these fields in tabs (`tab` in the spec) with plain-English help (`instructions`); after editing the spec run `bin/gen-acf.py`, then load them into the database with `bash bin/wp.sh eval-file bin/acf-sync.php` (no wp-admin click needed). Relations use post IDs; image fields are attachment IDs. Title, content and featured image carry `officialName`, the about text and the portrait (teacher and facilitator bio paragraphs = content).
 
 | Post type | Meta key | Type | Source in the static site |
 |---|---|---|---|
 | `retreat` | `subtitle` | text | retreats/*/data.json subtitle |
 | `retreat` | `location_id` | post | retreats.js locationId |
+| `retreat` | `location_label` | text | retreatpage-*.html .retreat-hero__location |
 | `retreat` | `teacher_ids` | posts | retreats.js teacherIds |
 | `retreat` | `facilitator_ids` | posts | retreats/_tools/page_content.py FACILITATORS |
 | `retreat` | `start_date` | date | retreats.js startDate |
 | `retreat` | `end_date` | date | retreats.js endDate |
+| `retreat` | `nights` | number | data.json nights |
 | `retreat` | `status` | select | retreats.js status; waitlist = dateless retreat from locations.js program |
 | `retreat` | `spaces_left` | number | retreats.js spacesLeft |
 | `retreat` | `collection` | select | retreats.js collection (mirrors retreat_tier taxonomy) |
-| `retreat` | `card_image` | image | retreats.js image / image2x |
+| `retreat` | `wetravel_url` | url | window.YAWW_WETRAVEL.url (js/retreat-rooms.js) |
+| `retreat` | `waitlist_note` | textarea | retreatpage-<location>.html .waitlist__note |
 | `retreat` | `hero_image` | image | retreatpage-*.html hero |
-| `retreat` | `hotel_label` | text | BRIEF s.12: e.g. boutique hotel in Chiang Mai |
-| `retreat` | `nights` | number | data.json nights |
+| `retreat` | `card_image` | image | retreats.js image / image2x |
+| `retreat` | `includes_image` | image | retreatpage-*.html .retreat-includes__bg |
 | `retreat` | `includes` | list | data.json includes |
 | `retreat` | `not_included` | list | data.json not_included |
 | `retreat` | `includes_notes` | list | retreatpage-*.html .retreat-includes__footnote |
-| `retreat` | `includes_image` | image | retreatpage-*.html .retreat-includes__bg |
 | `retreat` | `itinerary` | rows | data.json itinerary |
 | `retreat` | `itinerary_notes` | list | retreatpage-*.html .retreat-itinerary__note |
+| `retreat` | `hotel_label` | text | BRIEF s.12: e.g. boutique hotel in Chiang Mai |
 | `retreat` | `stays` | rows | retreatpage-*.html var HOTELS |
 | `retreat` | `room_venues` | list | retreatpage-*.html var ROOM_VENUES |
 | `retreat` | `rooms` | rows | retreatpage-*.html var TIERS (hotel name dropped) |
-| `retreat` | `extras` | rows | retreatpage-*.html var EXTRAS |
-| `retreat` | `travel_tips` | rows | retreatpage-*.html .tips__group |
-| `retreat` | `faqs` | rows | retreatpage-*.html .faq (Additional info) |
-| `retreat` | `gallery` | gallery | retreatpage-*.html .gallery__slide (--r cycles 28/17,1/1,28/17,5/4,28/17,1/1,28/17,5/4,1/1,28/17) |
-| `retreat` | `gallery_title` | text | data.json gallery_title |
-| `retreat` | `gallery_intro` | textarea | data.json gallery_intro |
-| `retreat` | `testimonials` | rows | retreatpage-*.html var TESTIMONIALS |
 | `retreat` | `deposit_usd` | number | data.json booking.deposit_usd |
 | `retreat` | `balance_due_days` | number | data.json booking.balance_due_days |
 | `retreat` | `roommate_note` | textarea | data.json booking.roommate_note |
-| `retreat` | `wetravel_url` | url | window.YAWW_WETRAVEL.url (js/retreat-rooms.js) |
+| `retreat` | `extras` | rows | retreatpage-*.html var EXTRAS |
+| `retreat` | `gallery_title` | text | data.json gallery_title |
+| `retreat` | `gallery_intro` | textarea | data.json gallery_intro |
+| `retreat` | `gallery` | gallery | retreatpage-*.html .gallery__slide (--r cycles 28/17,1/1,28/17,5/4,28/17,1/1,28/17,5/4,1/1,28/17) |
+| `retreat` | `testimonials` | rows | retreatpage-*.html var TESTIMONIALS |
+| `retreat` | `travel_tips` | rows | retreatpage-*.html .tips__group |
+| `retreat` | `faqs` | rows | retreatpage-*.html .faq (Additional info) |
 | `retreat` | `seo_description` | textarea | retreatpage-*.html meta description |
 | `location` | `display_name` | text | locations.js displayName |
-| `location` | `card_name` | text | locations.js cardName |
 | `location` | `short_name` | text | locations.js name |
-| `location` | `region` | select | locations.js region |
+| `location` | `card_name` | text | locations.js cardName |
 | `location` | `country` | text | locations.js country |
+| `location` | `region` | select | locations.js region |
 | `location` | `hero_image` | image | location_content.py hero |
 | `location` | `card_image` | image | images/location-<id>.jpg (locations.html grid) |
-| `location` | `placeholder_hue` | number | locations.js placeholderHue |
-| `location` | `hotel_label` | text | BRIEF s.12 |
 | `location` | `eyebrow` | text | location_content.py eyebrow |
 | `location` | `tagline` | text | location_content.py tagline |
 | `location` | `blurb` | textarea | location_content.py blurb |
@@ -141,34 +141,41 @@ Regenerate with `python3 bin/gen-acf.py --table`. Relations use post IDs; image 
 | `location` | `quote_text` | textarea | location_content.py quote[0] |
 | `location` | `quote_name` | text | location_content.py quote[1] |
 | `location` | `quote_source` | text | location_content.py quote[2] |
-| `location` | `program_retreat` | post | locations.js program |
 | `location` | `travel_tips` | rows | page_content.py |
 | `location` | `gallery` | gallery | locationpage-*.html |
+| `location` | `program_retreat` | post | locations.js program |
+| `location` | `hotel_label` | text | BRIEF s.12 |
+| `location` | `placeholder_hue` | number | locations.js placeholderHue |
 | `teacher` | `short_name` | text | teachers.js shortName |
 | `teacher` | `role` | text | teachers.js role |
 | `teacher` | `short_bio` | textarea | teachers.js shortBio |
 | `teacher` | `host_bio` | textarea | retreatpage-*.html .host__bio |
 | `teacher` | `quote` | text | teachers.js quote |
 | `teacher` | `specialties` | list | teachers.js specialties |
-| `teacher` | `youtube` | url | teachers.js youtube / video |
-| `teacher` | `spotify_url` | url | teachers.js spotifyPlaylist / spotify |
-| `teacher` | `website` | url | teachers.js website |
-| `teacher` | `website_label` | text | teachers.js website.label |
-| `teacher` | `instagram` | text | teachers.js instagram |
 | `teacher` | `avatar` | image | teachers.js avatar |
 | `teacher` | `photo_position` | text | teachers.js photoPosition |
 | `teacher` | `needs_content` | bool | teachers.js needsContent |
+| `teacher` | `website` | url | teachers.js website |
+| `teacher` | `website_label` | text | teachers.js website.label |
+| `teacher` | `instagram` | text | teachers.js instagram |
+| `teacher` | `youtube` | url | teachers.js youtube / video |
+| `teacher` | `spotify_url` | url | teachers.js spotifyPlaylist / spotify |
 | `facilitator` | `role` | text | team.js role |
 | `facilitator` | `short_bio` | textarea | team.js shortBio |
 | `facilitator` | `listed` | bool | team.js listed |
 | `facilitator` | `photo_position` | text | team.js photoPosition |
 | `post` | `date_label` | text | journal.js date |
+| `post` | `card_image` | image | images/journal/<slug>.jpg |
+| `post` | `card_image_2x` | image | images/journal/<slug>@2x.jpg |
+| `post` | `hero_image_2x` | image | journal.js hero.src2x |
 | `post` | `author_name` | text | journal.js author.name |
-| `post` | `author_photo` | image | journal.js author.photo / photo2x |
-| `post` | `author_bio` | textarea | journal.js author.bio |
 | `post` | `author_person` | post | journal.js author.pageUrl |
+| `post` | `author_photo` | image | journal.js author.photo / photo2x |
+| `post` | `author_photo_2x` | image | journal.js author.photo2x |
+| `post` | `author_bio` | textarea | journal.js author.bio |
 | `post` | `retreat_title` | text | journal.js retreat.title |
 | `post` | `retreat_subtitle` | text | journal.js retreat.subtitle |
 | `post` | `retreat_text` | textarea | journal.js retreat.text |
 | `post` | `retreat_location` | post | journal.js retreat.locationId |
 | `post` | `retreat_image` | image | journal.js retreat.image / image2x |
+| `post` | `retreat_image_2x` | image | journal.js retreat.image2x |

@@ -3,12 +3,30 @@
     "title": "YAWW · Journal",
     "fields": [
         {
+            "key": "field_yaww_post_tab_listing",
+            "label": "Listing",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
             "key": "field_yaww_post_date_label",
-            "label": "Date as shown (empty = no date line)",
+            "label": "Date as shown",
             "name": "date_label",
             "aria-label": "",
             "type": "text",
-            "instructions": "",
+            "instructions": "The date line as readers see it, e.g. \"March 2019\". Empty = no date line.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -21,6 +39,99 @@
             "placeholder": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_yaww_post_card_image",
+            "label": "Card photo",
+            "name": "card_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Photo on the Journal grid (672 x 406).",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_yaww_post_card_image_2x",
+            "label": "Card photo, double size",
+            "name": "card_image_2x",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Optional 1344 x 812 version of the card photo for sharp screens.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_yaww_post_hero_image_2x",
+            "label": "Top photo, double size",
+            "name": "hero_image_2x",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Optional double-size version of the Featured image (the top photo).",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_yaww_post_tab_author",
+            "label": "Author",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_yaww_post_author_name",
@@ -28,7 +139,7 @@
             "name": "author_name",
             "aria-label": "",
             "type": "text",
-            "instructions": "",
+            "instructions": "As shown under the post.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -43,12 +154,62 @@
             "append": ""
         },
         {
+            "key": "field_yaww_post_author_person",
+            "label": "Author page",
+            "name": "author_person",
+            "aria-label": "",
+            "type": "post_object",
+            "instructions": "Optional: links the author box to a teacher or facilitator page.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "allow_null": 1,
+            "post_type": [
+                "teacher",
+                "facilitator"
+            ],
+            "return_format": "id",
+            "taxonomy": [],
+            "multiple": 0,
+            "ui": 1,
+            "bidirectional_target": []
+        },
+        {
             "key": "field_yaww_post_author_photo",
             "label": "Author photo",
             "name": "author_photo",
             "aria-label": "",
             "type": "image",
-            "instructions": "",
+            "instructions": "Small round photo in the author box.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_yaww_post_author_photo_2x",
+            "label": "Author photo, double size",
+            "name": "author_photo_2x",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Optional double-size version.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -69,11 +230,11 @@
         },
         {
             "key": "field_yaww_post_author_bio",
-            "label": "Author bio (one paragraph per line)",
+            "label": "Author bio",
             "name": "author_bio",
             "aria-label": "",
             "type": "textarea",
-            "instructions": "",
+            "instructions": "One paragraph per line.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -88,37 +249,30 @@
             "rows": ""
         },
         {
-            "key": "field_yaww_post_author_person",
-            "label": "Author page (teacher or facilitator)",
-            "name": "author_person",
+            "key": "field_yaww_post_tab_explore_this_retreat",
+            "label": "Explore this retreat",
+            "name": "",
             "aria-label": "",
-            "type": "post_object",
+            "type": "tab",
             "instructions": "",
-            "required": false,
+            "required": 0,
             "conditional_logic": false,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "allow_null": 1,
-            "post_type": [
-                "teacher",
-                "facilitator"
-            ],
-            "return_format": "id",
-            "taxonomy": [],
-            "multiple": 0,
-            "ui": 1,
-            "bidirectional_target": []
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_yaww_post_retreat_title",
-            "label": "Explore this retreat: title",
+            "label": "Title",
             "name": "retreat_title",
             "aria-label": "",
             "type": "text",
-            "instructions": "",
+            "instructions": "Optional box at the end of the post that points to a retreat. Leave all of this tab empty to hide it.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -134,7 +288,7 @@
         },
         {
             "key": "field_yaww_post_retreat_subtitle",
-            "label": "Explore this retreat: subtitle",
+            "label": "Subtitle",
             "name": "retreat_subtitle",
             "aria-label": "",
             "type": "text",
@@ -154,7 +308,7 @@
         },
         {
             "key": "field_yaww_post_retreat_text",
-            "label": "Explore this retreat: text",
+            "label": "Text",
             "name": "retreat_text",
             "aria-label": "",
             "type": "textarea",
@@ -174,11 +328,11 @@
         },
         {
             "key": "field_yaww_post_retreat_location",
-            "label": "Explore this retreat: location",
+            "label": "Location",
             "name": "retreat_location",
             "aria-label": "",
             "type": "post_object",
-            "instructions": "",
+            "instructions": "The box links to this location page.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -198,7 +352,7 @@
         },
         {
             "key": "field_yaww_post_retreat_image",
-            "label": "Explore this retreat: photo",
+            "label": "Photo",
             "name": "retreat_image",
             "aria-label": "",
             "type": "image",
@@ -222,112 +376,12 @@
             "mime_types": ""
         },
         {
-            "key": "field_yaww_post_card_image",
-            "label": "Listing card photo",
-            "name": "card_image",
-            "aria-label": "",
-            "type": "image",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "id",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": 0,
-            "min_height": 0,
-            "min_size": 0,
-            "max_width": 0,
-            "max_height": 0,
-            "max_size": 0,
-            "mime_types": ""
-        },
-        {
-            "key": "field_yaww_post_card_image_2x",
-            "label": "Listing card photo @2x",
-            "name": "card_image_2x",
-            "aria-label": "",
-            "type": "image",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "id",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": 0,
-            "min_height": 0,
-            "min_size": 0,
-            "max_width": 0,
-            "max_height": 0,
-            "max_size": 0,
-            "mime_types": ""
-        },
-        {
-            "key": "field_yaww_post_hero_image_2x",
-            "label": "Hero @2x (hero 1x = featured image)",
-            "name": "hero_image_2x",
-            "aria-label": "",
-            "type": "image",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "id",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": 0,
-            "min_height": 0,
-            "min_size": 0,
-            "max_width": 0,
-            "max_height": 0,
-            "max_size": 0,
-            "mime_types": ""
-        },
-        {
-            "key": "field_yaww_post_author_photo_2x",
-            "label": "Author photo @2x",
-            "name": "author_photo_2x",
-            "aria-label": "",
-            "type": "image",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "id",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": 0,
-            "min_height": 0,
-            "min_size": 0,
-            "max_width": 0,
-            "max_height": 0,
-            "max_size": 0,
-            "mime_types": ""
-        },
-        {
             "key": "field_yaww_post_retreat_image_2x",
-            "label": "Explore this retreat: photo @2x",
+            "label": "Photo, double size",
             "name": "retreat_image_2x",
             "aria-label": "",
             "type": "image",
-            "instructions": "",
+            "instructions": "Optional.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -368,5 +422,5 @@
     "display_title": "",
     "enable_acf_abilities": true,
     "ai_description": "",
-    "modified": 1795448809
+    "modified": 1795450816
 }

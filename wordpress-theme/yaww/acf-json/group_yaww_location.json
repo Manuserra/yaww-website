@@ -3,12 +3,50 @@
     "title": "YAWW · Location",
     "fields": [
         {
+            "key": "field_yaww_location_tab_names",
+            "label": "Names",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
             "key": "field_yaww_location_display_name",
-            "label": "Display name (italic line)",
+            "label": "Display name",
             "name": "display_name",
             "aria-label": "",
             "type": "text",
-            "instructions": "",
+            "instructions": "The place as shown in italics on cards and pages, e.g. \"Chiang Mai & Koh Lanta, Thailand\". Required.",
+            "required": 1,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_location_short_name",
+            "label": "Short name",
+            "name": "short_name",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "The short name on the Locations page and in menus, e.g. \"Thailand\".",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -24,11 +62,11 @@
         },
         {
             "key": "field_yaww_location_card_name",
-            "label": "Card name (shorter line on retreat cards)",
+            "label": "Card name",
             "name": "card_name",
             "aria-label": "",
             "type": "text",
-            "instructions": "",
+            "instructions": "Optional shorter place line for retreat cards. Empty = the display name.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -43,12 +81,12 @@
             "append": ""
         },
         {
-            "key": "field_yaww_location_short_name",
-            "label": "Short name (as on locations.html)",
-            "name": "short_name",
+            "key": "field_yaww_location_country",
+            "label": "Country",
+            "name": "country",
             "aria-label": "",
             "type": "text",
-            "instructions": "",
+            "instructions": "Country name, used for search results.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -68,8 +106,8 @@
             "name": "region",
             "aria-label": "",
             "type": "select",
-            "instructions": "",
-            "required": false,
+            "instructions": "Groups the destination in the Locations menu and page. Required.",
+            "required": 1,
             "conditional_logic": false,
             "wrapper": {
                 "width": "",
@@ -83,9 +121,9 @@
                 "Asia": "Asia"
             },
             "return_format": "value",
+            "default_value": "Europe",
             "multiple": 0,
             "allow_null": 0,
-            "default_value": false,
             "ui": 0,
             "ajax": 0,
             "placeholder": "",
@@ -93,32 +131,30 @@
             "save_options": 0
         },
         {
-            "key": "field_yaww_location_country",
-            "label": "Country",
-            "name": "country",
+            "key": "field_yaww_location_tab_page",
+            "label": "Page",
+            "name": "",
             "aria-label": "",
-            "type": "text",
+            "type": "tab",
             "instructions": "",
-            "required": false,
+            "required": 0,
             "conditional_logic": false,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_yaww_location_hero_image",
-            "label": "Hero image",
+            "label": "Hero photo",
             "name": "hero_image",
             "aria-label": "",
             "type": "image",
-            "instructions": "",
+            "instructions": "The large photo at the top of the location page.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -139,11 +175,11 @@
         },
         {
             "key": "field_yaww_location_card_image",
-            "label": "Card image",
+            "label": "Card photo",
             "name": "card_image",
             "aria-label": "",
             "type": "image",
-            "instructions": "",
+            "instructions": "The photo on the Locations grid.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -163,54 +199,12 @@
             "mime_types": ""
         },
         {
-            "key": "field_yaww_location_placeholder_hue",
-            "label": "Placeholder hue (0-360)",
-            "name": "placeholder_hue",
-            "aria-label": "",
-            "type": "number",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "min": "",
-            "max": "",
-            "step": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_yaww_location_hotel_label",
-            "label": "Generic stay label (never a hotel name)",
-            "name": "hotel_label",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
             "key": "field_yaww_location_eyebrow",
-            "label": "Hero eyebrow",
+            "label": "Eyebrow",
             "name": "eyebrow",
             "aria-label": "",
             "type": "text",
-            "instructions": "",
+            "instructions": "Small line above the title in the hero.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -230,7 +224,7 @@
             "name": "tagline",
             "aria-label": "",
             "type": "text",
-            "instructions": "",
+            "instructions": "One sentence under the title in the hero.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -250,7 +244,7 @@
             "name": "blurb",
             "aria-label": "",
             "type": "textarea",
-            "instructions": "",
+            "instructions": "Two or three sentences shown on the Locations grid.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -270,7 +264,7 @@
             "name": "facts",
             "aria-label": "",
             "type": "repeater",
-            "instructions": "",
+            "instructions": "Short facts under the hero (e.g. Best time \/ October). One per row.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -331,11 +325,11 @@
         },
         {
             "key": "field_yaww_location_intro_title",
-            "label": "Intro title (Why we go); intro paragraphs = post content",
+            "label": "Intro title",
             "name": "intro_title",
             "aria-label": "",
             "type": "text",
-            "instructions": "",
+            "instructions": "Title of the \"Why we go\" section. Its paragraphs are the main text box above.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -355,7 +349,7 @@
             "name": "intro_image",
             "aria-label": "",
             "type": "image",
-            "instructions": "",
+            "instructions": "Photo beside the \"Why we go\" text.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -380,7 +374,7 @@
             "name": "guide",
             "aria-label": "",
             "type": "repeater",
-            "instructions": "",
+            "instructions": "The guide cards. If you do not have a photo yet, leave Photo empty and fill \"Placeholder label\".",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -397,7 +391,7 @@
             "sub_fields": [
                 {
                     "key": "field_yaww_location_guide_kicker",
-                    "label": "Kicker",
+                    "label": "Small line above",
                     "name": "kicker",
                     "aria-label": "",
                     "type": "text",
@@ -486,11 +480,11 @@
                 },
                 {
                     "key": "field_yaww_location_guide_placeholder",
-                    "label": "Placeholder label (no photo yet)",
+                    "label": "Placeholder label",
                     "name": "placeholder",
                     "aria-label": "",
                     "type": "text",
-                    "instructions": "",
+                    "instructions": "Only when there is no photo yet: what the photo will show.",
                     "required": false,
                     "conditional_logic": false,
                     "wrapper": {
@@ -513,7 +507,7 @@
             "name": "know",
             "aria-label": "",
             "type": "repeater",
-            "instructions": "",
+            "instructions": "Label and text pairs (currency, language, weather...).",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -578,7 +572,7 @@
             "name": "quote_text",
             "aria-label": "",
             "type": "textarea",
-            "instructions": "",
+            "instructions": "Optional guest quote, word for word.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -594,11 +588,11 @@
         },
         {
             "key": "field_yaww_location_quote_name",
-            "label": "Quote name",
+            "label": "Quote: name",
             "name": "quote_name",
             "aria-label": "",
             "type": "text",
-            "instructions": "",
+            "instructions": "Who said it.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -614,11 +608,11 @@
         },
         {
             "key": "field_yaww_location_quote_source",
-            "label": "Quote source",
+            "label": "Quote: source",
             "name": "quote_source",
             "aria-label": "",
             "type": "text",
-            "instructions": "",
+            "instructions": "Where it comes from, e.g. \"Google review\".",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -633,36 +627,12 @@
             "append": ""
         },
         {
-            "key": "field_yaww_location_program_retreat",
-            "label": "Program between editions (waitlist retreat)",
-            "name": "program_retreat",
-            "aria-label": "",
-            "type": "post_object",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "allow_null": 1,
-            "post_type": [
-                "retreat"
-            ],
-            "return_format": "id",
-            "taxonomy": [],
-            "multiple": 0,
-            "ui": 1,
-            "bidirectional_target": []
-        },
-        {
             "key": "field_yaww_location_travel_tips",
             "label": "Travel tips",
             "name": "travel_tips",
             "aria-label": "",
             "type": "repeater",
-            "instructions": "",
+            "instructions": "Groups of tips. Retreats here without their own tips show these.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -700,11 +670,11 @@
                 },
                 {
                     "key": "field_yaww_location_travel_tips_items",
-                    "label": "Items (one per line)",
+                    "label": "Tips",
                     "name": "items",
                     "aria-label": "",
                     "type": "textarea",
-                    "instructions": "",
+                    "instructions": "One tip per line.",
                     "required": false,
                     "conditional_logic": false,
                     "wrapper": {
@@ -723,11 +693,11 @@
         },
         {
             "key": "field_yaww_location_gallery",
-            "label": "Gallery",
+            "label": "Gallery photos",
             "name": "gallery",
             "aria-label": "",
             "type": "gallery",
-            "instructions": "",
+            "instructions": "Photos for the location gallery, in order.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -748,6 +718,90 @@
             "max_height": 0,
             "max_size": 0,
             "mime_types": ""
+        },
+        {
+            "key": "field_yaww_location_tab_advanced",
+            "label": "Advanced",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_yaww_location_program_retreat",
+            "label": "Waitlist retreat",
+            "name": "program_retreat",
+            "aria-label": "",
+            "type": "post_object",
+            "instructions": "The dateless program page (status Waitlist) shown when this place has no upcoming dates.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "allow_null": 1,
+            "post_type": [
+                "retreat"
+            ],
+            "return_format": "id",
+            "taxonomy": [],
+            "multiple": 0,
+            "ui": 1,
+            "bidirectional_target": []
+        },
+        {
+            "key": "field_yaww_location_hotel_label",
+            "label": "Stay description (no hotel names)",
+            "name": "hotel_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Generic, e.g. \"boutique hotel by the sea\". Never a hotel's name (Utopia is the only exception).",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_location_placeholder_hue",
+            "label": "Placeholder colour (0-360)",
+            "name": "placeholder_hue",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Colour of the box shown while a photo is missing. Leave as is.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": "",
+            "max": "",
+            "step": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -771,5 +825,5 @@
     "display_title": "",
     "enable_acf_abilities": true,
     "ai_description": "",
-    "modified": 1795448808
+    "modified": 1795450816
 }

@@ -1,61 +1,71 @@
 {
- "_doc": "Single source of truth for the theme's custom fields. Read by inc/fields.php (native register_post_meta) and by bin/gen-acf.py (acf-json/ + README field map). Types: text textarea wysiwyg number date bool select url image gallery post posts list rows. 'src' says where it comes from in the static site's data.",
+ "_doc": "Single source of truth for the theme's custom fields. Read by inc/fields.php (native register_post_meta) and by bin/gen-acf.py (acf-json/ + README field map). Types: text textarea wysiwyg number date bool select url image gallery post posts list rows. 'src' says where it comes from in the static site's data. Admin UX keys (bin/gen-acf.py): 'tab' starts an ACF tab at that field, 'instructions' is the help text under the label, 'required', 'choice_labels' (select value -> label).",
  "retreat": [
   {
    "key": "subtitle",
    "type": "text",
    "label": "Subtitle",
-   "src": "retreats/*/data.json subtitle"
-  },
-  {
-   "key": "location_label",
-   "type": "text",
-   "label": "Location line under the title",
-   "src": "retreatpage-*.html .retreat-hero__location"
-  },
-  {
-   "key": "waitlist_note",
-   "type": "textarea",
-   "label": "Waitlist note (dateless retreats)",
-   "src": "retreatpage-<location>.html .waitlist__note"
+   "src": "retreats/*/data.json subtitle",
+   "instructions": "One short line under the retreat name on the page, e.g. \"A Yoga & Culture Retreat\".",
+   "tab": "Basics"
   },
   {
    "key": "location_id",
    "type": "post",
    "post_type": "location",
    "label": "Location",
-   "src": "retreats.js locationId"
+   "src": "retreats.js locationId",
+   "instructions": "The destination page this retreat belongs to. Cards, menus and the location page use it. Required.",
+   "required": 1
+  },
+  {
+   "key": "location_label",
+   "type": "text",
+   "label": "Place line under the title",
+   "src": "retreatpage-*.html .retreat-hero__location",
+   "instructions": "Optional. The place as the hero shows it, e.g. \"Marrakech & Essaouira, Morocco\". Leave empty to use the location's display name."
   },
   {
    "key": "teacher_ids",
    "type": "posts",
    "post_type": "teacher",
    "label": "Teachers",
-   "src": "retreats.js teacherIds"
+   "src": "retreats.js teacherIds",
+   "instructions": "The teachers who lead this retreat, in the order you want them shown."
   },
   {
    "key": "facilitator_ids",
    "type": "posts",
    "post_type": "facilitator",
-   "label": "Facilitators (hosts tab)",
-   "src": "retreats/_tools/page_content.py FACILITATORS"
+   "label": "Facilitators",
+   "src": "retreats/_tools/page_content.py FACILITATORS",
+   "instructions": "YAWW hosts on the trip. They appear in the hosts tabs next to the teachers."
   },
   {
    "key": "start_date",
    "type": "date",
-   "label": "Start date (Y-m-d)",
-   "src": "retreats.js startDate"
+   "label": "Start date",
+   "src": "retreats.js startDate",
+   "instructions": "First day of the retreat. Leave both dates empty for a waitlist retreat (no dates yet)."
   },
   {
    "key": "end_date",
    "type": "date",
-   "label": "End date (Y-m-d)",
-   "src": "retreats.js endDate"
+   "label": "End date",
+   "src": "retreats.js endDate",
+   "instructions": "Last day of the retreat."
+  },
+  {
+   "key": "nights",
+   "type": "number",
+   "label": "Nights",
+   "src": "data.json nights",
+   "instructions": "Number of nights, e.g. 6. Used in the page description."
   },
   {
    "key": "status",
    "type": "select",
-   "label": "Status",
+   "label": "Booking status",
    "choices": [
     "available",
     "filling_fast",
@@ -64,13 +74,24 @@
     "new",
     "waitlist"
    ],
-   "src": "retreats.js status; waitlist = dateless retreat from locations.js program"
+   "src": "retreats.js status; waitlist = dateless retreat from locations.js program",
+   "instructions": "What the badge on the card says. \"Spaces left\" uses the number below. \"Waitlist\" is for a retreat with no dates yet. Required.",
+   "required": 1,
+   "choice_labels": {
+    "available": "Available (no badge)",
+    "filling_fast": "Filling fast",
+    "spaces_left": "Spaces left (shows the number)",
+    "sold_out": "Sold out",
+    "new": "New retreat",
+    "waitlist": "Waitlist (no dates yet)"
+   }
   },
   {
    "key": "spaces_left",
    "type": "number",
    "label": "Spaces left",
-   "src": "retreats.js spacesLeft"
+   "src": "retreats.js spacesLeft",
+   "instructions": "Only used when the status is \"Spaces left\", e.g. 3 shows \"3 spaces left\"."
   },
   {
    "key": "collection",
@@ -80,55 +101,70 @@
     "deep-dives",
     "signature-collection"
    ],
-   "src": "retreats.js collection (mirrors retreat_tier taxonomy)"
+   "src": "retreats.js collection (mirrors retreat_tier taxonomy)",
+   "instructions": "Signature Collection or Deep Dives. Keep it the same as the Collection box in the sidebar.",
+   "choice_labels": {
+    "deep-dives": "Deep Dives",
+    "signature-collection": "Signature Collection"
+   }
   },
   {
-   "key": "card_image",
-   "type": "image",
-   "label": "Card image (312x408; the @2x file is the attachment's '2x' size)",
-   "src": "retreats.js image / image2x"
+   "key": "wetravel_url",
+   "type": "url",
+   "label": "WeTravel booking link",
+   "src": "window.YAWW_WETRAVEL.url (js/retreat-rooms.js)",
+   "instructions": "The WeTravel trip page. Every \"Reserve\" and \"Book now\" button on this retreat opens it."
+  },
+  {
+   "key": "waitlist_note",
+   "type": "textarea",
+   "label": "Waitlist note",
+   "src": "retreatpage-<location>.html .waitlist__note",
+   "instructions": "Only for waitlist retreats: the sentence above the waitlist form, e.g. when the last edition ran."
   },
   {
    "key": "hero_image",
    "type": "image",
-   "label": "Hero image",
-   "src": "retreatpage-*.html hero"
+   "label": "Hero photo",
+   "src": "retreatpage-*.html hero",
+   "instructions": "The large photo at the top of the page. Use a wide landscape photo.",
+   "tab": "Photos"
   },
   {
-   "key": "hotel_label",
-   "type": "text",
-   "label": "Generic stay label (never a hotel name)",
-   "src": "BRIEF s.12: e.g. boutique hotel in Chiang Mai"
-  },
-  {
-   "key": "nights",
-   "type": "number",
-   "label": "Nights",
-   "src": "data.json nights"
-  },
-  {
-   "key": "includes",
-   "type": "list",
-   "label": "What is included",
-   "src": "data.json includes"
-  },
-  {
-   "key": "not_included",
-   "type": "list",
-   "label": "What is not included",
-   "src": "data.json not_included"
-  },
-  {
-   "key": "includes_notes",
-   "type": "list",
-   "label": "Includes footnotes",
-   "src": "retreatpage-*.html .retreat-includes__footnote"
+   "key": "card_image",
+   "type": "image",
+   "label": "Card photo",
+   "src": "retreats.js image / image2x",
+   "instructions": "The portrait photo on retreat cards (312 x 408). Upload it at double size (624 x 816) for sharp screens."
   },
   {
    "key": "includes_image",
    "type": "image",
-   "label": "Includes band photo (empty = css default)",
-   "src": "retreatpage-*.html .retreat-includes__bg"
+   "label": "What's included: background photo",
+   "src": "retreatpage-*.html .retreat-includes__bg",
+   "instructions": "Optional. The photo behind the \"What's included\" band. Empty = the default photo."
+  },
+  {
+   "key": "includes",
+   "type": "list",
+   "label": "Included",
+   "src": "data.json includes",
+   "instructions": "One item per row, as shown in the \"Included\" list.",
+   "tab": "What's included"
+  },
+  {
+   "key": "not_included",
+   "type": "list",
+   "label": "Not included",
+   "src": "data.json not_included",
+   "instructions": "One item per row, as shown in the \"Not included\" list."
+  },
+  {
+   "key": "includes_notes",
+   "type": "list",
+   "label": "Footnotes",
+   "src": "retreatpage-*.html .retreat-includes__footnote",
+   "instructions": "Optional small print under the lists, one note per row."
   },
   {
    "key": "itinerary",
@@ -139,7 +175,8 @@
     {
      "key": "label",
      "type": "text",
-     "label": "Day label"
+     "label": "Day label",
+     "instructions": "e.g. \"Day 1\" or \"Days 2-3\"."
     },
     {
      "key": "title",
@@ -149,59 +186,77 @@
     {
      "key": "bullets",
      "type": "textarea",
-     "label": "Bullets (one per line)"
+     "label": "What happens",
+     "instructions": "One line per bullet."
     },
     {
      "key": "images",
      "type": "gallery",
-     "label": "Photos"
+     "label": "Photos",
+     "instructions": "Optional. One or two photos for the day."
     }
-   ]
+   ],
+   "instructions": "One row per day (or group of days), in order.",
+   "tab": "Itinerary"
   },
   {
    "key": "itinerary_notes",
    "type": "list",
    "label": "Itinerary notes",
-   "src": "retreatpage-*.html .retreat-itinerary__note"
+   "src": "retreatpage-*.html .retreat-itinerary__note",
+   "instructions": "Optional notes shown under the itinerary, one per row."
+  },
+  {
+   "key": "hotel_label",
+   "type": "text",
+   "label": "Stay description (no hotel names)",
+   "src": "BRIEF s.12: e.g. boutique hotel in Chiang Mai",
+   "instructions": "A generic description such as \"boutique hotel in Chiang Mai\". Never write a hotel's name here (Utopia is the only exception).",
+   "tab": "Stay & rooms"
   },
   {
    "key": "stays",
    "type": "rows",
-   "label": "Accommodations (stay tabs)",
+   "label": "Accommodations",
    "src": "retreatpage-*.html var HOTELS",
    "sub": [
     {
      "key": "name",
      "type": "text",
-     "label": "Name (generic label, never a hotel name except Utopia)"
+     "label": "Name",
+     "instructions": "Generic label, never a hotel name (except Utopia)."
     },
     {
      "key": "tab",
      "type": "text",
-     "label": "Short tab label"
+     "label": "Tab label",
+     "instructions": "Short text for the tab. Empty = the name."
     },
     {
      "key": "text",
      "type": "textarea",
-     "label": "Paragraphs (one per line)"
+     "label": "Description",
+     "instructions": "One paragraph per line."
     },
     {
      "key": "gallery",
      "type": "gallery",
      "label": "Photos"
     }
-   ]
+   ],
+   "instructions": "One row per place you stay. Each row becomes a tab with its photos. Never use hotel names (except Utopia)."
   },
   {
    "key": "room_venues",
    "type": "list",
-   "label": "Room venues (ROOM_VENUES for retreat-rooms.js)",
-   "src": "retreatpage-*.html var ROOM_VENUES"
+   "label": "Room venues",
+   "src": "retreatpage-*.html var ROOM_VENUES",
+   "instructions": "Only for retreats with more than one stay: the venue names, in order, used to group the rooms. Same wording as the Accommodations rows."
   },
   {
    "key": "rooms",
    "type": "rows",
-   "label": "Rooms",
+   "label": "Rooms and prices",
    "src": "retreatpage-*.html var TIERS (hotel name dropped)",
    "sub": [
     {
@@ -212,12 +267,14 @@
     {
      "key": "price_usd",
      "type": "number",
-     "label": "Price (USD, per person)"
+     "label": "Price (USD)",
+     "instructions": "Number only, e.g. 3450."
     },
     {
      "key": "price_unit",
      "type": "text",
-     "label": "Price unit"
+     "label": "Price unit",
+     "instructions": "e.g. \"per person\" or \"private room\"."
     },
     {
      "key": "description",
@@ -227,19 +284,43 @@
     {
      "key": "pills",
      "type": "textarea",
-     "label": "Feature pills (one per line)"
+     "label": "Feature tags",
+     "instructions": "One per line, e.g. \"Private bath\"."
     },
     {
      "key": "hotel_label",
      "type": "text",
-     "label": "Generic stay label"
+     "label": "Venue",
+     "instructions": "Only for retreats with several stays: one of the Room venues. Never a hotel name."
     },
     {
      "key": "gallery",
      "type": "gallery",
      "label": "Photos"
     }
-   ]
+   ],
+   "instructions": "One row per room option, cheapest first. The price is per person in USD."
+  },
+  {
+   "key": "deposit_usd",
+   "type": "number",
+   "label": "Deposit (USD)",
+   "src": "data.json booking.deposit_usd",
+   "instructions": "Deposit per person shown in \"How to book\", e.g. 500."
+  },
+  {
+   "key": "balance_due_days",
+   "type": "number",
+   "label": "Balance due (days before)",
+   "src": "data.json booking.balance_due_days",
+   "instructions": "How many days before the start the balance is due, e.g. 90."
+  },
+  {
+   "key": "roommate_note",
+   "type": "textarea",
+   "label": "Roommate note",
+   "src": "data.json booking.roommate_note",
+   "instructions": "Optional text about shared rooms and roommate matching."
   },
   {
    "key": "extras",
@@ -255,22 +336,26 @@
     {
      "key": "tab",
      "type": "text",
-     "label": "Short tab label"
+     "label": "Tab label",
+     "instructions": "Short text for the tab. Empty = the name."
     },
     {
      "key": "price",
      "type": "text",
-     "label": "Price as shown (e.g. 155 USD, 250 EUR)"
+     "label": "Price as shown",
+     "instructions": "e.g. \"155 USD\" or \"250 EUR\"."
     },
     {
      "key": "price_usd",
      "type": "number",
-     "label": "Price (USD, when in USD)"
+     "label": "Price in USD",
+     "instructions": "Optional number, used when \"Price as shown\" is empty."
     },
     {
      "key": "unit",
      "type": "text",
-     "label": "Unit"
+     "label": "Unit",
+     "instructions": "e.g. \"per person\". Empty = \"each\"."
     },
     {
      "key": "desc",
@@ -282,7 +367,58 @@
      "type": "gallery",
      "label": "Photos"
     }
-   ]
+   ],
+   "instructions": "Add-ons guests can book (massages, excursions...). One row per extra; each becomes a tab.",
+   "tab": "Extras"
+  },
+  {
+   "key": "gallery_title",
+   "type": "text",
+   "label": "Gallery title",
+   "src": "data.json gallery_title",
+   "instructions": "Optional. Empty = \"Where you'll be\".",
+   "tab": "Gallery & guests"
+  },
+  {
+   "key": "gallery_intro",
+   "type": "textarea",
+   "label": "Gallery intro",
+   "src": "data.json gallery_intro",
+   "instructions": "Optional line under the gallery title. Empty = \"Photographs from past retreats in <location>.\""
+  },
+  {
+   "key": "gallery",
+   "type": "gallery",
+   "label": "Gallery photos",
+   "src": "retreatpage-*.html .gallery__slide (--r cycles 28/17,1/1,28/17,5/4,28/17,1/1,28/17,5/4,1/1,28/17)",
+   "instructions": "Photos for the slider, in order. Drag to reorder."
+  },
+  {
+   "key": "testimonials",
+   "type": "rows",
+   "label": "Guest quotes",
+   "src": "retreatpage-*.html var TESTIMONIALS",
+   "sub": [
+    {
+     "key": "quote",
+     "type": "textarea",
+     "label": "Quote",
+     "instructions": "Word for word."
+    },
+    {
+     "key": "name",
+     "type": "text",
+     "label": "Name",
+     "instructions": "e.g. \"Sarah M.\""
+    },
+    {
+     "key": "detail",
+     "type": "text",
+     "label": "Source",
+     "instructions": "e.g. \"Google review · El Cuyo\"."
+    }
+   ],
+   "instructions": "The \"What guests say\" quotes. Only real reviews, copied word for word."
   },
   {
    "key": "travel_tips",
@@ -298,14 +434,17 @@
     {
      "key": "items",
      "type": "textarea",
-     "label": "Items (one per line)"
+     "label": "Tips",
+     "instructions": "One tip per line."
     }
-   ]
+   ],
+   "instructions": "Groups of tips (getting there, what to pack...). Empty = the location's travel tips.",
+   "tab": "Travel info"
   },
   {
    "key": "faqs",
    "type": "rows",
-   "label": "Additional info / FAQ",
+   "label": "Additional info (FAQ)",
    "src": "retreatpage-*.html .faq (Additional info)",
    "sub": [
     {
@@ -318,98 +457,48 @@
      "type": "wysiwyg",
      "label": "Answer"
     }
-   ]
-  },
-  {
-   "key": "gallery",
-   "type": "gallery",
-   "label": "Gallery",
-   "src": "retreatpage-*.html .gallery__slide (--r cycles 28/17,1/1,28/17,5/4,28/17,1/1,28/17,5/4,1/1,28/17)"
-  },
-  {
-   "key": "gallery_title",
-   "type": "text",
-   "label": "Gallery title",
-   "src": "data.json gallery_title"
-  },
-  {
-   "key": "gallery_intro",
-   "type": "textarea",
-   "label": "Gallery intro",
-   "src": "data.json gallery_intro"
-  },
-  {
-   "key": "testimonials",
-   "type": "rows",
-   "label": "Testimonials (What guests say)",
-   "src": "retreatpage-*.html var TESTIMONIALS",
-   "sub": [
-    {
-     "key": "quote",
-     "type": "textarea",
-     "label": "Quote"
-    },
-    {
-     "key": "name",
-     "type": "text",
-     "label": "Name"
-    },
-    {
-     "key": "detail",
-     "type": "text",
-     "label": "Detail (Google review · El Cuyo)"
-    }
-   ]
-  },
-  {
-   "key": "deposit_usd",
-   "type": "number",
-   "label": "Deposit (USD)",
-   "src": "data.json booking.deposit_usd"
-  },
-  {
-   "key": "balance_due_days",
-   "type": "number",
-   "label": "Balance due (days before)",
-   "src": "data.json booking.balance_due_days"
-  },
-  {
-   "key": "roommate_note",
-   "type": "textarea",
-   "label": "Roommate note",
-   "src": "data.json booking.roommate_note"
-  },
-  {
-   "key": "wetravel_url",
-   "type": "url",
-   "label": "WeTravel trip URL",
-   "src": "window.YAWW_WETRAVEL.url (js/retreat-rooms.js)"
+   ],
+   "instructions": "Questions and answers shown at the bottom of the page."
   },
   {
    "key": "seo_description",
    "type": "textarea",
-   "label": "SEO description",
-   "src": "retreatpage-*.html meta description"
+   "label": "Search description",
+   "src": "retreatpage-*.html meta description",
+   "instructions": "Optional. The text Google shows under the title (about 150 characters). Empty = written automatically from the dates, place and teachers.",
+   "tab": "SEO"
   }
  ],
  "location": [
   {
    "key": "display_name",
    "type": "text",
-   "label": "Display name (italic line)",
-   "src": "locations.js displayName"
-  },
-  {
-   "key": "card_name",
-   "type": "text",
-   "label": "Card name (shorter line on retreat cards)",
-   "src": "locations.js cardName"
+   "label": "Display name",
+   "src": "locations.js displayName",
+   "instructions": "The place as shown in italics on cards and pages, e.g. \"Chiang Mai & Koh Lanta, Thailand\". Required.",
+   "required": 1,
+   "tab": "Names"
   },
   {
    "key": "short_name",
    "type": "text",
-   "label": "Short name (as on locations.html)",
-   "src": "locations.js name"
+   "label": "Short name",
+   "src": "locations.js name",
+   "instructions": "The short name on the Locations page and in menus, e.g. \"Thailand\"."
+  },
+  {
+   "key": "card_name",
+   "type": "text",
+   "label": "Card name",
+   "src": "locations.js cardName",
+   "instructions": "Optional shorter place line for retreat cards. Empty = the display name."
+  },
+  {
+   "key": "country",
+   "type": "text",
+   "label": "Country",
+   "src": "locations.js country",
+   "instructions": "Country name, used for search results."
   },
   {
    "key": "region",
@@ -421,55 +510,45 @@
     "Africa & Middle East",
     "Asia"
    ],
-   "src": "locations.js region"
-  },
-  {
-   "key": "country",
-   "type": "text",
-   "label": "Country",
-   "src": "locations.js country"
+   "src": "locations.js region",
+   "instructions": "Groups the destination in the Locations menu and page. Required.",
+   "required": 1
   },
   {
    "key": "hero_image",
    "type": "image",
-   "label": "Hero image",
-   "src": "location_content.py hero"
+   "label": "Hero photo",
+   "src": "location_content.py hero",
+   "instructions": "The large photo at the top of the location page.",
+   "tab": "Page"
   },
   {
    "key": "card_image",
    "type": "image",
-   "label": "Card image",
-   "src": "images/location-<id>.jpg (locations.html grid)"
-  },
-  {
-   "key": "placeholder_hue",
-   "type": "number",
-   "label": "Placeholder hue (0-360)",
-   "src": "locations.js placeholderHue"
-  },
-  {
-   "key": "hotel_label",
-   "type": "text",
-   "label": "Generic stay label (never a hotel name)",
-   "src": "BRIEF s.12"
+   "label": "Card photo",
+   "src": "images/location-<id>.jpg (locations.html grid)",
+   "instructions": "The photo on the Locations grid."
   },
   {
    "key": "eyebrow",
    "type": "text",
-   "label": "Hero eyebrow",
-   "src": "location_content.py eyebrow"
+   "label": "Eyebrow",
+   "src": "location_content.py eyebrow",
+   "instructions": "Small line above the title in the hero."
   },
   {
    "key": "tagline",
    "type": "text",
    "label": "Tagline",
-   "src": "location_content.py tagline"
+   "src": "location_content.py tagline",
+   "instructions": "One sentence under the title in the hero."
   },
   {
    "key": "blurb",
    "type": "textarea",
    "label": "Grid blurb",
-   "src": "location_content.py blurb"
+   "src": "location_content.py blurb",
+   "instructions": "Two or three sentences shown on the Locations grid."
   },
   {
    "key": "facts",
@@ -487,19 +566,22 @@
      "type": "text",
      "label": "Value"
     }
-   ]
+   ],
+   "instructions": "Short facts under the hero (e.g. Best time / October). One per row."
   },
   {
    "key": "intro_title",
    "type": "text",
-   "label": "Intro title (Why we go); intro paragraphs = post content",
-   "src": "location_content.py intro_title / intro"
+   "label": "Intro title",
+   "src": "location_content.py intro_title / intro",
+   "instructions": "Title of the \"Why we go\" section. Its paragraphs are the main text box above."
   },
   {
    "key": "intro_image",
    "type": "image",
    "label": "Intro photo",
-   "src": "location_content.py intro_img"
+   "src": "location_content.py intro_img",
+   "instructions": "Photo beside the \"Why we go\" text."
   },
   {
    "key": "guide",
@@ -510,7 +592,7 @@
     {
      "key": "kicker",
      "type": "text",
-     "label": "Kicker"
+     "label": "Small line above"
     },
     {
      "key": "title",
@@ -530,9 +612,11 @@
     {
      "key": "placeholder",
      "type": "text",
-     "label": "Placeholder label (no photo yet)"
+     "label": "Placeholder label",
+     "instructions": "Only when there is no photo yet: what the photo will show."
     }
-   ]
+   ],
+   "instructions": "The guide cards. If you do not have a photo yet, leave Photo empty and fill \"Placeholder label\"."
   },
   {
    "key": "know",
@@ -550,32 +634,29 @@
      "type": "textarea",
      "label": "Text"
     }
-   ]
+   ],
+   "instructions": "Label and text pairs (currency, language, weather...)."
   },
   {
    "key": "quote_text",
    "type": "textarea",
    "label": "Quote",
-   "src": "location_content.py quote[0]"
+   "src": "location_content.py quote[0]",
+   "instructions": "Optional guest quote, word for word."
   },
   {
    "key": "quote_name",
    "type": "text",
-   "label": "Quote name",
-   "src": "location_content.py quote[1]"
+   "label": "Quote: name",
+   "src": "location_content.py quote[1]",
+   "instructions": "Who said it."
   },
   {
    "key": "quote_source",
    "type": "text",
-   "label": "Quote source",
-   "src": "location_content.py quote[2]"
-  },
-  {
-   "key": "program_retreat",
-   "type": "post",
-   "post_type": "retreat",
-   "label": "Program between editions (waitlist retreat)",
-   "src": "locations.js program"
+   "label": "Quote: source",
+   "src": "location_content.py quote[2]",
+   "instructions": "Where it comes from, e.g. \"Google review\"."
   },
   {
    "key": "travel_tips",
@@ -591,15 +672,41 @@
     {
      "key": "items",
      "type": "textarea",
-     "label": "Items (one per line)"
+     "label": "Tips",
+     "instructions": "One tip per line."
     }
-   ]
+   ],
+   "instructions": "Groups of tips. Retreats here without their own tips show these."
   },
   {
    "key": "gallery",
    "type": "gallery",
-   "label": "Gallery",
-   "src": "locationpage-*.html"
+   "label": "Gallery photos",
+   "src": "locationpage-*.html",
+   "instructions": "Photos for the location gallery, in order."
+  },
+  {
+   "key": "program_retreat",
+   "type": "post",
+   "post_type": "retreat",
+   "label": "Waitlist retreat",
+   "src": "locations.js program",
+   "instructions": "The dateless program page (status Waitlist) shown when this place has no upcoming dates.",
+   "tab": "Advanced"
+  },
+  {
+   "key": "hotel_label",
+   "type": "text",
+   "label": "Stay description (no hotel names)",
+   "src": "BRIEF s.12",
+   "instructions": "Generic, e.g. \"boutique hotel by the sea\". Never a hotel's name (Utopia is the only exception)."
+  },
+  {
+   "key": "placeholder_hue",
+   "type": "number",
+   "label": "Placeholder colour (0-360)",
+   "src": "locations.js placeholderHue",
+   "instructions": "Colour of the box shown while a photo is missing. Leave as is."
   }
  ],
  "teacher": [
@@ -607,85 +714,101 @@
    "key": "short_name",
    "type": "text",
    "label": "Short name",
-   "src": "teachers.js shortName"
+   "src": "teachers.js shortName",
+   "instructions": "First name or short form used in sentences, e.g. \"Sue\".",
+   "tab": "Profile"
   },
   {
    "key": "role",
    "type": "text",
-   "label": "Role (eyebrow override)",
-   "src": "teachers.js role"
+   "label": "Role",
+   "src": "teachers.js role",
+   "instructions": "Optional line above the name, e.g. \"Yoga teacher\". Empty = \"Teacher\"."
   },
   {
    "key": "short_bio",
    "type": "textarea",
    "label": "Card blurb",
-   "src": "teachers.js shortBio"
+   "src": "teachers.js shortBio",
+   "instructions": "Two or three sentences for the teacher card. The full bio is the main text box above."
   },
   {
    "key": "host_bio",
    "type": "textarea",
-   "label": "Bio on retreat pages (empty = card blurb)",
-   "src": "retreatpage-*.html .host__bio"
+   "label": "Bio on retreat pages",
+   "src": "retreatpage-*.html .host__bio",
+   "instructions": "Optional. The paragraph in the hosts section of retreat pages. Empty = the card blurb."
   },
   {
    "key": "quote",
    "type": "text",
    "label": "Quote",
-   "src": "teachers.js quote"
+   "src": "teachers.js quote",
+   "instructions": "Optional short quote shown on the teacher page."
   },
   {
    "key": "specialties",
    "type": "list",
    "label": "Specialties",
-   "src": "teachers.js specialties"
+   "src": "teachers.js specialties",
+   "instructions": "One per row, e.g. \"Vinyasa\"."
   },
   {
-   "key": "youtube",
-   "type": "url",
-   "label": "YouTube video (id or URL)",
-   "src": "teachers.js youtube / video"
+   "key": "avatar",
+   "type": "image",
+   "label": "Small round photo",
+   "src": "teachers.js avatar",
+   "instructions": "Square photo for small avatars. The large portrait is the Featured image."
   },
   {
-   "key": "spotify_url",
-   "type": "url",
-   "label": "Spotify playlist (URL or id)",
-   "src": "teachers.js spotifyPlaylist / spotify"
+   "key": "photo_position",
+   "type": "text",
+   "label": "Photo focus",
+   "src": "teachers.js photoPosition",
+   "instructions": "Optional, for portraits that crop badly: CSS position such as \"50% 20%\" (left-right, top-bottom)."
+  },
+  {
+   "key": "needs_content",
+   "type": "bool",
+   "label": "Profile not ready",
+   "src": "teachers.js needsContent",
+   "instructions": "Tick while the bio or photo is still missing."
   },
   {
    "key": "website",
    "type": "url",
    "label": "Website",
-   "src": "teachers.js website"
+   "src": "teachers.js website",
+   "instructions": "Full address, starting with https://",
+   "tab": "Links"
   },
   {
    "key": "website_label",
    "type": "text",
-   "label": "Website link label",
-   "src": "teachers.js website.label"
+   "label": "Website link text",
+   "src": "teachers.js website.label",
+   "instructions": "Optional text for the website link. Empty = the address."
   },
   {
    "key": "instagram",
    "type": "text",
-   "label": "Instagram (@handle or URL)",
-   "src": "teachers.js instagram"
+   "label": "Instagram",
+   "src": "teachers.js instagram",
+   "instructions": "@handle or the profile address."
   },
   {
-   "key": "avatar",
-   "type": "image",
-   "label": "Avatar (square)",
-   "src": "teachers.js avatar"
+   "key": "youtube",
+   "type": "url",
+   "label": "YouTube video",
+   "src": "teachers.js youtube / video",
+   "instructions": "A video link or its id. Shown on the teacher page."
   },
   {
-   "key": "photo_position",
-   "type": "text",
-   "label": "Photo object-position",
-   "src": "teachers.js photoPosition"
-  },
-  {
-   "key": "needs_content",
-   "type": "bool",
-   "label": "Needs content (no bio/photo yet)",
-   "src": "teachers.js needsContent"
+   "key": "spotify_url",
+   "type": "url",
+   "label": "Spotify playlist",
+   "src": "teachers.js spotifyPlaylist / spotify",
+   "instructions": "Playlist link or id."
   }
  ],
  "facilitator": [
@@ -693,51 +816,69 @@
    "key": "role",
    "type": "text",
    "label": "Role",
-   "src": "team.js role"
+   "src": "team.js role",
+   "instructions": "Line above the name, e.g. \"Founder\" or \"Retreat host\".",
+   "tab": "Profile"
   },
   {
    "key": "short_bio",
    "type": "textarea",
    "label": "Card blurb",
-   "src": "team.js shortBio"
+   "src": "team.js shortBio",
+   "instructions": "Two or three sentences for the card. The full bio is the main text box above."
   },
   {
    "key": "listed",
    "type": "bool",
-   "label": "Listed on the Facilitators grid",
-   "src": "team.js listed"
+   "label": "Show on the Facilitators page",
+   "src": "team.js listed",
+   "instructions": "Untick to keep the person off the Facilitators grid (their page still works)."
   },
   {
    "key": "photo_position",
    "type": "text",
-   "label": "Photo object-position",
-   "src": "team.js photoPosition"
+   "label": "Photo focus",
+   "src": "team.js photoPosition",
+   "instructions": "Optional CSS position such as \"50% 20%\" for portraits that crop badly."
   }
  ],
  "post": [
   {
    "key": "date_label",
    "type": "text",
-   "label": "Date as shown (empty = no date line)",
-   "src": "journal.js date"
+   "label": "Date as shown",
+   "src": "journal.js date",
+   "instructions": "The date line as readers see it, e.g. \"March 2019\". Empty = no date line.",
+   "tab": "Listing"
+  },
+  {
+   "key": "card_image",
+   "type": "image",
+   "label": "Card photo",
+   "src": "images/journal/<slug>.jpg",
+   "instructions": "Photo on the Journal grid (672 x 406)."
+  },
+  {
+   "key": "card_image_2x",
+   "type": "image",
+   "label": "Card photo, double size",
+   "src": "images/journal/<slug>@2x.jpg",
+   "instructions": "Optional 1344 x 812 version of the card photo for sharp screens."
+  },
+  {
+   "key": "hero_image_2x",
+   "type": "image",
+   "label": "Top photo, double size",
+   "src": "journal.js hero.src2x",
+   "instructions": "Optional double-size version of the Featured image (the top photo)."
   },
   {
    "key": "author_name",
    "type": "text",
    "label": "Author name",
-   "src": "journal.js author.name"
-  },
-  {
-   "key": "author_photo",
-   "type": "image",
-   "label": "Author photo",
-   "src": "journal.js author.photo / photo2x"
-  },
-  {
-   "key": "author_bio",
-   "type": "textarea",
-   "label": "Author bio (one paragraph per line)",
-   "src": "journal.js author.bio"
+   "src": "journal.js author.name",
+   "instructions": "As shown under the post.",
+   "tab": "Author"
   },
   {
    "key": "author_person",
@@ -746,69 +887,71 @@
     "teacher",
     "facilitator"
    ],
-   "label": "Author page (teacher or facilitator)",
-   "src": "journal.js author.pageUrl"
+   "label": "Author page",
+   "src": "journal.js author.pageUrl",
+   "instructions": "Optional: links the author box to a teacher or facilitator page."
+  },
+  {
+   "key": "author_photo",
+   "type": "image",
+   "label": "Author photo",
+   "src": "journal.js author.photo / photo2x",
+   "instructions": "Small round photo in the author box."
+  },
+  {
+   "key": "author_photo_2x",
+   "type": "image",
+   "label": "Author photo, double size",
+   "src": "journal.js author.photo2x",
+   "instructions": "Optional double-size version."
+  },
+  {
+   "key": "author_bio",
+   "type": "textarea",
+   "label": "Author bio",
+   "src": "journal.js author.bio",
+   "instructions": "One paragraph per line."
   },
   {
    "key": "retreat_title",
    "type": "text",
-   "label": "Explore this retreat: title",
-   "src": "journal.js retreat.title"
+   "label": "Title",
+   "src": "journal.js retreat.title",
+   "instructions": "Optional box at the end of the post that points to a retreat. Leave all of this tab empty to hide it.",
+   "tab": "Explore this retreat"
   },
   {
    "key": "retreat_subtitle",
    "type": "text",
-   "label": "Explore this retreat: subtitle",
+   "label": "Subtitle",
    "src": "journal.js retreat.subtitle"
   },
   {
    "key": "retreat_text",
    "type": "textarea",
-   "label": "Explore this retreat: text",
+   "label": "Text",
    "src": "journal.js retreat.text"
   },
   {
    "key": "retreat_location",
    "type": "post",
    "post_type": "location",
-   "label": "Explore this retreat: location",
-   "src": "journal.js retreat.locationId"
+   "label": "Location",
+   "src": "journal.js retreat.locationId",
+   "instructions": "The box links to this location page."
   },
   {
    "key": "retreat_image",
    "type": "image",
-   "label": "Explore this retreat: photo",
+   "label": "Photo",
    "src": "journal.js retreat.image / image2x"
-  },
-  {
-   "key": "card_image",
-   "type": "image",
-   "label": "Listing card photo",
-   "src": "images/journal/<slug>.jpg"
-  },
-  {
-   "key": "card_image_2x",
-   "type": "image",
-   "label": "Listing card photo @2x",
-   "src": "images/journal/<slug>@2x.jpg"
-  },
-  {
-   "key": "hero_image_2x",
-   "type": "image",
-   "label": "Hero @2x (hero 1x = featured image)",
-   "src": "journal.js hero.src2x"
-  },
-  {
-   "key": "author_photo_2x",
-   "type": "image",
-   "label": "Author photo @2x",
-   "src": "journal.js author.photo2x"
   },
   {
    "key": "retreat_image_2x",
    "type": "image",
-   "label": "Explore this retreat: photo @2x",
-   "src": "journal.js retreat.image2x"
+   "label": "Photo, double size",
+   "src": "journal.js retreat.image2x",
+   "instructions": "Optional."
   }
  ]
 }
