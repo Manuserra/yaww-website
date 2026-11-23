@@ -21,26 +21,6 @@
             "selected": 0
         },
         {
-            "key": "field_yaww_teacher_short_name",
-            "label": "Short name",
-            "name": "short_name",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "First name or short form used in sentences, e.g. \"Sue\".",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
             "key": "field_yaww_teacher_role",
             "label": "Role",
             "name": "role",
@@ -50,7 +30,7 @@
             "required": false,
             "conditional_logic": false,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -61,12 +41,52 @@
             "append": ""
         },
         {
+            "key": "field_yaww_teacher_short_name",
+            "label": "Short name",
+            "name": "short_name",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "First name or short form used in sentences, e.g. \"Sue\".",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_teacher_bio",
+            "label": "Full bio",
+            "name": "bio",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "The bio on the teacher page. Press Enter twice between paragraphs.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0,
+            "default_value": ""
+        },
+        {
             "key": "field_yaww_teacher_short_bio",
             "label": "Card blurb",
             "name": "short_bio",
             "aria-label": "",
             "type": "textarea",
-            "instructions": "Two or three sentences for the teacher card. The full bio is the main text box above.",
+            "instructions": "Two or three sentences for the teacher card. The full bio is above.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -135,7 +155,7 @@
                 "id": ""
             },
             "layout": "table",
-            "button_label": "Add",
+            "button_label": "Add a line",
             "min": 0,
             "max": 0,
             "rows_per_page": 20,
@@ -165,51 +185,6 @@
             ]
         },
         {
-            "key": "field_yaww_teacher_avatar",
-            "label": "Small round photo",
-            "name": "avatar",
-            "aria-label": "",
-            "type": "image",
-            "instructions": "Square photo for small avatars. The large portrait is the Featured image.",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "id",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": 0,
-            "min_height": 0,
-            "min_size": 0,
-            "max_width": 0,
-            "max_height": 0,
-            "max_size": 0,
-            "mime_types": ""
-        },
-        {
-            "key": "field_yaww_teacher_photo_position",
-            "label": "Photo focus",
-            "name": "photo_position",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "Optional, for portraits that crop badly: CSS position such as \"50% 20%\" (left-right, top-bottom).",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
             "key": "field_yaww_teacher_needs_content",
             "label": "Profile not ready",
             "name": "needs_content",
@@ -223,11 +198,74 @@
                 "class": "",
                 "id": ""
             },
+            "ui": 1,
+            "ui_on_text": "Yes",
+            "ui_off_text": "No",
             "default_value": 0,
-            "message": "",
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": ""
+            "message": ""
+        },
+        {
+            "key": "field_yaww_teacher_tab_photos",
+            "label": "Photos",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_yaww_teacher_avatar",
+            "label": "Small round photo",
+            "name": "avatar",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Square photo for small round avatars. The large portrait is the \"Portrait photo\" box on the right.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all",
+            "mime_types": "jpg,jpeg,png,webp,gif",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0
+        },
+        {
+            "key": "field_yaww_teacher_photo_position",
+            "label": "Photo focus",
+            "name": "photo_position",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Optional, for portraits that crop badly: CSS position such as \"50% 20%\" (left-right, top-bottom).",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_yaww_teacher_tab_links",
@@ -257,12 +295,12 @@
             "required": false,
             "conditional_logic": false,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "placeholder": ""
+            "placeholder": "https:\/\/",
+            "default_value": ""
         },
         {
             "key": "field_yaww_teacher_website_label",
@@ -274,7 +312,7 @@
             "required": false,
             "conditional_logic": false,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -294,7 +332,7 @@
             "required": false,
             "conditional_logic": false,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -314,12 +352,12 @@
             "required": false,
             "conditional_logic": false,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "placeholder": ""
+            "placeholder": "https:\/\/",
+            "default_value": ""
         },
         {
             "key": "field_yaww_teacher_spotify_url",
@@ -335,8 +373,8 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "placeholder": ""
+            "placeholder": "https:\/\/",
+            "default_value": ""
         },
         {
             "key": "field_yaww_teacher_tab_seo",
@@ -387,16 +425,28 @@
         ]
     ],
     "menu_order": 0,
-    "position": "normal",
-    "style": "default",
+    "position": "acf_after_title",
+    "style": "seamless",
     "label_placement": "top",
     "instruction_placement": "label",
-    "hide_on_screen": [],
+    "hide_on_screen": [
+        "the_content",
+        "excerpt",
+        "discussion",
+        "comments",
+        "revisions",
+        "slug",
+        "author",
+        "format",
+        "categories",
+        "tags",
+        "send-trackbacks"
+    ],
     "active": true,
     "description": "",
     "show_in_rest": 1,
     "display_title": "",
     "enable_acf_abilities": true,
     "ai_description": "",
-    "modified": 1795452344
+    "modified": 1795454866
 }

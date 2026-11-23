@@ -1,13 +1,30 @@
 {
- "_doc": "Single source of truth for the theme's custom fields. Read by inc/fields.php (native register_post_meta) and by bin/gen-acf.py (acf-json/ + README field map). Types: text textarea wysiwyg number date bool select url image gallery post posts list rows. 'src' says where it comes from in the static site's data. Admin UX keys (bin/gen-acf.py): 'tab' starts an ACF tab at that field, 'instructions' is the help text under the label, 'required', 'choice_labels' (select value -> label).",
+ "_doc": "Single source of truth for the theme's custom fields. Read by inc/fields.php (native register_post_meta) and by bin/gen-acf.py (acf-json/ + README field map). Types: text textarea wysiwyg number date bool select url image gallery post posts list rows. 'src' says where it comes from in the static site's data. Admin UX keys (bin/gen-acf.py): 'tab' starts an ACF tab at that field, 'instructions' is the help text under the label, 'required', 'choice_labels' (select value -> label). 'ui' on a select: radio or button_group. 'collapsed' on rows: the sub field shown as the row's title when it is folded. The body text of retreat (about), location (intro), teacher and facilitator (bio) is a wysiwyg field, not the post content. 'width' (percent) puts fields side by side on the edit screen.",
  "retreat": [
   {
-   "key": "subtitle",
-   "type": "text",
-   "label": "Subtitle",
-   "src": "retreats/*/data.json subtitle",
-   "instructions": "One short line under the retreat name on the page, e.g. \"A Yoga & Culture Retreat\".",
+   "key": "start_date",
+   "type": "date",
+   "label": "Start date",
+   "src": "retreats.js startDate",
+   "instructions": "First day of the retreat. Leave both dates empty for a waitlist retreat (no dates yet). Retreats are listed on the site in date order.",
+   "width": 33,
    "tab": "Basics"
+  },
+  {
+   "key": "end_date",
+   "type": "date",
+   "label": "End date",
+   "src": "retreats.js endDate",
+   "instructions": "Last day of the retreat.",
+   "width": 33
+  },
+  {
+   "key": "nights",
+   "type": "number",
+   "label": "Nights",
+   "src": "data.json nights",
+   "instructions": "Number of nights, e.g. 6. Used in the page description.",
+   "width": 34
   },
   {
    "key": "location_id",
@@ -15,15 +32,17 @@
    "post_type": "location",
    "label": "Location",
    "src": "retreats.js locationId",
-   "instructions": "The destination page this retreat belongs to. Cards, menus and the location page use it. Required.",
-   "required": 1
+   "instructions": "The destination page this retreat belongs to. Cards, menus and the location page use it. Type to search. Required.",
+   "required": 1,
+   "width": 50
   },
   {
    "key": "location_label",
    "type": "text",
    "label": "Place line under the title",
    "src": "retreatpage-*.html .retreat-hero__location",
-   "instructions": "Optional. The place as the hero shows it, e.g. \"Marrakech & Essaouira, Morocco\". Leave empty to use the location's display name."
+   "instructions": "Optional. The place as the hero shows it, e.g. \"Marrakech & Essaouira, Morocco\". Leave empty to use the location's display name.",
+   "width": 50
   },
   {
    "key": "teacher_ids",
@@ -31,7 +50,8 @@
    "post_type": "teacher",
    "label": "Teachers",
    "src": "retreats.js teacherIds",
-   "instructions": "The teachers who lead this retreat, in the order you want them shown."
+   "instructions": "The teachers who lead this retreat, in the order you want them shown. Search on the left, click to add; drag to reorder.",
+   "width": 50
   },
   {
    "key": "facilitator_ids",
@@ -39,28 +59,25 @@
    "post_type": "facilitator",
    "label": "Facilitators",
    "src": "retreats/_tools/page_content.py FACILITATORS",
-   "instructions": "YAWW hosts on the trip. They appear in the hosts tabs next to the teachers."
+   "instructions": "YAWW hosts on the trip. They appear in the hosts tabs next to the teachers. Search on the left, click to add.",
+   "width": 50
   },
   {
-   "key": "start_date",
-   "type": "date",
-   "label": "Start date",
-   "src": "retreats.js startDate",
-   "instructions": "First day of the retreat. Leave both dates empty for a waitlist retreat (no dates yet)."
-  },
-  {
-   "key": "end_date",
-   "type": "date",
-   "label": "End date",
-   "src": "retreats.js endDate",
-   "instructions": "Last day of the retreat."
-  },
-  {
-   "key": "nights",
-   "type": "number",
-   "label": "Nights",
-   "src": "data.json nights",
-   "instructions": "Number of nights, e.g. 6. Used in the page description."
+   "key": "collection",
+   "type": "select",
+   "label": "Collection",
+   "choices": [
+    "deep-dives",
+    "signature-collection"
+   ],
+   "src": "retreats.js collection (mirrors retreat_tier taxonomy)",
+   "instructions": "Signature Collection or Deep Dives. Sets the label on the card and which collection page lists the retreat.",
+   "choice_labels": {
+    "deep-dives": "Deep Dives",
+    "signature-collection": "Signature Collection"
+   },
+   "ui": "button_group",
+   "width": 34
   },
   {
    "key": "status",
@@ -84,29 +101,17 @@
     "sold_out": "Sold out",
     "new": "New retreat",
     "waitlist": "Waitlist (no dates yet)"
-   }
+   },
+   "ui": "radio",
+   "width": 33
   },
   {
    "key": "spaces_left",
    "type": "number",
    "label": "Spaces left",
    "src": "retreats.js spacesLeft",
-   "instructions": "Only used when the status is \"Spaces left\", e.g. 3 shows \"3 spaces left\"."
-  },
-  {
-   "key": "collection",
-   "type": "select",
-   "label": "Collection",
-   "choices": [
-    "deep-dives",
-    "signature-collection"
-   ],
-   "src": "retreats.js collection (mirrors retreat_tier taxonomy)",
-   "instructions": "Signature Collection or Deep Dives. Keep it the same as the Collection box in the sidebar.",
-   "choice_labels": {
-    "deep-dives": "Deep Dives",
-    "signature-collection": "Signature Collection"
-   }
+   "instructions": "Only used when the status is \"Spaces left\", e.g. 3 shows \"3 spaces left\".",
+   "width": 33
   },
   {
    "key": "wetravel_url",
@@ -123,11 +128,27 @@
    "instructions": "Only for waitlist retreats: the sentence above the waitlist form, e.g. when the last edition ran."
   },
   {
+   "key": "subtitle",
+   "type": "text",
+   "label": "Subtitle",
+   "src": "retreats/*/data.json subtitle",
+   "instructions": "One short line under the retreat name on the page, e.g. \"A Yoga & Culture Retreat\".",
+   "tab": "About"
+  },
+  {
+   "key": "about",
+   "type": "wysiwyg",
+   "label": "About this retreat",
+   "src": "retreatpage-*.html .retreat-about paragraphs (was the post content)",
+   "instructions": "The introduction under the hero, in the \"About\" section. One paragraph per block of text; press Enter twice between paragraphs. Bold and links are fine."
+  },
+  {
    "key": "hero_image",
    "type": "image",
    "label": "Hero photo",
    "src": "retreatpage-*.html hero",
-   "instructions": "The large photo at the top of the page. Use a wide landscape photo.",
+   "instructions": "The large photo at the top of the page (also used when the page is shared). Use a wide landscape photo.",
+   "width": 50,
    "tab": "Photos"
   },
   {
@@ -135,7 +156,8 @@
    "type": "image",
    "label": "Card photo",
    "src": "retreats.js image / image2x",
-   "instructions": "The portrait photo on retreat cards (312 x 408). Upload it at double size (624 x 816) for sharp screens."
+   "instructions": "The portrait photo on retreat cards (312 x 408). Upload it at double size (624 x 816) for sharp screens.",
+   "width": 50
   },
   {
    "key": "includes_image",
@@ -197,6 +219,7 @@
     }
    ],
    "instructions": "One row per day (or group of days), in order.",
+   "collapsed": "label",
    "tab": "Itinerary"
   },
   {
@@ -244,7 +267,8 @@
      "label": "Photos"
     }
    ],
-   "instructions": "One row per place you stay. Each row becomes a tab with its photos. Never use hotel names (except Utopia)."
+   "instructions": "One row per place you stay. Each row becomes a tab with its photos. Never use hotel names (except Utopia).",
+   "collapsed": "name"
   },
   {
    "key": "room_venues",
@@ -299,21 +323,24 @@
      "label": "Photos"
     }
    ],
-   "instructions": "One row per room option, cheapest first. The price is per person in USD."
+   "instructions": "One row per room option, cheapest first. The price is per person in USD.",
+   "collapsed": "name"
   },
   {
    "key": "deposit_usd",
    "type": "number",
    "label": "Deposit (USD)",
    "src": "data.json booking.deposit_usd",
-   "instructions": "Deposit per person shown in \"How to book\", e.g. 500."
+   "instructions": "Deposit per person shown in \"How to book\", e.g. 500.",
+   "width": 50
   },
   {
    "key": "balance_due_days",
    "type": "number",
    "label": "Balance due (days before)",
    "src": "data.json booking.balance_due_days",
-   "instructions": "How many days before the start the balance is due, e.g. 90."
+   "instructions": "How many days before the start the balance is due, e.g. 90.",
+   "width": 50
   },
   {
    "key": "roommate_note",
@@ -369,6 +396,7 @@
     }
    ],
    "instructions": "Add-ons guests can book (massages, excursions...). One row per extra; each becomes a tab.",
+   "collapsed": "name",
    "tab": "Extras"
   },
   {
@@ -418,7 +446,8 @@
      "instructions": "e.g. \"Google review · El Cuyo\"."
     }
    ],
-   "instructions": "The \"What guests say\" quotes. Only real reviews, copied word for word."
+   "instructions": "The \"What guests say\" quotes. Only real reviews, copied word for word.",
+   "collapsed": "name"
   },
   {
    "key": "travel_tips",
@@ -439,6 +468,7 @@
     }
    ],
    "instructions": "Groups of tips (getting there, what to pack...). Empty = the location's travel tips.",
+   "collapsed": "heading",
    "tab": "Travel info"
   },
   {
@@ -458,7 +488,8 @@
      "label": "Answer"
     }
    ],
-   "instructions": "Questions and answers shown at the bottom of the page."
+   "instructions": "Questions and answers shown at the bottom of the page.",
+   "collapsed": "question"
   },
   {
    "key": "seo_description",
@@ -477,28 +508,32 @@
    "src": "locations.js displayName",
    "instructions": "The place as shown in italics on cards and pages, e.g. \"Chiang Mai & Koh Lanta, Thailand\". Required.",
    "required": 1,
-   "tab": "Names"
+   "width": 50,
+   "tab": "Basics"
   },
   {
    "key": "short_name",
    "type": "text",
    "label": "Short name",
    "src": "locations.js name",
-   "instructions": "The short name on the Locations page and in menus, e.g. \"Thailand\"."
+   "instructions": "The short name on the Locations page and in menus, e.g. \"Thailand\".",
+   "width": 50
   },
   {
    "key": "card_name",
    "type": "text",
    "label": "Card name",
    "src": "locations.js cardName",
-   "instructions": "Optional shorter place line for retreat cards. Empty = the display name."
+   "instructions": "Optional shorter place line for retreat cards. Empty = the display name.",
+   "width": 34
   },
   {
    "key": "country",
    "type": "text",
    "label": "Country",
    "src": "locations.js country",
-   "instructions": "Country name, used for search results."
+   "instructions": "Country name, used for search results.",
+   "width": 33
   },
   {
    "key": "region",
@@ -512,36 +547,30 @@
    ],
    "src": "locations.js region",
    "instructions": "Groups the destination in the Locations menu and page. Required.",
-   "required": 1
+   "required": 1,
+   "width": 33
   },
   {
-   "key": "hero_image",
-   "type": "image",
-   "label": "Hero photo",
-   "src": "location_content.py hero",
-   "instructions": "The large photo at the top of the location page.",
-   "tab": "Page"
-  },
-  {
-   "key": "card_image",
-   "type": "image",
-   "label": "Card photo",
-   "src": "images/location-<id>.jpg (locations.html grid)",
-   "instructions": "The photo on the Locations grid."
-  },
-  {
-   "key": "eyebrow",
+   "key": "intro_title",
    "type": "text",
-   "label": "Eyebrow",
-   "src": "location_content.py eyebrow",
-   "instructions": "Small line above the title in the hero."
+   "label": "Intro title",
+   "src": "location_content.py intro_title / intro",
+   "instructions": "Title of the \"Why we go\" section. Its paragraphs are the \"Intro text\" below.",
+   "tab": "Intro"
   },
   {
-   "key": "tagline",
-   "type": "text",
-   "label": "Tagline",
-   "src": "location_content.py tagline",
-   "instructions": "One sentence under the title in the hero."
+   "key": "intro",
+   "type": "wysiwyg",
+   "label": "Intro text",
+   "src": "location_content.py intro (was the post content)",
+   "instructions": "The paragraphs of the \"Why we go\" section. Press Enter twice between paragraphs."
+  },
+  {
+   "key": "intro_image",
+   "type": "image",
+   "label": "Intro photo",
+   "src": "location_content.py intro_img",
+   "instructions": "Photo beside the \"Why we go\" text."
   },
   {
    "key": "blurb",
@@ -549,6 +578,39 @@
    "label": "Grid blurb",
    "src": "location_content.py blurb",
    "instructions": "Two or three sentences shown on the Locations grid."
+  },
+  {
+   "key": "hero_image",
+   "type": "image",
+   "label": "Hero photo",
+   "src": "location_content.py hero",
+   "instructions": "The large photo at the top of the location page (also used when the page is shared).",
+   "width": 50,
+   "tab": "Hero & photos"
+  },
+  {
+   "key": "card_image",
+   "type": "image",
+   "label": "Card photo",
+   "src": "images/location-<id>.jpg (locations.html grid)",
+   "instructions": "The photo on the Locations grid.",
+   "width": 50
+  },
+  {
+   "key": "eyebrow",
+   "type": "text",
+   "label": "Eyebrow",
+   "src": "location_content.py eyebrow",
+   "instructions": "Small line above the title in the hero.",
+   "width": 50
+  },
+  {
+   "key": "tagline",
+   "type": "text",
+   "label": "Tagline",
+   "src": "location_content.py tagline",
+   "instructions": "One sentence under the title in the hero.",
+   "width": 50
   },
   {
    "key": "facts",
@@ -567,21 +629,8 @@
      "label": "Value"
     }
    ],
-   "instructions": "Short facts under the hero (e.g. Best time / October). One per row."
-  },
-  {
-   "key": "intro_title",
-   "type": "text",
-   "label": "Intro title",
-   "src": "location_content.py intro_title / intro",
-   "instructions": "Title of the \"Why we go\" section. Its paragraphs are the main text box above."
-  },
-  {
-   "key": "intro_image",
-   "type": "image",
-   "label": "Intro photo",
-   "src": "location_content.py intro_img",
-   "instructions": "Photo beside the \"Why we go\" text."
+   "instructions": "Short facts under the hero (e.g. Best time / October). One per row.",
+   "collapsed": "label"
   },
   {
    "key": "guide",
@@ -616,7 +665,9 @@
      "instructions": "Only when there is no photo yet: what the photo will show."
     }
    ],
-   "instructions": "The guide cards. If you do not have a photo yet, leave Photo empty and fill \"Placeholder label\"."
+   "instructions": "The guide cards. If you do not have a photo yet, leave Photo empty and fill \"Placeholder label\".",
+   "collapsed": "title",
+   "tab": "Guide & quote"
   },
   {
    "key": "know",
@@ -635,7 +686,8 @@
      "label": "Text"
     }
    ],
-   "instructions": "Label and text pairs (currency, language, weather...)."
+   "instructions": "Label and text pairs (currency, language, weather...).",
+   "collapsed": "label"
   },
   {
    "key": "quote_text",
@@ -649,14 +701,16 @@
    "type": "text",
    "label": "Quote: name",
    "src": "location_content.py quote[1]",
-   "instructions": "Who said it."
+   "instructions": "Who said it.",
+   "width": 50
   },
   {
    "key": "quote_source",
    "type": "text",
    "label": "Quote: source",
    "src": "location_content.py quote[2]",
-   "instructions": "Where it comes from, e.g. \"Google review\"."
+   "instructions": "Where it comes from, e.g. \"Google review\".",
+   "width": 50
   },
   {
    "key": "travel_tips",
@@ -676,14 +730,17 @@
      "instructions": "One tip per line."
     }
    ],
-   "instructions": "Groups of tips. Retreats here without their own tips show these."
+   "instructions": "Groups of tips. Retreats here without their own tips show these.",
+   "collapsed": "heading",
+   "tab": "Travel info"
   },
   {
    "key": "gallery",
    "type": "gallery",
    "label": "Gallery photos",
    "src": "locationpage-*.html",
-   "instructions": "Photos for the location gallery, in order."
+   "instructions": "Photos for the location gallery, in order.",
+   "tab": "Gallery"
   },
   {
    "key": "program_retreat",
@@ -713,32 +770,41 @@
    "type": "textarea",
    "label": "Search description",
    "src": "locationpage-*.html meta description",
-   "tab": "SEO",
-   "instructions": "Optional. The text Google shows under the title (about 150 characters). Empty = written automatically."
+   "instructions": "Optional. The text Google shows under the title (about 150 characters). Empty = written automatically.",
+   "tab": "SEO"
   }
  ],
  "teacher": [
+  {
+   "key": "role",
+   "type": "text",
+   "label": "Role",
+   "src": "teachers.js role",
+   "instructions": "Optional line above the name, e.g. \"Yoga teacher\". Empty = \"Teacher\".",
+   "width": 50,
+   "tab": "Profile"
+  },
   {
    "key": "short_name",
    "type": "text",
    "label": "Short name",
    "src": "teachers.js shortName",
    "instructions": "First name or short form used in sentences, e.g. \"Sue\".",
-   "tab": "Profile"
+   "width": 50
   },
   {
-   "key": "role",
-   "type": "text",
-   "label": "Role",
-   "src": "teachers.js role",
-   "instructions": "Optional line above the name, e.g. \"Yoga teacher\". Empty = \"Teacher\"."
+   "key": "bio",
+   "type": "wysiwyg",
+   "label": "Full bio",
+   "src": "teachers.js / team.js bio (was the post content)",
+   "instructions": "The bio on the teacher page. Press Enter twice between paragraphs."
   },
   {
    "key": "short_bio",
    "type": "textarea",
    "label": "Card blurb",
    "src": "teachers.js shortBio",
-   "instructions": "Two or three sentences for the teacher card. The full bio is the main text box above."
+   "instructions": "Two or three sentences for the teacher card. The full bio is above."
   },
   {
    "key": "host_bio",
@@ -762,20 +828,6 @@
    "instructions": "One per row, e.g. \"Vinyasa\"."
   },
   {
-   "key": "avatar",
-   "type": "image",
-   "label": "Small round photo",
-   "src": "teachers.js avatar",
-   "instructions": "Square photo for small avatars. The large portrait is the Featured image."
-  },
-  {
-   "key": "photo_position",
-   "type": "text",
-   "label": "Photo focus",
-   "src": "teachers.js photoPosition",
-   "instructions": "Optional, for portraits that crop badly: CSS position such as \"50% 20%\" (left-right, top-bottom)."
-  },
-  {
    "key": "needs_content",
    "type": "bool",
    "label": "Profile not ready",
@@ -783,11 +835,29 @@
    "instructions": "Tick while the bio or photo is still missing."
   },
   {
+   "key": "avatar",
+   "type": "image",
+   "label": "Small round photo",
+   "src": "teachers.js avatar",
+   "instructions": "Square photo for small round avatars. The large portrait is the \"Portrait photo\" box on the right.",
+   "width": 50,
+   "tab": "Photos"
+  },
+  {
+   "key": "photo_position",
+   "type": "text",
+   "label": "Photo focus",
+   "src": "teachers.js photoPosition",
+   "instructions": "Optional, for portraits that crop badly: CSS position such as \"50% 20%\" (left-right, top-bottom).",
+   "width": 50
+  },
+  {
    "key": "website",
    "type": "url",
    "label": "Website",
    "src": "teachers.js website",
    "instructions": "Full address, starting with https://",
+   "width": 50,
    "tab": "Links"
   },
   {
@@ -795,21 +865,24 @@
    "type": "text",
    "label": "Website link text",
    "src": "teachers.js website.label",
-   "instructions": "Optional text for the website link. Empty = the address."
+   "instructions": "Optional text for the website link. Empty = the address.",
+   "width": 50
   },
   {
    "key": "instagram",
    "type": "text",
    "label": "Instagram",
    "src": "teachers.js instagram",
-   "instructions": "@handle or the profile address."
+   "instructions": "@handle or the profile address.",
+   "width": 50
   },
   {
    "key": "youtube",
    "type": "url",
    "label": "YouTube video",
    "src": "teachers.js youtube / video",
-   "instructions": "A video link or its id. Shown on the teacher page."
+   "instructions": "A video link or its id. Shown on the teacher page.",
+   "width": 50
   },
   {
    "key": "spotify_url",
@@ -823,8 +896,8 @@
    "type": "textarea",
    "label": "Search description",
    "src": "teacher-*.html meta description",
-   "tab": "SEO",
-   "instructions": "Optional. The text Google shows under the title (about 150 characters). Empty = written automatically."
+   "instructions": "Optional. The text Google shows under the title (about 150 characters). Empty = written automatically.",
+   "tab": "SEO"
   }
  ],
  "facilitator": [
@@ -837,11 +910,18 @@
    "tab": "Profile"
   },
   {
+   "key": "bio",
+   "type": "wysiwyg",
+   "label": "Full bio",
+   "src": "teachers.js / team.js bio (was the post content)",
+   "instructions": "The bio on the facilitator page. Press Enter twice between paragraphs."
+  },
+  {
    "key": "short_bio",
    "type": "textarea",
    "label": "Card blurb",
    "src": "team.js shortBio",
-   "instructions": "Two or three sentences for the card. The full bio is the main text box above."
+   "instructions": "Two or three sentences for the card. The full bio is above."
   },
   {
    "key": "listed",
@@ -855,15 +935,16 @@
    "type": "text",
    "label": "Photo focus",
    "src": "team.js photoPosition",
-   "instructions": "Optional CSS position such as \"50% 20%\" for portraits that crop badly."
+   "instructions": "The portrait itself is the \"Portrait photo\" box on the right. Optional: a CSS position such as \"50% 20%\" for portraits that crop badly.",
+   "tab": "Photo"
   },
   {
    "key": "seo_description",
    "type": "textarea",
    "label": "Search description",
    "src": "facilitator-*.html meta description",
-   "tab": "SEO",
-   "instructions": "Optional. The text Google shows under the title (about 150 characters). Empty = written automatically."
+   "instructions": "Optional. The text Google shows under the title (about 150 characters). Empty = written automatically.",
+   "tab": "SEO"
   }
  ],
  "post": [
@@ -894,7 +975,7 @@
    "type": "image",
    "label": "Top photo, double size",
    "src": "journal.js hero.src2x",
-   "instructions": "Optional double-size version of the Featured image (the top photo)."
+   "instructions": "Optional double-size version of the top photo (the photo in the sidebar on the right, under \"Journal post\")."
   },
   {
    "key": "author_name",
@@ -982,8 +1063,8 @@
    "type": "text",
    "label": "Search title",
    "src": "retreats/_tools/seo.py TITLE_OVERRIDE",
-   "tab": "SEO",
-   "instructions": "Optional. The title Google shows, at most 60 characters, ending in \"| YAWW\" or \"| Yoga Adventures Worldwide\". Empty = the post title plus the site name."
+   "instructions": "Optional. The title Google shows, at most 60 characters, ending in \"| YAWW\" or \"| Yoga Adventures Worldwide\". Empty = the post title plus the site name.",
+   "tab": "SEO"
   },
   {
    "key": "seo_description",

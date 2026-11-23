@@ -13,6 +13,7 @@ ACF Pro is the field storage (field groups in `acf-json/`); without ACF the fiel
 | `inc/post-types.php` | CPTs `retreat`, `location`, `teacher`, `facilitator`, taxonomy `retreat_tier`; Journal = built-in posts. mu-plugin style: can move to `mu-plugins/` as is |
 | `inc/fields-spec.json` | single source for every custom field |
 | `inc/fields.php` | `register_post_meta` (show_in_rest) from the spec, plus a stop-gap meta box (scalars as inputs, arrays as JSON) that disappears when ACF is active |
+| `inc/admin.php` | wp-admin for the team: classic edit screen + ACF tabs under the title for retreat/location/teacher/facilitator, list-table columns, filters and date order, menu order, dashboard widgets; `assets/admin/` |
 | `inc/helpers.php` | `yaww_meta()`, `yaww_list()`, `yaww_rows()`, dates, status badge, hotel label, nav |
 | `inc/testimonials.json` | guest quotes lifted from `index.html` |
 | `acf-json/` | ACF Pro field groups (generated, see below); ACF loads them automatically |
@@ -83,23 +84,24 @@ Everything in the structure table. `single-retreat.php` is the full port (hero, 
 
 ## Field map
 
-Regenerate with `python3 bin/gen-acf.py --table`. The edit screens group these fields in tabs (`tab` in the spec) with plain-English help (`instructions`); after editing the spec run `bin/gen-acf.py`, then load them into the database with `bash bin/wp.sh eval-file bin/acf-sync.php` (no wp-admin click needed). Relations use post IDs; image fields are attachment IDs. Title, content and featured image carry `officialName`, the about text and the portrait (teacher and facilitator bio paragraphs = content).
+Regenerate with `python3 bin/gen-acf.py --table`. The edit screens group these fields in tabs (`tab` in the spec) with plain-English help (`instructions`); after editing the spec run `bin/gen-acf.py`, then load them into the database with `bash bin/wp.sh eval-file bin/acf-sync.php` (no wp-admin click needed). Relations use post IDs; image fields are attachment IDs. Title carries `officialName`. Retreat, location, teacher and facilitator have **no main text box**: their body text is the `about` / `intro` / `bio` field (read with `yaww_body()`; `bin/migrate-body.php` copied the old post content once, idempotent). Featured image = hero photo for retreats and locations (synced on save, box hidden), = the portrait for teachers and facilitators (box "Portrait photo").
 
 | Post type | Meta key | Type | Source in the static site |
 |---|---|---|---|
-| `retreat` | `subtitle` | text | retreats/*/data.json subtitle |
+| `retreat` | `start_date` | date | retreats.js startDate |
+| `retreat` | `end_date` | date | retreats.js endDate |
+| `retreat` | `nights` | number | data.json nights |
 | `retreat` | `location_id` | post | retreats.js locationId |
 | `retreat` | `location_label` | text | retreatpage-*.html .retreat-hero__location |
 | `retreat` | `teacher_ids` | posts | retreats.js teacherIds |
 | `retreat` | `facilitator_ids` | posts | retreats/_tools/page_content.py FACILITATORS |
-| `retreat` | `start_date` | date | retreats.js startDate |
-| `retreat` | `end_date` | date | retreats.js endDate |
-| `retreat` | `nights` | number | data.json nights |
+| `retreat` | `collection` | select | retreats.js collection (mirrors retreat_tier taxonomy) |
 | `retreat` | `status` | select | retreats.js status; waitlist = dateless retreat from locations.js program |
 | `retreat` | `spaces_left` | number | retreats.js spacesLeft |
-| `retreat` | `collection` | select | retreats.js collection (mirrors retreat_tier taxonomy) |
 | `retreat` | `wetravel_url` | url | window.YAWW_WETRAVEL.url (js/retreat-rooms.js) |
 | `retreat` | `waitlist_note` | textarea | retreatpage-<location>.html .waitlist__note |
+| `retreat` | `subtitle` | text | retreats/*/data.json subtitle |
+| `retreat` | `about` | wysiwyg | retreatpage-*.html .retreat-about paragraphs (was the post content) |
 | `retreat` | `hero_image` | image | retreatpage-*.html hero |
 | `retreat` | `card_image` | image | retreats.js image / image2x |
 | `retreat` | `includes_image` | image | retreatpage-*.html .retreat-includes__bg |
@@ -128,14 +130,15 @@ Regenerate with `python3 bin/gen-acf.py --table`. The edit screens group these f
 | `location` | `card_name` | text | locations.js cardName |
 | `location` | `country` | text | locations.js country |
 | `location` | `region` | select | locations.js region |
+| `location` | `intro_title` | text | location_content.py intro_title / intro |
+| `location` | `intro` | wysiwyg | location_content.py intro (was the post content) |
+| `location` | `intro_image` | image | location_content.py intro_img |
+| `location` | `blurb` | textarea | location_content.py blurb |
 | `location` | `hero_image` | image | location_content.py hero |
 | `location` | `card_image` | image | images/location-<id>.jpg (locations.html grid) |
 | `location` | `eyebrow` | text | location_content.py eyebrow |
 | `location` | `tagline` | text | location_content.py tagline |
-| `location` | `blurb` | textarea | location_content.py blurb |
 | `location` | `facts` | rows | location_content.py facts |
-| `location` | `intro_title` | text | location_content.py intro_title / intro |
-| `location` | `intro_image` | image | location_content.py intro_img |
 | `location` | `guide` | rows | location_content.py guide |
 | `location` | `know` | rows | location_content.py know |
 | `location` | `quote_text` | textarea | location_content.py quote[0] |
@@ -147,15 +150,16 @@ Regenerate with `python3 bin/gen-acf.py --table`. The edit screens group these f
 | `location` | `hotel_label` | text | BRIEF s.12 |
 | `location` | `placeholder_hue` | number | locations.js placeholderHue |
 | `location` | `seo_description` | textarea | locationpage-*.html meta description |
-| `teacher` | `short_name` | text | teachers.js shortName |
 | `teacher` | `role` | text | teachers.js role |
+| `teacher` | `short_name` | text | teachers.js shortName |
+| `teacher` | `bio` | wysiwyg | teachers.js / team.js bio (was the post content) |
 | `teacher` | `short_bio` | textarea | teachers.js shortBio |
 | `teacher` | `host_bio` | textarea | retreatpage-*.html .host__bio |
 | `teacher` | `quote` | text | teachers.js quote |
 | `teacher` | `specialties` | list | teachers.js specialties |
+| `teacher` | `needs_content` | bool | teachers.js needsContent |
 | `teacher` | `avatar` | image | teachers.js avatar |
 | `teacher` | `photo_position` | text | teachers.js photoPosition |
-| `teacher` | `needs_content` | bool | teachers.js needsContent |
 | `teacher` | `website` | url | teachers.js website |
 | `teacher` | `website_label` | text | teachers.js website.label |
 | `teacher` | `instagram` | text | teachers.js instagram |
@@ -163,6 +167,7 @@ Regenerate with `python3 bin/gen-acf.py --table`. The edit screens group these f
 | `teacher` | `spotify_url` | url | teachers.js spotifyPlaylist / spotify |
 | `teacher` | `seo_description` | textarea | teacher-*.html meta description |
 | `facilitator` | `role` | text | team.js role |
+| `facilitator` | `bio` | wysiwyg | teachers.js / team.js bio (was the post content) |
 | `facilitator` | `short_bio` | textarea | team.js shortBio |
 | `facilitator` | `listed` | bool | team.js listed |
 | `facilitator` | `photo_position` | text | team.js photoPosition |

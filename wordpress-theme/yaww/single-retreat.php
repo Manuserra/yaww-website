@@ -89,7 +89,7 @@ $arrow_next = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke
   <section class="retreat-about">
     <h2 class="retreat-about__title">About this retreat</h2>
     <div class="retreat-about__body">
-<?php foreach ( yaww_d_paragraphs( get_post_field( 'post_content', $id ) ) as $p ) : ?>
+<?php foreach ( yaww_d_paragraphs( yaww_body( $id ) ) as $p ) : ?>
       <p><?php echo wp_kses_post( $p ); ?></p>
 <?php endforeach; ?>
     </div>

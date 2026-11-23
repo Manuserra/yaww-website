@@ -172,6 +172,7 @@ if ( $want( 'locations' ) ) {
 			'post_content' => yaww_imp_paras( $L['intro'] ), 'post_excerpt' => (string) $L['blurb'], 'menu_order' => $L['menu_order'] ) );
 		$ids['location'][ $L['source_id'] ] = $id;
 		yaww_imp_fields( 'location', $id, array(
+			'intro' => yaww_imp_paras( $L['intro'] ),   // the edit screen's "Intro text" (post_content keeps a copy)
 			'display_name' => $L['display_name'], 'card_name' => $L['card_name'], 'short_name' => $L['short_name'],
 			'region' => $L['region'], 'country' => $L['country'], 'placeholder_hue' => $L['placeholder_hue'],
 			'hero_image' => yaww_imp_img( $L['hero_image'] ), 'card_image' => yaww_imp_img( $L['card_image'] ),
@@ -194,6 +195,7 @@ if ( $want( 'people' ) ) {
 		$photo = yaww_imp_media( $T['photo'], $T['title'] );
 		if ( $photo ) { set_post_thumbnail( $id, $photo ); } else { delete_post_thumbnail( $id ); }
 		yaww_imp_fields( 'teacher', $id, array(
+			'bio' => yaww_imp_paras( $T['bio'] ),   // "Full bio" (post_content keeps a copy)
 			'short_name' => $T['short_name'], 'role' => $T['role'], 'short_bio' => $T['short_bio'], 'host_bio' => $T['host_bio'],
 			'quote' => $T['quote'], 'specialties' => yaww_imp_list( $T['specialties'] ), 'youtube' => $T['youtube'],
 			'spotify_url' => $T['spotify_url'], 'website' => $T['website'], 'website_label' => $T['website_label'],
@@ -208,7 +210,7 @@ if ( $want( 'people' ) ) {
 		$ids['facilitator'][ $F['source_id'] ] = $id;
 		$photo = yaww_imp_media( $F['photo'], $F['title'] );
 		if ( $photo ) { set_post_thumbnail( $id, $photo ); }
-		yaww_imp_fields( 'facilitator', $id, array( 'role' => $F['role'], 'short_bio' => $F['short_bio'],
+		yaww_imp_fields( 'facilitator', $id, array( 'bio' => yaww_imp_paras( $F['bio'] ), 'role' => $F['role'], 'short_bio' => $F['short_bio'],
 			'listed' => $F['listed'] ? 1 : 0, 'photo_position' => $F['photo_position'] ) );
 		WP_CLI::log( "facilitator {$F['slug']}" );
 	}
@@ -228,6 +230,7 @@ if ( $want( 'retreats' ) ) {
 		$hero = yaww_imp_img( $R['hero'] );
 		if ( $hero ) { set_post_thumbnail( $id, $hero ); }
 		yaww_imp_fields( 'retreat', $id, array(
+			'about' => implode( "\n\n", array_map( function ( $p ) { return '<p>' . $p . '</p>'; }, $R['about'] ) ),   // "About this retreat"
 			'subtitle' => $R['subtitle'], 'location_label' => $R['location_label'], 'waitlist_note' => $R['waitlist_note'],
 			'location_id' => isset( $ids['location'][ $R['location'] ] ) ? $ids['location'][ $R['location'] ] : '',
 			'teacher_ids' => $map( 'teacher', $R['teachers'] ), 'facilitator_ids' => $map( 'facilitator', $R['facilitators'] ),

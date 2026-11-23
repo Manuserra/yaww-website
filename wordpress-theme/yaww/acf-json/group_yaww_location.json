@@ -3,8 +3,8 @@
     "title": "YAWW · Location",
     "fields": [
         {
-            "key": "field_yaww_location_tab_names",
-            "label": "Names",
+            "key": "field_yaww_location_tab_basics",
+            "label": "Basics",
             "name": "",
             "aria-label": "",
             "type": "tab",
@@ -30,7 +30,7 @@
             "required": 1,
             "conditional_logic": false,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -50,7 +50,7 @@
             "required": false,
             "conditional_logic": false,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -70,7 +70,7 @@
             "required": false,
             "conditional_logic": false,
             "wrapper": {
-                "width": "",
+                "width": "34",
                 "class": "",
                 "id": ""
             },
@@ -90,7 +90,7 @@
             "required": false,
             "conditional_logic": false,
             "wrapper": {
-                "width": "",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
@@ -110,7 +110,7 @@
             "required": 1,
             "conditional_logic": false,
             "wrapper": {
-                "width": "",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
@@ -122,17 +122,17 @@
             },
             "return_format": "value",
             "default_value": "Europe",
-            "multiple": 0,
+            "ui": 1,
             "allow_null": 0,
-            "ui": 0,
+            "multiple": 0,
             "ajax": 0,
             "placeholder": "",
             "create_options": 0,
             "save_options": 0
         },
         {
-            "key": "field_yaww_location_tab_page",
-            "label": "Page",
+            "key": "field_yaww_location_tab_intro",
+            "label": "Intro",
             "name": "",
             "aria-label": "",
             "type": "tab",
@@ -149,62 +149,12 @@
             "selected": 0
         },
         {
-            "key": "field_yaww_location_hero_image",
-            "label": "Hero photo",
-            "name": "hero_image",
-            "aria-label": "",
-            "type": "image",
-            "instructions": "The large photo at the top of the location page.",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "id",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": 0,
-            "min_height": 0,
-            "min_size": 0,
-            "max_width": 0,
-            "max_height": 0,
-            "max_size": 0,
-            "mime_types": ""
-        },
-        {
-            "key": "field_yaww_location_card_image",
-            "label": "Card photo",
-            "name": "card_image",
-            "aria-label": "",
-            "type": "image",
-            "instructions": "The photo on the Locations grid.",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "id",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": 0,
-            "min_height": 0,
-            "min_size": 0,
-            "max_width": 0,
-            "max_height": 0,
-            "max_size": 0,
-            "mime_types": ""
-        },
-        {
-            "key": "field_yaww_location_eyebrow",
-            "label": "Eyebrow",
-            "name": "eyebrow",
+            "key": "field_yaww_location_intro_title",
+            "label": "Intro title",
+            "name": "intro_title",
             "aria-label": "",
             "type": "text",
-            "instructions": "Small line above the title in the hero.",
+            "instructions": "Title of the \"Why we go\" section. Its paragraphs are the \"Intro text\" below.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -219,12 +169,12 @@
             "append": ""
         },
         {
-            "key": "field_yaww_location_tagline",
-            "label": "Tagline",
-            "name": "tagline",
+            "key": "field_yaww_location_intro",
+            "label": "Intro text",
+            "name": "intro",
             "aria-label": "",
-            "type": "text",
-            "instructions": "One sentence under the title in the hero.",
+            "type": "wysiwyg",
+            "instructions": "The paragraphs of the \"Why we go\" section. Press Enter twice between paragraphs.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -232,11 +182,36 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0,
+            "default_value": ""
+        },
+        {
+            "key": "field_yaww_location_intro_image",
+            "label": "Intro photo",
+            "name": "intro_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Photo beside the \"Why we go\" text.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all",
+            "mime_types": "jpg,jpeg,png,webp,gif",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0
         },
         {
             "key": "field_yaww_location_blurb",
@@ -259,6 +234,114 @@
             "rows": ""
         },
         {
+            "key": "field_yaww_location_tab_hero___photos",
+            "label": "Hero & photos",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_yaww_location_hero_image",
+            "label": "Hero photo",
+            "name": "hero_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "The large photo at the top of the location page (also used when the page is shared).",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all",
+            "mime_types": "jpg,jpeg,png,webp,gif",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0
+        },
+        {
+            "key": "field_yaww_location_card_image",
+            "label": "Card photo",
+            "name": "card_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "The photo on the Locations grid.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all",
+            "mime_types": "jpg,jpeg,png,webp,gif",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0
+        },
+        {
+            "key": "field_yaww_location_eyebrow",
+            "label": "Eyebrow",
+            "name": "eyebrow",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Small line above the title in the hero.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_location_tagline",
+            "label": "Tagline",
+            "name": "tagline",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "One sentence under the title in the hero.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_yaww_location_facts",
             "label": "Hero facts",
             "name": "facts",
@@ -273,11 +356,11 @@
                 "id": ""
             },
             "layout": "block",
-            "button_label": "Add row",
+            "button_label": "Add a row",
+            "collapsed": "field_yaww_location_facts_label",
             "min": 0,
             "max": 0,
             "rows_per_page": 20,
-            "collapsed": "",
             "sub_fields": [
                 {
                     "key": "field_yaww_location_facts_label",
@@ -324,49 +407,22 @@
             ]
         },
         {
-            "key": "field_yaww_location_intro_title",
-            "label": "Intro title",
-            "name": "intro_title",
+            "key": "field_yaww_location_tab_guide___quote",
+            "label": "Guide & quote",
+            "name": "",
             "aria-label": "",
-            "type": "text",
-            "instructions": "Title of the \"Why we go\" section. Its paragraphs are the main text box above.",
-            "required": false,
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
             "conditional_logic": false,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_yaww_location_intro_image",
-            "label": "Intro photo",
-            "name": "intro_image",
-            "aria-label": "",
-            "type": "image",
-            "instructions": "Photo beside the \"Why we go\" text.",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "id",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": 0,
-            "min_height": 0,
-            "min_size": 0,
-            "max_width": 0,
-            "max_height": 0,
-            "max_size": 0,
-            "mime_types": ""
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_yaww_location_guide",
@@ -383,11 +439,11 @@
                 "id": ""
             },
             "layout": "block",
-            "button_label": "Add row",
+            "button_label": "Add a row",
+            "collapsed": "field_yaww_location_guide_title",
             "min": 0,
             "max": 0,
             "rows_per_page": 20,
-            "collapsed": "",
             "sub_fields": [
                 {
                     "key": "field_yaww_location_guide_kicker",
@@ -469,13 +525,13 @@
                     "return_format": "id",
                     "preview_size": "medium",
                     "library": "all",
+                    "mime_types": "jpg,jpeg,png,webp,gif",
                     "min_width": 0,
                     "min_height": 0,
                     "min_size": 0,
                     "max_width": 0,
                     "max_height": 0,
                     "max_size": 0,
-                    "mime_types": "",
                     "parent_repeater": "field_yaww_location_guide"
                 },
                 {
@@ -516,11 +572,11 @@
                 "id": ""
             },
             "layout": "block",
-            "button_label": "Add row",
+            "button_label": "Add a row",
+            "collapsed": "field_yaww_location_know_label",
             "min": 0,
             "max": 0,
             "rows_per_page": 20,
-            "collapsed": "",
             "sub_fields": [
                 {
                     "key": "field_yaww_location_know_label",
@@ -596,7 +652,7 @@
             "required": false,
             "conditional_logic": false,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -616,7 +672,7 @@
             "required": false,
             "conditional_logic": false,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -625,6 +681,24 @@
             "placeholder": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_yaww_location_tab_travel_info",
+            "label": "Travel info",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_yaww_location_travel_tips",
@@ -641,11 +715,11 @@
                 "id": ""
             },
             "layout": "block",
-            "button_label": "Add row",
+            "button_label": "Add a row",
+            "collapsed": "field_yaww_location_travel_tips_heading",
             "min": 0,
             "max": 0,
             "rows_per_page": 20,
-            "collapsed": "",
             "sub_fields": [
                 {
                     "key": "field_yaww_location_travel_tips_heading",
@@ -692,6 +766,24 @@
             ]
         },
         {
+            "key": "field_yaww_location_tab_gallery",
+            "label": "Gallery",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
             "key": "field_yaww_location_gallery",
             "label": "Gallery photos",
             "name": "gallery",
@@ -706,9 +798,10 @@
                 "id": ""
             },
             "return_format": "id",
-            "preview_size": "medium",
-            "insert": "append",
+            "preview_size": "thumbnail",
             "library": "all",
+            "insert": "append",
+            "mime_types": "jpg,jpeg,png,webp,gif",
             "min": 0,
             "max": 0,
             "min_width": 0,
@@ -716,8 +809,7 @@
             "min_size": 0,
             "max_width": 0,
             "max_height": 0,
-            "max_size": 0,
-            "mime_types": ""
+            "max_size": 0
         },
         {
             "key": "field_yaww_location_tab_advanced",
@@ -752,13 +844,13 @@
                 "id": ""
             },
             "allow_null": 1,
+            "ui": 1,
+            "multiple": 0,
             "post_type": [
                 "retreat"
             ],
             "return_format": "id",
             "taxonomy": [],
-            "multiple": 0,
-            "ui": 1,
             "bidirectional_target": []
         },
         {
@@ -852,16 +944,29 @@
         ]
     ],
     "menu_order": 0,
-    "position": "normal",
-    "style": "default",
+    "position": "acf_after_title",
+    "style": "seamless",
     "label_placement": "top",
     "instruction_placement": "label",
-    "hide_on_screen": [],
+    "hide_on_screen": [
+        "the_content",
+        "excerpt",
+        "discussion",
+        "comments",
+        "revisions",
+        "slug",
+        "author",
+        "format",
+        "categories",
+        "tags",
+        "send-trackbacks",
+        "featured_image"
+    ],
     "active": true,
     "description": "",
     "show_in_rest": 1,
     "display_title": "",
     "enable_acf_abilities": true,
     "ai_description": "",
-    "modified": 1795452343
+    "modified": 1795454864
 }

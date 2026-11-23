@@ -21,21 +21,61 @@
             "selected": 0
         },
         {
-            "key": "field_yaww_retreat_subtitle",
-            "label": "Subtitle",
-            "name": "subtitle",
+            "key": "field_yaww_retreat_start_date",
+            "label": "Start date",
+            "name": "start_date",
             "aria-label": "",
-            "type": "text",
-            "instructions": "One short line under the retreat name on the page, e.g. \"A Yoga & Culture Retreat\".",
+            "type": "date_picker",
+            "instructions": "First day of the retreat. Leave both dates empty for a waitlist retreat (no dates yet). Retreats are listed on the site in date order.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
-                "width": "",
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "M j, Y",
+            "return_format": "Y-m-d",
+            "first_day": 1,
+            "default_to_current_date": 0
+        },
+        {
+            "key": "field_yaww_retreat_end_date",
+            "label": "End date",
+            "name": "end_date",
+            "aria-label": "",
+            "type": "date_picker",
+            "instructions": "Last day of the retreat.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "M j, Y",
+            "return_format": "Y-m-d",
+            "first_day": 1,
+            "default_to_current_date": 0
+        },
+        {
+            "key": "field_yaww_retreat_nights",
+            "label": "Nights",
+            "name": "nights",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "Number of nights, e.g. 6. Used in the page description.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "34",
                 "class": "",
                 "id": ""
             },
             "default_value": "",
-            "maxlength": "",
+            "min": "",
+            "max": "",
+            "step": "",
             "placeholder": "",
             "prepend": "",
             "append": ""
@@ -46,22 +86,22 @@
             "name": "location_id",
             "aria-label": "",
             "type": "post_object",
-            "instructions": "The destination page this retreat belongs to. Cards, menus and the location page use it. Required.",
+            "instructions": "The destination page this retreat belongs to. Cards, menus and the location page use it. Type to search. Required.",
             "required": 1,
             "conditional_logic": false,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
-            "allow_null": 1,
+            "allow_null": 0,
+            "ui": 1,
+            "multiple": 0,
             "post_type": [
                 "location"
             ],
             "return_format": "id",
             "taxonomy": [],
-            "multiple": 0,
-            "ui": 1,
             "bidirectional_target": []
         },
         {
@@ -74,7 +114,7 @@
             "required": false,
             "conditional_logic": false,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -90,27 +130,27 @@
             "name": "teacher_ids",
             "aria-label": "",
             "type": "relationship",
-            "instructions": "The teachers who lead this retreat, in the order you want them shown.",
+            "instructions": "The teachers who lead this retreat, in the order you want them shown. Search on the left, click to add; drag to reorder.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
+            "filters": [
+                "search"
+            ],
+            "elements": [
+                "featured_image"
+            ],
+            "min": "",
+            "max": "",
             "post_type": [
                 "teacher"
             ],
             "return_format": "id",
             "taxonomy": [],
-            "min": 0,
-            "max": 0,
-            "filters": [
-                "search",
-                "post_type",
-                "taxonomy"
-            ],
-            "elements": [],
             "bidirectional_target": []
         },
         {
@@ -119,100 +159,64 @@
             "name": "facilitator_ids",
             "aria-label": "",
             "type": "relationship",
-            "instructions": "YAWW hosts on the trip. They appear in the hosts tabs next to the teachers.",
+            "instructions": "YAWW hosts on the trip. They appear in the hosts tabs next to the teachers. Search on the left, click to add.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
+            "filters": [
+                "search"
+            ],
+            "elements": [
+                "featured_image"
+            ],
+            "min": "",
+            "max": "",
             "post_type": [
                 "facilitator"
             ],
             "return_format": "id",
             "taxonomy": [],
-            "min": 0,
-            "max": 0,
-            "filters": [
-                "search",
-                "post_type",
-                "taxonomy"
-            ],
-            "elements": [],
             "bidirectional_target": []
         },
         {
-            "key": "field_yaww_retreat_start_date",
-            "label": "Start date",
-            "name": "start_date",
+            "key": "field_yaww_retreat_collection",
+            "label": "Collection",
+            "name": "collection",
             "aria-label": "",
-            "type": "date_picker",
-            "instructions": "First day of the retreat. Leave both dates empty for a waitlist retreat (no dates yet).",
+            "type": "button_group",
+            "instructions": "Signature Collection or Deep Dives. Sets the label on the card and which collection page lists the retreat.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
-                "width": "",
+                "width": "34",
                 "class": "",
                 "id": ""
             },
-            "display_format": "j F Y",
-            "return_format": "Y-m-d",
-            "first_day": 1,
-            "default_to_current_date": 0
-        },
-        {
-            "key": "field_yaww_retreat_end_date",
-            "label": "End date",
-            "name": "end_date",
-            "aria-label": "",
-            "type": "date_picker",
-            "instructions": "Last day of the retreat.",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
+            "choices": {
+                "deep-dives": "Deep Dives",
+                "signature-collection": "Signature Collection"
             },
-            "display_format": "j F Y",
-            "return_format": "Y-m-d",
-            "first_day": 1,
-            "default_to_current_date": 0
-        },
-        {
-            "key": "field_yaww_retreat_nights",
-            "label": "Nights",
-            "name": "nights",
-            "aria-label": "",
-            "type": "number",
-            "instructions": "Number of nights, e.g. 6. Used in the page description.",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "min": "",
-            "max": "",
-            "step": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
+            "return_format": "value",
+            "layout": "horizontal",
+            "allow_null": 1,
+            "other_choice": 0,
+            "default_value": ""
         },
         {
             "key": "field_yaww_retreat_status",
             "label": "Booking status",
             "name": "status",
             "aria-label": "",
-            "type": "select",
+            "type": "radio",
             "instructions": "What the badge on the card says. \"Spaces left\" uses the number below. \"Waitlist\" is for a retreat with no dates yet. Required.",
             "required": 1,
             "conditional_logic": false,
             "wrapper": {
-                "width": "",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
@@ -226,13 +230,10 @@
             },
             "return_format": "value",
             "default_value": "available",
-            "multiple": 0,
+            "layout": "vertical",
             "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "create_options": 0,
-            "save_options": 0
+            "other_choice": 0,
+            "save_other_choice": 0
         },
         {
             "key": "field_yaww_retreat_spaces_left",
@@ -244,7 +245,7 @@
             "required": false,
             "conditional_logic": false,
             "wrapper": {
-                "width": "",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
@@ -255,34 +256,6 @@
             "placeholder": "",
             "prepend": "",
             "append": ""
-        },
-        {
-            "key": "field_yaww_retreat_collection",
-            "label": "Collection",
-            "name": "collection",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "Signature Collection or Deep Dives. Keep it the same as the Collection box in the sidebar.",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "deep-dives": "Deep Dives",
-                "signature-collection": "Signature Collection"
-            },
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "default_value": false,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "create_options": 0,
-            "save_options": 0
         },
         {
             "key": "field_yaww_retreat_wetravel_url",
@@ -298,8 +271,8 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "placeholder": ""
+            "placeholder": "https:\/\/",
+            "default_value": ""
         },
         {
             "key": "field_yaww_retreat_waitlist_note",
@@ -320,6 +293,64 @@
             "maxlength": "",
             "placeholder": "",
             "rows": ""
+        },
+        {
+            "key": "field_yaww_retreat_tab_about",
+            "label": "About",
+            "name": "",
+            "aria-label": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
+        },
+        {
+            "key": "field_yaww_retreat_subtitle",
+            "label": "Subtitle",
+            "name": "subtitle",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "One short line under the retreat name on the page, e.g. \"A Yoga & Culture Retreat\".",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_retreat_about",
+            "label": "About this retreat",
+            "name": "about",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "The introduction under the hero, in the \"About\" section. One paragraph per block of text; press Enter twice between paragraphs. Bold and links are fine.",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0,
+            "default_value": ""
         },
         {
             "key": "field_yaww_retreat_tab_photos",
@@ -345,24 +376,24 @@
             "name": "hero_image",
             "aria-label": "",
             "type": "image",
-            "instructions": "The large photo at the top of the page. Use a wide landscape photo.",
+            "instructions": "The large photo at the top of the page (also used when the page is shared). Use a wide landscape photo.",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
             "return_format": "id",
             "preview_size": "medium",
             "library": "all",
+            "mime_types": "jpg,jpeg,png,webp,gif",
             "min_width": 0,
             "min_height": 0,
             "min_size": 0,
             "max_width": 0,
             "max_height": 0,
-            "max_size": 0,
-            "mime_types": ""
+            "max_size": 0
         },
         {
             "key": "field_yaww_retreat_card_image",
@@ -374,20 +405,20 @@
             "required": false,
             "conditional_logic": false,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
             "return_format": "id",
             "preview_size": "medium",
             "library": "all",
+            "mime_types": "jpg,jpeg,png,webp,gif",
             "min_width": 0,
             "min_height": 0,
             "min_size": 0,
             "max_width": 0,
             "max_height": 0,
-            "max_size": 0,
-            "mime_types": ""
+            "max_size": 0
         },
         {
             "key": "field_yaww_retreat_includes_image",
@@ -406,13 +437,13 @@
             "return_format": "id",
             "preview_size": "medium",
             "library": "all",
+            "mime_types": "jpg,jpeg,png,webp,gif",
             "min_width": 0,
             "min_height": 0,
             "min_size": 0,
             "max_width": 0,
             "max_height": 0,
-            "max_size": 0,
-            "mime_types": ""
+            "max_size": 0
         },
         {
             "key": "field_yaww_retreat_tab_what_s_included",
@@ -447,7 +478,7 @@
                 "id": ""
             },
             "layout": "table",
-            "button_label": "Add",
+            "button_label": "Add a line",
             "min": 0,
             "max": 0,
             "rows_per_page": 20,
@@ -491,7 +522,7 @@
                 "id": ""
             },
             "layout": "table",
-            "button_label": "Add",
+            "button_label": "Add a line",
             "min": 0,
             "max": 0,
             "rows_per_page": 20,
@@ -535,7 +566,7 @@
                 "id": ""
             },
             "layout": "table",
-            "button_label": "Add",
+            "button_label": "Add a line",
             "min": 0,
             "max": 0,
             "rows_per_page": 20,
@@ -597,11 +628,11 @@
                 "id": ""
             },
             "layout": "block",
-            "button_label": "Add row",
+            "button_label": "Add a row",
+            "collapsed": "field_yaww_retreat_itinerary_label",
             "min": 0,
             "max": 0,
             "rows_per_page": 20,
-            "collapsed": "",
             "sub_fields": [
                 {
                     "key": "field_yaww_retreat_itinerary_label",
@@ -681,9 +712,10 @@
                         "id": ""
                     },
                     "return_format": "id",
-                    "preview_size": "medium",
-                    "insert": "append",
+                    "preview_size": "thumbnail",
                     "library": "all",
+                    "insert": "append",
+                    "mime_types": "jpg,jpeg,png,webp,gif",
                     "min": 0,
                     "max": 0,
                     "min_width": 0,
@@ -692,7 +724,6 @@
                     "max_width": 0,
                     "max_height": 0,
                     "max_size": 0,
-                    "mime_types": "",
                     "parent_repeater": "field_yaww_retreat_itinerary"
                 }
             ]
@@ -712,7 +743,7 @@
                 "id": ""
             },
             "layout": "table",
-            "button_label": "Add",
+            "button_label": "Add a line",
             "min": 0,
             "max": 0,
             "rows_per_page": 20,
@@ -794,11 +825,11 @@
                 "id": ""
             },
             "layout": "block",
-            "button_label": "Add row",
+            "button_label": "Add a row",
+            "collapsed": "field_yaww_retreat_stays_name",
             "min": 0,
             "max": 0,
             "rows_per_page": 20,
-            "collapsed": "",
             "sub_fields": [
                 {
                     "key": "field_yaww_retreat_stays_name",
@@ -878,9 +909,10 @@
                         "id": ""
                     },
                     "return_format": "id",
-                    "preview_size": "medium",
-                    "insert": "append",
+                    "preview_size": "thumbnail",
                     "library": "all",
+                    "insert": "append",
+                    "mime_types": "jpg,jpeg,png,webp,gif",
                     "min": 0,
                     "max": 0,
                     "min_width": 0,
@@ -889,7 +921,6 @@
                     "max_width": 0,
                     "max_height": 0,
                     "max_size": 0,
-                    "mime_types": "",
                     "parent_repeater": "field_yaww_retreat_stays"
                 }
             ]
@@ -909,7 +940,7 @@
                 "id": ""
             },
             "layout": "table",
-            "button_label": "Add",
+            "button_label": "Add a line",
             "min": 0,
             "max": 0,
             "rows_per_page": 20,
@@ -953,11 +984,11 @@
                 "id": ""
             },
             "layout": "block",
-            "button_label": "Add row",
+            "button_label": "Add a row",
+            "collapsed": "field_yaww_retreat_rooms_name",
             "min": 0,
             "max": 0,
             "rows_per_page": 20,
-            "collapsed": "",
             "sub_fields": [
                 {
                     "key": "field_yaww_retreat_rooms_name",
@@ -1102,9 +1133,10 @@
                         "id": ""
                     },
                     "return_format": "id",
-                    "preview_size": "medium",
-                    "insert": "append",
+                    "preview_size": "thumbnail",
                     "library": "all",
+                    "insert": "append",
+                    "mime_types": "jpg,jpeg,png,webp,gif",
                     "min": 0,
                     "max": 0,
                     "min_width": 0,
@@ -1113,7 +1145,6 @@
                     "max_width": 0,
                     "max_height": 0,
                     "max_size": 0,
-                    "mime_types": "",
                     "parent_repeater": "field_yaww_retreat_rooms"
                 }
             ]
@@ -1128,7 +1159,7 @@
             "required": false,
             "conditional_logic": false,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -1150,7 +1181,7 @@
             "required": false,
             "conditional_logic": false,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -1215,11 +1246,11 @@
                 "id": ""
             },
             "layout": "block",
-            "button_label": "Add row",
+            "button_label": "Add a row",
+            "collapsed": "field_yaww_retreat_extras_name",
             "min": 0,
             "max": 0,
             "rows_per_page": 20,
-            "collapsed": "",
             "sub_fields": [
                 {
                     "key": "field_yaww_retreat_extras_name",
@@ -1364,9 +1395,10 @@
                         "id": ""
                     },
                     "return_format": "id",
-                    "preview_size": "medium",
-                    "insert": "append",
+                    "preview_size": "thumbnail",
                     "library": "all",
+                    "insert": "append",
+                    "mime_types": "jpg,jpeg,png,webp,gif",
                     "min": 0,
                     "max": 0,
                     "min_width": 0,
@@ -1375,7 +1407,6 @@
                     "max_width": 0,
                     "max_height": 0,
                     "max_size": 0,
-                    "mime_types": "",
                     "parent_repeater": "field_yaww_retreat_extras"
                 }
             ]
@@ -1453,9 +1484,10 @@
                 "id": ""
             },
             "return_format": "id",
-            "preview_size": "medium",
-            "insert": "append",
+            "preview_size": "thumbnail",
             "library": "all",
+            "insert": "append",
+            "mime_types": "jpg,jpeg,png,webp,gif",
             "min": 0,
             "max": 0,
             "min_width": 0,
@@ -1463,8 +1495,7 @@
             "min_size": 0,
             "max_width": 0,
             "max_height": 0,
-            "max_size": 0,
-            "mime_types": ""
+            "max_size": 0
         },
         {
             "key": "field_yaww_retreat_testimonials",
@@ -1481,11 +1512,11 @@
                 "id": ""
             },
             "layout": "block",
-            "button_label": "Add row",
+            "button_label": "Add a row",
+            "collapsed": "field_yaww_retreat_testimonials_name",
             "min": 0,
             "max": 0,
             "rows_per_page": 20,
-            "collapsed": "",
             "sub_fields": [
                 {
                     "key": "field_yaww_retreat_testimonials_quote",
@@ -1585,11 +1616,11 @@
                 "id": ""
             },
             "layout": "block",
-            "button_label": "Add row",
+            "button_label": "Add a row",
+            "collapsed": "field_yaww_retreat_travel_tips_heading",
             "min": 0,
             "max": 0,
             "rows_per_page": 20,
-            "collapsed": "",
             "sub_fields": [
                 {
                     "key": "field_yaww_retreat_travel_tips_heading",
@@ -1650,11 +1681,11 @@
                 "id": ""
             },
             "layout": "block",
-            "button_label": "Add row",
+            "button_label": "Add a row",
+            "collapsed": "field_yaww_retreat_faqs_question",
             "min": 0,
             "max": 0,
             "rows_per_page": 20,
-            "collapsed": "",
             "sub_fields": [
                 {
                     "key": "field_yaww_retreat_faqs_question",
@@ -1692,10 +1723,10 @@
                         "id": ""
                     },
                     "tabs": "all",
-                    "toolbar": "full",
-                    "media_upload": 1,
-                    "default_value": "",
+                    "toolbar": "basic",
+                    "media_upload": 0,
                     "delay": 0,
+                    "default_value": "",
                     "parent_repeater": "field_yaww_retreat_faqs"
                 }
             ]
@@ -1749,16 +1780,30 @@
         ]
     ],
     "menu_order": 0,
-    "position": "normal",
-    "style": "default",
+    "position": "acf_after_title",
+    "style": "seamless",
     "label_placement": "top",
     "instruction_placement": "label",
-    "hide_on_screen": [],
+    "hide_on_screen": [
+        "the_content",
+        "excerpt",
+        "discussion",
+        "comments",
+        "revisions",
+        "slug",
+        "author",
+        "format",
+        "categories",
+        "tags",
+        "send-trackbacks",
+        "featured_image",
+        "page_attributes"
+    ],
     "active": true,
     "description": "",
     "show_in_rest": 1,
     "display_title": "",
     "enable_acf_abilities": true,
     "ai_description": "",
-    "modified": 1795452344
+    "modified": 1795454865
 }

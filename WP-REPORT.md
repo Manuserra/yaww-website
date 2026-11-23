@@ -76,3 +76,14 @@
   - Policies: `[missing data: page content]` (falta el texto; preguntas de B).
   - `/team-jenniferlyn-chiemingo.html` llega en 2 saltos (301 → facilitator → teacher).
   - Pendientes de otros: webhook de Slack, API de WeTravel, emails destino.
+
+## Admin · Pantallas de edición
+
+- **Retreat, location, teacher, facilitator sin editor de bloques**: pantalla clásica, título arriba y debajo los campos ACF en pestañas (sin caja alrededor). El texto principal pasó a un campo: retreat "About this retreat", location "Intro text", teacher/facilitator "Full bio" (`yaww_body()`; `bin/migrate-body.php` copió el contenido una vez, idempotente; el import ya escribe el campo). Journal sigue con bloques y su panel de campos se abre por defecto.
+- **Retreat**, pestañas: Basics (fechas "Dec 1, 2026", noches, location con búsqueda, línea de lugar, teachers/facilitators con búsqueda y orden, collection en botones, status en radios, spaces left, link de WeTravel, nota de waitlist) · About · Photos · What's included · Itinerary (filas plegadas por "Day N") · Stay & rooms · Extras · Gallery & guests · Travel info · SEO. Campos lado a lado donde caben.
+- **Ocultos**: slug, campos personalizados, comentarios, autor, revisiones, extracto, caja Tiers (la fuente es Collection; el término se sincroniza al guardar) e imagen destacada en retreat/location (= Hero photo, sincronizada). En teachers/facilitators la destacada se llama "Portrait photo".
+- **Listados**: retreats con foto, fechas (orden por fecha: próximos primero, luego waitlist, luego pasados), location, teachers, collection, status en píldora de color, plazas; filtros por location, status y collection. Locations: región (ordenable), país, retreats próximos. Teachers/facilitators: foto, retreats, perfil listo / en página de facilitators. Leads sin cambios (columnas comprobadas).
+- **Menú y escritorio**: Retreats, Locations, Teachers, Facilitators, Journal, Leads, luego Pages; iconos nuevos; sin Comments (0 comentarios). Escritorio: "Upcoming retreats" (5 próximos con status) y "Latest leads" (5 últimos); fuera bienvenida, noticias, borrador rápido, actividad, salud.
+- **Front-end idéntico**: HTML de las 104 URLs igual byte a byte antes/después (salvo el token del formulario); muestra contra http://localhost:8777 (home, /retreats/, Thailand, El Cuyo Berger, Morocco waitlist, location Thailand, Sue Berger, Renata Centi) con la misma firma. debug.log vacío.
+- **Verificado**: capturas con un login temporal (mu-plugin solo para localwpcom.local, ya borrado, sesiones cerradas; ninguna contraseña tocada).
+- **Queda**: el aviso de WordPress "auto-generated password" del usuario admin (es de WP, no lo toco); al importar de nuevo, el import sobrescribe los campos de texto como antes.

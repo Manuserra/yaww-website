@@ -1,6 +1,6 @@
 {
     "key": "group_yaww_post",
-    "title": "YAWW · Journal",
+    "title": "Journal post details",
     "fields": [
         {
             "key": "field_yaww_post_tab_listing",
@@ -57,13 +57,13 @@
             "return_format": "id",
             "preview_size": "medium",
             "library": "all",
+            "mime_types": "jpg,jpeg,png,webp,gif",
             "min_width": 0,
             "min_height": 0,
             "min_size": 0,
             "max_width": 0,
             "max_height": 0,
-            "max_size": 0,
-            "mime_types": ""
+            "max_size": 0
         },
         {
             "key": "field_yaww_post_card_image_2x",
@@ -82,13 +82,13 @@
             "return_format": "id",
             "preview_size": "medium",
             "library": "all",
+            "mime_types": "jpg,jpeg,png,webp,gif",
             "min_width": 0,
             "min_height": 0,
             "min_size": 0,
             "max_width": 0,
             "max_height": 0,
-            "max_size": 0,
-            "mime_types": ""
+            "max_size": 0
         },
         {
             "key": "field_yaww_post_hero_image_2x",
@@ -96,7 +96,7 @@
             "name": "hero_image_2x",
             "aria-label": "",
             "type": "image",
-            "instructions": "Optional double-size version of the Featured image (the top photo).",
+            "instructions": "Optional double-size version of the top photo (the photo in the sidebar on the right, under \"Journal post\").",
             "required": false,
             "conditional_logic": false,
             "wrapper": {
@@ -107,13 +107,13 @@
             "return_format": "id",
             "preview_size": "medium",
             "library": "all",
+            "mime_types": "jpg,jpeg,png,webp,gif",
             "min_width": 0,
             "min_height": 0,
             "min_size": 0,
             "max_width": 0,
             "max_height": 0,
-            "max_size": 0,
-            "mime_types": ""
+            "max_size": 0
         },
         {
             "key": "field_yaww_post_tab_author",
@@ -168,14 +168,14 @@
                 "id": ""
             },
             "allow_null": 1,
+            "ui": 1,
+            "multiple": 0,
             "post_type": [
                 "teacher",
                 "facilitator"
             ],
             "return_format": "id",
             "taxonomy": [],
-            "multiple": 0,
-            "ui": 1,
             "bidirectional_target": []
         },
         {
@@ -195,13 +195,13 @@
             "return_format": "id",
             "preview_size": "medium",
             "library": "all",
+            "mime_types": "jpg,jpeg,png,webp,gif",
             "min_width": 0,
             "min_height": 0,
             "min_size": 0,
             "max_width": 0,
             "max_height": 0,
-            "max_size": 0,
-            "mime_types": ""
+            "max_size": 0
         },
         {
             "key": "field_yaww_post_author_photo_2x",
@@ -220,13 +220,13 @@
             "return_format": "id",
             "preview_size": "medium",
             "library": "all",
+            "mime_types": "jpg,jpeg,png,webp,gif",
             "min_width": 0,
             "min_height": 0,
             "min_size": 0,
             "max_width": 0,
             "max_height": 0,
-            "max_size": 0,
-            "mime_types": ""
+            "max_size": 0
         },
         {
             "key": "field_yaww_post_author_bio",
@@ -341,13 +341,13 @@
                 "id": ""
             },
             "allow_null": 1,
+            "ui": 1,
+            "multiple": 0,
             "post_type": [
                 "location"
             ],
             "return_format": "id",
             "taxonomy": [],
-            "multiple": 0,
-            "ui": 1,
             "bidirectional_target": []
         },
         {
@@ -367,13 +367,13 @@
             "return_format": "id",
             "preview_size": "medium",
             "library": "all",
+            "mime_types": "jpg,jpeg,png,webp,gif",
             "min_width": 0,
             "min_height": 0,
             "min_size": 0,
             "max_width": 0,
             "max_height": 0,
-            "max_size": 0,
-            "mime_types": ""
+            "max_size": 0
         },
         {
             "key": "field_yaww_post_retreat_image_2x",
@@ -392,13 +392,13 @@
             "return_format": "id",
             "preview_size": "medium",
             "library": "all",
+            "mime_types": "jpg,jpeg,png,webp,gif",
             "min_width": 0,
             "min_height": 0,
             "min_size": 0,
             "max_width": 0,
             "max_height": 0,
-            "max_size": 0,
-            "mime_types": ""
+            "max_size": 0
         },
         {
             "key": "field_yaww_post_tab_seo",
@@ -480,5 +480,5 @@
     "display_title": "",
     "enable_acf_abilities": true,
     "ai_description": "",
-    "modified": 1795452343
+    "modified": 1795454865
 }

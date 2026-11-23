@@ -320,7 +320,7 @@ function yaww_seo_fill_location( &$ctx, $id ) {
 	$desc = yaww_seo_manual_desc( $id );
 	if ( ! $desc ) {
 		$intro = yaww_meta( 'intro', $id );
-		$desc = $intro ? yaww_seo_fit( $intro . ' See dates and how to get there.' ) : yaww_seo_fit( get_post_field( 'post_content', $id ) );
+		$desc = $intro ? yaww_seo_fit( $intro . ' See dates and how to get there.' ) : yaww_seo_fit( yaww_body( $id ) );
 	}
 	$ctx['desc']  = $desc;
 	$ctx['image'] = yaww_seo_post_image( $id );
@@ -339,7 +339,7 @@ function yaww_seo_fill_person( &$ctx, $id ) {
 	$core  = "$name, $label";
 	$ctx['title'] = ( mb_strlen( $core . ' | ' . YAWW_SEO_SITE ) <= 60 ) ? $core . ' | ' . YAWW_SEO_SITE : $name . ' | ' . YAWW_SEO_SITE;
 	$short = yaww_seo_clean( yaww_meta( 'short_bio', $id ) );
-	$desc  = yaww_seo_manual_desc( $id ) ?: yaww_seo_fit( $short ? $short : get_post_field( 'post_content', $id ) );
+	$desc  = yaww_seo_manual_desc( $id ) ?: yaww_seo_fit( $short ? $short : yaww_body( $id ) );
 	$ctx['desc']  = $desc;
 	$ctx['image'] = yaww_seo_post_image( $id, 'yaww-person', 'about-teachers.jpg' );
 	$ctx['og']    = 'profile';

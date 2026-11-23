@@ -100,7 +100,7 @@ function yaww_e_t_missing( $s ) {
 
 /** Post content as an array of plain paragraphs (for content that the static pages set paragraph by paragraph). */
 function yaww_e_paragraphs( $post_id ) {
-	$raw = (string) get_post_field( 'post_content', $post_id );
+	$raw = yaww_body( $post_id );   // location intro / teacher and facilitator bio
 	if ( '' === trim( $raw ) ) { return array(); }
 	$raw = preg_replace( '/<!--.*?-->/s', '', $raw );
 	if ( preg_match_all( '#<p[^>]*>(.*?)</p>#s', $raw, $m ) ) {

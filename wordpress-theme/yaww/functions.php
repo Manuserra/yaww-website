@@ -15,7 +15,7 @@ require_once YAWW_DIR . '/inc/helpers.php';
 require_once YAWW_DIR . '/inc/post-types.php';
 require_once YAWW_DIR . '/inc/fields.php';
 /* Other agents' includes (BRIEF-WP ownership); each is optional so a missing file never breaks the site. */
-foreach ( array( 'redirects', 'seo', 'settings', 'forms', 'views', 'e-helpers' ) as $yaww_inc ) {
+foreach ( array( 'redirects', 'seo', 'settings', 'forms', 'views', 'e-helpers', 'admin' ) as $yaww_inc ) {
 	if ( file_exists( YAWW_DIR . '/inc/' . $yaww_inc . '.php' ) ) { require_once YAWW_DIR . '/inc/' . $yaww_inc . '.php'; }
 }
 unset( $yaww_inc );

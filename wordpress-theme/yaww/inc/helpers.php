@@ -8,16 +8,37 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 /** Meta value, ACF first (when present and non-empty), native post meta otherwise. */
 function yaww_meta( $key, $post_id = null ) {
 	$post_id = $post_id ? $post_id : get_the_ID();
-	$alias = array( 'video_url' => 'youtube', 'intro' => '' );   // renamed fields (2026-11-23)
-	if ( isset( $alias[ $key ] ) ) {
-		if ( '' === $alias[ $key ] ) { return get_post_field( 'post_content', $post_id ); }   // location intro = content
-		$key = $alias[ $key ];
-	}
+	$alias = array( 'video_url' => 'youtube' );   // renamed fields (2026-11-23)
+	if ( isset( $alias[ $key ] ) ) { $key = $alias[ $key ]; }
+	// Body text (retreat about, location intro, teacher/facilitator bio): raw HTML paragraphs, never ACF-formatted.
+	if ( in_array( $key, array( 'intro', 'about', 'bio' ), true ) && yaww_body_key( $post_id ) ) { return yaww_body( $post_id ); }
 	if ( function_exists( 'get_field' ) ) {
 		$v = get_field( $key, $post_id );
 		if ( null !== $v && false !== $v && '' !== $v && array() !== $v ) { return $v; }
 	}
 	return get_post_meta( $post_id, $key, true );
+}
+
+/** Field that holds the body text of a post type (the edit screen has no main text box for these). */
+function yaww_body_key( $post_id ) {
+	$keys = array( 'retreat' => 'about', 'location' => 'intro', 'teacher' => 'bio', 'facilitator' => 'bio' );
+	$type = get_post_type( $post_id );
+	return isset( $keys[ $type ] ) ? $keys[ $type ] : '';
+}
+
+/**
+ * Body text as HTML paragraphs: the field above (raw, as saved), or the post content while the field
+ * was never written (bin/migrate-body.php copies it once). The editor saves paragraphs as blank-line
+ * text, so text without <p> goes through wpautop and every template still sees <p>…</p>.
+ */
+function yaww_body( $post_id = null ) {
+	$post_id = $post_id ? $post_id : get_the_ID();
+	$key     = yaww_body_key( $post_id );
+	if ( $key && metadata_exists( 'post', $post_id, $key ) ) {
+		$v = trim( (string) get_post_meta( $post_id, $key, true ) );
+		return ( '' === $v || false !== stripos( $v, '<p' ) ) ? $v : wpautop( $v );
+	}
+	return (string) get_post_field( 'post_content', $post_id );
 }
 
 /** Echo escaped text meta. */
@@ -256,7 +277,7 @@ function yaww_data( $what ) {
 					'photo' => get_the_post_thumbnail_url( $p, 'full' ) ?: null,
 					'avatar' => wp_get_attachment_image_url( (int) yaww_meta( 'avatar', $p->ID ), 'full' ) ?: null,
 					'pageUrl' => get_permalink( $p ), 'shortBio' => yaww_meta( 'short_bio', $p->ID ),
-					'bio' => yaww_paragraphs( $p->post_content ) );
+					'bio' => yaww_paragraphs( yaww_body( $p->ID ) ) );
 				foreach ( array( 'photoPosition' => 'photo_position', 'shortName' => 'short_name', 'role' => 'role', 'quote' => 'quote',
 					'youtube' => 'youtube', 'spotifyPlaylist' => 'spotify_url', 'instagram' => 'instagram' ) as $js => $key ) {
 					$v = yaww_meta( $key, $p->ID );
@@ -275,7 +296,7 @@ function yaww_data( $what ) {
 			foreach ( get_posts( array( 'post_type' => 'facilitator', 'numberposts' => -1, 'orderby' => 'menu_order', 'order' => 'ASC' ) ) as $p ) {
 				$t = array( 'id' => $p->post_name, 'name' => $p->post_title, 'slug' => $p->post_name,
 					'photo' => get_the_post_thumbnail_url( $p, 'full' ) ?: null, 'pageUrl' => get_permalink( $p ),
-					'shortBio' => yaww_meta( 'short_bio', $p->ID ), 'bio' => yaww_paragraphs( $p->post_content ) );
+					'shortBio' => yaww_meta( 'short_bio', $p->ID ), 'bio' => yaww_paragraphs( yaww_body( $p->ID ) ) );
 				if ( yaww_meta( 'photo_position', $p->ID ) ) { $t['photoPosition'] = yaww_meta( 'photo_position', $p->ID ); }
 				if ( yaww_meta( 'role', $p->ID ) ) { $t['role'] = yaww_meta( 'role', $p->ID ); }
 				if ( ! yaww_meta( 'listed', $p->ID ) ) { $t['listed'] = false; }
