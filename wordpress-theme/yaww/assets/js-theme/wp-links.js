@@ -101,8 +101,16 @@
     });
   }
 
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", after);
-  else after();
+  /* Deferred scripts run while readyState is already "interactive" but
+     before DOMContentLoaded, so wait for the event unless the page is
+     fully loaded (the load fallback covers a late, non-deferred load). */
+  var done = false;
+  function once() { if (!done) { done = true; after(); } }
+  if (document.readyState === "complete") once();
+  else {
+    document.addEventListener("DOMContentLoaded", once);
+    window.addEventListener("load", once);
+  }
 
   window.YAWW_WP = { url: wp, fix: fix, assets: ASSETS };
 })();

@@ -12,7 +12,7 @@ $yaww_section = '';
 if ( is_post_type_archive( 'retreat' ) || is_tax( 'retreat_tier' ) ) { $yaww_section = 'retreats'; }
 elseif ( is_post_type_archive( 'location' ) ) { $yaww_section = 'locations'; }
 elseif ( is_page( 'about' ) ) { $yaww_section = 'about'; }
-elseif ( is_home() ) { $yaww_section = 'journal'; }
+elseif ( is_home() && ! is_front_page() ) { $yaww_section = 'journal'; }
 elseif ( is_page( 'contact' ) ) { $yaww_section = 'contact'; }
 $yaww_cur = function ( $key ) use ( $yaww_section ) { return $key === $yaww_section ? ' aria-current="page"' : ''; };
 ?><!doctype html>

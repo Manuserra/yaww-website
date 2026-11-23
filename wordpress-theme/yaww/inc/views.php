@@ -215,6 +215,9 @@ function yaww_attachment_url( $id, $size = 'full' ) {
 
 /** Location record in the shape of data/locations.js. */
 function yaww_location_record( $lid ) {
+	foreach ( function_exists( 'yaww_data' ) ? yaww_data( 'locations' ) : array() as $l ) {   // A's catalog first: one source
+		if ( $l['pageUrl'] === get_permalink( $lid ) ) { return $l; }
+	}
 	$img = yaww_attachment_url( yaww_meta( 'card_image', $lid ), 'large' );
 	if ( ! $img ) { $img = yaww_attachment_url( get_post_thumbnail_id( $lid ), 'large' ); }
 	$rec = array(
@@ -235,6 +238,9 @@ function yaww_location_record( $lid ) {
 
 /** Retreat record in the shape of data/retreats.js. Dateless retreats are a location's program (waitlist). */
 function yaww_retreat_record( $rid ) {
+	foreach ( function_exists( 'yaww_data' ) ? yaww_data( 'retreats' ) : array() as $r ) {    // A's catalog first: one source
+		if ( $r['pageUrl'] === get_permalink( $rid ) ) { return $r; }
+	}
 	$loc = (int) yaww_meta( 'location_id', $rid );
 	$tids = array();
 	foreach ( array_filter( (array) yaww_meta( 'teacher_ids', $rid ) ) as $t ) {
