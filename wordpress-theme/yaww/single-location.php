@@ -13,17 +13,17 @@ require_once get_template_directory() . '/inc/e-helpers.php';
 yaww_e_assets( 'location', array( 'lenis-anchors', 'cta-parallax', 'location-waitlist' ) );
 get_header();
 while ( have_posts() ) : the_post();
-	$id      = get_the_ID();
-	$slug    = get_post_field( 'post_name', $id );
-	$place   = get_the_title( $id );
+	$this_loc      = get_the_ID();
+	$slug    = get_post_field( 'post_name', $this_loc );
+	$place   = get_the_title( $this_loc );
 	$contact = home_url( '/contact/#general-inquiry' );
-	$hero_id = (int) yaww_meta( 'hero_image', $id );
+	$hero_id = (int) yaww_meta( 'hero_image', $this_loc );
 	$hero    = yaww_e_img_src( $hero_id, 'full' );
-	if ( ! $hero ) { $hero = yaww_img_url( 'hero_image', 'full', $id ); }
+	if ( ! $hero ) { $hero = yaww_img_url( 'hero_image', 'full', $this_loc ); }
 	$hero_alt = $hero_id ? (string) get_post_meta( $hero_id, '_wp_attachment_image_alt', true ) : '';
-	$list    = yaww_e_retreats_by_location( $id );
+	$list    = yaww_e_retreats_by_location( $this_loc );
 	$dates   = (bool) $list;
-	$facts   = yaww_rows( 'facts', $id );
+	$facts   = yaww_rows( 'facts', $this_loc );
 	$m       = function ( $v, $what ) { return '' !== trim( (string) $v ) ? yaww_e_t( $v ) : esc_html( yaww_e_missing( $what ) ); };
 	?>
 
@@ -32,9 +32,9 @@ while ( have_posts() ) : the_post();
 
     <div class="retreat-hero__inner">
       <div class="retreat-hero__copy">
-        <p class="loc-hero__eyebrow"><?php echo $m( yaww_meta( 'eyebrow', $id ), 'eyebrow' ); // phpcs:ignore ?></p>
+        <p class="loc-hero__eyebrow"><?php echo $m( yaww_meta( 'eyebrow', $this_loc ), 'eyebrow' ); // phpcs:ignore ?></p>
         <h1 class="retreat-hero__title"><?php echo yaww_e_t( $place ); // phpcs:ignore ?></h1>
-        <p class="retreat-hero__location"><?php echo str_replace( 'One of our most sought-after destinations', 'One of our most <span class="tx-nowrap">sought-after</span> destinations', $m( yaww_meta( 'tagline', $id ), 'tagline' ) ); /* build_location.py keeps the compound together */ // phpcs:ignore ?></p>
+        <p class="retreat-hero__location"><?php echo str_replace( 'One of our most sought-after destinations', 'One of our most <span class="tx-nowrap">sought-after</span> destinations', $m( yaww_meta( 'tagline', $this_loc ), 'tagline' ) ); /* build_location.py keeps the compound together */ // phpcs:ignore ?></p>
         <?php if ( $facts ) : ?><dl class="loc-hero__facts"><?php foreach ( $facts as $f ) { echo '<div><dt>' . yaww_e_t( isset( $f['label'] ) ? $f['label'] : '' ) . '</dt><dd>' . yaww_e_t( isset( $f['value'] ) ? $f['value'] : '' ) . '</dd></div>'; } // phpcs:ignore ?></dl><?php endif; ?>
       </div>
 
@@ -61,7 +61,7 @@ while ( have_posts() ) : the_post();
     </div>
   </section>
 <?php else :
-	$prog      = yaww_e_location_program( $id );
+	$prog      = yaww_e_location_program( $this_loc );
 	$prog_name = $prog ? get_the_title( $prog ) : 'our retreat in ' . $place;
 	?>
   <section class="loc-dates loc-dates--waitlist" id="waitlist" aria-labelledby="loc-wait-title">
@@ -71,7 +71,7 @@ while ( have_posts() ) : the_post();
 		$tiers  = array( 'deep-dives' => 'Deep Dive', 'signature-collection' => 'Signature' );
 		$tier   = isset( $tiers[ $coll ] ) ? $tiers[ $coll ] : '';
 		$sig    = 'signature-collection' === $coll;
-		$where  = yaww_e_card_loc( $id );
+		$where  = yaww_e_card_loc( $this_loc );
 		// Same sources as D's cards (yaww_retreat_record): the program's card photo at 1x/2x, else the location's photo.
 		$m1 = ''; $m2 = '';
 		if ( function_exists( 'yaww_retreat_record' ) ) {
@@ -79,14 +79,14 @@ while ( have_posts() ) : the_post();
 			$m1  = ! empty( $rec['image'] ) ? $rec['image'] : '';
 			$m2  = ! empty( $rec['image2x'] ) ? $rec['image2x'] : '';
 		}
-		if ( ! $m1 ) { $m1 = yaww_e_img_src( (int) yaww_meta( 'card_image', $id ), 'full' ); }
+		if ( ! $m1 ) { $m1 = yaww_e_img_src( (int) yaww_meta( 'card_image', $this_loc ), 'full' ); }
 		$label  = '<span class="card__label' . ( $sig ? ' card__label--signature' : '' ) . '">'
 			. ( $tier ? '<span class="card__label-tier">' . esc_html( $tier ) . '</span><span class="card__label-sep" aria-hidden="true"></span>' : '' )
 			. '<span class="card__label-status">Waitlist</span></span>';
-		$img = $m1 ? '<img src="' . esc_url( $m1 ) . '"' . ( $m2 ? ' srcset="' . esc_url( $m1 ) . ' 1x, ' . esc_url( $m2 ) . ' 2x"' : '' ) . ' alt="' . esc_attr( $prog_name . ' — ' . yaww_location_line( $id ) ) . '" loading="lazy" decoding="async">' : '';
+		$img = $m1 ? '<img src="' . esc_url( $m1 ) . '"' . ( $m2 ? ' srcset="' . esc_url( $m1 ) . ' 1x, ' . esc_url( $m2 ) . ' 2x"' : '' ) . ' alt="' . esc_attr( $prog_name . ' — ' . yaww_location_line( $this_loc ) ) . '" loading="lazy" decoding="async">' : '';
 		?>
       <div class="loc-wait__card" data-loc-wait-card><a class="result-link" href="<?php echo esc_url( get_permalink( $prog ) ); ?>" data-waitlist-dest="<?php echo esc_attr( $slug ); ?>"><article class="card card--narrow card--waitlist"><?php
-		echo $img ? '<div class="card__media">' . $img . $label . '</div>' : '<div class="card__media" style="' . esc_attr( yaww_e_placeholder_style( $id ) ) . '">' . $label . '</div>'; // phpcs:ignore
+		echo $img ? '<div class="card__media">' . $img . $label . '</div>' : '<div class="card__media" style="' . esc_attr( yaww_e_placeholder_style( $this_loc ) ) . '">' . $label . '</div>'; // phpcs:ignore
 		?><div class="card__body"><div class="card__title"><?php echo esc_html( $prog_name ); ?></div><div class="card__loc"><?php echo esc_html( $where ); ?></div><div class="card__date">See the itinerary</div></div></article></a></div>
       <?php endif; ?>
       <div class="loc-wait__panel">
@@ -126,23 +126,23 @@ while ( have_posts() ) : the_post();
 <?php endif; ?>
 
 <?php
-	$intro_img = yaww_e_img( (int) yaww_meta( 'intro_image', $id ), 'full', array( 'loading' => 'lazy', 'decoding' => 'async' ) );
-	$paras     = yaww_e_paragraphs( $id );
-	if ( ! $paras ) { $paras = yaww_list( 'intro', $id ); }
-	if ( ! $paras && is_string( yaww_meta( 'intro', $id ) ) ) { $paras = yaww_e_lines( yaww_meta( 'intro', $id ) ); }
+	$intro_img = yaww_e_img( (int) yaww_meta( 'intro_image', $this_loc ), 'full', array( 'loading' => 'lazy', 'decoding' => 'async' ) );
+	$paras     = yaww_e_paragraphs( $this_loc );
+	if ( ! $paras ) { $paras = yaww_list( 'intro', $this_loc ); }
+	if ( ! $paras && is_string( yaww_meta( 'intro', $this_loc ) ) ) { $paras = yaww_e_lines( yaww_meta( 'intro', $this_loc ) ); }
 	?>
   <section class="loc-intro">
     <div class="loc-wrap loc-intro__row">
       <figure class="loc-intro__fig"><?php echo $intro_img ? $intro_img : '<div class="loc-ph">' . esc_html( yaww_e_missing( 'intro photo' ) ) . '</div>'; // phpcs:ignore ?></figure>
       <div class="loc-intro__copy">
         <p class="loc-kicker">Why we go</p>
-        <h2 class="loc-h2"><?php echo $m( yaww_meta( 'intro_title', $id ), 'intro title' ); // phpcs:ignore ?></h2>
+        <h2 class="loc-h2"><?php echo $m( yaww_meta( 'intro_title', $this_loc ), 'intro title' ); // phpcs:ignore ?></h2>
 <?php if ( $paras ) { foreach ( $paras as $p ) { echo '        <p class="loc-p">' . yaww_e_t( $p ) . "</p>\n"; } } else { echo '        <p class="loc-p">' . esc_html( yaww_e_missing( 'intro' ) ) . "</p>\n"; } // phpcs:ignore ?>
       </div>
     </div>
   </section>
 
-<?php $guide = yaww_rows( 'guide', $id ); ?>
+<?php $guide = yaww_rows( 'guide', $this_loc ); ?>
   <section class="loc-guide" aria-labelledby="loc-guide-title">
     <div class="loc-wrap">
       <div class="loc-guide__head">
@@ -168,7 +168,7 @@ foreach ( $guide as $g ) :
     </div>
   </section>
 
-<?php $know = yaww_rows( 'know', $id ); ?>
+<?php $know = yaww_rows( 'know', $this_loc ); ?>
   <section class="loc-know" aria-labelledby="loc-know-title">
     <div class="loc-wrap">
       <div class="loc-know__head">
@@ -182,12 +182,12 @@ foreach ( $guide as $g ) :
     </div>
   </section>
 
-<?php $qt = yaww_meta( 'quote_text', $id ); ?>
+<?php $qt = yaww_meta( 'quote_text', $this_loc ); ?>
   <section class="loc-quote">
     <div class="loc-wrap">
       <figure>
         <blockquote>&ldquo;<?php echo $m( $qt, 'guest quote' ); // phpcs:ignore ?>&rdquo;</blockquote>
-        <figcaption><?php echo $m( yaww_meta( 'quote_name', $id ), 'name' ); // phpcs:ignore ?> <span>· <?php echo $m( yaww_meta( 'quote_source', $id ), 'source' ); // phpcs:ignore ?></span></figcaption>
+        <figcaption><?php echo $m( yaww_meta( 'quote_name', $this_loc ), 'name' ); // phpcs:ignore ?> <span>· <?php echo $m( yaww_meta( 'quote_source', $this_loc ), 'source' ); // phpcs:ignore ?></span></figcaption>
       </figure>
     </div>
   </section>
@@ -195,11 +195,11 @@ foreach ( $guide as $g ) :
 <?php
 	// Three more: same region first, then the rest, in the data's order (menu_order).
 	$all    = get_posts( array( 'post_type' => 'location', 'post_status' => 'publish', 'numberposts' => -1, 'fields' => 'ids', 'orderby' => array( 'menu_order' => 'ASC', 'title' => 'ASC' ), 'suppress_filters' => false ) );
-	$region = yaww_meta( 'region', $id );
+	$region = yaww_meta( 'region', $this_loc );
 	$same   = array();
 	$other  = array();
 	foreach ( $all as $lid ) {
-		if ( (int) $lid === (int) $id ) { continue; }
+		if ( (int) $lid === (int) $this_loc ) { continue; }
 		if ( yaww_meta( 'region', $lid ) === $region ) { $same[] = $lid; } else { $other[] = $lid; }
 	}
 	$more = array_slice( array_merge( $same, $other ), 0, 3 );

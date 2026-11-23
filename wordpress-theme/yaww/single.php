@@ -14,14 +14,14 @@ require_once get_template_directory() . '/inc/e-helpers.php';
 yaww_e_assets( 'post', array( 'cta-parallax' ) );
 get_header();
 while ( have_posts() ) : the_post();
-	$id    = get_the_ID();
-	$title = get_the_title( $id );
+	$this_post    = get_the_ID();
+	$title = get_the_title( $this_post );
 
 	// Categories as the data lists them: the umbrella "Journal" first, then the topics.
-	$all  = get_the_category( $id );
+	$all  = get_the_category( $this_post );
 	$cats = array();
 	foreach ( $all as $c ) { if ( 'journal' === $c->slug ) { $cats[] = $c->name; } }
-	foreach ( yaww_e_post_topics( $id ) as $c ) { $cats[] = $c->name; }
+	foreach ( yaww_e_post_topics( $this_post ) as $c ) { $cats[] = $c->name; }
 	$cats_html = $cats ? '<div class="post__cats">' . implode( '', array_map( function ( $n ) { return '<span>' . esc_html( $n ) . '</span>'; }, $cats ) ) . '</div>' : '';
 
 	/* Image with an optional retina twin (journal-post.js img()). */
@@ -32,25 +32,25 @@ while ( have_posts() ) : the_post();
 	};
 
 	// Body: imported as journal-post.js markup goes out as is; anything else gets the usual filters in one text block.
-	$raw  = (string) get_post_field( 'post_content', $id );
+	$raw  = (string) get_post_field( 'post_content', $this_post );
 	$body = ( false !== strpos( $raw, 'post__text' ) || false !== strpos( $raw, 'post__figure' ) )
 		? do_shortcode( $raw )
 		: '<div class="post__text">' . apply_filters( 'the_content', $raw ) . '</div>';
 	?>
-  <article class="post" data-journal-post="<?php echo esc_attr( get_post_field( 'post_name', $id ) ); ?>"><div class="post__head"><h1 class="post__title"><?php echo esc_html( $title ); ?></h1><?php echo $cats_html; // phpcs:ignore ?><?php $dl = yaww_meta( 'date_label', $id ); if ( $dl ) : ?><p class="post__date"><time datetime="<?php echo esc_attr( get_the_date( 'Y-m-d', $id ) ); ?>"><?php echo esc_html( $dl ); ?></time></p><?php endif; ?></div><div class="post__hero"><?php echo $img( get_post_thumbnail_id( $id ), yaww_meta( 'hero_image_2x', $id ), $title, true ); // phpcs:ignore ?></div><div class="post__body"><?php echo $body; // phpcs:ignore ?></div><?php
+  <article class="post" data-journal-post="<?php echo esc_attr( get_post_field( 'post_name', $this_post ) ); ?>"><div class="post__head"><h1 class="post__title"><?php echo esc_html( $title ); ?></h1><?php echo $cats_html; // phpcs:ignore ?><?php $dl = yaww_meta( 'date_label', $this_post ); if ( $dl ) : ?><p class="post__date"><time datetime="<?php echo esc_attr( get_the_date( 'Y-m-d', $this_post ) ); ?>"><?php echo esc_html( $dl ); ?></time></p><?php endif; ?></div><div class="post__hero"><?php echo $img( get_post_thumbnail_id( $this_post ), yaww_meta( 'hero_image_2x', $this_post ), $title, true ); // phpcs:ignore ?></div><div class="post__body"><?php echo $body; // phpcs:ignore ?></div><?php
 
 	/* ---- author card ---- */
-	$a_name = yaww_e_author_name( $id );
+	$a_name = yaww_e_author_name( $this_post );
 	if ( $a_name ) {
-		$a_bio  = yaww_meta( 'author_bio', $id );
-		if ( ! $a_bio ) { $a_bio = get_the_author_meta( 'description', (int) get_post_field( 'post_author', $id ) ); }
+		$a_bio  = yaww_meta( 'author_bio', $this_post );
+		if ( ! $a_bio ) { $a_bio = get_the_author_meta( 'description', (int) get_post_field( 'post_author', $this_post ) ); }
 		$a_bio  = array_filter( array_map( 'trim', preg_split( '/\n\s*\n/', (string) $a_bio ) ), 'strlen' );
-		$a_page = (int) yaww_meta( 'author_person', $id );
+		$a_page = (int) yaww_meta( 'author_person', $this_post );
 		$a_url  = $a_page ? get_permalink( $a_page ) : '';
-		$a_ph   = (int) yaww_meta( 'author_photo', $id );
+		$a_ph   = (int) yaww_meta( 'author_photo', $this_post );
 		$parts  = preg_split( '/\s+/', $a_name );
 		echo '<section class="post-author"><div class="post-author__box">';
-		if ( $a_ph ) { echo '<div class="post-author__photo">' . $img( $a_ph, yaww_meta( 'author_photo_2x', $id ), $a_name ) . '</div>'; } // phpcs:ignore
+		if ( $a_ph ) { echo '<div class="post-author__photo">' . $img( $a_ph, yaww_meta( 'author_photo_2x', $this_post ), $a_name ) . '</div>'; } // phpcs:ignore
 		echo '<div class="post-author__text"><p class="post-author__slug">About the author</p><p class="post-author__name">'
 			. ( $a_url ? '<a class="post-author__name-link" href="' . esc_url( $a_url ) . '">' . esc_html( $a_name ) . '</a>' : esc_html( $a_name ) ) . '</p>';
 		foreach ( $a_bio as $p ) { echo '<p class="post-author__bio">' . esc_html( $p ) . '</p>'; }
@@ -59,13 +59,13 @@ while ( have_posts() ) : the_post();
 	}
 
 	/* ---- "Explore this retreat" ---- */
-	$r_title = yaww_meta( 'retreat_title', $id );
+	$r_title = yaww_meta( 'retreat_title', $this_post );
 	if ( $r_title ) {
-		$r_loc  = (int) yaww_meta( 'retreat_location', $id );
+		$r_loc  = (int) yaww_meta( 'retreat_location', $this_post );
 		$r_href = $r_loc ? get_permalink( $r_loc ) : get_post_type_archive_link( 'retreat' );
-		$r_img  = $img( (int) yaww_meta( 'retreat_image', $id ), yaww_meta( 'retreat_image_2x', $id ), $r_title );
-		$r_sub  = yaww_meta( 'retreat_subtitle', $id );
-		$r_txt  = yaww_meta( 'retreat_text', $id );
+		$r_img  = $img( (int) yaww_meta( 'retreat_image', $this_post ), yaww_meta( 'retreat_image_2x', $this_post ), $r_title );
+		$r_sub  = yaww_meta( 'retreat_subtitle', $this_post );
+		$r_txt  = yaww_meta( 'retreat_text', $this_post );
 		echo '<section class="post-retreat"><h2 class="post-retreat__head">Explore this retreat</h2><div class="post-retreat__box">'
 			. ( $r_img ? '<div class="post-retreat__image">' . $r_img . '</div>' : '' )
 			. '<div class="post-retreat__text"><p class="post-retreat__title">' . esc_html( $r_title ) . '</p>'
@@ -75,7 +75,7 @@ while ( have_posts() ) : the_post();
 	}
 
 	/* ---- "More from the journal": three more, newest first, never this one ---- */
-	$others = yaww_e_journal_posts( $id, 3, 'date' );
+	$others = yaww_e_journal_posts( $this_post, 3, 'date' );
 	if ( $others ) {
 		echo '<section class="post-related"><h2 class="post-related__head">More from the journal</h2><div class="post-related__grid">';
 		foreach ( $others as $oid ) {
