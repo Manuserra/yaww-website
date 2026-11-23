@@ -9,11 +9,7 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 if ( function_exists( 'yaww_e_assets' ) ) { return; }
 
-/**
- * The stylesheets a static page links, in its own order. Printed after the theme's own enqueues
- * (priority 20) under yaww-e-* handles, so the last copy of every file sits in the static page's
- * order and the cascade is the static page's, whatever functions.php already printed.
- */
+/** The stylesheets a static page links, in its own order (after Google Fonts). */
 function yaww_e_view_css( $view ) {
 	$tail = array( 'type', 'cards', 'nav', 'photo-focus' );
 	$map  = array(
@@ -28,24 +24,50 @@ function yaww_e_view_css( $view ) {
 	return isset( $map[ $view ] ) ? array_merge( $map[ $view ], $tail ) : array();
 }
 
-/** Enqueue a view's CSS (see above) and E's own scripts from assets/js-theme-e/. Call before get_header(). */
+/**
+ * A view's assets, exactly as its static page loads them (same pattern as D's inc/views.php):
+ * the theme's generic enqueues (functions.php) are dequeued, then the static page's stylesheet chain,
+ * Lenis with the static inline init (assets/js-theme/lenis-init.js), the page chrome the static pages
+ * run inline (assets/js-theme-e/page-chrome.js) and E's own scripts from assets/js-theme-e/.
+ * Call before get_header().
+ */
 function yaww_e_assets( $view, $scripts = array() ) {
 	add_action( 'wp_enqueue_scripts', function () use ( $view, $scripts ) {
-		if ( in_array( $view, array( 'people', 'about', 'post' ), true ) ) {
-			wp_enqueue_style( 'yaww-e-hugeicons', 'https://use.hugeicons.com/font/icons.css', array(), null );
+		// functions.php's baseline chain (yaww-css-*, and older handle names) yields to the view's own.
+		foreach ( (array) wp_styles()->queue as $h ) {
+			if ( 0 === strpos( $h, 'yaww-css-' ) || in_array( $h, array( 'yaww-page', 'yaww-lead-modal', 'yaww-base', 'yaww-hugeicons' ), true ) ) { wp_dequeue_style( $h ); }
 		}
-		$prev = array();
+		foreach ( (array) wp_scripts()->queue as $h ) {
+			if ( 0 === strpos( $h, 'yaww-js-' ) || 'yaww-data' === $h ) { wp_dequeue_script( $h ); }
+		}
+		// theme.js re-implements nav, tabs and Lenis generically; journal-post.js would redraw the
+		// server-rendered article from data/journal.js; lead-modal.js only where the static page has it.
+		foreach ( array( 'yaww-theme', 'yaww-journal-post', 'yaww-lead-modal' ) as $h ) {
+			wp_dequeue_script( $h );
+		}
+
+		$prev = wp_style_is( 'yaww-fonts', 'registered' ) ? array( 'yaww-fonts' ) : array();
 		foreach ( yaww_e_view_css( $view ) as $name ) {
 			$rel = 'css/' . $name . '.css';
-			if ( ! file_exists( YAWW_DIR . '/assets/' . $rel ) ) { continue; }
 			wp_enqueue_style( 'yaww-e-' . $name, YAWW_URI . '/assets/' . $rel, $prev, yaww_asset_ver( $rel ) );
 			$prev = array( 'yaww-e-' . $name );
 		}
-		foreach ( $scripts as $s ) {
-			$rel = 'js-theme-e/' . $s . '.js';
-			wp_enqueue_script( 'yaww-e-' . $s, YAWW_URI . '/assets/' . $rel, array(), yaww_asset_ver( $rel ), true );
+		if ( in_array( $view, array( 'people', 'about', 'post' ), true ) ) {
+			wp_enqueue_style( 'yaww-e-hugeicons', 'https://use.hugeicons.com/font/icons.css', array(), null );
 		}
-	}, 20 );
+
+		wp_enqueue_script( 'yaww-lenis', 'https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js', array(), '1.1.18', true );
+		$li = YAWW_DIR . '/assets/js-theme/lenis-init.js';
+		wp_enqueue_script( 'yaww-lenis-init', YAWW_URI . '/assets/js-theme/lenis-init.js', array( 'yaww-lenis' ), file_exists( $li ) ? (string) filemtime( $li ) : YAWW_VERSION, true );
+
+		if ( 'location' === $view ) {
+			wp_enqueue_script( 'yaww-e-lead-modal', YAWW_URI . '/assets/js/lead-modal.js', array(), yaww_asset_ver( 'js/lead-modal.js' ), array( 'strategy' => 'defer', 'in_footer' => true ) );
+		}
+		foreach ( array_merge( array( 'page-chrome' ), $scripts ) as $s ) {
+			$rel = 'js-theme-e/' . $s . '.js';
+			wp_enqueue_script( 'yaww-e-' . $s, YAWW_URI . '/assets/' . $rel, array( 'yaww-lenis-init' ), yaww_asset_ver( $rel ), true );
+		}
+	}, 30 );
 }
 
 /** URL of a file the static site serves from images/ (synced into assets/images/ by bin/sync-assets.sh). */

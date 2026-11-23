@@ -10,7 +10,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 require_once get_template_directory() . '/inc/e-helpers.php';
-yaww_e_assets( 'location', array( 'cta-parallax', 'location-waitlist' ) );
+yaww_e_assets( 'location', array( 'lenis-anchors', 'cta-parallax', 'location-waitlist' ) );
 get_header();
 while ( have_posts() ) : the_post();
 	$id      = get_the_ID();
