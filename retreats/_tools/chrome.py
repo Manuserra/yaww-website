@@ -24,7 +24,7 @@ import os
 import re
 import sys
 
-ASSET_VERSION = "202611231000"
+ASSET_VERSION = "202611231100"
 
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 SKIP = '<a class="skip-link" href="#main">Skip to content</a>'

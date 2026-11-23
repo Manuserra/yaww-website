@@ -120,9 +120,9 @@ html:not(.rc-ours) #results .card--narrow .card__body { align-items: flex-start;
 html:not(.rc-ours) #results .card--narrow .card__date {
   order: -1;
   font-family: var(--font-body);
-  font-size: 11px; line-height: 16px; font-weight: 600;
-  letter-spacing: .18em; text-transform: uppercase;
-  color: #877C71;
+  font-size: var(--tx-eyebrow, 12px); line-height: 18px; font-weight: 600;   /* 12 → 13, was 11 */
+  letter-spacing: .16em; text-transform: uppercase;
+  color: #73685D;   /* premium's warm grey (#877C71) a tone darker: 4.9:1 on stone, AA */
 }
-html:not(.rc-ours) #results .card--narrow .card__loc { color: #877C71; }
+html:not(.rc-ours) #results .card--narrow .card__loc { color: #73685D; }
 html:not(.rc-ours) #results .card--narrow .card__teacher { color: var(--sea-blue); }
