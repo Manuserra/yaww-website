@@ -159,10 +159,12 @@ function yaww_e_location_program( $loc_id ) {
 	$p = (int) yaww_meta( 'program_retreat', $loc_id );
 	if ( $p && get_post( $p ) ) { return $p; }
 	$ids = get_posts( array( 'post_type' => 'retreat', 'post_status' => 'publish', 'numberposts' => -1, 'fields' => 'ids', 'suppress_filters' => false ) );
+	// The dateless retreat page first (data/locations.js program, as D's catalog reads it), then the last edition.
 	$best = 0; $best_key = -1;
 	foreach ( $ids as $id ) {
 		if ( (int) yaww_meta( 'location_id', $id ) !== (int) $loc_id ) { continue; }
 		$k = yaww_e_datekey( yaww_meta( 'start_date', $id ) );
+		if ( ! $k ) { return $id; }
 		if ( $k > $best_key ) { $best_key = $k; $best = $id; }
 	}
 	return $best;

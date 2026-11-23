@@ -10,7 +10,7 @@ require_once get_template_directory() . '/inc/e-helpers.php';
 yaww_e_assets( 'journal', array( 'journal-filter' ) );
 $active = is_category() ? get_queried_object()->slug : 'all';
 $topics = yaww_e_journal_topics();
-$posts  = yaww_e_journal_posts();
+$journal_ids  = yaww_e_journal_posts();
 get_header(); ?>
 <div class="main main-journal">
 
@@ -34,7 +34,7 @@ get_header(); ?>
   <div class="container">
     <div class="main__content">
       <div class="journal-grid">
-<?php foreach ( $posts as $i => $pid ) :
+<?php foreach ( $journal_ids as $i => $pid ) :
 	$cats  = yaww_e_post_topics( $pid );
 	$title = get_the_title( $pid );
 	$img_id = (int) yaww_meta( 'card_image', $pid );
