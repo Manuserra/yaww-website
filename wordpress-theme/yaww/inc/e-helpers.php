@@ -82,7 +82,7 @@ function yaww_e_missing( $what ) {
 
 /** Typographic apostrophes, as build_location.py's t() does. Input is escaped here. */
 function yaww_e_t( $s ) {
-	return str_replace( "'", '’', esc_html( (string) $s ) );
+	return esc_html( str_replace( "'", '’', (string) $s ) );
 }
 
 /** "[missing data: x]" inside a text becomes the static pages' .loc-missing span. */
@@ -235,7 +235,7 @@ function yaww_e_person_photo( $id, $cls, $lazy ) {
 		return '<div class="' . esc_attr( $cls . ' ' . $cls . '--empty' ) . '" role="img" aria-label="' . esc_attr( $name . ', photo coming soon' ) . '"><span class="monogram">' . esc_html( yaww_e_initials( $name ) ) . '</span></div>';
 	}
 	$pos = yaww_meta( 'photo_position', $id );
-	return '<div class="' . esc_attr( $cls ) . '">' . yaww_e_img( $thumb, 'yaww-person', array(
+	return '<div class="' . esc_attr( $cls ) . '">' . yaww_e_img( $thumb, 'full', array(
 		'alt'     => $name,
 		'loading' => $lazy ? 'lazy' : null,
 		'width'   => '672',

@@ -18,8 +18,8 @@ while ( have_posts() ) : the_post();
 	$place   = get_the_title( $id );
 	$contact = home_url( '/contact/#general-inquiry' );
 	$hero_id = (int) yaww_meta( 'hero_image', $id );
-	$hero    = yaww_e_img_src( $hero_id, 'yaww-hero' );
-	if ( ! $hero ) { $hero = yaww_img_url( 'hero_image', 'yaww-hero', $id ); }
+	$hero    = yaww_e_img_src( $hero_id, 'full' );
+	if ( ! $hero ) { $hero = yaww_img_url( 'hero_image', 'full', $id ); }
 	$hero_alt = $hero_id ? (string) get_post_meta( $hero_id, '_wp_attachment_image_alt', true ) : '';
 	$list    = yaww_e_retreats_by_location( $id );
 	$dates   = (bool) $list;
@@ -72,12 +72,18 @@ while ( have_posts() ) : the_post();
 		$tier   = isset( $tiers[ $coll ] ) ? $tiers[ $coll ] : '';
 		$sig    = 'signature-collection' === $coll;
 		$where  = yaww_e_card_loc( $id );
-		$img_id = (int) yaww_meta( 'card_image', $prog );
-		if ( ! $img_id ) { $img_id = (int) yaww_meta( 'card_image', $id ); }
+		// Same sources as D's cards (yaww_retreat_record): the program's card photo at 1x/2x, else the location's photo.
+		$m1 = ''; $m2 = '';
+		if ( function_exists( 'yaww_retreat_record' ) ) {
+			$rec = yaww_retreat_record( $prog );
+			$m1  = ! empty( $rec['image'] ) ? $rec['image'] : '';
+			$m2  = ! empty( $rec['image2x'] ) ? $rec['image2x'] : '';
+		}
+		if ( ! $m1 ) { $m1 = yaww_e_img_src( (int) yaww_meta( 'card_image', $id ), 'full' ); }
 		$label  = '<span class="card__label' . ( $sig ? ' card__label--signature' : '' ) . '">'
 			. ( $tier ? '<span class="card__label-tier">' . esc_html( $tier ) . '</span><span class="card__label-sep" aria-hidden="true"></span>' : '' )
 			. '<span class="card__label-status">Waitlist</span></span>';
-		$img = $img_id ? yaww_e_img( $img_id, 'yaww-card', array( 'srcset' => yaww_e_srcset( $img_id, (int) yaww_meta( 'card_image_2x', $prog ) ), 'alt' => $prog_name . ' — ' . yaww_location_line( $id ), 'loading' => 'lazy', 'decoding' => 'async' ) ) : '';
+		$img = $m1 ? '<img src="' . esc_url( $m1 ) . '"' . ( $m2 ? ' srcset="' . esc_url( $m1 ) . ' 1x, ' . esc_url( $m2 ) . ' 2x"' : '' ) . ' alt="' . esc_attr( $prog_name . ' — ' . yaww_location_line( $id ) ) . '" loading="lazy" decoding="async">' : '';
 		?>
       <div class="loc-wait__card" data-loc-wait-card><a class="result-link" href="<?php echo esc_url( get_permalink( $prog ) ); ?>" data-waitlist-dest="<?php echo esc_attr( $slug ); ?>"><article class="card card--narrow card--waitlist"><?php
 		echo $img ? '<div class="card__media">' . $img . $label . '</div>' : '<div class="card__media" style="' . esc_attr( yaww_e_placeholder_style( $id ) ) . '">' . $label . '</div>'; // phpcs:ignore
@@ -120,7 +126,7 @@ while ( have_posts() ) : the_post();
 <?php endif; ?>
 
 <?php
-	$intro_img = yaww_e_img( (int) yaww_meta( 'intro_image', $id ), 'large', array( 'loading' => 'lazy', 'decoding' => 'async' ) );
+	$intro_img = yaww_e_img( (int) yaww_meta( 'intro_image', $id ), 'full', array( 'loading' => 'lazy', 'decoding' => 'async' ) );
 	$paras     = yaww_e_paragraphs( $id );
 	if ( ! $paras ) { $paras = yaww_list( 'intro', $id ); }
 	if ( ! $paras && is_string( yaww_meta( 'intro', $id ) ) ) { $paras = yaww_e_lines( yaww_meta( 'intro', $id ) ); }
@@ -148,7 +154,7 @@ while ( have_posts() ) : the_post();
 foreach ( $guide as $g ) :
 	$gi  = isset( $g['image'] ) ? (int) $g['image'] : 0;
 	$gph = isset( $g['placeholder'] ) ? $g['placeholder'] : '';
-	$fig = $gi ? yaww_e_img( $gi, 'large', array( 'loading' => 'lazy', 'decoding' => 'async' ) ) : '';
+	$fig = $gi ? yaww_e_img( $gi, 'full', array( 'loading' => 'lazy', 'decoding' => 'async' ) ) : '';
 	$fig = $fig ? $fig : '<div class="loc-ph" role="img" aria-label="Photo to come: ' . esc_attr( $gph ) . '">[photo: ' . yaww_e_t( $gph ) . ']</div>';
 	?>
         <li class="loc-guide__item">

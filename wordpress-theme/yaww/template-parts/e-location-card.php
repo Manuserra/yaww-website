@@ -12,7 +12,7 @@ $title = get_the_title( $id );
 $blurb = yaww_meta( 'blurb', $id );
 $blurb = $blurb ? $blurb : yaww_meta( 'intro', $id );
 $img_id = (int) yaww_meta( 'card_image', $id );
-$img   = yaww_e_img( $img_id, 'yaww-loc-card', array( 'width' => '672', 'height' => '888', 'loading' => 'lazy' ) );
+$img   = yaww_e_img( $img_id, 'full', array( 'width' => '672', 'height' => '888', 'loading' => 'lazy' ) );
 if ( $img && '' === (string) get_post_meta( $img_id, '_wp_attachment_image_alt', true ) ) {
 	$img = str_replace( 'alt=""', 'alt="' . esc_attr( $title ) . '"', $img );
 }
