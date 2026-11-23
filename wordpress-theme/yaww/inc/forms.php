@@ -318,6 +318,7 @@ function yaww_forms_process( $raw, $opts = array() ) {
 	$data = yaww_forms_clean( $raw );
 	$data = yaww_forms_fill_context( $form, $data );
 	$errors = yaww_forms_validate( $form, $data );
+	if ( ! empty( $raw['email'] ) && empty( $data['email'] ) ) { $errors['email'] = "That email doesn't look right."; }
 	if ( $errors ) {
 		return array( 'errors' => $errors, 'lead_id' => 0, 'log' => array(), 'delivered' => false );
 	}
