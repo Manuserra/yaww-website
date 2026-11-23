@@ -317,6 +317,8 @@ function yaww_forms_process( $raw, $opts = array() ) {
 	}
 	$data = yaww_forms_clean( $raw );
 	$data = yaww_forms_fill_context( $form, $data );
+	// contact.js names the page by its file ("index.html" on WordPress's pretty URLs); the URL says more.
+	if ( isset( $data['page'], $data['page_url'] ) && 'index.html' === $data['page'] ) { unset( $data['page'] ); }
 	$errors = yaww_forms_validate( $form, $data );
 	if ( ! empty( $raw['email'] ) && empty( $data['email'] ) ) { $errors['email'] = "That email doesn't look right."; }
 	if ( $errors ) {
@@ -448,8 +450,8 @@ function yaww_forms_email( $data, $lead_id, $test ) {
 	$subject = ( $test ? '[Test] ' : '' ) . $types[ $data['form'] ] . ': ' . yaww_forms_person( $data ) . ( $about ? ' · ' . $about : '' );
 	$headers = array( 'Content-Type: text/plain; charset=UTF-8' );
 	if ( ! empty( $data['email'] ) && is_email( $data['email'] ) ) {
-		$name      = str_replace( array( '"', "\r", "\n" ), '', yaww_forms_person( $data ) );
-		$headers[] = 'Reply-To: "' . $name . '" <' . $data['email'] . '>';
+		$name      = trim( str_replace( array( '"', ',', ';', '<', '>', "\r", "\n" ), '', yaww_forms_person( $data ) ) );
+		$headers[] = 'Reply-To: ' . ( $name && $name !== $data['email'] ? $name . ' ' : '' ) . '<' . $data['email'] . '>';
 	}
 	$err = null;
 	$catch = function ( $e ) use ( &$err ) { $err = $e; };
@@ -600,17 +602,7 @@ function yaww_forms_delivery_box( $post ) {
 
 /* ---------------------------------------------------- front end: assets */
 
-add_action( 'wp_enqueue_scripts', function () {
-	// attribution.js on every page, as on the static site (retreats/_tools/chrome.py).
-	if ( file_exists( YAWW_DIR . '/assets/js/attribution.js' ) ) {
-		wp_enqueue_script( 'yaww-attribution', YAWW_URI . '/assets/js/attribution.js', array(), yaww_asset_ver( 'js/attribution.js' ), array( 'strategy' => 'defer', 'in_footer' => false ) );
-	}
-	// teach-with-us.html also loads lead.css (the hero) and contact.css (the form): page CSS covers teach.css only.
-	if ( is_page_template( 'page-templates/teach-with-us.php' ) ) {
-		wp_enqueue_style( 'yaww-forms-lead', YAWW_URI . '/assets/css/lead.css', array( 'yaww-base' ), yaww_asset_ver( 'css/lead.css' ) );
-		wp_enqueue_style( 'yaww-forms-contact', YAWW_URI . '/assets/css/contact.css', array( 'yaww-base' ), yaww_asset_ver( 'css/contact.css' ) );
-	}
-}, 20 );
+/* attribution.js on every page and lead.css + contact.css on Teach with us are enqueued in functions.php (yaww_page_assets). */
 
 /** What the bridge needs: the endpoint, a fresh token and, on a retreat page, the retreat. */
 function yaww_forms_front_config() {
@@ -688,7 +680,7 @@ add_action( 'wp_footer', function () {
   d.addEventListener("submit", function (e) {
     var f = e.target;
     if (!f || !f.matches) return;
-    if (f.matches("form[data-yform]")) { endpoints(); hidden(f, "yaww_ts", C.token); honeypot(f); }
+    if (f.matches("form[data-yform]")) { endpoints(); hidden(f, "yaww_ts", C.token); hidden(f, "page_url", location.href.split("#")[0]); honeypot(f); }
     if (f.matches(".lead-modal form")) {
       f.setAttribute("data-endpoint", C.endpoint);
       hidden(f, "form", "lead");
