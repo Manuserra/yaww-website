@@ -337,7 +337,7 @@ SCRUB = [
      "Opening dinner at the hotel's two Michelin star restaurant"),
     (r"Amelia by Paulo Airaudo", "the hotel's restaurant"),
     (r"Paulo Airaudo", "the hotel's chef"),
-    (r"Northern Light Inn", "Hotel near Reykjavík"),
-    (r"Fosshotel Glacier Lagoon", "Hotel near the Vatnajökull glacier"),
+    (r"Northern Light Inn", "Hotel in Grindavík"),
+    (r"Fosshotel Glacier Lagoon", "Hotel in Hnappavellir"),
     (r"Turf Guesthouse &(?:amp;)? Horse Farm", "Turf guesthouse on a horse farm"),
 ]

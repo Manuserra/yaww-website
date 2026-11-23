@@ -428,3 +428,19 @@ main { padding-top: 0; }
 @media (max-width: 400px) {
   .tabs__item { min-width: 0; white-space: normal; text-align: center; align-items: center; line-height: 16px; padding: 12px 4px; }
 }
+
+/* ============================================================
+   WIDER THAN 1440 (approved 2026-11-23)
+   Above 1440 the page keeps growing up to 1920 on the same 12-column
+   grid: the season label stays 3 columns, the cards 3 × 3 columns,
+   and the season label's type grows with it (20 → 26 at 1920).
+   Nothing changes at 1440 and below.
+   ============================================================ */
+@media (min-width: 1441px) {
+  .container.retreats { max-width: 1920px; }
+  .season { grid-template-columns: calc((100% - 144px) / 4) 1fr; }
+  .season__title {
+    font-size: clamp(20px, calc(20px + (100vw - 1440px) * 0.0125), 26px);
+    line-height: 1.6;
+  }
+}
