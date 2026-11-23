@@ -59,6 +59,7 @@ if ( 'team' !== $kind ) {
     </div>
   </div></section>
 
+<?php if ( 'team' !== $kind ) : /* facilitator pages have neither band */ ?>
   <section class="person-retreats" data-person-retreats<?php echo $retreats ? '' : ' hidden'; ?>>
     <h2 class="person-retreats__title" data-person-retreats-title><?php echo $retreats ? 'Upcoming retreats with ' . esc_html( $first ) : 'Upcoming retreats'; ?></h2>
     <div class="person-retreats__grid" data-person-retreats-grid><?php foreach ( $retreats as $rid ) { yaww_part( 'retreat-card', array( 'post_id' => $rid ) ); } ?></div>
@@ -72,5 +73,7 @@ if ( 'team' !== $kind ) {
 		echo '<div><p class="kicker profile-media__label">On ' . esc_html( $first ) . '&rsquo;s playlist</p><div class="profile-media__playlist"><iframe src="' . esc_url( $sp ) . '" title="' . esc_attr( $first ) . '&rsquo;s playlist on Spotify" loading="lazy" allow="encrypted-media"></iframe></div></div>';
 	}
 	?></div><?php endif; ?></section>
+
+<?php endif; ?>
 
 <?php yaww_part( 'e-closing-cta' ); ?>
