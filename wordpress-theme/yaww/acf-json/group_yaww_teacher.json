@@ -1,117 +1,328 @@
 {
-  "key": "group_yaww_teacher",
-  "title": "YAWW \u00b7 Teacher",
-  "fields": [
-    {
-      "key": "field_yaww_teacher_short_name",
-      "label": "Short name",
-      "name": "short_name",
-      "type": "text"
-    },
-    {
-      "key": "field_yaww_teacher_role",
-      "label": "Role (eyebrow override)",
-      "name": "role",
-      "type": "text"
-    },
-    {
-      "key": "field_yaww_teacher_short_bio",
-      "label": "Card blurb",
-      "name": "short_bio",
-      "type": "textarea"
-    },
-    {
-      "key": "field_yaww_teacher_host_bio",
-      "label": "Bio on retreat pages (empty = card blurb)",
-      "name": "host_bio",
-      "type": "textarea"
-    },
-    {
-      "key": "field_yaww_teacher_quote",
-      "label": "Quote",
-      "name": "quote",
-      "type": "text"
-    },
-    {
-      "key": "field_yaww_teacher_specialties",
-      "label": "Specialties",
-      "name": "specialties",
-      "type": "repeater",
-      "layout": "table",
-      "button_label": "Add",
-      "sub_fields": [
+    "key": "group_yaww_teacher",
+    "title": "YAWW · Teacher",
+    "fields": [
         {
-          "key": "field_yaww_teacher_specialties_value",
-          "label": "Value",
-          "name": "value",
-          "type": "text"
+            "key": "field_yaww_teacher_short_name",
+            "label": "Short name",
+            "name": "short_name",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_teacher_role",
+            "label": "Role (eyebrow override)",
+            "name": "role",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_teacher_short_bio",
+            "label": "Card blurb",
+            "name": "short_bio",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": "",
+            "rows": ""
+        },
+        {
+            "key": "field_yaww_teacher_host_bio",
+            "label": "Bio on retreat pages (empty = card blurb)",
+            "name": "host_bio",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": "",
+            "rows": ""
+        },
+        {
+            "key": "field_yaww_teacher_quote",
+            "label": "Quote",
+            "name": "quote",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_teacher_specialties",
+            "label": "Specialties",
+            "name": "specialties",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "button_label": "Add",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_yaww_teacher_specialties_value",
+                    "label": "Value",
+                    "name": "value",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_teacher_specialties"
+                }
+            ]
+        },
+        {
+            "key": "field_yaww_teacher_youtube",
+            "label": "YouTube video (id or URL)",
+            "name": "youtube",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_yaww_teacher_spotify_url",
+            "label": "Spotify playlist (URL or id)",
+            "name": "spotify_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_yaww_teacher_website",
+            "label": "Website",
+            "name": "website",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_yaww_teacher_website_label",
+            "label": "Website link label",
+            "name": "website_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_teacher_instagram",
+            "label": "Instagram (@handle or URL)",
+            "name": "instagram",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_teacher_avatar",
+            "label": "Avatar (square)",
+            "name": "avatar",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_yaww_teacher_photo_position",
+            "label": "Photo object-position",
+            "name": "photo_position",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_teacher_needs_content",
+            "label": "Needs content (no bio\/photo yet)",
+            "name": "needs_content",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 0,
+            "message": "",
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         }
-      ]
-    },
-    {
-      "key": "field_yaww_teacher_youtube",
-      "label": "YouTube video (id or URL)",
-      "name": "youtube",
-      "type": "url"
-    },
-    {
-      "key": "field_yaww_teacher_spotify_url",
-      "label": "Spotify playlist (URL or id)",
-      "name": "spotify_url",
-      "type": "url"
-    },
-    {
-      "key": "field_yaww_teacher_website",
-      "label": "Website",
-      "name": "website",
-      "type": "url"
-    },
-    {
-      "key": "field_yaww_teacher_website_label",
-      "label": "Website link label",
-      "name": "website_label",
-      "type": "text"
-    },
-    {
-      "key": "field_yaww_teacher_instagram",
-      "label": "Instagram (@handle or URL)",
-      "name": "instagram",
-      "type": "text"
-    },
-    {
-      "key": "field_yaww_teacher_avatar",
-      "label": "Avatar (square)",
-      "name": "avatar",
-      "type": "image",
-      "return_format": "id"
-    },
-    {
-      "key": "field_yaww_teacher_photo_position",
-      "label": "Photo object-position",
-      "name": "photo_position",
-      "type": "text"
-    },
-    {
-      "key": "field_yaww_teacher_needs_content",
-      "label": "Needs content (no bio/photo yet)",
-      "name": "needs_content",
-      "type": "true_false"
-    }
-  ],
-  "location": [
-    [
-      {
-        "param": "post_type",
-        "operator": "==",
-        "value": "teacher"
-      }
-    ]
-  ],
-  "menu_order": 0,
-  "position": "normal",
-  "style": "default",
-  "label_placement": "top",
-  "active": true,
-  "show_in_rest": 1,
-  "modified": 1795447296
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "teacher"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "",
+    "show_in_rest": 1,
+    "display_title": "",
+    "enable_acf_abilities": true,
+    "ai_description": "",
+    "modified": 1795448682
 }

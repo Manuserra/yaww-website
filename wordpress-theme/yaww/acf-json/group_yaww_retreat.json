@@ -1,517 +1,1602 @@
 {
-  "key": "group_yaww_retreat",
-  "title": "YAWW \u00b7 Retreat",
-  "fields": [
-    {
-      "key": "field_yaww_retreat_subtitle",
-      "label": "Subtitle",
-      "name": "subtitle",
-      "type": "text"
-    },
-    {
-      "key": "field_yaww_retreat_location_id",
-      "label": "Location",
-      "name": "location_id",
-      "type": "post_object",
-      "allow_null": 1,
-      "post_type": [
-        "location"
-      ],
-      "return_format": "id"
-    },
-    {
-      "key": "field_yaww_retreat_teacher_ids",
-      "label": "Teachers",
-      "name": "teacher_ids",
-      "type": "relationship",
-      "post_type": [
-        "teacher"
-      ],
-      "return_format": "id"
-    },
-    {
-      "key": "field_yaww_retreat_facilitator_ids",
-      "label": "Facilitators (hosts tab)",
-      "name": "facilitator_ids",
-      "type": "relationship",
-      "post_type": [
-        "facilitator"
-      ],
-      "return_format": "id"
-    },
-    {
-      "key": "field_yaww_retreat_start_date",
-      "label": "Start date (Y-m-d)",
-      "name": "start_date",
-      "type": "date_picker",
-      "display_format": "Y-m-d",
-      "return_format": "Y-m-d"
-    },
-    {
-      "key": "field_yaww_retreat_end_date",
-      "label": "End date (Y-m-d)",
-      "name": "end_date",
-      "type": "date_picker",
-      "display_format": "Y-m-d",
-      "return_format": "Y-m-d"
-    },
-    {
-      "key": "field_yaww_retreat_status",
-      "label": "Status",
-      "name": "status",
-      "type": "select",
-      "choices": {
-        "available": "available",
-        "filling_fast": "filling_fast",
-        "spaces_left": "spaces_left",
-        "sold_out": "sold_out",
-        "new": "new",
-        "waitlist": "waitlist"
-      },
-      "return_format": "value"
-    },
-    {
-      "key": "field_yaww_retreat_spaces_left",
-      "label": "Spaces left",
-      "name": "spaces_left",
-      "type": "number"
-    },
-    {
-      "key": "field_yaww_retreat_collection",
-      "label": "Collection",
-      "name": "collection",
-      "type": "select",
-      "choices": {
-        "deep-dives": "deep-dives",
-        "signature-collection": "signature-collection"
-      },
-      "return_format": "value"
-    },
-    {
-      "key": "field_yaww_retreat_card_image",
-      "label": "Card image (312x408; the @2x file is the attachment's '2x' size)",
-      "name": "card_image",
-      "type": "image",
-      "return_format": "id"
-    },
-    {
-      "key": "field_yaww_retreat_hero_image",
-      "label": "Hero image",
-      "name": "hero_image",
-      "type": "image",
-      "return_format": "id"
-    },
-    {
-      "key": "field_yaww_retreat_hotel_label",
-      "label": "Generic stay label (never a hotel name)",
-      "name": "hotel_label",
-      "type": "text"
-    },
-    {
-      "key": "field_yaww_retreat_nights",
-      "label": "Nights",
-      "name": "nights",
-      "type": "number"
-    },
-    {
-      "key": "field_yaww_retreat_includes",
-      "label": "What is included",
-      "name": "includes",
-      "type": "repeater",
-      "layout": "table",
-      "button_label": "Add",
-      "sub_fields": [
+    "key": "group_yaww_retreat",
+    "title": "YAWW · Retreat",
+    "fields": [
         {
-          "key": "field_yaww_retreat_includes_value",
-          "label": "Value",
-          "name": "value",
-          "type": "text"
+            "key": "field_yaww_retreat_subtitle",
+            "label": "Subtitle",
+            "name": "subtitle",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_retreat_location_label",
+            "label": "Location line under the title",
+            "name": "location_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_retreat_waitlist_note",
+            "label": "Waitlist note (dateless retreats)",
+            "name": "waitlist_note",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": "",
+            "rows": ""
+        },
+        {
+            "key": "field_yaww_retreat_location_id",
+            "label": "Location",
+            "name": "location_id",
+            "aria-label": "",
+            "type": "post_object",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "allow_null": 1,
+            "post_type": [
+                "location"
+            ],
+            "return_format": "id",
+            "taxonomy": [],
+            "multiple": 0,
+            "ui": 1,
+            "bidirectional_target": []
+        },
+        {
+            "key": "field_yaww_retreat_teacher_ids",
+            "label": "Teachers",
+            "name": "teacher_ids",
+            "aria-label": "",
+            "type": "relationship",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "teacher"
+            ],
+            "return_format": "id",
+            "taxonomy": [],
+            "min": 0,
+            "max": 0,
+            "filters": [
+                "search",
+                "post_type",
+                "taxonomy"
+            ],
+            "elements": [],
+            "bidirectional_target": []
+        },
+        {
+            "key": "field_yaww_retreat_facilitator_ids",
+            "label": "Facilitators (hosts tab)",
+            "name": "facilitator_ids",
+            "aria-label": "",
+            "type": "relationship",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "facilitator"
+            ],
+            "return_format": "id",
+            "taxonomy": [],
+            "min": 0,
+            "max": 0,
+            "filters": [
+                "search",
+                "post_type",
+                "taxonomy"
+            ],
+            "elements": [],
+            "bidirectional_target": []
+        },
+        {
+            "key": "field_yaww_retreat_start_date",
+            "label": "Start date (Y-m-d)",
+            "name": "start_date",
+            "aria-label": "",
+            "type": "date_picker",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "Y-m-d",
+            "return_format": "Y-m-d",
+            "first_day": 1,
+            "default_to_current_date": 0
+        },
+        {
+            "key": "field_yaww_retreat_end_date",
+            "label": "End date (Y-m-d)",
+            "name": "end_date",
+            "aria-label": "",
+            "type": "date_picker",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "Y-m-d",
+            "return_format": "Y-m-d",
+            "first_day": 1,
+            "default_to_current_date": 0
+        },
+        {
+            "key": "field_yaww_retreat_status",
+            "label": "Status",
+            "name": "status",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "available": "available",
+                "filling_fast": "filling_fast",
+                "spaces_left": "spaces_left",
+                "sold_out": "sold_out",
+                "new": "new",
+                "waitlist": "waitlist"
+            },
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "default_value": false,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_yaww_retreat_spaces_left",
+            "label": "Spaces left",
+            "name": "spaces_left",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": "",
+            "max": "",
+            "step": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_retreat_collection",
+            "label": "Collection",
+            "name": "collection",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "deep-dives": "deep-dives",
+                "signature-collection": "signature-collection"
+            },
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "default_value": false,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_yaww_retreat_card_image",
+            "label": "Card image (312x408; the @2x file is the attachment's '2x' size)",
+            "name": "card_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_yaww_retreat_hero_image",
+            "label": "Hero image",
+            "name": "hero_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_yaww_retreat_hotel_label",
+            "label": "Generic stay label (never a hotel name)",
+            "name": "hotel_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_retreat_nights",
+            "label": "Nights",
+            "name": "nights",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": "",
+            "max": "",
+            "step": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_retreat_includes",
+            "label": "What is included",
+            "name": "includes",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "button_label": "Add",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_yaww_retreat_includes_value",
+                    "label": "Value",
+                    "name": "value",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_retreat_includes"
+                }
+            ]
+        },
+        {
+            "key": "field_yaww_retreat_not_included",
+            "label": "What is not included",
+            "name": "not_included",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "button_label": "Add",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_yaww_retreat_not_included_value",
+                    "label": "Value",
+                    "name": "value",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_retreat_not_included"
+                }
+            ]
+        },
+        {
+            "key": "field_yaww_retreat_includes_notes",
+            "label": "Includes footnotes",
+            "name": "includes_notes",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "button_label": "Add",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_yaww_retreat_includes_notes_value",
+                    "label": "Value",
+                    "name": "value",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_retreat_includes_notes"
+                }
+            ]
+        },
+        {
+            "key": "field_yaww_retreat_includes_image",
+            "label": "Includes band photo (empty = css default)",
+            "name": "includes_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_yaww_retreat_itinerary",
+            "label": "Itinerary",
+            "name": "itinerary",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_yaww_retreat_itinerary_label",
+                    "label": "Day label",
+                    "name": "label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_retreat_itinerary"
+                },
+                {
+                    "key": "field_yaww_retreat_itinerary_title",
+                    "label": "Title",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_retreat_itinerary"
+                },
+                {
+                    "key": "field_yaww_retreat_itinerary_bullets",
+                    "label": "Bullets (one per line)",
+                    "name": "bullets",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "rows": "",
+                    "parent_repeater": "field_yaww_retreat_itinerary"
+                },
+                {
+                    "key": "field_yaww_retreat_itinerary_images",
+                    "label": "Photos",
+                    "name": "images",
+                    "aria-label": "",
+                    "type": "gallery",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "preview_size": "medium",
+                    "insert": "append",
+                    "library": "all",
+                    "min": 0,
+                    "max": 0,
+                    "min_width": 0,
+                    "min_height": 0,
+                    "min_size": 0,
+                    "max_width": 0,
+                    "max_height": 0,
+                    "max_size": 0,
+                    "mime_types": "",
+                    "parent_repeater": "field_yaww_retreat_itinerary"
+                }
+            ]
+        },
+        {
+            "key": "field_yaww_retreat_itinerary_notes",
+            "label": "Itinerary notes",
+            "name": "itinerary_notes",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "button_label": "Add",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_yaww_retreat_itinerary_notes_value",
+                    "label": "Value",
+                    "name": "value",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_retreat_itinerary_notes"
+                }
+            ]
+        },
+        {
+            "key": "field_yaww_retreat_stays",
+            "label": "Accommodations (stay tabs)",
+            "name": "stays",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_yaww_retreat_stays_name",
+                    "label": "Name (generic label, never a hotel name except Utopia)",
+                    "name": "name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_retreat_stays"
+                },
+                {
+                    "key": "field_yaww_retreat_stays_tab",
+                    "label": "Short tab label",
+                    "name": "tab",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_retreat_stays"
+                },
+                {
+                    "key": "field_yaww_retreat_stays_text",
+                    "label": "Paragraphs (one per line)",
+                    "name": "text",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "rows": "",
+                    "parent_repeater": "field_yaww_retreat_stays"
+                },
+                {
+                    "key": "field_yaww_retreat_stays_gallery",
+                    "label": "Photos",
+                    "name": "gallery",
+                    "aria-label": "",
+                    "type": "gallery",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "preview_size": "medium",
+                    "insert": "append",
+                    "library": "all",
+                    "min": 0,
+                    "max": 0,
+                    "min_width": 0,
+                    "min_height": 0,
+                    "min_size": 0,
+                    "max_width": 0,
+                    "max_height": 0,
+                    "max_size": 0,
+                    "mime_types": "",
+                    "parent_repeater": "field_yaww_retreat_stays"
+                }
+            ]
+        },
+        {
+            "key": "field_yaww_retreat_room_venues",
+            "label": "Room venues (ROOM_VENUES for retreat-rooms.js)",
+            "name": "room_venues",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "button_label": "Add",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_yaww_retreat_room_venues_value",
+                    "label": "Value",
+                    "name": "value",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_retreat_room_venues"
+                }
+            ]
+        },
+        {
+            "key": "field_yaww_retreat_rooms",
+            "label": "Rooms",
+            "name": "rooms",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_yaww_retreat_rooms_name",
+                    "label": "Room name",
+                    "name": "name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_retreat_rooms"
+                },
+                {
+                    "key": "field_yaww_retreat_rooms_price_usd",
+                    "label": "Price (USD, per person)",
+                    "name": "price_usd",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "min": "",
+                    "max": "",
+                    "step": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_retreat_rooms"
+                },
+                {
+                    "key": "field_yaww_retreat_rooms_price_unit",
+                    "label": "Price unit",
+                    "name": "price_unit",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_retreat_rooms"
+                },
+                {
+                    "key": "field_yaww_retreat_rooms_description",
+                    "label": "Description",
+                    "name": "description",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "rows": "",
+                    "parent_repeater": "field_yaww_retreat_rooms"
+                },
+                {
+                    "key": "field_yaww_retreat_rooms_pills",
+                    "label": "Feature pills (one per line)",
+                    "name": "pills",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "rows": "",
+                    "parent_repeater": "field_yaww_retreat_rooms"
+                },
+                {
+                    "key": "field_yaww_retreat_rooms_hotel_label",
+                    "label": "Generic stay label",
+                    "name": "hotel_label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_retreat_rooms"
+                },
+                {
+                    "key": "field_yaww_retreat_rooms_gallery",
+                    "label": "Photos",
+                    "name": "gallery",
+                    "aria-label": "",
+                    "type": "gallery",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "preview_size": "medium",
+                    "insert": "append",
+                    "library": "all",
+                    "min": 0,
+                    "max": 0,
+                    "min_width": 0,
+                    "min_height": 0,
+                    "min_size": 0,
+                    "max_width": 0,
+                    "max_height": 0,
+                    "max_size": 0,
+                    "mime_types": "",
+                    "parent_repeater": "field_yaww_retreat_rooms"
+                }
+            ]
+        },
+        {
+            "key": "field_yaww_retreat_extras",
+            "label": "Optional extras",
+            "name": "extras",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_yaww_retreat_extras_name",
+                    "label": "Name",
+                    "name": "name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_retreat_extras"
+                },
+                {
+                    "key": "field_yaww_retreat_extras_tab",
+                    "label": "Short tab label",
+                    "name": "tab",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_retreat_extras"
+                },
+                {
+                    "key": "field_yaww_retreat_extras_price",
+                    "label": "Price as shown (e.g. 155 USD, 250 EUR)",
+                    "name": "price",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_retreat_extras"
+                },
+                {
+                    "key": "field_yaww_retreat_extras_price_usd",
+                    "label": "Price (USD, when in USD)",
+                    "name": "price_usd",
+                    "aria-label": "",
+                    "type": "number",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "min": "",
+                    "max": "",
+                    "step": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_retreat_extras"
+                },
+                {
+                    "key": "field_yaww_retreat_extras_unit",
+                    "label": "Unit",
+                    "name": "unit",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_retreat_extras"
+                },
+                {
+                    "key": "field_yaww_retreat_extras_desc",
+                    "label": "Description",
+                    "name": "desc",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "rows": "",
+                    "parent_repeater": "field_yaww_retreat_extras"
+                },
+                {
+                    "key": "field_yaww_retreat_extras_gallery",
+                    "label": "Photos",
+                    "name": "gallery",
+                    "aria-label": "",
+                    "type": "gallery",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "preview_size": "medium",
+                    "insert": "append",
+                    "library": "all",
+                    "min": 0,
+                    "max": 0,
+                    "min_width": 0,
+                    "min_height": 0,
+                    "min_size": 0,
+                    "max_width": 0,
+                    "max_height": 0,
+                    "max_size": 0,
+                    "mime_types": "",
+                    "parent_repeater": "field_yaww_retreat_extras"
+                }
+            ]
+        },
+        {
+            "key": "field_yaww_retreat_travel_tips",
+            "label": "Travel tips",
+            "name": "travel_tips",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_yaww_retreat_travel_tips_heading",
+                    "label": "Heading",
+                    "name": "heading",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_retreat_travel_tips"
+                },
+                {
+                    "key": "field_yaww_retreat_travel_tips_items",
+                    "label": "Items (one per line)",
+                    "name": "items",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "rows": "",
+                    "parent_repeater": "field_yaww_retreat_travel_tips"
+                }
+            ]
+        },
+        {
+            "key": "field_yaww_retreat_faqs",
+            "label": "Additional info \/ FAQ",
+            "name": "faqs",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_yaww_retreat_faqs_question",
+                    "label": "Question",
+                    "name": "question",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_retreat_faqs"
+                },
+                {
+                    "key": "field_yaww_retreat_faqs_answer",
+                    "label": "Answer",
+                    "name": "answer",
+                    "aria-label": "",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "tabs": "all",
+                    "toolbar": "full",
+                    "media_upload": 1,
+                    "default_value": "",
+                    "delay": 0,
+                    "parent_repeater": "field_yaww_retreat_faqs"
+                }
+            ]
+        },
+        {
+            "key": "field_yaww_retreat_gallery",
+            "label": "Gallery",
+            "name": "gallery",
+            "aria-label": "",
+            "type": "gallery",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "insert": "append",
+            "library": "all",
+            "min": 0,
+            "max": 0,
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_yaww_retreat_gallery_title",
+            "label": "Gallery title",
+            "name": "gallery_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_retreat_gallery_intro",
+            "label": "Gallery intro",
+            "name": "gallery_intro",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": "",
+            "rows": ""
+        },
+        {
+            "key": "field_yaww_retreat_testimonials",
+            "label": "Testimonials (What guests say)",
+            "name": "testimonials",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_yaww_retreat_testimonials_quote",
+                    "label": "Quote",
+                    "name": "quote",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "rows": "",
+                    "parent_repeater": "field_yaww_retreat_testimonials"
+                },
+                {
+                    "key": "field_yaww_retreat_testimonials_name",
+                    "label": "Name",
+                    "name": "name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_retreat_testimonials"
+                },
+                {
+                    "key": "field_yaww_retreat_testimonials_detail",
+                    "label": "Detail (Google review · El Cuyo)",
+                    "name": "detail",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_retreat_testimonials"
+                }
+            ]
+        },
+        {
+            "key": "field_yaww_retreat_deposit_usd",
+            "label": "Deposit (USD)",
+            "name": "deposit_usd",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": "",
+            "max": "",
+            "step": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_retreat_balance_due_days",
+            "label": "Balance due (days before)",
+            "name": "balance_due_days",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": "",
+            "max": "",
+            "step": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_retreat_roommate_note",
+            "label": "Roommate note",
+            "name": "roommate_note",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": "",
+            "rows": ""
+        },
+        {
+            "key": "field_yaww_retreat_wetravel_url",
+            "label": "WeTravel trip URL",
+            "name": "wetravel_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_yaww_retreat_seo_description",
+            "label": "SEO description",
+            "name": "seo_description",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": "",
+            "rows": ""
         }
-      ]
-    },
-    {
-      "key": "field_yaww_retreat_not_included",
-      "label": "What is not included",
-      "name": "not_included",
-      "type": "repeater",
-      "layout": "table",
-      "button_label": "Add",
-      "sub_fields": [
-        {
-          "key": "field_yaww_retreat_not_included_value",
-          "label": "Value",
-          "name": "value",
-          "type": "text"
-        }
-      ]
-    },
-    {
-      "key": "field_yaww_retreat_includes_notes",
-      "label": "Includes footnotes",
-      "name": "includes_notes",
-      "type": "repeater",
-      "layout": "table",
-      "button_label": "Add",
-      "sub_fields": [
-        {
-          "key": "field_yaww_retreat_includes_notes_value",
-          "label": "Value",
-          "name": "value",
-          "type": "text"
-        }
-      ]
-    },
-    {
-      "key": "field_yaww_retreat_includes_image",
-      "label": "Includes band photo (empty = css default)",
-      "name": "includes_image",
-      "type": "image",
-      "return_format": "id"
-    },
-    {
-      "key": "field_yaww_retreat_itinerary",
-      "label": "Itinerary",
-      "name": "itinerary",
-      "type": "repeater",
-      "layout": "block",
-      "button_label": "Add row",
-      "sub_fields": [
-        {
-          "key": "field_yaww_retreat_itinerary_label",
-          "label": "Day label",
-          "name": "label",
-          "type": "text"
-        },
-        {
-          "key": "field_yaww_retreat_itinerary_title",
-          "label": "Title",
-          "name": "title",
-          "type": "text"
-        },
-        {
-          "key": "field_yaww_retreat_itinerary_bullets",
-          "label": "Bullets (one per line)",
-          "name": "bullets",
-          "type": "textarea"
-        },
-        {
-          "key": "field_yaww_retreat_itinerary_images",
-          "label": "Photos",
-          "name": "images",
-          "type": "gallery",
-          "return_format": "id"
-        }
-      ]
-    },
-    {
-      "key": "field_yaww_retreat_itinerary_notes",
-      "label": "Itinerary notes",
-      "name": "itinerary_notes",
-      "type": "repeater",
-      "layout": "table",
-      "button_label": "Add",
-      "sub_fields": [
-        {
-          "key": "field_yaww_retreat_itinerary_notes_value",
-          "label": "Value",
-          "name": "value",
-          "type": "text"
-        }
-      ]
-    },
-    {
-      "key": "field_yaww_retreat_stays",
-      "label": "Accommodations (stay tabs)",
-      "name": "stays",
-      "type": "repeater",
-      "layout": "block",
-      "button_label": "Add row",
-      "sub_fields": [
-        {
-          "key": "field_yaww_retreat_stays_name",
-          "label": "Name (generic label, never a hotel name except Utopia)",
-          "name": "name",
-          "type": "text"
-        },
-        {
-          "key": "field_yaww_retreat_stays_tab",
-          "label": "Short tab label",
-          "name": "tab",
-          "type": "text"
-        },
-        {
-          "key": "field_yaww_retreat_stays_text",
-          "label": "Paragraphs (one per line)",
-          "name": "text",
-          "type": "textarea"
-        },
-        {
-          "key": "field_yaww_retreat_stays_gallery",
-          "label": "Photos",
-          "name": "gallery",
-          "type": "gallery",
-          "return_format": "id"
-        }
-      ]
-    },
-    {
-      "key": "field_yaww_retreat_room_venues",
-      "label": "Room venues (ROOM_VENUES for retreat-rooms.js)",
-      "name": "room_venues",
-      "type": "repeater",
-      "layout": "table",
-      "button_label": "Add",
-      "sub_fields": [
-        {
-          "key": "field_yaww_retreat_room_venues_value",
-          "label": "Value",
-          "name": "value",
-          "type": "text"
-        }
-      ]
-    },
-    {
-      "key": "field_yaww_retreat_rooms",
-      "label": "Rooms",
-      "name": "rooms",
-      "type": "repeater",
-      "layout": "block",
-      "button_label": "Add row",
-      "sub_fields": [
-        {
-          "key": "field_yaww_retreat_rooms_name",
-          "label": "Room name",
-          "name": "name",
-          "type": "text"
-        },
-        {
-          "key": "field_yaww_retreat_rooms_price_usd",
-          "label": "Price (USD, per person)",
-          "name": "price_usd",
-          "type": "number"
-        },
-        {
-          "key": "field_yaww_retreat_rooms_price_unit",
-          "label": "Price unit",
-          "name": "price_unit",
-          "type": "text"
-        },
-        {
-          "key": "field_yaww_retreat_rooms_description",
-          "label": "Description",
-          "name": "description",
-          "type": "textarea"
-        },
-        {
-          "key": "field_yaww_retreat_rooms_pills",
-          "label": "Feature pills (one per line)",
-          "name": "pills",
-          "type": "textarea"
-        },
-        {
-          "key": "field_yaww_retreat_rooms_hotel_label",
-          "label": "Generic stay label",
-          "name": "hotel_label",
-          "type": "text"
-        },
-        {
-          "key": "field_yaww_retreat_rooms_gallery",
-          "label": "Photos",
-          "name": "gallery",
-          "type": "gallery",
-          "return_format": "id"
-        }
-      ]
-    },
-    {
-      "key": "field_yaww_retreat_extras",
-      "label": "Optional extras",
-      "name": "extras",
-      "type": "repeater",
-      "layout": "block",
-      "button_label": "Add row",
-      "sub_fields": [
-        {
-          "key": "field_yaww_retreat_extras_name",
-          "label": "Name",
-          "name": "name",
-          "type": "text"
-        },
-        {
-          "key": "field_yaww_retreat_extras_tab",
-          "label": "Short tab label",
-          "name": "tab",
-          "type": "text"
-        },
-        {
-          "key": "field_yaww_retreat_extras_price",
-          "label": "Price as shown (e.g. 155 USD, 250 EUR)",
-          "name": "price",
-          "type": "text"
-        },
-        {
-          "key": "field_yaww_retreat_extras_price_usd",
-          "label": "Price (USD, when in USD)",
-          "name": "price_usd",
-          "type": "number"
-        },
-        {
-          "key": "field_yaww_retreat_extras_unit",
-          "label": "Unit",
-          "name": "unit",
-          "type": "text"
-        },
-        {
-          "key": "field_yaww_retreat_extras_desc",
-          "label": "Description",
-          "name": "desc",
-          "type": "textarea"
-        },
-        {
-          "key": "field_yaww_retreat_extras_gallery",
-          "label": "Photos",
-          "name": "gallery",
-          "type": "gallery",
-          "return_format": "id"
-        }
-      ]
-    },
-    {
-      "key": "field_yaww_retreat_travel_tips",
-      "label": "Travel tips",
-      "name": "travel_tips",
-      "type": "repeater",
-      "layout": "block",
-      "button_label": "Add row",
-      "sub_fields": [
-        {
-          "key": "field_yaww_retreat_travel_tips_heading",
-          "label": "Heading",
-          "name": "heading",
-          "type": "text"
-        },
-        {
-          "key": "field_yaww_retreat_travel_tips_items",
-          "label": "Items (one per line)",
-          "name": "items",
-          "type": "textarea"
-        }
-      ]
-    },
-    {
-      "key": "field_yaww_retreat_faqs",
-      "label": "Additional info / FAQ",
-      "name": "faqs",
-      "type": "repeater",
-      "layout": "block",
-      "button_label": "Add row",
-      "sub_fields": [
-        {
-          "key": "field_yaww_retreat_faqs_question",
-          "label": "Question",
-          "name": "question",
-          "type": "text"
-        },
-        {
-          "key": "field_yaww_retreat_faqs_answer",
-          "label": "Answer",
-          "name": "answer",
-          "type": "wysiwyg"
-        }
-      ]
-    },
-    {
-      "key": "field_yaww_retreat_gallery",
-      "label": "Gallery",
-      "name": "gallery",
-      "type": "gallery",
-      "return_format": "id"
-    },
-    {
-      "key": "field_yaww_retreat_gallery_title",
-      "label": "Gallery title",
-      "name": "gallery_title",
-      "type": "text"
-    },
-    {
-      "key": "field_yaww_retreat_gallery_intro",
-      "label": "Gallery intro",
-      "name": "gallery_intro",
-      "type": "textarea"
-    },
-    {
-      "key": "field_yaww_retreat_testimonials",
-      "label": "Testimonials (What guests say)",
-      "name": "testimonials",
-      "type": "repeater",
-      "layout": "block",
-      "button_label": "Add row",
-      "sub_fields": [
-        {
-          "key": "field_yaww_retreat_testimonials_quote",
-          "label": "Quote",
-          "name": "quote",
-          "type": "textarea"
-        },
-        {
-          "key": "field_yaww_retreat_testimonials_name",
-          "label": "Name",
-          "name": "name",
-          "type": "text"
-        },
-        {
-          "key": "field_yaww_retreat_testimonials_detail",
-          "label": "Detail (Google review \u00b7 El Cuyo)",
-          "name": "detail",
-          "type": "text"
-        }
-      ]
-    },
-    {
-      "key": "field_yaww_retreat_deposit_usd",
-      "label": "Deposit (USD)",
-      "name": "deposit_usd",
-      "type": "number"
-    },
-    {
-      "key": "field_yaww_retreat_balance_due_days",
-      "label": "Balance due (days before)",
-      "name": "balance_due_days",
-      "type": "number"
-    },
-    {
-      "key": "field_yaww_retreat_roommate_note",
-      "label": "Roommate note",
-      "name": "roommate_note",
-      "type": "textarea"
-    },
-    {
-      "key": "field_yaww_retreat_wetravel_url",
-      "label": "WeTravel trip URL",
-      "name": "wetravel_url",
-      "type": "url"
-    },
-    {
-      "key": "field_yaww_retreat_seo_description",
-      "label": "SEO description",
-      "name": "seo_description",
-      "type": "textarea"
-    }
-  ],
-  "location": [
-    [
-      {
-        "param": "post_type",
-        "operator": "==",
-        "value": "retreat"
-      }
-    ]
-  ],
-  "menu_order": 0,
-  "position": "normal",
-  "style": "default",
-  "label_placement": "top",
-  "active": true,
-  "show_in_rest": 1,
-  "modified": 1795447296
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "retreat"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "",
+    "show_in_rest": 1,
+    "display_title": "",
+    "enable_acf_abilities": true,
+    "ai_description": "",
+    "modified": 1795448682
 }

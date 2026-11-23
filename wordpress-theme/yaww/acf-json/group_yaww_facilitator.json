@@ -1,46 +1,108 @@
 {
-  "key": "group_yaww_facilitator",
-  "title": "YAWW \u00b7 Facilitator",
-  "fields": [
-    {
-      "key": "field_yaww_facilitator_role",
-      "label": "Role",
-      "name": "role",
-      "type": "text"
-    },
-    {
-      "key": "field_yaww_facilitator_short_bio",
-      "label": "Card blurb",
-      "name": "short_bio",
-      "type": "textarea"
-    },
-    {
-      "key": "field_yaww_facilitator_listed",
-      "label": "Listed on the Facilitators grid",
-      "name": "listed",
-      "type": "true_false"
-    },
-    {
-      "key": "field_yaww_facilitator_photo_position",
-      "label": "Photo object-position",
-      "name": "photo_position",
-      "type": "text"
-    }
-  ],
-  "location": [
-    [
-      {
-        "param": "post_type",
-        "operator": "==",
-        "value": "facilitator"
-      }
-    ]
-  ],
-  "menu_order": 0,
-  "position": "normal",
-  "style": "default",
-  "label_placement": "top",
-  "active": true,
-  "show_in_rest": 1,
-  "modified": 1795447296
+    "key": "group_yaww_facilitator",
+    "title": "YAWW · Facilitator",
+    "fields": [
+        {
+            "key": "field_yaww_facilitator_role",
+            "label": "Role",
+            "name": "role",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_facilitator_short_bio",
+            "label": "Card blurb",
+            "name": "short_bio",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": "",
+            "rows": ""
+        },
+        {
+            "key": "field_yaww_facilitator_listed",
+            "label": "Listed on the Facilitators grid",
+            "name": "listed",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 0,
+            "message": "",
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_yaww_facilitator_photo_position",
+            "label": "Photo object-position",
+            "name": "photo_position",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "facilitator"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "",
+    "show_in_rest": 1,
+    "display_title": "",
+    "enable_acf_abilities": true,
+    "ai_description": "",
+    "modified": 1795448681
 }

@@ -20,6 +20,8 @@ cp "$SITE"/js/*.js   "$A/js/"
   # bin/import.php puts those in the Media Library under their original file names.
   ls "$SITE"/*.html | grep -vE '/(index-|proto-|yaww-home-wireframe|retreats-full)' | xargs grep -hoE "images/[A-Za-z0-9_./@%-]+\.(jpg|jpeg|png|webp|svg|gif|mp4)" \
     | grep -vE '^images/(retreat-photos|journal|people|team|retreat-cards|teachers)/' || true
+  # Built in JS (missed by the grep above).
+  (cd "$SITE" && ls images/location-thumbs/* images/melissa-m-avatar.png images/mimi-s.png images/guest-*.jpg 2>/dev/null) || true
 } | sort -u | while IFS= read -r f; do
   if [ -f "$SITE/$f" ]; then mkdir -p "$A/$(dirname "$f")"; cp "$SITE/$f" "$A/$f"; else echo "missing: $f" >&2; fi
 done

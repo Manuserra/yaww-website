@@ -1,253 +1,754 @@
 {
-  "key": "group_yaww_location",
-  "title": "YAWW \u00b7 Location",
-  "fields": [
-    {
-      "key": "field_yaww_location_display_name",
-      "label": "Display name (italic line)",
-      "name": "display_name",
-      "type": "text"
-    },
-    {
-      "key": "field_yaww_location_card_name",
-      "label": "Card name (shorter line on retreat cards)",
-      "name": "card_name",
-      "type": "text"
-    },
-    {
-      "key": "field_yaww_location_short_name",
-      "label": "Short name (as on locations.html)",
-      "name": "short_name",
-      "type": "text"
-    },
-    {
-      "key": "field_yaww_location_region",
-      "label": "Region",
-      "name": "region",
-      "type": "select",
-      "choices": {
-        "Europe": "Europe",
-        "The Americas": "The Americas",
-        "Africa & Middle East": "Africa & Middle East",
-        "Asia": "Asia"
-      },
-      "return_format": "value"
-    },
-    {
-      "key": "field_yaww_location_country",
-      "label": "Country",
-      "name": "country",
-      "type": "text"
-    },
-    {
-      "key": "field_yaww_location_hero_image",
-      "label": "Hero image",
-      "name": "hero_image",
-      "type": "image",
-      "return_format": "id"
-    },
-    {
-      "key": "field_yaww_location_card_image",
-      "label": "Card image",
-      "name": "card_image",
-      "type": "image",
-      "return_format": "id"
-    },
-    {
-      "key": "field_yaww_location_placeholder_hue",
-      "label": "Placeholder hue (0-360)",
-      "name": "placeholder_hue",
-      "type": "number"
-    },
-    {
-      "key": "field_yaww_location_hotel_label",
-      "label": "Generic stay label (never a hotel name)",
-      "name": "hotel_label",
-      "type": "text"
-    },
-    {
-      "key": "field_yaww_location_eyebrow",
-      "label": "Hero eyebrow",
-      "name": "eyebrow",
-      "type": "text"
-    },
-    {
-      "key": "field_yaww_location_tagline",
-      "label": "Tagline",
-      "name": "tagline",
-      "type": "text"
-    },
-    {
-      "key": "field_yaww_location_blurb",
-      "label": "Grid blurb",
-      "name": "blurb",
-      "type": "textarea"
-    },
-    {
-      "key": "field_yaww_location_facts",
-      "label": "Hero facts",
-      "name": "facts",
-      "type": "repeater",
-      "layout": "block",
-      "button_label": "Add row",
-      "sub_fields": [
+    "key": "group_yaww_location",
+    "title": "YAWW · Location",
+    "fields": [
         {
-          "key": "field_yaww_location_facts_label",
-          "label": "Label",
-          "name": "label",
-          "type": "text"
+            "key": "field_yaww_location_display_name",
+            "label": "Display name (italic line)",
+            "name": "display_name",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
-          "key": "field_yaww_location_facts_value",
-          "label": "Value",
-          "name": "value",
-          "type": "text"
+            "key": "field_yaww_location_card_name",
+            "label": "Card name (shorter line on retreat cards)",
+            "name": "card_name",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_location_short_name",
+            "label": "Short name (as on locations.html)",
+            "name": "short_name",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_location_region",
+            "label": "Region",
+            "name": "region",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "Europe": "Europe",
+                "The Americas": "The Americas",
+                "Africa & Middle East": "Africa & Middle East",
+                "Asia": "Asia"
+            },
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "default_value": false,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_yaww_location_country",
+            "label": "Country",
+            "name": "country",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_location_hero_image",
+            "label": "Hero image",
+            "name": "hero_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_yaww_location_card_image",
+            "label": "Card image",
+            "name": "card_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_yaww_location_placeholder_hue",
+            "label": "Placeholder hue (0-360)",
+            "name": "placeholder_hue",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "min": "",
+            "max": "",
+            "step": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_location_hotel_label",
+            "label": "Generic stay label (never a hotel name)",
+            "name": "hotel_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_location_eyebrow",
+            "label": "Hero eyebrow",
+            "name": "eyebrow",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_location_tagline",
+            "label": "Tagline",
+            "name": "tagline",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_location_blurb",
+            "label": "Grid blurb",
+            "name": "blurb",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": "",
+            "rows": ""
+        },
+        {
+            "key": "field_yaww_location_facts",
+            "label": "Hero facts",
+            "name": "facts",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_yaww_location_facts_label",
+                    "label": "Label",
+                    "name": "label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_location_facts"
+                },
+                {
+                    "key": "field_yaww_location_facts_value",
+                    "label": "Value",
+                    "name": "value",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_location_facts"
+                }
+            ]
+        },
+        {
+            "key": "field_yaww_location_intro_title",
+            "label": "Intro title (Why we go); intro paragraphs = post content",
+            "name": "intro_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_location_intro_image",
+            "label": "Intro photo",
+            "name": "intro_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_yaww_location_guide",
+            "label": "Our guide",
+            "name": "guide",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_yaww_location_guide_kicker",
+                    "label": "Kicker",
+                    "name": "kicker",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_location_guide"
+                },
+                {
+                    "key": "field_yaww_location_guide_title",
+                    "label": "Title",
+                    "name": "title",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_location_guide"
+                },
+                {
+                    "key": "field_yaww_location_guide_text",
+                    "label": "Text",
+                    "name": "text",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "rows": "",
+                    "parent_repeater": "field_yaww_location_guide"
+                },
+                {
+                    "key": "field_yaww_location_guide_image",
+                    "label": "Photo",
+                    "name": "image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "preview_size": "medium",
+                    "library": "all",
+                    "min_width": 0,
+                    "min_height": 0,
+                    "min_size": 0,
+                    "max_width": 0,
+                    "max_height": 0,
+                    "max_size": 0,
+                    "mime_types": "",
+                    "parent_repeater": "field_yaww_location_guide"
+                }
+            ]
+        },
+        {
+            "key": "field_yaww_location_know",
+            "label": "Good to know",
+            "name": "know",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_yaww_location_know_label",
+                    "label": "Label",
+                    "name": "label",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_location_know"
+                },
+                {
+                    "key": "field_yaww_location_know_value",
+                    "label": "Text",
+                    "name": "value",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "rows": "",
+                    "parent_repeater": "field_yaww_location_know"
+                }
+            ]
+        },
+        {
+            "key": "field_yaww_location_quote_text",
+            "label": "Quote",
+            "name": "quote_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": "",
+            "rows": ""
+        },
+        {
+            "key": "field_yaww_location_quote_name",
+            "label": "Quote name",
+            "name": "quote_name",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_location_quote_source",
+            "label": "Quote source",
+            "name": "quote_source",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_location_program_retreat",
+            "label": "Program between editions (waitlist retreat)",
+            "name": "program_retreat",
+            "aria-label": "",
+            "type": "post_object",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "allow_null": 1,
+            "post_type": [
+                "retreat"
+            ],
+            "return_format": "id",
+            "taxonomy": [],
+            "multiple": 0,
+            "ui": 1,
+            "bidirectional_target": []
+        },
+        {
+            "key": "field_yaww_location_travel_tips",
+            "label": "Travel tips",
+            "name": "travel_tips",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "button_label": "Add row",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_yaww_location_travel_tips_heading",
+                    "label": "Heading",
+                    "name": "heading",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_location_travel_tips"
+                },
+                {
+                    "key": "field_yaww_location_travel_tips_items",
+                    "label": "Items (one per line)",
+                    "name": "items",
+                    "aria-label": "",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "new_lines": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "rows": "",
+                    "parent_repeater": "field_yaww_location_travel_tips"
+                }
+            ]
+        },
+        {
+            "key": "field_yaww_location_gallery",
+            "label": "Gallery",
+            "name": "gallery",
+            "aria-label": "",
+            "type": "gallery",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "insert": "append",
+            "library": "all",
+            "min": 0,
+            "max": 0,
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
         }
-      ]
-    },
-    {
-      "key": "field_yaww_location_intro_title",
-      "label": "Intro title (Why we go); intro paragraphs = post content",
-      "name": "intro_title",
-      "type": "text"
-    },
-    {
-      "key": "field_yaww_location_intro_image",
-      "label": "Intro photo",
-      "name": "intro_image",
-      "type": "image",
-      "return_format": "id"
-    },
-    {
-      "key": "field_yaww_location_guide",
-      "label": "Our guide",
-      "name": "guide",
-      "type": "repeater",
-      "layout": "block",
-      "button_label": "Add row",
-      "sub_fields": [
-        {
-          "key": "field_yaww_location_guide_kicker",
-          "label": "Kicker",
-          "name": "kicker",
-          "type": "text"
-        },
-        {
-          "key": "field_yaww_location_guide_title",
-          "label": "Title",
-          "name": "title",
-          "type": "text"
-        },
-        {
-          "key": "field_yaww_location_guide_text",
-          "label": "Text",
-          "name": "text",
-          "type": "textarea"
-        },
-        {
-          "key": "field_yaww_location_guide_image",
-          "label": "Photo",
-          "name": "image",
-          "type": "image",
-          "return_format": "id"
-        }
-      ]
-    },
-    {
-      "key": "field_yaww_location_know",
-      "label": "Good to know",
-      "name": "know",
-      "type": "repeater",
-      "layout": "block",
-      "button_label": "Add row",
-      "sub_fields": [
-        {
-          "key": "field_yaww_location_know_label",
-          "label": "Label",
-          "name": "label",
-          "type": "text"
-        },
-        {
-          "key": "field_yaww_location_know_value",
-          "label": "Text",
-          "name": "value",
-          "type": "textarea"
-        }
-      ]
-    },
-    {
-      "key": "field_yaww_location_quote_text",
-      "label": "Quote",
-      "name": "quote_text",
-      "type": "textarea"
-    },
-    {
-      "key": "field_yaww_location_quote_name",
-      "label": "Quote name",
-      "name": "quote_name",
-      "type": "text"
-    },
-    {
-      "key": "field_yaww_location_quote_source",
-      "label": "Quote source",
-      "name": "quote_source",
-      "type": "text"
-    },
-    {
-      "key": "field_yaww_location_program_retreat",
-      "label": "Program between editions (waitlist retreat)",
-      "name": "program_retreat",
-      "type": "post_object",
-      "allow_null": 1,
-      "post_type": [
-        "retreat"
-      ],
-      "return_format": "id"
-    },
-    {
-      "key": "field_yaww_location_travel_tips",
-      "label": "Travel tips",
-      "name": "travel_tips",
-      "type": "repeater",
-      "layout": "block",
-      "button_label": "Add row",
-      "sub_fields": [
-        {
-          "key": "field_yaww_location_travel_tips_heading",
-          "label": "Heading",
-          "name": "heading",
-          "type": "text"
-        },
-        {
-          "key": "field_yaww_location_travel_tips_items",
-          "label": "Items (one per line)",
-          "name": "items",
-          "type": "textarea"
-        }
-      ]
-    },
-    {
-      "key": "field_yaww_location_gallery",
-      "label": "Gallery",
-      "name": "gallery",
-      "type": "gallery",
-      "return_format": "id"
-    }
-  ],
-  "location": [
-    [
-      {
-        "param": "post_type",
-        "operator": "==",
-        "value": "location"
-      }
-    ]
-  ],
-  "menu_order": 0,
-  "position": "normal",
-  "style": "default",
-  "label_placement": "top",
-  "active": true,
-  "show_in_rest": 1,
-  "modified": 1795447296
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "location"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "",
+    "show_in_rest": 1,
+    "display_title": "",
+    "enable_acf_abilities": true,
+    "ai_description": "",
+    "modified": 1795448681
 }

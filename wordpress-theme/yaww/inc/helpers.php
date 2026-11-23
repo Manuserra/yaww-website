@@ -243,7 +243,7 @@ function yaww_data( $what ) {
 				$prog = (int) yaww_meta( 'program_retreat', $p->ID );
 				if ( $prog && 'publish' === get_post_status( $prog ) ) {
 					$img = (int) yaww_meta( 'card_image', $prog );
-					$l['program'] = array( 'name' => get_the_title( $prog ), 'pageUrl' => get_permalink( $prog ),
+					$l['program'] = array( 'name' => get_post_field( 'post_title', $prog ), 'pageUrl' => get_permalink( $prog ),
 						'collection' => yaww_meta( 'collection', $prog ) ?: null,
 						'image' => $img ? wp_get_attachment_image_url( $img, 'full' ) : null, 'image2x' => $img ? ( yaww_img_2x( $img ) ?: null ) : null );
 				}

@@ -228,7 +228,7 @@ if ( $want( 'retreats' ) ) {
 		$hero = yaww_imp_img( $R['hero'] );
 		if ( $hero ) { set_post_thumbnail( $id, $hero ); }
 		yaww_imp_fields( 'retreat', $id, array(
-			'subtitle' => $R['subtitle'],
+			'subtitle' => $R['subtitle'], 'location_label' => $R['location_label'], 'waitlist_note' => $R['waitlist_note'],
 			'location_id' => isset( $ids['location'][ $R['location'] ] ) ? $ids['location'][ $R['location'] ] : '',
 			'teacher_ids' => $map( 'teacher', $R['teachers'] ), 'facilitator_ids' => $map( 'facilitator', $R['facilitators'] ),
 			'start_date' => yaww_imp_ymd( $R['start_date'] ), 'end_date' => yaww_imp_ymd( $R['end_date'] ),

@@ -1,95 +1,247 @@
 {
-  "key": "group_yaww_post",
-  "title": "YAWW \u00b7 Journal",
-  "fields": [
-    {
-      "key": "field_yaww_post_date_label",
-      "label": "Date as shown (empty = no date line)",
-      "name": "date_label",
-      "type": "text"
-    },
-    {
-      "key": "field_yaww_post_author_name",
-      "label": "Author name",
-      "name": "author_name",
-      "type": "text"
-    },
-    {
-      "key": "field_yaww_post_author_photo",
-      "label": "Author photo",
-      "name": "author_photo",
-      "type": "image",
-      "return_format": "id"
-    },
-    {
-      "key": "field_yaww_post_author_bio",
-      "label": "Author bio (one paragraph per line)",
-      "name": "author_bio",
-      "type": "textarea"
-    },
-    {
-      "key": "field_yaww_post_author_person",
-      "label": "Author page (teacher or facilitator)",
-      "name": "author_person",
-      "type": "post_object",
-      "allow_null": 1,
-      "post_type": [
-        "teacher",
-        "facilitator"
-      ],
-      "return_format": "id"
-    },
-    {
-      "key": "field_yaww_post_retreat_title",
-      "label": "Explore this retreat: title",
-      "name": "retreat_title",
-      "type": "text"
-    },
-    {
-      "key": "field_yaww_post_retreat_subtitle",
-      "label": "Explore this retreat: subtitle",
-      "name": "retreat_subtitle",
-      "type": "text"
-    },
-    {
-      "key": "field_yaww_post_retreat_text",
-      "label": "Explore this retreat: text",
-      "name": "retreat_text",
-      "type": "textarea"
-    },
-    {
-      "key": "field_yaww_post_retreat_location",
-      "label": "Explore this retreat: location",
-      "name": "retreat_location",
-      "type": "post_object",
-      "allow_null": 1,
-      "post_type": [
-        "location"
-      ],
-      "return_format": "id"
-    },
-    {
-      "key": "field_yaww_post_retreat_image",
-      "label": "Explore this retreat: photo",
-      "name": "retreat_image",
-      "type": "image",
-      "return_format": "id"
-    }
-  ],
-  "location": [
-    [
-      {
-        "param": "post_type",
-        "operator": "==",
-        "value": "post"
-      }
-    ]
-  ],
-  "menu_order": 0,
-  "position": "normal",
-  "style": "default",
-  "label_placement": "top",
-  "active": true,
-  "show_in_rest": 1,
-  "modified": 1795447296
+    "key": "group_yaww_post",
+    "title": "YAWW · Journal",
+    "fields": [
+        {
+            "key": "field_yaww_post_date_label",
+            "label": "Date as shown (empty = no date line)",
+            "name": "date_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_post_author_name",
+            "label": "Author name",
+            "name": "author_name",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_post_author_photo",
+            "label": "Author photo",
+            "name": "author_photo",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_yaww_post_author_bio",
+            "label": "Author bio (one paragraph per line)",
+            "name": "author_bio",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": "",
+            "rows": ""
+        },
+        {
+            "key": "field_yaww_post_author_person",
+            "label": "Author page (teacher or facilitator)",
+            "name": "author_person",
+            "aria-label": "",
+            "type": "post_object",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "allow_null": 1,
+            "post_type": [
+                "teacher",
+                "facilitator"
+            ],
+            "return_format": "id",
+            "taxonomy": [],
+            "multiple": 0,
+            "ui": 1,
+            "bidirectional_target": []
+        },
+        {
+            "key": "field_yaww_post_retreat_title",
+            "label": "Explore this retreat: title",
+            "name": "retreat_title",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_post_retreat_subtitle",
+            "label": "Explore this retreat: subtitle",
+            "name": "retreat_subtitle",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_yaww_post_retreat_text",
+            "label": "Explore this retreat: text",
+            "name": "retreat_text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "new_lines": "",
+            "maxlength": "",
+            "placeholder": "",
+            "rows": ""
+        },
+        {
+            "key": "field_yaww_post_retreat_location",
+            "label": "Explore this retreat: location",
+            "name": "retreat_location",
+            "aria-label": "",
+            "type": "post_object",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "allow_null": 1,
+            "post_type": [
+                "location"
+            ],
+            "return_format": "id",
+            "taxonomy": [],
+            "multiple": 0,
+            "ui": 1,
+            "bidirectional_target": []
+        },
+        {
+            "key": "field_yaww_post_retreat_image",
+            "label": "Explore this retreat: photo",
+            "name": "retreat_image",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [],
+    "active": true,
+    "description": "",
+    "show_in_rest": 1,
+    "display_title": "",
+    "enable_acf_abilities": true,
+    "ai_description": "",
+    "modified": 1795448681
 }

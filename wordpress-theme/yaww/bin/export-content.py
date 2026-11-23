@@ -94,6 +94,10 @@ def parse_retreat_page(path):
     m = re.search(r'class="retreat-hero__image" role="img" aria-label="([^"]*)"(?: style="background-image: url\(\'([^\']+)\'\))?', doc)
     r["hero"] = {"src": m.group(2), "alt": html.unescape(m.group(1))} if m and m.group(2) else None
 
+    m = re.search(r'<p class="retreat-hero__location">(.*?)</p>', doc, re.S)
+    r["location_label"] = text(m.group(1)) if m else ""
+    m = re.search(r'<p class="waitlist__note">(.*?)</p>', doc, re.S)
+    r["waitlist_note"] = text(m.group(1)) if m else ""
     about = block(doc, r'<div class="retreat-about__body">', r"\n    </div>\n  </section>")
     r["about"] = re.findall(r"<p>(.*?)</p>", about, re.S)          # kept as HTML paragraphs
 

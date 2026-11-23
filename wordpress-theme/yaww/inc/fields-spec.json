@@ -8,6 +8,18 @@
    "src": "retreats/*/data.json subtitle"
   },
   {
+   "key": "location_label",
+   "type": "text",
+   "label": "Location line under the title",
+   "src": "retreatpage-*.html .retreat-hero__location"
+  },
+  {
+   "key": "waitlist_note",
+   "type": "textarea",
+   "label": "Waitlist note (dateless retreats)",
+   "src": "retreatpage-<location>.html .waitlist__note"
+  },
+  {
    "key": "location_id",
    "type": "post",
    "post_type": "location",
