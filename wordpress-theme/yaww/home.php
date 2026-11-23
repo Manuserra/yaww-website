@@ -11,8 +11,8 @@ yaww_e_assets( 'journal', array( 'journal-filter' ) );
 $active = is_category() ? get_queried_object()->slug : 'all';
 $topics = yaww_e_journal_topics();
 $journal_ids  = yaww_e_journal_posts();
+$GLOBALS['yaww_main_class'] = 'main main-journal'; // journal.html: <main id="main" class="main main-journal">
 get_header(); ?>
-<div class="main main-journal">
 
   <div class="container">
     <div class="main__header main__header--small">
@@ -64,5 +64,5 @@ get_header(); ?>
     </div>
   </div>
 
-</div>
+
 <?php get_footer();

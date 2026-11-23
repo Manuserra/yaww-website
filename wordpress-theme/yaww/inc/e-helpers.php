@@ -60,6 +60,14 @@ function yaww_e_assets( $view, $scripts = array() ) {
 		$li = YAWW_DIR . '/assets/js-theme/lenis-init.js';
 		wp_enqueue_script( 'yaww-lenis-init', YAWW_URI . '/assets/js-theme/lenis-init.js', array( 'yaww-lenis' ), file_exists( $li ) ? (string) filemtime( $li ) : YAWW_VERSION, true );
 
+		if ( in_array( $view, array( 'location', 'people', 'post' ), true ) ) {
+			// As locationpage-*.html, teacher-*.html, facilitator-*.html and journal/*.html: retreat-cards.js is on the
+			// page before nav.js runs, so the Retreats panel lists the next three retreats at build time
+			// (otherwise nav.js fetches it late and the panel can stay empty).
+			wp_enqueue_script( 'yaww-e-retreat-cards', YAWW_URI . '/assets/js/retreat-cards.js', array(), yaww_asset_ver( 'js/retreat-cards.js' ), array( 'strategy' => 'defer', 'in_footer' => false ) );
+			$nav = wp_scripts()->query( 'yaww-nav' );
+			if ( $nav && ! in_array( 'yaww-e-retreat-cards', $nav->deps, true ) ) { $nav->deps[] = 'yaww-e-retreat-cards'; }
+		}
 		if ( 'location' === $view ) {
 			wp_enqueue_script( 'yaww-e-lead-modal', YAWW_URI . '/assets/js/lead-modal.js', array(), yaww_asset_ver( 'js/lead-modal.js' ), array( 'strategy' => 'defer', 'in_footer' => true ) );
 		}

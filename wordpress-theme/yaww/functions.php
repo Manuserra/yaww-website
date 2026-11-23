@@ -109,7 +109,7 @@ function yaww_page_assets() {
 	$out  = array( 'icons' => true, 'css' => array_merge( array( 'base' ), $tail ), 'data' => array(), 'js' => array() );
 	if ( is_page_template( 'page-templates/contact.php' ) ) {                     // contact.html
 		$out['css']  = array_merge( array( 'base', 'contact' ), $tail );
-		$out['data'] = array( 'locations', 'retreats' );
+		$out['data'] = array( 'locations', 'regions', 'retreats' );   // data/locations.js also sets YAWW_REGIONS (nav panel order)
 		$out['js']   = array( 'contact' );
 	} elseif ( is_page_template( 'page-templates/teach-with-us.php' ) ) {         // teach-with-us.html
 		$out['css'] = array_merge( array( 'base', 'lead', 'contact', 'teach' ), $tail );

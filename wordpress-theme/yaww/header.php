@@ -85,4 +85,4 @@ $yaww_cur = function ( $key ) use ( $yaww_section, $yaww_index ) {
     </div>
   </nav>
 
-<main id="main">
+<main id="main"<?php echo ! empty( $GLOBALS['yaww_main_class'] ) ? ' class="' . esc_attr( $GLOBALS['yaww_main_class'] ) . '"' : ''; ?>>

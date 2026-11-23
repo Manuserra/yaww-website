@@ -305,6 +305,15 @@ function yaww_d_gallery( $v ) {
 	return $out;
 }
 
+/**
+ * A gallery sub field of repeater row $i, read raw: ACF's formatted gallery drops repeated ids
+ * (Thailand's stay gallery shows one photo twice on the static page). Falls back to the formatted value.
+ */
+function yaww_d_row_gallery( $post_id, $parent, $i, $row ) {
+	$raw = get_post_meta( $post_id, $parent . '_' . $i . '_gallery', true );
+	return ( is_array( $raw ) && $raw ) ? $raw : ( isset( $row['gallery'] ) ? $row['gallery'] : array() );
+}
+
 function yaww_d_urls( $v ) {
 	return array_map( function ( $p ) { return $p['src']; }, yaww_d_gallery( $v ) );
 }
@@ -385,16 +394,16 @@ function yaww_retreat_page_js( $rid ) {
 		return floor( $f ) === $f ? (int) $f : $f;
 	};
 	$hotels = array();
-	foreach ( yaww_rows( 'stays', $rid ) as $s ) {
+	foreach ( yaww_rows( 'stays', $rid ) as $i => $s ) {
 		$hotels[] = array(
 			'name'    => (string) ( isset( $s['name'] ) ? $s['name'] : '' ),
 			'tab'     => (string) ( ! empty( $s['tab'] ) ? $s['tab'] : ( isset( $s['name'] ) ? $s['name'] : '' ) ),
-			'gallery' => yaww_d_urls( isset( $s['gallery'] ) ? $s['gallery'] : array() ),
+			'gallery' => yaww_d_urls( yaww_d_row_gallery( $rid, 'stays', $i, $s ) ),
 			'text'    => array_map( 'esc_html', yaww_lines( isset( $s['text'] ) ? $s['text'] : '' ) ),
 		);
 	}
 	$extras = array();
-	foreach ( yaww_rows( 'extras', $rid ) as $x ) {
+	foreach ( yaww_rows( 'extras', $rid ) as $i => $x ) {
 		$price = isset( $x['price'] ) && '' !== $x['price'] ? $x['price'] : ( isset( $x['price_usd'] ) && '' !== $x['price_usd'] ? (int) $x['price_usd'] . ' USD' : '' );
 		$extras[] = array(
 			'name'    => (string) ( isset( $x['name'] ) ? $x['name'] : '' ),
@@ -402,18 +411,18 @@ function yaww_retreat_page_js( $rid ) {
 			'desc'    => esc_html( isset( $x['desc'] ) ? $x['desc'] : '' ),
 			'price'   => (string) $price,
 			'unit'    => (string) ( ! empty( $x['unit'] ) ? $x['unit'] : 'each' ),
-			'gallery' => yaww_d_urls( isset( $x['gallery'] ) ? $x['gallery'] : array() ),
+			'gallery' => yaww_d_urls( yaww_d_row_gallery( $rid, 'extras', $i, $x ) ),
 		);
 	}
 	$tiers = array();
-	foreach ( yaww_rows( 'rooms', $rid ) as $r ) {
+	foreach ( yaww_rows( 'rooms', $rid ) as $i => $r ) {
 		$tiers[] = array(
 			'name'      => (string) ( isset( $r['name'] ) ? $r['name'] : '' ),
 			'priceUSD'  => $num( isset( $r['price_usd'] ) ? $r['price_usd'] : null ),
 			'priceUnit' => isset( $r['price_unit'] ) && '' !== $r['price_unit'] ? $r['price_unit'] : null,
 			'desc'      => isset( $r['description'] ) && '' !== $r['description'] ? $r['description'] : null,
 			'pills'     => yaww_lines( isset( $r['pills'] ) ? $r['pills'] : '' ),
-			'gallery'   => yaww_d_urls( isset( $r['gallery'] ) ? $r['gallery'] : array() ),
+			'gallery'   => yaww_d_urls( yaww_d_row_gallery( $rid, 'rooms', $i, $r ) ),
 		);
 	}
 	$quotes = array();
