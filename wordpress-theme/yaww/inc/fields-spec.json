@@ -526,6 +526,11 @@
      "key": "image",
      "type": "image",
      "label": "Photo"
+    },
+    {
+     "key": "placeholder",
+     "type": "text",
+     "label": "Placeholder label (no photo yet)"
     }
    ]
   },
@@ -774,6 +779,36 @@
    "type": "image",
    "label": "Explore this retreat: photo",
    "src": "journal.js retreat.image / image2x"
+  },
+  {
+   "key": "card_image",
+   "type": "image",
+   "label": "Listing card photo",
+   "src": "images/journal/<slug>.jpg"
+  },
+  {
+   "key": "card_image_2x",
+   "type": "image",
+   "label": "Listing card photo @2x",
+   "src": "images/journal/<slug>@2x.jpg"
+  },
+  {
+   "key": "hero_image_2x",
+   "type": "image",
+   "label": "Hero @2x (hero 1x = featured image)",
+   "src": "journal.js hero.src2x"
+  },
+  {
+   "key": "author_photo_2x",
+   "type": "image",
+   "label": "Author photo @2x",
+   "src": "journal.js author.photo2x"
+  },
+  {
+   "key": "retreat_image_2x",
+   "type": "image",
+   "label": "Explore this retreat: photo @2x",
+   "src": "journal.js retreat.image2x"
   }
  ]
 }

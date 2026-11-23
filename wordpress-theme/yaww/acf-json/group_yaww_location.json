@@ -483,6 +483,27 @@
                     "max_size": 0,
                     "mime_types": "",
                     "parent_repeater": "field_yaww_location_guide"
+                },
+                {
+                    "key": "field_yaww_location_guide_placeholder",
+                    "label": "Placeholder label (no photo yet)",
+                    "name": "placeholder",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_yaww_location_guide"
                 }
             ]
         },
@@ -750,5 +771,5 @@
     "display_title": "",
     "enable_acf_abilities": true,
     "ai_description": "",
-    "modified": 1795448681
+    "modified": 1795448808
 }

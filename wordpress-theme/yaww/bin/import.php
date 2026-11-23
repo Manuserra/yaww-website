@@ -311,7 +311,7 @@ if ( $want( 'journal' ) ) {
 		}
 		$id = yaww_imp_post( 'post', $P['source_id'], array( 'post_title' => $P['title'], 'post_name' => $slug,
 			'post_content' => implode( "\n\n", $html ), 'post_excerpt' => $P['excerpt'],
-			'post_date' => $dates[ $i ] . ' 12:00:00', 'post_category' => $cats ) );
+			'post_date' => $dates[ $i ] . ' 12:00:00', 'post_category' => $cats, 'menu_order' => $P['menu_order'] ) );
 		update_post_meta( $id, '_yaww_cat_order', $P['categories'] );
 		$hero = yaww_imp_img( $P['hero'] );
 		if ( $hero ) { set_post_thumbnail( $id, $hero ); }
@@ -327,6 +327,11 @@ if ( $want( 'journal' ) ) {
 			'retreat_title' => $r ? $r['title'] : '', 'retreat_subtitle' => $r ? $r['subtitle'] : '', 'retreat_text' => $r ? $r['text'] : '',
 			'retreat_location' => ( $r && isset( $ids['location'][ $r['location'] ] ) ) ? $ids['location'][ $r['location'] ] : '',
 			'retreat_image' => $r ? yaww_imp_img( $r['image'] ) : 0,
+			// E's templates read the retina files as their own attachments (same file also sits on the 1x as size '2x').
+			'card_image' => yaww_imp_media( $P['card_image'], $P['title'] ), 'card_image_2x' => yaww_imp_media( $P['card_image_2x'], $P['title'] ),
+			'hero_image_2x' => ( $P['hero'] && ! empty( $P['hero']['src2x'] ) ) ? yaww_imp_media( $P['hero']['src2x'], $P['title'] ) : 0,
+			'author_photo_2x' => ( $P['author_photo'] && ! empty( $P['author_photo']['src2x'] ) ) ? yaww_imp_media( $P['author_photo']['src2x'], $P['author_name'] ) : 0,
+			'retreat_image_2x' => ( $r && $r['image'] && ! empty( $r['image']['src2x'] ) ) ? yaww_imp_media( $r['image']['src2x'], $r['title'] ) : 0,
 		) );
 		WP_CLI::log( "journal   $slug" );
 	}

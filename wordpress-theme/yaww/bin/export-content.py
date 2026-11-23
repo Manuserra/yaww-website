@@ -249,7 +249,8 @@ def locations(cat):
             "eyebrow": c.get("eyebrow"), "tagline": c.get("tagline"), "blurb": c.get("blurb"),
             "facts": [{"label": a, "value": b} for a, b in c.get("facts") or []],
             "intro_title": c.get("intro_title"), "intro": c.get("intro") or [], "intro_image": img(c.get("intro_img")),
-            "guide": [dict(kicker=g.get("kicker"), title=g.get("title"), text=g.get("text"), image=img(g.get("img")))
+            "guide": [dict(kicker=g.get("kicker"), title=g.get("title"), text=g.get("text"), image=img(g.get("img")),
+                           placeholder=g.get("ph") or "")
                       for g in c.get("guide") or []],
             "know": [{"label": a, "value": b} for a, b in c.get("know") or []],
             "quote_text": q[0] if len(q) > 0 else None, "quote_name": q[1] if len(q) > 1 else None,
@@ -295,6 +296,19 @@ def people(cat, all_retreats):
 
 def journal(cat):
     out = []
+    grid = open(os.path.join(REPO, "journal.html"), encoding="utf-8").read()
+    order = []
+    for slug in re.findall(r'href="journal/([^"]+)\.html"', grid):
+        if slug not in order:
+            order.append(slug)
+
+    def card(slug):
+        for ext in ("jpg", "jpeg", "png", "webp"):
+            one = f"images/journal/{slug}.{ext}"
+            if os.path.exists(os.path.join(REPO, one)):
+                two = f"images/journal/{slug}@2x.{ext}"
+                return one, (two if os.path.exists(os.path.join(REPO, two)) else None)
+        return None, None
     for i, j in enumerate(cat["journal"]):
         a = j.get("author") or {}
         r = j.get("retreat") or {}
@@ -305,6 +319,8 @@ def journal(cat):
         out.append({
             "source_id": j["slug"], "slug": j["slug"], "title": j["title"], "excerpt": j.get("excerpt") or "",
             "categories": j.get("categories") or [], "date": j.get("dateISO"), "date_label": j.get("date"), "order": i,
+            "menu_order": order.index(j["slug"]) + 1 if j["slug"] in order else 99,
+            "card_image": card(j["slug"])[0], "card_image_2x": card(j["slug"])[1],
             "hero": {"src": j["hero"]["src"], "src2x": j["hero"].get("src2x"), "alt": j["title"]} if j.get("hero") else None,
             "blocks": j.get("blocks") or [],
             "author_name": a.get("name"), "author_bio": a.get("bio") or [],
